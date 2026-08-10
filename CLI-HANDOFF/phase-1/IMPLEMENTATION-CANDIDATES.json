@@ -1,0 +1,41 @@
+{
+  "phase": "1",
+  "title": "Implementation Candidates — Complete Inventory",
+  "generated": "2026-08-10",
+  "statuses": {
+    "EXISTING_VERIFIED": "Already implemented and verified",
+    "EXISTING_PARTIAL": "Implementation exists but incomplete",
+    "EXISTING_BROKEN": "Exists but malfunctioning",
+    "DOCUMENTATION_ONLY": "Described but not implemented",
+    "PLANNED": "Explicitly planned",
+    "DISCOVERED_OPPORTUNITY": "New candidate discovered",
+    "DUPLICATE": "Already implemented elsewhere",
+    "DEPRECATED": "No longer appropriate",
+    "BLOCKED": "External dependency blocks progress",
+    "UNKNOWN": "Insufficient evidence"
+  },
+  "candidates": {
+    "ix_remap_hardening": {"status":"EXISTING_VERIFIED","repo":"ix-infrastructure/Ix","branch":"feat/ix-remap-hardening","sha":"c021b52","description":"Loopback-hardened /__ix/remap endpoint, WSL bootstrap fix, dead node_ok removal","files":4,"tests":1,"pushed":true,"pr_ready":true,"no_pr_created":true},
+    "ix_agent_skill": {"status":"EXISTING_PARTIAL","repo":"ix-infrastructure/Ix","branch":"feat/ix-agent-skill","sha":"b038c46","dirty":14,"description":"Agent skill with Compass patch, API docs, upstream port. Stripped Compass changes per reviewer.","has_compass_patch":true,"pr_368_merged":true,"note":"Active development — DO NOT MODIFY"},
+    "compass_f_key": {"status":"BLOCKED","repo":"ix-infrastructure/system-compass","description":"F-key to fit-view in Compass. Currently unbound. fit-view.js patch exists but belongs in system-compass per reviewer.","blocker":"system-compass is private — no source access"},
+    "compass_auto_frame": {"status":"DUPLICATE","repo":"ix-infrastructure/system-compass","description":"Auto-frame on first render and drill-in/out.","note":"Covered by Compass #57 per reviewer. Do NOT implement."},
+    "compass_delayed_data": {"status":"BLOCKED","repo":"ix-infrastructure/system-compass","description":"Delayed-data blank panel fix.","blocker":"system-compass is private","evidence":"F-006 REPRODUCED_LIVE on v0.3.0"},
+    "modkit_enhancement_layer": {"status":"EXISTING_PARTIAL","repo":"Alot1z/freebuff-forge","branch":"feat/modkit-enhancement-layer","sha":"441cec670","description":"Local-first modkit with safety gates, Gitleaks, privacy scan, upstream read-only sync. 10 test files. CI in modkit-ci.yml.","config":{"localOnly":true,"allowRemoteMutation":false,"allowPush":false,"allowPrCreation":false}},
+    "ix_findings_github_pages": {"status":"EXISTING_PARTIAL","repo":"Alot1z/Ix-findings","description":"Static knowledge explorer site. Standalone HTML exists (170KB). GitHub Pages not yet configured.","existing":"planning/wiki/index-standalone.html","blocker":"Needs GitHub Pages deployment configuration"},
+    "ix_findings_manifest_fix": {"status":"DISCOVERED_OPPORTUNITY","repo":"Alot1z/Ix-findings","description":"Manifest claims 290 nodes/240 edges — actual is 152/136. Also claims 28 evidence — actual is 25. Must update from live data.","confidence":"HIGH"},
+    "f_008_version_mismatch": {"status":"OPEN","repo":"ix-infrastructure/Ix","description":"Version-series mismatch in ix upgrade (#376).","related_pr":376,"related_issue":376},
+    "f_009_patches_dead": {"status":"OPEN","repo":"ix-infrastructure/Ix","description":"patches command dead/unregistered (#371).","related_pr":371,"related_issue":371},
+    "f_013_zoom_discrepancy": {"status":"UNKNOWN","repo":"ix-infrastructure/system-compass","description":"Zoom-in multiplier discrepancy (x1.25 observed vs x1.1 in constants). Class D — low confidence.","blocker":"system-compass source access"},
+    "freebuff_forge_upstream_divergence": {"status":"UNKNOWN","repo":"Alot1z/freebuff-forge","description":"Divergence from CodebuffAI/freebuff not yet measured. Commit count, files changed, mergeability unknown.","requires":"git fetch upstream + log comparison"},
+    "freebuff_modkit_tests": {"status":"EXISTING_VERIFIED","repo":"Alot1z/freebuff-forge","description":"10 test files in modkit/tests/. CI passes modkit tests + typecheck.","evidence":"modkit-ci.yml + modkit/tests/"},
+    "ix_documentation_gaps": {"status":"DISCOVERED_OPPORTUNITY","repo":"ix-infrastructure/Ix","description":"Multiple commands lack comprehensive docs. API reference exists (docs/api/README.md, openapi.yaml) but partial.","note":"Phase 1 inventory complete, not remediated"}
+  },
+  "contribution_readiness_matrix": {
+    "ix_remap": {"status":"READY","target":"ix-infrastructure/Ix","branch":"feat/ix-remap-hardening","sha":"c021b52","blocker":null,"next":"Open PR from fork (requires user auth)"},
+    "ix_agent_skill": {"status":"IN_DEVELOPMENT","target":"ix-infrastructure/Ix","sha":"b038c46","blocker":"14 dirty files, ongoing work","next":"Complete development + clean up"},
+    "compass_f_key": {"status":"BLOCKED","target":"ix-infrastructure/system-compass","blocker":"No source access","next":"D-014: request access from KageBinary"},
+    "compass_delayed_data": {"status":"BLOCKED","target":"ix-infrastructure/system-compass","blocker":"No source access","next":"D-014: request access from KageBinary"},
+    "f_008_upgrade": {"status":"NEEDS_MORE_EVIDENCE","target":"ix-infrastructure/Ix","related_issue":376,"next":"Verify if still reproducible on c4f8fea"},
+    "f_009_patches": {"status":"NEEDS_MORE_EVIDENCE","target":"ix-infrastructure/Ix","related_issue":371,"next":"Verify if still reproducible on c4f8fea"}
+  }
+}

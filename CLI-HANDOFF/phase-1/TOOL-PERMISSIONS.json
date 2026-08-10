@@ -1,0 +1,50 @@
+{
+  "phase": "1",
+  "title": "Tool Permission Matrix",
+  "generated": "2026-08-10",
+  "tools": [
+    {"tool":"read_files","mutation":"READ_ONLY","filesystem":"read","network":"none","git":"none","github":"none","external":"none","credential":"none","dangerous":false},
+    {"tool":"write_file","mutation":"LOCAL_MUTATION","filesystem":"write","network":"none","git":"none","github":"none","external":"none","credential":"none","dangerous":false},
+    {"tool":"str_replace","mutation":"LOCAL_MUTATION","filesystem":"write","network":"none","git":"none","github":"none","external":"none","credential":"none","dangerous":false},
+    {"tool":"list_directory","mutation":"READ_ONLY","filesystem":"read","network":"none","git":"none","github":"none","external":"none","credential":"none","dangerous":false},
+    {"tool":"glob","mutation":"READ_ONLY","filesystem":"read","network":"none","git":"none","github":"none","external":"none","credential":"none","dangerous":false},
+    {"tool":"read_subtree","mutation":"READ_ONLY","filesystem":"read","network":"none","git":"none","github":"none","external":"none","credential":"none","dangerous":false},
+    {"tool":"file_picker","mutation":"READ_ONLY","filesystem":"read","network":"none","git":"none","github":"none","external":"none","credential":"none","dangerous":false},
+    {"tool":"code_searcher","mutation":"READ_ONLY","filesystem":"read","network":"none","git":"none","github":"none","external":"none","credential":"none","dangerous":false},
+    {"tool":"code_reviewer_deepseek","mutation":"READ_ONLY","filesystem":"read","network":"none","git":"none","github":"none","external":"none","credential":"none","dangerous":false},
+    {"tool":"thinker_with_files_gemini","mutation":"READ_ONLY","filesystem":"read","network":"none","git":"none","github":"none","external":"none","credential":"none","dangerous":false},
+    {"tool":"researcher_web","mutation":"READ_ONLY","filesystem":"none","network":"read","git":"none","github":"none","external":"web","credential":"none","dangerous":false},
+    {"tool":"researcher_docs","mutation":"READ_ONLY","filesystem":"none","network":"read","git":"none","github":"none","external":"docs","credential":"none","dangerous":false},
+    {"tool":"read_url","mutation":"READ_ONLY","filesystem":"none","network":"read","git":"none","github":"none","external":"web","credential":"none","dangerous":false},
+    {"tool":"gravity_index","mutation":"READ_ONLY","filesystem":"none","network":"read","git":"none","github":"none","external":"api","credential":"none","dangerous":false},
+    {"tool":"render_ui","mutation":"READ_ONLY","filesystem":"none","network":"none","git":"none","github":"none","external":"none","credential":"none","dangerous":false},
+    {"tool":"ask_user","mutation":"READ_ONLY","filesystem":"none","network":"none","git":"none","github":"none","external":"none","credential":"none","dangerous":false},
+    {"tool":"skill","mutation":"READ_ONLY","filesystem":"read","network":"none","git":"none","github":"none","external":"none","credential":"none","dangerous":false},
+    {"tool":"spawn_agents","mutation":"ORCHESTRATION","filesystem":"delegated","network":"delegated","git":"delegated","github":"delegated","external":"delegated","credential":"delegated","dangerous":true,"note":"Parent-agent responsibility to enforce boundaries on spawned agents"},
+    {"tool":"basher","mutation":"LOCAL_MUTATION","filesystem":"full","network":"available","git":"full","github":"full","external":"shell","credential":"access","dangerous":true,"note":"Full shell access — can modify files, run git, push, use credentials"},
+    {"tool":"tmux_cli","mutation":"LOCAL_MUTATION","filesystem":"full","network":"available","git":"full","github":"full","external":"shell","credential":"access","dangerous":true},
+    {"tool":"browser_use","mutation":"LOCAL_MUTATION","filesystem":"read","network":"full","git":"none","github":"none","external":"browser","credential":"access","dangerous":true,"note":"Can access sessions with credentials, navigate authenticated pages"},
+    {"tool":"write_todos","mutation":"READ_ONLY","filesystem":"none","network":"none","git":"none","github":"none","external":"none","credential":"none","dangerous":false},
+    {"tool":"suggest_followups","mutation":"READ_ONLY","filesystem":"none","network":"none","git":"none","github":"none","external":"none","credential":"none","dangerous":false},
+    {"tool":"set_output","mutation":"READ_ONLY","filesystem":"none","network":"none","git":"none","github":"none","external":"none","credential":"none","dangerous":false},
+    {"tool":"context_pruner","mutation":"READ_ONLY","filesystem":"read","network":"none","git":"none","github":"none","external":"none","credential":"none","dangerous":false}
+  ],
+  "mutation_classes": {
+    "READ_ONLY": 16,
+    "LOCAL_MUTATION": 4,
+    "ORCHESTRATION": 1,
+    "FULL_SHELL": 2,
+    "BROWSER": 1
+  },
+  "dangerous_tools": ["spawn_agents","basher","tmux_cli","browser_use"],
+  "credential_access_tools": ["basher","tmux_cli","browser_use"],
+  "git_mutation_tools": ["basher","tmux_cli"],
+  "external_mutation_tools": ["basher","tmux_cli"],
+  "critical_safety_notes": [
+    "basher and tmux_cli have FULL filesystem + Git + GitHub access through shell commands",
+    "browser_use can access authenticated sessions and browser-stored credentials",
+    "spawn_agents delegates authority to spawned agents — parent must enforce boundaries",
+    "No tool can independently create PRs, issues, or modify GitHub without explicit command",
+    "GitHub token path: C:\\Users\\jacob\\.env-files\\tokens\\githubfixed.token — accessible to basher/tmux_cli"
+  ]
+}

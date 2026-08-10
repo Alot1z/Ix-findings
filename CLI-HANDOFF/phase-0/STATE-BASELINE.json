@@ -1,0 +1,132 @@
+{
+  "phase": "0",
+  "title": "Complete Existing-State Reconciliation",
+  "generated": "2026-08-10",
+  "status": "COMPLETE",
+  "repositories": [
+    {
+      "repo_id": "ix-infrastructure/Ix",
+      "role": "upstream",
+      "owner": "ix-infrastructure",
+      "name": "Ix",
+      "url": "https://github.com/ix-infrastructure/Ix",
+      "visibility": "public",
+      "default_branch": "main",
+      "local_clones": [
+        { "path": "E:/E-github-repos/Ix", "role": "primary worktree", "branch": "feat/ix-agent-skill", "head": "b038c46117c26e17ff7f3dc8edd4c4f5083f79f6", "dirty": 14, "protected": true },
+        { "path": "E:/E-github-repos/Ix-remap", "role": "remap worktree", "branch": "feat/ix-remap-hardening", "head": "c021b52358d019378620195eaf1b76c94dcd43c1", "ahead": 1, "dirty": 0 },
+        { "path": "E:/E-github-repos/Ix-test", "role": "clean test worktree", "branch": "(detached)", "head": "c4f8fea3916c87e83167bdfaaee945159f64ad0f", "dirty": 0, "tests_passing": "646/648" }
+      ]
+    },
+    {
+      "repo_id": "Alot1z/Ix",
+      "role": "fork",
+      "owner": "Alot1z",
+      "name": "Ix",
+      "url": "https://github.com/Alot1z/Ix",
+      "visibility": "public",
+      "fork_of": "ix-infrastructure/Ix",
+      "default_branch": "main",
+      "fork_main_head": "c4f8fea3916c87e83167bdfaaee945159f64ad0f",
+      "sync_status": "synchronized (2026-08-10)",
+      "remote_branches": ["feat/ix-remap-hardening@c021b52"],
+      "local_remote": "fork"
+    },
+    {
+      "repo_id": "ix-infrastructure/ix-compass-dist",
+      "role": "distribution",
+      "owner": "ix-infrastructure",
+      "name": "ix-compass-dist",
+      "url": "https://github.com/ix-infrastructure/ix-compass-dist",
+      "visibility": "public",
+      "default_branch": "main",
+      "local_path": "E:/E-github-repos/ix-compass-dist",
+      "head": "396426b2a08e689a969f30489aa76dedea325c28",
+      "dirty": 3,
+      "tags": ["v0.1.0", "v0.1.1", "v0.2.0", "v0.3.0"],
+      "note": "Distribution channel — DO NOT MODIFY"
+    },
+    {
+      "repo_id": "ix-infrastructure/system-compass",
+      "role": "source",
+      "owner": "ix-infrastructure",
+      "name": "system-compass",
+      "visibility": "private",
+      "access": "BLOCKED — HTTP 404",
+      "local_path": null,
+      "fork_exists": false,
+      "note": "Private repo, no fork exists, cannot be accessed"
+    },
+    {
+      "repo_id": "Alot1z/Ix-findings",
+      "role": "investigation",
+      "owner": "Alot1z",
+      "name": "Ix-findings",
+      "url": "https://github.com/Alot1z/Ix-findings",
+      "visibility": "public",
+      "default_branch": "master",
+      "local_path": "E:/E-github-repos/Ix-findings",
+      "head": "47e70da4abf8bc19901b096412d052183fadad77",
+      "commits": 7,
+      "dirty": 2,
+      "dirty_files": ["planning/wiki/assets/wiki.js", "planning/wiki/index-standalone.html"],
+      "handoff_dirs": {
+        "CLI-HANDOFF": { "exists": true, "files": 20 },
+        "IX-INVESTIGATION-HANDOFF": { "exists": true, "files": 0, "note": "EMPTY — stale locked directory" }
+      }
+    },
+    {
+      "repo_id": "Alot1z/freebuff-forge",
+      "role": "development",
+      "owner": "Alot1z",
+      "name": "freebuff-forge",
+      "url": "https://github.com/Alot1z/freebuff-forge",
+      "visibility": "unknown",
+      "upstream": "CodebuffAI/freebuff",
+      "local_path": "E:/E-github-repos/freebuff-forge",
+      "branch": "feat/modkit-enhancement-layer",
+      "head": "441cec670",
+      "dirty": "unknown",
+      "description": "Fork of CodebuffAI/freebuff — modkit enhancement work"
+    },
+    {
+      "repo_id": "freebuff-mod",
+      "role": "development",
+      "local_path": "E:/E-github-repos/freebuff-mod",
+      "branch": "main",
+      "head": "9efee0c",
+      "dirty": "1 untracked",
+      "description": "Mod development repository"
+    },
+    {
+      "repo_id": "freebuff-configs",
+      "role": "development",
+      "local_path": "E:/E-github-repos/freebuff-configs",
+      "branch": "master",
+      "head": "01f81f8",
+      "dirty": "modified + untracked",
+      "description": "Configuration repository"
+    }
+  ],
+  "knowledge_system": {
+    "findings": { "count": 13, "source": "planning/findings/registry.json", "confidence": "HIGH" },
+    "evidence": { "count": 25, "source": "planning/evidence/registry.json", "confidence": "HIGH" },
+    "decisions": { "count": 14, "decided": 9, "open": 5, "source": "planning/decisions/registry.json", "confidence": "HIGH" },
+    "suggestions": { "count": 33, "source": "planning/suggestions/registry.json", "confidence": "HIGH" },
+    "graph": {
+      "nodes": 152,
+      "edges": 136,
+      "source": "planning/maps/investigation-map.json",
+      "confidence": "HIGH",
+      "manifest_claims": { "nodes": 290, "edges": 240 },
+      "discrepancy": "MANIFEST IS STALE — claims 290/240 but actual graph is 152/136"
+    },
+    "manifest": { "version": "4.0.0", "evidence_claimed": 28, "evidence_actual": 25, "discrepancy": "MANIFEST CLAIMS 28 EVIDENCE, REGISTRY HAS 25" },
+    "node_types": { "phase": 16, "repository": 5, "worktree": 3, "branch": 6, "release": 4, "artifact": 4, "file": 10, "symbol": 9, "api": 2, "test": 4, "finding": 13, "evidence": 28, "issue": 4, "pr": 6, "pr_packet": 4, "commit": 7, "decision": 14, "stale_claim": 8, "person": 5 }
+  },
+  "protected_work": [
+    { "worktree": "Ix primary", "path": "E:/E-github-repos/Ix", "branch": "feat/ix-agent-skill", "head": "b038c46", "dirty": 14, "verified_unchanged": true }
+  ],
+  "phase0_mutations": 0,
+  "external_actions_performed": 0
+}
