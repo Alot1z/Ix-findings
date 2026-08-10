@@ -1,0 +1,33 @@
+{
+  "phase": "3",
+  "title": "Implementation Work Breakdown — sliced, verifiable work items",
+  "generated": "2026-08-10",
+  "work_items": [
+    { "work_id": "WORK-001", "parent_candidate": "CAND-001", "title": "Regenerate manifest counts from live graph/registries", "repository": "Alot1z/Ix-findings", "effort": "low", "tests": ["node JSON.parse", "count cross-check"], "acceptance": "manifest graph=152/136, evidence=25" },
+    { "work_id": "WORK-002", "parent_candidate": "CAND-002", "title": "Reconcile E-026..E-028 (promote to registry or remove from graph)", "repository": "Alot1z/Ix-findings", "effort": "low", "tests": ["set-difference script"], "acceptance": "graph evidence set == registry set" },
+    { "work_id": "WORK-003", "parent_candidate": "CAND-003", "title": "Add verified PRs/issues to graph + PR-MATRIX", "repository": "Alot1z/Ix-findings", "effort": "medium", "tests": ["endpoint validation", "matrix coverage"], "acceptance": "all verified entities present with fixes edges" },
+    { "work_id": "WORK-004", "parent_candidate": "CAND-004", "title": "Correct PR-MATRIX type labels for #371/#376", "repository": "Alot1z/Ix-findings", "effort": "low", "tests": [], "acceptance": "rows classified ISSUE with API-verified note" },
+    { "work_id": "WORK-005", "parent_candidate": "CAND-005", "title": "Write PACK-371 packet (register-or-delete options)", "repository": "ix-infrastructure/Ix (packet in Ix-findings)", "effort": "low", "tests": ["packet schema check"], "acceptance": "packet documents F-009 evidence + both options + tests" },
+    { "work_id": "WORK-006", "parent_candidate": "CAND-006", "title": "Build Playwright delayed-data reproduction script", "repository": "Alot1z/Ix-findings", "effort": "medium", "tests": ["playwright run against dist v0.3.0"], "acceptance": "reproducible blank-panel output with timings" },
+    { "work_id": "WORK-007", "parent_candidate": "CAND-007", "title": "Rewrite GRAPH-AUDIT.md to historical-vs-actual", "repository": "Alot1z/Ix-findings", "effort": "low", "tests": [], "acceptance": "doc counts match live graph; root cause stated" },
+    { "work_id": "WORK-008", "parent_candidate": "CAND-008", "title": "Implement GitHub Pages workflow + sanitized build", "repository": "Alot1z/Ix-findings", "effort": "medium", "tests": ["link check", "secret scan", "asset check"], "acceptance": "deployed site loads without localhost; no internal paths/secrets", "blocked_by": "user authorization + sanitization review" },
+    { "work_id": "WORK-009", "parent_candidate": "CAND-009", "title": "Enrich graph with verified execution-state nodes", "repository": "Alot1z/Ix-findings", "effort": "medium", "tests": ["endpoint validation", "count consistency"], "acceptance": "no dangling edges; counts match PR-MATRIX" },
+    { "work_id": "WORK-010", "parent_candidate": "CAND-010", "title": "Fresh F-008/F-009 reproduction against 2e246e8", "repository": "ix-infrastructure/Ix (Ix-test worktree)", "effort": "medium", "tests": ["vitest run", "upgrade-version-compare.test.ts", "patches smoke"], "acceptance": "recorded results; issues still reproducible or resolved" },
+    { "work_id": "WORK-011", "parent_candidate": "CAND-011", "title": "Repair 8 dangling edges", "repository": "Alot1z/Ix-findings", "effort": "low", "tests": ["endpoint validation"], "acceptance": "dangling count = 0" },
+    { "work_id": "WORK-012", "parent_candidate": "CAND-012", "title": "Rebase remap onto 2e246e8 + re-run guard tests", "repository": "ix-infrastructure/Ix (Ix-remap)", "effort": "low", "tests": ["view-server.test.ts", "full suite"], "acceptance": "merge-tree clean; suite green on new base", "blocked_by": "authorization to update fork branch" },
+    { "work_id": "WORK-013", "parent_candidate": "CAND-013", "title": "Sync fork main to 2e246e8", "repository": "Alot1z/Ix", "effort": "low", "tests": [], "acceptance": "fork main sha == 2e246e8", "blocked_by": "authorization to push fork main" },
+    { "work_id": "WORK-014", "parent_candidate": "CAND-014", "title": "Validate and commit the renderFindings syntax fix", "repository": "Alot1z/Ix-findings", "effort": "low", "tests": ["node --check wiki.js", "browser smoke"], "acceptance": "no syntax error; findings chips work" },
+    { "work_id": "WORK-015", "parent_candidate": "CAND-015", "title": "Derive contribution gate from canonical sources in build-data.mjs", "repository": "Alot1z/Ix-findings", "effort": "medium", "tests": ["rebuild data.js", "diff check"], "acceptance": "generated data matches reconciliation JSONs" },
+    { "work_id": "WORK-016", "parent_candidate": "CAND-016", "title": "Document dual version series", "repository": "Alot1z/Ix-findings", "effort": "low", "tests": [], "acceptance": "knowledge model records 0.6.1 source + v0.9.x releases" },
+    { "work_id": "WORK-017", "parent_candidate": "CAND-017", "title": "Record forge divergence measurement", "repository": "Alot1z/Ix-findings", "effort": "low", "tests": [], "acceptance": "U-003 resolved with counts" },
+    { "work_id": "WORK-018", "parent_candidate": "CAND-018", "title": "Record --format llm as implemented upstream", "repository": "Alot1z/Ix-findings", "effort": "low", "tests": [], "acceptance": "knowledge note updated" },
+    { "work_id": "WORK-019", "parent_candidate": "CAND-019", "title": "Scope and draft Ix OSS command documentation", "repository": "ix-infrastructure/Ix", "effort": "medium", "tests": [], "acceptance": "docs cover OSS command surface", "blocked_by": "scope decision" },
+    { "work_id": "WORK-020", "parent_candidate": "CAND-020", "title": "Commit two dirty wiki files after validation", "repository": "Alot1z/Ix-findings", "effort": "low", "tests": ["node --check both"], "acceptance": "working tree clean; fix committed", "blocked_by": "user decision (their working-copy change)" }
+  ],
+  "summary": {
+    "total_work_items": 20,
+    "low_effort": 13,
+    "medium_effort": 6,
+    "external_authorization_required": ["WORK-008", "WORK-012", "WORK-013"]
+  }
+}

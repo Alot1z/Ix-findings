@@ -1,0 +1,78 @@
+{
+  "phase": "3",
+  "title": "Contribution Readiness — updated with Phase 3 evidence",
+  "generated": "2026-08-10",
+  "contributions": [
+    {
+      "id": "CONTRIB-remap",
+      "target": "ix-infrastructure/Ix",
+      "branch": "feat/ix-remap-hardening @ c021b52",
+      "findings": ["F-010", "F-011", "F-012"],
+      "state": "READY (needs rebase onto 2e246e8)",
+      "blocker": "user authorization to rebase + force-update fork branch; base currently stale by 4 commits",
+      "evidence": "merge-tree --write-tree 2e246e8 HEAD = clean 64dd5b0; no conflicts with #362 view.ts change",
+      "next_safe_action": "WORK-012 rebase, re-run guard tests, then ask authorization to push",
+      "tests": "view-server.test.ts 10 scenarios; full suite 646/648 expected"
+    },
+    {
+      "id": "CONTRIB-376",
+      "target": "ix-infrastructure/Ix",
+      "findings": ["F-008"],
+      "state": "NEAR_READY",
+      "blocker": "fresh reproduction against current main 2e246e8; maintainer approach direction",
+      "evidence": "issue #376 OPEN; mitigations #365/#366 merged; dual version series documented (CAND-016)",
+      "next_safe_action": "WORK-010 reproduction; then update packet",
+      "tests": "upgrade-version-compare.test.ts"
+    },
+    {
+      "id": "CONTRIB-371",
+      "target": "ix-infrastructure/Ix",
+      "findings": ["F-009"],
+      "state": "NEEDS_EVIDENCE -> READY_FOR_PACKET",
+      "blocker": "register-vs-delete decision from maintainer (non-blocking for packet prep)",
+      "evidence": "issue #371 OPEN; PR #372 did NOT touch patches registration (verified via files list) — F-009 fully valid",
+      "next_safe_action": "WORK-005 prepare PACK-371",
+      "tests": "none yet; packet lists proposed tests"
+    },
+    {
+      "id": "CONTRIB-fkey",
+      "target": "ix-infrastructure/system-compass",
+      "findings": ["F-001", "F-002", "F-003", "F-004"],
+      "state": "BLOCKED",
+      "blocker": "system-compass private (HTTP 404); no fork; D-014 access decision",
+      "evidence": "PACK-fkey spec ready; auto-frame excluded (#57); reviewer direction preserved",
+      "next_safe_action": "D-014 user decision only"
+    },
+    {
+      "id": "CONTRIB-delayed",
+      "target": "ix-infrastructure/system-compass",
+      "findings": ["F-006", "F-007"],
+      "state": "BLOCKED",
+      "blocker": "system-compass private; separate concern (D-006)",
+      "evidence": "repro confirmed; Playwright option open (CAND-006)",
+      "next_safe_action": "optional public-dist reproduction (no access needed)"
+    },
+    {
+      "id": "CONTRIB-agent-skill",
+      "target": "ix-infrastructure/Ix",
+      "findings": [],
+      "state": "IN_DEVELOPMENT (PROTECTED)",
+      "blocker": "14 dirty files @ b038c46; PR #368 already merged original skill+docs",
+      "evidence": "protected worktree unchanged (verified Phase 3)",
+      "next_safe_action": "continue development only; no PR action"
+    }
+  ],
+  "readiness_definition": {
+    "READY": "technically ready; only authorization needed",
+    "NEAR_READY": "packet exists; needs fresh reproduction",
+    "READY_FOR_PACKET": "evidence sufficient to write the packet",
+    "BLOCKED": "external access boundary",
+    "IN_DEVELOPMENT": "protected active work"
+  },
+  "do_not_do": [
+    "Do NOT create PRs in Phase 4 without explicit user authorization.",
+    "Do NOT reopen PR #368.",
+    "Do NOT duplicate open upstream PRs #375/#378/#380/#382.",
+    "Do NOT submit system-compass work without access (D-014)."
+  ]
+}

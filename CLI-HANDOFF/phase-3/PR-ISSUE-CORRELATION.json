@@ -1,0 +1,30 @@
+{
+  "phase": "3",
+  "title": "PR / Issue Correlation — verified live via GitHub API 2026-08-10",
+  "generated": "2026-08-10",
+  "items": [
+    { "number": 368, "repo": "ix-infrastructure/Ix", "type": "PR", "state": "MERGED", "merged_at": "2026-08-10T03:58:42Z", "title": "feat(skill): ship the ix agent skill and the HTTP API reference", "related": ["F-001..F-007 context", "D-014"], "notes": "Historical; do NOT reopen or duplicate. Compass patch stripped per reviewer." },
+    { "number": 372, "repo": "ix-infrastructure/Ix", "type": "PR", "state": "MERGED", "merged_at": "2026-08-10T16:27:42Z", "title": "feat(llm): implement --format llm for the five commands that faked it", "files": ["doctor.ts", "explain.ts", "read.ts", "savings.ts", "status.ts", "llm.ts", "llm-tier5.test.ts", "CLAUDE.md", "docs/llm-format.md"], "related": ["F-009 context — did NOT touch patches registration"], "notes": "CAND-018. Resolves llm-format partial status." },
+    { "number": 373, "repo": "ix-infrastructure/Ix", "type": "PR", "state": "MERGED", "merged_at": "2026-08-10T16:07:21Z", "title": "ci(release): give the auto-generated brew PR a conventional title", "related": [], "notes": "Part of the 4 commits between c4f8fea and 2e246e8." },
+    { "number": 375, "repo": "ix-infrastructure/Ix", "type": "PR", "state": "OPEN", "title": "fix(ingest): resolve JS and TS calls across parse batches", "fixes": 374, "related": ["Ix#374"], "notes": "Upstream-maintained; do NOT duplicate." },
+    { "number": 378, "repo": "ix-infrastructure/Ix", "type": "PR", "state": "OPEN", "title": "fix(ingest): remove stale graph entities", "related": ["Ix#377"], "notes": "Upstream-maintained; do NOT duplicate." },
+    { "number": 380, "repo": "ix-infrastructure/Ix", "type": "PR", "state": "OPEN", "title": "fix(resolve): preserve same-kind ambiguity", "related": ["Ix#379"], "notes": "Upstream-maintained; do NOT duplicate." },
+    { "number": 382, "repo": "ix-infrastructure/Ix", "type": "PR", "state": "OPEN", "title": "fix(ingest): resolve PHP calls through typed receivers", "related": [], "notes": "Upstream-maintained; do NOT duplicate." },
+    { "number": 352, "repo": "ix-infrastructure/Ix", "type": "PR", "state": "MERGED", "title": "fix(install): stop the Windows installer dying on an 8.3 short TEMP path", "related": [], "notes": "Part of the 4 commits between c4f8fea and 2e246e8." },
+    { "number": 371, "repo": "ix-infrastructure/Ix", "type": "ISSUE", "state": "OPEN", "title": "ix patches is registered nowhere — registerPatchesCommand is dead code", "related": ["F-009", "S-014"], "notes": "ISSUE not PR (C-008 resolved). Candidate CAND-005." },
+    { "number": 376, "repo": "ix-infrastructure/Ix", "type": "ISSUE", "state": "OPEN", "title": "ix upgrade compares two unrelated version series to decide if Compass is stale", "related": ["F-008", "S-013"], "notes": "ISSUE not PR (C-007 resolved). Candidate CAND-010." },
+    { "number": 374, "repo": "ix-infrastructure/Ix", "type": "ISSUE", "state": "OPEN", "title": "[bug] JS and TS calls disappear across 500-file parse batches", "related": ["PR #375 fixes"], "notes": "Upstream-maintained." },
+    { "number": 377, "repo": "ix-infrastructure/Ix", "type": "ISSUE", "state": "OPEN", "title": "[bug] Remapping keeps deleted and renamed symbols in the graph", "related": ["PR #378"], "notes": "Remap-adjacent scope; PR #378 upstream." },
+    { "number": 379, "repo": "ix-infrastructure/Ix", "type": "ISSUE", "state": "OPEN", "title": "[bug] --kind silently selects among duplicate same-kind symbols", "related": ["PR #380"], "notes": "Upstream-maintained." },
+    { "number": 57, "repo": "ix-infrastructure/system-compass", "type": "ISSUE", "state": "PRIVATE", "title": "Fit latch -> keyed refit", "related": ["F-005 RESOLVED"], "notes": "Covers auto-frame; do NOT re-add (S-032/S-033 SUPERSEDED)." },
+    { "number": 58, "repo": "ix-infrastructure/system-compass", "type": "ISSUE", "state": "PRIVATE", "title": "(referenced in v0.3.0 release notes)", "related": ["S-019"], "notes": "BLOCKED — private." },
+    { "number": 59, "repo": "ix-infrastructure/system-compass", "type": "ISSUE", "state": "PRIVATE", "title": "(referenced in v0.3.0 release notes)", "related": ["S-019"], "notes": "BLOCKED — private." }
+  ],
+  "correlation_summary": {
+    "merged_recent": ["#368", "#372", "#373", "#352"],
+    "open_prs": ["#375", "#378", "#380", "#382"],
+    "open_issues": ["#371", "#374", "#376", "#377", "#379"],
+    "already_covered_by_upstream": ["#374→#375", "#377→#378", "#379→#380"],
+    "no_duplication_warning": "Open PRs #375/#378/#380/#382 are upstream-maintained; no candidate duplicates them."
+  }
+}

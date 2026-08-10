@@ -1,0 +1,147 @@
+{
+  "phase": "3",
+  "title": "Enhancement Inventory — defensible improvement candidates with evidence",
+  "generated": "2026-08-10",
+  "method": "Phase 1 archaeology + Phase 2 knowledge model + Phase 3 live verification",
+  "enhancements": [
+    {
+      "enh_id": "ENH-001",
+      "title": "GitHub Pages deployment of sanitized knowledge explorer",
+      "repository": "Alot1z/Ix-findings",
+      "category": "RELEASE/WEB",
+      "evidence": "standalone HTML self-contained (170KB); feasibility YES (phase-2/GITHUB-PAGES-FEASIBILITY.md)",
+      "status": "NEEDS_DECISION",
+      "candidate": "CAND-008",
+      "priority": "P4",
+      "notes": "Requires sanitization profile; no deployment in Phase 3."
+    },
+    {
+      "enh_id": "ENH-002",
+      "title": "Knowledge explorer regeneration pipeline (build-data.mjs → data.js → standalone)",
+      "repository": "Alot1z/Ix-findings",
+      "category": "AUTOMATION/KNOWLEDGE",
+      "evidence": "build-data.mjs exists and generates data/data.js (123KB) consumed by index.html; standalone inlined (170KB)",
+      "status": "IMPLEMENTED (needs CAND-015 fix)",
+      "candidate": "CAND-015",
+      "priority": "P2",
+      "notes": "Pipeline works; hardcoded contribution gate drifts from reconciliation."
+    },
+    {
+      "enh_id": "ENH-003",
+      "title": "Structured canonical knowledge database over generated HTML",
+      "repository": "Alot1z/Ix-findings",
+      "category": "ARCHITECTURE",
+      "evidence": "registries + graph are JSON and authoritative; HTML generated from them (phase-2/29 knowledge-database architecture assessment)",
+      "status": "ALREADY_ARCHITECTURALLY_TRUE",
+      "candidate": null,
+      "priority": "P4",
+      "notes": "No new database needed; enforce data-as-source-of-truth discipline (CAND-015)."
+    },
+    {
+      "enh_id": "ENH-004",
+      "title": "Graph enrichment with verified execution-state nodes",
+      "repository": "Alot1z/Ix-findings",
+      "category": "GRAPH",
+      "evidence": "PRs #375/#378/#380/#382, issues #377/#379 verified via API; absent from graph",
+      "status": "READY",
+      "candidate": "CAND-009",
+      "priority": "P2",
+      "notes": "Only verified relationships; no inflation."
+    },
+    {
+      "enh_id": "ENH-005",
+      "title": "Ix CLI documentation surface closure",
+      "repository": "ix-infrastructure/Ix",
+      "category": "DOCUMENTATION/DEVELOPER_EXPERIENCE",
+      "evidence": "Phase 1: docs/api/README.md + openapi.yaml partial; 39 command files; llm-format.md exists",
+      "status": "NEEDS_EVIDENCE",
+      "candidate": "CAND-019",
+      "priority": "P3",
+      "notes": "External repo; local contribution candidate only."
+    },
+    {
+      "enh_id": "ENH-006",
+      "title": "Remap contribution readiness maintenance (rebase onto current main)",
+      "repository": "ix-infrastructure/Ix",
+      "category": "CONTRIBUTION",
+      "evidence": "merge-tree clean vs 2e246e8; base stale",
+      "status": "READY",
+      "candidate": "CAND-012",
+      "priority": "P1",
+      "notes": "Requires authorization to rebase+push fork."
+    },
+    {
+      "enh_id": "ENH-007",
+      "title": "Playwright delayed-data reproduction harness",
+      "repository": "system-compass (external evidence)",
+      "category": "TEST/EVIDENCE",
+      "evidence": "S-018 still valid; public dist v0.3.0 available",
+      "status": "NEEDS_EVIDENCE",
+      "candidate": "CAND-006",
+      "priority": "P3",
+      "notes": "Runs against public dist; no source access needed."
+    },
+    {
+      "enh_id": "ENH-008",
+      "title": "Contribution packet for F-009 patches (register-or-delete)",
+      "repository": "ix-infrastructure/Ix",
+      "category": "CONTRIBUTION",
+      "evidence": "F-009 valid post-#372 (PR #372 did not touch registration)",
+      "status": "READY (packet prep)",
+      "candidate": "CAND-005",
+      "priority": "P3",
+      "notes": "Maintainer decision needed on register-vs-delete."
+    },
+    {
+      "enh_id": "ENH-009",
+      "title": "Ix-findings wiki validation checks (node --check + link check in CI)",
+      "repository": "Alot1z/Ix-findings",
+      "category": "CI/TEST",
+      "evidence": "BUG-001 committed syntax error would have been caught by node --check",
+      "status": "DISCOVERED_OPPORTUNITY",
+      "candidate": null,
+      "priority": "P3",
+      "notes": "Prevents recurrence of committed broken JS in generated artifacts."
+    },
+    {
+      "enh_id": "ENH-010",
+      "title": "Freebuff-forge upstream divergence tracking",
+      "repository": "Alot1z/freebuff-forge",
+      "category": "KNOWLEDGE/MAINTENANCE",
+      "evidence": "divergence now measurable: 3 commits ahead of upstream/main, merge-base 914a4e458",
+      "status": "MEASURED",
+      "candidate": "CAND-017",
+      "priority": "P3",
+      "notes": "Resolves U-003. Keep measurement fresh when upstream syncs."
+    },
+    {
+      "enh_id": "ENH-011",
+      "title": "Ix upgrade version-series documentation (dual series clarity)",
+      "repository": "ix-infrastructure/Ix",
+      "category": "KNOWLEDGE",
+      "evidence": "package.json 0.6.1 vs releases v0.9.x; F-008/#376 context",
+      "status": "DISCOVERED_OPPORTUNITY",
+      "candidate": "CAND-016",
+      "priority": "P3",
+      "notes": "Document only; no code change without maintainer context."
+    },
+    {
+      "enh_id": "ENH-012",
+      "title": "System-compass F-key contribution specification (BLOCKED on access)",
+      "repository": "ix-infrastructure/system-compass",
+      "category": "CONTRIBUTION",
+      "evidence": "PACK-fkey ready; reviewer direction: belongs in system-compass; auto-frame excluded (#57)",
+      "status": "BLOCKED",
+      "candidate": null,
+      "priority": "P4",
+      "notes": "Cannot proceed until D-014 access decision."
+    }
+  ],
+  "summary": {
+    "total": 12,
+    "ready_or_implemented": ["ENH-002", "ENH-004", "ENH-006", "ENH-008", "ENH-010"],
+    "needs_evidence_or_decision": ["ENH-001", "ENH-005", "ENH-007"],
+    "blocked": ["ENH-012"],
+    "new_in_phase_3": ["ENH-009", "ENH-010", "ENH-011"]
+  }
+}

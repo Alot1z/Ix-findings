@@ -1,0 +1,89 @@
+{
+  "phase": "3",
+  "title": "Knowledge System Backlog",
+  "generated": "2026-08-10",
+  "current_state": {
+    "graph": "152 nodes / 136 edges (authoritative, unchanged since daff6f9)",
+    "legacy_v1": "58/46",
+    "manifest_claim": "290/240 (historical narrative — do NOT resurrect)",
+    "evidence": "25 registry records; 28 graph nodes incl. 3 phantoms",
+    "explorer": "planning/wiki/ — build-data.mjs → data/data.js (123KB) → index.html + index-standalone.html (170KB); 22 views",
+    "contribution_gate": "hardcoded in build-data.mjs (stale)"
+  },
+  "items": [
+    {
+      "id": "K-001",
+      "title": "Graph repair (dangling edges + phantom nodes)",
+      "candidates": ["CAND-002", "CAND-011"],
+      "priority": "P1",
+      "evidence": "8 dangling edges; 3 phantom evidence nodes",
+      "verification": "endpoint validation; set-difference"
+    },
+    {
+      "id": "K-002",
+      "title": "Canonical manifest regeneration",
+      "candidates": ["CAND-001"],
+      "priority": "P1",
+      "evidence": "stale counts 290/240/28",
+      "verification": "counts match live data"
+    },
+    {
+      "id": "K-003",
+      "title": "PR/issue knowledge enrichment",
+      "candidates": ["CAND-003", "CAND-004", "CAND-009"],
+      "priority": "P2",
+      "evidence": "new verified PRs/issues absent from graph and matrix",
+      "verification": "matrix coverage; graph consistency"
+    },
+    {
+      "id": "K-004",
+      "title": "Generator derives contribution gate from canonical data",
+      "candidates": ["CAND-015"],
+      "priority": "P2",
+      "evidence": "build-data.mjs hardcodes stale values",
+      "verification": "rebuild diff"
+    },
+    {
+      "id": "K-005",
+      "title": "Fix committed explorer syntax error",
+      "candidates": ["CAND-014", "CAND-020"],
+      "priority": "P1",
+      "evidence": "unbalanced paren in renderFindings",
+      "verification": "node --check; browser smoke"
+    },
+    {
+      "id": "K-006",
+      "title": "Wiki/explorer CI validation (node --check, link check)",
+      "candidates": ["ENH-009"],
+      "priority": "P3",
+      "evidence": "BUG-001 escaped",
+      "verification": "CI green on wiki changes"
+    },
+    {
+      "id": "K-007",
+      "title": "GitHub Pages sanitized deployment",
+      "candidates": ["CAND-008"],
+      "priority": "P4",
+      "evidence": "feasibility YES; sanitization required",
+      "verification": "public projection has no internal/sensitive fields",
+      "blocked_by": "user decision"
+    },
+    {
+      "id": "K-008",
+      "title": "Source/symbol/file coverage (long-term knowledge model)",
+      "candidates": [],
+      "priority": "P4",
+      "evidence": "graph has 10 file + 9 symbol + 2 api nodes; deeper index possible but not demanded",
+      "verification": "n/a",
+      "notes": "Only pursue if a consumer needs it; avoid gratuitous graph inflation."
+    },
+    {
+      "id": "K-009",
+      "title": "Timeline enrichment with PR/issue events",
+      "candidates": ["CAND-009"],
+      "priority": "P3",
+      "evidence": "timeline-map.json exists; new events available from API",
+      "verification": "timeline events match PR/issue dates"
+    }
+  ]
+}

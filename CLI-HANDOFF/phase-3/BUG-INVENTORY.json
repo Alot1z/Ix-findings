@@ -1,0 +1,171 @@
+{
+  "phase": "3",
+  "title": "Bug Inventory — verified bugs, regressions and quality defects across the ecosystem",
+  "generated": "2026-08-10",
+  "method": "live source inspection (Ix-test @ c4f8fea), Git state, GitHub API, registry/graph parsing, wiki JS static check",
+  "bugs": [
+    {
+      "bug_id": "BUG-001",
+      "title": "Committed wiki.js/index-standalone.html renderFindings has a syntax error",
+      "repository": "Alot1z/Ix-findings",
+      "severity": "medium",
+      "category": "BUG",
+      "evidence": "Committed line: ...includes(c.textContent.replace('class ','')))))})}); — unbalanced parens. Working-copy dirty diff reduces to ...''))})});. node --check would fail on committed version.",
+      "status": "CONFIRMED",
+      "affected_files": ["planning/wiki/assets/wiki.js", "planning/wiki/index-standalone.html"],
+      "fix_candidate": "CAND-014 / CAND-020",
+      "introduced_by": "committed explorer generation",
+      "notes": "The uncommitted working-copy change IS the fix; must be preserved, not cleaned."
+    },
+    {
+      "bug_id": "BUG-002",
+      "title": "8 dangling graph edges reference absent nodes",
+      "repository": "Alot1z/Ix-findings",
+      "severity": "medium",
+      "category": "GRAPH",
+      "evidence": "endpoint validation: D-001→S-002, D-002→S-001, D-005→S-007, D-006→S-008 (implements; S nodes absent), S-034..S-037→file-* (found_in; file nodes absent)",
+      "status": "CONFIRMED",
+      "affected_files": ["planning/maps/investigation-map.json"],
+      "fix_candidate": "CAND-011",
+      "notes": "Re-verified live in Phase 3 — same 8 edges as Phase 2."
+    },
+    {
+      "bug_id": "BUG-003",
+      "title": "3 phantom evidence graph nodes (E-026..E-028) absent from registry",
+      "repository": "Alot1z/Ix-findings",
+      "severity": "low",
+      "category": "GRAPH",
+      "evidence": "graph evidence nodes=28, registry records=25; set difference = E-026, E-027, E-028",
+      "status": "CONFIRMED",
+      "affected_files": ["planning/maps/investigation-map.json", "planning/evidence/registry.json"],
+      "fix_candidate": "CAND-002",
+      "notes": ""
+    },
+    {
+      "bug_id": "BUG-004",
+      "title": "manifest.json counts stale (290/240/28 vs live 152/136/25)",
+      "repository": "Alot1z/Ix-findings",
+      "severity": "medium",
+      "category": "KNOWLEDGE",
+      "evidence": "manifest v4.0.0 graph.nodes=290 graph.edges=240 evidence.count=28; live graph 152/136, evidence 25",
+      "status": "CONFIRMED",
+      "affected_files": ["CLI-HANDOFF/manifest.json"],
+      "fix_candidate": "CAND-001",
+      "notes": "Root cause documented in phase-2/GRAPH-RECONCILIATION.md."
+    },
+    {
+      "bug_id": "BUG-005",
+      "title": "PR-MATRIX mislabels #371/#376 as PRs (they are issues)",
+      "repository": "Alot1z/Ix-findings",
+      "severity": "low",
+      "category": "DOCUMENTATION",
+      "evidence": "GitHub API returns pull_request:null for both; issue records confirmed",
+      "status": "CONFIRMED",
+      "affected_files": ["CLI-HANDOFF/PR-MATRIX.md"],
+      "fix_candidate": "CAND-004",
+      "notes": "Resolves C-007/C-008."
+    },
+    {
+      "bug_id": "BUG-006",
+      "title": "build-data.mjs hardcodes stale contribution-gate data (656/2; CONTRIB-376 BLOCKED)",
+      "repository": "Alot1z/Ix-findings",
+      "severity": "low",
+      "category": "KNOWLEDGE/AUTOMATION",
+      "evidence": "build-data.mjs contribGate hardcodes '656/2 + 10 guard tests' and CONTRIB-376 status BLOCKED; phase-2 reconciliation says 646/648 and NEAR_READY",
+      "status": "CONFIRMED",
+      "affected_files": ["planning/wiki/build-data.mjs"],
+      "fix_candidate": "CAND-015",
+      "notes": "Generator drift — must derive from canonical sources."
+    },
+    {
+      "bug_id": "BUG-007",
+      "title": "Ix main advanced 4 commits past all local/fork baselines (stale base)",
+      "repository": "ix-infrastructure/Ix",
+      "severity": "high (process)",
+      "category": "GIT",
+      "evidence": "upstream main HEAD=2e246e8 (2026-08-10T16:53Z); fork main and Ix-test @ c4f8fea (04:58Z); compare API ahead=4: #373, #362, #372, #352",
+      "status": "CONFIRMED",
+      "affected_files": ["fork main", "Ix-test worktree", "Ix-remap base"],
+      "fix_candidate": "CAND-012 / CAND-013 / CAND-010",
+      "notes": "Remap branch merge-tree is CLEAN against 2e246e8 (no conflicts) — rebase is safe."
+    },
+    {
+      "bug_id": "BUG-008",
+      "title": "Ix version series duality: source package.json 0.6.1 vs releases v0.9.x",
+      "repository": "ix-infrastructure/Ix",
+      "severity": "low",
+      "category": "KNOWLEDGE",
+      "evidence": "ix-cli/package.json @ c4f8fea AND @ upstream main 2e246e8 both 0.6.1; GitHub releases latest v0.9.1 (assets ix-0.9.1-*)",
+      "status": "CONFIRMED",
+      "affected_files": ["docs", "knowledge model"],
+      "fix_candidate": "CAND-016",
+      "notes": "Possible contributor to F-008/#376 confusion; do not assert causation without source."
+    },
+    {
+      "bug_id": "BUG-009",
+      "title": "F-009 patches command dead/unregistered (upstream issue #371)",
+      "repository": "ix-infrastructure/Ix",
+      "severity": "medium",
+      "category": "BUG (upstream)",
+      "evidence": "registerPatchesCommand defined in patches.ts but NOT invoked in registerOssCommands(); 'patches' only listed in PRO_COMMANDS array; PR #372 (merged) did NOT modify oss.ts or patches.ts",
+      "status": "CONFIRMED OPEN",
+      "affected_files": ["ix-cli/src/cli/register/oss.ts", "ix-cli/src/cli/commands/patches.ts"],
+      "fix_candidate": "CAND-005 (packet only)",
+      "notes": "External issue — do NOT fix locally; prepare packet."
+    },
+    {
+      "bug_id": "BUG-010",
+      "title": "F-008 ix upgrade compares unrelated version series (upstream issue #376)",
+      "repository": "ix-infrastructure/Ix",
+      "severity": "medium",
+      "category": "BUG (upstream)",
+      "evidence": "upgrade.ts isNewer() compares dist compass version vs Ix CLI version; issue #376 OPEN; mitigations #365/#366 merged",
+      "status": "CONFIRMED OPEN",
+      "affected_files": ["ix-cli/src/cli/commands/upgrade.ts"],
+      "fix_candidate": "CAND-010 (repro only)",
+      "notes": "External issue — reproduction evidence only in Phase 3."
+    },
+    {
+      "bug_id": "BUG-011",
+      "title": "System-compass source access blocked (B-001) — 8 findings unverifiable",
+      "repository": "ix-infrastructure/system-compass",
+      "severity": "high (process)",
+      "category": "BLOCKER",
+      "evidence": "HTTP 404 via API; no accessible fork; F-001..F-004, F-006, F-007, F-013 source verification impossible",
+      "status": "CONFIRMED BLOCKED",
+      "affected_files": [],
+      "fix_candidate": "D-014 (user decision on access path)",
+      "notes": "Not a code bug; an access boundary."
+    },
+    {
+      "bug_id": "BUG-012",
+      "title": "Old IX-INVESTIGATION-HANDOFF directory remains empty + locked (C-004)",
+      "repository": "Alot1z/Ix-findings",
+      "severity": "low",
+      "category": "MAINTENANCE",
+      "evidence": "both handoff dirs exist; old one empty, filesystem-locked",
+      "status": "CONFIRMED OPEN",
+      "affected_files": ["IX-INVESTIGATION-HANDOFF/"],
+      "fix_candidate": null,
+      "notes": "fs lock prevents removal; document only."
+    },
+    {
+      "bug_id": "BUG-013",
+      "title": "F-013 zoom multiplier discrepancy (x1.25 observed vs x1.1 constant) — Class D only",
+      "repository": "ix-infrastructure/system-compass",
+      "severity": "low",
+      "category": "UNVERIFIED",
+      "evidence": "E-011 inference only; LOW confidence; source blocked",
+      "status": "BLOCKED",
+      "affected_files": [],
+      "fix_candidate": "S-017 (dedicated experiment when access available)",
+      "notes": "Must not be treated as a confirmed bug."
+    }
+  ],
+  "summary": {
+    "CONFIRMED": 9,
+    "CONFIRMED_OPEN_upstream": 2,
+    "BLOCKED": 2,
+    "new_in_phase_3": ["BUG-001", "BUG-007", "BUG-008"]
+  }
+}

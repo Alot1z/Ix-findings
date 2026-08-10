@@ -1,0 +1,42 @@
+{
+  "phase": "3",
+  "title": "Repository Ownership Matrix",
+  "generated": "2026-08-10",
+  "repositories": {
+    "Alot1z/Ix-findings": {
+      "role": "investigation/knowledge ledger — safe to modify for Phase 3/4 knowledge artifacts",
+      "candidates": ["CAND-001", "CAND-002", "CAND-003", "CAND-004", "CAND-006", "CAND-007", "CAND-008", "CAND-009", "CAND-011", "CAND-014", "CAND-015", "CAND-016", "CAND-017", "CAND-020"],
+      "constraints": "do not rewrite historical evidence; dirty wiki fix must be preserved; commit only validated content"
+    },
+    "ix-infrastructure/Ix": {
+      "role": "upstream project — READ-ONLY in this phase; local worktrees protected",
+      "candidates": ["CAND-005", "CAND-010", "CAND-012", "CAND-018", "CAND-019"],
+      "constraints": "protected worktree E:/E-github-repos/Ix (feat/ix-agent-skill @ b038c46, 14 dirty) MUST NOT be modified; use Ix-test for validation; packets prepared locally only"
+    },
+    "Alot1z/Ix": {
+      "role": "user fork — synchronization only, with authorization",
+      "candidates": ["CAND-013"],
+      "constraints": "push requires explicit authorization"
+    },
+    "ix-compass-dist": {
+      "role": "distribution channel — DO-NOT-MODIFY (D-007)",
+      "candidates": [],
+      "constraints": "3 dirty pre-existing untracked tarballs; treat as protected"
+    },
+    "ix-infrastructure/system-compass": {
+      "role": "private/inaccessible — BLOCKED",
+      "candidates": [],
+      "constraints": "no fork, no access request, no fabrication; D-014 is the only path"
+    },
+    "Alot1z/freebuff-forge": {
+      "role": "separate project — no Ix-findings candidates target it",
+      "candidates": ["CAND-017 (knowledge only)"],
+      "constraints": "divergence measurement documented; no mutation without authorization"
+    }
+  },
+  "cross_repo_notes": [
+    "No candidate requires cross-project code changes.",
+    "CAND-005/CAND-010/CAND-019 touch upstream Ix but only via locally prepared packets/reproduction evidence — no upstream mutation.",
+    "CAND-008 publishes Ix-findings content only (sanitized projection)."
+  ]
+}

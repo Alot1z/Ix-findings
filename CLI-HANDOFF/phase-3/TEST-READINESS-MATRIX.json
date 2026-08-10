@@ -1,0 +1,37 @@
+{
+  "phase": "3",
+  "title": "Test Readiness Matrix",
+  "generated": "2026-08-10",
+  "known_suite_state": {
+    "Ix": "646/648 passed, 2 skipped @ c4f8fea; tsc clean; eslint 0 errors 38 warnings; 83 test files; vitest; smoke test; verified Phase 1; needs re-run at 2e246e8",
+    "Ix-findings": "no test framework; validation via node JSON.parse + custom audit scripts",
+    "freebuff-forge-modkit": "10 test files (bun); modkit-ci.yml; not re-run in Phase 3",
+    "wiki": "no automated checks — BUG-001 escaped"
+  },
+  "entries": [
+    { "work": "WORK-001", "candidate": "CAND-001", "tests": ["node JSON.parse", "count cross-check node script"], "reason": "manifest correctness" },
+    { "work": "WORK-002", "candidate": "CAND-002", "tests": ["graph<->registry set-difference script"], "reason": "node consistency" },
+    { "work": "WORK-003", "candidate": "CAND-003", "tests": ["endpoint validation script", "matrix coverage grep"], "reason": "graph/matrix completeness" },
+    { "work": "WORK-004", "candidate": "CAND-004", "tests": [], "reason": "doc-only; API verification already done" },
+    { "work": "WORK-005", "candidate": "CAND-005", "tests": ["packet schema/links check"], "reason": "packet quality" },
+    { "work": "WORK-006", "candidate": "CAND-006", "tests": ["playwright script with assertions against dist v0.3.0"], "reason": "reproducibility" },
+    { "work": "WORK-007", "candidate": "CAND-007", "tests": [], "reason": "doc-only" },
+    { "work": "WORK-008", "candidate": "CAND-008", "tests": ["link checker", "secret scan", "asset size check", "no-localhost grep"], "reason": "public deployment safety" },
+    { "work": "WORK-009", "candidate": "CAND-009", "tests": ["endpoint validation", "count consistency vs PR-MATRIX"], "reason": "graph integrity" },
+    { "work": "WORK-010", "candidate": "CAND-010", "tests": ["vitest run", "upgrade-version-compare.test.ts", "patches command smoke", "parser.smoke"], "reason": "reproduce F-008/F-009" },
+    { "work": "WORK-011", "candidate": "CAND-011", "tests": ["endpoint validation script (assert 0 dangling)"], "reason": "graph integrity" },
+    { "work": "WORK-012", "candidate": "CAND-012", "tests": ["git merge-tree --write-tree", "view-server.test.ts (10)", "full vitest suite"], "reason": "remap guard tests + regression" },
+    { "work": "WORK-013", "candidate": "CAND-013", "tests": [], "reason": "ref comparison only" },
+    { "work": "WORK-014", "candidate": "CAND-014", "tests": ["node --check wiki.js", "browser smoke of findings view"], "reason": "syntax correctness + UI behavior" },
+    { "work": "WORK-015", "candidate": "CAND-015", "tests": ["rebuild data.js and diff", "JSON.parse generated"], "reason": "generator determinism" },
+    { "work": "WORK-016", "candidate": "CAND-016", "tests": [], "reason": "documentation" },
+    { "work": "WORK-017", "candidate": "CAND-017", "tests": [], "reason": "measurement already recorded" },
+    { "work": "WORK-018", "candidate": "CAND-018", "tests": [], "reason": "record-only" },
+    { "work": "WORK-019", "candidate": "CAND-019", "tests": [], "reason": "docs; no behavior change" },
+    { "work": "WORK-020", "candidate": "CAND-020", "tests": ["node --check both files"], "reason": "protect against committing broken JS" }
+  ],
+  "new_test_infrastructure_recommendations": [
+    "Add node --check + link check to Ix-findings CI/validation (ENH-009) — would have caught BUG-001.",
+    "Consider a committed endpoint-validation script for the graph (repurposes Phase 2/3 audit)."
+  ]
+}

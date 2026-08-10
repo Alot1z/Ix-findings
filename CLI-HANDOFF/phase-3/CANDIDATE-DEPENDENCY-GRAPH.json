@@ -1,0 +1,34 @@
+{
+  "phase": "3",
+  "title": "Candidate Dependency Graph",
+  "generated": "2026-08-10",
+  "relationships": [
+    { "from": "CAND-001", "to": "CAND-015", "type": "ENABLES", "rationale": "manifest fix supplies canonical counts the generator can derive from" },
+    { "from": "CAND-001", "to": "CAND-008", "type": "SHOULD_PRECEDE", "rationale": "Pages deployment must publish correct counts" },
+    { "from": "CAND-002", "to": "CAND-008", "type": "SHOULD_PRECEDE", "rationale": "phantom-node reconciliation before public projection" },
+    { "from": "CAND-011", "to": "CAND-009", "type": "BLOCKS", "rationale": "graph enrichment must start from internally consistent graph" },
+    { "from": "CAND-011", "to": "CAND-003", "type": "SHOULD_PRECEDE", "rationale": "add new nodes after repairing dangling edges" },
+    { "from": "CAND-014", "to": "CAND-008", "type": "SHOULD_PRECEDE", "rationale": "syntax error must be fixed before public deployment" },
+    { "from": "CAND-014", "to": "CAND-020", "type": "DEPENDS_ON", "rationale": "fix exists as dirty diff; commit follows validation" },
+    { "from": "CAND-020", "to": "CAND-014", "type": "SHOULD_FOLLOW", "rationale": "commit only after validating the fix" },
+    { "from": "CAND-012", "to": "CAND-013", "type": "SHOULD_PRECEDE", "rationale": "rebase remap first, then sync fork main" },
+    { "from": "CAND-012", "to": "CAND-010", "type": "ENABLES", "rationale": "validation against current main needs refreshed baseline" },
+    { "from": "CAND-015", "to": "CAND-008", "type": "SHOULD_PRECEDE", "rationale": "generated data must be canonical before publishing" },
+    { "from": "CAND-003", "to": "CAND-009", "type": "SHARES_FILES", "rationale": "both edit investigation-map.json + PR-MATRIX" },
+    { "from": "CAND-004", "to": "CAND-003", "type": "SHARES_FILES", "rationale": "both edit PR-MATRIX.md" },
+    { "from": "CAND-005", "to": "CAND-010", "type": "DEPENDS_ON", "rationale": "packet for F-009 benefits from fresh reproduction evidence" },
+    { "from": "CAND-006", "to": "CAND-008", "type": "SHOULD_FOLLOW", "rationale": "reproduction evidence could enrich public knowledge projection" },
+    { "from": "CAND-007", "to": "CAND-011", "type": "SHOULD_FOLLOW", "rationale": "audit doc should describe the repaired graph state" },
+    { "from": "CAND-016", "to": "CAND-010", "type": "RELATED", "rationale": "version-series duality may inform #376 reproduction context" },
+    { "from": "CAND-018", "to": "CAND-019", "type": "SHOULD_PRECEDE", "rationale": "record llm-format as implemented before doc-gap work" },
+    { "from": "CAND-008", "to": "CAND-001", "type": "DEPENDS_ON", "rationale": "deployment depends on corrected data" },
+    { "from": "CAND-008", "to": "CAND-002", "type": "DEPENDS_ON", "rationale": "deployment depends on phantom reconciliation" }
+  ],
+  "order_hint": [
+    "Phase 4 wave 1 (independent, low risk): CAND-001, CAND-002, CAND-004, CAND-007, CAND-011",
+    "Phase 4 wave 2 (after graph repair): CAND-003, CAND-009, CAND-015",
+    "Phase 4 wave 3 (validation+contribution): CAND-010, CAND-005, CAND-012, CAND-013",
+    "Phase 4 wave 4 (deployment, needs decision): CAND-008, CAND-020",
+    "Deferred / external: CAND-006 (optional evidence), CAND-016 (documentation), CAND-017 (knowledge), CAND-019 (docs), CAND-018 (record only)"
+  ]
+}

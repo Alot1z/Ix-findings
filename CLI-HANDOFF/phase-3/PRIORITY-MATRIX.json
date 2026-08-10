@@ -1,0 +1,32 @@
+{
+  "phase": "3",
+  "title": "Priority Matrix — transparent scoring",
+  "generated": "2026-08-10",
+  "scoring": {
+    "impact": "0-3", "confidence": "0-3", "feasibility": "0-3", "risk_reduction": "0-3", "testability": "0-3",
+    "total_max": 15,
+    "classes": { "P0": "critical (>=13)", "P1": "high (11-12)", "P2": "meaningful (9-10)", "P3": "opportunistic (6-8)", "P4": "deferred (<6 or blocked/needs-decision)" }
+  },
+  "entries": [
+    { "candidate": "CAND-001", "impact": 3, "confidence": 3, "feasibility": 3, "risk_reduction": 3, "testability": 3, "total": 15, "priority": "P1", "rationale": "max evidence; foundation for many others; class capped P1 as no live user impact" },
+    { "candidate": "CAND-002", "impact": 2, "confidence": 3, "feasibility": 3, "risk_reduction": 3, "testability": 3, "total": 14, "priority": "P1", "rationale": "graph/registry consistency; cheap" },
+    { "candidate": "CAND-011", "impact": 2, "confidence": 3, "feasibility": 3, "risk_reduction": 3, "testability": 3, "total": 14, "priority": "P1", "rationale": "graph integrity prerequisite" },
+    { "candidate": "CAND-012", "impact": 3, "confidence": 3, "feasibility": 3, "risk_reduction": 3, "testability": 3, "total": 15, "priority": "P1", "rationale": "unblocks the only READY contribution; merge-tree clean" },
+    { "candidate": "CAND-014", "impact": 2, "confidence": 3, "feasibility": 3, "risk_reduction": 3, "testability": 3, "total": 14, "priority": "P1", "rationale": "committed explorer broken; fix already exists as dirty diff" },
+    { "candidate": "CAND-020", "impact": 2, "confidence": 3, "feasibility": 3, "risk_reduction": 2, "testability": 2, "total": 12, "priority": "P1", "rationale": "commit validated fix; requires user decision on their dirty files" },
+    { "candidate": "CAND-003", "impact": 2, "confidence": 3, "feasibility": 2, "risk_reduction": 2, "testability": 2, "total": 11, "priority": "P2", "rationale": "knowledge completeness; medium effort" },
+    { "candidate": "CAND-004", "impact": 1, "confidence": 3, "feasibility": 3, "risk_reduction": 2, "testability": 2, "total": 11, "priority": "P2", "rationale": "documentation correction" },
+    { "candidate": "CAND-007", "impact": 1, "confidence": 3, "feasibility": 3, "risk_reduction": 2, "testability": 2, "total": 11, "priority": "P2", "rationale": "doc reconciliation" },
+    { "candidate": "CAND-009", "impact": 2, "confidence": 3, "feasibility": 2, "risk_reduction": 2, "testability": 2, "total": 11, "priority": "P2", "rationale": "graph enrichment after repair" },
+    { "candidate": "CAND-010", "impact": 2, "confidence": 3, "feasibility": 2, "risk_reduction": 2, "testability": 3, "total": 12, "priority": "P2", "rationale": "fresh validation; needs baseline refresh" },
+    { "candidate": "CAND-015", "impact": 2, "confidence": 3, "feasibility": 2, "risk_reduction": 2, "testability": 2, "total": 11, "priority": "P2", "rationale": "kills generator drift" },
+    { "candidate": "CAND-005", "impact": 2, "confidence": 3, "feasibility": 3, "risk_reduction": 1, "testability": 1, "total": 10, "priority": "P3", "rationale": "packet prep; maintainer decision downstream" },
+    { "candidate": "CAND-006", "impact": 2, "confidence": 2, "feasibility": 2, "risk_reduction": 1, "testability": 3, "total": 10, "priority": "P3", "rationale": "evidence generation; optional" },
+    { "candidate": "CAND-013", "impact": 1, "confidence": 3, "feasibility": 3, "risk_reduction": 2, "testability": 1, "total": 10, "priority": "P3", "rationale": "fork hygiene; needs authorization" },
+    { "candidate": "CAND-016", "impact": 1, "confidence": 3, "feasibility": 3, "risk_reduction": 1, "testability": 1, "total": 9, "priority": "P3", "rationale": "documentation of version duality" },
+    { "candidate": "CAND-017", "impact": 1, "confidence": 3, "feasibility": 3, "risk_reduction": 1, "testability": 1, "total": 9, "priority": "P3", "rationale": "resolve U-003 in knowledge" },
+    { "candidate": "CAND-019", "impact": 1, "confidence": 2, "feasibility": 2, "risk_reduction": 1, "testability": 1, "total": 7, "priority": "P3", "rationale": "docs gap; scope needed" },
+    { "candidate": "CAND-008", "impact": 3, "confidence": 2, "feasibility": 2, "risk_reduction": 1, "testability": 2, "total": 10, "priority": "P4", "rationale": "needs decision + sanitization; deferred despite high impact" },
+    { "candidate": "CAND-018", "impact": 1, "confidence": 3, "feasibility": 3, "risk_reduction": 0, "testability": 0, "total": 7, "priority": "P4", "rationale": "record-only; already covered upstream" }
+  ]
+}
