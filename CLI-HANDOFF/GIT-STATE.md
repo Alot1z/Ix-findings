@@ -57,8 +57,8 @@
 ### Freebuff-managed branches
 
 ```
-  freebuff/first-i-have-clone-this-repo-till-https-github-com-216fcb07-946c-4935-a58e-d922499ba85d
-  freebuff/first-i-have-clone-this-repo-till-https-github-com-3167fb4d-7780-475f-8401-5c169d6fec1c
+  cli/first-i-have-clone-this-repo-till-https-github-com-216fcb07-946c-4935-a58e-d922499ba85d
+  cli/first-i-have-clone-this-repo-till-https-github-com-3167fb4d-7780-475f-8401-5c169d6fec1c
 ```
 
 ---
@@ -81,7 +81,7 @@
 
 | Branch | Remote SHA | vs origin/main | Status |
 |---|---|---|---|
-| `fork/main` | `0437abf` | 5 commits BEHIND `c4f8fea` | DESKTOP-OBSERVED |
+| `fork/main` | `c4f8fea` | SYNCHRONIZED (2026-08-10) | DESKTOP-OBSERVED |
 | `fork/feat/ix-agent-skill` | `0c9087c` | PR #368 head (monkey-patch stripped) | DESKTOP-OBSERVED |
 | `fork/feat/ix-remap-hardening` | NONE | NOT pushed | DESKTOP-OBSERVED |
 
@@ -92,9 +92,8 @@
 ### Fork vs Upstream (origin/main) Divergence
 
 ```
-fork/main  @ 0437abf
-    ↓
-origin/main @ c4f8fea  (+5 commits)
+fork/main  @ c4f8fea (synced ~2026-08-10)
+origin/main @ c4f8fea (synchronized)
 ```
 
 ---
