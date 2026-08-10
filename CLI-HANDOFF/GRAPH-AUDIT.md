@@ -1,6 +1,6 @@
 # GRAPH-AUDIT.md — Investigation Graph Audit
 
-> **Updated:** 2026-08-10 (Freebuff CLI Master Execution Phase)
+> **Updated:** 2026-08-10 (CLI Execution Phase)
 > Graph source: `../planning/maps/investigation-map.json`
 
 ---

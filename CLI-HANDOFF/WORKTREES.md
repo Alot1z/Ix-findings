@@ -1,6 +1,6 @@
 # WORKTREES.md — Complete Worktree Inventory
 
-> **Generated:** 2026-08-10 (Freebuff CLI Master Execution Phase)
+> **Generated:** 2026-08-10 (CLI Execution Phase)
 > **Source:** Live `git worktree list` + filesystem verification
 > All SHAs are DESKTOP-OBSERVED.
 
