@@ -11,9 +11,9 @@ These items are verified, tested, and require no further investigation. They can
 
 | Item | Repository | Branch | Evidence | Next Action |
 |---|---|---|---|---|
-| **Remap hardening PR** | ix-infrastructure/Ix | `feat/ix-remap-hardening` @ `c021b52` | 656/2 tests, tsc clean, eslint clean, 10 guard tests, 4 files +251/-10 | Push to fork → open PR (Phase B-1) |
-| **Fork main sync** | Alot1z/Ix | `fork/main` @ `0437abf` → `c4f8fea` | 5 commits behind, linear fast-forward | `git push fork origin/main:main` (Phase A-1) |
-| **Ix-findings initial commit** | Ix-findings (local) | `master` | 165 untracked files, 186 total | `git add . && git commit` (Phase A-3) |
+| **Remap hardening PR** | ix-infrastructure/Ix | `feat/ix-remap-hardening` @ `c021b52` | 656/2 tests, tsc clean, eslint clean, 10 guard tests, 4 files +251/-10 | **BLOCKED: PAT needs workflow scope** (see EXECUTION-PUSH-REMAP.md) |
+| **Fork main sync** | Alot1z/Ix | `fork/main` @ `0437abf` → `c4f8fea` | 5 commits behind, linear fast-forward | **BLOCKED: PAT needs workflow scope** (see EXECUTION-SYNC-IX.md) |
+| **Ix-findings initial commit** | Ix-findings → Alot1z/Ix-findings | `master` @ `daff6f9` | 171 files, 34,563 insertions | ✅ **DONE** — https://github.com/Alot1z/Ix-findings (Phase A-3) |
 | **Ix-test worktree** | Ix-test (local) | `c4f8fea` (detached) | 646/648 pass, tsc clean, eslint 0 errors | Preserved as regression baseline |
 | **F-key specification** | system-compass (spec only) | `pr-packets/compass-f-key/README.md` | Full spec: 2-line change, 15 tests, <100 lines | Hand to developer upon source access (Phase D) |
 | **#376 fix specification** | ix-infrastructure/Ix | `pr-packets/ix-376-version-mismatch/README.md` | Source-proven: 2 implementation options | Discuss with maintainer (Phase B-3) |
