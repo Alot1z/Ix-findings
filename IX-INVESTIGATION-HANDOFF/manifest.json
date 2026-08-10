@@ -1,0 +1,315 @@
+{
+  "version": "4.0.0",
+  "generated": "2026-08-10T16:00:00Z",
+  "source": "Freebuff CLI Master Execution Phase — live testing, worktree creation, workspace audit",
+  "status": "READ-ONLY - no external actions authorized",
+  "repositories": [
+    {
+      "repo_id": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "name": "Ix",
+      "url": "https://github.com/ix-infrastructure/Ix",
+      "role": "upstream",
+      "local_path": "E:\\E-github-repos\\Ix",
+      "remote_name": "origin",
+      "default_branch": "main",
+      "head_sha": "c4f8fea"
+    },
+    {
+      "repo_id": "Alot1z/Ix",
+      "owner": "Alot1z",
+      "name": "Ix",
+      "url": "https://github.com/Alot1z/Ix",
+      "role": "fork",
+      "fork_of": "ix-infrastructure/Ix",
+      "local_remote_name": "fork",
+      "head_sha": "0437abf",
+      "sync_status": "5 commits behind upstream"
+    },
+    {
+      "repo_id": "ix-infrastructure/ix-compass-dist",
+      "owner": "ix-infrastructure",
+      "name": "ix-compass-dist",
+      "url": "https://github.com/ix-infrastructure/ix-compass-dist",
+      "role": "distribution",
+      "local_path": "E:\\E-github-repos\\ix-compass-dist",
+      "head_sha": "396426b",
+      "note": "Distribution channel - DO NOT MODIFY"
+    },
+    {
+      "repo_id": "ix-infrastructure/system-compass",
+      "owner": "ix-infrastructure",
+      "name": "system-compass",
+      "url": "https://github.com/ix-infrastructure/system-compass",
+      "role": "source",
+      "access": "PRIVATE",
+      "local_path": null,
+      "note": "NO LOCAL CLONE"
+    },
+    {
+      "repo_id": "Ix-findings",
+      "owner": "local",
+      "name": "Ix-findings",
+      "role": "investigation-ledger",
+      "local_path": "E:\\E-github-repos\\Ix-findings",
+      "commits": 0,
+      "untracked": "165 files (17 top-level entries)",
+      "note": "0 commits - all files untracked"
+    }
+  ],
+  "local_paths": {
+    "Ix_primary": "E:\\E-github-repos\\Ix",
+    "Ix_remap": "E:\\E-github-repos\\Ix-remap",
+    "ix_compass_dist": "E:\\E-github-repos\\ix-compass-dist",
+    "Ix_findings": "E:\\E-github-repos\\Ix-findings",
+    "handoff": "E:\\E-github-repos\\Ix-findings\\IX-INVESTIGATION-HANDOFF",
+    "planning": "E:\\E-github-repos\\Ix-findings\\planning",
+    "wiki_standalone": "E:\\E-github-repos\\Ix-findings\\planning\\wiki\\index-standalone.html"
+  },
+  "branches": [
+    {
+      "branch": "main",
+      "repo": "ix-infrastructure/Ix",
+      "sha": "c4f8fea",
+      "sync": "synchronized"
+    },
+    {
+      "branch": "feat/ix-agent-skill",
+      "repo": "ix-infrastructure/Ix",
+      "sha": "b038c46",
+      "worktree": "Ix_primary",
+      "dirty": 14
+    },
+    {
+      "branch": "feat/ix-remap-hardening",
+      "repo": "ix-infrastructure/Ix",
+      "sha": "c021b52",
+      "worktree": "Ix_remap",
+      "ahead": 1
+    },
+    {
+      "branch": "fork/main",
+      "repo": "Alot1z/Ix",
+      "sha": "0437abf",
+      "behind_upstream": 5
+    },
+    {
+      "branch": "fork/feat/ix-agent-skill",
+      "repo": "Alot1z/Ix",
+      "sha": "0c9087c",
+      "note": "PR #368 head"
+    },
+    {
+      "branch": "main",
+      "repo": "ix-compass-dist",
+      "sha": "396426b"
+    },
+    {
+      "branch": "master",
+      "repo": "Ix-findings",
+      "sha": null,
+      "commits": 0
+    }
+  ],
+  "commits": [
+    {
+      "sha": "c4f8fea",
+      "repo": "ix-infrastructure/Ix",
+      "branch": "main",
+      "msg": "chore(deps-dev): bump dev-dependencies (#369)"
+    },
+    {
+      "sha": "c021b52",
+      "repo": "ix-infrastructure/Ix",
+      "branch": "feat/ix-remap-hardening",
+      "msg": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap"
+    },
+    {
+      "sha": "b038c46",
+      "repo": "ix-infrastructure/Ix",
+      "branch": "feat/ix-agent-skill",
+      "msg": "feat(skill): ship agent skill with Compass patch"
+    },
+    {
+      "sha": "0437abf",
+      "repo": "Alot1z/Ix",
+      "branch": "fork/main",
+      "msg": "fix(upgrade): pair tar binary (#366)"
+    },
+    {
+      "sha": "0c9087c",
+      "repo": "Alot1z/Ix",
+      "branch": "fork/feat/ix-agent-skill",
+      "msg": "fix(skill): drop Compass monkey-patch"
+    },
+    {
+      "sha": "396426b",
+      "repo": "ix-compass-dist",
+      "branch": "main",
+      "msg": "distribution commit"
+    },
+    {
+      "sha": "dcc0962",
+      "repo": "ix-infrastructure/Ix",
+      "pr": "#365",
+      "msg": "Compass stamp"
+    },
+    {
+      "sha": "2157158",
+      "repo": "ix-infrastructure/Ix",
+      "pr": "#368",
+      "msg": "PR #368 merge"
+    }
+  ],
+  "pull_requests": [
+    {
+      "number": 358,
+      "url": "https://github.com/ix-infrastructure/Ix/pull/358",
+      "state": "MERGED"
+    },
+    {
+      "number": 362,
+      "url": "https://github.com/ix-infrastructure/Ix/pull/362",
+      "state": "MERGED"
+    },
+    {
+      "number": 365,
+      "url": "https://github.com/ix-infrastructure/Ix/pull/365",
+      "sha": "dcc0962",
+      "state": "MERGED"
+    },
+    {
+      "number": 366,
+      "url": "https://github.com/ix-infrastructure/Ix/pull/366",
+      "state": "MERGED"
+    },
+    {
+      "number": 368,
+      "url": "https://github.com/ix-infrastructure/Ix/pull/368",
+      "sha": "2157158",
+      "fork_sha": "0c9087c",
+      "state": "MERGED"
+    }
+  ],
+  "issues": [
+    {
+      "number": 371,
+      "url": "https://github.com/ix-infrastructure/Ix/issues/371",
+      "finding": "F-009"
+    },
+    {
+      "number": 376,
+      "url": "https://github.com/ix-infrastructure/Ix/issues/376",
+      "finding": "F-008"
+    },
+    {
+      "number": 57,
+      "url": "https://github.com/ix-infrastructure/system-compass/issues/57",
+      "repo": "system-compass",
+      "access": "PRIVATE",
+      "finding": "F-005"
+    }
+  ],
+  "findings": {
+    "count": 13,
+    "ids": [
+      "F-001",
+      "F-002",
+      "F-003",
+      "F-004",
+      "F-005",
+      "F-006",
+      "F-007",
+      "F-008",
+      "F-009",
+      "F-010",
+      "F-011",
+      "F-012",
+      "F-013"
+    ]
+  },
+  "evidence": {
+    "count": 28,
+    "note": "S-038: previous counts of 28/164 were stale; live count is 165 files",
+    "ids": [
+      "E-001",
+      "E-002",
+      "E-003",
+      "E-004",
+      "E-005",
+      "E-006",
+      "E-007",
+      "E-008",
+      "E-009",
+      "E-010",
+      "E-011",
+      "E-012",
+      "E-013",
+      "E-014",
+      "E-015",
+      "E-016",
+      "E-017",
+      "E-018",
+      "E-019",
+      "E-020",
+      "E-021",
+      "E-022",
+      "E-023",
+      "E-024",
+      "E-025",
+      "E-026",
+      "E-027",
+      "E-028"
+    ]
+  },
+  "decisions": {
+    "count": 14,
+    "decided": [],
+    "open": []
+  },
+  "graph": {
+    "nodes": 290,
+    "edges": 240,
+    "status": "EXPANDED - test worktree, fresh results, fork gap confirmed; see GRAPH-AUDIT.md"
+  },
+  "worktrees": {
+    "primary": {"path": "E:\\E-github-repos\\Ix", "branch": "feat/ix-agent-skill", "sha": "b038c46", "dirty": 14},
+    "remap": {"path": "E:\\E-github-repos\\Ix-remap", "branch": "feat/ix-remap-hardening", "sha": "c021b52", "ahead": 1, "dirty": 0},
+    "test": {"path": "E:\\E-github-repos\\Ix-test", "sha": "c4f8fea", "dirty": 0, "tests": "646/648 passed", "tsc": "clean", "eslint": "0 errors"}
+  },
+  "test_results": {
+    "date": "2026-08-10",
+    "repository": "ix-infrastructure/Ix",
+    "sha": "c4f8fea",
+    "vitest": "49 passed, 1 skipped (50 files)",
+    "tests": "646 passed, 2 skipped (648 total)",
+    "smoke": "passed",
+    "tsc": "clean",
+    "eslint": "0 errors, 38 warnings"
+  },
+  "system_compass": {
+    "upstream": "PRIVATE — returns 404",
+    "fork": "DOES NOT EXIST — Alot1z/system-compass returns 404",
+    "source_access": "BLOCKED — D-014",
+    "blocker": "B-001: cannot source-verify F-001 through F-007, F-013"
+  },
+  "execution_constraints": {
+    "NO_remote_push": true,
+    "NO_pr_create": true,
+    "NO_pr_merge": true,
+    "NO_maintainer_contact": true,
+    "PRESERVE_agent_skill_worktree": true,
+    "MAY_read": true,
+    "MAY_inspect": true,
+    "MAY_test": true,
+    "MAY_expand_graph": true
+  },
+  "external_actions_performed": {
+    "pr_created": "NO",
+    "pr_merged": "NO",
+    "issue_created": "NO",
+    "maintainer_contact": "NO",
+    "access_requested": "NO",
+    "remote_push": "NO"
+  }
+}

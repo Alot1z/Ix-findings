@@ -1,0 +1,130 @@
+{
+  "version": "1.0.0",
+  "generated": "2026-08-10",
+  "nodes": [
+    {"id":"phase-00","type":"phase","title":"Phase 0: Initial State Audit","category":"DISCOVERY","status":"COMPLETE"},
+    {"id":"phase-01","type":"phase","title":"Phase 1: Fork Synchronization","category":"SYNCHRONIZATION","status":"COMPLETE"},
+    {"id":"phase-02","type":"phase","title":"Phase 2: Remap Finalization","category":"IMPLEMENTATION","status":"COMPLETE"},
+    {"id":"phase-03","type":"phase","title":"Phase 3: Issue #376","category":"RESEARCH","status":"COMPLETE"},
+    {"id":"phase-04","type":"phase","title":"Phase 4: Security Audit","category":"AUDIT","status":"COMPLETE"},
+    {"id":"phase-05","type":"phase","title":"Phase 5: Compass Reconstruction","category":"RESEARCH","status":"COMPLETE"},
+    {"id":"phase-06","type":"phase","title":"Phase 6: F-Key Gate","category":"VERIFICATION","status":"COMPLETE"},
+    {"id":"phase-07","type":"phase","title":"Phase 7: Delayed-Data Deep Probe","category":"REPRODUCTION","status":"COMPLETE"},
+    {"id":"phase-08","type":"phase","title":"Phase 8: Repository Audit","category":"AUDIT","status":"COMPLETE"},
+    {"id":"phase-09","type":"phase","title":"Phase 9: Evidence Repository","category":"AUDIT","status":"COMPLETE"},
+    {"id":"phase-10","type":"phase","title":"Phase 10: GitHub Context","category":"GITHUB","status":"COMPLETE"},
+    {"id":"phase-11","type":"phase","title":"Phase 11: PR Packets","category":"PR PREPARATION","status":"COMPLETE"},
+    {"id":"phase-12","type":"phase","title":"Phase 12: Publication Gate","category":"VERIFICATION","status":"COMPLETE"},
+
+    {"id":"repo-ix","type":"repository","title":"ix-infrastructure/Ix","visibility":"public","role":"source"},
+    {"id":"repo-fork","type":"repository","title":"Alot1z/Ix","visibility":"public","role":"fork"},
+    {"id":"repo-dist","type":"repository","title":"ix-infrastructure/ix-compass-dist","visibility":"public","role":"distribution"},
+    {"id":"repo-sc","type":"repository","title":"ix-infrastructure/system-compass","visibility":"private","role":"source"},
+    {"id":"repo-findings","type":"repository","title":"Ix-findings","visibility":"local","role":"investigation"},
+
+    {"id":"branch-agent","type":"branch","title":"feat/ix-agent-skill","repo":"repo-ix","head":"b038c46","status":"uncommitted"},
+    {"id":"branch-remap","type":"branch","title":"feat/ix-remap-hardening","repo":"repo-ix","head":"c021b52","base":"c4f8fea","status":"pr-ready"},
+    {"id":"branch-main","type":"branch","title":"main","repo":"repo-ix","head":"c4f8fea","status":"synced"},
+
+    {"id":"F-001","type":"finding","title":"Keyboard handler invariant","class":"B","repo":"repo-sc","status":"reproduced"},
+    {"id":"F-002","type":"finding","title":"F/f unbound","class":"B","repo":"repo-sc","status":"reproduced"},
+    {"id":"F-003","type":"finding","title":"KeyboardHelp no F","class":"B","repo":"repo-sc","status":"verified"},
+    {"id":"F-004","type":"finding","title":"Fit constants invariant","class":"B","repo":"repo-sc","status":"verified"},
+    {"id":"F-005","type":"finding","title":"#57 latch→refit","class":"A","repo":"repo-sc","status":"confirmed"},
+    {"id":"F-006","type":"finding","title":"Delayed-data blank","class":"B","repo":"repo-sc","status":"reproduced_live"},
+    {"id":"F-007","type":"finding","title":"Rollup timing","class":"B","repo":"repo-sc","status":"observed"},
+    {"id":"F-008","type":"finding","title":"Version mismatch #376","class":"A","repo":"repo-ix","status":"open"},
+    {"id":"F-009","type":"finding","title":"Patches dead #371","class":"A","repo":"repo-ix","status":"open"},
+    {"id":"F-010","type":"finding","title":"Remap endpoint","class":"A","repo":"repo-ix","status":"pr-ready"},
+    {"id":"F-011","type":"finding","title":"WSL bootstrap fix","class":"A","repo":"repo-ix","status":"in_remap_pr"},
+    {"id":"F-012","type":"finding","title":"Dead node_ok","class":"A","repo":"repo-ix","status":"in_remap_pr"},
+
+    {"id":"PR-remap","type":"pr_packet","title":"ix-remap-hardening","repo":"repo-ix","status":"ready","blocked":false},
+    {"id":"PR-fkey","type":"pr_packet","title":"compass-f-key","repo":"repo-sc","status":"spec_only","blocked":"source_access"},
+    {"id":"PR-delayed","type":"pr_packet","title":"compass-delayed-data","repo":"repo-sc","status":"investigation_only","blocked":"source_access"},
+    {"id":"PR-376","type":"pr_packet","title":"ix-376-version-mismatch","repo":"repo-ix","status":"ready","blocked":false},
+
+    {"id":"ART-v010","type":"artifact","title":"compass-0.1.0","sha256":"19bc427d0eca77b2…","date":"2026-03-28"},
+    {"id":"ART-v011","type":"artifact","title":"compass-0.1.1","sha256":"74e56488c5daf970…","date":"2026-03-29"},
+    {"id":"ART-v020","type":"artifact","title":"compass-0.2.0","sha256":"863583084c91719f…","date":"2026-06-08"},
+    {"id":"ART-v030","type":"artifact","title":"compass-0.3.0","sha256":"7ed6cc82fe58b3ad…","date":"2026-08-09","source_rev":"7f98724"},
+
+    {"id":"PERSON-kb","type":"person","title":"KageBinary","role":"COLLABORATOR","active":true},
+    {"id":"PERSON-jm","type":"person","title":"josephismikhail","role":"CODE_OWNER","active":true},
+    {"id":"PERSON-hc","type":"person","title":"Hiro-Chiba","role":"CONTRIBUTOR","active":true},
+    {"id":"PERSON-tt","type":"person","title":"TannerTorrey3","role":"HISTORIC_RELEASER","active":false},
+
+    {"id":"ISSUE-371","type":"issue","title":"patches dead","repo":"repo-ix","number":371,"status":"open"},
+    {"id":"ISSUE-376","type":"issue","title":"version mismatch","repo":"repo-ix","number":376,"status":"open"},
+    {"id":"ISSUE-374","type":"issue","title":"cross-batch calls","repo":"repo-ix","number":374,"status":"open"},
+    {"id":"ISSUE-57","type":"issue","title":"fit latch","repo":"repo-sc","number":57,"status":"fixed_in_v030"},
+
+    {"id":"D-001","type":"decision","title":"Base remap on origin/main"},
+    {"id":"D-002","type":"decision","title":"Use dedicated worktree for remap"},
+    {"id":"D-003","type":"decision","title":"Evidence classification A/B/C/D"},
+    {"id":"D-004","type":"decision","title":"Release notes = Class A"},
+    {"id":"D-005","type":"decision","title":"F-key = keyboard only"},
+    {"id":"D-006","type":"decision","title":"Delayed-data separate from F-key"},
+    {"id":"D-007","type":"decision","title":"ix-compass-dist is distribution"},
+    {"id":"D-008","type":"decision","title":"Ix-findings standalone repo"},
+    {"id":"D-009","type":"decision","title":"No push without authorization"}
+  ],
+  "edges": [
+    {"source":"phase-00","target":"phase-01","relationship":"precedes"},
+    {"source":"phase-01","target":"phase-02","relationship":"precedes"},
+    {"source":"phase-02","target":"phase-03","relationship":"precedes"},
+    {"source":"phase-03","target":"phase-04","relationship":"precedes"},
+    {"source":"phase-04","target":"phase-05","relationship":"precedes"},
+    {"source":"phase-05","target":"phase-06","relationship":"precedes"},
+    {"source":"phase-06","target":"phase-07","relationship":"precedes"},
+    {"source":"phase-07","target":"phase-08","relationship":"precedes"},
+    {"source":"phase-08","target":"phase-09","relationship":"precedes"},
+    {"source":"phase-09","target":"phase-10","relationship":"precedes"},
+    {"source":"phase-10","target":"phase-11","relationship":"precedes"},
+    {"source":"phase-11","target":"phase-12","relationship":"precedes"},
+
+    {"source":"phase-02","target":"F-010","relationship":"produced"},
+    {"source":"phase-02","target":"F-011","relationship":"produced"},
+    {"source":"phase-02","target":"F-012","relationship":"produced"},
+    {"source":"phase-02","target":"PR-remap","relationship":"produced"},
+    {"source":"phase-02","target":"branch-remap","relationship":"implemented_in"},
+
+    {"source":"phase-03","target":"F-008","relationship":"produced"},
+    {"source":"phase-03","target":"ISSUE-376","relationship":"investigated"},
+
+    {"source":"phase-05","target":"F-001","relationship":"produced"},
+    {"source":"phase-05","target":"F-002","relationship":"produced"},
+    {"source":"phase-05","target":"F-003","relationship":"produced"},
+    {"source":"phase-05","target":"F-004","relationship":"produced"},
+    {"source":"phase-05","target":"F-005","relationship":"produced"},
+    {"source":"phase-05","target":"ART-v030","relationship":"analyzed"},
+
+    {"source":"phase-07","target":"F-006","relationship":"produced"},
+    {"source":"phase-07","target":"F-007","relationship":"produced"},
+
+    {"source":"phase-11","target":"PR-376","relationship":"produced"},
+
+    {"source":"F-005","target":"ISSUE-57","relationship":"references"},
+    {"source":"F-008","target":"ISSUE-376","relationship":"documents"},
+    {"source":"F-009","target":"ISSUE-371","relationship":"documents"},
+
+    {"source":"PR-remap","target":"branch-remap","relationship":"uses"},
+    {"source":"PR-remap","target":"PERSON-kb","relationship":"reviewer_suggested"},
+    {"source":"PR-remap","target":"PERSON-jm","relationship":"reviewer_suggested"},
+
+    {"source":"PR-376","target":"ISSUE-376","relationship":"fixes"},
+    {"source":"PR-fkey","target":"PERSON-kb","relationship":"reviewer_suggested"},
+    {"source":"PR-delayed","target":"PERSON-kb","relationship":"reviewer_suggested"},
+    {"source":"PR-delayed","target":"ISSUE-57","relationship":"references"},
+
+    {"source":"repo-fork","target":"repo-ix","relationship":"fork_of"},
+    {"source":"repo-dist","target":"repo-sc","relationship":"distributes"},
+    {"source":"repo-findings","target":"repo-ix","relationship":"investigates"},
+    {"source":"repo-findings","target":"repo-sc","relationship":"investigates"},
+
+    {"source":"D-001","target":"phase-01","relationship":"decided_in"},
+    {"source":"D-002","target":"phase-00","relationship":"decided_in"},
+    {"source":"D-005","target":"phase-06","relationship":"decided_in"},
+    {"source":"D-006","target":"phase-07","relationship":"decided_in"}
+  ]
+}

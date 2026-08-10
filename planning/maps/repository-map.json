@@ -1,0 +1,29 @@
+{
+  "version": "2.0.0",
+  "generated": "2026-08-10",
+  "nodes": [
+    { "id": "repo-ix", "type": "repository", "title": "ix-infrastructure/Ix", "role": "source", "visibility": "public", "head": "c4f8fea", "worktrees": 2 },
+    { "id": "repo-fork", "type": "repository", "title": "Alot1z/Ix", "role": "fork", "visibility": "public", "head": "0437abf", "behind_origin": 5 },
+    { "id": "repo-dist", "type": "repository", "title": "ix-compass-dist", "role": "distribution", "visibility": "public", "head": "396426b", "tags": ["v0.1.0", "v0.1.1", "v0.2.0", "v0.3.0"] },
+    { "id": "repo-sc", "type": "repository", "title": "system-compass", "role": "source", "visibility": "private", "head": "7f98724 (v0.3.0 rev)", "access": "BLOCKED" },
+    { "id": "repo-findings", "type": "repository", "title": "Ix-findings", "role": "investigation", "visibility": "local", "commits": 0 },
+    { "id": "branch-main", "type": "branch", "title": "main", "repo": "repo-ix", "head": "c4f8fea", "status": "synced" },
+    { "id": "branch-agent", "type": "branch", "title": "feat/ix-agent-skill", "repo": "repo-ix", "head": "b038c46", "status": "13 uncommitted files" },
+    { "id": "branch-remap", "type": "branch", "title": "feat/ix-remap-hardening", "repo": "repo-ix", "head": "c021b52", "status": "pr-ready" },
+    { "id": "branch-forkmain", "type": "branch", "title": "fork/main", "repo": "repo-fork", "head": "0437abf", "status": "5 behind" },
+    { "id": "branch-forkagent", "type": "branch", "title": "fork feat/ix-agent-skill", "repo": "repo-fork", "head": "0c9087c", "status": "cleanup not local" },
+    { "id": "branch-dist", "type": "branch", "title": "main", "repo": "repo-dist", "head": "396426b", "status": "clean" }
+  ],
+  "edges": [
+    { "source": "repo-fork", "target": "repo-ix", "relationship": "fork_of" },
+    { "source": "repo-dist", "target": "repo-sc", "relationship": "distributes" },
+    { "source": "branch-main", "target": "repo-ix", "relationship": "lives_in" },
+    { "source": "branch-agent", "target": "repo-ix", "relationship": "lives_in" },
+    { "source": "branch-remap", "target": "repo-ix", "relationship": "lives_in" },
+    { "source": "branch-forkmain", "target": "repo-fork", "relationship": "lives_in" },
+    { "source": "branch-forkagent", "target": "repo-fork", "relationship": "lives_in" },
+    { "source": "branch-dist", "target": "repo-dist", "relationship": "lives_in" },
+    { "source": "branch-remap", "target": "branch-main", "relationship": "based_on" },
+    { "source": "repo-dist", "target": "repo-ix", "relationship": "consumed_by_upgrade" }
+  ]
+}

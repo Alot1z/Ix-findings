@@ -1,0 +1,35 @@
+{
+  "recovered_at": "2026-08-10",
+  "source": "ix-infrastructure/ix-compass-dist GitHub releases",
+  "artifacts": {
+    "compass-0.1.0.tar.gz": {
+      "release_date": "2026-08-07",
+      "sha256": "19bc427d0eca77b20aa9fcd1eb61fbb50ef5b54b2b556b46ae393a9b8c17284b",
+      "build": "Rolldown, chunked",
+      "source_maps": "none",
+      "source_revision": "unknown"
+    },
+    "compass-0.1.1.tar.gz": {
+      "release_date": "2026-08-07",
+      "sha256": "74e56488c5daf9701b75f3abd71dcf74df94a885bfb1ab8d53e3053f93938f9b",
+      "build": "Rolldown, chunked",
+      "source_maps": "none",
+      "source_revision": "unknown"
+    },
+    "compass-0.2.0.tar.gz": {
+      "release_date": "2026-08-08",
+      "sha256": "863583084c91719f9904d0ecf4e26571cfd790922edcfe311a6b342d034865fe",
+      "build": "Rolldown, chunked",
+      "source_maps": "none",
+      "source_revision": "unknown"
+    },
+    "compass-0.3.0.tar.gz": {
+      "release_date": "2026-08-09",
+      "sha256": "7ed6cc82fe58b3adb1c0e0bb411485d1a36fd862a4d33a1d64eae3141a3936f1",
+      "build": "Rolldown (rolldown-runtime chunk present), chunked",
+      "source_maps": "none",
+      "source_revision": "system-compass main @ 7f98724 (per release body)"
+    }
+  },
+  "chunk_architecture": "All four share the same chunk architecture (index-*, react-vendor-*, motion-*, radix-*, CommandBar-*, KeyboardHelp-*, query-*, icons-*, etc.). v0.1.0 and v0.1.1 share several byte-identical chunks."
+}

@@ -1,0 +1,10096 @@
+This file is a merged representation of a subset of the codebase, containing files not matching ignore patterns, combined into a single document by Repomix.
+The content has been processed where security check has been disabled.
+
+# File Summary
+
+## Purpose
+This file contains a packed representation of a subset of the repository's contents that is considered the most important context.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+
+## File Format
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  a. A header with the file path (## File: path/to/file)
+  b. The full contents of the file in a code block
+
+## Usage Guidelines
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+
+## Notes
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching these patterns are excluded: .git, node_modules, **/repomix-bundle, **/repomix-output*, *.lock, *.log
+- Security check has been disabled - content may contain sensitive information
+- Files are sorted by Git change count (files with more changes are at the bottom)
+
+# Files
+
+## File: assets/wiki.css
+```css
+:root{
+  --bg:#0b0f14; --bg2:#0e141b; --panel:#111820; --panel2:#16202b;
+  --line:#1e2a37; --line2:#2a3a4b;
+  --ink:#c9d6e2; --ink-dim:#6f8396; --ink-faint:#46586a;
+  --accent:#5fd0a8; --accent2:#5aa8ff;
+  --amber:#e0b25a; --red:#e06a6a; --purple:#b48ae0;
+  --mono:"SFMono-Regular",ui-monospace,Menlo,Consolas,"Cascadia Mono",monospace;
+  --sans:"Inter","Segoe UI",system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.5;
+  background-image:radial-gradient(circle at 20% -10%, rgba(95,208,168,.06), transparent 40%),
+  radial-gradient(circle at 90% 110%, rgba(90,168,255,.05), transparent 40%);}
+#app{display:flex;flex-direction:column;height:100vh}
+
+/* top bar */
+#topbar{display:flex;align-items:center;gap:16px;padding:10px 16px;border-bottom:1px solid var(--line);
+  background:linear-gradient(180deg,var(--bg2),var(--bg));}
+.brand{display:flex;align-items:baseline;gap:10px;white-space:nowrap}
+.brand-mark{width:10px;height:10px;border:1.5px solid var(--accent);transform:rotate(45deg);align-self:center}
+.brand-title{font-family:var(--mono);font-size:13px;letter-spacing:.18em;font-weight:700;color:var(--ink)}
+.brand-sub{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--ink-faint);text-transform:uppercase}
+.search-wrap{flex:1;max-width:620px;margin-left:auto}
+#search{width:100%;background:var(--panel);border:1px solid var(--line);border-radius:4px;color:var(--ink);
+  padding:7px 11px;font-family:var(--mono);font-size:12px;outline:none}
+#search:focus{border-color:var(--line2)}
+.topbar-right{margin-left:auto}
+.badge{font-family:var(--mono);font-size:10px;letter-spacing:.15em;color:var(--accent);
+  border:1px solid var(--accent);padding:2px 8px;border-radius:3px}
+
+/* layout */
+#layout{display:flex;flex:1;min-height:0}
+#sidebar{width:230px;flex:none;border-right:1px solid var(--line);padding:14px 10px;overflow-y:auto;
+  background:linear-gradient(180deg,var(--bg2),transparent 70%)}
+.nav-group-label{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ink-faint);margin:14px 8px 6px}
+.nav-item{display:block;width:100%;text-align:left;background:none;border:none;color:var(--ink-dim);
+  font-family:var(--mono);font-size:12px;padding:7px 10px;border-radius:4px;cursor:pointer;
+  border-left:2px solid transparent}
+.nav-item:hover{color:var(--ink);background:var(--panel)}
+.nav-item.active{color:var(--accent);background:var(--panel);border-left-color:var(--accent)}
+
+#view{flex:1;min-width:0;display:flex;flex-direction:column;overflow:hidden}
+.breadcrumb{font-family:var(--mono);font-size:11px;color:var(--ink-faint);padding:8px 18px;border-bottom:1px solid var(--line);
+  display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.breadcrumb .sep{color:var(--ink-faint)}
+.breadcrumb .crumb{cursor:pointer}
+.breadcrumb .crumb:hover{color:var(--accent)}
+.content{flex:1;overflow-y:auto;padding:20px 22px}
+
+/* headings & tables */
+h1{font-family:var(--mono);font-size:18px;font-weight:700;letter-spacing:.02em;margin:0 0 4px;color:var(--ink)}
+h2{font-family:var(--mono);font-size:14px;font-weight:700;letter-spacing:.06em;margin:26px 0 10px;color:var(--accent);
+  text-transform:uppercase}
+h3{font-family:var(--mono);font-size:12px;margin:16px 0 6px;color:var(--ink)}
+p{margin:6px 0}
+.muted{color:var(--ink-dim)}
+.faint{color:var(--ink-faint)}
+.lede{color:var(--ink-dim);max-width:760px}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint)}
+tr:hover td{background:var(--panel)}
+td.code,th.code{font-family:var(--mono);font-size:12px}
+
+/* evidence class chips — label + glyph + border, not color alone */
+.eclass{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:10px;font-weight:700;
+  padding:1px 7px;border-radius:3px;border:1px solid;letter-spacing:.05em}
+.eclass::before{content:attr(data-g);font-size:11px}
+.eclass.A{color:#7fd0ff;border-color:#2a5878;background:rgba(90,168,255,.08)}
+.eclass.B{color:var(--accent);border-color:#2a6b54;background:rgba(95,208,168,.08)}
+.eclass.C{color:var(--amber);border-color:#6b5a2a;background:rgba(224,178,90,.08)}
+.eclass.D{color:var(--purple);border-color:#5a3d78;background:rgba(180,138,224,.1)}
+.badge-status{font-family:var(--mono);font-size:10px;padding:1px 7px;border-radius:3px;border:1px solid var(--line2);color:var(--ink-dim)}
+.badge-status.pr-ready{color:var(--accent);border-color:var(--accent)}
+.badge-status.open,.badge-status.blocked{color:var(--amber);border-color:var(--amber)}
+.badge-status.reproduced,.badge-status.confirmed,.badge-status.verified{color:#7fd0ff;border-color:#2a5878}
+.disposition{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.05em;padding:1px 7px;border-radius:3px;border:1px solid}
+.disposition.accepted{color:var(--accent);border-color:#2a6b54}
+.disposition.rejected{color:var(--red);border-color:#6b2a2a}
+.disposition.deferred{color:var(--amber);border-color:#6b5a2a}
+.disposition.superseded,.disposition.blocked{color:var(--purple);border-color:#5a3d78}
+
+/* filter chips */
+.filters{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 14px}
+.chip{font-family:var(--mono);font-size:11px;color:var(--ink-dim);background:var(--panel);border:1px solid var(--line);
+  padding:3px 10px;border-radius:12px;cursor:pointer}
+.chip:hover{color:var(--ink)}
+.chip.on{color:var(--accent);border-color:var(--accent)}
+.chip input{display:none}
+
+/* cards */
+.card{background:var(--panel);border:1px solid var(--line);border-radius:5px;padding:12px 14px;margin-bottom:10px}
+.card:hover{border-color:var(--line2)}
+.card h3{margin-top:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+kbd{font-family:var(--mono);background:var(--panel2);border:1px solid var(--line2);border-bottom-width:2px;border-radius:3px;padding:0 5px;font-size:11px}
+
+/* map */
+#map-wrap{position:relative;border:1px solid var(--line);border-radius:5px;background:var(--bg2);overflow:hidden;height:calc(100vh - 210px);min-height:420px}
+#graph{width:100%;height:100%;display:block;cursor:grab}
+#graph.dragging{cursor:grabbing}
+.map-legend{position:absolute;top:10px;left:10px;display:flex;flex-wrap:wrap;gap:8px;max-width:70%}
+.map-key{font-family:var(--mono);font-size:10px;color:var(--ink-dim);display:flex;align-items:center;gap:5px}
+.map-key .dot{width:10px;height:10px;border-radius:50%}
+.map-hint{position:absolute;bottom:10px;left:10px;font-family:var(--mono);font-size:10px;color:var(--ink-faint)}
+.map-ncount{position:absolute;top:10px;right:10px;font-family:var(--mono);font-size:10px;color:var(--ink-faint)}
+.node{stroke:#0b0f14;stroke-width:1.2;cursor:pointer;transition:opacity .15s}
+.node text{font-family:var(--mono);font-size:9px;fill:var(--ink-dim);pointer-events:none;paint-order:stroke;stroke:var(--bg2);stroke-width:3px}
+.edge{stroke:var(--line2);stroke-width:1;opacity:.55}
+.edge.focus{stroke:var(--accent);opacity:.9}
+.node.dim{opacity:.18}
+.node.focus{opacity:1}
+.node.selected{opacity:1}
+
+/* timeline */
+.tl{position:relative;padding-left:26px}
+.tl::before{content:"";position:absolute;left:8px;top:4px;bottom:4px;width:1px;background:var(--line2)}
+.tl-item{position:relative;margin-bottom:14px;padding-left:14px}
+.tl-item::before{content:"";position:absolute;left:-22px;top:6px;width:9px;height:9px;border-radius:50%;background:var(--bg);border:2px solid var(--line2)}
+.tl-item.release::before{border-color:var(--accent)}
+.tl-item.phase::before{border-color:var(--accent2)}
+.tl-item.github::before{border-color:var(--amber)}
+.tl-item.blocked::before{border-color:var(--red)}
+.tl-date{font-family:var(--mono);font-size:11px;color:var(--ink-faint)}
+.tl-title{font-size:13px}
+.tl-meta{font-family:var(--mono);font-size:10px;color:var(--ink-faint)}
+
+/* drawer */
+.drawer{position:fixed;top:0;right:0;height:100vh;width:min(460px,94vw);background:var(--panel);
+  border-left:1px solid var(--line2);transform:translateX(105%);transition:transform .18s ease;z-index:50;display:flex;flex-direction:column;
+  box-shadow:-20px 0 40px rgba(0,0,0,.4)}
+.drawer.open{transform:none}
+.drawer-head{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--line)}
+#drawer-title{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--accent);text-transform:uppercase}
+#drawer-close{background:none;border:none;color:var(--ink-dim);font-size:20px;cursor:pointer}
+#drawer-close:hover{color:var(--ink)}
+.drawer-body{overflow-y:auto;padding:16px}
+.drawer-body h3{margin-top:18px}
+.rel{display:inline-flex;gap:6px;flex-wrap:wrap}
+.rel a,.link{color:var(--accent2);cursor:pointer;font-family:var(--mono);font-size:11px;text-decoration:none;border:1px solid var(--line2);padding:1px 7px;border-radius:3px}
+.rel a:hover,.link:hover{background:var(--panel2)}
+
+/* phase explorer */
+.phase-card{cursor:pointer}
+.phase-card .cat{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--ink-faint);text-transform:uppercase}
+
+/* security */
+.ok{color:var(--accent)} .warn{color:var(--amber)} .bad{color:var(--red)}
+
+a.ext{color:var(--accent2);text-decoration:none}
+a.ext:hover{text-decoration:underline}
+.tag{font-family:var(--mono);font-size:10px;color:var(--ink-faint);border:1px solid var(--line2);padding:0 5px;border-radius:3px;margin-left:4px}
+@media (max-width:820px){#sidebar{width:200px}#layout{flex-direction:column}#sidebar{width:100%;border-right:none;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap} .nav-group-label{display:none} .nav-item{width:auto}}
+```
+
+## File: assets/wiki.js
+```javascript
+/* Ix / Compass investigation knowledge wiki — reads window.IX_DATA (data/data.js). */
+(function(){
+"use strict";
+const D = window.IX_DATA;
+const $ = (s)=>(document.querySelector(s));
+const el = (tag,cls,html)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(html!=null)n.innerHTML=html;return n;};
+
+const TYPE_COLOR = {
+  phase:"#5aa8ff", repository:"#e0b25a", branch:"#c9a96a", commit:"#8a9bb0",
+  issue:"#e06a6a", pr:"#e07a5a", pr_packet:"#ff9d5c", finding:"#5fd0a8",
+  evidence:"#7fd0ff", decision:"#b48ae0", suggestion:"#8fd0c0", person:"#d8c8a0"
+};
+const ECLASS = {A:["A","◼"],B:["B","◈"],C:["C","△"],D:["D","○"]};
+const ECLASS_MEAN = {A:"source",B:"artifact/runtime",C:"reconstruction",D:"inference"};
+
+function eclass(id){return '<span class="eclass '+id+'" data-g="'+ECLASS[id][1]+'" title="'+ECLASS[id][0]+': '+ECLASS_MEAN[id]+'">'+ECLASS[id][0]+'</span>';}
+function disp(x){return '<span class="disposition '+(x||'').toLowerCase()+'">'+(x||'')+'</span>';}
+function status(x){const c=String(x||'').toLowerCase();let k='';if(c.includes('pr_ready')||c.includes('ready'))k=' pr-ready';else if(c.includes('open')||c.includes('block'))k=' open';else if(c.includes('repro')||c.includes('confirm')||c.includes('verified'))k=' reproduced';return '<span class="badge-status'+k+'">'+(x||'')+'</span>';}
+
+const FINDINGS = Object.fromEntries(D.findings.map(f=>[f.id,f]));
+const EVIDENCE = Object.fromEntries(D.evidence.map(e=>[e.id,e]));
+const SUGGS = Object.fromEntries(D.suggestions.map(s=>[s.id,s]));
+const DECS = Object.fromEntries(D.decisions.map(d=>[d.id,d]));
+const PHASES = Object.fromEntries(D.phases.map(p=>[p.id,p]));
+const GRAPH = D.graph;
+const NODES = Object.fromEntries(GRAPH.nodes.map(n=>[n.id,n]));
+
+/* ---------- navigation ---------- */
+let currentView="map"; let crumbStack=[];
+function setView(v){currentView=v;document.querySelectorAll('.nav-item').forEach(b=>b.classList.toggle('active',b.dataset.view===v));crumbStack=[];renderBreadcrumb();render();}
+function pushCrumb(){crumbStack.push(currentView);}
+function renderBreadcrumb(){
+  const b=$('#breadcrumb');b.innerHTML='';
+  const home=el('span','crumb','✳ home');home.onclick=()=>{crumbStack=[];$('#search').value='';render();};b.append(home);
+  ['',currentView].forEach((c,i)=>{
+    b.append(el('span','sep',' / '));
+    const s=el('span','crumb',c||'overview');
+    s.onclick=()=>{crumbStack=crumbStack.slice(0,i-1);render();};
+    b.append(s);
+  });
+}
+document.querySelectorAll('.nav-item').forEach(b=>b.onclick=()=>setView(b.dataset.view));
+$('#drawer-close').onclick=closeDrawer;
+
+const content=$('#content');
+function openDrawer(title,body){$('#drawer-title').textContent=title;$('#drawer-body').innerHTML='';$('#drawer-body').append(body);$('#drawer').classList.add('open');}
+function closeDrawer(){$('#drawer').classList.remove('open');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer();});
+
+function chip(label,id,type){const a=el('a','link','');a.textContent=label;a.onclick=()=>openEntity(id,type);return a;}
+function relationList(ids,type){if(!ids||!ids.length)return el('span','faint','none');const w=el('span','rel');ids.forEach(id=>{w.append(chip(id,id,type||(NODES[id]?NODES[id].type:null)));});return w;}
+
+function openEntity(id,type){
+  type=type||(NODES[id]&&NODES[id].type);
+  let body;
+  if(FINDINGS[id])body=findBody(FINDINGS[id]);
+  else if(EVIDENCE[id])body=evidBody(EVIDENCE[id]);
+  else if(SUGGS[id])body=sugBody(SUGGS[id]);
+  else if(DECS[id])body=decBody(DECS[id]);
+  else if(PHASES[id])body=phaseBody(PHASES[id]);
+  else if(NODES[id])body=nodeBody(NODES[id]);
+  else body=el('p','muted','No record for '+id+'.');
+  openDrawer(id,body);
+  if(type==='finding'||type==='evidence'||type==='phase')pushCrumb();
+}
+
+function section(title,node){const w=el('div');w.append(el('h3','',title));w.append(node);return w;}
+function kv(title,val){return '<p><span class="faint">'+title+':</span> '+(val??'—')+'</p>';}
+
+function findBody(f){
+  const w=el('div');
+  w.append(el('p','',eclass(f.evidence_class.split('+')[0])+' '+status(f.status)+' <span class="tag">'+f.repository+'</span>'));
+  w.append(el('p','muted',(f.ixf_id?('alias '+f.ixf_id+' · '):'')+'evidence '+(f.confidence?('· confidence '+f.confidence):'')+(f.severity?(' · severity '+f.severity):'')));
+  w.append(el('p','',kv('Subsystem',f.subsystem)+kv('Affected versions',(f.affected_versions||[]).join(', '))+kv('Phases',(f.first_phase||'')+' → '+(f.latest_phase||''))));
+  w.append(section('Reproduction',el('p','',f.reproduction||'—')));
+  w.append(section('Supporting evidence',relationList(f.evidence_refs,'evidence')));
+  w.append(section('Related issues',relationList(f.related_issues,'issue')));
+  w.append(section('Related PRs',relationList(f.related_prs,'pr_packet')));
+  w.append(section('Related suggestions',relationList(f.related_suggestions,'suggestion')));
+  if(f.alternative)w.append(section('Alternative explanations',el('p','',f.alternative)));
+  w.append(section('Recommendation',el('p','',f.recommendation)));
+  w.append(section('Why this matters',el('p','muted','Traced from '+f.evidence_class+' evidence'+(f.evidence_refs?' ('+f.evidence_refs.join(', ')+')':'')+'. Full record: planning/findings/registry.md.')));
+  return w;
+}
+function evidBody(e){
+  const w=el('div');
+  w.append(el('p','',eclass(e.class)+' <span class="tag">'+e.kind+'</span> <span class="tag">'+e.repository+'</span>'));
+  w.append(el('p','',e.detail||''));
+  w.append(section('Supports findings',relationList(e.supports,'finding')));
+  w.append(section('Provenance',el('p','muted','Registered in '+e.phase+'. Canonical: planning/evidence/registry.md.')));
+  return w;
+}
+function sugBody(s){
+  const w=el('div');
+  w.append(el('p','',disp(s.disposition)+' <span class="tag">'+s.repository+'</span> <span class="tag">'+s.phase+'</span>'));
+  w.append(el('p','',s.text));
+  w.append(section('Reason',el('p','',s.reason||'—')));
+  w.append(section('Evidence cited',relationList(s.evidence_refs,'evidence')));
+  w.append(section('Related findings',relationList(s.related_findings,'finding')));
+  return w;
+}
+function decBody(d){
+  const w=el('div');
+  w.append(el('p','',status(d.status)+' <span class="tag">'+(d.dec_alias||'')+'</span>'));
+  w.append(el('p','',d.title));
+  w.append(el('p','',kv('Problem',d.problem)+kv('Options',(d.options||[]).join(' · '))+kv('Chosen',d.chosen||'<span class="faint">(pending)</span>')+kv('Rejected',(d.rejected||[]).join(' · '))+kv('Reason',d.reason)+kv('Consequences',d.consequences||'—')));
+  w.append(section('Related findings',relationList(d.related_findings,'finding')));
+  w.append(section('Related suggestions',relationList(d.related_suggestions,'suggestion')));
+  return w;
+}
+function phaseBody(p){
+  const w=el('div');
+  w.append(el('p','',status(p.status)+' <span class="tag">'+p.category+'</span>'));
+  w.append(el('p','',p.objective||''));
+  w.append(section('Key findings',el('div','',(p.key_findings||[]).map(k=>'<p>· '+k+'</p>').join(''))));
+  w.append(section('Outputs',el('p','',(p.outputs||[]).join(' · ')||'—')));
+  w.append(section('Dependencies',el('p','',(p.dependencies||[]).join(' · ')||'—')));
+  w.append(section('Next phase',el('p','',p.next_phase||'—')));
+  return w;
+}
+function nodeBody(n){
+  const w=el('div');
+  const meta=Object.entries(n).filter(([k])=>!['id','type','title'].includes(k))
+    .map(([k,v])=>kv(k,typeof v==='object'?JSON.stringify(v):v)).join('');
+  w.append(el('p','',meta||el('span','faint','no metadata')));
+  const inn=GRAPH.edges.filter(e=>e.target===n.id);
+  const out=GRAPH.edges.filter(e=>e.source===n.id);
+  if(inn.length){w.append(section('Incoming',relationList(inn.map(e=>e.source))));}
+  if(out.length){w.append(section('Relationships out',el('p','',out.map(e=>'<span class="rel">'+e.source+' <span class="faint">'+e.relationship+'</span> '+e.target+'</span>').join(' '))));}
+  return w;
+}
+
+/* ---------- render dispatch ---------- */
+function render(){
+  content.innerHTML='';
+  content.scrollTop=0;
+  const v=currentView;
+  if(v==='map')renderMap();
+  else if(v==='timeline')renderTimeline();
+  else if(v==='repositories')renderRepos();
+  else if(v==='phases')renderPhases();
+  else if(v==='findings')renderFindings();
+  else if(v==='evidence')renderEvidence();
+  else if(v==='compass')renderCompass();
+  else if(v==='prmap')renderPRMap();
+  else if(v==='suggestions')renderSuggestions();
+  else if(v==='decisions')renderDecisions();
+  else if(v==='security')renderSecurity();
+  else if(v==='about')renderAbout();
+}
+
+/* ---------- map view ---------- */
+function renderMap(){
+  content.append(el('h1','','Investigation Map'));
+  content.append(el('p','lede','Every phase, repository, finding, evidence item, issue, PR, commit, decision, and suggestion as a node. Select a node to trace it; hover to highlight relationships. Drag to pan, wheel to zoom, double-click to centre.'));
+  const host=el('div','','<div id="map-wrap"></div>');
+  content.append(host);
+  const mw=$('#map-wrap');
+  const legend=el('div','map-legend');
+  [['phase','Phase'],['repository','Repository'],['finding','Finding'],['evidence','Evidence'],['issue','Issue'],['pr','PR'],['pr_packet','Packet'],['commit','Commit'],['decision','Decision'],['suggestion','Suggestion'],['person','Person']].forEach(([t,l])=>{
+    legend.append(el('span','map-key','<span class="dot" style="background:'+TYPE_COLOR[t]+'"></span>'+l));});
+  mw.append(legend);
+  mw.append(el('div','map-hint','drag = pan · wheel = zoom · click = detail · double-click = centre'));
+  mw.append(el('div','map-ncount',GRAPH.nodes.length+' nodes · '+GRAPH.edges.length+' edges'));
+  const NS='http://www.w3.org/2000/svg';
+  const svg=document.createElementNS(NS,'svg');svg.id='graph';
+  const vp=document.createElementNS(NS,'g');vp.id='viewport';
+  const zedge=document.createElementNS(NS,'g');zedge.id='zedge';
+  const znode=document.createElementNS(NS,'g');znode.id='znode';
+  vp.append(zedge,znode);svg.append(vp);
+  mw.append(svg);
+  const W=mw.clientWidth,H=mw.clientHeight;
+
+  const order=['person','repository','branch','commit','issue','pr','pr_packet','phase','decision','suggestion','evidence','finding'];
+  const cols={};order.forEach((t,i)=>cols[t]=i);
+  const perCol={};GRAPH.nodes.forEach(n=>{perCol[n.type]=(perCol[n.type]||0)+1;});
+  const colW=Math.max(170,W*0.92/order.length);
+  const counts={};const pos={};
+  GRAPH.nodes.forEach(n=>{
+    const c=cols[n.type]??order.length;
+    const i=counts[n.type]=(counts[n.type]||0)+1;
+    const total=perCol[n.type]||1;
+    pos[n.id]={x:colW*(c+0.5), y:H*(i/(total+1))+(c%2?16:-16)};
+  });
+  let bx=Infinity,by=Infinity,Bx=-Infinity,By=-Infinity;
+  Object.values(pos).forEach(p=>{if(p.x<bx)bx=p.x;if(p.x>Bx)Bx=p.x;if(p.y<by)by=p.y;if(p.y>By)By=p.y;});
+  const pad=48;bx-=pad;by-=pad;Bx+=pad;By+=pad;
+  svg.setAttribute('viewBox',[bx,by,Bx-bx,By-by].join(' '));
+  svg.setAttribute('preserveAspectRatio','xMidYMid meet');
+  svg.setAttribute('width','100%');
+  svg.setAttribute('height',Math.max(320,mw.clientHeight)+'px');
+
+  GRAPH.edges.forEach(e=>{
+    const a=pos[e.source],b=pos[e.target];if(!a||!b)return;
+    const l=document.createElementNS(NS,'line');
+    l.setAttribute('x1',a.x);l.setAttribute('y1',a.y);l.setAttribute('x2',b.x);l.setAttribute('y2',b.y);
+    l.setAttribute('class','edge');l.dataset.s=e.source;l.dataset.t=e.target;
+    zedge.append(l);
+  });
+  const nodesEl={};
+  GRAPH.nodes.forEach(n=>{
+    const p=pos[n.id];if(!p)return;
+    const g=document.createElementNS(NS,'g');g.setAttribute('class','node');g.dataset.id=n.id;
+    const r=n.type==='finding'?8:(n.type==='evidence'?6:(n.type==='phase'?7:5));
+    const c=document.createElementNS(NS,'circle');
+    c.setAttribute('cx',p.x);c.setAttribute('cy',p.y);c.setAttribute('r',r);
+    c.setAttribute('fill',TYPE_COLOR[n.type]||'#8899aa');
+    g.append(c);
+    const t=document.createElementNS(NS,'text');
+    t.setAttribute('x',p.x+r+3);t.setAttribute('y',p.y+3);t.textContent=n.title;
+    g.append(t);
+    g.onclick=()=>openEntity(n.id,n.type);
+    g.onmouseenter=()=>focusNeighbors(n.id);
+    g.onmouseleave=focusClear;
+    g.ondblclick=resetTransform;
+    znode.append(g);nodesEl[n.id]=g;
+  });
+
+  let tx=0,ty=0,scale=1;
+  function apply(){svg.querySelector('#viewport').setAttribute('transform','translate('+tx+','+ty+') scale('+scale+')');}
+  let drag=null;
+  svg.addEventListener('pointerdown',e=>{drag={x:e.clientX,y:e.clientY,ox:tx,oy:ty};svg.classList.add('dragging');});
+  window.addEventListener('pointermove',e=>{if(!drag)return;tx=drag.ox+(e.clientX-drag.x);ty=drag.oy+(e.clientY-drag.y);apply();});
+  window.addEventListener('pointerup',()=>{drag=null;svg.classList.remove('dragging');});
+  svg.addEventListener('wheel',e=>{e.preventDefault();scale=Math.max(0.2,Math.min(4,scale*(e.deltaY<0?1.12:0.89)));apply();},{passive:false});
+  function resetTransform(){tx=16;ty=16;scale=1;apply();}
+  resetTransform();
+
+  function focusNeighbors(id){
+    const set=new Set([id]);GRAPH.edges.forEach(e=>{if(e.source===id)set.add(e.target);if(e.target===id)set.add(e.source);});
+    GRAPH.nodes.forEach(n=>{const g=nodesEl[n.id];if(g)g.classList.toggle('dim',!set.has(n.id));});
+    zedge.querySelectorAll('line').forEach(l=>l.classList.toggle('focus',l.dataset.s===id||l.dataset.t===id));
+  }
+  function focusClear(){GRAPH.nodes.forEach(n=>{const g=nodesEl[n.id];if(g)g.classList.remove('dim');});zedge.querySelectorAll('line').forEach(l=>l.classList.remove('focus'));}
+}
+
+/* ---------- timeline ---------- */
+function renderTimeline(){
+  content.append(el('h1','','Timeline'));
+  content.append(el('p','lede','Chronological investigation timeline. Filter by event type.'));
+  const chips=el('div','filters');content.append(chips);
+  let f='all';
+  ['all','release','phase','github'].forEach(t=>{const c=el('button','chip'+(f===t?' on':''));c.textContent=t;c.onclick=()=>{f=t;chips.querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x.textContent===f));draw();};chips.append(c);});
+  const list=el('div','');content.append(list);
+  function draw(){
+    list.innerHTML='';
+    D.timeline.filter(e=>f==='all'||e.type===f).slice().sort((a,b)=>a.date<b.date?-1:1).forEach(e=>{
+      const it=el('div','tl-item '+e.type+(e.blocked?' blocked':''));
+      it.append(el('div','tl-date',e.date));
+      it.append(el('div','tl-title',e.title));
+      it.append(el('div','tl-meta',(e.repo||'')+(e.category?(' · '+e.category):'')+(e.evidence?(' · '+e.evidence):'')));
+      list.append(it);
+    });
+  }
+  draw();
+}
+
+/* ---------- repositories ---------- */
+function renderRepos(){
+  content.append(el('h1','','Repositories'));
+  content.append(el('p','lede','The five repositories, their state, and fork relationships.'));
+  const grid=el('div','grid');content.append(grid);
+  const cards=[
+    {id:'repo-ix',t:'ix-infrastructure/Ix',s:'source · public',d:'The ix CLI. origin=upstream, fork=Alot1z/Ix. Two worktrees: feat/ix-agent-skill (13 uncommitted files) and feat/ix-remap-hardening (c021b52).'},
+    {id:'repo-fork',t:'Alot1z/Ix',s:'fork · public',d:'fork/main @ 0437abf — 5 behind origin, not pushed. fork feat/ix-agent-skill @ 0c9087c (cleanup, not local).'},
+    {id:'repo-dist',t:'ix-compass-dist',s:'distribution · public',d:'README-only release channel; tags v0.1.0–v0.3.0; artifacts are release assets; never modify (D-007).'},
+    {id:'repo-sc',t:'system-compass',s:'source · PRIVATE',d:'The Compass UI source. Private/404 — no checkout. All Compass PR work blocked on access (D-014).'},
+    {id:'repo-findings',t:'Ix-findings',s:'investigation · local',d:'This ledger + planning layer. Git-initialized, zero commits; commit pending review (S-015).'}
+  ];
+  cards.forEach(c=>{const card=el('div','card');card.onclick=()=>openEntity(c.id,'repository');card.append(el('h3','',c.t+' <span class="tag">'+c.s+'</span>'));card.append(el('p','muted',c.d));grid.append(card);});
+  content.append(el('h2','','Branches · verified 2026-08-10'));
+  const t=el('table','','<thead><tr><th>Branch</th><th>Repo</th><th>HEAD</th><th>vs origin/main</th><th>State</th></tr></thead><tbody></tbody>');
+  [['main','repo-ix','c4f8fea','0 / 0','synced'],['feat/ix-agent-skill','repo-ix','b038c46','1 ahead, 10 behind','13 uncommitted files'],['feat/ix-remap-hardening','repo-ix','c021b52','1 ahead, 0 behind','PR-ready · NOT pushed'],['fork/main','repo-fork','0437abf','5 behind','not pushed'],['fork feat/ix-agent-skill','repo-fork','0c9087c','—','cleanup · not local'],['dist main','repo-dist','396426b','—','clean']]
+    .forEach(r=>t.querySelector('tbody').append(el('tr','','<td class="code">'+r[0]+'</td><td>'+r[1]+'</td><td class="code">'+r[2]+'</td><td>'+r[3]+'</td><td>'+r[4]+'</td>')));
+  content.append(t);
+}
+
+/* ---------- phases ---------- */
+function renderPhases(){
+  content.append(el('h1','','Phase Explorer'));
+  content.append(el('p','lede','Every investigation phase, independently openable.'));
+  const grid=el('div','grid');content.append(grid);
+  D.phases.slice().forEach(p=>{
+    const card=el('div','card phase-card');
+    card.onclick=()=>openEntity(p.id,'phase');
+    card.append(el('div','cat',p.category+' · '+p.status));
+    card.append(el('h3','',p.number+' — '+p.title));
+    card.append(el('p','muted',(p.objective||'').slice(0,130)+'…'));
+    grid.append(card);
+  });
+}
+
+/* ---------- findings ---------- */
+function renderFindings(){
+  content.append(el('h1','','Findings'));
+  content.append(el('p','lede','Filter by evidence class or status. Evidence class is shown by label + glyph + border — never colour alone.'));
+  const state={cls:[],st:'all'};
+  const chips=el('div','filters');content.append(chips);
+  const table=el('table','','<thead><tr><th>ID</th><th>Title</th><th>Class</th><th>Repo</th><th>Severity</th><th>Status</th></tr></thead><tbody></tbody>');
+  content.append(table);
+  ['A','B','C','D'].forEach(cl=>{const c=el('button','chip');c.textContent='class '+cl;c.dataset.cls=cl;c.onclick=()=>{state.cls=state.cls.includes(cl)?state.cls.filter(x=>x!==cl):[...state.cls,cl];draw();};chips.append(c);});
+  ['PR_READY','OPEN','REPRODUCED','CONFIRMED','VERIFIED','OBSERVED','IN_REMAP_PR'].forEach(s=>{const c=el('button','chip');c.textContent=s.toLowerCase();c.dataset.st=s.toLowerCase();c.onclick=()=>{state.st=state.st===s?'all':s;draw();};chips.append(c);});
+  function draw(){
+    chips.querySelectorAll('.chip').forEach(c=>{if(c.dataset.cls)c.classList.toggle('on',state.cls.includes(c.dataset.cls));else c.classList.toggle('on',state.st===c.dataset.st);});
+    table.querySelector('tbody').innerHTML='';
+    D.findings.forEach(f=>{
+      const base=f.evidence_class.split('+')[0];
+      if(state.cls.length && !state.cls.includes(base))return;
+      if(state.st!=='all'&& !String(f.status).toLowerCase().includes(state.st))return;
+      const tr=el('tr','','<td class="code">'+f.id+'</td><td>'+f.title+'</td><td>'+eclass(base)+(f.evidence_class.includes('+')?' +':'')+'</td><td>'+f.repository+'</td><td>'+(f.severity||'—')+'</td><td>'+status(f.status)+'</td>');
+      tr.onclick=()=>openEntity(f.id,'finding');
+      table.querySelector('tbody').append(tr);
+    });
+  }
+  draw();
+}
+
+/* ---------- evidence ---------- */
+function renderEvidence(){
+  content.append(el('h1','','Evidence'));
+  content.append(el('p','lede','Navigate Finding → Evidence → Reproduction → Result. Each item lists the findings it supports.'));
+  const t=el('table','','<thead><tr><th>ID</th><th>Item</th><th>Class</th><th>Kind</th><th>Supports</th></tr></thead><tbody></tbody>');
+  content.append(t);
+  D.evidence.forEach(e=>{
+    const tr=el('tr','','<td class="code">'+e.id+'</td><td>'+e.title+'</td><td>'+eclass(e.class)+'</td><td>'+e.kind+'</td><td>'+(e.supports||[]).join(' · ')+'</td>');
+    tr.onclick=()=>openEntity(e.id,'evidence');
+    t.querySelector('tbody').append(tr);
+  });
+}
+
+/* ---------- compass ---------- */
+function renderCompass(){
+  content.append(el('h1','','Compass History'));
+  content.append(el('p','lede','Behavioral comparison across v0.1.0 → v0.3.0. (A) = release notes, (B) = artifact/runtime.'));
+  const rows=[
+    ['Keyboard switch + guards','same','same','same','same'],
+    ['KeyboardHelp array','same','same','same','same'],
+    ['F/f binding','none','none','none','none'],
+    ['Fit math + 9 constants','same','same','same','same'],
+    ['Zoom contract (×1.1 / ×0.9 / 2.5)','same','same','same','same'],
+    ['Fit lifecycle','latch','latch','latch','keyed refit (#57)'],
+    ['Delayed-data blank','present','present','present','present'],
+    ['Region rollup','—','—','timing-dep','timing-dep'],
+    ['Bounded layout (gravity + cutoff)','—','—','—','✓ (A)'],
+    ['Aggregation 1,471→33','—','—','—','✓ (A)'],
+    ['Searchable roll-ups / breadcrumb collapse','—','—','—','✓ (A)'],
+    ['Source maps','none','none','none','none']
+  ];
+  const t=el('table','','<thead><tr><th>Area</th><th>v0.1.0</th><th>v0.1.1</th><th>v0.2.0</th><th>v0.3.0</th></tr></thead><tbody></tbody>');
+  rows.forEach(r=>t.querySelector('tbody').append(el('tr','',r.map((c,i)=>i?'<td class="code">'+c+'</td>':'<td>'+c+'</td>').join(''))));
+  content.append(t);
+  content.append(el('h2','','Releases'));
+  const rt=el('table','','<thead><tr><th>Tag</th><th>Date</th><th>By</th><th>SHA256</th></tr></thead><tbody></tbody>');
+  [['v0.1.0','2026-03-28','TannerTorrey3','19bc427d0eca77b2…'],['v0.1.1','2026-03-29','TannerTorrey3','74e56488c5daf970…'],['v0.2.0','2026-06-08','TannerTorrey3','863583084c91719f…'],['v0.3.0','2026-08-09','KageBinary','7ed6cc82fe58b3ad…']]
+    .forEach(r=>rt.querySelector('tbody').append(el('tr','',r.map((c,i)=>i?'<td class="code">'+c+'</td>':'<td>'+c+'</td>').join(''))));
+  content.append(rt);
+}
+
+/* ---------- PR / issue map ---------- */
+function renderPRMap(){
+  content.append(el('h1','','PR / Issue Map'));
+  content.append(el('p','lede','Finding → issue → PR → branch → commit. Planned work is tagged; nothing has been opened.'));
+  const chains=[
+    ['F-010 → branch c021b52','feat/ix-remap-hardening','→ PR vs ix-infrastructure/Ix main','READY — authorization (D-009)','ok'],
+    ['F-008 → Ix#376','(no branch)','→ PR (Option A)','packet ready — +maintainer direction','ok'],
+    ['F-009 → Ix#371','(no branch)','→ decision OSS vs Pro','maintainer decision','warn'],
+    ['F-001…F-005 → system-compass#57','feat/f-key-fit-view','→ PR vs system-compass main','SOURCE-BLOCKED (spec)','warn'],
+    ['F-006/F-007 → #57 gap','(no branch)','→ issue then PR','SOURCE-BLOCKED (investigation)','warn']
+  ];
+  chains.forEach(c=>{const card=el('div','card');card.append(el('h3','',c[0]));card.append(el('p','muted',c[1]));card.append(el('p','',c[2]+' — <span class="'+c[4]+'">'+c[3]+'</span>'));content.append(card);});
+  content.append(el('h2','','Issue → PR (existing, upstream)'));
+  content.append(el('p','muted','Ix#374→#375 · Ix#379→#380 · Ix#381→#382 (Hiro-Chiba) — catalogued, out of scope. system-compass#57 → v0.3.0 (KageBinary).'));
+}
+
+/* ---------- suggestions ---------- */
+function renderSuggestions(){
+  content.append(el('h1','','AI Suggestions'));
+  content.append(el('p','lede','Every recommendation with its disposition — accepted, deferred, rejected, superseded, blocked. Rejected and dangerous ones are recorded on purpose.'));
+  ['ACCEPTED','DEFERRED','REJECTED','SUPERSEDED','BLOCKED'].forEach(ds=>{
+    const set=D.suggestions.filter(s=>s.disposition===ds);
+    content.append(el('h2','',ds+' ('+set.length+')'));
+    const t=el('table','','<thead><tr><th>ID</th><th>Suggestion</th><th>Repo</th><th>Reason</th></tr></thead><tbody></tbody>');
+    set.forEach(s=>{const tr=el('tr','','<td class="code">'+s.id+'</td><td>'+s.text+'</td><td>'+s.repository+'</td><td>'+s.reason+'</td>');tr.onclick=()=>openEntity(s.id,'suggestion');t.querySelector('tbody').append(tr);});
+    content.append(t);
+  });
+}
+
+/* ---------- decisions ---------- */
+function renderDecisions(){
+  content.append(el('h1','','Decisions'));
+  content.append(el('p','lede','Decided decisions and open ones awaiting your call.'));
+  const decided=D.decisions.filter(d=>String(d.status).startsWith('DECIDED'));
+  const open=D.decisions.filter(d=>d.status==='OPEN');
+  content.append(el('h2','','Decided ('+decided.length+')'));
+  const t=el('table','','<thead><tr><th>ID</th><th>Decision</th><th>Chosen</th><th>Why</th></tr></thead><tbody></tbody>');
+  decided.forEach(d=>{const tr=el('tr','','<td class="code">'+d.id+'</td><td>'+d.title+'</td><td>'+d.chosen+'</td><td>'+d.reason+'</td>');tr.onclick=()=>openEntity(d.id,'decision');t.querySelector('tbody').append(tr);});
+  content.append(t);
+  content.append(el('h2','','Open — your call ('+open.length+')'));
+  const ot=el('table','','<thead><tr><th>ID</th><th>Decision</th><th>Recommended</th></tr></thead><tbody></tbody>');
+  open.forEach(d=>{const tr=el('tr','','<td class="code">'+d.id+'</td><td>'+d.title+'</td><td>'+d.reason+'</td>');tr.onclick=()=>openEntity(d.id,'decision');ot.querySelector('tbody').append(tr);});
+  content.append(ot);
+}
+
+/* ---------- security ---------- */
+function renderSecurity(){
+  content.append(el('h1','','Security'));
+  content.append(el('p','lede','Endpoint guard matrix, repository posture, open items, and the privacy audit.'));
+  content.append(el('h2','','/__ix/remap guard matrix'));
+  const g=el('table','','<thead><tr><th>Check</th><th>Result</th><th></th></tr></thead><tbody></tbody>');
+  [['Loopback bind','127.0.0.1'],['Host: localhost / 127.0.0.1 / [::1]','allowed'],['Host: DNS-rebinding','403'],['Origin: cross-site','403'],['Origin: non-loopback','403'],['Origin: malformed','403'],['Origin: absent (curl)','allowed'],['Origin: loopback','allowed'],['Client-disconnect reap','child killed'],['SPA fallback GET','200']]
+    .forEach(r=>g.querySelector('tbody').append(el('tr','','<td>'+r[0]+'</td><td class="code">'+r[1]+'</td><td class="ok">✓</td>')));
+  content.append(g);
+  content.append(el('h2','','Open items'));
+  const ot=el('table','','<thead><tr><th>Sev</th><th>Item</th><th>Status</th><th></th></tr></thead><tbody></tbody>');
+  [['P0','0.0.0.0 bind','FIXED in remap branch','ok'],['P2','url.parse() / DEP0169','follow-up','warn'],['P2','localhost advertised vs 127.0.0.1','follow-up','warn'],['P3','stale visualizer bundle','watch','warn'],['P3','token format validation','hardening idea',''],['P3','curl|sh without hash','hardening idea','']]
+    .forEach(r=>ot.querySelector('tbody').append(el('tr','','<td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+r[2]+'</td><td class="'+(r[3]==='ok'?'ok':r[3]==='warn'?'warn':'')+'">'+(r[3]==='ok'?'✓':r[3]==='warn'?'!':'')+'</td>')));
+  content.append(ot);
+  content.append(el('h2','','Privacy audit'));
+  const pt=el('table','','<thead><tr><th>Scan</th><th>Result</th><th></th></tr></thead><tbody></tbody>');
+  [['Drive paths (C:\\Users, /home/, E:\\Users)','none'],['Raw E:\\E-github-repos paths','sanitized to placeholders'],['Emails','none'],['Credential prefixes / tokens','none (descriptive prose only)'],['.env / SSH keys / certs','none']]
+    .forEach(r=>pt.querySelector('tbody').append(el('tr','','<td>'+r[0]+'</td><td>'+r[1]+'</td><td class="ok">✓</td>')));
+  content.append(pt);
+  content.append(el('p','muted','This wiki contains no real filesystem paths, no local usernames, no credentials. Public maintainer GitHub handles are retained (public, needed for mention context). See planning/security/privacy.md.'));
+}
+
+/* ---------- about ---------- */
+function renderAbout(){
+  content.append(el('h1','','About & Privacy'));
+  content.append(el('p','lede','Interactive exploration of the Ix / Compass investigation — the planning layer of <strong>Ix-findings</strong>. Generated from the machine-readable registries; works fully offline (file://, no server, no network).'));
+  content.append(el('h2','','Evidence classes'));
+  const t=el('table','','<thead><tr><th>Class</th><th>Meaning</th><th></th></tr></thead><tbody></tbody>');
+  [['A','Direct source evidence (or authoritative maintainer release notes)'],['B','Reproducible artifact / runtime evidence'],['C','Strongly corroborated reconstruction'],['D','Inference / speculation']]
+    .forEach(r=>t.querySelector('tbody').append(el('tr','','<td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+eclass(r[0])+'</td>')));
+  content.append(t);
+  content.append(el('p','muted','Class is per-claim and never upgraded by repetition. The wiki distinguishes classes by label + glyph + border, not colour alone.'));
+  content.append(el('h2','','Traceability'));
+  content.append(el('p','lede','conclusion → finding (F-###) → evidence (E-###) → reproduction → artifact/source reference. Recommendations trace to suggestion (S-###) → evidence → decision (D-###) → action/deferral/rejection.'));
+  content.append(el('h2','','Privacy'));
+  content.append(el('p','lede','No real filesystem paths, no local usernames, no credentials, no private source. No remote operation was performed while building this (nothing pushed or opened). Full audit: planning/security/privacy.md.'));
+  content.append(el('h2','','Data'));
+  content.append(el('p','muted','Loaded from data/data.js (generated by build-data.mjs from planning/ registries). '+D.findings.length+' findings · '+D.evidence.length+' evidence · '+D.suggestions.length+' suggestions · '+D.decisions.length+' decisions · '+D.phases.length+' phases · '+D.graph.nodes.length+' graph nodes.'));
+}
+
+/* ---------- search ---------- */
+const searchEl=$('#search');
+function doSearch(q){
+  q=q.trim().toLowerCase();if(!q)return;
+  const results=[];
+  D.findings.forEach(f=>{if((f.id+' '+f.title+' '+f.repository+' '+(f.ixf_id||'')).toLowerCase().includes(q))results.push({id:f.id,type:'finding',label:f.title});});
+  D.evidence.forEach(e=>{if((e.id+' '+e.title+' '+e.kind+' '+(e.supports||[]).join(' ')).toLowerCase().includes(q))results.push({id:e.id,type:'evidence',label:e.title});});
+  D.suggestions.forEach(s=>{if((s.id+' '+s.text+' '+s.repository).toLowerCase().includes(q))results.push({id:s.id,type:'suggestion',label:s.text.slice(0,70)});});
+  D.decisions.forEach(d=>{if((d.id+' '+d.title+' '+(d.problem||'')).toLowerCase().includes(q))results.push({id:d.id,type:'decision',label:d.title});});
+  D.phases.forEach(p=>{if((p.id+' '+p.title+' '+(p.objective||'')).toLowerCase().includes(q))results.push({id:p.id,type:'phase',label:p.title});});
+  const w=el('div','');
+  w.append(el('h2','','Search: '+q));
+  if(!results.length)w.append(el('p','muted','No matches.'));
+  results.slice(0,40).forEach(r=>{const a=el('a','link','');a.textContent=r.id+' — '+r.label;a.style.display='block';a.style.marginBottom='6px';a.onclick=()=>openEntity(r.id,r.type);w.append(a);});
+  content.innerHTML='';content.append(w);
+}
+searchEl.addEventListener('input',()=>{const q=searchEl.value;if(q.trim())doSearch(q);else render();});
+searchEl.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();doSearch(searchEl.value);}});
+
+/* init */
+render();
+})();
+```
+
+## File: build-data.mjs
+```javascript
+// Generates planning/wiki/data/data.js from the machine-readable planning
+// registries (findings/evidence/suggestions/decisions + maps). Run from anywhere:
+//   node planning/wiki/build-data.mjs
+// Output: planning/wiki/data/data.js sets window.IX_DATA. Works over file:// .
+import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+
+const here = dirname(fileURLToPath(import.meta.url));
+const root = join(here, ".."); // planning/
+const outDir = join(here, "data");
+mkdirSync(outDir, { recursive: true });
+
+const read = (p) => JSON.parse(readFileSync(p, "utf8"));
+
+const data = {
+  meta: {
+    title: "Ix / Compass Investigation",
+    generated: "2026-08-10",
+    phase: "FINAL",
+    note: "Derived from planning/ registries. Evidence classes: A=source, B=artifact/runtime, C=reconstruction, D=inference.",
+  },
+  findings: read(join(root, "findings/registry.json")).findings,
+  evidence: read(join(root, "evidence/registry.json")).evidence,
+  suggestions: read(join(root, "suggestions/registry.json")).suggestions,
+  decisions: read(join(root, "decisions/registry.json")).decisions,
+  phases: read(join(root, "maps/phases.json")).phases,
+  timeline: read(join(root, "maps/timeline-map.json")).events,
+  graph: {
+    nodes: read(join(root, "maps/investigation-map.json")).nodes,
+    edges: read(join(root, "maps/investigation-map.json")).edges,
+  },
+  maps: {
+    repository: read(join(root, "maps/repository-map.json")),
+    evidence: read(join(root, "maps/evidence-map.json")),
+    finding: read(join(root, "maps/finding-map.json")),
+    dependency: read(join(root, "maps/dependency-map.json")),
+    decision: read(join(root, "maps/decision-map.json")),
+  },
+};
+
+const js = `// GENERATED by build-data.mjs — do not edit by hand.
+// Source: planning/ registries + maps (machine-readable knowledge base).
+window.IX_DATA = ${JSON.stringify(data, null, 2)};`;
+
+writeFileSync(join(outDir, "data.js"), js, "utf8");
+console.log("Wrote planning/wiki/data/data.js (" + js.length + " bytes)");
+```
+
+## File: data/data.js
+```javascript
+// GENERATED by build-data.mjs — do not edit by hand.
+// Source: planning/ registries + maps (machine-readable knowledge base).
+window.IX_DATA = {
+  "meta": {
+    "title": "Ix / Compass Investigation",
+    "generated": "2026-08-10",
+    "phase": "FINAL",
+    "note": "Derived from planning/ registries. Evidence classes: A=source, B=artifact/runtime, C=reconstruction, D=inference."
+  },
+  "findings": [
+    {
+      "id": "F-001",
+      "ixf_id": "IXF-001",
+      "title": "Keyboard handler invariant across 4 releases",
+      "repository": "system-compass",
+      "subsystem": "keyboard",
+      "first_phase": "phase-05",
+      "latest_phase": "phase-final",
+      "evidence_class": "B",
+      "confidence": "high",
+      "status": "REPRODUCED",
+      "severity": null,
+      "affected_versions": [
+        "v0.1.0",
+        "v0.1.1",
+        "v0.2.0",
+        "v0.3.0"
+      ],
+      "evidence_refs": [
+        "E-005"
+      ],
+      "reproduction": "Byte comparison of extracted keyboard switch across all 4 tarballs",
+      "related_files": [
+        "comparisons/keyboard/reconstruction.md",
+        "comparisons/historical-matrix.md"
+      ],
+      "related_issues": [],
+      "related_prs": [
+        "pr-packets/compass-f-key/README.md"
+      ],
+      "related_suggestions": [
+        "S-007"
+      ],
+      "recommendation": "Use as evidence that a keyboard addition is conflict-free"
+    },
+    {
+      "id": "F-002",
+      "ixf_id": "IXF-002",
+      "title": "F/f genuinely unbound in all releases",
+      "repository": "system-compass",
+      "subsystem": "keyboard",
+      "first_phase": "phase-05",
+      "latest_phase": "phase-final",
+      "evidence_class": "B",
+      "confidence": "high",
+      "status": "REPRODUCED",
+      "severity": null,
+      "affected_versions": [
+        "v0.1.0",
+        "v0.1.1",
+        "v0.2.0",
+        "v0.3.0"
+      ],
+      "evidence_refs": [
+        "E-005"
+      ],
+      "reproduction": "Zero grep matches for F/f key bindings in any artifact",
+      "related_files": [
+        "comparisons/keyboard/reconstruction.md"
+      ],
+      "related_issues": [],
+      "related_prs": [
+        "pr-packets/compass-f-key/README.md"
+      ],
+      "related_suggestions": [
+        "S-007"
+      ],
+      "recommendation": "F-key addition has zero historical conflict"
+    },
+    {
+      "id": "F-003",
+      "ixf_id": "IXF-003",
+      "title": "KeyboardHelp byte-identical, no F entry",
+      "repository": "system-compass",
+      "subsystem": "keyboard-help",
+      "first_phase": "phase-05",
+      "latest_phase": "phase-final",
+      "evidence_class": "B",
+      "confidence": "high",
+      "status": "VERIFIED",
+      "severity": null,
+      "affected_versions": [
+        "v0.1.0",
+        "v0.1.1",
+        "v0.2.0",
+        "v0.3.0"
+      ],
+      "evidence_refs": [
+        "E-006"
+      ],
+      "reproduction": "Extracted KeyboardHelp-KnF66B2h.js (v0.3.0): 8 entries, no F",
+      "related_files": [
+        "comparisons/keyboard/reconstruction.md"
+      ],
+      "related_issues": [],
+      "related_prs": [
+        "pr-packets/compass-f-key/README.md"
+      ],
+      "related_suggestions": [
+        "S-007"
+      ],
+      "recommendation": "Add {keys:['F'], label:'Fit view'} when source access exists"
+    },
+    {
+      "id": "F-004",
+      "ixf_id": "IXF-004",
+      "title": "Fit math + constants invariant",
+      "repository": "system-compass",
+      "subsystem": "camera-fit",
+      "first_phase": "phase-05",
+      "latest_phase": "phase-final",
+      "evidence_class": "B",
+      "confidence": "high",
+      "status": "VERIFIED",
+      "severity": null,
+      "affected_versions": [
+        "v0.1.0",
+        "v0.1.1",
+        "v0.2.0",
+        "v0.3.0"
+      ],
+      "evidence_refs": [
+        "E-007",
+        "E-011"
+      ],
+      "reproduction": "9 constants (1200,700,56,1.25,112,36,2.5,1.1,96) + contain + snap extracted",
+      "related_files": [
+        "comparisons/camera-fit/reconstruction.md",
+        "comparisons/historical-matrix.md"
+      ],
+      "related_issues": [],
+      "related_prs": [],
+      "related_suggestions": [
+        "S-007"
+      ],
+      "recommendation": "F-key reuses existing fit math; no duplication (D-005)"
+    },
+    {
+      "id": "F-005",
+      "ixf_id": "IXF-005",
+      "title": "#57 one-shot fit latch -> keyed refit (v0.2.0->v0.3.0)",
+      "repository": "system-compass",
+      "subsystem": "camera-fit-lifecycle",
+      "first_phase": "phase-05",
+      "latest_phase": "phase-final",
+      "evidence_class": "A+B",
+      "confidence": "high",
+      "status": "CONFIRMED",
+      "severity": null,
+      "affected_versions": [
+        "v0.1.0",
+        "v0.1.1",
+        "v0.2.0",
+        "v0.3.0"
+      ],
+      "evidence_refs": [
+        "E-008",
+        "E-003",
+        "E-004"
+      ],
+      "reproduction": "v0.2.0 bundle latch guard (!q||A||) vs v0.3.0 keyed refit effect; release notes confirm",
+      "related_files": [
+        "comparisons/camera-fit/reconstruction.md",
+        "comparisons/releases/timeline.md"
+      ],
+      "related_issues": [
+        "system-compass#57"
+      ],
+      "related_prs": [],
+      "related_suggestions": [
+        "S-032",
+        "S-033"
+      ],
+      "recommendation": "F-key must NOT add auto-frame or drill reframe (duplicates #57)"
+    },
+    {
+      "id": "F-006",
+      "ixf_id": "IXF-006",
+      "title": "Delayed-data blank persists on v0.3.0",
+      "repository": "system-compass",
+      "subsystem": "camera-fit-lifecycle",
+      "first_phase": "phase-07",
+      "latest_phase": "phase-final",
+      "evidence_class": "B+C",
+      "confidence": "high (repro), medium (mechanism)",
+      "status": "REPRODUCED_LIVE",
+      "severity": "P1",
+      "affected_versions": [
+        "v0.2.0",
+        "v0.3.0"
+      ],
+      "evidence_refs": [
+        "E-009"
+      ],
+      "reproduction": "60s proxy delay -> camera frozen at placeholder fit, 0 cards visible; fast path correct",
+      "related_files": [
+        "comparisons/camera-fit/delayed-data-investigation.md",
+        "pr-packets/compass-delayed-data/README.md"
+      ],
+      "related_issues": [
+        "system-compass#57"
+      ],
+      "related_prs": [
+        "pr-packets/compass-delayed-data/README.md"
+      ],
+      "related_suggestions": [
+        "S-008",
+        "S-018"
+      ],
+      "recommendation": "Separate Compass issue/PR; call out as known limitation in F-key PR; do not fold into F-key (D-006)"
+    },
+    {
+      "id": "F-007",
+      "ixf_id": "IXF-007",
+      "title": "Region-rollup aggregate formation is timing-dependent",
+      "repository": "system-compass",
+      "subsystem": "region-rollup",
+      "first_phase": "phase-07",
+      "latest_phase": "phase-final",
+      "evidence_class": "B",
+      "confidence": "medium",
+      "status": "OBSERVED",
+      "severity": "P2",
+      "affected_versions": [
+        "v0.3.0"
+      ],
+      "evidence_refs": [
+        "E-012"
+      ],
+      "reproduction": "Fast: 9 cards + 1 aggregate. Delayed: 15 cards, no aggregate. Same map_rev.",
+      "related_files": [
+        "comparisons/camera-fit/reconstruction.md"
+      ],
+      "related_issues": [],
+      "related_prs": [],
+      "related_suggestions": [
+        "S-008"
+      ],
+      "recommendation": "Investigate rollup decision timing after data completes"
+    },
+    {
+      "id": "F-008",
+      "ixf_id": "IXF-008",
+      "title": "Version-series mismatch in ix upgrade (#376)",
+      "repository": "ix-infrastructure/Ix",
+      "subsystem": "upgrade",
+      "first_phase": "phase-03",
+      "latest_phase": "phase-final",
+      "evidence_class": "A",
+      "confidence": "high",
+      "status": "OPEN",
+      "severity": "P1",
+      "affected_versions": [
+        "v0.9.1+"
+      ],
+      "affected_commits": [
+        "dcc0962 (#365)"
+      ],
+      "evidence_refs": [
+        "E-017"
+      ],
+      "reproduction": "Deterministic from source: isNewer('0.3.0','0.9.1') false today; flips when dist > Ix version",
+      "related_files": [
+        "github/issues/376/README.md",
+        "pr-packets/ix-376-version-mismatch/README.md"
+      ],
+      "related_issues": [
+        "Ix#376"
+      ],
+      "related_prs": [
+        "Ix#365",
+        "Ix#366",
+        "Ix#344"
+      ],
+      "related_suggestions": [
+        "S-013"
+      ],
+      "recommendation": "Separate PR; Option A (stamp dist version); coordinate with KageBinary"
+    },
+    {
+      "id": "F-009",
+      "ixf_id": "IXF-009",
+      "title": "patches command dead/unregistered (#371)",
+      "repository": "ix-infrastructure/Ix",
+      "subsystem": "cli-registration",
+      "first_phase": "phase-04",
+      "latest_phase": "phase-final",
+      "evidence_class": "A",
+      "confidence": "high",
+      "status": "OPEN",
+      "severity": "P2",
+      "affected_versions": [
+        "current main"
+      ],
+      "evidence_refs": [
+        "E-018"
+      ],
+      "reproduction": "registerPatchesCommand exported but never imported (absent from oss.ts); PRO_COMMANDS masks it",
+      "related_files": [
+        "github/issues/371/README.md"
+      ],
+      "related_issues": [
+        "Ix#371"
+      ],
+      "related_prs": [
+        "Ix#372"
+      ],
+      "related_suggestions": [
+        "S-014"
+      ],
+      "recommendation": "Register in oss.ts or delete patches.ts; separate from remap"
+    },
+    {
+      "id": "F-010",
+      "ixf_id": "IXF-010",
+      "title": "Loopback-hardened /__ix/remap endpoint (implemented)",
+      "repository": "ix-infrastructure/Ix",
+      "subsystem": "view-server",
+      "first_phase": "phase-02",
+      "latest_phase": "phase-13",
+      "evidence_class": "A",
+      "confidence": "high",
+      "status": "PR_READY",
+      "severity": null,
+      "affected_versions": [
+        "new feature"
+      ],
+      "affected_commits": [
+        "c021b52"
+      ],
+      "evidence_refs": [
+        "E-014",
+        "E-015",
+        "E-016"
+      ],
+      "reproduction": "10-test guard matrix + 656-suite green; live curl 200/403 per packet",
+      "related_files": [
+        "pr-packets/ix-remap-hardening/README.md",
+        "state/phase-2-remap-report.md"
+      ],
+      "related_issues": [],
+      "related_prs": [],
+      "related_suggestions": [
+        "S-003",
+        "S-004",
+        "S-012",
+        "S-030"
+      ],
+      "recommendation": "Push + open PR upon authorization (phase-13)"
+    },
+    {
+      "id": "F-011",
+      "ixf_id": "IXF-011",
+      "title": "WSL bootstrap fix",
+      "repository": "ix-infrastructure/Ix",
+      "subsystem": "bootstrap",
+      "first_phase": "phase-02",
+      "latest_phase": "phase-final",
+      "evidence_class": "A",
+      "confidence": "high",
+      "status": "IN_REMAP_PR",
+      "severity": null,
+      "affected_versions": [
+        "current main"
+      ],
+      "evidence_refs": [
+        "E-014"
+      ],
+      "reproduction": "is_windows() treated WSL_DISTRO_NAME as Windows -> wrong installer path",
+      "related_files": [
+        "pr-packets/ix-remap-hardening/README.md"
+      ],
+      "related_issues": [],
+      "related_prs": [
+        "ix-remap-hardening"
+      ],
+      "related_suggestions": [],
+      "recommendation": "Ship with remap PR"
+    },
+    {
+      "id": "F-012",
+      "ixf_id": "IXF-012",
+      "title": "Dead node_ok removal",
+      "repository": "ix-infrastructure/Ix",
+      "subsystem": "bootstrap",
+      "first_phase": "phase-02",
+      "latest_phase": "phase-final",
+      "evidence_class": "A",
+      "confidence": "high",
+      "status": "IN_REMAP_PR",
+      "severity": null,
+      "affected_versions": [
+        "current main"
+      ],
+      "evidence_refs": [
+        "E-014"
+      ],
+      "reproduction": "node_ok set but never read in bootstrap.sh",
+      "related_files": [
+        "pr-packets/ix-remap-hardening/README.md"
+      ],
+      "related_issues": [],
+      "related_prs": [
+        "ix-remap-hardening"
+      ],
+      "related_suggestions": [],
+      "recommendation": "Ship with remap PR"
+    },
+    {
+      "id": "F-013",
+      "ixf_id": null,
+      "title": "Zoom-in multiplier discrepancy (x1.25 observed vs x1.1 in constants)",
+      "repository": "system-compass",
+      "subsystem": "camera-zoom",
+      "first_phase": "phase-07",
+      "latest_phase": "phase-final",
+      "evidence_class": "D",
+      "confidence": "low",
+      "status": "OPEN",
+      "severity": "P3",
+      "affected_versions": [
+        "v0.3.0 (observed)"
+      ],
+      "evidence_refs": [
+        "E-011"
+      ],
+      "reproduction": "On-screen zoom button appeared to apply ~x1.25",
+      "related_files": [
+        "comparisons/camera-fit/delayed-data-investigation.md"
+      ],
+      "related_issues": [],
+      "related_prs": [],
+      "related_suggestions": [
+        "S-017"
+      ],
+      "recommendation": "Re-verify with source access or a dedicated experiment before claiming anything"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E-001",
+      "title": "compass-0.1.0.tar.gz",
+      "type": "artifact",
+      "class": "B",
+      "phase": "phase-05",
+      "repository": "ix-compass-dist",
+      "detail": "SHA256 19bc427d0eca77b2...; Rolldown, 13 chunks; released 2026-03-28",
+      "supports": [
+        "F-001",
+        "F-002",
+        "F-003",
+        "F-004",
+        "F-005"
+      ]
+    },
+    {
+      "id": "E-002",
+      "title": "compass-0.1.1.tar.gz",
+      "type": "artifact",
+      "class": "B",
+      "phase": "phase-05",
+      "repository": "ix-compass-dist",
+      "detail": "SHA256 74e56488c5daf970...; hotfix; several chunks byte-identical to v0.1.0",
+      "supports": [
+        "F-001",
+        "F-002",
+        "F-003",
+        "F-004",
+        "F-005"
+      ]
+    },
+    {
+      "id": "E-003",
+      "title": "compass-0.2.0.tar.gz",
+      "type": "artifact",
+      "class": "B",
+      "phase": "phase-05",
+      "repository": "ix-compass-dist",
+      "detail": "SHA256 863583084c91719f...; released 2026-06-08; one-shot fit latch present",
+      "supports": [
+        "F-001",
+        "F-002",
+        "F-003",
+        "F-004",
+        "F-005"
+      ]
+    },
+    {
+      "id": "E-004",
+      "title": "compass-0.3.0.tar.gz",
+      "type": "artifact",
+      "class": "B",
+      "phase": "phase-05",
+      "repository": "ix-compass-dist",
+      "detail": "SHA256 7ed6cc82fe58b3ad...; built from system-compass main @ 7f98724; keyed refit effect present",
+      "supports": [
+        "F-001",
+        "F-002",
+        "F-003",
+        "F-004",
+        "F-005",
+        "F-006"
+      ]
+    },
+    {
+      "id": "E-005",
+      "title": "keyboard switch byte-identity",
+      "type": "artifact",
+      "class": "B",
+      "phase": "phase-05",
+      "repository": "system-compass",
+      "detail": "identical switch + guards across all 4 releases; F/f zero matches in every chunk",
+      "supports": [
+        "F-001",
+        "F-002"
+      ]
+    },
+    {
+      "id": "E-006",
+      "title": "KeyboardHelp extraction",
+      "type": "artifact",
+      "class": "B",
+      "phase": "phase-05",
+      "repository": "system-compass",
+      "detail": "KeyboardHelp-KnF66B2h.js (1784 B): 8 entries, no F; byte-identical across releases",
+      "supports": [
+        "F-003"
+      ]
+    },
+    {
+      "id": "E-007",
+      "title": "fit-constants extraction",
+      "type": "artifact",
+      "class": "B",
+      "phase": "phase-05",
+      "repository": "system-compass",
+      "detail": "1200,700,56,1.25,112,36,2.5,1.1,96 + contain + snap invariant",
+      "supports": [
+        "F-004"
+      ]
+    },
+    {
+      "id": "E-008",
+      "title": "v0.3.0 release notes (KageBinary)",
+      "type": "release note",
+      "class": "A",
+      "phase": "phase-05",
+      "repository": "ix-compass-dist",
+      "detail": "#57/#58/#59; exists to stop a downgrade; aggregation 1471->33; bounded layout; searchable roll-ups; breadcrumb collapse",
+      "supports": [
+        "F-005",
+        "F-006",
+        "F-007"
+      ]
+    },
+    {
+      "id": "E-009",
+      "title": "delayed-data A/B runs",
+      "type": "reproduction",
+      "class": "B",
+      "phase": "phase-07",
+      "repository": "system-compass",
+      "detail": "A v0.2.0 0.439@(39,315) 0 cards; B v0.3.0 0.441@(39,388) 0 cards; B2 repeat 0 cards; C fast 0.129@(39,254) visible; map_rev constant",
+      "supports": [
+        "F-006"
+      ]
+    },
+    {
+      "id": "E-010",
+      "title": "F-key PoC (patched v0.3.0)",
+      "type": "runtime",
+      "class": "B",
+      "phase": "phase-05",
+      "repository": "system-compass",
+      "detail": "F == 0 target byte-identical; INPUT guard holds; CmdK/Esc unchanged; zero console errors",
+      "supports": [
+        "F-001",
+        "F-002",
+        "F-003",
+        "F-004",
+        "F-005"
+      ]
+    },
+    {
+      "id": "E-011",
+      "title": "zoom-contract live checks",
+      "type": "runtime",
+      "class": "B",
+      "phase": "phase-07",
+      "repository": "system-compass",
+      "detail": "x1.1 in / x0.9 out / 2.5 cap / floor=fit; x1.25 button anomaly",
+      "supports": [
+        "F-004",
+        "F-013"
+      ]
+    },
+    {
+      "id": "E-012",
+      "title": "rollup timing A/B",
+      "type": "runtime",
+      "class": "B",
+      "phase": "phase-07",
+      "repository": "system-compass",
+      "detail": "fast 9 cards + 1 aggregate vs delayed 15 cards, no aggregate; same map_rev",
+      "supports": [
+        "F-007"
+      ]
+    },
+    {
+      "id": "E-013",
+      "title": "view.ts pre-fix bind",
+      "type": "source",
+      "class": "A",
+      "phase": "phase-00",
+      "repository": "ix-infrastructure/Ix",
+      "detail": "server.listen(PORT) no host -> binds ::/0.0.0.0 (P0)",
+      "supports": [
+        "F-010"
+      ]
+    },
+    {
+      "id": "E-014",
+      "title": "remap diff c021b52",
+      "type": "source",
+      "class": "A",
+      "phase": "phase-02",
+      "repository": "ix-infrastructure/Ix",
+      "detail": "4 files +250/-11: view.ts endpoint + guard, tests, bootstrap.sh WSL/node_ok, docs",
+      "supports": [
+        "F-010",
+        "F-011",
+        "F-012"
+      ]
+    },
+    {
+      "id": "E-015",
+      "title": "guard-matrix tests",
+      "type": "test",
+      "class": "B",
+      "phase": "phase-02",
+      "repository": "ix-infrastructure/Ix",
+      "detail": "10 scenarios, ix-cli/test/view-server.test.ts; real server + real child process",
+      "supports": [
+        "F-010"
+      ]
+    },
+    {
+      "id": "E-016",
+      "title": "suite runs (fresh)",
+      "type": "test",
+      "class": "B",
+      "phase": "phase-12",
+      "repository": "ix-infrastructure/Ix",
+      "detail": "vitest 656/2 (51 files), tsc 0 errors, eslint clean; re-run at phases 02 & 12",
+      "supports": [
+        "F-010"
+      ]
+    },
+    {
+      "id": "E-017",
+      "title": "#376 source analysis",
+      "type": "source",
+      "class": "A",
+      "phase": "phase-03",
+      "repository": "ix-infrastructure/Ix",
+      "detail": "upgrade.ts isNewer/getInstalledCompassVersion/writeCache; release.yml stamping; PR #365/#366/#344",
+      "supports": [
+        "F-008"
+      ]
+    },
+    {
+      "id": "E-018",
+      "title": "#371 source analysis",
+      "type": "source",
+      "class": "A",
+      "phase": "phase-04",
+      "repository": "ix-infrastructure/Ix",
+      "detail": "patches.ts:6 export; absent from oss.ts; listed in PRO_COMMANDS",
+      "supports": [
+        "F-009"
+      ]
+    },
+    {
+      "id": "E-019",
+      "title": "git divergence numbers",
+      "type": "git",
+      "class": "A",
+      "phase": "phase-final",
+      "repository": "ALL",
+      "detail": "main 0/0; fork 5 behind; remap 1 ahead/0 behind; refs c4f8fea/0437abf/c021b52/b038c46/396426b",
+      "supports": []
+    },
+    {
+      "id": "E-020",
+      "title": "GitHub maintainer context",
+      "type": "github",
+      "class": "A",
+      "phase": "phase-10",
+      "repository": "ALL",
+      "detail": "identities/roles via API + last-30-commit history; issue->PR->maintainer map; tagging guidance",
+      "supports": []
+    },
+    {
+      "id": "E-021",
+      "title": "worktree map",
+      "type": "git",
+      "class": "A",
+      "phase": "phase-final",
+      "repository": "ix-infrastructure/Ix",
+      "detail": "primary <IX_REPO> + linked <IX_REMAP_WORKTREE>; standalone <COMPASS_DIST_REPO>",
+      "supports": []
+    },
+    {
+      "id": "E-022",
+      "title": "placeholder-fit instability",
+      "type": "runtime",
+      "class": "B",
+      "phase": "phase-07",
+      "repository": "system-compass",
+      "detail": "0.439 vs 0.441 across runs (mount-timing dependent)",
+      "supports": [
+        "F-006"
+      ]
+    },
+    {
+      "id": "E-023",
+      "title": "source-maps scan",
+      "type": "artifact",
+      "class": "B",
+      "phase": "phase-05",
+      "repository": "ix-compass-dist",
+      "detail": "no .map files shipped in any release",
+      "supports": []
+    },
+    {
+      "id": "E-024",
+      "title": "bootstrap.sh is_windows()/node_ok",
+      "type": "source",
+      "class": "A",
+      "phase": "phase-02",
+      "repository": "ix-infrastructure/Ix",
+      "detail": "WSL misrouting + dead variable on merged main",
+      "supports": [
+        "F-011",
+        "F-012"
+      ]
+    },
+    {
+      "id": "E-025",
+      "title": "F-key source-equivalent spec",
+      "type": "document",
+      "class": "C",
+      "phase": "phase-05",
+      "repository": "system-compass",
+      "detail": "tasks/compass-f-key-source-equivalent.md: PR material from artifact + PoC + review",
+      "supports": [
+        "F-001",
+        "F-002",
+        "F-003",
+        "F-004",
+        "F-005"
+      ]
+    }
+  ],
+  "suggestions": [
+    {
+      "id": "S-001",
+      "text": "Use a dedicated Git worktree for remap work",
+      "phase": "phase-00",
+      "evidence_refs": [
+        "E-021"
+      ],
+      "repository": "Ix",
+      "disposition": "ACCEPTED",
+      "reason": "isolation from the 18-file overhaul (D-002)",
+      "related_findings": [
+        "F-010"
+      ]
+    },
+    {
+      "id": "S-002",
+      "text": "Base remap branch on origin/main, not stale local/fork main",
+      "phase": "phase-01",
+      "evidence_refs": [
+        "E-019"
+      ],
+      "repository": "Ix",
+      "disposition": "ACCEPTED",
+      "reason": "clean PR base (D-001)",
+      "related_findings": [
+        "F-010"
+      ]
+    },
+    {
+      "id": "S-003",
+      "text": "Export serverScript() from view.ts for testing",
+      "phase": "phase-02",
+      "evidence_refs": [
+        "E-014"
+      ],
+      "repository": "Ix",
+      "disposition": "ACCEPTED",
+      "reason": "enables generated-server tests",
+      "related_findings": [
+        "F-010"
+      ]
+    },
+    {
+      "id": "S-004",
+      "text": "IX_VIEW_MAP_MAIN env seam for stub CLI in tests",
+      "phase": "phase-02",
+      "evidence_refs": [
+        "E-014",
+        "E-015"
+      ],
+      "repository": "Ix",
+      "disposition": "ACCEPTED",
+      "reason": "integration tests without a real install",
+      "related_findings": [
+        "F-010"
+      ]
+    },
+    {
+      "id": "S-005",
+      "text": "Four-tier evidence classification A/B/C/D",
+      "phase": "phase-02",
+      "evidence_refs": [],
+      "repository": "Ix-findings",
+      "disposition": "ACCEPTED",
+      "reason": "credibility; prevents overclaiming (D-003)",
+      "related_findings": []
+    },
+    {
+      "id": "S-006",
+      "text": "Keep Compass changes separate from Ix changes",
+      "phase": "phase-03",
+      "evidence_refs": [
+        "E-008",
+        "E-020"
+      ],
+      "repository": "ALL",
+      "disposition": "ACCEPTED",
+      "reason": "different repos/owners/reviews",
+      "related_findings": []
+    },
+    {
+      "id": "S-007",
+      "text": "F-key = keyboard exposure only; no CameraStore, no duplicate fit math",
+      "phase": "phase-05",
+      "evidence_refs": [
+        "E-005",
+        "E-006",
+        "E-007",
+        "E-010"
+      ],
+      "repository": "system-compass",
+      "disposition": "ACCEPTED",
+      "reason": "real camera state exists; 0 key already fits (D-005)",
+      "related_findings": [
+        "F-001",
+        "F-002",
+        "F-003",
+        "F-004"
+      ]
+    },
+    {
+      "id": "S-008",
+      "text": "Delayed-data is a separate concern from F-key",
+      "phase": "phase-07",
+      "evidence_refs": [
+        "E-009"
+      ],
+      "repository": "system-compass",
+      "disposition": "ACCEPTED",
+      "reason": "different root cause/review scope (D-006)",
+      "related_findings": [
+        "F-006"
+      ]
+    },
+    {
+      "id": "S-009",
+      "text": "Ix-findings as a standalone evidence repo",
+      "phase": "phase-08",
+      "evidence_refs": [],
+      "repository": "Ix-findings",
+      "disposition": "ACCEPTED",
+      "reason": "self-contained ledger (D-008)",
+      "related_findings": []
+    },
+    {
+      "id": "S-010",
+      "text": "PR packet for #376",
+      "phase": "phase-11",
+      "evidence_refs": [
+        "E-017"
+      ],
+      "repository": "Ix",
+      "disposition": "ACCEPTED",
+      "reason": "packet ready",
+      "related_findings": [
+        "F-008"
+      ]
+    },
+    {
+      "id": "S-011",
+      "text": "Keep improved compass-patch as local stopgap with documented expiry",
+      "phase": "phase-final",
+      "evidence_refs": [
+        "E-025"
+      ],
+      "repository": "Ix (local)",
+      "disposition": "ACCEPTED",
+      "reason": "local-only; expires when Compass ships F-fit (D-013)",
+      "related_findings": []
+    },
+    {
+      "id": "S-012",
+      "text": "Parse Origin with new URL(), not regex (template-literal pipeline)",
+      "phase": "phase-02",
+      "evidence_refs": [
+        "E-014"
+      ],
+      "repository": "Ix",
+      "disposition": "ACCEPTED",
+      "reason": "regex backslashes eaten by script regeneration",
+      "related_findings": [
+        "F-010"
+      ]
+    },
+    {
+      "id": "S-013",
+      "text": "Fix #376 (stamp dist version / identity compare)",
+      "phase": "phase-03",
+      "evidence_refs": [
+        "E-017"
+      ],
+      "repository": "Ix",
+      "disposition": "DEFERRED",
+      "reason": "authorization + maintainer direction (F-008)",
+      "related_findings": [
+        "F-008"
+      ]
+    },
+    {
+      "id": "S-014",
+      "text": "Fix #371 (register or delete patches)",
+      "phase": "phase-04",
+      "evidence_refs": [
+        "E-018"
+      ],
+      "repository": "Ix",
+      "disposition": "DEFERRED",
+      "reason": "separate priority from remap (F-009)",
+      "related_findings": [
+        "F-009"
+      ]
+    },
+    {
+      "id": "S-015",
+      "text": "Commit Ix-findings",
+      "phase": "phase-09",
+      "evidence_refs": [],
+      "repository": "Ix-findings",
+      "disposition": "DEFERRED",
+      "reason": "held for final review",
+      "related_findings": []
+    },
+    {
+      "id": "S-016",
+      "text": "Sync fork main after remap push",
+      "phase": "phase-01",
+      "evidence_refs": [
+        "E-019"
+      ],
+      "repository": "Ix",
+      "disposition": "DEFERRED",
+      "reason": "depends on remap push (authorization)",
+      "related_findings": []
+    },
+    {
+      "id": "S-017",
+      "text": "Re-verify zoom multiplier (x1.1 vs x1.25)",
+      "phase": "phase-07",
+      "evidence_refs": [
+        "E-011"
+      ],
+      "repository": "system-compass",
+      "disposition": "DEFERRED",
+      "reason": "low priority; needs source or dedicated experiment (F-013)",
+      "related_findings": [
+        "F-013"
+      ]
+    },
+    {
+      "id": "S-018",
+      "text": "Reproduce delayed-data via Playwright automation",
+      "phase": "phase-07",
+      "evidence_refs": [
+        "E-009"
+      ],
+      "repository": "system-compass",
+      "disposition": "DEFERRED",
+      "reason": "source-blocked; manual A/B deterministic",
+      "related_findings": [
+        "F-006"
+      ]
+    },
+    {
+      "id": "S-019",
+      "text": "Investigate system-compass #58/#59",
+      "phase": "phase-05",
+      "evidence_refs": [
+        "E-008"
+      ],
+      "repository": "system-compass",
+      "disposition": "DEFERRED",
+      "reason": "source-blocked; release notes only",
+      "related_findings": []
+    },
+    {
+      "id": "S-020",
+      "text": "No-map hint chip with feature-detect on /__ix/remap",
+      "phase": "phase-final",
+      "evidence_refs": [
+        "E-014"
+      ],
+      "repository": "system-compass",
+      "disposition": "DEFERRED",
+      "reason": "after Ix endpoint PR merges; hide chip when endpoint absent (D-012)",
+      "related_findings": []
+    },
+    {
+      "id": "S-021",
+      "text": "Create a CameraStore abstraction for Compass",
+      "phase": "phase-05",
+      "evidence_refs": [
+        "E-010"
+      ],
+      "repository": "system-compass",
+      "disposition": "REJECTED",
+      "reason": "real camera state exists; would duplicate architecture",
+      "related_findings": [
+        "F-004"
+      ]
+    },
+    {
+      "id": "S-022",
+      "text": "DOM zoom patch (style.zoom, timers) for Compass",
+      "phase": "phase-05",
+      "evidence_refs": [
+        "E-010"
+      ],
+      "repository": "system-compass",
+      "disposition": "REJECTED",
+      "reason": "fragile; fights React state; native camera exists",
+      "related_findings": [
+        "F-004"
+      ]
+    },
+    {
+      "id": "S-023",
+      "text": "Combine F-key + delayed-data in one PR",
+      "phase": "phase-07",
+      "evidence_refs": [
+        "E-009"
+      ],
+      "repository": "system-compass",
+      "disposition": "REJECTED",
+      "reason": "different causes, different reviews",
+      "related_findings": [
+        "F-006"
+      ]
+    },
+    {
+      "id": "S-024",
+      "text": "Mix Compass UI changes into the Ix PR",
+      "phase": "phase-03",
+      "evidence_refs": [
+        "E-014"
+      ],
+      "repository": "mixed",
+      "disposition": "REJECTED",
+      "reason": "separate repos, separate PRs",
+      "related_findings": []
+    },
+    {
+      "id": "S-025",
+      "text": "Stash the Ix overhaul to free the main worktree",
+      "phase": "phase-01",
+      "evidence_refs": [
+        "E-019"
+      ],
+      "repository": "Ix",
+      "disposition": "REJECTED",
+      "reason": "unsafe; dedicated worktree used instead (D-002)",
+      "related_findings": []
+    },
+    {
+      "id": "S-026",
+      "text": "Base/compare remap against fork/main",
+      "phase": "phase-01",
+      "evidence_refs": [
+        "E-019"
+      ],
+      "repository": "Ix",
+      "disposition": "REJECTED",
+      "reason": "fork stale (5 behind); origin/main canonical",
+      "related_findings": []
+    },
+    {
+      "id": "S-027",
+      "text": "Manually modify ix-compass-dist artifacts",
+      "phase": "phase-08",
+      "evidence_refs": [
+        "E-001",
+        "E-002",
+        "E-003",
+        "E-004"
+      ],
+      "repository": "ix-compass-dist",
+      "disposition": "REJECTED",
+      "reason": "distribution channel; artifacts built from system-compass (D-007)",
+      "related_findings": []
+    },
+    {
+      "id": "S-028",
+      "text": "Push fork/main without first syncing",
+      "phase": "phase-01",
+      "evidence_refs": [
+        "E-019"
+      ],
+      "repository": "Ix",
+      "disposition": "REJECTED",
+      "reason": "would publish a stale fork; defer to post-remap (S-016)",
+      "related_findings": []
+    },
+    {
+      "id": "S-029",
+      "text": "git reset --hard on the primary worktree",
+      "phase": "phase-04",
+      "evidence_refs": [],
+      "repository": "Ix",
+      "disposition": "REJECTED",
+      "reason": "would destroy the 13-file uncommitted overhaul",
+      "related_findings": []
+    },
+    {
+      "id": "S-030",
+      "text": "Bind the remap server to 0.0.0.0",
+      "phase": "phase-02",
+      "evidence_refs": [
+        "E-014"
+      ],
+      "repository": "Ix",
+      "disposition": "REJECTED",
+      "reason": "exposes a shell-exec endpoint to the network",
+      "related_findings": [
+        "F-010"
+      ]
+    },
+    {
+      "id": "S-031",
+      "text": "Pass the claim to the doubt-driven reviewer",
+      "phase": "phase-04",
+      "evidence_refs": [],
+      "repository": "Ix",
+      "disposition": "REJECTED",
+      "reason": "biases the reviewer toward agreement",
+      "related_findings": []
+    },
+    {
+      "id": "S-032",
+      "text": "Add mount auto-frame to the F-key PR",
+      "phase": "phase-06",
+      "evidence_refs": [
+        "E-008"
+      ],
+      "repository": "system-compass",
+      "disposition": "SUPERSEDED",
+      "reason": "#57 already refits on mount (v0.3.0)",
+      "related_findings": [
+        "F-005"
+      ]
+    },
+    {
+      "id": "S-033",
+      "text": "Add drill-in/out reframe to the F-key PR",
+      "phase": "phase-06",
+      "evidence_refs": [
+        "E-008"
+      ],
+      "repository": "system-compass",
+      "disposition": "SUPERSEDED",
+      "reason": "#57 keyed refit covers drill (v0.3.0)",
+      "related_findings": [
+        "F-005"
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "D-001",
+      "dec_alias": "DEC-001",
+      "title": "Base remap branch on origin/main",
+      "date": "2026-08-10",
+      "phase": "phase-01",
+      "problem": "clean PR base needed; local main stale, fork main 5 behind",
+      "options": [
+        "local main",
+        "fork/main",
+        "origin/main"
+      ],
+      "chosen": "origin/main (c4f8fea)",
+      "rejected": [
+        "local main",
+        "fork/main"
+      ],
+      "reason": "origin/main is the canonical target; fork stale",
+      "consequences": "zero-conflict PR base",
+      "related_findings": [
+        "F-010"
+      ],
+      "related_suggestions": [
+        "S-002"
+      ],
+      "status": "DECIDED"
+    },
+    {
+      "id": "D-002",
+      "dec_alias": "DEC-002",
+      "title": "Dedicated worktree for remap work",
+      "date": "2026-08-10",
+      "phase": "phase-00",
+      "problem": "18 uncommitted files must not entangle with remap",
+      "options": [
+        "stash + same worktree",
+        "dedicated worktree"
+      ],
+      "chosen": "dedicated worktree",
+      "rejected": [
+        "stash"
+      ],
+      "reason": "complete isolation; no stash risk",
+      "consequences": "remap branch clean; overhaul untouched",
+      "related_findings": [],
+      "related_suggestions": [
+        "S-001",
+        "S-025"
+      ],
+      "status": "DECIDED"
+    },
+    {
+      "id": "D-003",
+      "dec_alias": "DEC-003",
+      "title": "Four-tier evidence classification A/B/C/D",
+      "date": "2026-08-10",
+      "phase": "phase-02",
+      "problem": "distinguish source-proven fact from reconstruction from speculation",
+      "options": [],
+      "chosen": "A=source, B=artifact/runtime, C=reconstruction, D=inference",
+      "rejected": [],
+      "reason": "credibility; prevents overclaiming",
+      "consequences": "all findings carry a class",
+      "related_findings": [],
+      "related_suggestions": [
+        "S-005"
+      ],
+      "status": "DECIDED"
+    },
+    {
+      "id": "D-004",
+      "dec_alias": "DEC-004",
+      "title": "Maintainer release notes count as Class A evidence",
+      "date": "2026-08-10",
+      "phase": "phase-03",
+      "problem": "v0.3.0 release notes are the only source-level window into system-compass",
+      "options": [],
+      "chosen": "Class A for asserted behavior, not implementation details",
+      "rejected": [],
+      "reason": "authoritative about behavior, not filenames/line numbers",
+      "consequences": "F-005/F-008 base claims on release notes",
+      "related_findings": [
+        "F-005",
+        "F-008"
+      ],
+      "related_suggestions": [],
+      "status": "DECIDED"
+    },
+    {
+      "id": "D-005",
+      "dec_alias": "DEC-005",
+      "title": "F-key = keyboard exposure only, no new camera system",
+      "date": "2026-08-10",
+      "phase": "phase-05",
+      "problem": "historical port contained speculative CameraStore/DOM patches",
+      "options": [
+        "keyboard-only exposure",
+        "full camera system port"
+      ],
+      "chosen": "keyboard case + callback + help entry",
+      "rejected": [
+        "CameraStore",
+        "DOM patch",
+        "auto/drill frame"
+      ],
+      "reason": "fit system invariant; 0 key already works",
+      "consequences": "smallest change; zero conflict",
+      "related_findings": [
+        "F-001",
+        "F-002",
+        "F-003",
+        "F-004",
+        "F-005"
+      ],
+      "related_suggestions": [
+        "S-007",
+        "S-021",
+        "S-022",
+        "S-032",
+        "S-033"
+      ],
+      "status": "DECIDED"
+    },
+    {
+      "id": "D-006",
+      "dec_alias": "DEC-006",
+      "title": "Delayed-data stays separate from F-key",
+      "date": "2026-08-10",
+      "phase": "phase-07",
+      "problem": "both fit-adjacent but unrelated",
+      "options": [
+        "combined PR",
+        "separate PRs"
+      ],
+      "chosen": "separate PRs/packets",
+      "rejected": [
+        "combined"
+      ],
+      "reason": "different root causes/reviews",
+      "consequences": "two packets",
+      "related_findings": [
+        "F-006"
+      ],
+      "related_suggestions": [
+        "S-008",
+        "S-023"
+      ],
+      "status": "DECIDED"
+    },
+    {
+      "id": "D-007",
+      "dec_alias": "DEC-007",
+      "title": "ix-compass-dist is a distribution channel, not source",
+      "date": "2026-08-10",
+      "phase": "phase-08",
+      "problem": "whether to modify dist for Compass PRs",
+      "options": [],
+      "chosen": "never manually modify its artifacts",
+      "rejected": [],
+      "reason": "artifacts built from system-compass",
+      "consequences": "no dist changes",
+      "related_findings": [],
+      "related_suggestions": [
+        "S-027"
+      ],
+      "status": "DECIDED"
+    },
+    {
+      "id": "D-008",
+      "dec_alias": "DEC-008",
+      "title": "Ix-findings is a standalone evidence repo",
+      "date": "2026-08-10",
+      "phase": "phase-08",
+      "problem": "canonical location for investigation evidence",
+      "options": [],
+      "chosen": "standalone Git repo, no upstream",
+      "rejected": [],
+      "reason": "keeps evidence separate; shareable",
+      "consequences": "ledger repo",
+      "related_findings": [],
+      "related_suggestions": [
+        "S-009"
+      ],
+      "status": "DECIDED"
+    },
+    {
+      "id": "D-009",
+      "dec_alias": "DEC-009",
+      "title": "No remote operation without explicit authorization",
+      "date": "2026-08-10",
+      "phase": "phase-01",
+      "problem": "multiple PR-ready branches exist",
+      "options": [],
+      "chosen": "PR-ready means local-only; publishing requires go-ahead",
+      "rejected": [],
+      "reason": "user controls the remote workflow",
+      "consequences": "phase-13 pending; nothing pushed",
+      "related_findings": [],
+      "related_suggestions": [
+        "S-016"
+      ],
+      "status": "DECIDED (ongoing)"
+    },
+    {
+      "id": "D-010",
+      "dec_alias": "plan D1",
+      "title": "Where to prep the Compass port",
+      "date": "2026-08-10",
+      "phase": "phase-final",
+      "problem": "standalone prep repo vs back in Ix worktree",
+      "options": [
+        "standalone repo",
+        "Ix worktree"
+      ],
+      "chosen": null,
+      "rejected": [],
+      "reason": "recommended: standalone (avoids wrong-layer review)",
+      "consequences": null,
+      "related_findings": [],
+      "related_suggestions": [],
+      "status": "OPEN"
+    },
+    {
+      "id": "D-011",
+      "dec_alias": "plan D2",
+      "title": "Compass PR scope",
+      "date": "2026-08-10",
+      "phase": "phase-final",
+      "problem": "F key + help + chip only vs also drill reframe",
+      "options": [
+        "F key + help + chip",
+        "+ drill reframe"
+      ],
+      "chosen": null,
+      "rejected": [],
+      "reason": "recommended: F key + help + chip (drill reframe ships via #57)",
+      "consequences": null,
+      "related_findings": [
+        "F-005"
+      ],
+      "related_suggestions": [],
+      "status": "OPEN"
+    },
+    {
+      "id": "D-012",
+      "dec_alias": "plan D3",
+      "title": "No-map chip timing",
+      "date": "2026-08-10",
+      "phase": "phase-final",
+      "problem": "include no-map chip now vs defer with feature-detect",
+      "options": [
+        "include",
+        "defer + feature-detect"
+      ],
+      "chosen": null,
+      "rejected": [],
+      "reason": "recommended: defer (S-020)",
+      "consequences": null,
+      "related_findings": [],
+      "related_suggestions": [
+        "S-020"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "D-013",
+      "dec_alias": "plan D4",
+      "title": "Stopgap compass-patch fate",
+      "date": "2026-08-10",
+      "phase": "phase-final",
+      "problem": "keep improved patch as local stopgap vs drop",
+      "options": [
+        "keep local + expiry",
+        "drop"
+      ],
+      "chosen": null,
+      "rejected": [],
+      "reason": "recommended: keep local + expiry (S-011)",
+      "consequences": null,
+      "related_findings": [],
+      "related_suggestions": [
+        "S-011"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "D-014",
+      "dec_alias": "plan D5",
+      "title": "Access path for system-compass",
+      "date": "2026-08-10",
+      "phase": "phase-final",
+      "problem": "ask KageBinary in #368 thread vs user-provided URL/contact",
+      "options": [
+        "ask KageBinary",
+        "user-provided"
+      ],
+      "chosen": null,
+      "rejected": [],
+      "reason": "recommended: ask KageBinary (offered review)",
+      "consequences": "unblocks Compass PR work",
+      "related_findings": [],
+      "related_suggestions": [],
+      "status": "OPEN"
+    }
+  ],
+  "phases": [
+    {
+      "id": "phase-00",
+      "number": 0,
+      "title": "Initial State Audit",
+      "category": "DISCOVERY",
+      "date": "2026-08-10",
+      "repository": "ix-infrastructure/Ix",
+      "objective": "Establish exact current state of every repository, worktree, branch, remote, and fork",
+      "status": "COMPLETE",
+      "key_findings": [
+        "Ix primary worktree has 18 uncommitted overhaul files",
+        "Remap worktree clean at c021b52 on origin/main",
+        "Fork main 5 behind origin/main",
+        "system-compass private and inaccessible",
+        "ix-compass-dist is distribution channel, not source"
+      ],
+      "outputs": [
+        "state/phase-0-audit.md"
+      ],
+      "dependencies": [],
+      "next_phase": "phase-01"
+    },
+    {
+      "id": "phase-01",
+      "number": 1,
+      "title": "Fork Synchronization",
+      "category": "SYNCHRONIZATION",
+      "date": "2026-08-10",
+      "repository": "ix-infrastructure/Ix",
+      "objective": "Synchronize Ix fork and local branches without losing uncommitted work",
+      "status": "COMPLETE",
+      "key_findings": [
+        "Local main fast-forwarded from 01308e6 to c4f8fea",
+        "Remap branch already correctly positioned on origin/main",
+        "Only 2 of 10 incorporated commits touched remap files",
+        "Fork NOT pushed (stays at 0437abf)"
+      ],
+      "outputs": [
+        "state/phase-1-sync-report.md"
+      ],
+      "dependencies": [
+        "phase-00"
+      ],
+      "next_phase": "phase-02"
+    },
+    {
+      "id": "phase-02",
+      "number": 2,
+      "title": "Remap Finalization",
+      "category": "IMPLEMENTATION",
+      "date": "2026-08-10",
+      "repository": "ix-infrastructure/Ix",
+      "objective": "Prepare feat/ix-remap-hardening as clean, focused, reviewable PR candidate",
+      "status": "COMPLETE",
+      "key_findings": [
+        "4 files changed, +251/-10 lines",
+        "656 tests passing, TypeScript clean, ESLint clean",
+        "Full guard matrix verified in code and tests",
+        "No secrets or personal data in diff"
+      ],
+      "changes": [
+        "ix-cli/src/cli/commands/view.ts: +55/-3 (real remap endpoint)",
+        "ix-cli/test/view-server.test.ts: +178 (guard matrix)",
+        "skills/ix/scripts/bootstrap.sh: +4/-5 (WSL fix)",
+        "docs/api/README.md: +13/-3 (documentation)"
+      ],
+      "outputs": [
+        "state/phase-2-remap-report.md",
+        "pr-packets/ix-remap-hardening/README.md"
+      ],
+      "dependencies": [
+        "phase-01"
+      ],
+      "next_phase": "phase-03"
+    },
+    {
+      "id": "phase-03",
+      "number": 3,
+      "title": "Issue #376 Investigation",
+      "category": "RESEARCH",
+      "date": "2026-08-10",
+      "repository": "ix-infrastructure/Ix",
+      "objective": "Investigate Ix #376 comprehensively",
+      "status": "COMPLETE",
+      "key_findings": [
+        "Two version series feed into one isNewer comparison",
+        "Currently correct by accident (0.3.0 < 0.9.1 → false)",
+        "Would break when ix-compass-dist version exceeds Ix version",
+        "Caused by PR #365 stamp decision"
+      ],
+      "outputs": [
+        "github/issues/376/README.md"
+      ],
+      "dependencies": [
+        "phase-01"
+      ],
+      "next_phase": "phase-04"
+    },
+    {
+      "id": "phase-04",
+      "number": 4,
+      "title": "Full Security & Historical Audit",
+      "category": "AUDIT",
+      "date": "2026-08-10",
+      "repository": "ix-infrastructure/Ix",
+      "objective": "Broad security and historical audit of the Ix repository",
+      "status": "COMPLETE",
+      "key_findings": [
+        "8 open issues catalogued",
+        "Security posture: STRONG (gitleaks, Trivy, Scorecard, etc.)",
+        "No secrets found in codebase",
+        "Remap PR cleared — zero overlap with any open issue"
+      ],
+      "outputs": [
+        "findings/phase-4-audit.md",
+        "github/maintainer-context.md"
+      ],
+      "dependencies": [
+        "phase-03"
+      ],
+      "next_phase": "phase-05"
+    },
+    {
+      "id": "phase-05",
+      "number": 5,
+      "title": "Compass Historical Reconstruction",
+      "category": "RESEARCH",
+      "date": "2026-08-10",
+      "repository": "ix-infrastructure/system-compass",
+      "objective": "Deep behavioral reconstruction of all 4 Compass artifact versions",
+      "status": "COMPLETE",
+      "key_findings": [
+        "Keyboard handler invariant across 4 releases",
+        "KeyboardHelp byte-identical, 8 entries, no F",
+        "All 9 fit constants verified in v0.3.0",
+        "#57: one-shot latch → keyed refit (Class A from release notes)"
+      ],
+      "outputs": [
+        "comparisons/historical-matrix.md",
+        "comparisons/keyboard/reconstruction.md",
+        "comparisons/camera-fit/reconstruction.md",
+        "comparisons/releases/timeline.md"
+      ],
+      "dependencies": [
+        "phase-04"
+      ],
+      "next_phase": "phase-06"
+    },
+    {
+      "id": "phase-06",
+      "number": 6,
+      "title": "F-Key Source-Access Gate",
+      "category": "VERIFICATION",
+      "date": "2026-08-10",
+      "repository": "ix-infrastructure/system-compass",
+      "objective": "Determine whether system-compass source is accessible",
+      "status": "COMPLETE (BLOCKED)",
+      "key_findings": [
+        "system-compass remains private (404)",
+        "No local checkout possible",
+        "F-key PR finalized as specification only"
+      ],
+      "outputs": [
+        "state/phase-6-f-key-gate.md",
+        "pr-packets/compass-f-key/README.md"
+      ],
+      "dependencies": [
+        "phase-05"
+      ],
+      "next_phase": "phase-07"
+    },
+    {
+      "id": "phase-07",
+      "number": 7,
+      "title": "Delayed-Data Deep Investigation",
+      "category": "REPRODUCTION",
+      "date": "2026-08-10",
+      "repository": "ix-infrastructure/system-compass",
+      "objective": "Deep runtime probing of the delayed-data finding",
+      "status": "COMPLETE",
+      "key_findings": [
+        "Live reproduction: zoom 0.441, 15 nodes, 78,600px canvas",
+        "Root cause: timing-dependent rollup + refit effect gap",
+        "Zoom-in multiplier appears to be ×1.25 not ×1.1",
+        "4 interactive experiments performed"
+      ],
+      "outputs": [
+        "comparisons/camera-fit/delayed-data-investigation.md",
+        "pr-packets/compass-delayed-data/README.md"
+      ],
+      "dependencies": [
+        "phase-05"
+      ],
+      "next_phase": "phase-08"
+    },
+    {
+      "id": "phase-08",
+      "number": 8,
+      "title": "Repository Architecture Audit",
+      "category": "AUDIT",
+      "date": "2026-08-10",
+      "repository": "ALL",
+      "objective": "Determine exact relationships between all repositories",
+      "status": "COMPLETE",
+      "key_findings": [
+        "5 repositories mapped with complete relationships",
+        "ix-compass-dist is manual distribution channel, no CI",
+        "Ix-findings has no GitHub repo, not Git-initialized",
+        "system-compass is only source for Compass UI"
+      ],
+      "outputs": [
+        "repositories/repository-map.md"
+      ],
+      "dependencies": [
+        "phase-00"
+      ],
+      "next_phase": "phase-09"
+    },
+    {
+      "id": "phase-09",
+      "number": 9,
+      "title": "Ix-findings Evidence Repository",
+      "category": "AUDIT",
+      "date": "2026-08-10",
+      "repository": "Ix-findings",
+      "objective": "Build Ix-findings as central evidence repository",
+      "status": "COMPLETE",
+      "key_findings": [
+        "Git repo initialized with .gitignore",
+        "12 findings registered with IXF-IDs",
+        "9 decisions documented",
+        "28 evidence files organized"
+      ],
+      "outputs": [
+        "README.md",
+        "manifests/findings-index.json",
+        "decisions/log.md",
+        "reports/phase-summaries.md"
+      ],
+      "dependencies": [
+        "phase-08"
+      ],
+      "next_phase": "phase-10"
+    },
+    {
+      "id": "phase-10",
+      "number": 10,
+      "title": "GitHub History & Maintainer Context",
+      "category": "GITHUB",
+      "date": "2026-08-10",
+      "repository": "ALL",
+      "objective": "Investigate relevant GitHub history, maintainers, and review context",
+      "status": "COMPLETE",
+      "key_findings": [
+        "KageBinary: active COLLABORATOR, 14 of last 30 commits",
+        "josephismikhail: CODE OWNER, reviews KageBinary's PRs",
+        "Hiro-Chiba: CONTRIBUTOR, targeted bug fixes",
+        "TannerTorrey3: inactive historic releaser"
+      ],
+      "outputs": [
+        "github/maintainer-context.md",
+        "github/historical-prs.md"
+      ],
+      "dependencies": [
+        "phase-04"
+      ],
+      "next_phase": "phase-11"
+    },
+    {
+      "id": "phase-11",
+      "number": 11,
+      "title": "PR Packet Generation",
+      "category": "PR PREPARATION",
+      "date": "2026-08-10",
+      "repository": "ALL",
+      "objective": "Generate final PR packets for every justified change",
+      "status": "COMPLETE",
+      "key_findings": [
+        "4 PR packets generated: remap, F-key, delayed-data, #376",
+        "All packets sanitized, no secrets or personal data",
+        "Remap: PR-ready. F-key/delayed-data: block on source"
+      ],
+      "outputs": [
+        "pr-packets/ix-remap-hardening/README.md",
+        "pr-packets/compass-f-key/README.md",
+        "pr-packets/compass-delayed-data/README.md",
+        "pr-packets/ix-376-version-mismatch/README.md"
+      ],
+      "dependencies": [
+        "phase-10"
+      ],
+      "next_phase": "phase-12"
+    },
+    {
+      "id": "phase-12",
+      "number": 12,
+      "title": "Pre-Publish Verification Gate",
+      "category": "VERIFICATION",
+      "date": "2026-08-10",
+      "repository": "ix-infrastructure/Ix",
+      "objective": "Final independent verification before any remote action",
+      "status": "COMPLETE",
+      "key_findings": [
+        "READY TO PUSH: YES",
+        "READY TO OPEN PR: YES",
+        "BLOCKERS: NONE",
+        "All tests re-run fresh: 656/2/51, TSC 0, ESLint clean"
+      ],
+      "outputs": [
+        "state/phase-12-publication-gate.md"
+      ],
+      "dependencies": [
+        "phase-11"
+      ],
+      "next_phase": "phase-13 (requires authorization)"
+    }
+  ],
+  "timeline": [
+    {
+      "date": "2026-03-28",
+      "type": "release",
+      "title": "Compass v0.1.0 released (TannerTorrey3)",
+      "repo": "ix-compass-dist",
+      "evidence": "E-001"
+    },
+    {
+      "date": "2026-03-29",
+      "type": "release",
+      "title": "Compass v0.1.1 released (hotfix)",
+      "repo": "ix-compass-dist",
+      "evidence": "E-002"
+    },
+    {
+      "date": "2026-06-08",
+      "type": "release",
+      "title": "Compass v0.2.0 released",
+      "repo": "ix-compass-dist",
+      "evidence": "E-003"
+    },
+    {
+      "date": "2026-08-09",
+      "type": "release",
+      "title": "Compass v0.3.0 released (KageBinary) — #57 refit, bounded layout, aggregation",
+      "repo": "ix-compass-dist",
+      "evidence": "E-004, E-008"
+    },
+    {
+      "date": "2026-08-09",
+      "type": "github",
+      "title": "Ix PRs #365 (compass stamp) + #366 (tar pairing) merged",
+      "repo": "ix-infrastructure/Ix",
+      "evidence": "E-017"
+    },
+    {
+      "date": "2026-08-09",
+      "type": "github",
+      "title": "Ix PR #368 (agent skill + HTTP API docs) merged -> 2157158",
+      "repo": "ix-infrastructure/Ix",
+      "evidence": "E-020"
+    },
+    {
+      "date": "2026-08-10",
+      "type": "github",
+      "title": "Ix issues #371 (patches dead) + #376 (version-series mismatch) opened by KageBinary",
+      "repo": "ix-infrastructure/Ix",
+      "evidence": "E-017, E-018"
+    },
+    {
+      "date": "2026-08-10",
+      "type": "phase",
+      "title": "Phase 0 — Initial State Audit",
+      "repo": "ALL",
+      "category": "DISCOVERY"
+    },
+    {
+      "date": "2026-08-10",
+      "type": "phase",
+      "title": "Phase 1 — Fork Synchronization (main -> c4f8fea)",
+      "repo": "Ix",
+      "category": "SYNCHRONIZATION"
+    },
+    {
+      "date": "2026-08-10",
+      "type": "phase",
+      "title": "Phase 2 — Remap Finalization (c021b52)",
+      "repo": "Ix",
+      "category": "IMPLEMENTATION"
+    },
+    {
+      "date": "2026-08-10",
+      "type": "phase",
+      "title": "Phase 3 — Issue #376 Investigation",
+      "repo": "Ix",
+      "category": "RESEARCH"
+    },
+    {
+      "date": "2026-08-10",
+      "type": "phase",
+      "title": "Phase 4 — Security & Historical Audit",
+      "repo": "Ix",
+      "category": "AUDIT"
+    },
+    {
+      "date": "2026-08-10",
+      "type": "phase",
+      "title": "Phase 5 — Compass Historical Reconstruction",
+      "repo": "system-compass (artifacts)",
+      "category": "RESEARCH"
+    },
+    {
+      "date": "2026-08-10",
+      "type": "phase",
+      "title": "Phase 6 — F-Key Source-Access Gate (BLOCKED)",
+      "repo": "system-compass",
+      "category": "VERIFICATION"
+    },
+    {
+      "date": "2026-08-10",
+      "type": "phase",
+      "title": "Phase 7 — Delayed-Data Deep Probe",
+      "repo": "system-compass (runtime)",
+      "category": "REPRODUCTION"
+    },
+    {
+      "date": "2026-08-10",
+      "type": "phase",
+      "title": "Phase 8 — Repository Architecture Audit",
+      "repo": "ALL",
+      "category": "AUDIT"
+    },
+    {
+      "date": "2026-08-10",
+      "type": "phase",
+      "title": "Phase 9 — Ix-findings Ledger",
+      "repo": "Ix-findings",
+      "category": "AUDIT"
+    },
+    {
+      "date": "2026-08-10",
+      "type": "phase",
+      "title": "Phase 10 — GitHub & Maintainer Context",
+      "repo": "ALL",
+      "category": "GITHUB"
+    },
+    {
+      "date": "2026-08-10",
+      "type": "phase",
+      "title": "Phase 11 — PR Packet Generation",
+      "repo": "ALL",
+      "category": "PR PREPARATION"
+    },
+    {
+      "date": "2026-08-10",
+      "type": "phase",
+      "title": "Phase 12 — Pre-Publish Verification Gate (READY)",
+      "repo": "Ix",
+      "category": "VERIFICATION"
+    },
+    {
+      "date": "2026-08-10",
+      "type": "phase",
+      "title": "Phase 13 — Push + Open PR (PENDING, authorization)",
+      "repo": "Ix",
+      "category": "PR PREPARATION",
+      "blocked": true
+    },
+    {
+      "date": "2026-08-10",
+      "type": "phase",
+      "title": "Phase FINAL — Master Audit, Reconciliation, Knowledge Graph, Wiki",
+      "repo": "Ix-findings",
+      "category": "AUDIT"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "phase-00",
+        "type": "phase",
+        "title": "Phase 0 — Initial State Audit",
+        "category": "DISCOVERY",
+        "status": "COMPLETE"
+      },
+      {
+        "id": "phase-01",
+        "type": "phase",
+        "title": "Phase 1 — Fork Synchronization",
+        "category": "SYNCHRONIZATION",
+        "status": "COMPLETE"
+      },
+      {
+        "id": "phase-02",
+        "type": "phase",
+        "title": "Phase 2 — Remap Finalization",
+        "category": "IMPLEMENTATION",
+        "status": "COMPLETE"
+      },
+      {
+        "id": "phase-03",
+        "type": "phase",
+        "title": "Phase 3 — Issue #376",
+        "category": "RESEARCH",
+        "status": "COMPLETE"
+      },
+      {
+        "id": "phase-04",
+        "type": "phase",
+        "title": "Phase 4 — Security & Historical Audit",
+        "category": "AUDIT",
+        "status": "COMPLETE"
+      },
+      {
+        "id": "phase-05",
+        "type": "phase",
+        "title": "Phase 5 — Compass Reconstruction",
+        "category": "RESEARCH",
+        "status": "COMPLETE"
+      },
+      {
+        "id": "phase-06",
+        "type": "phase",
+        "title": "Phase 6 — F-Key Source-Access Gate",
+        "category": "VERIFICATION",
+        "status": "COMPLETE (BLOCKED)"
+      },
+      {
+        "id": "phase-07",
+        "type": "phase",
+        "title": "Phase 7 — Delayed-Data Deep Probe",
+        "category": "REPRODUCTION",
+        "status": "COMPLETE"
+      },
+      {
+        "id": "phase-08",
+        "type": "phase",
+        "title": "Phase 8 — Repository Architecture",
+        "category": "AUDIT",
+        "status": "COMPLETE"
+      },
+      {
+        "id": "phase-09",
+        "type": "phase",
+        "title": "Phase 9 — Ix-findings Ledger",
+        "category": "AUDIT",
+        "status": "COMPLETE"
+      },
+      {
+        "id": "phase-10",
+        "type": "phase",
+        "title": "Phase 10 — GitHub Context",
+        "category": "GITHUB",
+        "status": "COMPLETE"
+      },
+      {
+        "id": "phase-11",
+        "type": "phase",
+        "title": "Phase 11 — PR Packets",
+        "category": "PR PREPARATION",
+        "status": "COMPLETE"
+      },
+      {
+        "id": "phase-12",
+        "type": "phase",
+        "title": "Phase 12 — Publication Gate",
+        "category": "VERIFICATION",
+        "status": "COMPLETE"
+      },
+      {
+        "id": "phase-13",
+        "type": "phase",
+        "title": "Phase 13 — Push + Open PR",
+        "category": "PR PREPARATION",
+        "status": "BLOCKED (authorization)"
+      },
+      {
+        "id": "phase-final",
+        "type": "phase",
+        "title": "Phase FINAL — Master Audit & Wiki",
+        "category": "AUDIT",
+        "status": "COMPLETE"
+      },
+      {
+        "id": "repo-ix",
+        "type": "repository",
+        "title": "ix-infrastructure/Ix",
+        "visibility": "public",
+        "role": "source"
+      },
+      {
+        "id": "repo-fork",
+        "type": "repository",
+        "title": "Alot1z/Ix",
+        "visibility": "public",
+        "role": "fork"
+      },
+      {
+        "id": "repo-dist",
+        "type": "repository",
+        "title": "ix-compass-dist",
+        "visibility": "public",
+        "role": "distribution"
+      },
+      {
+        "id": "repo-sc",
+        "type": "repository",
+        "title": "system-compass",
+        "visibility": "private",
+        "role": "source"
+      },
+      {
+        "id": "repo-findings",
+        "type": "repository",
+        "title": "Ix-findings",
+        "visibility": "local",
+        "role": "investigation"
+      },
+      {
+        "id": "branch-main",
+        "type": "branch",
+        "title": "main @ c4f8fea",
+        "repo": "repo-ix",
+        "status": "synced"
+      },
+      {
+        "id": "branch-agent",
+        "type": "branch",
+        "title": "feat/ix-agent-skill @ b038c46",
+        "repo": "repo-ix",
+        "status": "uncommitted overhaul"
+      },
+      {
+        "id": "branch-remap",
+        "type": "branch",
+        "title": "feat/ix-remap-hardening @ c021b52",
+        "repo": "repo-ix",
+        "status": "pr-ready, not pushed"
+      },
+      {
+        "id": "branch-forkmain",
+        "type": "branch",
+        "title": "fork/main @ 0437abf",
+        "repo": "repo-fork",
+        "status": "5 behind"
+      },
+      {
+        "id": "branch-forkagent",
+        "type": "branch",
+        "title": "fork feat/ix-agent-skill @ 0c9087c",
+        "repo": "repo-fork",
+        "status": "cleanup, not local"
+      },
+      {
+        "id": "branch-dist",
+        "type": "branch",
+        "title": "dist main @ 396426b",
+        "repo": "repo-dist",
+        "status": "clean"
+      },
+      {
+        "id": "F-001",
+        "type": "finding",
+        "title": "Keyboard handler invariant",
+        "class": "B",
+        "repo": "repo-sc",
+        "status": "REPRODUCED"
+      },
+      {
+        "id": "F-002",
+        "type": "finding",
+        "title": "F/f unbound in all releases",
+        "class": "B",
+        "repo": "repo-sc",
+        "status": "REPRODUCED"
+      },
+      {
+        "id": "F-003",
+        "type": "finding",
+        "title": "KeyboardHelp identical, no F",
+        "class": "B",
+        "repo": "repo-sc",
+        "status": "VERIFIED"
+      },
+      {
+        "id": "F-004",
+        "type": "finding",
+        "title": "Fit math + constants invariant",
+        "class": "B",
+        "repo": "repo-sc",
+        "status": "VERIFIED"
+      },
+      {
+        "id": "F-005",
+        "type": "finding",
+        "title": "#57 latch -> keyed refit",
+        "class": "A+B",
+        "repo": "repo-sc",
+        "status": "CONFIRMED"
+      },
+      {
+        "id": "F-006",
+        "type": "finding",
+        "title": "Delayed-data blank persists",
+        "class": "B+C",
+        "repo": "repo-sc",
+        "status": "REPRODUCED_LIVE"
+      },
+      {
+        "id": "F-007",
+        "type": "finding",
+        "title": "Rollup timing-dependent",
+        "class": "B",
+        "repo": "repo-sc",
+        "status": "OBSERVED"
+      },
+      {
+        "id": "F-008",
+        "type": "finding",
+        "title": "Version-series mismatch (#376)",
+        "class": "A",
+        "repo": "repo-ix",
+        "status": "OPEN"
+      },
+      {
+        "id": "F-009",
+        "type": "finding",
+        "title": "patches dead (#371)",
+        "class": "A",
+        "repo": "repo-ix",
+        "status": "OPEN"
+      },
+      {
+        "id": "F-010",
+        "type": "finding",
+        "title": "Loopback-hardened /__ix/remap",
+        "class": "A",
+        "repo": "repo-ix",
+        "status": "PR_READY"
+      },
+      {
+        "id": "F-011",
+        "type": "finding",
+        "title": "WSL bootstrap fix",
+        "class": "A",
+        "repo": "repo-ix",
+        "status": "IN_REMAP_PR"
+      },
+      {
+        "id": "F-012",
+        "type": "finding",
+        "title": "Dead node_ok removal",
+        "class": "A",
+        "repo": "repo-ix",
+        "status": "IN_REMAP_PR"
+      },
+      {
+        "id": "F-013",
+        "type": "finding",
+        "title": "Zoom x1.25 vs x1.1 anomaly",
+        "class": "D",
+        "repo": "repo-sc",
+        "status": "OPEN"
+      },
+      {
+        "id": "E-001",
+        "type": "evidence",
+        "title": "compass-0.1.0 artifact",
+        "class": "B",
+        "kind": "artifact"
+      },
+      {
+        "id": "E-002",
+        "type": "evidence",
+        "title": "compass-0.1.1 artifact",
+        "class": "B",
+        "kind": "artifact"
+      },
+      {
+        "id": "E-003",
+        "type": "evidence",
+        "title": "compass-0.2.0 artifact",
+        "class": "B",
+        "kind": "artifact"
+      },
+      {
+        "id": "E-004",
+        "type": "evidence",
+        "title": "compass-0.3.0 artifact",
+        "class": "B",
+        "kind": "artifact"
+      },
+      {
+        "id": "E-005",
+        "type": "evidence",
+        "title": "keyboard byte-identity",
+        "class": "B",
+        "kind": "artifact"
+      },
+      {
+        "id": "E-006",
+        "type": "evidence",
+        "title": "KeyboardHelp extraction",
+        "class": "B",
+        "kind": "artifact"
+      },
+      {
+        "id": "E-007",
+        "type": "evidence",
+        "title": "fit constants extraction",
+        "class": "B",
+        "kind": "artifact"
+      },
+      {
+        "id": "E-008",
+        "type": "evidence",
+        "title": "v0.3.0 release notes",
+        "class": "A",
+        "kind": "release note"
+      },
+      {
+        "id": "E-009",
+        "type": "evidence",
+        "title": "delayed-data A/B runs",
+        "class": "B",
+        "kind": "reproduction"
+      },
+      {
+        "id": "E-010",
+        "type": "evidence",
+        "title": "F-key PoC",
+        "class": "B",
+        "kind": "runtime"
+      },
+      {
+        "id": "E-011",
+        "type": "evidence",
+        "title": "zoom contract checks",
+        "class": "B",
+        "kind": "runtime"
+      },
+      {
+        "id": "E-012",
+        "type": "evidence",
+        "title": "rollup timing A/B",
+        "class": "B",
+        "kind": "runtime"
+      },
+      {
+        "id": "E-013",
+        "type": "evidence",
+        "title": "view.ts pre-fix bind",
+        "class": "A",
+        "kind": "source"
+      },
+      {
+        "id": "E-014",
+        "type": "evidence",
+        "title": "remap diff c021b52",
+        "class": "A",
+        "kind": "source"
+      },
+      {
+        "id": "E-015",
+        "type": "evidence",
+        "title": "guard-matrix tests",
+        "class": "B",
+        "kind": "test"
+      },
+      {
+        "id": "E-016",
+        "type": "evidence",
+        "title": "suite runs (656/2, tsc, eslint)",
+        "class": "B",
+        "kind": "test"
+      },
+      {
+        "id": "E-017",
+        "type": "evidence",
+        "title": "#376 source analysis",
+        "class": "A",
+        "kind": "source"
+      },
+      {
+        "id": "E-018",
+        "type": "evidence",
+        "title": "#371 source analysis",
+        "class": "A",
+        "kind": "source"
+      },
+      {
+        "id": "E-019",
+        "type": "evidence",
+        "title": "git divergence numbers",
+        "class": "A",
+        "kind": "git"
+      },
+      {
+        "id": "E-020",
+        "type": "evidence",
+        "title": "GitHub maintainer context",
+        "class": "A",
+        "kind": "github"
+      },
+      {
+        "id": "E-021",
+        "type": "evidence",
+        "title": "worktree map",
+        "class": "A",
+        "kind": "git"
+      },
+      {
+        "id": "E-022",
+        "type": "evidence",
+        "title": "placeholder-fit instability",
+        "class": "B",
+        "kind": "runtime"
+      },
+      {
+        "id": "E-023",
+        "type": "evidence",
+        "title": "no source maps",
+        "class": "B",
+        "kind": "artifact"
+      },
+      {
+        "id": "E-024",
+        "type": "evidence",
+        "title": "bootstrap.sh WSL/node_ok",
+        "class": "A",
+        "kind": "source"
+      },
+      {
+        "id": "E-025",
+        "type": "evidence",
+        "title": "F-key source-equivalent spec",
+        "class": "C",
+        "kind": "document"
+      },
+      {
+        "id": "ISSUE-371",
+        "type": "issue",
+        "title": "Ix#371 patches dead",
+        "repo": "repo-ix",
+        "number": 371,
+        "status": "open"
+      },
+      {
+        "id": "ISSUE-376",
+        "type": "issue",
+        "title": "Ix#376 version-series mismatch",
+        "repo": "repo-ix",
+        "number": 376,
+        "status": "open"
+      },
+      {
+        "id": "ISSUE-374",
+        "type": "issue",
+        "title": "Ix#374 cross-batch calls",
+        "repo": "repo-ix",
+        "number": 374,
+        "status": "open"
+      },
+      {
+        "id": "ISSUE-57",
+        "type": "issue",
+        "title": "system-compass#57 fit latch",
+        "repo": "repo-sc",
+        "number": 57,
+        "status": "fixed_in_v030"
+      },
+      {
+        "id": "PR-358",
+        "type": "pr",
+        "title": "Ix#358 view port reporting",
+        "repo": "repo-ix",
+        "status": "merged"
+      },
+      {
+        "id": "PR-362",
+        "type": "pr",
+        "title": "Ix#362 view -p warning",
+        "repo": "repo-ix",
+        "status": "open"
+      },
+      {
+        "id": "PR-365",
+        "type": "pr",
+        "title": "Ix#365 compass stamp",
+        "repo": "repo-ix",
+        "status": "merged"
+      },
+      {
+        "id": "PR-366",
+        "type": "pr",
+        "title": "Ix#366 tar pairing",
+        "repo": "repo-ix",
+        "status": "merged"
+      },
+      {
+        "id": "PR-368",
+        "type": "pr",
+        "title": "Ix#368 agent skill + docs",
+        "repo": "repo-ix",
+        "status": "merged"
+      },
+      {
+        "id": "PR-372",
+        "type": "pr",
+        "title": "Ix#372 --format llm",
+        "repo": "repo-ix",
+        "status": "open"
+      },
+      {
+        "id": "PACK-remap",
+        "type": "pr_packet",
+        "title": "packet: ix-remap-hardening",
+        "repo": "repo-ix",
+        "status": "ready"
+      },
+      {
+        "id": "PACK-fkey",
+        "type": "pr_packet",
+        "title": "packet: compass-f-key",
+        "repo": "repo-sc",
+        "status": "spec, source-blocked"
+      },
+      {
+        "id": "PACK-delayed",
+        "type": "pr_packet",
+        "title": "packet: compass-delayed-data",
+        "repo": "repo-sc",
+        "status": "investigation, source-blocked"
+      },
+      {
+        "id": "PACK-376",
+        "type": "pr_packet",
+        "title": "packet: ix-376-version-mismatch",
+        "repo": "repo-ix",
+        "status": "ready"
+      },
+      {
+        "id": "COMMIT-remap",
+        "type": "commit",
+        "title": "c021b52",
+        "repo": "repo-ix",
+        "branch": "feat/ix-remap-hardening"
+      },
+      {
+        "id": "COMMIT-368",
+        "type": "commit",
+        "title": "2157158 (#368)",
+        "repo": "repo-ix"
+      },
+      {
+        "id": "COMMIT-365",
+        "type": "commit",
+        "title": "dcc0962 (#365)",
+        "repo": "repo-ix"
+      },
+      {
+        "id": "COMMIT-agent",
+        "type": "commit",
+        "title": "b038c46",
+        "repo": "repo-ix",
+        "branch": "feat/ix-agent-skill"
+      },
+      {
+        "id": "D-001",
+        "type": "decision",
+        "title": "Base remap on origin/main"
+      },
+      {
+        "id": "D-002",
+        "type": "decision",
+        "title": "Dedicated worktree"
+      },
+      {
+        "id": "D-003",
+        "type": "decision",
+        "title": "Evidence classification"
+      },
+      {
+        "id": "D-004",
+        "type": "decision",
+        "title": "Release notes = Class A"
+      },
+      {
+        "id": "D-005",
+        "type": "decision",
+        "title": "F-key keyboard-only"
+      },
+      {
+        "id": "D-006",
+        "type": "decision",
+        "title": "Delayed-data separate"
+      },
+      {
+        "id": "D-007",
+        "type": "decision",
+        "title": "dist is distribution"
+      },
+      {
+        "id": "D-008",
+        "type": "decision",
+        "title": "Ix-findings standalone"
+      },
+      {
+        "id": "D-009",
+        "type": "decision",
+        "title": "No push without authorization"
+      },
+      {
+        "id": "D-010",
+        "type": "decision",
+        "title": "(OPEN) Port prep location"
+      },
+      {
+        "id": "D-011",
+        "type": "decision",
+        "title": "(OPEN) Compass PR scope"
+      },
+      {
+        "id": "D-012",
+        "type": "decision",
+        "title": "(OPEN) No-map chip timing"
+      },
+      {
+        "id": "D-013",
+        "type": "decision",
+        "title": "(OPEN) Stopgap patch fate"
+      },
+      {
+        "id": "D-014",
+        "type": "decision",
+        "title": "(OPEN) system-compass access path"
+      },
+      {
+        "id": "S-001",
+        "type": "suggestion",
+        "title": "Dedicated worktree",
+        "disposition": "ACCEPTED"
+      },
+      {
+        "id": "S-002",
+        "type": "suggestion",
+        "title": "Base on origin/main",
+        "disposition": "ACCEPTED"
+      },
+      {
+        "id": "S-007",
+        "type": "suggestion",
+        "title": "F-key keyboard-only",
+        "disposition": "ACCEPTED"
+      },
+      {
+        "id": "S-008",
+        "type": "suggestion",
+        "title": "Delayed-data separate",
+        "disposition": "ACCEPTED"
+      },
+      {
+        "id": "S-013",
+        "type": "suggestion",
+        "title": "Fix #376",
+        "disposition": "DEFERRED"
+      },
+      {
+        "id": "S-030",
+        "type": "suggestion",
+        "title": "Bind 0.0.0.0",
+        "disposition": "REJECTED (dangerous)"
+      },
+      {
+        "id": "S-032",
+        "type": "suggestion",
+        "title": "Mount auto-frame",
+        "disposition": "SUPERSEDED"
+      },
+      {
+        "id": "PERSON-kb",
+        "type": "person",
+        "title": "KageBinary",
+        "role": "COLLABORATOR"
+      },
+      {
+        "id": "PERSON-jm",
+        "type": "person",
+        "title": "josephismikhail",
+        "role": "CODE_OWNER"
+      },
+      {
+        "id": "PERSON-hc",
+        "type": "person",
+        "title": "Hiro-Chiba",
+        "role": "CONTRIBUTOR"
+      },
+      {
+        "id": "PERSON-tt",
+        "type": "person",
+        "title": "TannerTorrey3",
+        "role": "HISTORIC"
+      },
+      {
+        "id": "PERSON-al",
+        "type": "person",
+        "title": "Alot1z",
+        "role": "FORK_OWNER"
+      }
+    ],
+    "edges": [
+      {
+        "source": "phase-00",
+        "target": "phase-01",
+        "relationship": "precedes"
+      },
+      {
+        "source": "phase-01",
+        "target": "phase-02",
+        "relationship": "precedes"
+      },
+      {
+        "source": "phase-02",
+        "target": "phase-03",
+        "relationship": "precedes"
+      },
+      {
+        "source": "phase-03",
+        "target": "phase-04",
+        "relationship": "precedes"
+      },
+      {
+        "source": "phase-04",
+        "target": "phase-05",
+        "relationship": "precedes"
+      },
+      {
+        "source": "phase-05",
+        "target": "phase-06",
+        "relationship": "precedes"
+      },
+      {
+        "source": "phase-06",
+        "target": "phase-07",
+        "relationship": "precedes"
+      },
+      {
+        "source": "phase-07",
+        "target": "phase-08",
+        "relationship": "precedes"
+      },
+      {
+        "source": "phase-08",
+        "target": "phase-09",
+        "relationship": "precedes"
+      },
+      {
+        "source": "phase-09",
+        "target": "phase-10",
+        "relationship": "precedes"
+      },
+      {
+        "source": "phase-10",
+        "target": "phase-11",
+        "relationship": "precedes"
+      },
+      {
+        "source": "phase-11",
+        "target": "phase-12",
+        "relationship": "precedes"
+      },
+      {
+        "source": "phase-12",
+        "target": "phase-13",
+        "relationship": "precedes"
+      },
+      {
+        "source": "phase-13",
+        "target": "phase-final",
+        "relationship": "after"
+      },
+      {
+        "source": "phase-02",
+        "target": "F-010",
+        "relationship": "produced"
+      },
+      {
+        "source": "phase-02",
+        "target": "F-011",
+        "relationship": "produced"
+      },
+      {
+        "source": "phase-02",
+        "target": "F-012",
+        "relationship": "produced"
+      },
+      {
+        "source": "phase-03",
+        "target": "F-008",
+        "relationship": "produced"
+      },
+      {
+        "source": "phase-04",
+        "target": "F-009",
+        "relationship": "produced"
+      },
+      {
+        "source": "phase-05",
+        "target": "F-001",
+        "relationship": "produced"
+      },
+      {
+        "source": "phase-05",
+        "target": "F-002",
+        "relationship": "produced"
+      },
+      {
+        "source": "phase-05",
+        "target": "F-003",
+        "relationship": "produced"
+      },
+      {
+        "source": "phase-05",
+        "target": "F-004",
+        "relationship": "produced"
+      },
+      {
+        "source": "phase-05",
+        "target": "F-005",
+        "relationship": "produced"
+      },
+      {
+        "source": "phase-07",
+        "target": "F-006",
+        "relationship": "produced"
+      },
+      {
+        "source": "phase-07",
+        "target": "F-007",
+        "relationship": "produced"
+      },
+      {
+        "source": "phase-07",
+        "target": "F-013",
+        "relationship": "observed"
+      },
+      {
+        "source": "F-001",
+        "target": "E-005",
+        "relationship": "supported_by"
+      },
+      {
+        "source": "F-002",
+        "target": "E-005",
+        "relationship": "supported_by"
+      },
+      {
+        "source": "F-003",
+        "target": "E-006",
+        "relationship": "supported_by"
+      },
+      {
+        "source": "F-004",
+        "target": "E-007",
+        "relationship": "supported_by"
+      },
+      {
+        "source": "F-004",
+        "target": "E-011",
+        "relationship": "supported_by"
+      },
+      {
+        "source": "F-005",
+        "target": "E-008",
+        "relationship": "supported_by"
+      },
+      {
+        "source": "F-006",
+        "target": "E-009",
+        "relationship": "supported_by"
+      },
+      {
+        "source": "F-007",
+        "target": "E-012",
+        "relationship": "supported_by"
+      },
+      {
+        "source": "F-008",
+        "target": "E-017",
+        "relationship": "supported_by"
+      },
+      {
+        "source": "F-009",
+        "target": "E-018",
+        "relationship": "supported_by"
+      },
+      {
+        "source": "F-010",
+        "target": "E-014",
+        "relationship": "supported_by"
+      },
+      {
+        "source": "F-010",
+        "target": "E-015",
+        "relationship": "supported_by"
+      },
+      {
+        "source": "F-010",
+        "target": "E-016",
+        "relationship": "supported_by"
+      },
+      {
+        "source": "F-011",
+        "target": "E-014",
+        "relationship": "supported_by"
+      },
+      {
+        "source": "F-012",
+        "target": "E-014",
+        "relationship": "supported_by"
+      },
+      {
+        "source": "F-013",
+        "target": "E-011",
+        "relationship": "supported_by"
+      },
+      {
+        "source": "E-001",
+        "target": "E-005",
+        "relationship": "contributes_to"
+      },
+      {
+        "source": "E-002",
+        "target": "E-005",
+        "relationship": "contributes_to"
+      },
+      {
+        "source": "E-003",
+        "target": "E-005",
+        "relationship": "contributes_to"
+      },
+      {
+        "source": "E-004",
+        "target": "E-005",
+        "relationship": "contributes_to"
+      },
+      {
+        "source": "F-005",
+        "target": "ISSUE-57",
+        "relationship": "documents"
+      },
+      {
+        "source": "F-006",
+        "target": "ISSUE-57",
+        "relationship": "relates_to"
+      },
+      {
+        "source": "F-008",
+        "target": "ISSUE-376",
+        "relationship": "documents"
+      },
+      {
+        "source": "F-009",
+        "target": "ISSUE-371",
+        "relationship": "documents"
+      },
+      {
+        "source": "F-008",
+        "target": "PR-365",
+        "relationship": "caused_by"
+      },
+      {
+        "source": "F-008",
+        "target": "PR-366",
+        "relationship": "companion_of"
+      },
+      {
+        "source": "PR-368",
+        "target": "COMMIT-368",
+        "relationship": "merged_as"
+      },
+      {
+        "source": "PR-365",
+        "target": "COMMIT-365",
+        "relationship": "merged_as"
+      },
+      {
+        "source": "COMMIT-remap",
+        "target": "branch-remap",
+        "relationship": "heads"
+      },
+      {
+        "source": "branch-remap",
+        "target": "PACK-remap",
+        "relationship": "packaged_by"
+      },
+      {
+        "source": "PACK-remap",
+        "target": "PERSON-kb",
+        "relationship": "mention_recommended"
+      },
+      {
+        "source": "PACK-remap",
+        "target": "PERSON-jm",
+        "relationship": "reviewer_recommended"
+      },
+      {
+        "source": "PACK-376",
+        "target": "ISSUE-376",
+        "relationship": "fixes"
+      },
+      {
+        "source": "PACK-fkey",
+        "target": "PERSON-kb",
+        "relationship": "reviewer_recommended"
+      },
+      {
+        "source": "PACK-delayed",
+        "target": "PERSON-kb",
+        "relationship": "reviewer_recommended"
+      },
+      {
+        "source": "repo-fork",
+        "target": "repo-ix",
+        "relationship": "fork_of"
+      },
+      {
+        "source": "repo-dist",
+        "target": "repo-sc",
+        "relationship": "distributes"
+      },
+      {
+        "source": "repo-findings",
+        "target": "repo-ix",
+        "relationship": "investigates"
+      },
+      {
+        "source": "repo-findings",
+        "target": "repo-sc",
+        "relationship": "investigates"
+      },
+      {
+        "source": "D-001",
+        "target": "S-002",
+        "relationship": "implements"
+      },
+      {
+        "source": "D-002",
+        "target": "S-001",
+        "relationship": "implements"
+      },
+      {
+        "source": "D-005",
+        "target": "S-007",
+        "relationship": "implements"
+      },
+      {
+        "source": "D-006",
+        "target": "S-008",
+        "relationship": "implements"
+      },
+      {
+        "source": "D-009",
+        "target": "phase-13",
+        "relationship": "gates"
+      },
+      {
+        "source": "E-008",
+        "target": "PERSON-kb",
+        "relationship": "authored_by"
+      },
+      {
+        "source": "E-020",
+        "target": "PERSON-kb",
+        "relationship": "identifies"
+      },
+      {
+        "source": "E-020",
+        "target": "PERSON-jm",
+        "relationship": "identifies"
+      },
+      {
+        "source": "E-020",
+        "target": "PERSON-hc",
+        "relationship": "identifies"
+      }
+    ]
+  },
+  "maps": {
+    "repository": {
+      "version": "2.0.0",
+      "generated": "2026-08-10",
+      "nodes": [
+        {
+          "id": "repo-ix",
+          "type": "repository",
+          "title": "ix-infrastructure/Ix",
+          "role": "source",
+          "visibility": "public",
+          "head": "c4f8fea",
+          "worktrees": 2
+        },
+        {
+          "id": "repo-fork",
+          "type": "repository",
+          "title": "Alot1z/Ix",
+          "role": "fork",
+          "visibility": "public",
+          "head": "0437abf",
+          "behind_origin": 5
+        },
+        {
+          "id": "repo-dist",
+          "type": "repository",
+          "title": "ix-compass-dist",
+          "role": "distribution",
+          "visibility": "public",
+          "head": "396426b",
+          "tags": [
+            "v0.1.0",
+            "v0.1.1",
+            "v0.2.0",
+            "v0.3.0"
+          ]
+        },
+        {
+          "id": "repo-sc",
+          "type": "repository",
+          "title": "system-compass",
+          "role": "source",
+          "visibility": "private",
+          "head": "7f98724 (v0.3.0 rev)",
+          "access": "BLOCKED"
+        },
+        {
+          "id": "repo-findings",
+          "type": "repository",
+          "title": "Ix-findings",
+          "role": "investigation",
+          "visibility": "local",
+          "commits": 0
+        },
+        {
+          "id": "branch-main",
+          "type": "branch",
+          "title": "main",
+          "repo": "repo-ix",
+          "head": "c4f8fea",
+          "status": "synced"
+        },
+        {
+          "id": "branch-agent",
+          "type": "branch",
+          "title": "feat/ix-agent-skill",
+          "repo": "repo-ix",
+          "head": "b038c46",
+          "status": "13 uncommitted files"
+        },
+        {
+          "id": "branch-remap",
+          "type": "branch",
+          "title": "feat/ix-remap-hardening",
+          "repo": "repo-ix",
+          "head": "c021b52",
+          "status": "pr-ready"
+        },
+        {
+          "id": "branch-forkmain",
+          "type": "branch",
+          "title": "fork/main",
+          "repo": "repo-fork",
+          "head": "0437abf",
+          "status": "5 behind"
+        },
+        {
+          "id": "branch-forkagent",
+          "type": "branch",
+          "title": "fork feat/ix-agent-skill",
+          "repo": "repo-fork",
+          "head": "0c9087c",
+          "status": "cleanup not local"
+        },
+        {
+          "id": "branch-dist",
+          "type": "branch",
+          "title": "main",
+          "repo": "repo-dist",
+          "head": "396426b",
+          "status": "clean"
+        }
+      ],
+      "edges": [
+        {
+          "source": "repo-fork",
+          "target": "repo-ix",
+          "relationship": "fork_of"
+        },
+        {
+          "source": "repo-dist",
+          "target": "repo-sc",
+          "relationship": "distributes"
+        },
+        {
+          "source": "branch-main",
+          "target": "repo-ix",
+          "relationship": "lives_in"
+        },
+        {
+          "source": "branch-agent",
+          "target": "repo-ix",
+          "relationship": "lives_in"
+        },
+        {
+          "source": "branch-remap",
+          "target": "repo-ix",
+          "relationship": "lives_in"
+        },
+        {
+          "source": "branch-forkmain",
+          "target": "repo-fork",
+          "relationship": "lives_in"
+        },
+        {
+          "source": "branch-forkagent",
+          "target": "repo-fork",
+          "relationship": "lives_in"
+        },
+        {
+          "source": "branch-dist",
+          "target": "repo-dist",
+          "relationship": "lives_in"
+        },
+        {
+          "source": "branch-remap",
+          "target": "branch-main",
+          "relationship": "based_on"
+        },
+        {
+          "source": "repo-dist",
+          "target": "repo-ix",
+          "relationship": "consumed_by_upgrade"
+        }
+      ]
+    },
+    "evidence": {
+      "version": "2.0.0",
+      "generated": "2026-08-10",
+      "note": "Evidence -> finding traceability. Evidence classes A/B/C/D and kinds are carried on nodes.",
+      "nodes": [
+        {
+          "id": "E-001",
+          "type": "evidence",
+          "title": "compass-0.1.0",
+          "class": "B",
+          "kind": "artifact"
+        },
+        {
+          "id": "E-002",
+          "type": "evidence",
+          "title": "compass-0.1.1",
+          "class": "B",
+          "kind": "artifact"
+        },
+        {
+          "id": "E-003",
+          "type": "evidence",
+          "title": "compass-0.2.0",
+          "class": "B",
+          "kind": "artifact"
+        },
+        {
+          "id": "E-004",
+          "type": "evidence",
+          "title": "compass-0.3.0",
+          "class": "B",
+          "kind": "artifact"
+        },
+        {
+          "id": "E-005",
+          "type": "evidence",
+          "title": "keyboard byte-identity",
+          "class": "B",
+          "kind": "artifact"
+        },
+        {
+          "id": "E-006",
+          "type": "evidence",
+          "title": "KeyboardHelp extraction",
+          "class": "B",
+          "kind": "artifact"
+        },
+        {
+          "id": "E-007",
+          "type": "evidence",
+          "title": "fit constants",
+          "class": "B",
+          "kind": "artifact"
+        },
+        {
+          "id": "E-008",
+          "type": "evidence",
+          "title": "v0.3.0 release notes",
+          "class": "A",
+          "kind": "release note"
+        },
+        {
+          "id": "E-009",
+          "type": "evidence",
+          "title": "delayed-data A/B",
+          "class": "B",
+          "kind": "reproduction"
+        },
+        {
+          "id": "E-010",
+          "type": "evidence",
+          "title": "F-key PoC",
+          "class": "B",
+          "kind": "runtime"
+        },
+        {
+          "id": "E-011",
+          "type": "evidence",
+          "title": "zoom contract",
+          "class": "B",
+          "kind": "runtime"
+        },
+        {
+          "id": "E-012",
+          "type": "evidence",
+          "title": "rollup A/B",
+          "class": "B",
+          "kind": "runtime"
+        },
+        {
+          "id": "E-013",
+          "type": "evidence",
+          "title": "view.ts bind",
+          "class": "A",
+          "kind": "source"
+        },
+        {
+          "id": "E-014",
+          "type": "evidence",
+          "title": "remap diff",
+          "class": "A",
+          "kind": "source"
+        },
+        {
+          "id": "E-015",
+          "type": "evidence",
+          "title": "guard-matrix tests",
+          "class": "B",
+          "kind": "test"
+        },
+        {
+          "id": "E-016",
+          "type": "evidence",
+          "title": "suite runs",
+          "class": "B",
+          "kind": "test"
+        },
+        {
+          "id": "E-017",
+          "type": "evidence",
+          "title": "#376 source",
+          "class": "A",
+          "kind": "source"
+        },
+        {
+          "id": "E-018",
+          "type": "evidence",
+          "title": "#371 source",
+          "class": "A",
+          "kind": "source"
+        },
+        {
+          "id": "E-019",
+          "type": "evidence",
+          "title": "git divergence",
+          "class": "A",
+          "kind": "git"
+        },
+        {
+          "id": "E-020",
+          "type": "evidence",
+          "title": "GitHub context",
+          "class": "A",
+          "kind": "github"
+        },
+        {
+          "id": "E-021",
+          "type": "evidence",
+          "title": "worktree map",
+          "class": "A",
+          "kind": "git"
+        },
+        {
+          "id": "E-022",
+          "type": "evidence",
+          "title": "fit instability",
+          "class": "B",
+          "kind": "runtime"
+        },
+        {
+          "id": "E-023",
+          "type": "evidence",
+          "title": "no source maps",
+          "class": "B",
+          "kind": "artifact"
+        },
+        {
+          "id": "E-024",
+          "type": "evidence",
+          "title": "bootstrap.sh",
+          "class": "A",
+          "kind": "source"
+        },
+        {
+          "id": "E-025",
+          "type": "evidence",
+          "title": "F-key spec",
+          "class": "C",
+          "kind": "document"
+        },
+        {
+          "id": "F-001",
+          "type": "finding",
+          "title": "Keyboard invariant",
+          "class": "B"
+        },
+        {
+          "id": "F-002",
+          "type": "finding",
+          "title": "F unbound",
+          "class": "B"
+        },
+        {
+          "id": "F-003",
+          "type": "finding",
+          "title": "KeyboardHelp no F",
+          "class": "B"
+        },
+        {
+          "id": "F-004",
+          "type": "finding",
+          "title": "Fit constants invariant",
+          "class": "B"
+        },
+        {
+          "id": "F-005",
+          "type": "finding",
+          "title": "#57 latch->refit",
+          "class": "A+B"
+        },
+        {
+          "id": "F-006",
+          "type": "finding",
+          "title": "Delayed-data blank",
+          "class": "B+C"
+        },
+        {
+          "id": "F-007",
+          "type": "finding",
+          "title": "Rollup timing",
+          "class": "B"
+        },
+        {
+          "id": "F-008",
+          "type": "finding",
+          "title": "#376 mismatch",
+          "class": "A"
+        },
+        {
+          "id": "F-009",
+          "type": "finding",
+          "title": "#371 patches dead",
+          "class": "A"
+        },
+        {
+          "id": "F-010",
+          "type": "finding",
+          "title": "Loopback /__ix/remap",
+          "class": "A"
+        },
+        {
+          "id": "F-011",
+          "type": "finding",
+          "title": "WSL fix",
+          "class": "A"
+        },
+        {
+          "id": "F-012",
+          "type": "finding",
+          "title": "node_ok removal",
+          "class": "A"
+        },
+        {
+          "id": "F-013",
+          "type": "finding",
+          "title": "Zoom anomaly",
+          "class": "D"
+        }
+      ],
+      "edges": [
+        {
+          "source": "F-001",
+          "target": "E-005",
+          "relationship": "supported_by"
+        },
+        {
+          "source": "F-002",
+          "target": "E-005",
+          "relationship": "supported_by"
+        },
+        {
+          "source": "F-003",
+          "target": "E-006",
+          "relationship": "supported_by"
+        },
+        {
+          "source": "F-004",
+          "target": "E-007",
+          "relationship": "supported_by"
+        },
+        {
+          "source": "F-004",
+          "target": "E-011",
+          "relationship": "supported_by"
+        },
+        {
+          "source": "F-005",
+          "target": "E-008",
+          "relationship": "supported_by"
+        },
+        {
+          "source": "F-006",
+          "target": "E-009",
+          "relationship": "supported_by"
+        },
+        {
+          "source": "F-007",
+          "target": "E-012",
+          "relationship": "supported_by"
+        },
+        {
+          "source": "F-008",
+          "target": "E-017",
+          "relationship": "supported_by"
+        },
+        {
+          "source": "F-009",
+          "target": "E-018",
+          "relationship": "supported_by"
+        },
+        {
+          "source": "F-010",
+          "target": "E-014",
+          "relationship": "supported_by"
+        },
+        {
+          "source": "F-010",
+          "target": "E-015",
+          "relationship": "supported_by"
+        },
+        {
+          "source": "F-010",
+          "target": "E-016",
+          "relationship": "supported_by"
+        },
+        {
+          "source": "F-011",
+          "target": "E-014",
+          "relationship": "supported_by"
+        },
+        {
+          "source": "F-012",
+          "target": "E-014",
+          "relationship": "supported_by"
+        },
+        {
+          "source": "F-013",
+          "target": "E-011",
+          "relationship": "supported_by"
+        },
+        {
+          "source": "E-001",
+          "target": "E-005",
+          "relationship": "contributes_to"
+        },
+        {
+          "source": "E-002",
+          "target": "E-005",
+          "relationship": "contributes_to"
+        },
+        {
+          "source": "E-003",
+          "target": "E-005",
+          "relationship": "contributes_to"
+        },
+        {
+          "source": "E-004",
+          "target": "E-005",
+          "relationship": "contributes_to"
+        }
+      ]
+    },
+    "finding": {
+      "version": "2.0.0",
+      "generated": "2026-08-10",
+      "note": "Finding -> issue/PR/packet/commit relationships.",
+      "nodes": [
+        {
+          "id": "F-001",
+          "type": "finding",
+          "title": "Keyboard invariant",
+          "status": "REPRODUCED"
+        },
+        {
+          "id": "F-002",
+          "type": "finding",
+          "title": "F unbound",
+          "status": "REPRODUCED"
+        },
+        {
+          "id": "F-003",
+          "type": "finding",
+          "title": "KeyboardHelp no F",
+          "status": "VERIFIED"
+        },
+        {
+          "id": "F-004",
+          "type": "finding",
+          "title": "Fit constants invariant",
+          "status": "VERIFIED"
+        },
+        {
+          "id": "F-005",
+          "type": "finding",
+          "title": "#57 latch->refit",
+          "status": "CONFIRMED"
+        },
+        {
+          "id": "F-006",
+          "type": "finding",
+          "title": "Delayed-data blank",
+          "status": "REPRODUCED_LIVE"
+        },
+        {
+          "id": "F-007",
+          "type": "finding",
+          "title": "Rollup timing",
+          "status": "OBSERVED"
+        },
+        {
+          "id": "F-008",
+          "type": "finding",
+          "title": "#376 mismatch",
+          "status": "OPEN"
+        },
+        {
+          "id": "F-009",
+          "type": "finding",
+          "title": "#371 patches dead",
+          "status": "OPEN"
+        },
+        {
+          "id": "F-010",
+          "type": "finding",
+          "title": "Loopback /__ix/remap",
+          "status": "PR_READY"
+        },
+        {
+          "id": "F-011",
+          "type": "finding",
+          "title": "WSL fix",
+          "status": "IN_REMAP_PR"
+        },
+        {
+          "id": "F-012",
+          "type": "finding",
+          "title": "node_ok removal",
+          "status": "IN_REMAP_PR"
+        },
+        {
+          "id": "F-013",
+          "type": "finding",
+          "title": "Zoom anomaly",
+          "status": "OPEN"
+        },
+        {
+          "id": "ISSUE-57",
+          "type": "issue",
+          "title": "system-compass#57",
+          "status": "fixed_in_v030"
+        },
+        {
+          "id": "ISSUE-371",
+          "type": "issue",
+          "title": "Ix#371",
+          "status": "open"
+        },
+        {
+          "id": "ISSUE-376",
+          "type": "issue",
+          "title": "Ix#376",
+          "status": "open"
+        },
+        {
+          "id": "PACK-fkey",
+          "type": "pr_packet",
+          "title": "compass-f-key",
+          "status": "spec, source-blocked"
+        },
+        {
+          "id": "PACK-delayed",
+          "type": "pr_packet",
+          "title": "compass-delayed-data",
+          "status": "investigation"
+        },
+        {
+          "id": "PACK-remap",
+          "type": "pr_packet",
+          "title": "ix-remap-hardening",
+          "status": "ready"
+        },
+        {
+          "id": "PACK-376",
+          "type": "pr_packet",
+          "title": "ix-376-version-mismatch",
+          "status": "ready"
+        },
+        {
+          "id": "COMMIT-remap",
+          "type": "commit",
+          "title": "c021b52"
+        },
+        {
+          "id": "COMMIT-365",
+          "type": "commit",
+          "title": "dcc0962 (#365)"
+        }
+      ],
+      "edges": [
+        {
+          "source": "F-001",
+          "target": "PACK-fkey",
+          "relationship": "feeds"
+        },
+        {
+          "source": "F-002",
+          "target": "PACK-fkey",
+          "relationship": "feeds"
+        },
+        {
+          "source": "F-003",
+          "target": "PACK-fkey",
+          "relationship": "feeds"
+        },
+        {
+          "source": "F-004",
+          "target": "PACK-fkey",
+          "relationship": "feeds"
+        },
+        {
+          "source": "F-005",
+          "target": "ISSUE-57",
+          "relationship": "documents"
+        },
+        {
+          "source": "F-005",
+          "target": "PACK-fkey",
+          "relationship": "guards"
+        },
+        {
+          "source": "F-006",
+          "target": "PACK-delayed",
+          "relationship": "drives"
+        },
+        {
+          "source": "F-006",
+          "target": "ISSUE-57",
+          "relationship": "relates_to"
+        },
+        {
+          "source": "F-007",
+          "target": "PACK-delayed",
+          "relationship": "feeds"
+        },
+        {
+          "source": "F-008",
+          "target": "ISSUE-376",
+          "relationship": "documents"
+        },
+        {
+          "source": "F-008",
+          "target": "PACK-376",
+          "relationship": "drives"
+        },
+        {
+          "source": "F-008",
+          "target": "COMMIT-365",
+          "relationship": "caused_by"
+        },
+        {
+          "source": "F-009",
+          "target": "ISSUE-371",
+          "relationship": "documents"
+        },
+        {
+          "source": "F-010",
+          "target": "PACK-remap",
+          "relationship": "drives"
+        },
+        {
+          "source": "F-010",
+          "target": "COMMIT-remap",
+          "relationship": "implemented_in"
+        },
+        {
+          "source": "F-011",
+          "target": "PACK-remap",
+          "relationship": "ships_with"
+        },
+        {
+          "source": "F-012",
+          "target": "PACK-remap",
+          "relationship": "ships_with"
+        }
+      ]
+    },
+    "dependency": {
+      "version": "2.0.0",
+      "generated": "2026-08-10",
+      "note": "Dependency graph: what depends on what (phases, PRs, commits, issues, packets).",
+      "nodes": [
+        {
+          "id": "phase-00",
+          "type": "phase",
+          "title": "Phase 0"
+        },
+        {
+          "id": "phase-01",
+          "type": "phase",
+          "title": "Phase 1"
+        },
+        {
+          "id": "phase-02",
+          "type": "phase",
+          "title": "Phase 2"
+        },
+        {
+          "id": "phase-03",
+          "type": "phase",
+          "title": "Phase 3"
+        },
+        {
+          "id": "phase-04",
+          "type": "phase",
+          "title": "Phase 4"
+        },
+        {
+          "id": "phase-05",
+          "type": "phase",
+          "title": "Phase 5"
+        },
+        {
+          "id": "phase-06",
+          "type": "phase",
+          "title": "Phase 6"
+        },
+        {
+          "id": "phase-07",
+          "type": "phase",
+          "title": "Phase 7"
+        },
+        {
+          "id": "phase-11",
+          "type": "phase",
+          "title": "Phase 11"
+        },
+        {
+          "id": "phase-12",
+          "type": "phase",
+          "title": "Phase 12"
+        },
+        {
+          "id": "phase-13",
+          "type": "phase",
+          "title": "Phase 13"
+        },
+        {
+          "id": "PACK-remap",
+          "type": "pr_packet",
+          "title": "ix-remap-hardening",
+          "status": "ready"
+        },
+        {
+          "id": "PACK-376",
+          "type": "pr_packet",
+          "title": "ix-376-version-mismatch",
+          "status": "ready"
+        },
+        {
+          "id": "PACK-fkey",
+          "type": "pr_packet",
+          "title": "compass-f-key",
+          "status": "source-blocked"
+        },
+        {
+          "id": "PACK-delayed",
+          "type": "pr_packet",
+          "title": "compass-delayed-data",
+          "status": "source-blocked"
+        },
+        {
+          "id": "ISSUE-376",
+          "type": "issue",
+          "title": "Ix#376"
+        },
+        {
+          "id": "ISSUE-371",
+          "type": "issue",
+          "title": "Ix#371"
+        },
+        {
+          "id": "PR-358",
+          "type": "pr",
+          "title": "Ix#358",
+          "status": "merged"
+        },
+        {
+          "id": "PR-362",
+          "type": "pr",
+          "title": "Ix#362",
+          "status": "open"
+        },
+        {
+          "id": "PR-365",
+          "type": "pr",
+          "title": "Ix#365",
+          "status": "merged"
+        },
+        {
+          "id": "PR-366",
+          "type": "pr",
+          "title": "Ix#366",
+          "status": "merged"
+        },
+        {
+          "id": "PR-368",
+          "type": "pr",
+          "title": "Ix#368",
+          "status": "merged"
+        },
+        {
+          "id": "PR-344",
+          "type": "pr",
+          "title": "Ix#344",
+          "status": "merged"
+        },
+        {
+          "id": "COMMIT-remap",
+          "type": "commit",
+          "title": "c021b52"
+        },
+        {
+          "id": "COMMIT-365",
+          "type": "commit",
+          "title": "dcc0962 (#365)"
+        },
+        {
+          "id": "branch-remap",
+          "type": "branch",
+          "title": "feat/ix-remap-hardening"
+        }
+      ],
+      "edges": [
+        {
+          "source": "phase-00",
+          "target": "phase-01",
+          "relationship": "depends_on"
+        },
+        {
+          "source": "phase-01",
+          "target": "phase-02",
+          "relationship": "depends_on"
+        },
+        {
+          "source": "phase-02",
+          "target": "phase-03",
+          "relationship": "depends_on"
+        },
+        {
+          "source": "phase-03",
+          "target": "phase-04",
+          "relationship": "depends_on"
+        },
+        {
+          "source": "phase-04",
+          "target": "phase-05",
+          "relationship": "depends_on"
+        },
+        {
+          "source": "phase-05",
+          "target": "phase-06",
+          "relationship": "depends_on"
+        },
+        {
+          "source": "phase-06",
+          "target": "phase-07",
+          "relationship": "depends_on"
+        },
+        {
+          "source": "phase-11",
+          "target": "phase-12",
+          "relationship": "depends_on"
+        },
+        {
+          "source": "phase-12",
+          "target": "phase-13",
+          "relationship": "depends_on"
+        },
+        {
+          "source": "branch-remap",
+          "target": "PR-358",
+          "relationship": "predecessor"
+        },
+        {
+          "source": "branch-remap",
+          "target": "PR-362",
+          "relationship": "sibling_no_conflict"
+        },
+        {
+          "source": "PACK-376",
+          "target": "ISSUE-376",
+          "relationship": "fixes"
+        },
+        {
+          "source": "PACK-376",
+          "target": "PR-365",
+          "relationship": "root_cause_in"
+        },
+        {
+          "source": "PACK-376",
+          "target": "PR-366",
+          "relationship": "companion"
+        },
+        {
+          "source": "PACK-376",
+          "target": "PR-344",
+          "relationship": "must_remain_compatible_with"
+        },
+        {
+          "source": "PACK-fkey",
+          "target": "PR-368",
+          "relationship": "originated_from"
+        },
+        {
+          "source": "PACK-fkey",
+          "target": "ISSUE-376",
+          "relationship": "independent_of"
+        },
+        {
+          "source": "PACK-delayed",
+          "target": "ISSUE-376",
+          "relationship": "independent_of"
+        },
+        {
+          "source": "COMMIT-remap",
+          "target": "branch-remap",
+          "relationship": "heads"
+        }
+      ]
+    },
+    "decision": {
+      "version": "2.0.0",
+      "generated": "2026-08-10",
+      "note": "Decision -> suggestion/finding/phase relationships.",
+      "nodes": [
+        {
+          "id": "D-001",
+          "type": "decision",
+          "title": "Base remap on origin/main",
+          "status": "DECIDED"
+        },
+        {
+          "id": "D-002",
+          "type": "decision",
+          "title": "Dedicated worktree",
+          "status": "DECIDED"
+        },
+        {
+          "id": "D-003",
+          "type": "decision",
+          "title": "Evidence classification",
+          "status": "DECIDED"
+        },
+        {
+          "id": "D-004",
+          "type": "decision",
+          "title": "Release notes = Class A",
+          "status": "DECIDED"
+        },
+        {
+          "id": "D-005",
+          "type": "decision",
+          "title": "F-key keyboard-only",
+          "status": "DECIDED"
+        },
+        {
+          "id": "D-006",
+          "type": "decision",
+          "title": "Delayed-data separate",
+          "status": "DECIDED"
+        },
+        {
+          "id": "D-007",
+          "type": "decision",
+          "title": "dist is distribution",
+          "status": "DECIDED"
+        },
+        {
+          "id": "D-008",
+          "type": "decision",
+          "title": "Ix-findings standalone",
+          "status": "DECIDED"
+        },
+        {
+          "id": "D-009",
+          "type": "decision",
+          "title": "No push without authorization",
+          "status": "DECIDED (ongoing)"
+        },
+        {
+          "id": "D-010",
+          "type": "decision",
+          "title": "Port prep location",
+          "status": "OPEN"
+        },
+        {
+          "id": "D-011",
+          "type": "decision",
+          "title": "Compass PR scope",
+          "status": "OPEN"
+        },
+        {
+          "id": "D-012",
+          "type": "decision",
+          "title": "No-map chip timing",
+          "status": "OPEN"
+        },
+        {
+          "id": "D-013",
+          "type": "decision",
+          "title": "Stopgap patch fate",
+          "status": "OPEN"
+        },
+        {
+          "id": "D-014",
+          "type": "decision",
+          "title": "system-compass access path",
+          "status": "OPEN"
+        },
+        {
+          "id": "S-001",
+          "type": "suggestion",
+          "title": "Dedicated worktree",
+          "disposition": "ACCEPTED"
+        },
+        {
+          "id": "S-002",
+          "type": "suggestion",
+          "title": "Base on origin/main",
+          "disposition": "ACCEPTED"
+        },
+        {
+          "id": "S-007",
+          "type": "suggestion",
+          "title": "F-key keyboard-only",
+          "disposition": "ACCEPTED"
+        },
+        {
+          "id": "S-008",
+          "type": "suggestion",
+          "title": "Delayed-data separate",
+          "disposition": "ACCEPTED"
+        },
+        {
+          "id": "S-020",
+          "type": "suggestion",
+          "title": "No-map chip feature-detect",
+          "disposition": "DEFERRED"
+        },
+        {
+          "id": "S-011",
+          "type": "suggestion",
+          "title": "Stopgap local + expiry",
+          "disposition": "ACCEPTED (local)"
+        },
+        {
+          "id": "F-010",
+          "type": "finding",
+          "title": "Loopback /__ix/remap",
+          "status": "PR_READY"
+        },
+        {
+          "id": "F-005",
+          "type": "finding",
+          "title": "#57 latch->refit",
+          "status": "CONFIRMED"
+        },
+        {
+          "id": "F-006",
+          "type": "finding",
+          "title": "Delayed-data blank",
+          "status": "REPRODUCED_LIVE"
+        },
+        {
+          "id": "phase-12",
+          "type": "phase",
+          "title": "Publication gate"
+        },
+        {
+          "id": "phase-13",
+          "type": "phase",
+          "title": "Push + open PR"
+        }
+      ],
+      "edges": [
+        {
+          "source": "D-001",
+          "target": "S-002",
+          "relationship": "implements"
+        },
+        {
+          "source": "D-002",
+          "target": "S-001",
+          "relationship": "implements"
+        },
+        {
+          "source": "D-005",
+          "target": "S-007",
+          "relationship": "implements"
+        },
+        {
+          "source": "D-006",
+          "target": "S-008",
+          "relationship": "implements"
+        },
+        {
+          "source": "D-012",
+          "target": "S-020",
+          "relationship": "could_implement"
+        },
+        {
+          "source": "D-013",
+          "target": "S-011",
+          "relationship": "could_implement"
+        },
+        {
+          "source": "D-005",
+          "target": "F-005",
+          "relationship": "justified_by"
+        },
+        {
+          "source": "D-006",
+          "target": "F-006",
+          "relationship": "justified_by"
+        },
+        {
+          "source": "D-001",
+          "target": "F-010",
+          "relationship": "enables"
+        },
+        {
+          "source": "D-009",
+          "target": "phase-12",
+          "relationship": "gates"
+        },
+        {
+          "source": "D-009",
+          "target": "phase-13",
+          "relationship": "gates"
+        },
+        {
+          "source": "D-014",
+          "target": "F-005",
+          "relationship": "would_unblock"
+        },
+        {
+          "source": "D-014",
+          "target": "F-006",
+          "relationship": "would_unblock"
+        }
+      ]
+    }
+  }
+};
+```
+
+## File: index-standalone.html
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ix / Compass Investigation — Knowledge Wiki</title>
+<meta name="description" content="Interactive exploration of the Ix / Compass investigation knowledge base. Local, no server, no network.">
+<style>:root{
+  --bg:#0b0f14; --bg2:#0e141b; --panel:#111820; --panel2:#16202b;
+  --line:#1e2a37; --line2:#2a3a4b;
+  --ink:#c9d6e2; --ink-dim:#6f8396; --ink-faint:#46586a;
+  --accent:#5fd0a8; --accent2:#5aa8ff;
+  --amber:#e0b25a; --red:#e06a6a; --purple:#b48ae0;
+  --mono:"SFMono-Regular",ui-monospace,Menlo,Consolas,"Cascadia Mono",monospace;
+  --sans:"Inter","Segoe UI",system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.5;
+  background-image:radial-gradient(circle at 20% -10%, rgba(95,208,168,.06), transparent 40%),
+  radial-gradient(circle at 90% 110%, rgba(90,168,255,.05), transparent 40%);}
+#app{display:flex;flex-direction:column;height:100vh}
+
+/* top bar */
+#topbar{display:flex;align-items:center;gap:16px;padding:10px 16px;border-bottom:1px solid var(--line);
+  background:linear-gradient(180deg,var(--bg2),var(--bg));}
+.brand{display:flex;align-items:baseline;gap:10px;white-space:nowrap}
+.brand-mark{width:10px;height:10px;border:1.5px solid var(--accent);transform:rotate(45deg);align-self:center}
+.brand-title{font-family:var(--mono);font-size:13px;letter-spacing:.18em;font-weight:700;color:var(--ink)}
+.brand-sub{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--ink-faint);text-transform:uppercase}
+.search-wrap{flex:1;max-width:620px;margin-left:auto}
+#search{width:100%;background:var(--panel);border:1px solid var(--line);border-radius:4px;color:var(--ink);
+  padding:7px 11px;font-family:var(--mono);font-size:12px;outline:none}
+#search:focus{border-color:var(--line2)}
+.topbar-right{margin-left:auto}
+.badge{font-family:var(--mono);font-size:10px;letter-spacing:.15em;color:var(--accent);
+  border:1px solid var(--accent);padding:2px 8px;border-radius:3px}
+
+/* layout */
+#layout{display:flex;flex:1;min-height:0}
+#sidebar{width:230px;flex:none;border-right:1px solid var(--line);padding:14px 10px;overflow-y:auto;
+  background:linear-gradient(180deg,var(--bg2),transparent 70%)}
+.nav-group-label{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ink-faint);margin:14px 8px 6px}
+.nav-item{display:block;width:100%;text-align:left;background:none;border:none;color:var(--ink-dim);
+  font-family:var(--mono);font-size:12px;padding:7px 10px;border-radius:4px;cursor:pointer;
+  border-left:2px solid transparent}
+.nav-item:hover{color:var(--ink);background:var(--panel)}
+.nav-item.active{color:var(--accent);background:var(--panel);border-left-color:var(--accent)}
+
+#view{flex:1;min-width:0;display:flex;flex-direction:column;overflow:hidden}
+.breadcrumb{font-family:var(--mono);font-size:11px;color:var(--ink-faint);padding:8px 18px;border-bottom:1px solid var(--line);
+  display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.breadcrumb .sep{color:var(--ink-faint)}
+.breadcrumb .crumb{cursor:pointer}
+.breadcrumb .crumb:hover{color:var(--accent)}
+.content{flex:1;overflow-y:auto;padding:20px 22px}
+
+/* headings & tables */
+h1{font-family:var(--mono);font-size:18px;font-weight:700;letter-spacing:.02em;margin:0 0 4px;color:var(--ink)}
+h2{font-family:var(--mono);font-size:14px;font-weight:700;letter-spacing:.06em;margin:26px 0 10px;color:var(--accent);
+  text-transform:uppercase}
+h3{font-family:var(--mono);font-size:12px;margin:16px 0 6px;color:var(--ink)}
+p{margin:6px 0}
+.muted{color:var(--ink-dim)}
+.faint{color:var(--ink-faint)}
+.lede{color:var(--ink-dim);max-width:760px}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint)}
+tr:hover td{background:var(--panel)}
+td.code,th.code{font-family:var(--mono);font-size:12px}
+
+/* evidence class chips — label + glyph + border, not color alone */
+.eclass{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:10px;font-weight:700;
+  padding:1px 7px;border-radius:3px;border:1px solid;letter-spacing:.05em}
+.eclass::before{content:attr(data-g);font-size:11px}
+.eclass.A{color:#7fd0ff;border-color:#2a5878;background:rgba(90,168,255,.08)}
+.eclass.B{color:var(--accent);border-color:#2a6b54;background:rgba(95,208,168,.08)}
+.eclass.C{color:var(--amber);border-color:#6b5a2a;background:rgba(224,178,90,.08)}
+.eclass.D{color:var(--purple);border-color:#5a3d78;background:rgba(180,138,224,.1)}
+.badge-status{font-family:var(--mono);font-size:10px;padding:1px 7px;border-radius:3px;border:1px solid var(--line2);color:var(--ink-dim)}
+.badge-status.pr-ready{color:var(--accent);border-color:var(--accent)}
+.badge-status.open,.badge-status.blocked{color:var(--amber);border-color:var(--amber)}
+.badge-status.reproduced,.badge-status.confirmed,.badge-status.verified{color:#7fd0ff;border-color:#2a5878}
+.disposition{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.05em;padding:1px 7px;border-radius:3px;border:1px solid}
+.disposition.accepted{color:var(--accent);border-color:#2a6b54}
+.disposition.rejected{color:var(--red);border-color:#6b2a2a}
+.disposition.deferred{color:var(--amber);border-color:#6b5a2a}
+.disposition.superseded,.disposition.blocked{color:var(--purple);border-color:#5a3d78}
+
+/* filter chips */
+.filters{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 14px}
+.chip{font-family:var(--mono);font-size:11px;color:var(--ink-dim);background:var(--panel);border:1px solid var(--line);
+  padding:3px 10px;border-radius:12px;cursor:pointer}
+.chip:hover{color:var(--ink)}
+.chip.on{color:var(--accent);border-color:var(--accent)}
+.chip input{display:none}
+
+/* cards */
+.card{background:var(--panel);border:1px solid var(--line);border-radius:5px;padding:12px 14px;margin-bottom:10px}
+.card:hover{border-color:var(--line2)}
+.card h3{margin-top:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+kbd{font-family:var(--mono);background:var(--panel2);border:1px solid var(--line2);border-bottom-width:2px;border-radius:3px;padding:0 5px;font-size:11px}
+
+/* map */
+#map-wrap{position:relative;border:1px solid var(--line);border-radius:5px;background:var(--bg2);overflow:hidden;height:calc(100vh - 210px);min-height:420px}
+#graph{width:100%;height:100%;display:block;cursor:grab}
+#graph.dragging{cursor:grabbing}
+.map-legend{position:absolute;top:10px;left:10px;display:flex;flex-wrap:wrap;gap:8px;max-width:70%}
+.map-key{font-family:var(--mono);font-size:10px;color:var(--ink-dim);display:flex;align-items:center;gap:5px}
+.map-key .dot{width:10px;height:10px;border-radius:50%}
+.map-hint{position:absolute;bottom:10px;left:10px;font-family:var(--mono);font-size:10px;color:var(--ink-faint)}
+.map-ncount{position:absolute;top:10px;right:10px;font-family:var(--mono);font-size:10px;color:var(--ink-faint)}
+.node{stroke:#0b0f14;stroke-width:1.2;cursor:pointer;transition:opacity .15s}
+.node text{font-family:var(--mono);font-size:9px;fill:var(--ink-dim);pointer-events:none;paint-order:stroke;stroke:var(--bg2);stroke-width:3px}
+.edge{stroke:var(--line2);stroke-width:1;opacity:.55}
+.edge.focus{stroke:var(--accent);opacity:.9}
+.node.dim{opacity:.18}
+.node.focus{opacity:1}
+.node.selected{opacity:1}
+
+/* timeline */
+.tl{position:relative;padding-left:26px}
+.tl::before{content:"";position:absolute;left:8px;top:4px;bottom:4px;width:1px;background:var(--line2)}
+.tl-item{position:relative;margin-bottom:14px;padding-left:14px}
+.tl-item::before{content:"";position:absolute;left:-22px;top:6px;width:9px;height:9px;border-radius:50%;background:var(--bg);border:2px solid var(--line2)}
+.tl-item.release::before{border-color:var(--accent)}
+.tl-item.phase::before{border-color:var(--accent2)}
+.tl-item.github::before{border-color:var(--amber)}
+.tl-item.blocked::before{border-color:var(--red)}
+.tl-date{font-family:var(--mono);font-size:11px;color:var(--ink-faint)}
+.tl-title{font-size:13px}
+.tl-meta{font-family:var(--mono);font-size:10px;color:var(--ink-faint)}
+
+/* drawer */
+.drawer{position:fixed;top:0;right:0;height:100vh;width:min(460px,94vw);background:var(--panel);
+  border-left:1px solid var(--line2);transform:translateX(105%);transition:transform .18s ease;z-index:50;display:flex;flex-direction:column;
+  box-shadow:-20px 0 40px rgba(0,0,0,.4)}
+.drawer.open{transform:none}
+.drawer-head{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--line)}
+#drawer-title{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--accent);text-transform:uppercase}
+#drawer-close{background:none;border:none;color:var(--ink-dim);font-size:20px;cursor:pointer}
+#drawer-close:hover{color:var(--ink)}
+.drawer-body{overflow-y:auto;padding:16px}
+.drawer-body h3{margin-top:18px}
+.rel{display:inline-flex;gap:6px;flex-wrap:wrap}
+.rel a,.link{color:var(--accent2);cursor:pointer;font-family:var(--mono);font-size:11px;text-decoration:none;border:1px solid var(--line2);padding:1px 7px;border-radius:3px}
+.rel a:hover,.link:hover{background:var(--panel2)}
+
+/* phase explorer */
+.phase-card{cursor:pointer}
+.phase-card .cat{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--ink-faint);text-transform:uppercase}
+
+/* security */
+.ok{color:var(--accent)} .warn{color:var(--amber)} .bad{color:var(--red)}
+
+a.ext{color:var(--accent2);text-decoration:none}
+a.ext:hover{text-decoration:underline}
+.tag{font-family:var(--mono);font-size:10px;color:var(--ink-faint);border:1px solid var(--line2);padding:0 5px;border-radius:3px;margin-left:4px}
+@media (max-width:820px){#sidebar{width:200px}#layout{flex-direction:column}#sidebar{width:100%;border-right:none;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap} .nav-group-label{display:none} .nav-item{width:auto}}</style>
+</head>
+<body>
+<div id="app">
+  <header id="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-title">IX / COMPASS</span>
+      <span class="brand-sub">investigation knowledge base</span>
+    </div>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Search findings, evidence, suggestions, decisions, phases…" autocomplete="off" spellcheck="false">
+    </div>
+    <div class="topbar-right">
+      <span id="phase-badge" class="badge">FINAL</span>
+    </div>
+  </header>
+
+  <div id="layout">
+    <nav id="sidebar" aria-label="Views">
+      <div class="nav-group-label">Explore</div>
+      <button class="nav-item active" data-view="map">⌗ Investigation Map</button>
+      <button class="nav-item" data-view="timeline">◷ Timeline</button>
+      <button class="nav-item" data-view="repositories">▤ Repositories</button>
+      <button class="nav-item" data-view="phases">⛁ Phase Explorer</button>
+      <div class="nav-group-label">Knowledge</div>
+      <button class="nav-item" data-view="findings">✦ Findings</button>
+      <button class="nav-item" data-view="evidence">◈ Evidence</button>
+      <button class="nav-item" data-view="compass">◐ Compass History</button>
+      <button class="nav-item" data-view="prmap">⇄ PR / Issue Map</button>
+      <div class="nav-group-label">Decision</div>
+      <button class="nav-item" data-view="suggestions">✎ AI Suggestions</button>
+      <button class="nav-item" data-view="decisions">✓ Decisions</button>
+      <button class="nav-item" data-view="security">🛡 Security</button>
+      <div class="nav-group-label">About</div>
+      <button class="nav-item" data-view="about">ℹ About / Privacy</button>
+    </nav>
+
+    <main id="view">
+      <div id="breadcrumb" class="breadcrumb"></div>
+      <section id="content" class="content"></section>
+    </main>
+  </div>
+
+  <aside id="drawer" class="drawer" aria-label="Detail">
+    <div class="drawer-head">
+      <span id="drawer-title">Detail</span>
+      <button id="drawer-close" aria-label="Close">×</button>
+    </div>
+    <div id="drawer-body" class="drawer-body"></div>
+  </aside>
+</div>
+
+<script>// GENERATED by build-data.mjs — do not edit by hand.
+// Source: planning/ registries + maps (machine-readable knowledge base).
+window.IX_DATA = {
+  "meta": {
+    "title": "Ix / Compass Investigation",
+    "generated": "2026-08-10",
+    "phase": "FINAL",
+    "note": "Derived from planning/ registries. Evidence classes: A=source, B=artifact/runtime, C=reconstruction, D=inference."
+  },
+  "findings": [
+    {
+      "id": "F-001",
+      "ixf_id": "IXF-001",
+      "title": "Keyboard handler invariant across 4 releases",
+      "repository": "system-compass",
+      "subsystem": "keyboard",
+      "first_phase": "phase-05",
+      "latest_phase": "phase-final",
+      "evidence_class": "B",
+      "confidence": "high",
+      "status": "REPRODUCED",
+      "severity": null,
+      "affected_versions": [
+        "v0.1.0",
+        "v0.1.1",
+        "v0.2.0",
+        "v0.3.0"
+      ],
+      "evidence_refs": [
+        "E-005"
+      ],
+      "reproduction": "Byte comparison of extracted keyboard switch across all 4 tarballs",
+      "related_files": [
+        "comparisons/keyboard/reconstruction.md",
+        "comparisons/historical-matrix.md"
+      ],
+      "related_issues": [],
+      "related_prs": [
+        "pr-packets/compass-f-key/README.md"
+      ],
+      "related_suggestions": [
+        "S-007"
+      ],
+      "recommendation": "Use as evidence that a keyboard addition is conflict-free"
+    },
+    {
+      "id": "F-002",
+      "ixf_id": "IXF-002",
+      "title": "F/f genuinely unbound in all releases",
+      "repository": "system-compass",
+      "subsystem": "keyboard",
+      "first_phase": "phase-05",
+      "latest_phase": "phase-final",
+      "evidence_class": "B",
+      "confidence": "high",
+      "status": "REPRODUCED",
+      "severity": null,
+      "affected_versions": [
+        "v0.1.0",
+        "v0.1.1",
+        "v0.2.0",
+        "v0.3.0"
+      ],
+      "evidence_refs": [
+        "E-005"
+      ],
+      "reproduction": "Zero grep matches for F/f key bindings in any artifact",
+      "related_files": [
+        "comparisons/keyboard/reconstruction.md"
+      ],
+      "related_issues": [],
+      "related_prs": [
+        "pr-packets/compass-f-key/README.md"
+      ],
+      "related_suggestions": [
+        "S-007"
+      ],
+      "recommendation": "F-key addition has zero historical conflict"
+    },
+    {
+      "id": "F-003",
+      "ixf_id": "IXF-003",
+      "title": "KeyboardHelp byte-identical, no F entry",
+      "repository": "system-compass",
+      "subsystem": "keyboard-help",
+      "first_phase": "phase-05",
+      "latest_phase": "phase-final",
+      "evidence_class": "B",
+      "confidence": "high",
+      "status": "VERIFIED",
+      "severity": null,
+      "affected_versions": [
+        "v0.1.0",
+        "v0.1.1",
+        "v0.2.0",
+        "v0.3.0"
+      ],
+      "evidence_refs": [
+        "E-006"
+      ],
+      "reproduction": "Extracted KeyboardHelp-KnF66B2h.js (v0.3.0): 8 entries, no F",
+      "related_files": [
+        "comparisons/keyboard/reconstruction.md"
+      ],
+      "related_issues": [],
+      "related_prs": [
+        "pr-packets/compass-f-key/README.md"
+      ],
+      "related_suggestions": [
+        "S-007"
+      ],
+      "recommendation": "Add {keys:['F'], label:'Fit view'} when source access exists"
+    },
+    {
+      "id": "F-004",
+      "ixf_id": "IXF-004",
+      "title": "Fit math + constants invariant",
+      "repository": "system-compass",
+      "subsystem": "camera-fit",
+      "first_phase": "phase-05",
+      "latest_phase": "phase-final",
+      "evidence_class": "B",
+      "confidence": "high",
+      "status": "VERIFIED",
+      "severity": null,
+      "affected_versions": [
+        "v0.1.0",
+        "v0.1.1",
+        "v0.2.0",
+        "v0.3.0"
+      ],
+      "evidence_refs": [
+        "E-007",
+        "E-011"
+      ],
+      "reproduction": "9 constants (1200,700,56,1.25,112,36,2.5,1.1,96) + contain + snap extracted",
+      "related_files": [
+        "comparisons/camera-fit/reconstruction.md",
+        "comparisons/historical-matrix.md"
+      ],
+      "related_issues": [],
+      "related_prs": [],
+      "related_suggestions": [
+        "S-007"
+      ],
+      "recommendation": "F-key reuses existing fit math; no duplication (D-005)"
+    },
+    {
+      "id": "F-005",
+      "ixf_id": "IXF-005",
+      "title": "#57 one-shot fit latch -> keyed refit (v0.2.0->v0.3.0)",
+      "repository": "system-compass",
+      "subsystem": "camera-fit-lifecycle",
+      "first_phase": "phase-05",
+      "latest_phase": "phase-final",
+      "evidence_class": "A+B",
+      "confidence": "high",
+      "status": "CONFIRMED",
+      "severity": null,
+      "affected_versions": [
+        "v0.1.0",
+        "v0.1.1",
+        "v0.2.0",
+        "v0.3.0"
+      ],
+      "evidence_refs": [
+        "E-008",
+        "E-003",
+        "E-004"
+      ],
+      "reproduction": "v0.2.0 bundle latch guard (!q||A||) vs v0.3.0 keyed refit effect; release notes confirm",
+      "related_files": [
+        "comparisons/camera-fit/reconstruction.md",
+        "comparisons/releases/timeline.md"
+      ],
+      "related_issues": [
+        "system-compass#57"
+      ],
+      "related_prs": [],
+      "related_suggestions": [
+        "S-032",
+        "S-033"
+      ],
+      "recommendation": "F-key must NOT add auto-frame or drill reframe (duplicates #57)"
+    },
+    {
+      "id": "F-006",
+      "ixf_id": "IXF-006",
+      "title": "Delayed-data blank persists on v0.3.0",
+      "repository": "system-compass",
+      "subsystem": "camera-fit-lifecycle",
+      "first_phase": "phase-07",
+      "latest_phase": "phase-final",
+      "evidence_class": "B+C",
+      "confidence": "high (repro), medium (mechanism)",
+      "status": "REPRODUCED_LIVE",
+      "severity": "P1",
+      "affected_versions": [
+        "v0.2.0",
+        "v0.3.0"
+      ],
+      "evidence_refs": [
+        "E-009"
+      ],
+      "reproduction": "60s proxy delay -> camera frozen at placeholder fit, 0 cards visible; fast path correct",
+      "related_files": [
+        "comparisons/camera-fit/delayed-data-investigation.md",
+        "pr-packets/compass-delayed-data/README.md"
+      ],
+      "related_issues": [
+        "system-compass#57"
+      ],
+      "related_prs": [
+        "pr-packets/compass-delayed-data/README.md"
+      ],
+      "related_suggestions": [
+        "S-008",
+        "S-018"
+      ],
+      "recommendation": "Separate Compass issue/PR; call out as known limitation in F-key PR; do not fold into F-key (D-006)"
+    },
+    {
+      "id": "F-007",
+      "ixf_id": "IXF-007",
+      "title": "Region-rollup aggregate formation is timing-dependent",
+      "repository": "system-compass",
+      "subsystem": "region-rollup",
+      "first_phase": "phase-07",
+      "latest_phase": "phase-final",
+      "evidence_class": "B",
+      "confidence": "medium",
+      "status": "OBSERVED",
+      "severity": "P2",
+      "affected_versions": [
+        "v0.3.0"
+      ],
+      "evidence_refs": [
+        "E-012"
+      ],
+      "reproduction": "Fast: 9 cards + 1 aggregate. Delayed: 15 cards, no aggregate. Same map_rev.",
+      "related_files": [
+        "comparisons/camera-fit/reconstruction.md"
+      ],
+      "related_issues": [],
+      "related_prs": [],
+      "related_suggestions": [
+        "S-008"
+      ],
+      "recommendation": "Investigate rollup decision timing after data completes"
+    },
+    {
+      "id": "F-008",
+      "ixf_id": "IXF-008",
+      "title": "Version-series mismatch in ix upgrade (#376)",
+      "repository": "ix-infrastructure/Ix",
+      "subsystem": "upgrade",
+      "first_phase": "phase-03",
+      "latest_phase": "phase-final",
+      "evidence_class": "A",
+      "confidence": "high",
+      "status": "OPEN",
+      "severity": "P1",
+      "affected_versions": [
+        "v0.9.1+"
+      ],
+      "affected_commits": [
+        "dcc0962 (#365)"
+      ],
+      "evidence_refs": [
+        "E-017"
+      ],
+      "reproduction": "Deterministic from source: isNewer('0.3.0','0.9.1') false today; flips when dist > Ix version",
+      "related_files": [
+        "github/issues/376/README.md",
+        "pr-packets/ix-376-version-mismatch/README.md"
+      ],
+      "related_issues": [
+        "Ix#376"
+      ],
+      "related_prs": [
+        "Ix#365",
+        "Ix#366",
+        "Ix#344"
+      ],
+      "related_suggestions": [
+        "S-013"
+      ],
+      "recommendation": "Separate PR; Option A (stamp dist version); coordinate with KageBinary"
+    },
+    {
+      "id": "F-009",
+      "ixf_id": "IXF-009",
+      "title": "patches command dead/unregistered (#371)",
+      "repository": "ix-infrastructure/Ix",
+      "subsystem": "cli-registration",
+      "first_phase": "phase-04",
+      "latest_phase": "phase-final",
+      "evidence_class": "A",
+      "confidence": "high",
+      "status": "OPEN",
+      "severity": "P2",
+      "affected_versions": [
+        "current main"
+      ],
+      "evidence_refs": [
+        "E-018"
+      ],
+      "reproduction": "registerPatchesCommand exported but never imported (absent from oss.ts); PRO_COMMANDS masks it",
+      "related_files": [
+        "github/issues/371/README.md"
+      ],
+      "related_issues": [
+        "Ix#371"
+      ],
+      "related_prs": [
+        "Ix#372"
+      ],
+      "related_suggestions": [
+        "S-014"
+      ],
+      "recommendation": "Register in oss.ts or delete patches.ts; separate from remap"
+    },
+    {
+      "id": "F-010",
+      "ixf_id": "IXF-010",
+      "title": "Loopback-hardened /__ix/remap endpoint (implemented)",
+      "repository": "ix-infrastructure/Ix",
+      "subsystem": "view-server",
+      "first_phase": "phase-02",
+      "latest_phase": "phase-13",
+      "evidence_class": "A",
+      "confidence": "high",
+      "status": "PR_READY",
+      "severity": null,
+      "affected_versions": [
+        "new feature"
+      ],
+      "affected_commits": [
+        "c021b52"
+      ],
+      "evidence_refs": [
+        "E-014",
+        "E-015",
+        "E-016"
+      ],
+      "reproduction": "10-test guard matrix + 656-suite green; live curl 200/403 per packet",
+      "related_files": [
+        "pr-packets/ix-remap-hardening/README.md",
+        "state/phase-2-remap-report.md"
+      ],
+      "related_issues": [],
+      "related_prs": [],
+      "related_suggestions": [
+        "S-003",
+        "S-004",
+        "S-012",
+        "S-030"
+      ],
+      "recommendation": "Push + open PR upon authorization (phase-13)"
+    },
+    {
+      "id": "F-011",
+      "ixf_id": "IXF-011",
+      "title": "WSL bootstrap fix",
+      "repository": "ix-infrastructure/Ix",
+      "subsystem": "bootstrap",
+      "first_phase": "phase-02",
+      "latest_phase": "phase-final",
+      "evidence_class": "A",
+      "confidence": "high",
+      "status": "IN_REMAP_PR",
+      "severity": null,
+      "affected_versions": [
+        "current main"
+      ],
+      "evidence_refs": [
+        "E-014"
+      ],
+      "reproduction": "is_windows() treated WSL_DISTRO_NAME as Windows -> wrong installer path",
+      "related_files": [
+        "pr-packets/ix-remap-hardening/README.md"
+      ],
+      "related_issues": [],
+      "related_prs": [
+        "ix-remap-hardening"
+      ],
+      "related_suggestions": [],
+      "recommendation": "Ship with remap PR"
+    },
+    {
+      "id": "F-012",
+      "ixf_id": "IXF-012",
+      "title": "Dead node_ok removal",
+      "repository": "ix-infrastructure/Ix",
+      "subsystem": "bootstrap",
+      "first_phase": "phase-02",
+      "latest_phase": "phase-final",
+      "evidence_class": "A",
+      "confidence": "high",
+      "status": "IN_REMAP_PR",
+      "severity": null,
+      "affected_versions": [
+        "current main"
+      ],
+      "evidence_refs": [
+        "E-014"
+      ],
+      "reproduction": "node_ok set but never read in bootstrap.sh",
+      "related_files": [
+        "pr-packets/ix-remap-hardening/README.md"
+      ],
+      "related_issues": [],
+      "related_prs": [
+        "ix-remap-hardening"
+      ],
+      "related_suggestions": [],
+      "recommendation": "Ship with remap PR"
+    },
+    {
+      "id": "F-013",
+      "ixf_id": null,
+      "title": "Zoom-in multiplier discrepancy (x1.25 observed vs x1.1 in constants)",
+      "repository": "system-compass",
+      "subsystem": "camera-zoom",
+      "first_phase": "phase-07",
+      "latest_phase": "phase-final",
+      "evidence_class": "D",
+      "confidence": "low",
+      "status": "OPEN",
+      "severity": "P3",
+      "affected_versions": [
+        "v0.3.0 (observed)"
+      ],
+      "evidence_refs": [
+        "E-011"
+      ],
+      "reproduction": "On-screen zoom button appeared to apply ~x1.25",
+      "related_files": [
+        "comparisons/camera-fit/delayed-data-investigation.md"
+      ],
+      "related_issues": [],
+      "related_prs": [],
+      "related_suggestions": [
+        "S-017"
+      ],
+      "recommendation": "Re-verify with source access or a dedicated experiment before claiming anything"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "E-001",
+      "title": "compass-0.1.0.tar.gz",
+      "type": "artifact",
+      "class": "B",
+      "phase": "phase-05",
+      "repository": "ix-compass-dist",
+      "detail": "SHA256 19bc427d0eca77b2...; Rolldown, 13 chunks; released 2026-03-28",
+      "supports": [
+        "F-001",
+        "F-002",
+        "F-003",
+        "F-004",
+        "F-005"
+      ]
+    },
+    {
+      "id": "E-002",
+      "title": "compass-0.1.1.tar.gz",
+      "type": "artifact",
+      "class": "B",
+      "phase": "phase-05",
+      "repository": "ix-compass-dist",
+      "detail": "SHA256 74e56488c5daf970...; hotfix; several chunks byte-identical to v0.1.0",
+      "supports": [
+        "F-001",
+        "F-002",
+        "F-003",
+        "F-004",
+        "F-005"
+      ]
+    },
+    {
+      "id": "E-003",
+      "title": "compass-0.2.0.tar.gz",
+      "type": "artifact",
+      "class": "B",
+      "phase": "phase-05",
+      "repository": "ix-compass-dist",
+      "detail": "SHA256 863583084c91719f...; released 2026-06-08; one-shot fit latch present",
+      "supports": [
+        "F-001",
+        "F-002",
+        "F-003",
+        "F-004",
+        "F-005"
+      ]
+    },
+    {
+      "id": "E-004",
+      "title": "compass-0.3.0.tar.gz",
+      "type": "artifact",
+      "class": "B",
+      "phase": "phase-05",
+      "repository": "ix-compass-dist",
+      "detail": "SHA256 7ed6cc82fe58b3ad...; built from system-compass main @ 7f98724; keyed refit effect present",
+      "supports": [
+        "F-001",
+        "F-002",
+        "F-003",
+        "F-004",
+        "F-005",
+        "F-006"
+      ]
+    },
+    {
+      "id": "E-005",
+      "title": "keyboard switch byte-identity",
+      "type": "artifact",
+      "class": "B",
+      "phase": "phase-05",
+      "repository": "system-compass",
+      "detail": "identical switch + guards across all 4 releases; F/f zero matches in every chunk",
+      "supports": [
+        "F-001",
+        "F-002"
+      ]
+    },
+    {
+      "id": "E-006",
+      "title": "KeyboardHelp extraction",
+      "type": "artifact",
+      "class": "B",
+      "phase": "phase-05",
+      "repository": "system-compass",
+      "detail": "KeyboardHelp-KnF66B2h.js (1784 B): 8 entries, no F; byte-identical across releases",
+      "supports": [
+        "F-003"
+      ]
+    },
+    {
+      "id": "E-007",
+      "title": "fit-constants extraction",
+      "type": "artifact",
+      "class": "B",
+      "phase": "phase-05",
+      "repository": "system-compass",
+      "detail": "1200,700,56,1.25,112,36,2.5,1.1,96 + contain + snap invariant",
+      "supports": [
+        "F-004"
+      ]
+    },
+    {
+      "id": "E-008",
+      "title": "v0.3.0 release notes (KageBinary)",
+      "type": "release note",
+      "class": "A",
+      "phase": "phase-05",
+      "repository": "ix-compass-dist",
+      "detail": "#57/#58/#59; exists to stop a downgrade; aggregation 1471->33; bounded layout; searchable roll-ups; breadcrumb collapse",
+      "supports": [
+        "F-005",
+        "F-006",
+        "F-007"
+      ]
+    },
+    {
+      "id": "E-009",
+      "title": "delayed-data A/B runs",
+      "type": "reproduction",
+      "class": "B",
+      "phase": "phase-07",
+      "repository": "system-compass",
+      "detail": "A v0.2.0 0.439@(39,315) 0 cards; B v0.3.0 0.441@(39,388) 0 cards; B2 repeat 0 cards; C fast 0.129@(39,254) visible; map_rev constant",
+      "supports": [
+        "F-006"
+      ]
+    },
+    {
+      "id": "E-010",
+      "title": "F-key PoC (patched v0.3.0)",
+      "type": "runtime",
+      "class": "B",
+      "phase": "phase-05",
+      "repository": "system-compass",
+      "detail": "F == 0 target byte-identical; INPUT guard holds; CmdK/Esc unchanged; zero console errors",
+      "supports": [
+        "F-001",
+        "F-002",
+        "F-003",
+        "F-004",
+        "F-005"
+      ]
+    },
+    {
+      "id": "E-011",
+      "title": "zoom-contract live checks",
+      "type": "runtime",
+      "class": "B",
+      "phase": "phase-07",
+      "repository": "system-compass",
+      "detail": "x1.1 in / x0.9 out / 2.5 cap / floor=fit; x1.25 button anomaly",
+      "supports": [
+        "F-004",
+        "F-013"
+      ]
+    },
+    {
+      "id": "E-012",
+      "title": "rollup timing A/B",
+      "type": "runtime",
+      "class": "B",
+      "phase": "phase-07",
+      "repository": "system-compass",
+      "detail": "fast 9 cards + 1 aggregate vs delayed 15 cards, no aggregate; same map_rev",
+      "supports": [
+        "F-007"
+      ]
+    },
+    {
+      "id": "E-013",
+      "title": "view.ts pre-fix bind",
+      "type": "source",
+      "class": "A",
+      "phase": "phase-00",
+      "repository": "ix-infrastructure/Ix",
+      "detail": "server.listen(PORT) no host -> binds ::/0.0.0.0 (P0)",
+      "supports": [
+        "F-010"
+      ]
+    },
+    {
+      "id": "E-014",
+      "title": "remap diff c021b52",
+      "type": "source",
+      "class": "A",
+      "phase": "phase-02",
+      "repository": "ix-infrastructure/Ix",
+      "detail": "4 files +250/-11: view.ts endpoint + guard, tests, bootstrap.sh WSL/node_ok, docs",
+      "supports": [
+        "F-010",
+        "F-011",
+        "F-012"
+      ]
+    },
+    {
+      "id": "E-015",
+      "title": "guard-matrix tests",
+      "type": "test",
+      "class": "B",
+      "phase": "phase-02",
+      "repository": "ix-infrastructure/Ix",
+      "detail": "10 scenarios, ix-cli/test/view-server.test.ts; real server + real child process",
+      "supports": [
+        "F-010"
+      ]
+    },
+    {
+      "id": "E-016",
+      "title": "suite runs (fresh)",
+      "type": "test",
+      "class": "B",
+      "phase": "phase-12",
+      "repository": "ix-infrastructure/Ix",
+      "detail": "vitest 656/2 (51 files), tsc 0 errors, eslint clean; re-run at phases 02 & 12",
+      "supports": [
+        "F-010"
+      ]
+    },
+    {
+      "id": "E-017",
+      "title": "#376 source analysis",
+      "type": "source",
+      "class": "A",
+      "phase": "phase-03",
+      "repository": "ix-infrastructure/Ix",
+      "detail": "upgrade.ts isNewer/getInstalledCompassVersion/writeCache; release.yml stamping; PR #365/#366/#344",
+      "supports": [
+        "F-008"
+      ]
+    },
+    {
+      "id": "E-018",
+      "title": "#371 source analysis",
+      "type": "source",
+      "class": "A",
+      "phase": "phase-04",
+      "repository": "ix-infrastructure/Ix",
+      "detail": "patches.ts:6 export; absent from oss.ts; listed in PRO_COMMANDS",
+      "supports": [
+        "F-009"
+      ]
+    },
+    {
+      "id": "E-019",
+      "title": "git divergence numbers",
+      "type": "git",
+      "class": "A",
+      "phase": "phase-final",
+      "repository": "ALL",
+      "detail": "main 0/0; fork 5 behind; remap 1 ahead/0 behind; refs c4f8fea/0437abf/c021b52/b038c46/396426b",
+      "supports": []
+    },
+    {
+      "id": "E-020",
+      "title": "GitHub maintainer context",
+      "type": "github",
+      "class": "A",
+      "phase": "phase-10",
+      "repository": "ALL",
+      "detail": "identities/roles via API + last-30-commit history; issue->PR->maintainer map; tagging guidance",
+      "supports": []
+    },
+    {
+      "id": "E-021",
+      "title": "worktree map",
+      "type": "git",
+      "class": "A",
+      "phase": "phase-final",
+      "repository": "ix-infrastructure/Ix",
+      "detail": "primary <IX_REPO> + linked <IX_REMAP_WORKTREE>; standalone <COMPASS_DIST_REPO>",
+      "supports": []
+    },
+    {
+      "id": "E-022",
+      "title": "placeholder-fit instability",
+      "type": "runtime",
+      "class": "B",
+      "phase": "phase-07",
+      "repository": "system-compass",
+      "detail": "0.439 vs 0.441 across runs (mount-timing dependent)",
+      "supports": [
+        "F-006"
+      ]
+    },
+    {
+      "id": "E-023",
+      "title": "source-maps scan",
+      "type": "artifact",
+      "class": "B",
+      "phase": "phase-05",
+      "repository": "ix-compass-dist",
+      "detail": "no .map files shipped in any release",
+      "supports": []
+    },
+    {
+      "id": "E-024",
+      "title": "bootstrap.sh is_windows()/node_ok",
+      "type": "source",
+      "class": "A",
+      "phase": "phase-02",
+      "repository": "ix-infrastructure/Ix",
+      "detail": "WSL misrouting + dead variable on merged main",
+      "supports": [
+        "F-011",
+        "F-012"
+      ]
+    },
+    {
+      "id": "E-025",
+      "title": "F-key source-equivalent spec",
+      "type": "document",
+      "class": "C",
+      "phase": "phase-05",
+      "repository": "system-compass",
+      "detail": "tasks/compass-f-key-source-equivalent.md: PR material from artifact + PoC + review",
+      "supports": [
+        "F-001",
+        "F-002",
+        "F-003",
+        "F-004",
+        "F-005"
+      ]
+    }
+  ],
+  "suggestions": [
+    {
+      "id": "S-001",
+      "text": "Use a dedicated Git worktree for remap work",
+      "phase": "phase-00",
+      "evidence_refs": [
+        "E-021"
+      ],
+      "repository": "Ix",
+      "disposition": "ACCEPTED",
+      "reason": "isolation from the 18-file overhaul (D-002)",
+      "related_findings": [
+        "F-010"
+      ]
+    },
+    {
+      "id": "S-002",
+      "text": "Base remap branch on origin/main, not stale local/fork main",
+      "phase": "phase-01",
+      "evidence_refs": [
+        "E-019"
+      ],
+      "repository": "Ix",
+      "disposition": "ACCEPTED",
+      "reason": "clean PR base (D-001)",
+      "related_findings": [
+        "F-010"
+      ]
+    },
+    {
+      "id": "S-003",
+      "text": "Export serverScript() from view.ts for testing",
+      "phase": "phase-02",
+      "evidence_refs": [
+        "E-014"
+      ],
+      "repository": "Ix",
+      "disposition": "ACCEPTED",
+      "reason": "enables generated-server tests",
+      "related_findings": [
+        "F-010"
+      ]
+    },
+    {
+      "id": "S-004",
+      "text": "IX_VIEW_MAP_MAIN env seam for stub CLI in tests",
+      "phase": "phase-02",
+      "evidence_refs": [
+        "E-014",
+        "E-015"
+      ],
+      "repository": "Ix",
+      "disposition": "ACCEPTED",
+      "reason": "integration tests without a real install",
+      "related_findings": [
+        "F-010"
+      ]
+    },
+    {
+      "id": "S-005",
+      "text": "Four-tier evidence classification A/B/C/D",
+      "phase": "phase-02",
+      "evidence_refs": [],
+      "repository": "Ix-findings",
+      "disposition": "ACCEPTED",
+      "reason": "credibility; prevents overclaiming (D-003)",
+      "related_findings": []
+    },
+    {
+      "id": "S-006",
+      "text": "Keep Compass changes separate from Ix changes",
+      "phase": "phase-03",
+      "evidence_refs": [
+        "E-008",
+        "E-020"
+      ],
+      "repository": "ALL",
+      "disposition": "ACCEPTED",
+      "reason": "different repos/owners/reviews",
+      "related_findings": []
+    },
+    {
+      "id": "S-007",
+      "text": "F-key = keyboard exposure only; no CameraStore, no duplicate fit math",
+      "phase": "phase-05",
+      "evidence_refs": [
+        "E-005",
+        "E-006",
+        "E-007",
+        "E-010"
+      ],
+      "repository": "system-compass",
+      "disposition": "ACCEPTED",
+      "reason": "real camera state exists; 0 key already fits (D-005)",
+      "related_findings": [
+        "F-001",
+        "F-002",
+        "F-003",
+        "F-004"
+      ]
+    },
+    {
+      "id": "S-008",
+      "text": "Delayed-data is a separate concern from F-key",
+      "phase": "phase-07",
+      "evidence_refs": [
+        "E-009"
+      ],
+      "repository": "system-compass",
+      "disposition": "ACCEPTED",
+      "reason": "different root cause/review scope (D-006)",
+      "related_findings": [
+        "F-006"
+      ]
+    },
+    {
+      "id": "S-009",
+      "text": "Ix-findings as a standalone evidence repo",
+      "phase": "phase-08",
+      "evidence_refs": [],
+      "repository": "Ix-findings",
+      "disposition": "ACCEPTED",
+      "reason": "self-contained ledger (D-008)",
+      "related_findings": []
+    },
+    {
+      "id": "S-010",
+      "text": "PR packet for #376",
+      "phase": "phase-11",
+      "evidence_refs": [
+        "E-017"
+      ],
+      "repository": "Ix",
+      "disposition": "ACCEPTED",
+      "reason": "packet ready",
+      "related_findings": [
+        "F-008"
+      ]
+    },
+    {
+      "id": "S-011",
+      "text": "Keep improved compass-patch as local stopgap with documented expiry",
+      "phase": "phase-final",
+      "evidence_refs": [
+        "E-025"
+      ],
+      "repository": "Ix (local)",
+      "disposition": "ACCEPTED",
+      "reason": "local-only; expires when Compass ships F-fit (D-013)",
+      "related_findings": []
+    },
+    {
+      "id": "S-012",
+      "text": "Parse Origin with new URL(), not regex (template-literal pipeline)",
+      "phase": "phase-02",
+      "evidence_refs": [
+        "E-014"
+      ],
+      "repository": "Ix",
+      "disposition": "ACCEPTED",
+      "reason": "regex backslashes eaten by script regeneration",
+      "related_findings": [
+        "F-010"
+      ]
+    },
+    {
+      "id": "S-013",
+      "text": "Fix #376 (stamp dist version / identity compare)",
+      "phase": "phase-03",
+      "evidence_refs": [
+        "E-017"
+      ],
+      "repository": "Ix",
+      "disposition": "DEFERRED",
+      "reason": "authorization + maintainer direction (F-008)",
+      "related_findings": [
+        "F-008"
+      ]
+    },
+    {
+      "id": "S-014",
+      "text": "Fix #371 (register or delete patches)",
+      "phase": "phase-04",
+      "evidence_refs": [
+        "E-018"
+      ],
+      "repository": "Ix",
+      "disposition": "DEFERRED",
+      "reason": "separate priority from remap (F-009)",
+      "related_findings": [
+        "F-009"
+      ]
+    },
+    {
+      "id": "S-015",
+      "text": "Commit Ix-findings",
+      "phase": "phase-09",
+      "evidence_refs": [],
+      "repository": "Ix-findings",
+      "disposition": "DEFERRED",
+      "reason": "held for final review",
+      "related_findings": []
+    },
+    {
+      "id": "S-016",
+      "text": "Sync fork main after remap push",
+      "phase": "phase-01",
+      "evidence_refs": [
+        "E-019"
+      ],
+      "repository": "Ix",
+      "disposition": "DEFERRED",
+      "reason": "depends on remap push (authorization)",
+      "related_findings": []
+    },
+    {
+      "id": "S-017",
+      "text": "Re-verify zoom multiplier (x1.1 vs x1.25)",
+      "phase": "phase-07",
+      "evidence_refs": [
+        "E-011"
+      ],
+      "repository": "system-compass",
+      "disposition": "DEFERRED",
+      "reason": "low priority; needs source or dedicated experiment (F-013)",
+      "related_findings": [
+        "F-013"
+      ]
+    },
+    {
+      "id": "S-018",
+      "text": "Reproduce delayed-data via Playwright automation",
+      "phase": "phase-07",
+      "evidence_refs": [
+        "E-009"
+      ],
+      "repository": "system-compass",
+      "disposition": "DEFERRED",
+      "reason": "source-blocked; manual A/B deterministic",
+      "related_findings": [
+        "F-006"
+      ]
+    },
+    {
+      "id": "S-019",
+      "text": "Investigate system-compass #58/#59",
+      "phase": "phase-05",
+      "evidence_refs": [
+        "E-008"
+      ],
+      "repository": "system-compass",
+      "disposition": "DEFERRED",
+      "reason": "source-blocked; release notes only",
+      "related_findings": []
+    },
+    {
+      "id": "S-020",
+      "text": "No-map hint chip with feature-detect on /__ix/remap",
+      "phase": "phase-final",
+      "evidence_refs": [
+        "E-014"
+      ],
+      "repository": "system-compass",
+      "disposition": "DEFERRED",
+      "reason": "after Ix endpoint PR merges; hide chip when endpoint absent (D-012)",
+      "related_findings": []
+    },
+    {
+      "id": "S-021",
+      "text": "Create a CameraStore abstraction for Compass",
+      "phase": "phase-05",
+      "evidence_refs": [
+        "E-010"
+      ],
+      "repository": "system-compass",
+      "disposition": "REJECTED",
+      "reason": "real camera state exists; would duplicate architecture",
+      "related_findings": [
+        "F-004"
+      ]
+    },
+    {
+      "id": "S-022",
+      "text": "DOM zoom patch (style.zoom, timers) for Compass",
+      "phase": "phase-05",
+      "evidence_refs": [
+        "E-010"
+      ],
+      "repository": "system-compass",
+      "disposition": "REJECTED",
+      "reason": "fragile; fights React state; native camera exists",
+      "related_findings": [
+        "F-004"
+      ]
+    },
+    {
+      "id": "S-023",
+      "text": "Combine F-key + delayed-data in one PR",
+      "phase": "phase-07",
+      "evidence_refs": [
+        "E-009"
+      ],
+      "repository": "system-compass",
+      "disposition": "REJECTED",
+      "reason": "different causes, different reviews",
+      "related_findings": [
+        "F-006"
+      ]
+    },
+    {
+      "id": "S-024",
+      "text": "Mix Compass UI changes into the Ix PR",
+      "phase": "phase-03",
+      "evidence_refs": [
+        "E-014"
+      ],
+      "repository": "mixed",
+      "disposition": "REJECTED",
+      "reason": "separate repos, separate PRs",
+      "related_findings": []
+    },
+    {
+      "id": "S-025",
+      "text": "Stash the Ix overhaul to free the main worktree",
+      "phase": "phase-01",
+      "evidence_refs": [
+        "E-019"
+      ],
+      "repository": "Ix",
+      "disposition": "REJECTED",
+      "reason": "unsafe; dedicated worktree used instead (D-002)",
+      "related_findings": []
+    },
+    {
+      "id": "S-026",
+      "text": "Base/compare remap against fork/main",
+      "phase": "phase-01",
+      "evidence_refs": [
+        "E-019"
+      ],
+      "repository": "Ix",
+      "disposition": "REJECTED",
+      "reason": "fork stale (5 behind); origin/main canonical",
+      "related_findings": []
+    },
+    {
+      "id": "S-027",
+      "text": "Manually modify ix-compass-dist artifacts",
+      "phase": "phase-08",
+      "evidence_refs": [
+        "E-001",
+        "E-002",
+        "E-003",
+        "E-004"
+      ],
+      "repository": "ix-compass-dist",
+      "disposition": "REJECTED",
+      "reason": "distribution channel; artifacts built from system-compass (D-007)",
+      "related_findings": []
+    },
+    {
+      "id": "S-028",
+      "text": "Push fork/main without first syncing",
+      "phase": "phase-01",
+      "evidence_refs": [
+        "E-019"
+      ],
+      "repository": "Ix",
+      "disposition": "REJECTED",
+      "reason": "would publish a stale fork; defer to post-remap (S-016)",
+      "related_findings": []
+    },
+    {
+      "id": "S-029",
+      "text": "git reset --hard on the primary worktree",
+      "phase": "phase-04",
+      "evidence_refs": [],
+      "repository": "Ix",
+      "disposition": "REJECTED",
+      "reason": "would destroy the 13-file uncommitted overhaul",
+      "related_findings": []
+    },
+    {
+      "id": "S-030",
+      "text": "Bind the remap server to 0.0.0.0",
+      "phase": "phase-02",
+      "evidence_refs": [
+        "E-014"
+      ],
+      "repository": "Ix",
+      "disposition": "REJECTED",
+      "reason": "exposes a shell-exec endpoint to the network",
+      "related_findings": [
+        "F-010"
+      ]
+    },
+    {
+      "id": "S-031",
+      "text": "Pass the claim to the doubt-driven reviewer",
+      "phase": "phase-04",
+      "evidence_refs": [],
+      "repository": "Ix",
+      "disposition": "REJECTED",
+      "reason": "biases the reviewer toward agreement",
+      "related_findings": []
+    },
+    {
+      "id": "S-032",
+      "text": "Add mount auto-frame to the F-key PR",
+      "phase": "phase-06",
+      "evidence_refs": [
+        "E-008"
+      ],
+      "repository": "system-compass",
+      "disposition": "SUPERSEDED",
+      "reason": "#57 already refits on mount (v0.3.0)",
+      "related_findings": [
+        "F-005"
+      ]
+    },
+    {
+      "id": "S-033",
+      "text": "Add drill-in/out reframe to the F-key PR",
+      "phase": "phase-06",
+      "evidence_refs": [
+        "E-008"
+      ],
+      "repository": "system-compass",
+      "disposition": "SUPERSEDED",
+      "reason": "#57 keyed refit covers drill (v0.3.0)",
+      "related_findings": [
+        "F-005"
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "D-001",
+      "dec_alias": "DEC-001",
+      "title": "Base remap branch on origin/main",
+      "date": "2026-08-10",
+      "phase": "phase-01",
+      "problem": "clean PR base needed; local main stale, fork main 5 behind",
+      "options": [
+        "local main",
+        "fork/main",
+        "origin/main"
+      ],
+      "chosen": "origin/main (c4f8fea)",
+      "rejected": [
+        "local main",
+        "fork/main"
+      ],
+      "reason": "origin/main is the canonical target; fork stale",
+      "consequences": "zero-conflict PR base",
+      "related_findings": [
+        "F-010"
+      ],
+      "related_suggestions": [
+        "S-002"
+      ],
+      "status": "DECIDED"
+    },
+    {
+      "id": "D-002",
+      "dec_alias": "DEC-002",
+      "title": "Dedicated worktree for remap work",
+      "date": "2026-08-10",
+      "phase": "phase-00",
+      "problem": "18 uncommitted files must not entangle with remap",
+      "options": [
+        "stash + same worktree",
+        "dedicated worktree"
+      ],
+      "chosen": "dedicated worktree",
+      "rejected": [
+        "stash"
+      ],
+      "reason": "complete isolation; no stash risk",
+      "consequences": "remap branch clean; overhaul untouched",
+      "related_findings": [],
+      "related_suggestions": [
+        "S-001",
+        "S-025"
+      ],
+      "status": "DECIDED"
+    },
+    {
+      "id": "D-003",
+      "dec_alias": "DEC-003",
+      "title": "Four-tier evidence classification A/B/C/D",
+      "date": "2026-08-10",
+      "phase": "phase-02",
+      "problem": "distinguish source-proven fact from reconstruction from speculation",
+      "options": [],
+      "chosen": "A=source, B=artifact/runtime, C=reconstruction, D=inference",
+      "rejected": [],
+      "reason": "credibility; prevents overclaiming",
+      "consequences": "all findings carry a class",
+      "related_findings": [],
+      "related_suggestions": [
+        "S-005"
+      ],
+      "status": "DECIDED"
+    },
+    {
+      "id": "D-004",
+      "dec_alias": "DEC-004",
+      "title": "Maintainer release notes count as Class A evidence",
+      "date": "2026-08-10",
+      "phase": "phase-03",
+      "problem": "v0.3.0 release notes are the only source-level window into system-compass",
+      "options": [],
+      "chosen": "Class A for asserted behavior, not implementation details",
+      "rejected": [],
+      "reason": "authoritative about behavior, not filenames/line numbers",
+      "consequences": "F-005/F-008 base claims on release notes",
+      "related_findings": [
+        "F-005",
+        "F-008"
+      ],
+      "related_suggestions": [],
+      "status": "DECIDED"
+    },
+    {
+      "id": "D-005",
+      "dec_alias": "DEC-005",
+      "title": "F-key = keyboard exposure only, no new camera system",
+      "date": "2026-08-10",
+      "phase": "phase-05",
+      "problem": "historical port contained speculative CameraStore/DOM patches",
+      "options": [
+        "keyboard-only exposure",
+        "full camera system port"
+      ],
+      "chosen": "keyboard case + callback + help entry",
+      "rejected": [
+        "CameraStore",
+        "DOM patch",
+        "auto/drill frame"
+      ],
+      "reason": "fit system invariant; 0 key already works",
+      "consequences": "smallest change; zero conflict",
+      "related_findings": [
+        "F-001",
+        "F-002",
+        "F-003",
+        "F-004",
+        "F-005"
+      ],
+      "related_suggestions": [
+        "S-007",
+        "S-021",
+        "S-022",
+        "S-032",
+        "S-033"
+      ],
+      "status": "DECIDED"
+    },
+    {
+      "id": "D-006",
+      "dec_alias": "DEC-006",
+      "title": "Delayed-data stays separate from F-key",
+      "date": "2026-08-10",
+      "phase": "phase-07",
+      "problem": "both fit-adjacent but unrelated",
+      "options": [
+        "combined PR",
+        "separate PRs"
+      ],
+      "chosen": "separate PRs/packets",
+      "rejected": [
+        "combined"
+      ],
+      "reason": "different root causes/reviews",
+      "consequences": "two packets",
+      "related_findings": [
+        "F-006"
+      ],
+      "related_suggestions": [
+        "S-008",
+        "S-023"
+      ],
+      "status": "DECIDED"
+    },
+    {
+      "id": "D-007",
+      "dec_alias": "DEC-007",
+      "title": "ix-compass-dist is a distribution channel, not source",
+      "date": "2026-08-10",
+      "phase": "phase-08",
+      "problem": "whether to modify dist for Compass PRs",
+      "options": [],
+      "chosen": "never manually modify its artifacts",
+      "rejected": [],
+      "reason": "artifacts built from system-compass",
+      "consequences": "no dist changes",
+      "related_findings": [],
+      "related_suggestions": [
+        "S-027"
+      ],
+      "status": "DECIDED"
+    },
+    {
+      "id": "D-008",
+      "dec_alias": "DEC-008",
+      "title": "Ix-findings is a standalone evidence repo",
+      "date": "2026-08-10",
+      "phase": "phase-08",
+      "problem": "canonical location for investigation evidence",
+      "options": [],
+      "chosen": "standalone Git repo, no upstream",
+      "rejected": [],
+      "reason": "keeps evidence separate; shareable",
+      "consequences": "ledger repo",
+      "related_findings": [],
+      "related_suggestions": [
+        "S-009"
+      ],
+      "status": "DECIDED"
+    },
+    {
+      "id": "D-009",
+      "dec_alias": "DEC-009",
+      "title": "No remote operation without explicit authorization",
+      "date": "2026-08-10",
+      "phase": "phase-01",
+      "problem": "multiple PR-ready branches exist",
+      "options": [],
+      "chosen": "PR-ready means local-only; publishing requires go-ahead",
+      "rejected": [],
+      "reason": "user controls the remote workflow",
+      "consequences": "phase-13 pending; nothing pushed",
+      "related_findings": [],
+      "related_suggestions": [
+        "S-016"
+      ],
+      "status": "DECIDED (ongoing)"
+    },
+    {
+      "id": "D-010",
+      "dec_alias": "plan D1",
+      "title": "Where to prep the Compass port",
+      "date": "2026-08-10",
+      "phase": "phase-final",
+      "problem": "standalone prep repo vs back in Ix worktree",
+      "options": [
+        "standalone repo",
+        "Ix worktree"
+      ],
+      "chosen": null,
+      "rejected": [],
+      "reason": "recommended: standalone (avoids wrong-layer review)",
+      "consequences": null,
+      "related_findings": [],
+      "related_suggestions": [],
+      "status": "OPEN"
+    },
+    {
+      "id": "D-011",
+      "dec_alias": "plan D2",
+      "title": "Compass PR scope",
+      "date": "2026-08-10",
+      "phase": "phase-final",
+      "problem": "F key + help + chip only vs also drill reframe",
+      "options": [
+        "F key + help + chip",
+        "+ drill reframe"
+      ],
+      "chosen": null,
+      "rejected": [],
+      "reason": "recommended: F key + help + chip (drill reframe ships via #57)",
+      "consequences": null,
+      "related_findings": [
+        "F-005"
+      ],
+      "related_suggestions": [],
+      "status": "OPEN"
+    },
+    {
+      "id": "D-012",
+      "dec_alias": "plan D3",
+      "title": "No-map chip timing",
+      "date": "2026-08-10",
+      "phase": "phase-final",
+      "problem": "include no-map chip now vs defer with feature-detect",
+      "options": [
+        "include",
+        "defer + feature-detect"
+      ],
+      "chosen": null,
+      "rejected": [],
+      "reason": "recommended: defer (S-020)",
+      "consequences": null,
+      "related_findings": [],
+      "related_suggestions": [
+        "S-020"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "D-013",
+      "dec_alias": "plan D4",
+      "title": "Stopgap compass-patch fate",
+      "date": "2026-08-10",
+      "phase": "phase-final",
+      "problem": "keep improved patch as local stopgap vs drop",
+      "options": [
+        "keep local + expiry",
+        "drop"
+      ],
+      "chosen": null,
+      "rejected": [],
+      "reason": "recommended: keep local + expiry (S-011)",
+      "consequences": null,
+      "related_findings": [],
+      "related_suggestions": [
+        "S-011"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "id": "D-014",
+      "dec_alias": "plan D5",
+      "title": "Access path for system-compass",
+      "date": "2026-08-10",
+      "phase": "phase-final",
+      "problem": "ask KageBinary in #368 thread vs user-provided URL/contact",
+      "options": [
+        "ask KageBinary",
+        "user-provided"
+      ],
+      "chosen": null,
+      "rejected": [],
+      "reason": "recommended: ask KageBinary (offered review)",
+      "consequences": "unblocks Compass PR work",
+      "related_findings": [],
+      "related_suggestions": [],
+      "status": "OPEN"
+    }
+  ],
+  "phases": [
+    {
+      "id": "phase-00",
+      "number": 0,
+      "title": "Initial State Audit",
+      "category": "DISCOVERY",
+      "date": "2026-08-10",
+      "repository": "ix-infrastructure/Ix",
+      "objective": "Establish exact current state of every repository, worktree, branch, remote, and fork",
+      "status": "COMPLETE",
+      "key_findings": [
+        "Ix primary worktree has 18 uncommitted overhaul files",
+        "Remap worktree clean at c021b52 on origin/main",
+        "Fork main 5 behind origin/main",
+        "system-compass private and inaccessible",
+        "ix-compass-dist is distribution channel, not source"
+      ],
+      "outputs": [
+        "state/phase-0-audit.md"
+      ],
+      "dependencies": [],
+      "next_phase": "phase-01"
+    },
+    {
+      "id": "phase-01",
+      "number": 1,
+      "title": "Fork Synchronization",
+      "category": "SYNCHRONIZATION",
+      "date": "2026-08-10",
+      "repository": "ix-infrastructure/Ix",
+      "objective": "Synchronize Ix fork and local branches without losing uncommitted work",
+      "status": "COMPLETE",
+      "key_findings": [
+        "Local main fast-forwarded from 01308e6 to c4f8fea",
+        "Remap branch already correctly positioned on origin/main",
+        "Only 2 of 10 incorporated commits touched remap files",
+        "Fork NOT pushed (stays at 0437abf)"
+      ],
+      "outputs": [
+        "state/phase-1-sync-report.md"
+      ],
+      "dependencies": [
+        "phase-00"
+      ],
+      "next_phase": "phase-02"
+    },
+    {
+      "id": "phase-02",
+      "number": 2,
+      "title": "Remap Finalization",
+      "category": "IMPLEMENTATION",
+      "date": "2026-08-10",
+      "repository": "ix-infrastructure/Ix",
+      "objective": "Prepare feat/ix-remap-hardening as clean, focused, reviewable PR candidate",
+      "status": "COMPLETE",
+      "key_findings": [
+        "4 files changed, +251/-10 lines",
+        "656 tests passing, TypeScript clean, ESLint clean",
+        "Full guard matrix verified in code and tests",
+        "No secrets or personal data in diff"
+      ],
+      "changes": [
+        "ix-cli/src/cli/commands/view.ts: +55/-3 (real remap endpoint)",
+        "ix-cli/test/view-server.test.ts: +178 (guard matrix)",
+        "skills/ix/scripts/bootstrap.sh: +4/-5 (WSL fix)",
+        "docs/api/README.md: +13/-3 (documentation)"
+      ],
+      "outputs": [
+        "state/phase-2-remap-report.md",
+        "pr-packets/ix-remap-hardening/README.md"
+      ],
+      "dependencies": [
+        "phase-01"
+      ],
+      "next_phase": "phase-03"
+    },
+    {
+      "id": "phase-03",
+      "number": 3,
+      "title": "Issue #376 Investigation",
+      "category": "RESEARCH",
+      "date": "2026-08-10",
+      "repository": "ix-infrastructure/Ix",
+      "objective": "Investigate Ix #376 comprehensively",
+      "status": "COMPLETE",
+      "key_findings": [
+        "Two version series feed into one isNewer comparison",
+        "Currently correct by accident (0.3.0 < 0.9.1 → false)",
+        "Would break when ix-compass-dist version exceeds Ix version",
+        "Caused by PR #365 stamp decision"
+      ],
+      "outputs": [
+        "github/issues/376/README.md"
+      ],
+      "dependencies": [
+        "phase-01"
+      ],
+      "next_phase": "phase-04"
+    },
+    {
+      "id": "phase-04",
+      "number": 4,
+      "title": "Full Security & Historical Audit",
+      "category": "AUDIT",
+      "date": "2026-08-10",
+      "repository": "ix-infrastructure/Ix",
+      "objective": "Broad security and historical audit of the Ix repository",
+      "status": "COMPLETE",
+      "key_findings": [
+        "8 open issues catalogued",
+        "Security posture: STRONG (gitleaks, Trivy, Scorecard, etc.)",
+        "No secrets found in codebase",
+        "Remap PR cleared — zero overlap with any open issue"
+      ],
+      "outputs": [
+        "findings/phase-4-audit.md",
+        "github/maintainer-context.md"
+      ],
+      "dependencies": [
+        "phase-03"
+      ],
+      "next_phase": "phase-05"
+    },
+    {
+      "id": "phase-05",
+      "number": 5,
+      "title": "Compass Historical Reconstruction",
+      "category": "RESEARCH",
+      "date": "2026-08-10",
+      "repository": "ix-infrastructure/system-compass",
+      "objective": "Deep behavioral reconstruction of all 4 Compass artifact versions",
+      "status": "COMPLETE",
+      "key_findings": [
+        "Keyboard handler invariant across 4 releases",
+        "KeyboardHelp byte-identical, 8 entries, no F",
+        "All 9 fit constants verified in v0.3.0",
+        "#57: one-shot latch → keyed refit (Class A from release notes)"
+      ],
+      "outputs": [
+        "comparisons/historical-matrix.md",
+        "comparisons/keyboard/reconstruction.md",
+        "comparisons/camera-fit/reconstruction.md",
+        "comparisons/releases/timeline.md"
+      ],
+      "dependencies": [
+        "phase-04"
+      ],
+      "next_phase": "phase-06"
+    },
+    {
+      "id": "phase-06",
+      "number": 6,
+      "title": "F-Key Source-Access Gate",
+      "category": "VERIFICATION",
+      "date": "2026-08-10",
+      "repository": "ix-infrastructure/system-compass",
+      "objective": "Determine whether system-compass source is accessible",
+      "status": "COMPLETE (BLOCKED)",
+      "key_findings": [
+        "system-compass remains private (404)",
+        "No local checkout possible",
+        "F-key PR finalized as specification only"
+      ],
+      "outputs": [
+        "state/phase-6-f-key-gate.md",
+        "pr-packets/compass-f-key/README.md"
+      ],
+      "dependencies": [
+        "phase-05"
+      ],
+      "next_phase": "phase-07"
+    },
+    {
+      "id": "phase-07",
+      "number": 7,
+      "title": "Delayed-Data Deep Investigation",
+      "category": "REPRODUCTION",
+      "date": "2026-08-10",
+      "repository": "ix-infrastructure/system-compass",
+      "objective": "Deep runtime probing of the delayed-data finding",
+      "status": "COMPLETE",
+      "key_findings": [
+        "Live reproduction: zoom 0.441, 15 nodes, 78,600px canvas",
+        "Root cause: timing-dependent rollup + refit effect gap",
+        "Zoom-in multiplier appears to be ×1.25 not ×1.1",
+        "4 interactive experiments performed"
+      ],
+      "outputs": [
+        "comparisons/camera-fit/delayed-data-investigation.md",
+        "pr-packets/compass-delayed-data/README.md"
+      ],
+      "dependencies": [
+        "phase-05"
+      ],
+      "next_phase": "phase-08"
+    },
+    {
+      "id": "phase-08",
+      "number": 8,
+      "title": "Repository Architecture Audit",
+      "category": "AUDIT",
+      "date": "2026-08-10",
+      "repository": "ALL",
+      "objective": "Determine exact relationships between all repositories",
+      "status": "COMPLETE",
+      "key_findings": [
+        "5 repositories mapped with complete relationships",
+        "ix-compass-dist is manual distribution channel, no CI",
+        "Ix-findings has no GitHub repo, not Git-initialized",
+        "system-compass is only source for Compass UI"
+      ],
+      "outputs": [
+        "repositories/repository-map.md"
+      ],
+      "dependencies": [
+        "phase-00"
+      ],
+      "next_phase": "phase-09"
+    },
+    {
+      "id": "phase-09",
+      "number": 9,
+      "title": "Ix-findings Evidence Repository",
+      "category": "AUDIT",
+      "date": "2026-08-10",
+      "repository": "Ix-findings",
+      "objective": "Build Ix-findings as central evidence repository",
+      "status": "COMPLETE",
+      "key_findings": [
+        "Git repo initialized with .gitignore",
+        "12 findings registered with IXF-IDs",
+        "9 decisions documented",
+        "28 evidence files organized"
+      ],
+      "outputs": [
+        "README.md",
+        "manifests/findings-index.json",
+        "decisions/log.md",
+        "reports/phase-summaries.md"
+      ],
+      "dependencies": [
+        "phase-08"
+      ],
+      "next_phase": "phase-10"
+    },
+    {
+      "id": "phase-10",
+      "number": 10,
+      "title": "GitHub History & Maintainer Context",
+      "category": "GITHUB",
+      "date": "2026-08-10",
+      "repository": "ALL",
+      "objective": "Investigate relevant GitHub history, maintainers, and review context",
+      "status": "COMPLETE",
+      "key_findings": [
+        "KageBinary: active COLLABORATOR, 14 of last 30 commits",
+        "josephismikhail: CODE OWNER, reviews KageBinary's PRs",
+        "Hiro-Chiba: CONTRIBUTOR, targeted bug fixes",
+        "TannerTorrey3: inactive historic releaser"
+      ],
+      "outputs": [
+        "github/maintainer-context.md",
+        "github/historical-prs.md"
+      ],
+      "dependencies": [
+        "phase-04"
+      ],
+      "next_phase": "phase-11"
+    },
+    {
+      "id": "phase-11",
+      "number": 11,
+      "title": "PR Packet Generation",
+      "category": "PR PREPARATION",
+      "date": "2026-08-10",
+      "repository": "ALL",
+      "objective": "Generate final PR packets for every justified change",
+      "status": "COMPLETE",
+      "key_findings": [
+        "4 PR packets generated: remap, F-key, delayed-data, #376",
+        "All packets sanitized, no secrets or personal data",
+        "Remap: PR-ready. F-key/delayed-data: block on source"
+      ],
+      "outputs": [
+        "pr-packets/ix-remap-hardening/README.md",
+        "pr-packets/compass-f-key/README.md",
+        "pr-packets/compass-delayed-data/README.md",
+        "pr-packets/ix-376-version-mismatch/README.md"
+      ],
+      "dependencies": [
+        "phase-10"
+      ],
+      "next_phase": "phase-12"
+    },
+    {
+      "id": "phase-12",
+      "number": 12,
+      "title": "Pre-Publish Verification Gate",
+      "category": "VERIFICATION",
+      "date": "2026-08-10",
+      "repository": "ix-infrastructure/Ix",
+      "objective": "Final independent verification before any remote action",
+      "status": "COMPLETE",
+      "key_findings": [
+        "READY TO PUSH: YES",
+        "READY TO OPEN PR: YES",
+        "BLOCKERS: NONE",
+        "All tests re-run fresh: 656/2/51, TSC 0, ESLint clean"
+      ],
+      "outputs": [
+        "state/phase-12-publication-gate.md"
+      ],
+      "dependencies": [
+        "phase-11"
+      ],
+      "next_phase": "phase-13 (requires authorization)"
+    }
+  ],
+  "timeline": [
+    {
+      "date": "2026-03-28",
+      "type": "release",
+      "title": "Compass v0.1.0 released (TannerTorrey3)",
+      "repo": "ix-compass-dist",
+      "evidence": "E-001"
+    },
+    {
+      "date": "2026-03-29",
+      "type": "release",
+      "title": "Compass v0.1.1 released (hotfix)",
+      "repo": "ix-compass-dist",
+      "evidence": "E-002"
+    },
+    {
+      "date": "2026-06-08",
+      "type": "release",
+      "title": "Compass v0.2.0 released",
+      "repo": "ix-compass-dist",
+      "evidence": "E-003"
+    },
+    {
+      "date": "2026-08-09",
+      "type": "release",
+      "title": "Compass v0.3.0 released (KageBinary) — #57 refit, bounded layout, aggregation",
+      "repo": "ix-compass-dist",
+      "evidence": "E-004, E-008"
+    },
+    {
+      "date": "2026-08-09",
+      "type": "github",
+      "title": "Ix PRs #365 (compass stamp) + #366 (tar pairing) merged",
+      "repo": "ix-infrastructure/Ix",
+      "evidence": "E-017"
+    },
+    {
+      "date": "2026-08-09",
+      "type": "github",
+      "title": "Ix PR #368 (agent skill + HTTP API docs) merged -> 2157158",
+      "repo": "ix-infrastructure/Ix",
+      "evidence": "E-020"
+    },
+    {
+      "date": "2026-08-10",
+      "type": "github",
+      "title": "Ix issues #371 (patches dead) + #376 (version-series mismatch) opened by KageBinary",
+      "repo": "ix-infrastructure/Ix",
+      "evidence": "E-017, E-018"
+    },
+    {
+      "date": "2026-08-10",
+      "type": "phase",
+      "title": "Phase 0 — Initial State Audit",
+      "repo": "ALL",
+      "category": "DISCOVERY"
+    },
+    {
+      "date": "2026-08-10",
+      "type": "phase",
+      "title": "Phase 1 — Fork Synchronization (main -> c4f8fea)",
+      "repo": "Ix",
+      "category": "SYNCHRONIZATION"
+    },
+    {
+      "date": "2026-08-10",
+      "type": "phase",
+      "title": "Phase 2 — Remap Finalization (c021b52)",
+      "repo": "Ix",
+      "category": "IMPLEMENTATION"
+    },
+    {
+      "date": "2026-08-10",
+      "type": "phase",
+      "title": "Phase 3 — Issue #376 Investigation",
+      "repo": "Ix",
+      "category": "RESEARCH"
+    },
+    {
+      "date": "2026-08-10",
+      "type": "phase",
+      "title": "Phase 4 — Security & Historical Audit",
+      "repo": "Ix",
+      "category": "AUDIT"
+    },
+    {
+      "date": "2026-08-10",
+      "type": "phase",
+      "title": "Phase 5 — Compass Historical Reconstruction",
+      "repo": "system-compass (artifacts)",
+      "category": "RESEARCH"
+    },
+    {
+      "date": "2026-08-10",
+      "type": "phase",
+      "title": "Phase 6 — F-Key Source-Access Gate (BLOCKED)",
+      "repo": "system-compass",
+      "category": "VERIFICATION"
+    },
+    {
+      "date": "2026-08-10",
+      "type": "phase",
+      "title": "Phase 7 — Delayed-Data Deep Probe",
+      "repo": "system-compass (runtime)",
+      "category": "REPRODUCTION"
+    },
+    {
+      "date": "2026-08-10",
+      "type": "phase",
+      "title": "Phase 8 — Repository Architecture Audit",
+      "repo": "ALL",
+      "category": "AUDIT"
+    },
+    {
+      "date": "2026-08-10",
+      "type": "phase",
+      "title": "Phase 9 — Ix-findings Ledger",
+      "repo": "Ix-findings",
+      "category": "AUDIT"
+    },
+    {
+      "date": "2026-08-10",
+      "type": "phase",
+      "title": "Phase 10 — GitHub & Maintainer Context",
+      "repo": "ALL",
+      "category": "GITHUB"
+    },
+    {
+      "date": "2026-08-10",
+      "type": "phase",
+      "title": "Phase 11 — PR Packet Generation",
+      "repo": "ALL",
+      "category": "PR PREPARATION"
+    },
+    {
+      "date": "2026-08-10",
+      "type": "phase",
+      "title": "Phase 12 — Pre-Publish Verification Gate (READY)",
+      "repo": "Ix",
+      "category": "VERIFICATION"
+    },
+    {
+      "date": "2026-08-10",
+      "type": "phase",
+      "title": "Phase 13 — Push + Open PR (PENDING, authorization)",
+      "repo": "Ix",
+      "category": "PR PREPARATION",
+      "blocked": true
+    },
+    {
+      "date": "2026-08-10",
+      "type": "phase",
+      "title": "Phase FINAL — Master Audit, Reconciliation, Knowledge Graph, Wiki",
+      "repo": "Ix-findings",
+      "category": "AUDIT"
+    }
+  ],
+  "graph": {
+    "nodes": [
+      {
+        "id": "phase-00",
+        "type": "phase",
+        "title": "Phase 0 — Initial State Audit",
+        "category": "DISCOVERY",
+        "status": "COMPLETE"
+      },
+      {
+        "id": "phase-01",
+        "type": "phase",
+        "title": "Phase 1 — Fork Synchronization",
+        "category": "SYNCHRONIZATION",
+        "status": "COMPLETE"
+      },
+      {
+        "id": "phase-02",
+        "type": "phase",
+        "title": "Phase 2 — Remap Finalization",
+        "category": "IMPLEMENTATION",
+        "status": "COMPLETE"
+      },
+      {
+        "id": "phase-03",
+        "type": "phase",
+        "title": "Phase 3 — Issue #376",
+        "category": "RESEARCH",
+        "status": "COMPLETE"
+      },
+      {
+        "id": "phase-04",
+        "type": "phase",
+        "title": "Phase 4 — Security & Historical Audit",
+        "category": "AUDIT",
+        "status": "COMPLETE"
+      },
+      {
+        "id": "phase-05",
+        "type": "phase",
+        "title": "Phase 5 — Compass Reconstruction",
+        "category": "RESEARCH",
+        "status": "COMPLETE"
+      },
+      {
+        "id": "phase-06",
+        "type": "phase",
+        "title": "Phase 6 — F-Key Source-Access Gate",
+        "category": "VERIFICATION",
+        "status": "COMPLETE (BLOCKED)"
+      },
+      {
+        "id": "phase-07",
+        "type": "phase",
+        "title": "Phase 7 — Delayed-Data Deep Probe",
+        "category": "REPRODUCTION",
+        "status": "COMPLETE"
+      },
+      {
+        "id": "phase-08",
+        "type": "phase",
+        "title": "Phase 8 — Repository Architecture",
+        "category": "AUDIT",
+        "status": "COMPLETE"
+      },
+      {
+        "id": "phase-09",
+        "type": "phase",
+        "title": "Phase 9 — Ix-findings Ledger",
+        "category": "AUDIT",
+        "status": "COMPLETE"
+      },
+      {
+        "id": "phase-10",
+        "type": "phase",
+        "title": "Phase 10 — GitHub Context",
+        "category": "GITHUB",
+        "status": "COMPLETE"
+      },
+      {
+        "id": "phase-11",
+        "type": "phase",
+        "title": "Phase 11 — PR Packets",
+        "category": "PR PREPARATION",
+        "status": "COMPLETE"
+      },
+      {
+        "id": "phase-12",
+        "type": "phase",
+        "title": "Phase 12 — Publication Gate",
+        "category": "VERIFICATION",
+        "status": "COMPLETE"
+      },
+      {
+        "id": "phase-13",
+        "type": "phase",
+        "title": "Phase 13 — Push + Open PR",
+        "category": "PR PREPARATION",
+        "status": "BLOCKED (authorization)"
+      },
+      {
+        "id": "phase-final",
+        "type": "phase",
+        "title": "Phase FINAL — Master Audit & Wiki",
+        "category": "AUDIT",
+        "status": "COMPLETE"
+      },
+      {
+        "id": "repo-ix",
+        "type": "repository",
+        "title": "ix-infrastructure/Ix",
+        "visibility": "public",
+        "role": "source"
+      },
+      {
+        "id": "repo-fork",
+        "type": "repository",
+        "title": "Alot1z/Ix",
+        "visibility": "public",
+        "role": "fork"
+      },
+      {
+        "id": "repo-dist",
+        "type": "repository",
+        "title": "ix-compass-dist",
+        "visibility": "public",
+        "role": "distribution"
+      },
+      {
+        "id": "repo-sc",
+        "type": "repository",
+        "title": "system-compass",
+        "visibility": "private",
+        "role": "source"
+      },
+      {
+        "id": "repo-findings",
+        "type": "repository",
+        "title": "Ix-findings",
+        "visibility": "local",
+        "role": "investigation"
+      },
+      {
+        "id": "branch-main",
+        "type": "branch",
+        "title": "main @ c4f8fea",
+        "repo": "repo-ix",
+        "status": "synced"
+      },
+      {
+        "id": "branch-agent",
+        "type": "branch",
+        "title": "feat/ix-agent-skill @ b038c46",
+        "repo": "repo-ix",
+        "status": "uncommitted overhaul"
+      },
+      {
+        "id": "branch-remap",
+        "type": "branch",
+        "title": "feat/ix-remap-hardening @ c021b52",
+        "repo": "repo-ix",
+        "status": "pr-ready, not pushed"
+      },
+      {
+        "id": "branch-forkmain",
+        "type": "branch",
+        "title": "fork/main @ 0437abf",
+        "repo": "repo-fork",
+        "status": "5 behind"
+      },
+      {
+        "id": "branch-forkagent",
+        "type": "branch",
+        "title": "fork feat/ix-agent-skill @ 0c9087c",
+        "repo": "repo-fork",
+        "status": "cleanup, not local"
+      },
+      {
+        "id": "branch-dist",
+        "type": "branch",
+        "title": "dist main @ 396426b",
+        "repo": "repo-dist",
+        "status": "clean"
+      },
+      {
+        "id": "F-001",
+        "type": "finding",
+        "title": "Keyboard handler invariant",
+        "class": "B",
+        "repo": "repo-sc",
+        "status": "REPRODUCED"
+      },
+      {
+        "id": "F-002",
+        "type": "finding",
+        "title": "F/f unbound in all releases",
+        "class": "B",
+        "repo": "repo-sc",
+        "status": "REPRODUCED"
+      },
+      {
+        "id": "F-003",
+        "type": "finding",
+        "title": "KeyboardHelp identical, no F",
+        "class": "B",
+        "repo": "repo-sc",
+        "status": "VERIFIED"
+      },
+      {
+        "id": "F-004",
+        "type": "finding",
+        "title": "Fit math + constants invariant",
+        "class": "B",
+        "repo": "repo-sc",
+        "status": "VERIFIED"
+      },
+      {
+        "id": "F-005",
+        "type": "finding",
+        "title": "#57 latch -> keyed refit",
+        "class": "A+B",
+        "repo": "repo-sc",
+        "status": "CONFIRMED"
+      },
+      {
+        "id": "F-006",
+        "type": "finding",
+        "title": "Delayed-data blank persists",
+        "class": "B+C",
+        "repo": "repo-sc",
+        "status": "REPRODUCED_LIVE"
+      },
+      {
+        "id": "F-007",
+        "type": "finding",
+        "title": "Rollup timing-dependent",
+        "class": "B",
+        "repo": "repo-sc",
+        "status": "OBSERVED"
+      },
+      {
+        "id": "F-008",
+        "type": "finding",
+        "title": "Version-series mismatch (#376)",
+        "class": "A",
+        "repo": "repo-ix",
+        "status": "OPEN"
+      },
+      {
+        "id": "F-009",
+        "type": "finding",
+        "title": "patches dead (#371)",
+        "class": "A",
+        "repo": "repo-ix",
+        "status": "OPEN"
+      },
+      {
+        "id": "F-010",
+        "type": "finding",
+        "title": "Loopback-hardened /__ix/remap",
+        "class": "A",
+        "repo": "repo-ix",
+        "status": "PR_READY"
+      },
+      {
+        "id": "F-011",
+        "type": "finding",
+        "title": "WSL bootstrap fix",
+        "class": "A",
+        "repo": "repo-ix",
+        "status": "IN_REMAP_PR"
+      },
+      {
+        "id": "F-012",
+        "type": "finding",
+        "title": "Dead node_ok removal",
+        "class": "A",
+        "repo": "repo-ix",
+        "status": "IN_REMAP_PR"
+      },
+      {
+        "id": "F-013",
+        "type": "finding",
+        "title": "Zoom x1.25 vs x1.1 anomaly",
+        "class": "D",
+        "repo": "repo-sc",
+        "status": "OPEN"
+      },
+      {
+        "id": "E-001",
+        "type": "evidence",
+        "title": "compass-0.1.0 artifact",
+        "class": "B",
+        "kind": "artifact"
+      },
+      {
+        "id": "E-002",
+        "type": "evidence",
+        "title": "compass-0.1.1 artifact",
+        "class": "B",
+        "kind": "artifact"
+      },
+      {
+        "id": "E-003",
+        "type": "evidence",
+        "title": "compass-0.2.0 artifact",
+        "class": "B",
+        "kind": "artifact"
+      },
+      {
+        "id": "E-004",
+        "type": "evidence",
+        "title": "compass-0.3.0 artifact",
+        "class": "B",
+        "kind": "artifact"
+      },
+      {
+        "id": "E-005",
+        "type": "evidence",
+        "title": "keyboard byte-identity",
+        "class": "B",
+        "kind": "artifact"
+      },
+      {
+        "id": "E-006",
+        "type": "evidence",
+        "title": "KeyboardHelp extraction",
+        "class": "B",
+        "kind": "artifact"
+      },
+      {
+        "id": "E-007",
+        "type": "evidence",
+        "title": "fit constants extraction",
+        "class": "B",
+        "kind": "artifact"
+      },
+      {
+        "id": "E-008",
+        "type": "evidence",
+        "title": "v0.3.0 release notes",
+        "class": "A",
+        "kind": "release note"
+      },
+      {
+        "id": "E-009",
+        "type": "evidence",
+        "title": "delayed-data A/B runs",
+        "class": "B",
+        "kind": "reproduction"
+      },
+      {
+        "id": "E-010",
+        "type": "evidence",
+        "title": "F-key PoC",
+        "class": "B",
+        "kind": "runtime"
+      },
+      {
+        "id": "E-011",
+        "type": "evidence",
+        "title": "zoom contract checks",
+        "class": "B",
+        "kind": "runtime"
+      },
+      {
+        "id": "E-012",
+        "type": "evidence",
+        "title": "rollup timing A/B",
+        "class": "B",
+        "kind": "runtime"
+      },
+      {
+        "id": "E-013",
+        "type": "evidence",
+        "title": "view.ts pre-fix bind",
+        "class": "A",
+        "kind": "source"
+      },
+      {
+        "id": "E-014",
+        "type": "evidence",
+        "title": "remap diff c021b52",
+        "class": "A",
+        "kind": "source"
+      },
+      {
+        "id": "E-015",
+        "type": "evidence",
+        "title": "guard-matrix tests",
+        "class": "B",
+        "kind": "test"
+      },
+      {
+        "id": "E-016",
+        "type": "evidence",
+        "title": "suite runs (656/2, tsc, eslint)",
+        "class": "B",
+        "kind": "test"
+      },
+      {
+        "id": "E-017",
+        "type": "evidence",
+        "title": "#376 source analysis",
+        "class": "A",
+        "kind": "source"
+      },
+      {
+        "id": "E-018",
+        "type": "evidence",
+        "title": "#371 source analysis",
+        "class": "A",
+        "kind": "source"
+      },
+      {
+        "id": "E-019",
+        "type": "evidence",
+        "title": "git divergence numbers",
+        "class": "A",
+        "kind": "git"
+      },
+      {
+        "id": "E-020",
+        "type": "evidence",
+        "title": "GitHub maintainer context",
+        "class": "A",
+        "kind": "github"
+      },
+      {
+        "id": "E-021",
+        "type": "evidence",
+        "title": "worktree map",
+        "class": "A",
+        "kind": "git"
+      },
+      {
+        "id": "E-022",
+        "type": "evidence",
+        "title": "placeholder-fit instability",
+        "class": "B",
+        "kind": "runtime"
+      },
+      {
+        "id": "E-023",
+        "type": "evidence",
+        "title": "no source maps",
+        "class": "B",
+        "kind": "artifact"
+      },
+      {
+        "id": "E-024",
+        "type": "evidence",
+        "title": "bootstrap.sh WSL/node_ok",
+        "class": "A",
+        "kind": "source"
+      },
+      {
+        "id": "E-025",
+        "type": "evidence",
+        "title": "F-key source-equivalent spec",
+        "class": "C",
+        "kind": "document"
+      },
+      {
+        "id": "ISSUE-371",
+        "type": "issue",
+        "title": "Ix#371 patches dead",
+        "repo": "repo-ix",
+        "number": 371,
+        "status": "open"
+      },
+      {
+        "id": "ISSUE-376",
+        "type": "issue",
+        "title": "Ix#376 version-series mismatch",
+        "repo": "repo-ix",
+        "number": 376,
+        "status": "open"
+      },
+      {
+        "id": "ISSUE-374",
+        "type": "issue",
+        "title": "Ix#374 cross-batch calls",
+        "repo": "repo-ix",
+        "number": 374,
+        "status": "open"
+      },
+      {
+        "id": "ISSUE-57",
+        "type": "issue",
+        "title": "system-compass#57 fit latch",
+        "repo": "repo-sc",
+        "number": 57,
+        "status": "fixed_in_v030"
+      },
+      {
+        "id": "PR-358",
+        "type": "pr",
+        "title": "Ix#358 view port reporting",
+        "repo": "repo-ix",
+        "status": "merged"
+      },
+      {
+        "id": "PR-362",
+        "type": "pr",
+        "title": "Ix#362 view -p warning",
+        "repo": "repo-ix",
+        "status": "open"
+      },
+      {
+        "id": "PR-365",
+        "type": "pr",
+        "title": "Ix#365 compass stamp",
+        "repo": "repo-ix",
+        "status": "merged"
+      },
+      {
+        "id": "PR-366",
+        "type": "pr",
+        "title": "Ix#366 tar pairing",
+        "repo": "repo-ix",
+        "status": "merged"
+      },
+      {
+        "id": "PR-368",
+        "type": "pr",
+        "title": "Ix#368 agent skill + docs",
+        "repo": "repo-ix",
+        "status": "merged"
+      },
+      {
+        "id": "PR-372",
+        "type": "pr",
+        "title": "Ix#372 --format llm",
+        "repo": "repo-ix",
+        "status": "open"
+      },
+      {
+        "id": "PACK-remap",
+        "type": "pr_packet",
+        "title": "packet: ix-remap-hardening",
+        "repo": "repo-ix",
+        "status": "ready"
+      },
+      {
+        "id": "PACK-fkey",
+        "type": "pr_packet",
+        "title": "packet: compass-f-key",
+        "repo": "repo-sc",
+        "status": "spec, source-blocked"
+      },
+      {
+        "id": "PACK-delayed",
+        "type": "pr_packet",
+        "title": "packet: compass-delayed-data",
+        "repo": "repo-sc",
+        "status": "investigation, source-blocked"
+      },
+      {
+        "id": "PACK-376",
+        "type": "pr_packet",
+        "title": "packet: ix-376-version-mismatch",
+        "repo": "repo-ix",
+        "status": "ready"
+      },
+      {
+        "id": "COMMIT-remap",
+        "type": "commit",
+        "title": "c021b52",
+        "repo": "repo-ix",
+        "branch": "feat/ix-remap-hardening"
+      },
+      {
+        "id": "COMMIT-368",
+        "type": "commit",
+        "title": "2157158 (#368)",
+        "repo": "repo-ix"
+      },
+      {
+        "id": "COMMIT-365",
+        "type": "commit",
+        "title": "dcc0962 (#365)",
+        "repo": "repo-ix"
+      },
+      {
+        "id": "COMMIT-agent",
+        "type": "commit",
+        "title": "b038c46",
+        "repo": "repo-ix",
+        "branch": "feat/ix-agent-skill"
+      },
+      {
+        "id": "D-001",
+        "type": "decision",
+        "title": "Base remap on origin/main"
+      },
+      {
+        "id": "D-002",
+        "type": "decision",
+        "title": "Dedicated worktree"
+      },
+      {
+        "id": "D-003",
+        "type": "decision",
+        "title": "Evidence classification"
+      },
+      {
+        "id": "D-004",
+        "type": "decision",
+        "title": "Release notes = Class A"
+      },
+      {
+        "id": "D-005",
+        "type": "decision",
+        "title": "F-key keyboard-only"
+      },
+      {
+        "id": "D-006",
+        "type": "decision",
+        "title": "Delayed-data separate"
+      },
+      {
+        "id": "D-007",
+        "type": "decision",
+        "title": "dist is distribution"
+      },
+      {
+        "id": "D-008",
+        "type": "decision",
+        "title": "Ix-findings standalone"
+      },
+      {
+        "id": "D-009",
+        "type": "decision",
+        "title": "No push without authorization"
+      },
+      {
+        "id": "D-010",
+        "type": "decision",
+        "title": "(OPEN) Port prep location"
+      },
+      {
+        "id": "D-011",
+        "type": "decision",
+        "title": "(OPEN) Compass PR scope"
+      },
+      {
+        "id": "D-012",
+        "type": "decision",
+        "title": "(OPEN) No-map chip timing"
+      },
+      {
+        "id": "D-013",
+        "type": "decision",
+        "title": "(OPEN) Stopgap patch fate"
+      },
+      {
+        "id": "D-014",
+        "type": "decision",
+        "title": "(OPEN) system-compass access path"
+      },
+      {
+        "id": "S-001",
+        "type": "suggestion",
+        "title": "Dedicated worktree",
+        "disposition": "ACCEPTED"
+      },
+      {
+        "id": "S-002",
+        "type": "suggestion",
+        "title": "Base on origin/main",
+        "disposition": "ACCEPTED"
+      },
+      {
+        "id": "S-007",
+        "type": "suggestion",
+        "title": "F-key keyboard-only",
+        "disposition": "ACCEPTED"
+      },
+      {
+        "id": "S-008",
+        "type": "suggestion",
+        "title": "Delayed-data separate",
+        "disposition": "ACCEPTED"
+      },
+      {
+        "id": "S-013",
+        "type": "suggestion",
+        "title": "Fix #376",
+        "disposition": "DEFERRED"
+      },
+      {
+        "id": "S-030",
+        "type": "suggestion",
+        "title": "Bind 0.0.0.0",
+        "disposition": "REJECTED (dangerous)"
+      },
+      {
+        "id": "S-032",
+        "type": "suggestion",
+        "title": "Mount auto-frame",
+        "disposition": "SUPERSEDED"
+      },
+      {
+        "id": "PERSON-kb",
+        "type": "person",
+        "title": "KageBinary",
+        "role": "COLLABORATOR"
+      },
+      {
+        "id": "PERSON-jm",
+        "type": "person",
+        "title": "josephismikhail",
+        "role": "CODE_OWNER"
+      },
+      {
+        "id": "PERSON-hc",
+        "type": "person",
+        "title": "Hiro-Chiba",
+        "role": "CONTRIBUTOR"
+      },
+      {
+        "id": "PERSON-tt",
+        "type": "person",
+        "title": "TannerTorrey3",
+        "role": "HISTORIC"
+      },
+      {
+        "id": "PERSON-al",
+        "type": "person",
+        "title": "Alot1z",
+        "role": "FORK_OWNER"
+      }
+    ],
+    "edges": [
+      {
+        "source": "phase-00",
+        "target": "phase-01",
+        "relationship": "precedes"
+      },
+      {
+        "source": "phase-01",
+        "target": "phase-02",
+        "relationship": "precedes"
+      },
+      {
+        "source": "phase-02",
+        "target": "phase-03",
+        "relationship": "precedes"
+      },
+      {
+        "source": "phase-03",
+        "target": "phase-04",
+        "relationship": "precedes"
+      },
+      {
+        "source": "phase-04",
+        "target": "phase-05",
+        "relationship": "precedes"
+      },
+      {
+        "source": "phase-05",
+        "target": "phase-06",
+        "relationship": "precedes"
+      },
+      {
+        "source": "phase-06",
+        "target": "phase-07",
+        "relationship": "precedes"
+      },
+      {
+        "source": "phase-07",
+        "target": "phase-08",
+        "relationship": "precedes"
+      },
+      {
+        "source": "phase-08",
+        "target": "phase-09",
+        "relationship": "precedes"
+      },
+      {
+        "source": "phase-09",
+        "target": "phase-10",
+        "relationship": "precedes"
+      },
+      {
+        "source": "phase-10",
+        "target": "phase-11",
+        "relationship": "precedes"
+      },
+      {
+        "source": "phase-11",
+        "target": "phase-12",
+        "relationship": "precedes"
+      },
+      {
+        "source": "phase-12",
+        "target": "phase-13",
+        "relationship": "precedes"
+      },
+      {
+        "source": "phase-13",
+        "target": "phase-final",
+        "relationship": "after"
+      },
+      {
+        "source": "phase-02",
+        "target": "F-010",
+        "relationship": "produced"
+      },
+      {
+        "source": "phase-02",
+        "target": "F-011",
+        "relationship": "produced"
+      },
+      {
+        "source": "phase-02",
+        "target": "F-012",
+        "relationship": "produced"
+      },
+      {
+        "source": "phase-03",
+        "target": "F-008",
+        "relationship": "produced"
+      },
+      {
+        "source": "phase-04",
+        "target": "F-009",
+        "relationship": "produced"
+      },
+      {
+        "source": "phase-05",
+        "target": "F-001",
+        "relationship": "produced"
+      },
+      {
+        "source": "phase-05",
+        "target": "F-002",
+        "relationship": "produced"
+      },
+      {
+        "source": "phase-05",
+        "target": "F-003",
+        "relationship": "produced"
+      },
+      {
+        "source": "phase-05",
+        "target": "F-004",
+        "relationship": "produced"
+      },
+      {
+        "source": "phase-05",
+        "target": "F-005",
+        "relationship": "produced"
+      },
+      {
+        "source": "phase-07",
+        "target": "F-006",
+        "relationship": "produced"
+      },
+      {
+        "source": "phase-07",
+        "target": "F-007",
+        "relationship": "produced"
+      },
+      {
+        "source": "phase-07",
+        "target": "F-013",
+        "relationship": "observed"
+      },
+      {
+        "source": "F-001",
+        "target": "E-005",
+        "relationship": "supported_by"
+      },
+      {
+        "source": "F-002",
+        "target": "E-005",
+        "relationship": "supported_by"
+      },
+      {
+        "source": "F-003",
+        "target": "E-006",
+        "relationship": "supported_by"
+      },
+      {
+        "source": "F-004",
+        "target": "E-007",
+        "relationship": "supported_by"
+      },
+      {
+        "source": "F-004",
+        "target": "E-011",
+        "relationship": "supported_by"
+      },
+      {
+        "source": "F-005",
+        "target": "E-008",
+        "relationship": "supported_by"
+      },
+      {
+        "source": "F-006",
+        "target": "E-009",
+        "relationship": "supported_by"
+      },
+      {
+        "source": "F-007",
+        "target": "E-012",
+        "relationship": "supported_by"
+      },
+      {
+        "source": "F-008",
+        "target": "E-017",
+        "relationship": "supported_by"
+      },
+      {
+        "source": "F-009",
+        "target": "E-018",
+        "relationship": "supported_by"
+      },
+      {
+        "source": "F-010",
+        "target": "E-014",
+        "relationship": "supported_by"
+      },
+      {
+        "source": "F-010",
+        "target": "E-015",
+        "relationship": "supported_by"
+      },
+      {
+        "source": "F-010",
+        "target": "E-016",
+        "relationship": "supported_by"
+      },
+      {
+        "source": "F-011",
+        "target": "E-014",
+        "relationship": "supported_by"
+      },
+      {
+        "source": "F-012",
+        "target": "E-014",
+        "relationship": "supported_by"
+      },
+      {
+        "source": "F-013",
+        "target": "E-011",
+        "relationship": "supported_by"
+      },
+      {
+        "source": "E-001",
+        "target": "E-005",
+        "relationship": "contributes_to"
+      },
+      {
+        "source": "E-002",
+        "target": "E-005",
+        "relationship": "contributes_to"
+      },
+      {
+        "source": "E-003",
+        "target": "E-005",
+        "relationship": "contributes_to"
+      },
+      {
+        "source": "E-004",
+        "target": "E-005",
+        "relationship": "contributes_to"
+      },
+      {
+        "source": "F-005",
+        "target": "ISSUE-57",
+        "relationship": "documents"
+      },
+      {
+        "source": "F-006",
+        "target": "ISSUE-57",
+        "relationship": "relates_to"
+      },
+      {
+        "source": "F-008",
+        "target": "ISSUE-376",
+        "relationship": "documents"
+      },
+      {
+        "source": "F-009",
+        "target": "ISSUE-371",
+        "relationship": "documents"
+      },
+      {
+        "source": "F-008",
+        "target": "PR-365",
+        "relationship": "caused_by"
+      },
+      {
+        "source": "F-008",
+        "target": "PR-366",
+        "relationship": "companion_of"
+      },
+      {
+        "source": "PR-368",
+        "target": "COMMIT-368",
+        "relationship": "merged_as"
+      },
+      {
+        "source": "PR-365",
+        "target": "COMMIT-365",
+        "relationship": "merged_as"
+      },
+      {
+        "source": "COMMIT-remap",
+        "target": "branch-remap",
+        "relationship": "heads"
+      },
+      {
+        "source": "branch-remap",
+        "target": "PACK-remap",
+        "relationship": "packaged_by"
+      },
+      {
+        "source": "PACK-remap",
+        "target": "PERSON-kb",
+        "relationship": "mention_recommended"
+      },
+      {
+        "source": "PACK-remap",
+        "target": "PERSON-jm",
+        "relationship": "reviewer_recommended"
+      },
+      {
+        "source": "PACK-376",
+        "target": "ISSUE-376",
+        "relationship": "fixes"
+      },
+      {
+        "source": "PACK-fkey",
+        "target": "PERSON-kb",
+        "relationship": "reviewer_recommended"
+      },
+      {
+        "source": "PACK-delayed",
+        "target": "PERSON-kb",
+        "relationship": "reviewer_recommended"
+      },
+      {
+        "source": "repo-fork",
+        "target": "repo-ix",
+        "relationship": "fork_of"
+      },
+      {
+        "source": "repo-dist",
+        "target": "repo-sc",
+        "relationship": "distributes"
+      },
+      {
+        "source": "repo-findings",
+        "target": "repo-ix",
+        "relationship": "investigates"
+      },
+      {
+        "source": "repo-findings",
+        "target": "repo-sc",
+        "relationship": "investigates"
+      },
+      {
+        "source": "D-001",
+        "target": "S-002",
+        "relationship": "implements"
+      },
+      {
+        "source": "D-002",
+        "target": "S-001",
+        "relationship": "implements"
+      },
+      {
+        "source": "D-005",
+        "target": "S-007",
+        "relationship": "implements"
+      },
+      {
+        "source": "D-006",
+        "target": "S-008",
+        "relationship": "implements"
+      },
+      {
+        "source": "D-009",
+        "target": "phase-13",
+        "relationship": "gates"
+      },
+      {
+        "source": "E-008",
+        "target": "PERSON-kb",
+        "relationship": "authored_by"
+      },
+      {
+        "source": "E-020",
+        "target": "PERSON-kb",
+        "relationship": "identifies"
+      },
+      {
+        "source": "E-020",
+        "target": "PERSON-jm",
+        "relationship": "identifies"
+      },
+      {
+        "source": "E-020",
+        "target": "PERSON-hc",
+        "relationship": "identifies"
+      }
+    ]
+  },
+  "maps": {
+    "repository": {
+      "version": "2.0.0",
+      "generated": "2026-08-10",
+      "nodes": [
+        {
+          "id": "repo-ix",
+          "type": "repository",
+          "title": "ix-infrastructure/Ix",
+          "role": "source",
+          "visibility": "public",
+          "head": "c4f8fea",
+          "worktrees": 2
+        },
+        {
+          "id": "repo-fork",
+          "type": "repository",
+          "title": "Alot1z/Ix",
+          "role": "fork",
+          "visibility": "public",
+          "head": "0437abf",
+          "behind_origin": 5
+        },
+        {
+          "id": "repo-dist",
+          "type": "repository",
+          "title": "ix-compass-dist",
+          "role": "distribution",
+          "visibility": "public",
+          "head": "396426b",
+          "tags": [
+            "v0.1.0",
+            "v0.1.1",
+            "v0.2.0",
+            "v0.3.0"
+          ]
+        },
+        {
+          "id": "repo-sc",
+          "type": "repository",
+          "title": "system-compass",
+          "role": "source",
+          "visibility": "private",
+          "head": "7f98724 (v0.3.0 rev)",
+          "access": "BLOCKED"
+        },
+        {
+          "id": "repo-findings",
+          "type": "repository",
+          "title": "Ix-findings",
+          "role": "investigation",
+          "visibility": "local",
+          "commits": 0
+        },
+        {
+          "id": "branch-main",
+          "type": "branch",
+          "title": "main",
+          "repo": "repo-ix",
+          "head": "c4f8fea",
+          "status": "synced"
+        },
+        {
+          "id": "branch-agent",
+          "type": "branch",
+          "title": "feat/ix-agent-skill",
+          "repo": "repo-ix",
+          "head": "b038c46",
+          "status": "13 uncommitted files"
+        },
+        {
+          "id": "branch-remap",
+          "type": "branch",
+          "title": "feat/ix-remap-hardening",
+          "repo": "repo-ix",
+          "head": "c021b52",
+          "status": "pr-ready"
+        },
+        {
+          "id": "branch-forkmain",
+          "type": "branch",
+          "title": "fork/main",
+          "repo": "repo-fork",
+          "head": "0437abf",
+          "status": "5 behind"
+        },
+        {
+          "id": "branch-forkagent",
+          "type": "branch",
+          "title": "fork feat/ix-agent-skill",
+          "repo": "repo-fork",
+          "head": "0c9087c",
+          "status": "cleanup not local"
+        },
+        {
+          "id": "branch-dist",
+          "type": "branch",
+          "title": "main",
+          "repo": "repo-dist",
+          "head": "396426b",
+          "status": "clean"
+        }
+      ],
+      "edges": [
+        {
+          "source": "repo-fork",
+          "target": "repo-ix",
+          "relationship": "fork_of"
+        },
+        {
+          "source": "repo-dist",
+          "target": "repo-sc",
+          "relationship": "distributes"
+        },
+        {
+          "source": "branch-main",
+          "target": "repo-ix",
+          "relationship": "lives_in"
+        },
+        {
+          "source": "branch-agent",
+          "target": "repo-ix",
+          "relationship": "lives_in"
+        },
+        {
+          "source": "branch-remap",
+          "target": "repo-ix",
+          "relationship": "lives_in"
+        },
+        {
+          "source": "branch-forkmain",
+          "target": "repo-fork",
+          "relationship": "lives_in"
+        },
+        {
+          "source": "branch-forkagent",
+          "target": "repo-fork",
+          "relationship": "lives_in"
+        },
+        {
+          "source": "branch-dist",
+          "target": "repo-dist",
+          "relationship": "lives_in"
+        },
+        {
+          "source": "branch-remap",
+          "target": "branch-main",
+          "relationship": "based_on"
+        },
+        {
+          "source": "repo-dist",
+          "target": "repo-ix",
+          "relationship": "consumed_by_upgrade"
+        }
+      ]
+    },
+    "evidence": {
+      "version": "2.0.0",
+      "generated": "2026-08-10",
+      "note": "Evidence -> finding traceability. Evidence classes A/B/C/D and kinds are carried on nodes.",
+      "nodes": [
+        {
+          "id": "E-001",
+          "type": "evidence",
+          "title": "compass-0.1.0",
+          "class": "B",
+          "kind": "artifact"
+        },
+        {
+          "id": "E-002",
+          "type": "evidence",
+          "title": "compass-0.1.1",
+          "class": "B",
+          "kind": "artifact"
+        },
+        {
+          "id": "E-003",
+          "type": "evidence",
+          "title": "compass-0.2.0",
+          "class": "B",
+          "kind": "artifact"
+        },
+        {
+          "id": "E-004",
+          "type": "evidence",
+          "title": "compass-0.3.0",
+          "class": "B",
+          "kind": "artifact"
+        },
+        {
+          "id": "E-005",
+          "type": "evidence",
+          "title": "keyboard byte-identity",
+          "class": "B",
+          "kind": "artifact"
+        },
+        {
+          "id": "E-006",
+          "type": "evidence",
+          "title": "KeyboardHelp extraction",
+          "class": "B",
+          "kind": "artifact"
+        },
+        {
+          "id": "E-007",
+          "type": "evidence",
+          "title": "fit constants",
+          "class": "B",
+          "kind": "artifact"
+        },
+        {
+          "id": "E-008",
+          "type": "evidence",
+          "title": "v0.3.0 release notes",
+          "class": "A",
+          "kind": "release note"
+        },
+        {
+          "id": "E-009",
+          "type": "evidence",
+          "title": "delayed-data A/B",
+          "class": "B",
+          "kind": "reproduction"
+        },
+        {
+          "id": "E-010",
+          "type": "evidence",
+          "title": "F-key PoC",
+          "class": "B",
+          "kind": "runtime"
+        },
+        {
+          "id": "E-011",
+          "type": "evidence",
+          "title": "zoom contract",
+          "class": "B",
+          "kind": "runtime"
+        },
+        {
+          "id": "E-012",
+          "type": "evidence",
+          "title": "rollup A/B",
+          "class": "B",
+          "kind": "runtime"
+        },
+        {
+          "id": "E-013",
+          "type": "evidence",
+          "title": "view.ts bind",
+          "class": "A",
+          "kind": "source"
+        },
+        {
+          "id": "E-014",
+          "type": "evidence",
+          "title": "remap diff",
+          "class": "A",
+          "kind": "source"
+        },
+        {
+          "id": "E-015",
+          "type": "evidence",
+          "title": "guard-matrix tests",
+          "class": "B",
+          "kind": "test"
+        },
+        {
+          "id": "E-016",
+          "type": "evidence",
+          "title": "suite runs",
+          "class": "B",
+          "kind": "test"
+        },
+        {
+          "id": "E-017",
+          "type": "evidence",
+          "title": "#376 source",
+          "class": "A",
+          "kind": "source"
+        },
+        {
+          "id": "E-018",
+          "type": "evidence",
+          "title": "#371 source",
+          "class": "A",
+          "kind": "source"
+        },
+        {
+          "id": "E-019",
+          "type": "evidence",
+          "title": "git divergence",
+          "class": "A",
+          "kind": "git"
+        },
+        {
+          "id": "E-020",
+          "type": "evidence",
+          "title": "GitHub context",
+          "class": "A",
+          "kind": "github"
+        },
+        {
+          "id": "E-021",
+          "type": "evidence",
+          "title": "worktree map",
+          "class": "A",
+          "kind": "git"
+        },
+        {
+          "id": "E-022",
+          "type": "evidence",
+          "title": "fit instability",
+          "class": "B",
+          "kind": "runtime"
+        },
+        {
+          "id": "E-023",
+          "type": "evidence",
+          "title": "no source maps",
+          "class": "B",
+          "kind": "artifact"
+        },
+        {
+          "id": "E-024",
+          "type": "evidence",
+          "title": "bootstrap.sh",
+          "class": "A",
+          "kind": "source"
+        },
+        {
+          "id": "E-025",
+          "type": "evidence",
+          "title": "F-key spec",
+          "class": "C",
+          "kind": "document"
+        },
+        {
+          "id": "F-001",
+          "type": "finding",
+          "title": "Keyboard invariant",
+          "class": "B"
+        },
+        {
+          "id": "F-002",
+          "type": "finding",
+          "title": "F unbound",
+          "class": "B"
+        },
+        {
+          "id": "F-003",
+          "type": "finding",
+          "title": "KeyboardHelp no F",
+          "class": "B"
+        },
+        {
+          "id": "F-004",
+          "type": "finding",
+          "title": "Fit constants invariant",
+          "class": "B"
+        },
+        {
+          "id": "F-005",
+          "type": "finding",
+          "title": "#57 latch->refit",
+          "class": "A+B"
+        },
+        {
+          "id": "F-006",
+          "type": "finding",
+          "title": "Delayed-data blank",
+          "class": "B+C"
+        },
+        {
+          "id": "F-007",
+          "type": "finding",
+          "title": "Rollup timing",
+          "class": "B"
+        },
+        {
+          "id": "F-008",
+          "type": "finding",
+          "title": "#376 mismatch",
+          "class": "A"
+        },
+        {
+          "id": "F-009",
+          "type": "finding",
+          "title": "#371 patches dead",
+          "class": "A"
+        },
+        {
+          "id": "F-010",
+          "type": "finding",
+          "title": "Loopback /__ix/remap",
+          "class": "A"
+        },
+        {
+          "id": "F-011",
+          "type": "finding",
+          "title": "WSL fix",
+          "class": "A"
+        },
+        {
+          "id": "F-012",
+          "type": "finding",
+          "title": "node_ok removal",
+          "class": "A"
+        },
+        {
+          "id": "F-013",
+          "type": "finding",
+          "title": "Zoom anomaly",
+          "class": "D"
+        }
+      ],
+      "edges": [
+        {
+          "source": "F-001",
+          "target": "E-005",
+          "relationship": "supported_by"
+        },
+        {
+          "source": "F-002",
+          "target": "E-005",
+          "relationship": "supported_by"
+        },
+        {
+          "source": "F-003",
+          "target": "E-006",
+          "relationship": "supported_by"
+        },
+        {
+          "source": "F-004",
+          "target": "E-007",
+          "relationship": "supported_by"
+        },
+        {
+          "source": "F-004",
+          "target": "E-011",
+          "relationship": "supported_by"
+        },
+        {
+          "source": "F-005",
+          "target": "E-008",
+          "relationship": "supported_by"
+        },
+        {
+          "source": "F-006",
+          "target": "E-009",
+          "relationship": "supported_by"
+        },
+        {
+          "source": "F-007",
+          "target": "E-012",
+          "relationship": "supported_by"
+        },
+        {
+          "source": "F-008",
+          "target": "E-017",
+          "relationship": "supported_by"
+        },
+        {
+          "source": "F-009",
+          "target": "E-018",
+          "relationship": "supported_by"
+        },
+        {
+          "source": "F-010",
+          "target": "E-014",
+          "relationship": "supported_by"
+        },
+        {
+          "source": "F-010",
+          "target": "E-015",
+          "relationship": "supported_by"
+        },
+        {
+          "source": "F-010",
+          "target": "E-016",
+          "relationship": "supported_by"
+        },
+        {
+          "source": "F-011",
+          "target": "E-014",
+          "relationship": "supported_by"
+        },
+        {
+          "source": "F-012",
+          "target": "E-014",
+          "relationship": "supported_by"
+        },
+        {
+          "source": "F-013",
+          "target": "E-011",
+          "relationship": "supported_by"
+        },
+        {
+          "source": "E-001",
+          "target": "E-005",
+          "relationship": "contributes_to"
+        },
+        {
+          "source": "E-002",
+          "target": "E-005",
+          "relationship": "contributes_to"
+        },
+        {
+          "source": "E-003",
+          "target": "E-005",
+          "relationship": "contributes_to"
+        },
+        {
+          "source": "E-004",
+          "target": "E-005",
+          "relationship": "contributes_to"
+        }
+      ]
+    },
+    "finding": {
+      "version": "2.0.0",
+      "generated": "2026-08-10",
+      "note": "Finding -> issue/PR/packet/commit relationships.",
+      "nodes": [
+        {
+          "id": "F-001",
+          "type": "finding",
+          "title": "Keyboard invariant",
+          "status": "REPRODUCED"
+        },
+        {
+          "id": "F-002",
+          "type": "finding",
+          "title": "F unbound",
+          "status": "REPRODUCED"
+        },
+        {
+          "id": "F-003",
+          "type": "finding",
+          "title": "KeyboardHelp no F",
+          "status": "VERIFIED"
+        },
+        {
+          "id": "F-004",
+          "type": "finding",
+          "title": "Fit constants invariant",
+          "status": "VERIFIED"
+        },
+        {
+          "id": "F-005",
+          "type": "finding",
+          "title": "#57 latch->refit",
+          "status": "CONFIRMED"
+        },
+        {
+          "id": "F-006",
+          "type": "finding",
+          "title": "Delayed-data blank",
+          "status": "REPRODUCED_LIVE"
+        },
+        {
+          "id": "F-007",
+          "type": "finding",
+          "title": "Rollup timing",
+          "status": "OBSERVED"
+        },
+        {
+          "id": "F-008",
+          "type": "finding",
+          "title": "#376 mismatch",
+          "status": "OPEN"
+        },
+        {
+          "id": "F-009",
+          "type": "finding",
+          "title": "#371 patches dead",
+          "status": "OPEN"
+        },
+        {
+          "id": "F-010",
+          "type": "finding",
+          "title": "Loopback /__ix/remap",
+          "status": "PR_READY"
+        },
+        {
+          "id": "F-011",
+          "type": "finding",
+          "title": "WSL fix",
+          "status": "IN_REMAP_PR"
+        },
+        {
+          "id": "F-012",
+          "type": "finding",
+          "title": "node_ok removal",
+          "status": "IN_REMAP_PR"
+        },
+        {
+          "id": "F-013",
+          "type": "finding",
+          "title": "Zoom anomaly",
+          "status": "OPEN"
+        },
+        {
+          "id": "ISSUE-57",
+          "type": "issue",
+          "title": "system-compass#57",
+          "status": "fixed_in_v030"
+        },
+        {
+          "id": "ISSUE-371",
+          "type": "issue",
+          "title": "Ix#371",
+          "status": "open"
+        },
+        {
+          "id": "ISSUE-376",
+          "type": "issue",
+          "title": "Ix#376",
+          "status": "open"
+        },
+        {
+          "id": "PACK-fkey",
+          "type": "pr_packet",
+          "title": "compass-f-key",
+          "status": "spec, source-blocked"
+        },
+        {
+          "id": "PACK-delayed",
+          "type": "pr_packet",
+          "title": "compass-delayed-data",
+          "status": "investigation"
+        },
+        {
+          "id": "PACK-remap",
+          "type": "pr_packet",
+          "title": "ix-remap-hardening",
+          "status": "ready"
+        },
+        {
+          "id": "PACK-376",
+          "type": "pr_packet",
+          "title": "ix-376-version-mismatch",
+          "status": "ready"
+        },
+        {
+          "id": "COMMIT-remap",
+          "type": "commit",
+          "title": "c021b52"
+        },
+        {
+          "id": "COMMIT-365",
+          "type": "commit",
+          "title": "dcc0962 (#365)"
+        }
+      ],
+      "edges": [
+        {
+          "source": "F-001",
+          "target": "PACK-fkey",
+          "relationship": "feeds"
+        },
+        {
+          "source": "F-002",
+          "target": "PACK-fkey",
+          "relationship": "feeds"
+        },
+        {
+          "source": "F-003",
+          "target": "PACK-fkey",
+          "relationship": "feeds"
+        },
+        {
+          "source": "F-004",
+          "target": "PACK-fkey",
+          "relationship": "feeds"
+        },
+        {
+          "source": "F-005",
+          "target": "ISSUE-57",
+          "relationship": "documents"
+        },
+        {
+          "source": "F-005",
+          "target": "PACK-fkey",
+          "relationship": "guards"
+        },
+        {
+          "source": "F-006",
+          "target": "PACK-delayed",
+          "relationship": "drives"
+        },
+        {
+          "source": "F-006",
+          "target": "ISSUE-57",
+          "relationship": "relates_to"
+        },
+        {
+          "source": "F-007",
+          "target": "PACK-delayed",
+          "relationship": "feeds"
+        },
+        {
+          "source": "F-008",
+          "target": "ISSUE-376",
+          "relationship": "documents"
+        },
+        {
+          "source": "F-008",
+          "target": "PACK-376",
+          "relationship": "drives"
+        },
+        {
+          "source": "F-008",
+          "target": "COMMIT-365",
+          "relationship": "caused_by"
+        },
+        {
+          "source": "F-009",
+          "target": "ISSUE-371",
+          "relationship": "documents"
+        },
+        {
+          "source": "F-010",
+          "target": "PACK-remap",
+          "relationship": "drives"
+        },
+        {
+          "source": "F-010",
+          "target": "COMMIT-remap",
+          "relationship": "implemented_in"
+        },
+        {
+          "source": "F-011",
+          "target": "PACK-remap",
+          "relationship": "ships_with"
+        },
+        {
+          "source": "F-012",
+          "target": "PACK-remap",
+          "relationship": "ships_with"
+        }
+      ]
+    },
+    "dependency": {
+      "version": "2.0.0",
+      "generated": "2026-08-10",
+      "note": "Dependency graph: what depends on what (phases, PRs, commits, issues, packets).",
+      "nodes": [
+        {
+          "id": "phase-00",
+          "type": "phase",
+          "title": "Phase 0"
+        },
+        {
+          "id": "phase-01",
+          "type": "phase",
+          "title": "Phase 1"
+        },
+        {
+          "id": "phase-02",
+          "type": "phase",
+          "title": "Phase 2"
+        },
+        {
+          "id": "phase-03",
+          "type": "phase",
+          "title": "Phase 3"
+        },
+        {
+          "id": "phase-04",
+          "type": "phase",
+          "title": "Phase 4"
+        },
+        {
+          "id": "phase-05",
+          "type": "phase",
+          "title": "Phase 5"
+        },
+        {
+          "id": "phase-06",
+          "type": "phase",
+          "title": "Phase 6"
+        },
+        {
+          "id": "phase-07",
+          "type": "phase",
+          "title": "Phase 7"
+        },
+        {
+          "id": "phase-11",
+          "type": "phase",
+          "title": "Phase 11"
+        },
+        {
+          "id": "phase-12",
+          "type": "phase",
+          "title": "Phase 12"
+        },
+        {
+          "id": "phase-13",
+          "type": "phase",
+          "title": "Phase 13"
+        },
+        {
+          "id": "PACK-remap",
+          "type": "pr_packet",
+          "title": "ix-remap-hardening",
+          "status": "ready"
+        },
+        {
+          "id": "PACK-376",
+          "type": "pr_packet",
+          "title": "ix-376-version-mismatch",
+          "status": "ready"
+        },
+        {
+          "id": "PACK-fkey",
+          "type": "pr_packet",
+          "title": "compass-f-key",
+          "status": "source-blocked"
+        },
+        {
+          "id": "PACK-delayed",
+          "type": "pr_packet",
+          "title": "compass-delayed-data",
+          "status": "source-blocked"
+        },
+        {
+          "id": "ISSUE-376",
+          "type": "issue",
+          "title": "Ix#376"
+        },
+        {
+          "id": "ISSUE-371",
+          "type": "issue",
+          "title": "Ix#371"
+        },
+        {
+          "id": "PR-358",
+          "type": "pr",
+          "title": "Ix#358",
+          "status": "merged"
+        },
+        {
+          "id": "PR-362",
+          "type": "pr",
+          "title": "Ix#362",
+          "status": "open"
+        },
+        {
+          "id": "PR-365",
+          "type": "pr",
+          "title": "Ix#365",
+          "status": "merged"
+        },
+        {
+          "id": "PR-366",
+          "type": "pr",
+          "title": "Ix#366",
+          "status": "merged"
+        },
+        {
+          "id": "PR-368",
+          "type": "pr",
+          "title": "Ix#368",
+          "status": "merged"
+        },
+        {
+          "id": "PR-344",
+          "type": "pr",
+          "title": "Ix#344",
+          "status": "merged"
+        },
+        {
+          "id": "COMMIT-remap",
+          "type": "commit",
+          "title": "c021b52"
+        },
+        {
+          "id": "COMMIT-365",
+          "type": "commit",
+          "title": "dcc0962 (#365)"
+        },
+        {
+          "id": "branch-remap",
+          "type": "branch",
+          "title": "feat/ix-remap-hardening"
+        }
+      ],
+      "edges": [
+        {
+          "source": "phase-00",
+          "target": "phase-01",
+          "relationship": "depends_on"
+        },
+        {
+          "source": "phase-01",
+          "target": "phase-02",
+          "relationship": "depends_on"
+        },
+        {
+          "source": "phase-02",
+          "target": "phase-03",
+          "relationship": "depends_on"
+        },
+        {
+          "source": "phase-03",
+          "target": "phase-04",
+          "relationship": "depends_on"
+        },
+        {
+          "source": "phase-04",
+          "target": "phase-05",
+          "relationship": "depends_on"
+        },
+        {
+          "source": "phase-05",
+          "target": "phase-06",
+          "relationship": "depends_on"
+        },
+        {
+          "source": "phase-06",
+          "target": "phase-07",
+          "relationship": "depends_on"
+        },
+        {
+          "source": "phase-11",
+          "target": "phase-12",
+          "relationship": "depends_on"
+        },
+        {
+          "source": "phase-12",
+          "target": "phase-13",
+          "relationship": "depends_on"
+        },
+        {
+          "source": "branch-remap",
+          "target": "PR-358",
+          "relationship": "predecessor"
+        },
+        {
+          "source": "branch-remap",
+          "target": "PR-362",
+          "relationship": "sibling_no_conflict"
+        },
+        {
+          "source": "PACK-376",
+          "target": "ISSUE-376",
+          "relationship": "fixes"
+        },
+        {
+          "source": "PACK-376",
+          "target": "PR-365",
+          "relationship": "root_cause_in"
+        },
+        {
+          "source": "PACK-376",
+          "target": "PR-366",
+          "relationship": "companion"
+        },
+        {
+          "source": "PACK-376",
+          "target": "PR-344",
+          "relationship": "must_remain_compatible_with"
+        },
+        {
+          "source": "PACK-fkey",
+          "target": "PR-368",
+          "relationship": "originated_from"
+        },
+        {
+          "source": "PACK-fkey",
+          "target": "ISSUE-376",
+          "relationship": "independent_of"
+        },
+        {
+          "source": "PACK-delayed",
+          "target": "ISSUE-376",
+          "relationship": "independent_of"
+        },
+        {
+          "source": "COMMIT-remap",
+          "target": "branch-remap",
+          "relationship": "heads"
+        }
+      ]
+    },
+    "decision": {
+      "version": "2.0.0",
+      "generated": "2026-08-10",
+      "note": "Decision -> suggestion/finding/phase relationships.",
+      "nodes": [
+        {
+          "id": "D-001",
+          "type": "decision",
+          "title": "Base remap on origin/main",
+          "status": "DECIDED"
+        },
+        {
+          "id": "D-002",
+          "type": "decision",
+          "title": "Dedicated worktree",
+          "status": "DECIDED"
+        },
+        {
+          "id": "D-003",
+          "type": "decision",
+          "title": "Evidence classification",
+          "status": "DECIDED"
+        },
+        {
+          "id": "D-004",
+          "type": "decision",
+          "title": "Release notes = Class A",
+          "status": "DECIDED"
+        },
+        {
+          "id": "D-005",
+          "type": "decision",
+          "title": "F-key keyboard-only",
+          "status": "DECIDED"
+        },
+        {
+          "id": "D-006",
+          "type": "decision",
+          "title": "Delayed-data separate",
+          "status": "DECIDED"
+        },
+        {
+          "id": "D-007",
+          "type": "decision",
+          "title": "dist is distribution",
+          "status": "DECIDED"
+        },
+        {
+          "id": "D-008",
+          "type": "decision",
+          "title": "Ix-findings standalone",
+          "status": "DECIDED"
+        },
+        {
+          "id": "D-009",
+          "type": "decision",
+          "title": "No push without authorization",
+          "status": "DECIDED (ongoing)"
+        },
+        {
+          "id": "D-010",
+          "type": "decision",
+          "title": "Port prep location",
+          "status": "OPEN"
+        },
+        {
+          "id": "D-011",
+          "type": "decision",
+          "title": "Compass PR scope",
+          "status": "OPEN"
+        },
+        {
+          "id": "D-012",
+          "type": "decision",
+          "title": "No-map chip timing",
+          "status": "OPEN"
+        },
+        {
+          "id": "D-013",
+          "type": "decision",
+          "title": "Stopgap patch fate",
+          "status": "OPEN"
+        },
+        {
+          "id": "D-014",
+          "type": "decision",
+          "title": "system-compass access path",
+          "status": "OPEN"
+        },
+        {
+          "id": "S-001",
+          "type": "suggestion",
+          "title": "Dedicated worktree",
+          "disposition": "ACCEPTED"
+        },
+        {
+          "id": "S-002",
+          "type": "suggestion",
+          "title": "Base on origin/main",
+          "disposition": "ACCEPTED"
+        },
+        {
+          "id": "S-007",
+          "type": "suggestion",
+          "title": "F-key keyboard-only",
+          "disposition": "ACCEPTED"
+        },
+        {
+          "id": "S-008",
+          "type": "suggestion",
+          "title": "Delayed-data separate",
+          "disposition": "ACCEPTED"
+        },
+        {
+          "id": "S-020",
+          "type": "suggestion",
+          "title": "No-map chip feature-detect",
+          "disposition": "DEFERRED"
+        },
+        {
+          "id": "S-011",
+          "type": "suggestion",
+          "title": "Stopgap local + expiry",
+          "disposition": "ACCEPTED (local)"
+        },
+        {
+          "id": "F-010",
+          "type": "finding",
+          "title": "Loopback /__ix/remap",
+          "status": "PR_READY"
+        },
+        {
+          "id": "F-005",
+          "type": "finding",
+          "title": "#57 latch->refit",
+          "status": "CONFIRMED"
+        },
+        {
+          "id": "F-006",
+          "type": "finding",
+          "title": "Delayed-data blank",
+          "status": "REPRODUCED_LIVE"
+        },
+        {
+          "id": "phase-12",
+          "type": "phase",
+          "title": "Publication gate"
+        },
+        {
+          "id": "phase-13",
+          "type": "phase",
+          "title": "Push + open PR"
+        }
+      ],
+      "edges": [
+        {
+          "source": "D-001",
+          "target": "S-002",
+          "relationship": "implements"
+        },
+        {
+          "source": "D-002",
+          "target": "S-001",
+          "relationship": "implements"
+        },
+        {
+          "source": "D-005",
+          "target": "S-007",
+          "relationship": "implements"
+        },
+        {
+          "source": "D-006",
+          "target": "S-008",
+          "relationship": "implements"
+        },
+        {
+          "source": "D-012",
+          "target": "S-020",
+          "relationship": "could_implement"
+        },
+        {
+          "source": "D-013",
+          "target": "S-011",
+          "relationship": "could_implement"
+        },
+        {
+          "source": "D-005",
+          "target": "F-005",
+          "relationship": "justified_by"
+        },
+        {
+          "source": "D-006",
+          "target": "F-006",
+          "relationship": "justified_by"
+        },
+        {
+          "source": "D-001",
+          "target": "F-010",
+          "relationship": "enables"
+        },
+        {
+          "source": "D-009",
+          "target": "phase-12",
+          "relationship": "gates"
+        },
+        {
+          "source": "D-009",
+          "target": "phase-13",
+          "relationship": "gates"
+        },
+        {
+          "source": "D-014",
+          "target": "F-005",
+          "relationship": "would_unblock"
+        },
+        {
+          "source": "D-014",
+          "target": "F-006",
+          "relationship": "would_unblock"
+        }
+      ]
+    }
+  }
+};</script>
+<script>/* Ix / Compass investigation knowledge wiki — reads window.IX_DATA (data/data.js). */
+(function(){
+"use strict";
+const D = window.IX_DATA;
+const $ = (s)=>(document.querySelector(s));
+const el = (tag,cls,html)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(html!=null)n.innerHTML=html;return n;};
+
+const TYPE_COLOR = {
+  phase:"#5aa8ff", repository:"#e0b25a", branch:"#c9a96a", commit:"#8a9bb0",
+  issue:"#e06a6a", pr:"#e07a5a", pr_packet:"#ff9d5c", finding:"#5fd0a8",
+  evidence:"#7fd0ff", decision:"#b48ae0", suggestion:"#8fd0c0", person:"#d8c8a0"
+};
+const ECLASS = {A:["A","◼"],B:["B","◈"],C:["C","△"],D:["D","○"]};
+const ECLASS_MEAN = {A:"source",B:"artifact/runtime",C:"reconstruction",D:"inference"};
+
+function eclass(id){return '<span class="eclass '+id+'" data-g="'+ECLASS[id][1]+'" title="'+ECLASS[id][0]+': '+ECLASS_MEAN[id]+'">'+ECLASS[id][0]+'</span>';}
+function disp(x){return '<span class="disposition '+(x||'').toLowerCase()+'">'+(x||'')+'</span>';}
+function status(x){const c=String(x||'').toLowerCase();let k='';if(c.includes('pr_ready')||c.includes('ready'))k=' pr-ready';else if(c.includes('open')||c.includes('block'))k=' open';else if(c.includes('repro')||c.includes('confirm')||c.includes('verified'))k=' reproduced';return '<span class="badge-status'+k+'">'+(x||'')+'</span>';}
+
+const FINDINGS = Object.fromEntries(D.findings.map(f=>[f.id,f]));
+const EVIDENCE = Object.fromEntries(D.evidence.map(e=>[e.id,e]));
+const SUGGS = Object.fromEntries(D.suggestions.map(s=>[s.id,s]));
+const DECS = Object.fromEntries(D.decisions.map(d=>[d.id,d]));
+const PHASES = Object.fromEntries(D.phases.map(p=>[p.id,p]));
+const GRAPH = D.graph;
+const NODES = Object.fromEntries(GRAPH.nodes.map(n=>[n.id,n]));
+
+/* ---------- navigation ---------- */
+let currentView="map"; let crumbStack=[];
+function setView(v){currentView=v;document.querySelectorAll('.nav-item').forEach(b=>b.classList.toggle('active',b.dataset.view===v));crumbStack=[];renderBreadcrumb();render();}
+function pushCrumb(){crumbStack.push(currentView);}
+function renderBreadcrumb(){
+  const b=$('#breadcrumb');b.innerHTML='';
+  const home=el('span','crumb','✳ home');home.onclick=()=>{crumbStack=[];$('#search').value='';render();};b.append(home);
+  ['',currentView].forEach((c,i)=>{
+    b.append(el('span','sep',' / '));
+    const s=el('span','crumb',c||'overview');
+    s.onclick=()=>{crumbStack=crumbStack.slice(0,i-1);render();};
+    b.append(s);
+  });
+}
+document.querySelectorAll('.nav-item').forEach(b=>b.onclick=()=>setView(b.dataset.view));
+$('#drawer-close').onclick=closeDrawer;
+
+const content=$('#content');
+function openDrawer(title,body){$('#drawer-title').textContent=title;$('#drawer-body').innerHTML='';$('#drawer-body').append(body);$('#drawer').classList.add('open');}
+function closeDrawer(){$('#drawer').classList.remove('open');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer();});
+
+function chip(label,id,type){const a=el('a','link','');a.textContent=label;a.onclick=()=>openEntity(id,type);return a;}
+function relationList(ids,type){if(!ids||!ids.length)return el('span','faint','none');const w=el('span','rel');ids.forEach(id=>{w.append(chip(id,id,type||(NODES[id]?NODES[id].type:null)));});return w;}
+
+function openEntity(id,type){
+  type=type||(NODES[id]&&NODES[id].type);
+  let body;
+  if(FINDINGS[id])body=findBody(FINDINGS[id]);
+  else if(EVIDENCE[id])body=evidBody(EVIDENCE[id]);
+  else if(SUGGS[id])body=sugBody(SUGGS[id]);
+  else if(DECS[id])body=decBody(DECS[id]);
+  else if(PHASES[id])body=phaseBody(PHASES[id]);
+  else if(NODES[id])body=nodeBody(NODES[id]);
+  else body=el('p','muted','No record for '+id+'.');
+  openDrawer(id,body);
+  if(type==='finding'||type==='evidence'||type==='phase')pushCrumb();
+}
+
+function section(title,node){const w=el('div');w.append(el('h3','',title));w.append(node);return w;}
+function kv(title,val){return '<p><span class="faint">'+title+':</span> '+(val??'—')+'</p>';}
+
+function findBody(f){
+  const w=el('div');
+  w.append(el('p','',eclass(f.evidence_class.split('+')[0])+' '+status(f.status)+' <span class="tag">'+f.repository+'</span>'));
+  w.append(el('p','muted',(f.ixf_id?('alias '+f.ixf_id+' · '):'')+'evidence '+(f.confidence?('· confidence '+f.confidence):'')+(f.severity?(' · severity '+f.severity):'')));
+  w.append(el('p','',kv('Subsystem',f.subsystem)+kv('Affected versions',(f.affected_versions||[]).join(', '))+kv('Phases',(f.first_phase||'')+' → '+(f.latest_phase||''))));
+  w.append(section('Reproduction',el('p','',f.reproduction||'—')));
+  w.append(section('Supporting evidence',relationList(f.evidence_refs,'evidence')));
+  w.append(section('Related issues',relationList(f.related_issues,'issue')));
+  w.append(section('Related PRs',relationList(f.related_prs,'pr_packet')));
+  w.append(section('Related suggestions',relationList(f.related_suggestions,'suggestion')));
+  if(f.alternative)w.append(section('Alternative explanations',el('p','',f.alternative)));
+  w.append(section('Recommendation',el('p','',f.recommendation)));
+  w.append(section('Why this matters',el('p','muted','Traced from '+f.evidence_class+' evidence'+(f.evidence_refs?' ('+f.evidence_refs.join(', ')+')':'')+'. Full record: planning/findings/registry.md.')));
+  return w;
+}
+function evidBody(e){
+  const w=el('div');
+  w.append(el('p','',eclass(e.class)+' <span class="tag">'+e.kind+'</span> <span class="tag">'+e.repository+'</span>'));
+  w.append(el('p','',e.detail||''));
+  w.append(section('Supports findings',relationList(e.supports,'finding')));
+  w.append(section('Provenance',el('p','muted','Registered in '+e.phase+'. Canonical: planning/evidence/registry.md.')));
+  return w;
+}
+function sugBody(s){
+  const w=el('div');
+  w.append(el('p','',disp(s.disposition)+' <span class="tag">'+s.repository+'</span> <span class="tag">'+s.phase+'</span>'));
+  w.append(el('p','',s.text));
+  w.append(section('Reason',el('p','',s.reason||'—')));
+  w.append(section('Evidence cited',relationList(s.evidence_refs,'evidence')));
+  w.append(section('Related findings',relationList(s.related_findings,'finding')));
+  return w;
+}
+function decBody(d){
+  const w=el('div');
+  w.append(el('p','',status(d.status)+' <span class="tag">'+(d.dec_alias||'')+'</span>'));
+  w.append(el('p','',d.title));
+  w.append(el('p','',kv('Problem',d.problem)+kv('Options',(d.options||[]).join(' · '))+kv('Chosen',d.chosen||'<span class="faint">(pending)</span>')+kv('Rejected',(d.rejected||[]).join(' · '))+kv('Reason',d.reason)+kv('Consequences',d.consequences||'—')));
+  w.append(section('Related findings',relationList(d.related_findings,'finding')));
+  w.append(section('Related suggestions',relationList(d.related_suggestions,'suggestion')));
+  return w;
+}
+function phaseBody(p){
+  const w=el('div');
+  w.append(el('p','',status(p.status)+' <span class="tag">'+p.category+'</span>'));
+  w.append(el('p','',p.objective||''));
+  w.append(section('Key findings',el('div','',(p.key_findings||[]).map(k=>'<p>· '+k+'</p>').join(''))));
+  w.append(section('Outputs',el('p','',(p.outputs||[]).join(' · ')||'—')));
+  w.append(section('Dependencies',el('p','',(p.dependencies||[]).join(' · ')||'—')));
+  w.append(section('Next phase',el('p','',p.next_phase||'—')));
+  return w;
+}
+function nodeBody(n){
+  const w=el('div');
+  const meta=Object.entries(n).filter(([k])=>!['id','type','title'].includes(k))
+    .map(([k,v])=>kv(k,typeof v==='object'?JSON.stringify(v):v)).join('');
+  w.append(el('p','',meta||el('span','faint','no metadata')));
+  const inn=GRAPH.edges.filter(e=>e.target===n.id);
+  const out=GRAPH.edges.filter(e=>e.source===n.id);
+  if(inn.length){w.append(section('Incoming',relationList(inn.map(e=>e.source))));}
+  if(out.length){w.append(section('Relationships out',el('p','',out.map(e=>'<span class="rel">'+e.source+' <span class="faint">'+e.relationship+'</span> '+e.target+'</span>').join(' '))));}
+  return w;
+}
+
+/* ---------- render dispatch ---------- */
+function render(){
+  content.innerHTML='';
+  content.scrollTop=0;
+  const v=currentView;
+  if(v==='map')renderMap();
+  else if(v==='timeline')renderTimeline();
+  else if(v==='repositories')renderRepos();
+  else if(v==='phases')renderPhases();
+  else if(v==='findings')renderFindings();
+  else if(v==='evidence')renderEvidence();
+  else if(v==='compass')renderCompass();
+  else if(v==='prmap')renderPRMap();
+  else if(v==='suggestions')renderSuggestions();
+  else if(v==='decisions')renderDecisions();
+  else if(v==='security')renderSecurity();
+  else if(v==='about')renderAbout();
+}
+
+/* ---------- map view ---------- */
+function renderMap(){
+  content.append(el('h1','','Investigation Map'));
+  content.append(el('p','lede','Every phase, repository, finding, evidence item, issue, PR, commit, decision, and suggestion as a node. Select a node to trace it; hover to highlight relationships. Drag to pan, wheel to zoom, double-click to centre.'));
+  const host=el('div','','<div id="map-wrap"></div>');
+  content.append(host);
+  const mw=$('#map-wrap');
+  const legend=el('div','map-legend');
+  [['phase','Phase'],['repository','Repository'],['finding','Finding'],['evidence','Evidence'],['issue','Issue'],['pr','PR'],['pr_packet','Packet'],['commit','Commit'],['decision','Decision'],['suggestion','Suggestion'],['person','Person']].forEach(([t,l])=>{
+    legend.append(el('span','map-key','<span class="dot" style="background:'+TYPE_COLOR[t]+'"></span>'+l));});
+  mw.append(legend);
+  mw.append(el('div','map-hint','drag = pan · wheel = zoom · click = detail · double-click = centre'));
+  mw.append(el('div','map-ncount',GRAPH.nodes.length+' nodes · '+GRAPH.edges.length+' edges'));
+  const NS='http://www.w3.org/2000/svg';
+  const svg=document.createElementNS(NS,'svg');svg.id='graph';
+  const vp=document.createElementNS(NS,'g');vp.id='viewport';
+  const zedge=document.createElementNS(NS,'g');zedge.id='zedge';
+  const znode=document.createElementNS(NS,'g');znode.id='znode';
+  vp.append(zedge,znode);svg.append(vp);
+  mw.append(svg);
+  const W=mw.clientWidth,H=mw.clientHeight;
+
+  const order=['person','repository','branch','commit','issue','pr','pr_packet','phase','decision','suggestion','evidence','finding'];
+  const cols={};order.forEach((t,i)=>cols[t]=i);
+  const perCol={};GRAPH.nodes.forEach(n=>{perCol[n.type]=(perCol[n.type]||0)+1;});
+  const colW=Math.max(170,W*0.92/order.length);
+  const counts={};const pos={};
+  GRAPH.nodes.forEach(n=>{
+    const c=cols[n.type]??order.length;
+    const i=counts[n.type]=(counts[n.type]||0)+1;
+    const total=perCol[n.type]||1;
+    pos[n.id]={x:colW*(c+0.5), y:H*(i/(total+1))+(c%2?16:-16)};
+  });
+  let bx=Infinity,by=Infinity,Bx=-Infinity,By=-Infinity;
+  Object.values(pos).forEach(p=>{if(p.x<bx)bx=p.x;if(p.x>Bx)Bx=p.x;if(p.y<by)by=p.y;if(p.y>By)By=p.y;});
+  const pad=48;bx-=pad;by-=pad;Bx+=pad;By+=pad;
+  svg.setAttribute('viewBox',[bx,by,Bx-bx,By-by].join(' '));
+  svg.setAttribute('preserveAspectRatio','xMidYMid meet');
+  svg.setAttribute('width','100%');
+  svg.setAttribute('height',Math.max(320,mw.clientHeight)+'px');
+
+  GRAPH.edges.forEach(e=>{
+    const a=pos[e.source],b=pos[e.target];if(!a||!b)return;
+    const l=document.createElementNS(NS,'line');
+    l.setAttribute('x1',a.x);l.setAttribute('y1',a.y);l.setAttribute('x2',b.x);l.setAttribute('y2',b.y);
+    l.setAttribute('class','edge');l.dataset.s=e.source;l.dataset.t=e.target;
+    zedge.append(l);
+  });
+  const nodesEl={};
+  GRAPH.nodes.forEach(n=>{
+    const p=pos[n.id];if(!p)return;
+    const g=document.createElementNS(NS,'g');g.setAttribute('class','node');g.dataset.id=n.id;
+    const r=n.type==='finding'?8:(n.type==='evidence'?6:(n.type==='phase'?7:5));
+    const c=document.createElementNS(NS,'circle');
+    c.setAttribute('cx',p.x);c.setAttribute('cy',p.y);c.setAttribute('r',r);
+    c.setAttribute('fill',TYPE_COLOR[n.type]||'#8899aa');
+    g.append(c);
+    const t=document.createElementNS(NS,'text');
+    t.setAttribute('x',p.x+r+3);t.setAttribute('y',p.y+3);t.textContent=n.title;
+    g.append(t);
+    g.onclick=()=>openEntity(n.id,n.type);
+    g.onmouseenter=()=>focusNeighbors(n.id);
+    g.onmouseleave=focusClear;
+    g.ondblclick=resetTransform;
+    znode.append(g);nodesEl[n.id]=g;
+  });
+
+  let tx=0,ty=0,scale=1;
+  function apply(){svg.querySelector('#viewport').setAttribute('transform','translate('+tx+','+ty+') scale('+scale+')');}
+  let drag=null;
+  svg.addEventListener('pointerdown',e=>{drag={x:e.clientX,y:e.clientY,ox:tx,oy:ty};svg.classList.add('dragging');});
+  window.addEventListener('pointermove',e=>{if(!drag)return;tx=drag.ox+(e.clientX-drag.x);ty=drag.oy+(e.clientY-drag.y);apply();});
+  window.addEventListener('pointerup',()=>{drag=null;svg.classList.remove('dragging');});
+  svg.addEventListener('wheel',e=>{e.preventDefault();scale=Math.max(0.2,Math.min(4,scale*(e.deltaY<0?1.12:0.89)));apply();},{passive:false});
+  function resetTransform(){tx=16;ty=16;scale=1;apply();}
+  resetTransform();
+
+  function focusNeighbors(id){
+    const set=new Set([id]);GRAPH.edges.forEach(e=>{if(e.source===id)set.add(e.target);if(e.target===id)set.add(e.source);});
+    GRAPH.nodes.forEach(n=>{const g=nodesEl[n.id];if(g)g.classList.toggle('dim',!set.has(n.id));});
+    zedge.querySelectorAll('line').forEach(l=>l.classList.toggle('focus',l.dataset.s===id||l.dataset.t===id));
+  }
+  function focusClear(){GRAPH.nodes.forEach(n=>{const g=nodesEl[n.id];if(g)g.classList.remove('dim');});zedge.querySelectorAll('line').forEach(l=>l.classList.remove('focus'));}
+}
+
+/* ---------- timeline ---------- */
+function renderTimeline(){
+  content.append(el('h1','','Timeline'));
+  content.append(el('p','lede','Chronological investigation timeline. Filter by event type.'));
+  const chips=el('div','filters');content.append(chips);
+  let f='all';
+  ['all','release','phase','github'].forEach(t=>{const c=el('button','chip'+(f===t?' on':''));c.textContent=t;c.onclick=()=>{f=t;chips.querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x.textContent===f));draw();};chips.append(c);});
+  const list=el('div','');content.append(list);
+  function draw(){
+    list.innerHTML='';
+    D.timeline.filter(e=>f==='all'||e.type===f).slice().sort((a,b)=>a.date<b.date?-1:1).forEach(e=>{
+      const it=el('div','tl-item '+e.type+(e.blocked?' blocked':''));
+      it.append(el('div','tl-date',e.date));
+      it.append(el('div','tl-title',e.title));
+      it.append(el('div','tl-meta',(e.repo||'')+(e.category?(' · '+e.category):'')+(e.evidence?(' · '+e.evidence):'')));
+      list.append(it);
+    });
+  }
+  draw();
+}
+
+/* ---------- repositories ---------- */
+function renderRepos(){
+  content.append(el('h1','','Repositories'));
+  content.append(el('p','lede','The five repositories, their state, and fork relationships.'));
+  const grid=el('div','grid');content.append(grid);
+  const cards=[
+    {id:'repo-ix',t:'ix-infrastructure/Ix',s:'source · public',d:'The ix CLI. origin=upstream, fork=Alot1z/Ix. Two worktrees: feat/ix-agent-skill (13 uncommitted files) and feat/ix-remap-hardening (c021b52).'},
+    {id:'repo-fork',t:'Alot1z/Ix',s:'fork · public',d:'fork/main @ 0437abf — 5 behind origin, not pushed. fork feat/ix-agent-skill @ 0c9087c (cleanup, not local).'},
+    {id:'repo-dist',t:'ix-compass-dist',s:'distribution · public',d:'README-only release channel; tags v0.1.0–v0.3.0; artifacts are release assets; never modify (D-007).'},
+    {id:'repo-sc',t:'system-compass',s:'source · PRIVATE',d:'The Compass UI source. Private/404 — no checkout. All Compass PR work blocked on access (D-014).'},
+    {id:'repo-findings',t:'Ix-findings',s:'investigation · local',d:'This ledger + planning layer. Git-initialized, zero commits; commit pending review (S-015).'}
+  ];
+  cards.forEach(c=>{const card=el('div','card');card.onclick=()=>openEntity(c.id,'repository');card.append(el('h3','',c.t+' <span class="tag">'+c.s+'</span>'));card.append(el('p','muted',c.d));grid.append(card);});
+  content.append(el('h2','','Branches · verified 2026-08-10'));
+  const t=el('table','','<thead><tr><th>Branch</th><th>Repo</th><th>HEAD</th><th>vs origin/main</th><th>State</th></tr></thead><tbody></tbody>');
+  [['main','repo-ix','c4f8fea','0 / 0','synced'],['feat/ix-agent-skill','repo-ix','b038c46','1 ahead, 10 behind','13 uncommitted files'],['feat/ix-remap-hardening','repo-ix','c021b52','1 ahead, 0 behind','PR-ready · NOT pushed'],['fork/main','repo-fork','0437abf','5 behind','not pushed'],['fork feat/ix-agent-skill','repo-fork','0c9087c','—','cleanup · not local'],['dist main','repo-dist','396426b','—','clean']]
+    .forEach(r=>t.querySelector('tbody').append(el('tr','','<td class="code">'+r[0]+'</td><td>'+r[1]+'</td><td class="code">'+r[2]+'</td><td>'+r[3]+'</td><td>'+r[4]+'</td>')));
+  content.append(t);
+}
+
+/* ---------- phases ---------- */
+function renderPhases(){
+  content.append(el('h1','','Phase Explorer'));
+  content.append(el('p','lede','Every investigation phase, independently openable.'));
+  const grid=el('div','grid');content.append(grid);
+  D.phases.slice().forEach(p=>{
+    const card=el('div','card phase-card');
+    card.onclick=()=>openEntity(p.id,'phase');
+    card.append(el('div','cat',p.category+' · '+p.status));
+    card.append(el('h3','',p.number+' — '+p.title));
+    card.append(el('p','muted',(p.objective||'').slice(0,130)+'…'));
+    grid.append(card);
+  });
+}
+
+/* ---------- findings ---------- */
+function renderFindings(){
+  content.append(el('h1','','Findings'));
+  content.append(el('p','lede','Filter by evidence class or status. Evidence class is shown by label + glyph + border — never colour alone.'));
+  const state={cls:[],st:'all'};
+  const chips=el('div','filters');content.append(chips);
+  const table=el('table','','<thead><tr><th>ID</th><th>Title</th><th>Class</th><th>Repo</th><th>Severity</th><th>Status</th></tr></thead><tbody></tbody>');
+  content.append(table);
+  ['A','B','C','D'].forEach(cl=>{const c=el('button','chip');c.textContent='class '+cl;c.dataset.cls=cl;c.onclick=()=>{state.cls=state.cls.includes(cl)?state.cls.filter(x=>x!==cl):[...state.cls,cl];draw();};chips.append(c);});
+  ['PR_READY','OPEN','REPRODUCED','CONFIRMED','VERIFIED','OBSERVED','IN_REMAP_PR'].forEach(s=>{const c=el('button','chip');c.textContent=s.toLowerCase();c.dataset.st=s.toLowerCase();c.onclick=()=>{state.st=state.st===s?'all':s;draw();};chips.append(c);});
+  function draw(){
+    chips.querySelectorAll('.chip').forEach(c=>{if(c.dataset.cls)c.classList.toggle('on',state.cls.includes(c.dataset.cls));else c.classList.toggle('on',state.st===c.dataset.st);});
+    table.querySelector('tbody').innerHTML='';
+    D.findings.forEach(f=>{
+      const base=f.evidence_class.split('+')[0];
+      if(state.cls.length && !state.cls.includes(base))return;
+      if(state.st!=='all'&& !String(f.status).toLowerCase().includes(state.st))return;
+      const tr=el('tr','','<td class="code">'+f.id+'</td><td>'+f.title+'</td><td>'+eclass(base)+(f.evidence_class.includes('+')?' +':'')+'</td><td>'+f.repository+'</td><td>'+(f.severity||'—')+'</td><td>'+status(f.status)+'</td>');
+      tr.onclick=()=>openEntity(f.id,'finding');
+      table.querySelector('tbody').append(tr);
+    });
+  }
+  draw();
+}
+
+/* ---------- evidence ---------- */
+function renderEvidence(){
+  content.append(el('h1','','Evidence'));
+  content.append(el('p','lede','Navigate Finding → Evidence → Reproduction → Result. Each item lists the findings it supports.'));
+  const t=el('table','','<thead><tr><th>ID</th><th>Item</th><th>Class</th><th>Kind</th><th>Supports</th></tr></thead><tbody></tbody>');
+  content.append(t);
+  D.evidence.forEach(e=>{
+    const tr=el('tr','','<td class="code">'+e.id+'</td><td>'+e.title+'</td><td>'+eclass(e.class)+'</td><td>'+e.kind+'</td><td>'+(e.supports||[]).join(' · ')+'</td>');
+    tr.onclick=()=>openEntity(e.id,'evidence');
+    t.querySelector('tbody').append(tr);
+  });
+}
+
+/* ---------- compass ---------- */
+function renderCompass(){
+  content.append(el('h1','','Compass History'));
+  content.append(el('p','lede','Behavioral comparison across v0.1.0 → v0.3.0. (A) = release notes, (B) = artifact/runtime.'));
+  const rows=[
+    ['Keyboard switch + guards','same','same','same','same'],
+    ['KeyboardHelp array','same','same','same','same'],
+    ['F/f binding','none','none','none','none'],
+    ['Fit math + 9 constants','same','same','same','same'],
+    ['Zoom contract (×1.1 / ×0.9 / 2.5)','same','same','same','same'],
+    ['Fit lifecycle','latch','latch','latch','keyed refit (#57)'],
+    ['Delayed-data blank','present','present','present','present'],
+    ['Region rollup','—','—','timing-dep','timing-dep'],
+    ['Bounded layout (gravity + cutoff)','—','—','—','✓ (A)'],
+    ['Aggregation 1,471→33','—','—','—','✓ (A)'],
+    ['Searchable roll-ups / breadcrumb collapse','—','—','—','✓ (A)'],
+    ['Source maps','none','none','none','none']
+  ];
+  const t=el('table','','<thead><tr><th>Area</th><th>v0.1.0</th><th>v0.1.1</th><th>v0.2.0</th><th>v0.3.0</th></tr></thead><tbody></tbody>');
+  rows.forEach(r=>t.querySelector('tbody').append(el('tr','',r.map((c,i)=>i?'<td class="code">'+c+'</td>':'<td>'+c+'</td>').join(''))));
+  content.append(t);
+  content.append(el('h2','','Releases'));
+  const rt=el('table','','<thead><tr><th>Tag</th><th>Date</th><th>By</th><th>SHA256</th></tr></thead><tbody></tbody>');
+  [['v0.1.0','2026-03-28','TannerTorrey3','19bc427d0eca77b2…'],['v0.1.1','2026-03-29','TannerTorrey3','74e56488c5daf970…'],['v0.2.0','2026-06-08','TannerTorrey3','863583084c91719f…'],['v0.3.0','2026-08-09','KageBinary','7ed6cc82fe58b3ad…']]
+    .forEach(r=>rt.querySelector('tbody').append(el('tr','',r.map((c,i)=>i?'<td class="code">'+c+'</td>':'<td>'+c+'</td>').join(''))));
+  content.append(rt);
+}
+
+/* ---------- PR / issue map ---------- */
+function renderPRMap(){
+  content.append(el('h1','','PR / Issue Map'));
+  content.append(el('p','lede','Finding → issue → PR → branch → commit. Planned work is tagged; nothing has been opened.'));
+  const chains=[
+    ['F-010 → branch c021b52','feat/ix-remap-hardening','→ PR vs ix-infrastructure/Ix main','READY — authorization (D-009)','ok'],
+    ['F-008 → Ix#376','(no branch)','→ PR (Option A)','packet ready — +maintainer direction','ok'],
+    ['F-009 → Ix#371','(no branch)','→ decision OSS vs Pro','maintainer decision','warn'],
+    ['F-001…F-005 → system-compass#57','feat/f-key-fit-view','→ PR vs system-compass main','SOURCE-BLOCKED (spec)','warn'],
+    ['F-006/F-007 → #57 gap','(no branch)','→ issue then PR','SOURCE-BLOCKED (investigation)','warn']
+  ];
+  chains.forEach(c=>{const card=el('div','card');card.append(el('h3','',c[0]));card.append(el('p','muted',c[1]));card.append(el('p','',c[2]+' — <span class="'+c[4]+'">'+c[3]+'</span>'));content.append(card);});
+  content.append(el('h2','','Issue → PR (existing, upstream)'));
+  content.append(el('p','muted','Ix#374→#375 · Ix#379→#380 · Ix#381→#382 (Hiro-Chiba) — catalogued, out of scope. system-compass#57 → v0.3.0 (KageBinary).'));
+}
+
+/* ---------- suggestions ---------- */
+function renderSuggestions(){
+  content.append(el('h1','','AI Suggestions'));
+  content.append(el('p','lede','Every recommendation with its disposition — accepted, deferred, rejected, superseded, blocked. Rejected and dangerous ones are recorded on purpose.'));
+  ['ACCEPTED','DEFERRED','REJECTED','SUPERSEDED','BLOCKED'].forEach(ds=>{
+    const set=D.suggestions.filter(s=>s.disposition===ds);
+    content.append(el('h2','',ds+' ('+set.length+')'));
+    const t=el('table','','<thead><tr><th>ID</th><th>Suggestion</th><th>Repo</th><th>Reason</th></tr></thead><tbody></tbody>');
+    set.forEach(s=>{const tr=el('tr','','<td class="code">'+s.id+'</td><td>'+s.text+'</td><td>'+s.repository+'</td><td>'+s.reason+'</td>');tr.onclick=()=>openEntity(s.id,'suggestion');t.querySelector('tbody').append(tr);});
+    content.append(t);
+  });
+}
+
+/* ---------- decisions ---------- */
+function renderDecisions(){
+  content.append(el('h1','','Decisions'));
+  content.append(el('p','lede','Decided decisions and open ones awaiting your call.'));
+  const decided=D.decisions.filter(d=>String(d.status).startsWith('DECIDED'));
+  const open=D.decisions.filter(d=>d.status==='OPEN');
+  content.append(el('h2','','Decided ('+decided.length+')'));
+  const t=el('table','','<thead><tr><th>ID</th><th>Decision</th><th>Chosen</th><th>Why</th></tr></thead><tbody></tbody>');
+  decided.forEach(d=>{const tr=el('tr','','<td class="code">'+d.id+'</td><td>'+d.title+'</td><td>'+d.chosen+'</td><td>'+d.reason+'</td>');tr.onclick=()=>openEntity(d.id,'decision');t.querySelector('tbody').append(tr);});
+  content.append(t);
+  content.append(el('h2','','Open — your call ('+open.length+')'));
+  const ot=el('table','','<thead><tr><th>ID</th><th>Decision</th><th>Recommended</th></tr></thead><tbody></tbody>');
+  open.forEach(d=>{const tr=el('tr','','<td class="code">'+d.id+'</td><td>'+d.title+'</td><td>'+d.reason+'</td>');tr.onclick=()=>openEntity(d.id,'decision');ot.querySelector('tbody').append(tr);});
+  content.append(ot);
+}
+
+/* ---------- security ---------- */
+function renderSecurity(){
+  content.append(el('h1','','Security'));
+  content.append(el('p','lede','Endpoint guard matrix, repository posture, open items, and the privacy audit.'));
+  content.append(el('h2','','/__ix/remap guard matrix'));
+  const g=el('table','','<thead><tr><th>Check</th><th>Result</th><th></th></tr></thead><tbody></tbody>');
+  [['Loopback bind','127.0.0.1'],['Host: localhost / 127.0.0.1 / [::1]','allowed'],['Host: DNS-rebinding','403'],['Origin: cross-site','403'],['Origin: non-loopback','403'],['Origin: malformed','403'],['Origin: absent (curl)','allowed'],['Origin: loopback','allowed'],['Client-disconnect reap','child killed'],['SPA fallback GET','200']]
+    .forEach(r=>g.querySelector('tbody').append(el('tr','','<td>'+r[0]+'</td><td class="code">'+r[1]+'</td><td class="ok">✓</td>')));
+  content.append(g);
+  content.append(el('h2','','Open items'));
+  const ot=el('table','','<thead><tr><th>Sev</th><th>Item</th><th>Status</th><th></th></tr></thead><tbody></tbody>');
+  [['P0','0.0.0.0 bind','FIXED in remap branch','ok'],['P2','url.parse() / DEP0169','follow-up','warn'],['P2','localhost advertised vs 127.0.0.1','follow-up','warn'],['P3','stale visualizer bundle','watch','warn'],['P3','token format validation','hardening idea',''],['P3','curl|sh without hash','hardening idea','']]
+    .forEach(r=>ot.querySelector('tbody').append(el('tr','','<td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+r[2]+'</td><td class="'+(r[3]==='ok'?'ok':r[3]==='warn'?'warn':'')+'">'+(r[3]==='ok'?'✓':r[3]==='warn'?'!':'')+'</td>')));
+  content.append(ot);
+  content.append(el('h2','','Privacy audit'));
+  const pt=el('table','','<thead><tr><th>Scan</th><th>Result</th><th></th></tr></thead><tbody></tbody>');
+  [['Drive paths (C:\\Users, /home/, E:\\Users)','none'],['Raw E:\\E-github-repos paths','sanitized to placeholders'],['Emails','none'],['Credential prefixes / tokens','none (descriptive prose only)'],['.env / SSH keys / certs','none']]
+    .forEach(r=>pt.querySelector('tbody').append(el('tr','','<td>'+r[0]+'</td><td>'+r[1]+'</td><td class="ok">✓</td>')));
+  content.append(pt);
+  content.append(el('p','muted','This wiki contains no real filesystem paths, no local usernames, no credentials. Public maintainer GitHub handles are retained (public, needed for mention context). See planning/security/privacy.md.'));
+}
+
+/* ---------- about ---------- */
+function renderAbout(){
+  content.append(el('h1','','About & Privacy'));
+  content.append(el('p','lede','Interactive exploration of the Ix / Compass investigation — the planning layer of <strong>Ix-findings</strong>. Generated from the machine-readable registries; works fully offline (file://, no server, no network).'));
+  content.append(el('h2','','Evidence classes'));
+  const t=el('table','','<thead><tr><th>Class</th><th>Meaning</th><th></th></tr></thead><tbody></tbody>');
+  [['A','Direct source evidence (or authoritative maintainer release notes)'],['B','Reproducible artifact / runtime evidence'],['C','Strongly corroborated reconstruction'],['D','Inference / speculation']]
+    .forEach(r=>t.querySelector('tbody').append(el('tr','','<td>'+r[0]+'</td><td>'+r[1]+'</td><td>'+eclass(r[0])+'</td>')));
+  content.append(t);
+  content.append(el('p','muted','Class is per-claim and never upgraded by repetition. The wiki distinguishes classes by label + glyph + border, not colour alone.'));
+  content.append(el('h2','','Traceability'));
+  content.append(el('p','lede','conclusion → finding (F-###) → evidence (E-###) → reproduction → artifact/source reference. Recommendations trace to suggestion (S-###) → evidence → decision (D-###) → action/deferral/rejection.'));
+  content.append(el('h2','','Privacy'));
+  content.append(el('p','lede','No real filesystem paths, no local usernames, no credentials, no private source. No remote operation was performed while building this (nothing pushed or opened). Full audit: planning/security/privacy.md.'));
+  content.append(el('h2','','Data'));
+  content.append(el('p','muted','Loaded from data/data.js (generated by build-data.mjs from planning/ registries). '+D.findings.length+' findings · '+D.evidence.length+' evidence · '+D.suggestions.length+' suggestions · '+D.decisions.length+' decisions · '+D.phases.length+' phases · '+D.graph.nodes.length+' graph nodes.'));
+}
+
+/* ---------- search ---------- */
+const searchEl=$('#search');
+function doSearch(q){
+  q=q.trim().toLowerCase();if(!q)return;
+  const results=[];
+  D.findings.forEach(f=>{if((f.id+' '+f.title+' '+f.repository+' '+(f.ixf_id||'')).toLowerCase().includes(q))results.push({id:f.id,type:'finding',label:f.title});});
+  D.evidence.forEach(e=>{if((e.id+' '+e.title+' '+e.kind+' '+(e.supports||[]).join(' ')).toLowerCase().includes(q))results.push({id:e.id,type:'evidence',label:e.title});});
+  D.suggestions.forEach(s=>{if((s.id+' '+s.text+' '+s.repository).toLowerCase().includes(q))results.push({id:s.id,type:'suggestion',label:s.text.slice(0,70)});});
+  D.decisions.forEach(d=>{if((d.id+' '+d.title+' '+(d.problem||'')).toLowerCase().includes(q))results.push({id:d.id,type:'decision',label:d.title});});
+  D.phases.forEach(p=>{if((p.id+' '+p.title+' '+(p.objective||'')).toLowerCase().includes(q))results.push({id:p.id,type:'phase',label:p.title});});
+  const w=el('div','');
+  w.append(el('h2','','Search: '+q));
+  if(!results.length)w.append(el('p','muted','No matches.'));
+  results.slice(0,40).forEach(r=>{const a=el('a','link','');a.textContent=r.id+' — '+r.label;a.style.display='block';a.style.marginBottom='6px';a.onclick=()=>openEntity(r.id,r.type);w.append(a);});
+  content.innerHTML='';content.append(w);
+}
+searchEl.addEventListener('input',()=>{const q=searchEl.value;if(q.trim())doSearch(q);else render();});
+searchEl.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();doSearch(searchEl.value);}});
+
+/* init */
+render();
+})();</script>
+</body>
+</html>
+```
+
+## File: index.html
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ix / Compass Investigation — Knowledge Wiki</title>
+<meta name="description" content="Interactive exploration of the Ix / Compass investigation knowledge base. Local, no server, no network.">
+<link rel="stylesheet" href="assets/wiki.css">
+</head>
+<body>
+<div id="app">
+  <header id="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-title">IX / COMPASS</span>
+      <span class="brand-sub">investigation knowledge base</span>
+    </div>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Search findings, evidence, suggestions, decisions, phases…" autocomplete="off" spellcheck="false">
+    </div>
+    <div class="topbar-right">
+      <span id="phase-badge" class="badge">FINAL</span>
+    </div>
+  </header>
+
+  <div id="layout">
+    <nav id="sidebar" aria-label="Views">
+      <div class="nav-group-label">Explore</div>
+      <button class="nav-item active" data-view="map">⌗ Investigation Map</button>
+      <button class="nav-item" data-view="timeline">◷ Timeline</button>
+      <button class="nav-item" data-view="repositories">▤ Repositories</button>
+      <button class="nav-item" data-view="phases">⛁ Phase Explorer</button>
+      <div class="nav-group-label">Knowledge</div>
+      <button class="nav-item" data-view="findings">✦ Findings</button>
+      <button class="nav-item" data-view="evidence">◈ Evidence</button>
+      <button class="nav-item" data-view="compass">◐ Compass History</button>
+      <button class="nav-item" data-view="prmap">⇄ PR / Issue Map</button>
+      <div class="nav-group-label">Decision</div>
+      <button class="nav-item" data-view="suggestions">✎ AI Suggestions</button>
+      <button class="nav-item" data-view="decisions">✓ Decisions</button>
+      <button class="nav-item" data-view="security">🛡 Security</button>
+      <div class="nav-group-label">About</div>
+      <button class="nav-item" data-view="about">ℹ About / Privacy</button>
+    </nav>
+
+    <main id="view">
+      <div id="breadcrumb" class="breadcrumb"></div>
+      <section id="content" class="content"></section>
+    </main>
+  </div>
+
+  <aside id="drawer" class="drawer" aria-label="Detail">
+    <div class="drawer-head">
+      <span id="drawer-title">Detail</span>
+      <button id="drawer-close" aria-label="Close">×</button>
+    </div>
+    <div id="drawer-body" class="drawer-body"></div>
+  </aside>
+</div>
+
+<script src="data/data.js"></script>
+<script src="assets/wiki.js"></script>
+</body>
+</html>
+```

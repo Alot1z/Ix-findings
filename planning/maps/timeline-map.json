@@ -1,0 +1,28 @@
+{
+  "version": "2.0.0",
+  "generated": "2026-08-10",
+  "events": [
+    { "date": "2026-03-28", "type": "release", "title": "Compass v0.1.0 released (TannerTorrey3)", "repo": "ix-compass-dist", "evidence": "E-001" },
+    { "date": "2026-03-29", "type": "release", "title": "Compass v0.1.1 released (hotfix)", "repo": "ix-compass-dist", "evidence": "E-002" },
+    { "date": "2026-06-08", "type": "release", "title": "Compass v0.2.0 released", "repo": "ix-compass-dist", "evidence": "E-003" },
+    { "date": "2026-08-09", "type": "release", "title": "Compass v0.3.0 released (KageBinary) — #57 refit, bounded layout, aggregation", "repo": "ix-compass-dist", "evidence": "E-004, E-008" },
+    { "date": "2026-08-09", "type": "github", "title": "Ix PRs #365 (compass stamp) + #366 (tar pairing) merged", "repo": "ix-infrastructure/Ix", "evidence": "E-017" },
+    { "date": "2026-08-09", "type": "github", "title": "Ix PR #368 (agent skill + HTTP API docs) merged -> 2157158", "repo": "ix-infrastructure/Ix", "evidence": "E-020" },
+    { "date": "2026-08-10", "type": "github", "title": "Ix issues #371 (patches dead) + #376 (version-series mismatch) opened by KageBinary", "repo": "ix-infrastructure/Ix", "evidence": "E-017, E-018" },
+    { "date": "2026-08-10", "type": "phase", "title": "Phase 0 — Initial State Audit", "repo": "ALL", "category": "DISCOVERY" },
+    { "date": "2026-08-10", "type": "phase", "title": "Phase 1 — Fork Synchronization (main -> c4f8fea)", "repo": "Ix", "category": "SYNCHRONIZATION" },
+    { "date": "2026-08-10", "type": "phase", "title": "Phase 2 — Remap Finalization (c021b52)", "repo": "Ix", "category": "IMPLEMENTATION" },
+    { "date": "2026-08-10", "type": "phase", "title": "Phase 3 — Issue #376 Investigation", "repo": "Ix", "category": "RESEARCH" },
+    { "date": "2026-08-10", "type": "phase", "title": "Phase 4 — Security & Historical Audit", "repo": "Ix", "category": "AUDIT" },
+    { "date": "2026-08-10", "type": "phase", "title": "Phase 5 — Compass Historical Reconstruction", "repo": "system-compass (artifacts)", "category": "RESEARCH" },
+    { "date": "2026-08-10", "type": "phase", "title": "Phase 6 — F-Key Source-Access Gate (BLOCKED)", "repo": "system-compass", "category": "VERIFICATION" },
+    { "date": "2026-08-10", "type": "phase", "title": "Phase 7 — Delayed-Data Deep Probe", "repo": "system-compass (runtime)", "category": "REPRODUCTION" },
+    { "date": "2026-08-10", "type": "phase", "title": "Phase 8 — Repository Architecture Audit", "repo": "ALL", "category": "AUDIT" },
+    { "date": "2026-08-10", "type": "phase", "title": "Phase 9 — Ix-findings Ledger", "repo": "Ix-findings", "category": "AUDIT" },
+    { "date": "2026-08-10", "type": "phase", "title": "Phase 10 — GitHub & Maintainer Context", "repo": "ALL", "category": "GITHUB" },
+    { "date": "2026-08-10", "type": "phase", "title": "Phase 11 — PR Packet Generation", "repo": "ALL", "category": "PR PREPARATION" },
+    { "date": "2026-08-10", "type": "phase", "title": "Phase 12 — Pre-Publish Verification Gate (READY)", "repo": "Ix", "category": "VERIFICATION" },
+    { "date": "2026-08-10", "type": "phase", "title": "Phase 13 — Push + Open PR (PENDING, authorization)", "repo": "Ix", "category": "PR PREPARATION", "blocked": true },
+    { "date": "2026-08-10", "type": "phase", "title": "Phase FINAL — Master Audit, Reconciliation, Knowledge Graph, Wiki", "repo": "Ix-findings", "category": "AUDIT" }
+  ]
+}

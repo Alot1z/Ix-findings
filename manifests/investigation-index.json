@@ -1,0 +1,81 @@
+{
+  "version": "2.0.0",
+  "updatedAt": "2026-08-10T14:30:00Z",
+  "repositories": {
+    "ix-infrastructure/Ix": {
+      "localPath": "<IX_REPO>",
+      "remote": {
+        "origin": "https://github.com/ix-infrastructure/Ix",
+        "fork": "https://github.com/Alot1z/Ix"
+      },
+      "branches": {
+        "main": { "commit": "01308e6", "behindUpstream": 10 },
+        "feat/ix-agent-skill": { "commit": "b038c46", "status": "overhaul uncommitted" },
+        "feat/ix-remap-hardening": { "commit": "c021b52", "status": "PR-ready, NOT pushed", "worktree": "<IX_REPO>-remap" }
+      }
+    },
+    "ix-infrastructure/ix-compass-dist": {
+      "localPath": "<COMPASS_DIST_REPO>",
+      "branch": "main",
+      "commit": "396426b",
+      "description": "Distribution channel for system-compass releases"
+    },
+    "ix-infrastructure/system-compass": {
+      "status": "UNAVAILABLE",
+      "reason": "Private repository; no local checkout; 404 on GitHub"
+    }
+  },
+  "artifacts": {
+    "v0.1.0": { "sha256": "19bc427d0eca77b2…", "releasedBy": "TannerTorrey3", "date": "2026-03-28", "sourceRev": "unknown" },
+    "v0.1.1": { "sha256": "74e56488c5daf970…", "releasedBy": "TannerTorrey3", "date": "2026-03-29", "sourceRev": "unknown" },
+    "v0.2.0": { "sha256": "863583084c91719f…", "releasedBy": "TannerTorrey3", "date": "2026-06-08", "sourceRev": "unknown" },
+    "v0.3.0": { "sha256": "7ed6cc82fe58b3ad…", "releasedBy": "KageBinary", "date": "2026-08-09", "sourceRev": "system-compass main @ 7f98724" }
+  },
+  "findings": {
+    "classA": [
+      { "id": "A1", "description": "#57 fit latch confirmed by v0.3.0 release notes", "source": "v0.3.0 release body by KageBinary" },
+      { "id": "A2", "description": "#57 keyed refit effect introduced in v0.3.0", "source": "same release notes" },
+      { "id": "A3", "description": "Bounded layout (gravity, repulsion cutoff) introduced in v0.3.0", "source": "same release notes" },
+      { "id": "A4", "description": "Roll-up search and breadcrumb collapse introduced in v0.3.0", "source": "same release notes" },
+      { "id": "A5", "description": "v0.3.0 purpose: stop ix upgrade downgrade", "source": "same release notes" }
+    ],
+    "classB": [
+      { "id": "B1", "description": "Keyboard switch invariant across all 4 releases" },
+      { "id": "B2", "description": "F/f genuinely unbound in every artifact" },
+      { "id": "B3", "description": "KeyboardHelp byte-identical across all 4 releases; no F entry" },
+      { "id": "B4", "description": "Fit math invariant (contain, chrome, cap, offset, snap)" },
+      { "id": "B5", "description": "Zoom contract invariant (×1.1 up, ×0.9 down)" },
+      { "id": "B6", "description": "F-key PoC: F target === 0 target byte-identically" },
+      { "id": "B7", "description": "Delayed-data blank reproduced in v0.2.0 and v0.3.0" },
+      { "id": "B8", "description": "Region rollup aggregate formation is timing-dependent" },
+      { "id": "B9", "description": "Placeholder fit unstable (~0.439–0.441)" },
+      { "id": "B10", "description": "Source maps absent from all releases" }
+    ],
+    "classC": [
+      { "id": "C1", "description": "Delayed-data mechanism: self-referential refit via CSS-zoomed getBoundingClientRect" },
+      { "id": "C2", "description": "F-key source shape: switch case + callback mirroring 0 key + KeyboardHelp entry" }
+    ],
+    "classD": [
+      { "id": "D1", "description": "Exact source filenames and line anchors in system-compass" },
+      { "id": "D2", "description": "Rollup aggregate decision logic" },
+      { "id": "D3", "description": "Initial zoom derivation" }
+    ]
+  },
+  "prPackets": {
+    "ix-remap-hardening": { "repo": "ix-infrastructure/Ix", "branch": "feat/ix-remap-hardening", "commit": "c021b52", "status": "PR-ready, NOT pushed" },
+    "compass-f-key": { "repo": "ix-infrastructure/system-compass", "branch": "feat/f-key-fit-view", "status": "BLOCKED: source unavailable" },
+    "compass-delayed-data": { "repo": "ix-infrastructure/system-compass", "status": "BLOCKED: source unavailable; investigation packet ready" }
+  },
+  "maintainers": {
+    "KageBinary": { "role": "Collaborator on Ix; released Compass v0.3.0", "active": true },
+    "Hiro-Chiba": { "role": "Contributor on Ix", "active": true },
+    "TannerTorrey3": { "role": "Released Compass v0.1.0–v0.2.0", "active": "unknown" }
+  },
+  "ixFindings": {
+    "remap": { "status": "verified: 656 tests, ts clean, eslilt clean" },
+    "p2_dep0169": { "status": "tracked separately" },
+    "p2_localhost": { "status": "tracked separately" },
+    "p3_stale_bundle": { "status": "watch item" },
+    "p1_issue371": { "status": "tracked separately; opened by KageBinary" }
+  }
+}
