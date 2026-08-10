@@ -68,21 +68,21 @@
 | Issues referenced | #57 (fit refit), #58, #59 |
 | Status | ACCESS BLOCKED — requires maintainer grant |
 
-### 5. Ix-findings (INVESTIGATION LEDGER)
+### 5. Ix-findings (INVESTIGATION LEDGER — NOW PUBLISHED)
 
 | Field | Value |
 |---|---|
-| Owner | Local only (no GitHub remote) |
+| Owner | Alot1z |
 | Name | Ix-findings |
+| URL | https://github.com/Alot1z/Ix-findings |
 | Local path | `E:\E-github-repos\Ix-findings` |
 | Git root | `E:\E-github-repos\Ix-findings\.git` |
 | Branch | `master` |
-| Commits | 0 (NOTHING committed) |
-| Staged | 0 files |
-| Tracked | 0 files |
-| Untracked | 28 entries (13 directories) |
-| Remotes | NONE |
-| Purpose | Investigation ledger, findings, evidence, planning, wiki |
+| Remote | `origin` → https://github.com/Alot1z/Ix-findings.git |
+| HEAD commit | `daff6f9` (initial commit) |
+| Files | 171 files, 34,563 insertions |
+| Status | Published 2026-08-10 — clean, synced |
+| Purpose | Investigation ledger, findings, evidence, planning, wiki, execution reports |
 
 ---
 
