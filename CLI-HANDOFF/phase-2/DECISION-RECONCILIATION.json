@@ -1,0 +1,30 @@
+{
+  "phase": "2",
+  "title": "Decision Reconciliation",
+  "generated": "2026-08-10",
+  "source": "planning/decisions/registry.json (14 records, verified 2026-08-10)",
+  "total": 14,
+  "decisions": [
+    {"id": "D-001", "status": "DECIDED", "date": "2026-08-10", "chosen": "Base remap branch on origin/main (c4f8fea)", "reconciled": "CURRENT — verified c021b52 is 1 ahead of origin/main"},
+    {"id": "D-002", "status": "DECIDED", "date": "2026-08-10", "chosen": "Dedicated worktree for remap work", "reconciled": "CURRENT — worktree-remap at E:/E-github-repos/Ix-remap"},
+    {"id": "D-003", "status": "DECIDED", "date": "2026-08-10", "chosen": "Four-tier evidence classification A=source/B=artifact/runtime/C=reconstruction/D=inference", "reconciled": "CURRENT — applied across all registries and findings"},
+    {"id": "D-004", "status": "DECIDED", "date": "2026-08-10", "chosen": "Maintainer release notes count as Class A evidence for asserted behavior", "reconciled": "CURRENT — E-008 used as Class A"},
+    {"id": "D-005", "status": "DECIDED", "date": "2026-08-10", "chosen": "F-key = keyboard case + callback + help entry only; no new camera system", "reconciled": "CURRENT — scope boundary for PACK-fkey; rejected S-021/S-022"},
+    {"id": "D-006", "status": "DECIDED", "date": "2026-08-10", "chosen": "Delayed-data separate from F-key; separate PRs/packets", "reconciled": "CURRENT — PACK-delayed separate; rejected S-023"},
+    {"id": "D-007", "status": "DECIDED", "date": "2026-08-10", "chosen": "ix-compass-dist is a distribution channel, not source; never manually modify artifacts", "reconciled": "CURRENT — rejected S-027; dist remains DO-NOT-MODIFY"},
+    {"id": "D-008", "status": "DECIDED", "date": "2026-08-10", "chosen": "Ix-findings is a standalone evidence repo, no upstream", "reconciled": "CURRENT — Alot1z/Ix-findings"},
+    {"id": "D-009", "status": "DECIDED (ongoing)", "date": "2026-08-10", "chosen": "No remote operation without explicit authorization; PR-ready means local-only", "reconciled": "CURRENT — enforced through all phases; only authorized pushes occurred"},
+    {"id": "D-010", "status": "OPEN", "date": "2026-08-10", "chosen": null, "problem": "Where to prep the Compass port", "reconciled": "UNRESOLVED — blocked on system-compass access"},
+    {"id": "D-011", "status": "OPEN", "date": "2026-08-10", "chosen": null, "problem": "Compass PR scope", "reconciled": "UNRESOLVED — F-key scope bounded by D-005; auto-frame excluded (F-005/#57)"},
+    {"id": "D-012", "status": "OPEN", "date": "2026-08-10", "chosen": null, "problem": "No-map chip timing", "reconciled": "UNRESOLVED — S-020 deferred"},
+    {"id": "D-013", "status": "OPEN", "date": "2026-08-10", "chosen": null, "problem": "Stopgap compass-patch fate", "reconciled": "UNRESOLVED — local patch kept (S-011), expiry not set"},
+    {"id": "D-014", "status": "OPEN", "date": "2026-08-10", "chosen": null, "problem": "Access path for system-compass", "reconciled": "UNRESOLVED — requires user-authorized maintainer access request (NOT authorized in any phase so far)"}
+  ],
+  "summary": {
+    "CURRENT": ["D-001", "D-002", "D-003", "D-004", "D-005", "D-006", "D-007", "D-008", "D-009"],
+    "UNRESOLVED": ["D-010", "D-011", "D-012", "D-013", "D-014"],
+    "SUPERSEDED": [],
+    "REVERSED": [],
+    "note": "No decisions are superseded or reversed. All 9 decided remain current; 5 remain open. D-014 is the only decision requiring external authorization to resolve."
+  }
+}

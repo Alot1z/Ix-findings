@@ -1,0 +1,54 @@
+{
+  "phase": "2",
+  "title": "Evidence Reconciliation",
+  "generated": "2026-08-10",
+  "source": "planning/evidence/registry.json (25 records, verified 2026-08-10)",
+  "authoritative_count": 25,
+  "manifest_claimed_count": 28,
+  "discrepancy_source": "The 28 claim came from counting graph evidence NODES (28: E-001..E-028) instead of registry records (25). The graph contains 3 phantom nodes (E-026, E-027, E-028) that do not exist in the registry. They are not deleted records or duplicates — they were added to the graph layer only.",
+  "phantom_graph_nodes": [
+    {"id": "E-026", "title": "oss.ts PRO_COMMANDS list", "class": "A", "kind": "source", "registry_record": "absent — content overlaps E-018 (#371 source analysis)"},
+    {"id": "E-027", "title": "upgrade.ts isNewer implementation", "class": "A", "kind": "source", "registry_record": "absent — content overlaps E-017 (#376 source analysis)"},
+    {"id": "E-028", "title": "ix-cli actual version v0.6.1", "class": "A", "kind": "source", "registry_record": "absent — content overlaps E-019 (git divergence numbers)"}
+  ],
+  "evidence": [
+    {"id": "E-001", "type": "artifact", "class": "B", "phase": "phase-05", "repo": "ix-compass-dist", "supports": ["F-001", "F-002", "F-003", "F-004", "F-005"], "status": "CURRENT"},
+    {"id": "E-002", "type": "artifact", "class": "B", "phase": "phase-05", "repo": "ix-compass-dist", "supports": ["F-001", "F-002", "F-003", "F-004", "F-005"], "status": "CURRENT"},
+    {"id": "E-003", "type": "artifact", "class": "B", "phase": "phase-05", "repo": "ix-compass-dist", "supports": ["F-001", "F-002", "F-003", "F-004", "F-005"], "status": "CURRENT"},
+    {"id": "E-004", "type": "artifact", "class": "B", "phase": "phase-05", "repo": "ix-compass-dist", "supports": ["F-001", "F-002", "F-003", "F-004", "F-005", "F-006"], "status": "CURRENT"},
+    {"id": "E-005", "type": "artifact", "class": "B", "phase": "phase-05", "repo": "system-compass", "supports": ["F-001", "F-002"], "status": "CURRENT"},
+    {"id": "E-006", "type": "artifact", "class": "B", "phase": "phase-05", "repo": "system-compass", "supports": ["F-003"], "status": "CURRENT"},
+    {"id": "E-007", "type": "artifact", "class": "B", "phase": "phase-05", "repo": "system-compass", "supports": ["F-004"], "status": "CURRENT"},
+    {"id": "E-008", "type": "release note", "class": "A", "phase": "phase-05", "repo": "ix-compass-dist", "supports": ["F-005", "F-006", "F-007"], "status": "CURRENT"},
+    {"id": "E-009", "type": "reproduction", "class": "B", "phase": "phase-07", "repo": "system-compass", "supports": ["F-006"], "status": "CURRENT"},
+    {"id": "E-010", "type": "runtime", "class": "B", "phase": "phase-05", "repo": "system-compass", "supports": ["F-001", "F-002", "F-003", "F-004", "F-005"], "status": "CURRENT"},
+    {"id": "E-011", "type": "runtime", "class": "B", "phase": "phase-07", "repo": "system-compass", "supports": ["F-004", "F-013"], "status": "CURRENT"},
+    {"id": "E-012", "type": "runtime", "class": "B", "phase": "phase-07", "repo": "system-compass", "supports": ["F-007"], "status": "CURRENT"},
+    {"id": "E-013", "type": "source", "class": "A", "phase": "phase-00", "repo": "ix-infrastructure/Ix", "supports": ["F-010"], "status": "CURRENT"},
+    {"id": "E-014", "type": "source", "class": "A", "phase": "phase-02", "repo": "ix-infrastructure/Ix", "supports": ["F-010", "F-011", "F-012"], "status": "CURRENT"},
+    {"id": "E-015", "type": "test", "class": "B", "phase": "phase-02", "repo": "ix-infrastructure/Ix", "supports": ["F-010"], "status": "CURRENT"},
+    {"id": "E-016", "type": "test", "class": "B", "phase": "phase-12", "repo": "ix-infrastructure/Ix", "supports": ["F-010"], "status": "CURRENT"},
+    {"id": "E-017", "type": "source", "class": "A", "phase": "phase-03", "repo": "ix-infrastructure/Ix", "supports": ["F-008"], "status": "CURRENT"},
+    {"id": "E-018", "type": "source", "class": "A", "phase": "phase-04", "repo": "ix-infrastructure/Ix", "supports": ["F-009"], "status": "CURRENT"},
+    {"id": "E-019", "type": "git", "class": "A", "phase": "phase-final", "repo": "ALL", "supports": [], "status": "CURRENT"},
+    {"id": "E-020", "type": "github", "class": "A", "phase": "phase-10", "repo": "ALL", "supports": [], "status": "CURRENT"},
+    {"id": "E-021", "type": "git", "class": "A", "phase": "phase-final", "repo": "ix-infrastructure/Ix", "supports": [], "status": "CURRENT"},
+    {"id": "E-022", "type": "runtime", "class": "B", "phase": "phase-07", "repo": "system-compass", "supports": ["F-006"], "status": "CURRENT"},
+    {"id": "E-023", "type": "artifact", "class": "B", "phase": "phase-05", "repo": "ix-compass-dist", "supports": [], "status": "CURRENT"},
+    {"id": "E-024", "type": "source", "class": "A", "phase": "phase-02", "repo": "ix-infrastructure/Ix", "supports": ["F-011", "F-012"], "status": "CURRENT"},
+    {"id": "E-025", "type": "document", "class": "C", "phase": "phase-05", "repo": "system-compass", "supports": ["F-001", "F-002", "F-003", "F-004", "F-005"], "status": "CURRENT"}
+  ],
+  "evidence_class_breakdown": {
+    "A_source": ["E-013", "E-014", "E-017", "E-018", "E-019", "E-020", "E-021", "E-024"],
+    "A_release_note": ["E-008"],
+    "B_artifact": ["E-001", "E-002", "E-003", "E-004", "E-005", "E-006", "E-007", "E-023"],
+    "B_reproduction": ["E-009"],
+    "B_runtime": ["E-010", "E-011", "E-012", "E-022"],
+    "B_test": ["E-015", "E-016"],
+    "C_document": ["E-025"]
+  },
+  "coverage_gaps": [
+    "No evidence record links to newly discovered open PRs #375 (fixes #374) or #378, or issue #377 (remapping keeps deleted/renamed symbols) — these postdate the registry.",
+    "E-019/E-020/E-021/E-023 have empty supports[] (no linked findings) but remain valid context evidence."
+  ]
+}

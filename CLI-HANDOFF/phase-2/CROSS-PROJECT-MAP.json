@@ -1,0 +1,54 @@
+{
+  "phase": "2",
+  "title": "Cross-Project Map",
+  "generated": "2026-08-10",
+  "projects": {
+    "PROJECT_A": {"name": "IX", "repos": ["ix-infrastructure/Ix", "Alot1z/Ix"], "findings": ["F-008", "F-009", "F-010", "F-011", "F-012"], "issues": ["#371", "#374", "#376", "#377", "#379"], "prs": ["#358", "#362", "#365", "#366", "#368", "#372", "#373", "#375", "#378", "#380", "#382"]},
+    "PROJECT_B": {"name": "IX-KNOWLEDGE/COMPASS", "repos": ["Alot1z/Ix-findings", "ix-infrastructure/ix-compass-dist"], "findings": [], "note": "Investigation ledger + Compass UI distribution channel (D-007: not source)"},
+    "PROJECT_C": {"name": "FREEBUFF/FORGE", "repos": ["CodebuffAI/freebuff", "Alot1z/freebuff-forge"], "findings": [], "note": "Separate project. Modkit enhancement layer on feat/modkit-enhancement-layer @ 441cec670. No Ix findings map here."},
+    "PROJECT_D": {"name": "SYSTEM-COMPASS", "repos": ["ix-infrastructure/system-compass"], "findings": ["F-001", "F-002", "F-003", "F-004", "F-005", "F-006", "F-007", "F-013"], "access": "BLOCKED — private, HTTP 404, no fork"}
+  },
+  "finding_to_project": {
+    "IX_ONLY": ["F-008", "F-009", "F-010", "F-011", "F-012"],
+    "SYSTEM_COMPASS_ONLY": ["F-001", "F-002", "F-003", "F-004", "F-005", "F-006", "F-007", "F-013"],
+    "FREEBUFF_ONLY": [],
+    "CROSS_PROJECT": [],
+    "INVESTIGATION_ONLY": [],
+    "DOCUMENTATION_ONLY": [],
+    "note": "F-008/F-009 use ix-compass-dist evidence (E-001..E-004) contextually but are Ix-side issues. No finding spans two codebases directly."
+  },
+  "relationship_patterns": {
+    "SHARED_IMPLEMENTATION_PATTERN": ["Ix remap hardening (F-010) and system-compass#57 both touch 'fit/frame' behavior — but in DIFFERENT repositories; do not merge (D-006, S-006, S-024)"],
+    "CONCEPTUAL_OVERLAP": ["F-key (F-001..F-004) was surfaced in Ix PR #368 then redirected to system-compass by maintainer review"],
+    "DIRECT_DEPENDENCY": ["All system-compass findings depend on source access (BLOCKED)", "F-008 depends on ix upgrade code in Ix repo (accessible)"],
+    "NO_RELATIONSHIP": ["Freebuff/Forge modkit work has no relationship to Ix or system-compass findings"],
+    "BLOCKED_BY_ACCESS": ["F-001..F-007, F-013 -> system-compass private access"]
+  },
+  "pr_issue_reconciliation": {
+    "Ix#358": {"type": "PR", "state": "MERGED", "title": "View port reporting", "finding": "F-010 context"},
+    "Ix#362": {"type": "PR", "state": "MERGED", "title": "View -p warning", "finding": "F-010 context"},
+    "Ix#365": {"type": "PR", "state": "MERGED", "title": "Compass stamp", "finding": "F-008 mitigation"},
+    "Ix#366": {"type": "PR", "state": "MERGED", "title": "Tar pairing", "finding": "F-008 mitigation"},
+    "Ix#368": {"type": "PR", "state": "MERGED 2026-08-10T03:58:42Z", "title": "Agent skill + HTTP API docs", "author": "Alot1z", "finding": "F-001..F-007 context; Compass patch stripped"},
+    "Ix#372": {"type": "PR", "state": "MERGED", "title": "--format llm", "finding": "F-009 related"},
+    "Ix#373": {"type": "PR", "state": "MERGED", "title": "brew PR conventional title"},
+    "Ix#375": {"type": "PR", "state": "OPEN", "title": "resolve JS and TS calls across parse batches", "fixes": "Ix#374", "discovered_in_phase2": true},
+    "Ix#378": {"type": "PR", "state": "OPEN", "title": "remove stale graph entities", "discovered_in_phase2": true, "related": "Ix#377"},
+    "Ix#380": {"type": "PR", "state": "OPEN", "title": "preserve same-kind ambiguity"},
+    "Ix#382": {"type": "PR", "state": "OPEN", "title": "resolve PHP calls through typed receivers"},
+    "Ix#371": {"type": "ISSUE", "state": "OPEN", "title": "ix patches is registered nowhere", "finding": "F-009", "correction": "was mislabeled PR in PR-MATRIX"},
+    "Ix#374": {"type": "ISSUE", "state": "OPEN", "title": "JS and TS calls disappear across 500-file parse batches", "fix_pr": "Ix#375"},
+    "Ix#376": {"type": "ISSUE", "state": "OPEN", "title": "ix upgrade compares two unrelated version series", "finding": "F-008", "correction": "was mislabeled PR in PR-MATRIX"},
+    "Ix#377": {"type": "ISSUE", "state": "OPEN", "title": "Remapping keeps deleted and renamed symbols in the graph", "discovered_in_phase2": true, "related": "remap scope"},
+    "Ix#379": {"type": "ISSUE", "state": "OPEN", "title": "--kind silently selects among duplicate same-kind symbols", "discovered_in_phase2": true},
+    "system-compass#57": {"type": "ISSUE", "state": "OPEN (PRIVATE)", "title": "Fit latch -> keyed refit", "finding": "F-005"},
+    "system-compass#58": {"type": "ISSUE", "state": "PRIVATE", "title": "referenced in v0.3.0 release notes"},
+    "system-compass#59": {"type": "ISSUE", "state": "PRIVATE", "title": "referenced in v0.3.0 release notes"}
+  },
+  "corrections": [
+    "C-007 RESOLVED: #376 is an OPEN ISSUE, not a PR (verified via GitHub API 2026-08-10).",
+    "C-008 RESOLVED: #371 is an OPEN ISSUE, not a PR (verified via GitHub API 2026-08-10).",
+    "New PRs #375 (fixes #374), #378 (stale graph entities), #380, #382 and issues #377, #379 discovered during Phase 2 — not present in graph or PR-MATRIX.",
+    "F-008 mitigation PRs #365/#366 are MERGED; issue #376 remains open, so F-008 is ACTIVE."
+  ]
+}

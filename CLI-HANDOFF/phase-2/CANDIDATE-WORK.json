@@ -1,0 +1,134 @@
+{
+  "phase": "2",
+  "title": "New Candidate Work (evidence-backed, discovered in Phase 2)",
+  "generated": "2026-08-10",
+  "candidates": [
+    {
+      "id": "CAND-001",
+      "title": "Correct manifest.json stale counts",
+      "project": "Ix-findings",
+      "type": "knowledge-system correction",
+      "evidence": "manifest.json v4.0.0 claims 290/240/28; actual graph 152/136; actual evidence 25",
+      "status": "READY",
+      "blocker": "none",
+      "effort": "low",
+      "note": "Root cause: manifest inherited counts from GRAPH-AUDIT.md expansion summary that was never written to the graph file."
+    },
+    {
+      "id": "CAND-002",
+      "title": "Remove or reconcile phantom graph evidence nodes E-026..E-028",
+      "project": "Ix-findings",
+      "type": "graph correction",
+      "evidence": "graph has 28 evidence nodes; registry has 25; E-026/027/028 absent from registry",
+      "status": "READY",
+      "blocker": "none",
+      "effort": "low",
+      "note": "Either delete the 3 phantom nodes or add matching registry records. Registry is authoritative (25)."
+    },
+    {
+      "id": "CAND-003",
+      "title": "Add newly discovered PRs/issues to graph and PR-MATRIX",
+      "project": "Ix-findings",
+      "type": "graph/registry update",
+      "evidence": "PRs #375/#378/#380/#382 and issues #377/#379 verified via GitHub API 2026-08-10",
+      "status": "READY",
+      "blocker": "none",
+      "effort": "low",
+      "note": "PR #375 fixes issue #374. Issue #377 (remapping keeps deleted/renamed symbols) relates to remap scope."
+    },
+    {
+      "id": "CAND-004",
+      "title": "Fix PR-MATRIX mislabeling (#371/#376 are issues, not PRs)",
+      "project": "Ix-findings",
+      "type": "documentation correction",
+      "evidence": "GitHub API: both return issue records, not pull records",
+      "status": "READY",
+      "blocker": "none",
+      "effort": "low"
+    },
+    {
+      "id": "CAND-005",
+      "title": "Prepare PACK-371 packet for patches dead-code (F-009)",
+      "project": "Ix",
+      "type": "contribution packet",
+      "evidence": "F-009, E-018, E-026; issue #371 OPEN",
+      "status": "NEEDS_EVIDENCE",
+      "blocker": "verify whether merged PR #372 touched command registration",
+      "effort": "low"
+    },
+    {
+      "id": "CAND-006",
+      "title": "Playwright reproduction of delayed-data on public dist (S-018)",
+      "project": "Ix-findings / system-compass (external evidence)",
+      "type": "evidence generation",
+      "evidence": "F-006, E-009, E-022; dist v0.3.0 is public",
+      "status": "NEEDS_EVIDENCE",
+      "blocker": "none technical — can run against public dist without source access",
+      "effort": "medium"
+    },
+    {
+      "id": "CAND-007",
+      "title": "Reconcile GRAPH-AUDIT.md with actual graph file",
+      "project": "Ix-findings",
+      "type": "documentation correction",
+      "evidence": "GRAPH-AUDIT.md claims ~290/240 current state; graph file has 152/136",
+      "status": "READY",
+      "blocker": "none",
+      "effort": "low",
+      "note": "Phase 7 of the CLI handoff earlier requested this; counts still inconsistent."
+    },
+    {
+      "id": "CAND-008",
+      "title": "GitHub Pages deployment of knowledge explorer",
+      "project": "Ix-findings",
+      "type": "deployment",
+      "evidence": "standalone index-standalone.html is self-contained; feasibility assessed in GITHUB-PAGES-FEASIBILITY.md",
+      "status": "NEEDS_DECISION",
+      "blocker": "user authorization + sanitization review",
+      "effort": "low",
+      "note": "Do NOT deploy in this phase."
+    },
+    {
+      "id": "CAND-009",
+      "title": "Enrich graph with execution-state nodes from Phase 2 (new PR/issue/fork edges)",
+      "project": "Ix-findings",
+      "type": "graph enrichment",
+      "evidence": "all relationships verified via GitHub API",
+      "status": "READY",
+      "blocker": "none",
+      "effort": "medium",
+      "note": "Do NOT inflate counts; only add verified relationships."
+    },
+    {
+      "id": "CAND-010",
+      "title": "Verify F-008/F-009 reproducibility against current Ix main",
+      "project": "Ix",
+      "type": "validation",
+      "evidence": "issue #376/#371 OPEN; test files exist (upgrade-version-compare.test.ts)",
+      "status": "NEEDS_EVIDENCE",
+      "blocker": "none — Ix-test worktree @ c4f8fea is available",
+      "effort": "medium"
+    },
+    {
+      "id": "CAND-011",
+      "title": "Repair 8 dangling graph edges",
+      "project": "Ix-findings",
+      "type": "graph correction",
+      "evidence": "endpoint validation: 4 decision→suggestion implements edges (D-001→S-002, D-002→S-001, D-005→S-007, D-006→S-008) reference absent suggestion nodes; 4 stale-claim→file found_in edges (S-034..S-037) reference absent file nodes",
+      "status": "READY",
+      "blocker": "none",
+      "effort": "low",
+      "note": "Either add the missing suggestion/file nodes or remove the edges; graph must be internally consistent."
+    }
+  ],
+  "excluded_as_speculative": [
+    "No-map hint chip timing (S-020) — spec only, no evidence of demand",
+    "CameraStore abstraction (S-021) — rejected by D-005",
+    "DOM zoom patch (S-022) — rejected by D-005"
+  ],
+  "classification": {
+    "READY": ["CAND-001", "CAND-002", "CAND-003", "CAND-004", "CAND-007", "CAND-009", "CAND-011"],
+    "NEEDS_EVIDENCE": ["CAND-005", "CAND-006", "CAND-010"],
+    "NEEDS_DECISION": ["CAND-008"]
+  }
+}
