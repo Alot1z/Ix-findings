@@ -16,31 +16,44 @@
       <span class="brand-sub">investigation knowledge base</span>
     </div>
     <div class="search-wrap">
-      <input id="search" type="search" placeholder="Search findings, evidence, suggestions, decisions, phases…" autocomplete="off" spellcheck="false">
+      <input id="search" type="search" placeholder="Search findings, repos, commits, PRs, symbols, SHAs…" autocomplete="off" spellcheck="false">
     </div>
     <div class="topbar-right">
-      <span id="phase-badge" class="badge">FINAL</span>
+      <span id="phase-badge" class="badge">EXECUTION</span>
     </div>
   </header>
 
   <div id="layout">
     <nav id="sidebar" aria-label="Views">
       <div class="nav-group-label">Explore</div>
+      <button class="nav-item" data-view="overview">✳ Overview</button>
       <button class="nav-item active" data-view="map">⌗ Investigation Map</button>
       <button class="nav-item" data-view="timeline">◷ Timeline</button>
-      <button class="nav-item" data-view="repositories">▤ Repositories</button>
-      <button class="nav-item" data-view="phases">⛁ Phase Explorer</button>
+      <button class="nav-group-label">Repositories</button>
+      <button class="nav-item" data-view="repos">▤ Repositories</button>
+      <button class="nav-item" data-view="worktrees">⛏ Worktrees</button>
+      <button class="nav-item" data-view="branches">⑂ Branches</button>
+      <button class="nav-item" data-view="commits">◉ Commits</button>
+      <button class="nav-item" data-view="releases">⬡ Releases</button>
       <div class="nav-group-label">Knowledge</div>
       <button class="nav-item" data-view="findings">✦ Findings</button>
       <button class="nav-item" data-view="evidence">◈ Evidence</button>
+      <button class="nav-item" data-view="tests">✓ Tests</button>
       <button class="nav-item" data-view="compass">◐ Compass History</button>
-      <button class="nav-item" data-view="prmap">⇄ PR / Issue Map</button>
+      <button class="nav-item" data-view="phases">⛁ Phase Explorer</button>
+      <div class="nav-group-label">GitHub</div>
+      <button class="nav-item" data-view="prs">⇄ Pull Requests</button>
+      <button class="nav-item" data-view="issues">⚠ Issues</button>
       <div class="nav-group-label">Decision</div>
-      <button class="nav-item" data-view="suggestions">✎ AI Suggestions</button>
-      <button class="nav-item" data-view="decisions">✓ Decisions</button>
+      <button class="nav-item" data-view="contributions">⚡ Contributions</button>
+      <button class="nav-item" data-view="suggestions">✎ Suggestions</button>
+      <button class="nav-item" data-view="decisions">◈ Decisions</button>
+      <button class="nav-item" data-view="stale">⚠ Stale Claims</button>
+      <div class="nav-group-label">System-Compass</div>
+      <button class="nav-item" data-view="syscompass">◐ System-Compass</button>
       <button class="nav-item" data-view="security">🛡 Security</button>
       <div class="nav-group-label">About</div>
-      <button class="nav-item" data-view="about">ℹ About / Privacy</button>
+      <button class="nav-item" data-view="about">ℹ About</button>
     </nav>
 
     <main id="view">
