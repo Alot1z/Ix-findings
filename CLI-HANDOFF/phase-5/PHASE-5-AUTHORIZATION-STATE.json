@@ -1,0 +1,111 @@
+{
+  "phase": "5",
+  "generated": "2026-08-10",
+  "authorization_source": "User decision via ask_user response on 2026-08-10 (Phase 5 gate authorization)",
+  "defaults": {
+    "PR_CREATION": "PROHIBITED",
+    "UPSTREAM_MUTATION": "PROHIBITED",
+    "MAINTAINER_CONTACT": "PROHIBITED",
+    "REPOSITORY_VISIBILITY_CHANGE": "PROHIBITED",
+    "PUBLICATION": "PROHIBITED until explicitly authorized",
+    "EXTERNAL_PUSH": "PROHIBITED unless explicitly authorized",
+    "FORCE_PUSH": "PROHIBITED",
+    "REBASE": "local-only unless explicitly authorized",
+    "LOCAL_COMMIT": "allowed for the phase ledger (Ix-findings)"
+  },
+  "gates": [
+    {
+      "gate": "A",
+      "name": "baseline refresh",
+      "authorized": "YES",
+      "operation": "read-only live state refresh",
+      "executed": "EXECUTED",
+      "reversible": true,
+      "remote_state_change": false,
+      "public_state_change": false
+    },
+    {
+      "gate": "B",
+      "name": "F-009/F-010 reproduction (CAND-010)",
+      "authorized": "YES",
+      "operation": "fetch upstream main into Ix-test, checkout, run vitest, restore baseline",
+      "executed": "EXECUTED",
+      "reversible": true,
+      "remote_state_change": false,
+      "public_state_change": false,
+      "note": "Ix-test restored to c4f8fea/clean after suite run"
+    },
+    {
+      "gate": "C",
+      "name": "remap local rebase",
+      "authorized": "YES",
+      "operation": "rebase feat/ix-remap-hardening (c021b52) onto origin/main (5488741); preserve remap commits; verify tree + tests; NO push, NO PR",
+      "executed": "EXECUTED",
+      "reversible": true,
+      "remote_state_change": false,
+      "public_state_change": false,
+      "result": "c021b52 -> a05e740; merge-tree exit 0 tree 101f63a; 706/708 tests pass; backup ref feat/ix-remap-hardening-backup-c021b52 created",
+      "force_push_required": false,
+      "note": "Fork branch NOT force-updated (a05e740 not pushed); force-push not authorized"
+    },
+    {
+      "gate": "D",
+      "name": "fork synchronization",
+      "authorized": "YES",
+      "operation": "fast-forward Alot1z/Ix main (c4f8fea) to upstream 5488741; preserve remap work; verify before/after",
+      "executed": "EXECUTED",
+      "reversible": false,
+      "remote_state_change": true,
+      "public_state_change": false,
+      "method": "gh repo sync Alot1z/Ix --source ix-infrastructure/Ix",
+      "result": "fork main c4f8fea -> 5488741 (API-verified); feat/ix-remap-hardening untouched @ c021b52",
+      "note": "Initial raw git push rejected (workflow scope guard) with NO mutation; gh repo sync used instead"
+    },
+    {
+      "gate": "E",
+      "name": "standalone generation (CAND-021)",
+      "authorized": "YES",
+      "operation": "implement deterministic standalone generation; validate reproducibility; commit ledger changes",
+      "executed": "EXECUTED",
+      "reversible": true,
+      "remote_state_change": false,
+      "public_state_change": false,
+      "result": "build-standalone.mjs + standalone-template.html; byte-identical across runs (sha f53d88b5)"
+    },
+    {
+      "gate": "F",
+      "name": "GitHub Pages deployment",
+      "authorized": "NO",
+      "operation": "enable Pages / deploy / publish / change visibility",
+      "executed": "NOT_EXECUTED",
+      "prepared": "planning/pages/ package revalidated 16/16; PAGES-PUBLIC-DATA-AUDIT.json + PAGES-LOCAL-VALIDATION.json + PAGES-DEPLOYMENT-PACKAGE.md produced",
+      "reversible": "n/a",
+      "remote_state_change": false,
+      "public_state_change": false,
+      "note": "User decision: DO NOT EXECUTE — prepared and locally validated only"
+    },
+    {
+      "gate": "G",
+      "name": "PR creation",
+      "authorized": "NO",
+      "operation": "open PRs / draft PRs / issues / reviews / comments / maintainer contacts",
+      "executed": "NOT_EXECUTED",
+      "prepared": "packets updated (PACK-371, remap, 376); CONTRIBUTION-EXECUTION-READINESS.json produced",
+      "reversible": "n/a",
+      "remote_state_change": false,
+      "public_state_change": false,
+      "note": "User instruction: no PRs created in Phase 5"
+    }
+  ],
+  "standing_instructions": [
+    "No PRs created in Phase 5",
+    "No upstream mutation",
+    "No unauthorized push",
+    "No unauthorized publication",
+    "No private data publication",
+    "No destructive git operations",
+    "No maintainer contact",
+    "No repository visibility change"
+  ],
+  "summary": "Local + fork-main actions executed per explicit user authorization (Gates A-E, D). Pages deployment (F) and PR creation (G) remain PROHIBITED and were not executed."
+}

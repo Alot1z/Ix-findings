@@ -1,0 +1,100 @@
+{
+  "phase": "5",
+  "generated": "2026-08-10",
+  "environment": "node v26.5.0, git, gh CLI, Python http.server (temporary)",
+  "results": [
+    {
+      "id": "T-501",
+      "name": "upstream vitest suite on origin/main 5488741",
+      "repository": "ix-infrastructure/Ix",
+      "worktree": "E:/E-github-repos/Ix-test (detached @ 5488741, restored to c4f8fea after)",
+      "command": "node scripts/build-core-ingestion.mjs && npx vitest run",
+      "result": "PASS",
+      "tests_passed": 696,
+      "tests_skipped": 2,
+      "tests_failed": 0,
+      "test_files": "51 passed | 1 skipped (52)",
+      "note": "baseline advanced from recorded 646/648 to 696/698"
+    },
+    {
+      "id": "T-502",
+      "name": "remap rebased suite on a05e740",
+      "repository": "ix-infrastructure/Ix (fork branch feat/ix-remap-hardening)",
+      "worktree": "E:/E-github-repos/Ix-remap",
+      "command": "cd ix-cli && node scripts/build-core-ingestion.mjs && npx vitest run",
+      "result": "PASS",
+      "tests_passed": 706,
+      "tests_skipped": 2,
+      "tests_failed": 0,
+      "test_files": "52 passed | 1 skipped (53)",
+      "note": "includes the 10-scenario guard matrix (test/view-server.test.ts)"
+    },
+    {
+      "id": "T-503",
+      "name": "merge-tree clean check vs upstream 5488741",
+      "repository": "ix-infrastructure/Ix",
+      "command": "git merge-tree --write-tree origin/main HEAD (Ix-remap)",
+      "result": "PASS",
+      "exit": 0,
+      "merged_tree": "101f63add1caeef0362fb8a1aa3bf70a34604b28",
+      "conflicts": 0
+    },
+    {
+      "id": "T-504",
+      "name": "standalone reproducibility (run twice, byte-compare)",
+      "repository": "Ix-findings",
+      "command": "node planning/wiki/build-standalone.mjs && sha256sum x2",
+      "result": "PASS",
+      "sha256_prefix": "f53d88b554471550 (identical both runs)"
+    },
+    {
+      "id": "T-505",
+      "name": "standalone structure + syntax",
+      "repository": "Ix-findings",
+      "command": "grep script/style block counts; node --check on extracted data and JS blocks",
+      "result": "PASS",
+      "details": "2 script blocks, 1 style block, wrappers present, both blocks node --check PASS"
+    },
+    {
+      "id": "T-506",
+      "name": "standalone browser smoke",
+      "repository": "Ix-findings",
+      "command": "browser_use on http://127.0.0.1:8766/index-standalone.html",
+      "result": "PASS",
+      "details": "top bar 'IX / COMPASS', sidebar, Findings F-001-F-013, 0 console errors"
+    },
+    {
+      "id": "T-507",
+      "name": "Pages build + validation",
+      "repository": "Ix-findings",
+      "command": "node planning/pages/build-public.mjs && node planning/pages/validate-public.mjs",
+      "result": "PASS",
+      "checks": "16/16",
+      "output": "graph 162/133, evidence 28, 132K"
+    },
+    {
+      "id": "T-508",
+      "name": "Pages public-data scans",
+      "repository": "Ix-findings",
+      "command": "grep secret/path/localhost/private-URL/credential patterns over planning/pages/public/",
+      "result": "PASS",
+      "details": "0 secrets, 0 paths, 0 private URLs; 3 flagged references individually classified as inert/allowlisted"
+    },
+    {
+      "id": "T-509",
+      "name": "JSON validity of Phase 5 artifacts",
+      "repository": "Ix-findings",
+      "command": "node -e JSON.parse per file",
+      "result": "PENDING_FINAL (run in integrity check)"
+    },
+    {
+      "id": "T-510",
+      "name": "protected worktree verification",
+      "repository": "all",
+      "command": "git rev-parse + status before/after",
+      "result": "PASS",
+      "details": "Ix b038c46/14 unchanged; dist 396426b/3 unchanged; test restored c4f8fea/0; forge 441cec670/0 unchanged; remap = authorized rebase result a05e740/0"
+    }
+  ],
+  "summary": "8 executed test/validation runs PASS + 2 recorded (JSON pending final check, protected state PASS). No fabricated counts."
+}

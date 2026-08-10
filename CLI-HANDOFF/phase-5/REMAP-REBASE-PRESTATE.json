@@ -1,0 +1,45 @@
+{
+  "phase": "5",
+  "gate": "C",
+  "generated": "2026-08-10",
+  "worktree": "E:/E-github-repos/Ix-remap",
+  "branch": "feat/ix-remap-hardening",
+  "head_before": "c021b52",
+  "head_full": "c021b52 (short)",
+  "dirty": 0,
+  "remotes": {
+    "origin": "https://github.com/ix-infrastructure/Ix (fetch/push)",
+    "fork": "https://github.com/Alot1z/Ix.git (fetch/push)"
+  },
+  "merge_base_with_upstream": "c4f8fea",
+  "ahead_behind_vs_origin_main": {"left_origin": 9, "right_head": 1},
+  "upstream_main_at_rebase": "5488741 (origin/main, fetched fa10045..5488741)",
+  "remap_commits": ["c021b52 feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap"],
+  "merge_tree_precheck": {
+    "command": "git merge-tree --write-tree origin/main HEAD",
+    "exit": 0,
+    "tree": "101f63add1caeef0362fb8a1aa3bf70a34604b28",
+    "conflicts": 0
+  },
+  "upstream_commits_since_c4f8fea": [
+    "5488741 chore(release): 0.9.2 (#387)",
+    "83a534f fix(windows): ix.cmd launcher self-diagnosis (#386)",
+    "b190083 fix(ingest): PHP typed receivers (#382)",
+    "fa10045 fix(resolve): same-kind ambiguity (#380)",
+    "43a644c fix(cli): Pro stub for goals (#384)",
+    "2e246e8 fix(install): Windows 8.3 short TEMP path (#352)",
+    "ed36119 feat(llm): --format llm (#372)",
+    "e117b6d fix(view): -p not honoured + URL in status (#362)",
+    "fc24655 ci(release): brew PR conventional title (#373)"
+  ],
+  "overlap_check_pr378": {
+    "pr": 378,
+    "title": "fix(ingest): remove stale graph entities",
+    "files": ["core-ingestion/src/__tests__/patchBuilder.test.ts", "core-ingestion/src/patch-builder.ts", "ix-cli/src/cli/__tests__/ingest-reconcile.test.ts", "ix-cli/src/cli/__tests__/loadExistingHashes.test.ts", "ix-cli/src/cli/__tests__/stale-workspace.test.ts", "ix-cli/src/cli/commands/ingest.ts", "ix-cli/src/cli/commands/ingestion-loader.ts", "ix-cli/src/cli/ingest-baseline.ts", "ix-cli/src/cli/stale.ts"],
+    "overlaps_remap_files": false,
+    "note": "PR #378 touches ingest/stale machinery, NOT view.ts/bootstrap.sh — no conflict with remap branch"
+  },
+  "safety": {
+    "backup_ref_created": "feat/ix-remap-hardening-backup-c021b52 @ c021b52"
+  }
+}

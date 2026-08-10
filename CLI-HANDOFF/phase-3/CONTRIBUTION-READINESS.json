@@ -3,17 +3,21 @@
   "title": "Contribution Readiness — updated with Phase 3 evidence",
   "generated": "2026-08-10",
   "contributions": [
-    {
-      "id": "CONTRIB-remap",
-      "target": "ix-infrastructure/Ix",
-      "branch": "feat/ix-remap-hardening @ c021b52",
-      "findings": ["F-010", "F-011", "F-012"],
-      "state": "READY (needs rebase onto 2e246e8)",
-      "blocker": "user authorization to rebase + force-update fork branch; base currently stale by 4 commits",
-      "evidence": "merge-tree --write-tree 2e246e8 HEAD = clean 64dd5b0; no conflicts with #362 view.ts change",
-      "next_safe_action": "WORK-012 rebase, re-run guard tests, then ask authorization to push",
-      "tests": "view-server.test.ts 10 scenarios; full suite 646/648 expected"
-    },
+    {   "id": "CONTRIB-remap",
+   "target": "ix-infrastructure/Ix",
+   "branch": "feat/ix-remap-hardening @ c021b52 (fork) / a05e740 (local rebased, Phase 5)",
+   "findings": [
+    "F-010",
+    "F-011",
+    "F-012"
+   ],
+   "state": "READY (rebase EXECUTED onto 5488741; fork branch not force-updated)",
+   "phase_5_update": "2026-08-10: local rebase c021b52 -> a05e740 onto origin/main 5488741 executed and verified (merge-tree exit 0, tree 101f63a, 706/708 tests pass, 0 dirty). Fork branch left at c021b52 (force-push not authorized). Fork main fast-forwarded c4f8fea -> 5488741 via gh repo sync. PR not opened.",
+   "blocker": "user authorization to force-update fork branch (a05e740) + open PR; PR creation prohibited in Phase 5",
+   "evidence": "merge-tree --write-tree 5488741 HEAD = clean 101f63a; suite 706 passed/2 skipped/0 failed on new base; no conflicts with #362/#380 view.ts changes",
+   "next_safe_action": "push a05e740 to fork with authorization, then open PR with packet as body",
+   "tests": "view-server.test.ts 10 scenarios; full suite 706/708 on a05e740 (rebase base 5488741)"
+  },
     {
       "id": "CONTRIB-376",
       "target": "ix-infrastructure/Ix",

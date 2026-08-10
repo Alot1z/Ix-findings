@@ -237,21 +237,21 @@ window.IX_DATA = {
       "repositories": 5,
       "branches": 7,
       "worktrees": 3,
-      "commits": 8,
+      "commits": 10,
       "releases": 0,
       "files": 12,
       "symbols": 9,
       "apis": 2,
       "tests": 4,
       "findings": 13,
-      "evidence": 25,
+      "evidence": 28,
       "decisions": 14,
       "suggestions": 33,
-      "prs": 5,
-      "issues": 3,
+      "prs": 15,
+      "issues": 8,
       "contributions": 6,
-      "graphNodes": 152,
-      "graphEdges": 136,
+      "graphNodes": 165,
+      "graphEdges": 141,
       "staleClaims": 8
     },
     "dataFreshness": {
@@ -1026,6 +1026,40 @@ window.IX_DATA = {
         "F-004",
         "F-005"
       ]
+    },
+    {
+      "id": "E-026",
+      "title": "oss.ts PRO_COMMANDS list",
+      "type": "source",
+      "class": "A",
+      "phase": "phase-04",
+      "repository": "ix-infrastructure/Ix",
+      "detail": "patches in PRO_COMMANDS, not imported in registerOssCommands (F-009 source)",
+      "supports": [
+        "F-009"
+      ]
+    },
+    {
+      "id": "E-027",
+      "title": "upgrade.ts isNewer implementation",
+      "type": "source",
+      "class": "A",
+      "phase": "phase-03",
+      "repository": "ix-infrastructure/Ix",
+      "detail": "Semver comparison at line 141 (F-008 source)",
+      "supports": [
+        "F-008"
+      ]
+    },
+    {
+      "id": "E-028",
+      "title": "ix-cli actual version v0.6.1",
+      "type": "source",
+      "class": "A",
+      "phase": "phase-fc7",
+      "repository": "ix-infrastructure/Ix",
+      "detail": "Root package.json says 0.5.0; actual CLI is 0.6.1 — dual version series (CAND-016)",
+      "supports": []
     }
   ],
   "suggestions": [
@@ -3121,7 +3155,8 @@ window.IX_DATA = {
         "type": "pr",
         "title": "Ix#362 view -p warning",
         "repo": "repo-ix",
-        "status": "open"
+        "status": "merged",
+        "merged_at": "2026-08-10T16:24:03Z"
       },
       {
         "id": "PR-365",
@@ -3156,7 +3191,8 @@ window.IX_DATA = {
         "type": "pr",
         "title": "Ix#372 --format llm",
         "repo": "repo-ix",
-        "status": "open"
+        "status": "merged",
+        "merged_at": "2026-08-10T16:27:42Z"
       },
       {
         "id": "PACK-remap",
@@ -3410,6 +3446,129 @@ window.IX_DATA = {
         "type": "person",
         "title": "Alot1z",
         "role": "FORK_OWNER"
+      },
+      {
+        "id": "S-001",
+        "type": "suggestion",
+        "title": "Use a dedicated Git worktree for remap work",
+        "category": "",
+        "status": "ACCEPTED",
+        "phase": "phase-00",
+        "repository": "Ix",
+        "disposition": "ACCEPTED",
+        "evidence_refs": [
+          "E-021"
+        ]
+      },
+      {
+        "id": "S-002",
+        "type": "suggestion",
+        "title": "Base remap branch on origin/main, not stale local/fork main",
+        "category": "",
+        "status": "ACCEPTED",
+        "phase": "phase-01",
+        "repository": "Ix",
+        "disposition": "ACCEPTED",
+        "evidence_refs": [
+          "E-019"
+        ]
+      },
+      {
+        "id": "S-007",
+        "type": "suggestion",
+        "title": "F-key = keyboard exposure only; no CameraStore, no duplicate fit math",
+        "category": "",
+        "status": "ACCEPTED",
+        "phase": "phase-05",
+        "repository": "system-compass",
+        "disposition": "ACCEPTED",
+        "evidence_refs": [
+          "E-005",
+          "E-006",
+          "E-007",
+          "E-010"
+        ]
+      },
+      {
+        "id": "S-008",
+        "type": "suggestion",
+        "title": "Delayed-data is a separate concern from F-key",
+        "category": "",
+        "status": "ACCEPTED",
+        "phase": "phase-07",
+        "repository": "system-compass",
+        "disposition": "ACCEPTED",
+        "evidence_refs": [
+          "E-009"
+        ]
+      },
+      {
+        "id": "file-GIT-STATE.md",
+        "type": "file",
+        "title": "CLI-HANDOFF/GIT-STATE.md",
+        "category": "",
+        "status": ""
+      },
+      {
+        "id": "file-manifest.json",
+        "type": "file",
+        "title": "CLI-HANDOFF/manifest.json",
+        "category": "",
+        "status": ""
+      },
+      {
+        "id": "PR-373",
+        "type": "pr",
+        "title": "Ix#373 brew PR conventional title",
+        "repo": "repo-ix",
+        "status": "merged",
+        "merged_at": "2026-08-10T16:07:21Z"
+      },
+      {
+        "id": "PR-375",
+        "type": "pr",
+        "title": "Ix#375 cross-batch calls (fixes #374)",
+        "repo": "repo-ix",
+        "status": "open"
+      },
+      {
+        "id": "PR-378",
+        "type": "pr",
+        "title": "Ix#378 remove stale graph entities (fixes #377)",
+        "repo": "repo-ix",
+        "status": "open"
+      },
+      {
+        "id": "PR-380",
+        "type": "pr",
+        "title": "Ix#380 preserve same-kind ambiguity (fixes #379)",
+        "repo": "repo-ix",
+        "status": "open"
+      },
+      {
+        "id": "PR-382",
+        "type": "pr",
+        "title": "Ix#382 PHP calls through typed receivers",
+        "repo": "repo-ix",
+        "status": "open"
+      },
+      {
+        "id": "ISSUE-377",
+        "type": "issue",
+        "title": "Ix#377 remapping keeps deleted/renamed symbols",
+        "repo": "repo-ix",
+        "number": 377,
+        "status": "open",
+        "url": "https://github.com/ix-infrastructure/Ix/issues/377"
+      },
+      {
+        "id": "ISSUE-379",
+        "type": "issue",
+        "title": "Ix#379 --kind silently selects among duplicate same-kind symbols",
+        "repo": "repo-ix",
+        "number": 379,
+        "status": "open",
+        "url": "https://github.com/ix-infrastructure/Ix/issues/379"
       }
     ],
     "edges": [
@@ -4092,6 +4251,31 @@ window.IX_DATA = {
         "source": "E-004",
         "target": "E-005",
         "relationship": "contributes_to"
+      },
+      {
+        "source": "PR-375",
+        "relationship": "fixes",
+        "target": "ISSUE-374"
+      },
+      {
+        "source": "PR-378",
+        "relationship": "fixes",
+        "target": "ISSUE-377"
+      },
+      {
+        "source": "PR-380",
+        "relationship": "fixes",
+        "target": "ISSUE-379"
+      },
+      {
+        "source": "PR-362",
+        "relationship": "relates_to",
+        "target": "F-010"
+      },
+      {
+        "source": "PR-373",
+        "relationship": "relates_to",
+        "target": "F-008"
       }
     ]
   },
@@ -4105,7 +4289,8 @@ window.IX_DATA = {
       "local_path": "E:\\E-github-repos\\Ix",
       "remote_name": "origin",
       "default_branch": "main",
-      "head_sha": "c4f8fea"
+      "head_sha": "5488741",
+      "note": "upstream main = v0.9.2 release (#387), Phase 5 live-verified; latest release tag v0.9.2"
     },
     {
       "repo_id": "Alot1z/Ix",
@@ -4115,8 +4300,8 @@ window.IX_DATA = {
       "role": "fork",
       "fork_of": "ix-infrastructure/Ix",
       "local_remote_name": "fork",
-      "head_sha": "0437abf",
-      "sync_status": "5 commits behind upstream"
+      "head_sha": "5488741",
+      "sync_status": "SYNCED to upstream 5488741 (Phase 5 gh repo sync, API-verified)"
     },
     {
       "repo_id": "ix-infrastructure/ix-compass-dist",
@@ -4144,17 +4329,17 @@ window.IX_DATA = {
       "name": "Ix-findings",
       "role": "investigation-ledger",
       "local_path": "E:\\E-github-repos\\Ix-findings",
-      "commits": 0,
-      "untracked": "165 files (17 top-level entries)",
-      "note": "0 commits - all files untracked"
+      "commits": 4,
+      "untracked": "2 files (wiki syntax fix preserved)",
+      "note": "investigation ledger with committed phase records"
     }
   ],
   "branches": [
     {
       "branch": "main",
       "repo": "ix-infrastructure/Ix",
-      "sha": "c4f8fea",
-      "sync": "synchronized"
+      "sha": "5488741",
+      "note": "upstream HEAD v0.9.2 (#387) Phase 5 live-verified"
     },
     {
       "branch": "feat/ix-agent-skill",
@@ -4166,15 +4351,17 @@ window.IX_DATA = {
     {
       "branch": "feat/ix-remap-hardening",
       "repo": "ix-infrastructure/Ix",
-      "sha": "c021b52",
+      "sha": "a05e740",
       "worktree": "Ix_remap",
-      "ahead": 1
+      "ahead": 1,
+      "note": "Phase 5 local rebase onto 5488741 (backup ref feat/ix-remap-hardening-backup-c021b52); fork branch still c021b52"
     },
     {
       "branch": "fork/main",
       "repo": "Alot1z/Ix",
-      "sha": "0437abf",
-      "behind_upstream": 5
+      "sha": "5488741",
+      "behind_upstream": 0,
+      "note": "Phase 5 synced via gh repo sync"
     },
     {
       "branch": "fork/feat/ix-agent-skill",
@@ -4190,15 +4377,27 @@ window.IX_DATA = {
     {
       "branch": "master",
       "repo": "Ix-findings",
-      "sha": null,
-      "commits": 0
+      "sha": "4b839ec",
+      "commits": 4
     }
   ],
   "commits": [
     {
-      "sha": "c4f8fea",
+      "sha": "5488741",
       "repo": "ix-infrastructure/Ix",
       "branch": "main",
+      "msg": "chore(release): 0.9.2 (#387) — upstream HEAD Phase 5"
+    },
+    {
+      "sha": "a05e740",
+      "repo": "ix-infrastructure/Ix",
+      "branch": "feat/ix-remap-hardening (local)",
+      "msg": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap — Phase 5 rebase onto 5488741"
+    },
+    {
+      "sha": "c4f8fea",
+      "repo": "ix-infrastructure/Ix",
+      "branch": "fork/main + Ix-test",
       "msg": "chore(deps-dev): bump dev-dependencies (#369)"
     },
     {
@@ -4217,7 +4416,9 @@ window.IX_DATA = {
       "sha": "0437abf",
       "repo": "Alot1z/Ix",
       "branch": "fork/main",
-      "msg": "fix(upgrade): pair tar binary (#366)"
+      "msg": "fix(upgrade): pair tar binary (#366)",
+      "historical": true,
+      "note": "previous fork head; superseded by c4f8fea (Phase 4 verified)"
     },
     {
       "sha": "0c9087c",
@@ -4254,15 +4455,17 @@ window.IX_DATA = {
     "remap": {
       "path": "E:\\E-github-repos\\Ix-remap",
       "branch": "feat/ix-remap-hardening",
-      "sha": "c021b52",
+      "sha": "a05e740",
       "ahead": 1,
-      "dirty": 0
+      "dirty": 0,
+      "note": "Phase 5 rebased onto 5488741; fork branch still c021b52",
+      "backup_ref": "feat/ix-remap-hardening-backup-c021b52"
     },
     "test": {
       "path": "E:\\E-github-repos\\Ix-test",
       "sha": "c4f8fea",
       "dirty": 0,
-      "tests": "646/648 passed",
+      "tests": "696/698 on 5488741 (Phase 5 fresh run)",
       "tsc": "clean",
       "eslint": "0 errors"
     }
@@ -4295,6 +4498,65 @@ window.IX_DATA = {
       "sha": "2157158",
       "fork_sha": "0c9087c",
       "state": "MERGED"
+    },
+    {
+      "number": 372,
+      "url": "https://github.com/ix-infrastructure/Ix/pull/372",
+      "state": "MERGED",
+      "note": "--format llm (Phase 4 verified merged)"
+    },
+    {
+      "number": 373,
+      "url": "https://github.com/ix-infrastructure/Ix/pull/373",
+      "state": "MERGED"
+    },
+    {
+      "number": 375,
+      "url": "https://github.com/ix-infrastructure/Ix/pull/375",
+      "state": "OPEN",
+      "note": "fixes #374"
+    },
+    {
+      "number": 378,
+      "url": "https://github.com/ix-infrastructure/Ix/pull/378",
+      "state": "OPEN",
+      "note": "fixes #377"
+    },
+    {
+      "number": 380,
+      "url": "https://github.com/ix-infrastructure/Ix/pull/380",
+      "state": "MERGED",
+      "note": "fixes #379 — Phase 5 API-verified"
+    },
+    {
+      "number": 382,
+      "url": "https://github.com/ix-infrastructure/Ix/pull/382",
+      "state": "MERGED",
+      "note": "Phase 5 API-verified"
+    },
+    {
+      "number": 384,
+      "url": "https://github.com/ix-infrastructure/Ix/pull/384",
+      "state": "MERGED",
+      "note": "Pro stub for goals — Phase 5 API-verified"
+    },
+    {
+      "number": 386,
+      "url": "https://github.com/ix-infrastructure/Ix/pull/386",
+      "state": "MERGED",
+      "note": "windows shim self-diagnosis — Phase 5 API-verified"
+    },
+    {
+      "number": 387,
+      "url": "https://github.com/ix-infrastructure/Ix/pull/387",
+      "state": "MERGED",
+      "note": "release 0.9.2 — Phase 5 API-verified"
+    },
+    {
+      "number": 388,
+      "url": "https://github.com/ix-infrastructure/Ix/pull/388",
+      "state": "OPEN",
+      "note": "brew formula v0.9.2 — Phase 5 API-verified"
     }
   ],
   "issues": [
@@ -4314,70 +4576,117 @@ window.IX_DATA = {
       "repo": "system-compass",
       "access": "PRIVATE",
       "finding": "F-005"
+    },
+    {
+      "number": 374,
+      "url": "https://github.com/ix-infrastructure/Ix/issues/374",
+      "state": "OPEN",
+      "note": "cross-batch calls; PR #375 open"
+    },
+    {
+      "number": 377,
+      "url": "https://github.com/ix-infrastructure/Ix/issues/377",
+      "state": "OPEN",
+      "note": "stale graph entities; PR #378 open"
+    },
+    {
+      "number": 379,
+      "url": "https://github.com/ix-infrastructure/Ix/issues/379",
+      "state": "OPEN",
+      "note": "same-kind ambiguity; PR #380 merged (Phase 5 API-verified)"
+    },
+    {
+      "number": 383,
+      "url": "https://github.com/ix-infrastructure/Ix/issues/383",
+      "state": "OPEN",
+      "note": "Codex hooks fail on native Windows — Phase 5 API-verified"
+    },
+    {
+      "number": 385,
+      "url": "https://github.com/ix-infrastructure/Ix/issues/385",
+      "state": "OPEN",
+      "note": "upgrade breaks Windows CLI 0.8.1->0.9.1 — Phase 5 API-verified"
     }
   ],
   "testResults": {
     "date": "2026-08-10",
     "repository": "ix-infrastructure/Ix",
-    "sha": "c4f8fea",
-    "vitest": "49 passed, 1 skipped (50 files)",
-    "tests": "646 passed, 2 skipped (648 total)",
+    "sha": "5488741",
+    "vitest": "51 passed, 1 skipped (52 files)",
+    "tests": "696 passed, 2 skipped (698 total) on upstream main 5488741 (Phase 5 fresh run)",
+    "remap_rebase_suite": "706 passed, 2 skipped (708 total) on a05e740 (Phase 5, includes 10 guard tests)",
     "smoke": "passed",
     "tsc": "clean",
-    "eslint": "0 errors, 38 warnings"
+    "eslint": "0 errors"
   },
   "contributions": [
     {
       "id": "CONTRIB-remap",
       "repo": "ix-infrastructure/Ix",
       "branch": "feat/ix-remap-hardening",
-      "sha": "c021b52",
+      "sha": "a05e740 (rebased onto 5488741; fork @ c021b52)",
       "status": "READY",
+      "stateDetail": "READY (rebase EXECUTED onto 5488741; fork branch not force-updated)",
+      "findings": [
+        "F-010",
+        "F-011",
+        "F-012"
+      ],
       "title": "Remap hardening — loopback-guarded /__ix/remap endpoint + WSL bootstrap fix",
       "files": 4,
-      "tests": "656/2 + 10 guard tests",
+      "tests": "696 passed, 2 skipped (698 total) on upstream main 5488741 (Phase 5 fresh run) (manifest @ 5488741)",
       "packet": "pr-packets/ix-remap-hardening/README.md",
-      "blocker": null,
-      "nextAction": "Open PR against ix-infrastructure/Ix:main (requires authorization)"
+      "blocker": "user authorization to force-update fork branch (a05e740) + open PR; PR creation prohibited in Phase 5",
+      "nextAction": "push a05e740 to fork with authorization, then open PR with packet as body"
     },
     {
-      "id": "CONTRIB-agent",
+      "id": "CONTRIB-agent-skill",
       "repo": "ix-infrastructure/Ix",
       "branch": "feat/ix-agent-skill",
       "sha": "b038c46",
       "status": "IN DEVELOPMENT",
+      "stateDetail": "IN_DEVELOPMENT (PROTECTED)",
+      "findings": [],
       "title": "Agent skill with Compass patch — active development, 14 dirty files",
       "files": "14 uncommitted",
-      "tests": null,
+      "tests": "Spec ready",
       "packet": null,
-      "blocker": "Active development — PR #368 already merged (patched version stripped per reviewer)",
-      "nextAction": "Complete overhaul, then separate PR if warranted"
+      "blocker": "14 dirty files @ b038c46; PR #368 already merged original skill+docs",
+      "nextAction": "continue development only; no PR action"
     },
     {
       "id": "CONTRIB-376",
       "repo": "ix-infrastructure/Ix",
       "branch": null,
       "sha": null,
-      "status": "BLOCKED",
+      "status": "NEAR_READY",
+      "stateDetail": "NEAR_READY",
+      "findings": [
+        "F-008"
+      ],
       "title": "Fix version-series mismatch (#376) — stamp dist version not Ix version",
       "files": "1 (.github/workflows/release.yml)",
-      "tests": "Spec ready",
+      "tests": "upgrade-version-compare.test.ts",
       "packet": "pr-packets/ix-376-version-mismatch/README.md",
-      "blocker": "Needs maintainer direction on approach (Option A vs B)",
-      "nextAction": "Discuss with KageBinary after remap PR establishes credibility"
+      "blocker": "fresh reproduction against current main 2e246e8; maintainer approach direction",
+      "nextAction": "WORK-010 reproduction; then update packet"
     },
     {
       "id": "CONTRIB-371",
       "repo": "ix-infrastructure/Ix",
       "branch": null,
       "sha": null,
-      "status": "BLOCKED",
+      "status": "NEEDS_ACTION",
+      "stateDetail": "NEEDS_EVIDENCE -> READY_FOR_PACKET",
+      "findings": [
+        "F-009"
+      ],
       "title": "Fix dead patches command (#371) — register or delete",
       "files": "1-2",
-      "tests": "Spec ready",
-      "packet": null,
-      "blocker": "Needs OSS vs Pro decision from maintainer",
-      "nextAction": "Ask maintainer in context of remap PR"
+      "tests": "none yet; packet lists proposed tests",
+      "packet": "pr-packets/ix-371-patches-dead-code/README.md",
+      "blocker": "register-vs-delete decision from maintainer (non-blocking for packet prep)",
+      "nextAction": "WORK-005 prepare PACK-371"
     },
     {
       "id": "CONTRIB-fkey",
@@ -4385,12 +4694,19 @@ window.IX_DATA = {
       "branch": null,
       "sha": null,
       "status": "BLOCKED",
+      "stateDetail": "BLOCKED",
+      "findings": [
+        "F-001",
+        "F-002",
+        "F-003",
+        "F-004"
+      ],
       "title": "F-key fit-to-viewport — keyboard exposure of existing 0-key fit",
       "files": "~4 (~93 lines)",
-      "tests": "15 test spec ready",
+      "tests": "Spec ready",
       "packet": "pr-packets/compass-f-key/README.md",
-      "blocker": "system-compass source access (D-014)",
-      "nextAction": "Request access from KageBinary"
+      "blocker": "system-compass private (HTTP 404); no fork; D-014 access decision",
+      "nextAction": "D-014 user decision only"
     },
     {
       "id": "CONTRIB-delayed",
@@ -4398,12 +4714,17 @@ window.IX_DATA = {
       "branch": null,
       "sha": null,
       "status": "BLOCKED",
+      "stateDetail": "BLOCKED",
+      "findings": [
+        "F-006",
+        "F-007"
+      ],
       "title": "Fix delayed-data blank — rollup timing + zoom floor",
       "files": "unknown",
-      "tests": "Reproduction confirmed",
+      "tests": "Spec ready",
       "packet": "pr-packets/compass-delayed-data/README.md",
-      "blocker": "system-compass source access",
-      "nextAction": "Investigate source when access granted"
+      "blocker": "system-compass private; separate concern (D-006)",
+      "nextAction": "optional public-dist reproduction (no access needed)"
     }
   ],
   "staleClaims": [
@@ -4466,10 +4787,10 @@ window.IX_DATA = {
     "blocker": "No source access — cannot inspect, implement, or test"
   },
   "manifest": {
-    "version": "4.0.0",
-    "generated": "2026-08-10T16:00:00Z",
-    "source": "CLI Execution Phase — live testing, worktree creation, workspace audit",
-    "status": "READ-ONLY - no external actions authorized",
+    "version": "4.1.0",
+    "generated": "2026-08-10T23:20:00Z",
+    "source": "Phase 5: rebase executed (c021b52->a05e740 onto 5488741), fork main synced to 5488741, F-008 structurally fixed on main, F-009 confirmed open, standalone reproducible (CAND-021), Pages package revalidated 16/16",
+    "status": "Phase 5 — local actions executed per authorization; PRs/Pages deployment prohibited",
     "repositories": [
       {
         "repo_id": "ix-infrastructure/Ix",
@@ -4480,7 +4801,8 @@ window.IX_DATA = {
         "local_path": "E:\\E-github-repos\\Ix",
         "remote_name": "origin",
         "default_branch": "main",
-        "head_sha": "c4f8fea"
+        "head_sha": "5488741",
+        "note": "upstream main = v0.9.2 release (#387), Phase 5 live-verified; latest release tag v0.9.2"
       },
       {
         "repo_id": "Alot1z/Ix",
@@ -4490,8 +4812,8 @@ window.IX_DATA = {
         "role": "fork",
         "fork_of": "ix-infrastructure/Ix",
         "local_remote_name": "fork",
-        "head_sha": "0437abf",
-        "sync_status": "5 commits behind upstream"
+        "head_sha": "5488741",
+        "sync_status": "SYNCED to upstream 5488741 (Phase 5 gh repo sync, API-verified)"
       },
       {
         "repo_id": "ix-infrastructure/ix-compass-dist",
@@ -4519,9 +4841,9 @@ window.IX_DATA = {
         "name": "Ix-findings",
         "role": "investigation-ledger",
         "local_path": "E:\\E-github-repos\\Ix-findings",
-        "commits": 0,
-        "untracked": "165 files (17 top-level entries)",
-        "note": "0 commits - all files untracked"
+        "commits": 4,
+        "untracked": "2 files (wiki syntax fix preserved)",
+        "note": "investigation ledger with committed phase records"
       }
     ],
     "local_paths": {
@@ -4537,8 +4859,8 @@ window.IX_DATA = {
       {
         "branch": "main",
         "repo": "ix-infrastructure/Ix",
-        "sha": "c4f8fea",
-        "sync": "synchronized"
+        "sha": "5488741",
+        "note": "upstream HEAD v0.9.2 (#387) Phase 5 live-verified"
       },
       {
         "branch": "feat/ix-agent-skill",
@@ -4550,15 +4872,17 @@ window.IX_DATA = {
       {
         "branch": "feat/ix-remap-hardening",
         "repo": "ix-infrastructure/Ix",
-        "sha": "c021b52",
+        "sha": "a05e740",
         "worktree": "Ix_remap",
-        "ahead": 1
+        "ahead": 1,
+        "note": "Phase 5 local rebase onto 5488741 (backup ref feat/ix-remap-hardening-backup-c021b52); fork branch still c021b52"
       },
       {
         "branch": "fork/main",
         "repo": "Alot1z/Ix",
-        "sha": "0437abf",
-        "behind_upstream": 5
+        "sha": "5488741",
+        "behind_upstream": 0,
+        "note": "Phase 5 synced via gh repo sync"
       },
       {
         "branch": "fork/feat/ix-agent-skill",
@@ -4574,15 +4898,27 @@ window.IX_DATA = {
       {
         "branch": "master",
         "repo": "Ix-findings",
-        "sha": null,
-        "commits": 0
+        "sha": "4b839ec",
+        "commits": 4
       }
     ],
     "commits": [
       {
-        "sha": "c4f8fea",
+        "sha": "5488741",
         "repo": "ix-infrastructure/Ix",
         "branch": "main",
+        "msg": "chore(release): 0.9.2 (#387) — upstream HEAD Phase 5"
+      },
+      {
+        "sha": "a05e740",
+        "repo": "ix-infrastructure/Ix",
+        "branch": "feat/ix-remap-hardening (local)",
+        "msg": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap — Phase 5 rebase onto 5488741"
+      },
+      {
+        "sha": "c4f8fea",
+        "repo": "ix-infrastructure/Ix",
+        "branch": "fork/main + Ix-test",
         "msg": "chore(deps-dev): bump dev-dependencies (#369)"
       },
       {
@@ -4601,7 +4937,9 @@ window.IX_DATA = {
         "sha": "0437abf",
         "repo": "Alot1z/Ix",
         "branch": "fork/main",
-        "msg": "fix(upgrade): pair tar binary (#366)"
+        "msg": "fix(upgrade): pair tar binary (#366)",
+        "historical": true,
+        "note": "previous fork head; superseded by c4f8fea (Phase 4 verified)"
       },
       {
         "sha": "0c9087c",
@@ -4656,6 +4994,65 @@ window.IX_DATA = {
         "sha": "2157158",
         "fork_sha": "0c9087c",
         "state": "MERGED"
+      },
+      {
+        "number": 372,
+        "url": "https://github.com/ix-infrastructure/Ix/pull/372",
+        "state": "MERGED",
+        "note": "--format llm (Phase 4 verified merged)"
+      },
+      {
+        "number": 373,
+        "url": "https://github.com/ix-infrastructure/Ix/pull/373",
+        "state": "MERGED"
+      },
+      {
+        "number": 375,
+        "url": "https://github.com/ix-infrastructure/Ix/pull/375",
+        "state": "OPEN",
+        "note": "fixes #374"
+      },
+      {
+        "number": 378,
+        "url": "https://github.com/ix-infrastructure/Ix/pull/378",
+        "state": "OPEN",
+        "note": "fixes #377"
+      },
+      {
+        "number": 380,
+        "url": "https://github.com/ix-infrastructure/Ix/pull/380",
+        "state": "MERGED",
+        "note": "fixes #379 — Phase 5 API-verified"
+      },
+      {
+        "number": 382,
+        "url": "https://github.com/ix-infrastructure/Ix/pull/382",
+        "state": "MERGED",
+        "note": "Phase 5 API-verified"
+      },
+      {
+        "number": 384,
+        "url": "https://github.com/ix-infrastructure/Ix/pull/384",
+        "state": "MERGED",
+        "note": "Pro stub for goals — Phase 5 API-verified"
+      },
+      {
+        "number": 386,
+        "url": "https://github.com/ix-infrastructure/Ix/pull/386",
+        "state": "MERGED",
+        "note": "windows shim self-diagnosis — Phase 5 API-verified"
+      },
+      {
+        "number": 387,
+        "url": "https://github.com/ix-infrastructure/Ix/pull/387",
+        "state": "MERGED",
+        "note": "release 0.9.2 — Phase 5 API-verified"
+      },
+      {
+        "number": 388,
+        "url": "https://github.com/ix-infrastructure/Ix/pull/388",
+        "state": "OPEN",
+        "note": "brew formula v0.9.2 — Phase 5 API-verified"
       }
     ],
     "issues": [
@@ -4675,6 +5072,36 @@ window.IX_DATA = {
         "repo": "system-compass",
         "access": "PRIVATE",
         "finding": "F-005"
+      },
+      {
+        "number": 374,
+        "url": "https://github.com/ix-infrastructure/Ix/issues/374",
+        "state": "OPEN",
+        "note": "cross-batch calls; PR #375 open"
+      },
+      {
+        "number": 377,
+        "url": "https://github.com/ix-infrastructure/Ix/issues/377",
+        "state": "OPEN",
+        "note": "stale graph entities; PR #378 open"
+      },
+      {
+        "number": 379,
+        "url": "https://github.com/ix-infrastructure/Ix/issues/379",
+        "state": "OPEN",
+        "note": "same-kind ambiguity; PR #380 merged (Phase 5 API-verified)"
+      },
+      {
+        "number": 383,
+        "url": "https://github.com/ix-infrastructure/Ix/issues/383",
+        "state": "OPEN",
+        "note": "Codex hooks fail on native Windows — Phase 5 API-verified"
+      },
+      {
+        "number": 385,
+        "url": "https://github.com/ix-infrastructure/Ix/issues/385",
+        "state": "OPEN",
+        "note": "upgrade breaks Windows CLI 0.8.1->0.9.1 — Phase 5 API-verified"
       }
     ],
     "findings": {
@@ -4697,7 +5124,7 @@ window.IX_DATA = {
     },
     "evidence": {
       "count": 28,
-      "note": "S-038: previous counts of 28/164 were stale; live count is 165 files",
+      "note": "Phase 4: registry promoted E-026..E-028 (real Class-A source nodes) — registry == graph == 28",
       "ids": [
         "E-001",
         "E-002",
@@ -4735,9 +5162,9 @@ window.IX_DATA = {
       "open": []
     },
     "graph": {
-      "nodes": 290,
-      "edges": 240,
-      "status": "EXPANDED - test worktree, fresh results, fork gap confirmed; see GRAPH-AUDIT.md"
+      "nodes": 165,
+      "edges": 141,
+      "status": "Phase 4 repaired: 165 nodes / 141 edges / 0 dangling; 28 evidence nodes == registry; PR/issue states live-verified; see GRAPH-AUDIT.md"
     },
     "worktrees": {
       "primary": {
@@ -4749,15 +5176,17 @@ window.IX_DATA = {
       "remap": {
         "path": "E:\\E-github-repos\\Ix-remap",
         "branch": "feat/ix-remap-hardening",
-        "sha": "c021b52",
+        "sha": "a05e740",
         "ahead": 1,
-        "dirty": 0
+        "dirty": 0,
+        "note": "Phase 5 rebased onto 5488741; fork branch still c021b52",
+        "backup_ref": "feat/ix-remap-hardening-backup-c021b52"
       },
       "test": {
         "path": "E:\\E-github-repos\\Ix-test",
         "sha": "c4f8fea",
         "dirty": 0,
-        "tests": "646/648 passed",
+        "tests": "696/698 on 5488741 (Phase 5 fresh run)",
         "tsc": "clean",
         "eslint": "0 errors"
       }
@@ -4765,12 +5194,49 @@ window.IX_DATA = {
     "test_results": {
       "date": "2026-08-10",
       "repository": "ix-infrastructure/Ix",
-      "sha": "c4f8fea",
-      "vitest": "49 passed, 1 skipped (50 files)",
-      "tests": "646 passed, 2 skipped (648 total)",
+      "sha": "5488741",
+      "vitest": "51 passed, 1 skipped (52 files)",
+      "tests": "696 passed, 2 skipped (698 total) on upstream main 5488741 (Phase 5 fresh run)",
+      "remap_rebase_suite": "706 passed, 2 skipped (708 total) on a05e740 (Phase 5, includes 10 guard tests)",
       "smoke": "passed",
       "tsc": "clean",
-      "eslint": "0 errors, 38 warnings"
+      "eslint": "0 errors"
+    },
+    "phase_5": {
+      "rebase": {
+        "branch": "feat/ix-remap-hardening",
+        "old_sha": "c021b52",
+        "new_sha": "a05e740",
+        "base": "5488741",
+        "merge_tree": "101f63a exit 0",
+        "suite": "706/708"
+      },
+      "fork_sync": {
+        "repo": "Alot1z/Ix",
+        "branch": "main",
+        "old_sha": "c4f8fea",
+        "new_sha": "5488741",
+        "method": "gh repo sync",
+        "verified": true
+      },
+      "reproduction": {
+        "F-008": "STRUCTURALLY FIXED on 5488741 (three version tracks; isNewer rewritten; issue #376 still open)",
+        "F-009": "CONFIRMED OPEN (registerPatchesCommand zero import sites on 5488741)"
+      },
+      "standalone": {
+        "candidate": "CAND-021",
+        "generator": "planning/wiki/build-standalone.mjs",
+        "template": "planning/wiki/standalone-template.html",
+        "reproducible": true,
+        "sha": "852545b0",
+        "data": "evidence 28, graph 165/141 embedded"
+      },
+      "pages": {
+        "package": "planning/pages/",
+        "validation": "16/16 PASS",
+        "deployed": false,
+        "deploy_authorization": "NOT GRANTED"
+      }
     },
     "system_compass": {
       "upstream": "PRIVATE — returns 404",

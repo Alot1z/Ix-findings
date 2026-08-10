@@ -257,5 +257,42 @@ git push --force-with-lease origin feat/ix-remap-hardening   # ONLY with authori
 
 ---
 
+## Phase 5 — Rebase EXECUTED & Verified (2026-08-10, user-authorized)
+
+**Status:** rebase executed locally; **NOT pushed**; **NO PR opened**.
+
+### Execution record
+
+| Step | Result |
+|---|---|
+| User authorization | Gate C authorized (Phase 5) — local rebase, no push, no PR |
+| Safety backup ref | `feat/ix-remap-hardening-backup-c021b52` created @ `c021b52` |
+| Upstream main at rebase time | `5488741` (`v0.9.2`, #387) — advanced past `fa10045` |
+| `git rebase origin/main` | **clean**, 1 commit replayed, 0 conflicts |
+| New HEAD | `a05e740` (single remap commit replayed onto `5488741`) |
+| Patch equivalence | `git show HEAD` = exactly 4 files (+251/−10): `view.ts`, `view-server.test.ts`, `bootstrap.sh`, `docs/api/README.md` |
+| Diff vs upstream | identical 4-file set, 251 insertions / 10 deletions |
+| Merge-tree recheck | `git merge-tree --write-tree origin/main HEAD` = exit 0, tree `101f63a`, 0 CONFLICT |
+| Guard + full suite | **706 passed, 2 skipped, 0 failed** (708) on new base (upstream 5488741 alone: 696 passed / 698) |
+| Working tree after | clean (0 dirty) |
+| Fork branch `feat/ix-remap-hardening` | **unchanged** @ `c021b52` (verified via GitHub API) |
+| Fork `main` | fast-forwarded `c4f8fea` → `5488741` via `gh repo sync` (Gate D, API-verified) |
+
+### Why the fork branch was NOT force-updated
+
+Pushing the rebased `a05e740` to the fork's `feat/ix-remap-hardening`
+(`c021b52`) would require a force-update (history rewritten by the rebase).
+Phase 5 rule 1.7 forbids force-push by default; the user authorized the rebase
+but not a force-push of the branch. The rebased branch is ready locally.
+
+### Remaining before PR (NOT done — requires separate authorization)
+
+1. `git push --force-with-lease fork feat/ix-remap-hardening:a05e740`
+   (or push `a05e740` to a fresh branch) — explicit user authorization required.
+2. Open PR `feat/ix-remap-hardening` → `ix-infrastructure/Ix:main` using this
+   packet as the body — **PR creation remains prohibited** in Phase 5.
+
+---
+
 *All paths sanitized. No secrets, credentials, or personal information in
 this diff.*

@@ -1,0 +1,51 @@
+{
+  "phase": "5",
+  "gate": "F",
+  "generated": "2026-08-10",
+  "status": "LOCALLY VALIDATED — NOT DEPLOYED",
+  "command": "node planning/pages/build-public.mjs && node planning/pages/validate-public.mjs",
+  "build": {
+    "output": "planning/pages/public/",
+    "graph": "162 nodes / 133 edges (public projection)",
+    "findings": 13,
+    "evidence": 28,
+    "data_bytes": 82253,
+    "total_size": "132K",
+    "declared": "PUBLIC PROJECTION BUILT — NOT DEPLOYED. Pages workflow is prepared but disabled."
+  },
+  "validator": "planning/pages/validate-public.mjs",
+  "checks_total": 16,
+  "checks_passed": 16,
+  "result": "VALIDATION PASSED — public projection safe for review.",
+  "checks": [
+    "present index.html",
+    "present data/data.js",
+    "present assets/wiki.css",
+    "present assets/wiki.js",
+    "data.js parses",
+    "snapshot label present",
+    "generated timestamp present",
+    "no excluded patterns in published data",
+    "no local drive paths",
+    "worktrees excluded",
+    "raw manifest excluded",
+    "sysCompass is public status marker",
+    "graph edges valid (133)",
+    "index.html uses relative asset refs",
+    "no localhost in index.html; wiki.js localhost refs are inert security-model documentation (3 occurrences)",
+    "no secret patterns in output tree (4 files)"
+  ],
+  "browser_validation": {
+    "note": "Standalone explorer (planning/wiki/index-standalone.html) browser-tested: top bar, sidebar, Findings F-001-F-013, 0 console errors. Public projection uses the same wiki.js/css/data chain."
+  },
+  "not_performed": {
+    "deployment": "NOT AUTHORIZED (Gate F)",
+    "pages_enable": "NOT AUTHORIZED",
+    "visibility_change": "NOT AUTHORIZED",
+    "workflow_activation": "workflow kept as .template (disabled)"
+  },
+  "notes": [
+    "Rebuilt after Phase 5 ledger updates (manifest 4.1.0) — validation re-run and still 16/16.",
+    "Deployment requires: explicit user authorization + final artifact SHA + repository/workflow target verification."
+  ]
+}

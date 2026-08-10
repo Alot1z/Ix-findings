@@ -11,13 +11,13 @@ window.IX_DATA = {
       "repositories": 5,
       "branches": 7,
       "worktrees": 3,
-      "commits": 9,
+      "commits": 10,
       "findings": 13,
       "evidence": 28,
       "decisions": 14,
       "suggestions": 33,
-      "prs": 11,
-      "issues": 6,
+      "prs": 15,
+      "issues": 8,
       "contributions": 6,
       "graphNodes": 165,
       "graphEdges": 141
@@ -25,7 +25,7 @@ window.IX_DATA = {
     "dataFreshness": {
       "findings": "2026-08-10",
       "evidence": "2026-08-10",
-      "tests": "646 passed, 2 skipped (648 total) @ c4f8fea"
+      "tests": "696 passed, 2 skipped (698 total) on upstream main 5488741 (Phase 5 fresh run) @ 5488741"
     },
     "published": {
       "note": "Sanitized public projection — internal fields (local paths, worktrees, raw manifest) excluded by allowlist."
@@ -2841,7 +2841,7 @@ window.IX_DATA = {
       "url": "https://github.com/ix-infrastructure/Ix",
       "role": "upstream",
       "default_branch": "main",
-      "note": "upstream main advanced past local baseline (Phase 4 verified)"
+      "note": "upstream main = v0.9.2 release (#387), Phase 5 live-verified; latest release tag v0.9.2"
     },
     {
       "repo_id": "Alot1z/Ix",
@@ -2879,8 +2879,8 @@ window.IX_DATA = {
     {
       "branch": "main",
       "repo": "ix-infrastructure/Ix",
-      "sha": "2e246e8",
-      "note": "upstream HEAD (Phase 4 live-verified); local/fork baselines are 4 behind"
+      "sha": "5488741",
+      "note": "upstream HEAD v0.9.2 (#387) Phase 5 live-verified"
     },
     {
       "branch": "feat/ix-agent-skill",
@@ -2891,14 +2891,16 @@ window.IX_DATA = {
     {
       "branch": "feat/ix-remap-hardening",
       "repo": "ix-infrastructure/Ix",
-      "sha": "c021b52",
-      "ahead": 1
+      "sha": "a05e740",
+      "ahead": 1,
+      "note": "Phase 5 local rebase onto 5488741 (backup ref feat/ix-remap-hardening-backup-c021b52); fork branch still c021b52"
     },
     {
       "branch": "fork/main",
       "repo": "Alot1z/Ix",
-      "sha": "c4f8fea",
-      "behind_upstream": 4
+      "sha": "5488741",
+      "behind_upstream": 0,
+      "note": "Phase 5 synced via gh repo sync"
     },
     {
       "branch": "fork/feat/ix-agent-skill",
@@ -2919,10 +2921,16 @@ window.IX_DATA = {
   ],
   "commits": [
     {
-      "sha": "2e246e8",
+      "sha": "5488741",
       "repo": "ix-infrastructure/Ix",
       "branch": "main",
-      "msg": "upstream main HEAD (Phase 4 live-verified; 4 commits past c4f8fea)"
+      "msg": "chore(release): 0.9.2 (#387) — upstream HEAD Phase 5"
+    },
+    {
+      "sha": "a05e740",
+      "repo": "ix-infrastructure/Ix",
+      "branch": "feat/ix-remap-hardening (local)",
+      "msg": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap — Phase 5 rebase onto 5488741"
     },
     {
       "sha": "c4f8fea",
@@ -3029,13 +3037,38 @@ window.IX_DATA = {
     {
       "number": 380,
       "url": "https://github.com/ix-infrastructure/Ix/pull/380",
-      "state": "OPEN",
-      "note": "fixes #379"
+      "state": "MERGED",
+      "note": "fixes #379 — Phase 5 API-verified"
     },
     {
       "number": 382,
       "url": "https://github.com/ix-infrastructure/Ix/pull/382",
-      "state": "OPEN"
+      "state": "MERGED",
+      "note": "Phase 5 API-verified"
+    },
+    {
+      "number": 384,
+      "url": "https://github.com/ix-infrastructure/Ix/pull/384",
+      "state": "MERGED",
+      "note": "Pro stub for goals — Phase 5 API-verified"
+    },
+    {
+      "number": 386,
+      "url": "https://github.com/ix-infrastructure/Ix/pull/386",
+      "state": "MERGED",
+      "note": "windows shim self-diagnosis — Phase 5 API-verified"
+    },
+    {
+      "number": 387,
+      "url": "https://github.com/ix-infrastructure/Ix/pull/387",
+      "state": "MERGED",
+      "note": "release 0.9.2 — Phase 5 API-verified"
+    },
+    {
+      "number": 388,
+      "url": "https://github.com/ix-infrastructure/Ix/pull/388",
+      "state": "OPEN",
+      "note": "brew formula v0.9.2 — Phase 5 API-verified"
     }
   ],
   "issues": [
@@ -3072,25 +3105,37 @@ window.IX_DATA = {
       "number": 379,
       "url": "https://github.com/ix-infrastructure/Ix/issues/379",
       "state": "OPEN",
-      "note": "same-kind ambiguity; PR #380 open"
+      "note": "same-kind ambiguity; PR #380 merged (Phase 5 API-verified)"
+    },
+    {
+      "number": 383,
+      "url": "https://github.com/ix-infrastructure/Ix/issues/383",
+      "state": "OPEN",
+      "note": "Codex hooks fail on native Windows — Phase 5 API-verified"
+    },
+    {
+      "number": 385,
+      "url": "https://github.com/ix-infrastructure/Ix/issues/385",
+      "state": "OPEN",
+      "note": "upgrade breaks Windows CLI 0.8.1->0.9.1 — Phase 5 API-verified"
     }
   ],
   "testResults": {
     "date": "2026-08-10",
     "repository": "ix-infrastructure/Ix",
-    "sha": "c4f8fea",
-    "vitest": "49 passed, 1 skipped (50 files)",
-    "tests": "646 passed, 2 skipped (648 total)",
+    "sha": "5488741",
+    "vitest": "51 passed, 1 skipped (52 files)",
+    "tests": "696 passed, 2 skipped (698 total) on upstream main 5488741 (Phase 5 fresh run)",
     "smoke": "passed",
     "tsc": "clean",
-    "eslint": "0 errors, 38 warnings"
+    "eslint": "0 errors"
   },
   "contributions": [
     {
       "id": "CONTRIB-remap",
-      "branch": "feat/ix-remap-hardening @ c021b52",
-      "tests": "view-server.test.ts 10 scenarios; full suite 646/648 expected",
-      "blocker": "user authorization to rebase + force-update fork branch; base currently stale by 4 commits",
+      "branch": "feat/ix-remap-hardening @ c021b52 (fork) / a05e740 (local rebased, Phase 5)",
+      "tests": "view-server.test.ts 10 scenarios; full suite 706/708 on a05e740 (rebase base 5488741)",
+      "blocker": "user authorization to force-update fork branch (a05e740) + open PR; PR creation prohibited in Phase 5",
       "findings": [
         "F-010",
         "F-011",

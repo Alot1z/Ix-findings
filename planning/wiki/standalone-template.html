@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ix / Compass Investigation — Knowledge Wiki</title>
+<meta name="description" content="Interactive exploration of the Ix / Compass investigation knowledge base. Local, no server, no network.">
+<style>@@IX_CSS@@</style>
+</head>
+<body>
+<div id="app">
+  <header id="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-title">IX / COMPASS</span>
+      <span class="brand-sub">investigation knowledge base</span>
+    </div>
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Search findings, repos, commits, PRs, symbols, SHAs…" autocomplete="off" spellcheck="false">
+    </div>
+    <div class="topbar-right">
+      <span id="phase-badge" class="badge">EXECUTION</span>
+    </div>
+  </header>
+
+  <div id="layout">
+    <nav id="sidebar" aria-label="Views">
+      <div class="nav-group-label">Explore</div>
+      <button class="nav-item" data-view="overview">✳ Overview</button>
+      <button class="nav-item active" data-view="map">⌗ Investigation Map</button>
+      <button class="nav-item" data-view="timeline">◷ Timeline</button>
+      <button class="nav-group-label">Repositories</button>
+      <button class="nav-item" data-view="repos">▤ Repositories</button>
+      <button class="nav-item" data-view="worktrees">⛏ Worktrees</button>
+      <button class="nav-item" data-view="branches">⑂ Branches</button>
+      <button class="nav-item" data-view="commits">◉ Commits</button>
+      <button class="nav-item" data-view="releases">⬡ Releases</button>
+      <div class="nav-group-label">Knowledge</div>
+      <button class="nav-item" data-view="findings">✦ Findings</button>
+      <button class="nav-item" data-view="evidence">◈ Evidence</button>
+      <button class="nav-item" data-view="tests">✓ Tests</button>
+      <button class="nav-item" data-view="compass">◐ Compass History</button>
+      <button class="nav-item" data-view="phases">⛁ Phase Explorer</button>
+      <div class="nav-group-label">GitHub</div>
+      <button class="nav-item" data-view="prs">⇄ Pull Requests</button>
+      <button class="nav-item" data-view="issues">⚠ Issues</button>
+      <div class="nav-group-label">Decision</div>
+      <button class="nav-item" data-view="contributions">⚡ Contributions</button>
+      <button class="nav-item" data-view="suggestions">✎ Suggestions</button>
+      <button class="nav-item" data-view="decisions">◈ Decisions</button>
+      <button class="nav-item" data-view="stale">⚠ Stale Claims</button>
+      <div class="nav-group-label">System-Compass</div>
+      <button class="nav-item" data-view="syscompass">◐ System-Compass</button>
+      <button class="nav-item" data-view="security">🛡 Security</button>
+      <div class="nav-group-label">About</div>
+      <button class="nav-item" data-view="about">ℹ About</button>
+    </nav>
+
+    <main id="view">
+      <div id="breadcrumb" class="breadcrumb"></div>
+      <section id="content" class="content"></section>
+    </main>
+  </div>
+
+  <aside id="drawer" class="drawer" aria-label="Detail">
+    <div class="drawer-head">
+      <span id="drawer-title">Detail</span>
+      <button id="drawer-close" aria-label="Close">×</button>
+    </div>
+    <div id="drawer-body" class="drawer-body"></div>
+  </aside>
+</div>
+
+<script>@@IX_DATA@@</script>
+<script>@@IX_JS@@</script>
+</body>
+</html>

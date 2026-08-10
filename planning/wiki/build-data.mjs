@@ -47,7 +47,7 @@ const readinessById = Object.fromEntries(contribReadiness.map(c => [c.id, c]));
 const suiteTests = testResults.tests ? `${testResults.tests} (manifest @ ${testResults.sha || "c4f8fea"})` : "646/648 (manifest)";
 
 const CONTRIB_META = [
-  { id: "CONTRIB-remap", repo: "ix-infrastructure/Ix", branch: "feat/ix-remap-hardening", sha: "c021b52", title: "Remap hardening — loopback-guarded /__ix/remap endpoint + WSL bootstrap fix", files: 4, packet: "pr-packets/ix-remap-hardening/README.md" },
+  { id: "CONTRIB-remap", repo: "ix-infrastructure/Ix", branch: "feat/ix-remap-hardening", sha: "a05e740 (rebased onto 5488741; fork @ c021b52)", title: "Remap hardening — loopback-guarded /__ix/remap endpoint + WSL bootstrap fix", files: 4, packet: "pr-packets/ix-remap-hardening/README.md" },
   { id: "CONTRIB-agent-skill", repo: "ix-infrastructure/Ix", branch: "feat/ix-agent-skill", sha: "b038c46", title: "Agent skill with Compass patch — active development, 14 dirty files", files: "14 uncommitted", packet: null },
   { id: "CONTRIB-376", repo: "ix-infrastructure/Ix", branch: null, sha: null, title: "Fix version-series mismatch (#376) — stamp dist version not Ix version", files: "1 (.github/workflows/release.yml)", packet: "pr-packets/ix-376-version-mismatch/README.md" },
   { id: "CONTRIB-371", repo: "ix-infrastructure/Ix", branch: null, sha: null, title: "Fix dead patches command (#371) — register or delete", files: "1-2", packet: "pr-packets/ix-371-patches-dead-code/README.md" },

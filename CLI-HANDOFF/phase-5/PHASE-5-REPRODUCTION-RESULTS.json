@@ -1,0 +1,61 @@
+{
+  "phase": "5",
+  "gate": "B",
+  "generated": "2026-08-10",
+  "method": "Fresh reproduction against upstream main 5488741 (v0.9.2). Source inspection via git show origin/main; full vitest suite run in Ix-test (checked out origin/main, restored to c4f8fea afterward).",
+  "reproductions": [
+    {
+      "finding": "F-009",
+      "title": "patches command dead/unregistered (#371)",
+      "claim": "registerPatchesCommand exported but never imported (absent from oss.ts); PRO_COMMANDS masks it",
+      "expected": "registerPatchesCommand has zero import sites; patches only in PRO_COMMANDS",
+      "current_implementation": "ix-cli/src/cli/commands/patches.ts exports registerPatchesCommand (line 6); ix-cli/src/cli/register/oss.ts lists { name: \"patches\" } inside PRO_COMMANDS only; no import of registerPatchesCommand anywhere",
+      "procedure": "git grep -n registerPatchesCommand origin/main (scope ix-cli/src/**)",
+      "result": "CONFIRMED",
+      "evidence": "git grep shows ONLY the definition in commands/patches.ts:6; zero import/registration sites on 5488741",
+      "classification": "CONFIRMED",
+      "status_update": "F-009 remains OPEN on current main 5488741. PACK-371 (register or delete) remains the valid contribution. Note: file moved from src/cli/patches.ts to src/cli/commands/patches.ts since earlier phases."
+    },
+    {
+      "finding": "F-008",
+      "title": "Version-series mismatch in ix upgrade (#376)",
+      "claim": "isNewer('0.3.0','0.9.1') false today; flips when dist > Ix version — two unrelated series compared",
+      "expected": "current main no longer compares compass series against ix CLI series",
+      "current_implementation": "upgrade.ts now maintains THREE independent version tracks: (1) CLI: fetchLatestRelease(Ix) vs current CLI pkg version; (2) compass: fetchLatestRelease(ix-compass-dist) vs installed compass .version stamp; (3) backend: BACKEND_VERSION_FILE. isNewer rewritten with full semver precedence (splitVersion + pre-release handling).",
+      "procedure": "git show origin/main:ix-cli/src/cli/commands/upgrade.ts — inspect isNewer call sites and version sources",
+      "result": "STRUCTURALLY FIXED",
+      "evidence": "call sites: isNewer(cache.latest, current) [CLI]; isNewer(compassLatest, compassCurrent) [compass-vs-compass, compassLatest fetched from COMPASS_DIST_REPO=ix-compass-dist]; isNewer(backendLatest, backendCurrent). No cross-series comparison remains. upgrade-version-compare.test.ts covers semver precedence incl. the old RC regression.",
+      "classification": "RESOLVED (structurally) on current main — but issue #376 remains OPEN with 0 comments; recommendation: verify with maintainer / close or annotate the issue",
+      "status_update": "F-008: the original defect (comparing two unrelated version series) is not present on 5488741. The remaining item is issue hygiene (issue #376 open, no resolution comment). CONTRIB-376 packet (stamp dist version) is now SUPERSEDED by upstream's three-track redesign unless maintainers identify a remaining gap."
+    },
+    {
+      "finding": "F-010",
+      "title": "Loopback-hardened /__ix/remap endpoint (implemented)",
+      "claim": "remap branch c021b52 implements the endpoint; 10-test guard matrix; suite green",
+      "expected": "after Phase 5 rebase onto 5488741, guard tests + full suite still green, patch equivalence preserved",
+      "current_implementation": "feat/ix-remap-hardening rebased c021b52 -> a05e740 onto origin/main 5488741",
+      "procedure": "Gate C: rebase, git show --stat HEAD, merge-tree --write-tree origin/main HEAD, full vitest suite on a05e740",
+      "result": "CONFIRMED (post-rebase)",
+      "evidence": "patch = exactly 4 files (+251/-10); merge-tree exit 0 tree 101f63a; suite 706 passed / 2 skipped / 0 failed (708) incl. 10 guard tests; 0 dirty",
+      "classification": "CONFIRMED — contribution ready pending push + PR authorization",
+      "status_update": "F-010 remains PR_READY; rebase executed and verified."
+    }
+  ],
+  "suite_runs": [
+    {
+      "environment": "E:/E-github-repos/Ix-test (ix-cli, node v26.5.0)",
+      "commit": "5488741 (origin/main, detached)",
+      "command": "node scripts/build-core-ingestion.mjs && npx vitest run",
+      "result": "PASS",
+      "test_files": "51 passed | 1 skipped (52)",
+      "tests": "696 passed | 2 skipped (698)",
+      "note": "baseline advanced from recorded 646/648 (c4f8fea) to 696/698 (5488741) — upstream added tests via #372/#382/#384/etc."
+    },
+    {
+      "environment": "E:/E-github-repos/Ix-test restored",
+      "commit": "c4f8fea",
+      "dirty_after": 0,
+      "result": "BASELINE RESTORED"
+    }
+  ]
+}

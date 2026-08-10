@@ -1,0 +1,81 @@
+{
+  "phase": "5",
+  "gate": "G",
+  "generated": "2026-08-10",
+  "status": "All packets updated with live state. NO PR opened (user instruction: no PRs in Phase 5).",
+  "contributions": [
+    {
+      "id": "CONTRIB-remap",
+      "target": "ix-infrastructure/Ix",
+      "target_branch": "main",
+      "source_branch": "feat/ix-remap-hardening",
+      "local_sha": "a05e740 (rebased onto 5488741)",
+      "fork_sha": "c021b52 (not force-updated — authorization required)",
+      "findings": ["F-010", "F-011", "F-012"],
+      "evidence": "merge-tree exit 0 tree 101f63a vs 5488741; suite 706/708 (incl. 10 guard tests); patch exactly 4 files +251/-10; fork main synced",
+      "tests": "view-server.test.ts 10 scenarios; full suite 706 passed/2 skipped/0 failed",
+      "status": "READY_TO_SUBMIT (technically) — REQUIRES_AUTHORIZATION for push + PR",
+      "blocker": "force-update of fork branch (a05e740) + PR creation both need explicit user authorization",
+      "packet": "pr-packets/ix-remap-hardening/README.md (Phase 5 execution record appended)",
+      "pr_title_draft": "feat(view): loopback-guarded /__ix/remap endpoint + WSL bootstrap fix",
+      "overlap": "none with open upstream PRs #375/#378/#380/#382 (verified file sets)"
+    },
+    {
+      "id": "CONTRIB-371",
+      "target": "ix-infrastructure/Ix",
+      "target_branch": "main",
+      "source_branch": "(not created — decision required)",
+      "findings": ["F-009"],
+      "evidence": "F-009 CONFIRMED on 5488741: registerPatchesCommand has zero import sites (git grep); patches only in PRO_COMMANDS",
+      "tests": "none yet; packet lists proposed tests",
+      "status": "READY_TO_SUBMIT (packet complete) — REQUIRES_DECISION (register vs delete) + REQUIRES_AUTHORIZATION",
+      "blocker": "maintainer register-vs-delete direction; PR creation authorization",
+      "packet": "pr-packets/ix-371-patches-dead-code/README.md",
+      "pr_title_draft": "fix(patches): register the patches command or remove it",
+      "note": "base updated: packet says 2e246e8; should be refreshed to 5488741 at submission time"
+    },
+    {
+      "id": "CONTRIB-376",
+      "target": "ix-infrastructure/Ix",
+      "target_branch": "main",
+      "findings": ["F-008"],
+      "evidence": "F-008 STRUCTURALLY FIXED on 5488741: three independent version tracks, isNewer semver rewrite, upgrade-version-compare.test.ts; issue #376 still open with 0 comments",
+      "tests": "upgrade-version-compare.test.ts (passing on 5488741)",
+      "status": "SUPERSEDED (by upstream three-track redesign) — verify with maintainer before any submission",
+      "blocker": "issue #376 open but code already fixed; maintainer confirmation needed",
+      "packet": "pr-packets/ix-376-version-mismatch/README.md",
+      "pr_title_draft": "(likely no longer needed — upstream fixed the comparison)",
+      "recommendation": "Do NOT prepare a version-stamp PR against current main; instead verify the remaining gap with maintainers and update/close issue #376"
+    },
+    {
+      "id": "CONTRIB-agent-skill",
+      "target": "ix-infrastructure/Ix",
+      "findings": [],
+      "status": "IN_DEVELOPMENT (PROTECTED)",
+      "blocker": "14 dirty files @ b038c46; PR #368 already merged the original skill",
+      "note": "protected worktree untouched (verified b038c46/14 before and after Phase 5)"
+    },
+    {
+      "id": "CONTRIB-fkey",
+      "target": "system-compass",
+      "findings": ["F-001", "F-002", "F-003", "F-004"],
+      "status": "BLOCKED — system-compass private (404), no fork, D-014 access decision",
+      "blocker": "no source access; no access request permitted in Phase 5"
+    },
+    {
+      "id": "CONTRIB-delayed",
+      "target": "system-compass",
+      "findings": ["F-006", "F-007"],
+      "status": "BLOCKED — same access boundary; optional public-dist reproduction (CAND-006) remains open"
+    }
+  ],
+  "no_prs_created": true,
+  "no_issues_created": true,
+  "no_maintainer_contact": true,
+  "do_not_do": [
+    "Do NOT submit CONTRIB-376 as a version-stamp PR against current main (code already fixed)",
+    "Do NOT reopen PR #368",
+    "Do NOT duplicate open upstream PRs #375/#378/#380/#382",
+    "Do NOT submit system-compass work without access"
+  ]
+}

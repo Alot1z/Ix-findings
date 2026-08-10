@@ -1,0 +1,86 @@
+{
+  "phase": "5",
+  "gate": "F",
+  "generated": "2026-08-10",
+  "audit_target": "planning/pages/public/ (rebuild from current ledger 2026-08-10)",
+  "principle": "UNKNOWN = EXCLUDED. Only PUBLIC_SAFE and validated PUBLIC_AFTER_SANITIZATION data may enter the export.",
+  "classification_model": {
+    "PUBLIC_SAFE": "public repo names, public commit SHAs, public PR/issue metadata, intentionally-authored public findings, public graph relationships, sanitized documentation",
+    "PUBLIC_AFTER_SANITIZATION": "ledger fields with local paths / internal notes stripped",
+    "PRIVATE": "local filesystem paths, private URLs, credentials, personal info, internal-only notes",
+    "UNKNOWN_REQUIRES_AUTHORIZATION": "anything not explicitly classified"
+  },
+  "allowlist": "planning/pages/public-data-allowlist.json",
+  "output_files": [
+    "planning/pages/public/index.html",
+    "planning/pages/public/data/data.js",
+    "planning/pages/public/assets/wiki.css",
+    "planning/pages/public/assets/wiki.js"
+  ],
+  "projection_counts": {
+    "graph_nodes": 162,
+    "graph_edges": 133,
+    "findings": 13,
+    "evidence": 28,
+    "contributions": 6,
+    "note": "graph 162/133 vs ledger 165/141: private system-compass URL node + 2 referencing edges + worktree nodes excluded by allowlist"
+  },
+  "node_types_exported": {
+    "phase": 16, "repository": 5, "branch": 6, "release": 4, "artifact": 4,
+    "file": 12, "symbol": 9, "api": 2, "test": 4, "finding": 13, "evidence": 28,
+    "issue": 6, "pr": 11, "pr_packet": 4, "commit": 7, "decision": 14,
+    "stale_claim": 8, "person": 5, "suggestion": 4
+  },
+  "scans": [
+    {"id": 1, "name": "secret patterns", "patterns": ["ghp_[A-Za-z0-9]{20,}", "github_pat_", "BEGIN (RSA|OPENSSH|EC) PRIVATE", "AKIA[0-9A-Z]{16}"], "result": "CLEAN"},
+    {"id": 2, "name": "local drive paths", "patterns": ["[A-Za-z]:\\\\", "[A-Za-z]:/"], "result": "CLEAN"},
+    {"id": 3, "name": "localhost / 127.0.0.1", "result": "FLAGGED -> CLASSIFIED (see findings)"},
+    {"id": 4, "name": "private URLs", "patterns": ["github.com/<owner>/system", "private repo URLs"], "result": "CLEAN — only public github.com/ix-infrastructure and github.com/Alot1z URLs present"},
+    {"id": 5, "name": "credential-ish keywords", "patterns": ["password", "secret", "token", "api key", "authorization"], "result": "FLAGGED -> CLASSIFIED (see findings)"},
+    {"id": 6, "name": "allowlist conformance", "result": "PASS — node types all within allowlist; worktrees empty; raw manifest absent; sysCompass = public status marker only"},
+    {"id": 7, "name": "PII-oriented review", "result": "CLEAN — person nodes are public maintainer/handle references in the ledger, no personal data"}
+  ],
+  "findings": [
+    {
+      "field": "wiki.js:467",
+      "source": "planning/wiki/assets/wiki.js",
+      "match": "localhost/127.0.0.1/[::1] ✓ (Host whitelist)",
+      "classification": "PUBLIC_SAFE (inert documentation)",
+      "reason": "Public security-model documentation of the remap endpoint's loopback whitelist — explicitly allowed by the Phase 3 Pages spec and validated by check 15 in validate-public.mjs. Not a live reference or credential.",
+      "exported": true,
+      "sanitized": false,
+      "validation": "validator check 15 documents this exact allowance"
+    },
+    {
+      "field": "wiki.js:479",
+      "source": "planning/wiki/assets/wiki.js",
+      "match": "\"filesystem paths, credentials, tokens, or private source exposed\"",
+      "classification": "PUBLIC_SAFE (negative statement)",
+      "reason": "A UI text stating what the explorer does NOT expose. The words 'credentials'/'tokens' appear as documentation prose, not as values.",
+      "exported": true,
+      "sanitized": false,
+      "validation": "manual inspection of matched context"
+    },
+    {
+      "field": "data.js (sysCompass)",
+      "source": "planning/pages/build-public.mjs allowlist projection",
+      "match": "\"access\": \"PRIVATE\"",
+      "classification": "PUBLIC_AFTER_SANITIZATION (public status marker)",
+      "reason": "Deliberate, allowlisted public status field stating system-compass is private/inaccessible. No private content, no URLs, no source detail.",
+      "exported": true,
+      "sanitized": true,
+      "validation": "validator check: 'sysCompass is public status marker'"
+    },
+    {
+      "field": "data.js (project names)",
+      "source": "planning/findings + manifest",
+      "match": "\"system-compass\" project-name references (38 occurrences)",
+      "classification": "PUBLIC_SAFE",
+      "reason": "The project name is public knowledge already present in the committed public ledger; no internal source detail is exposed.",
+      "exported": true,
+      "sanitized": false,
+      "validation": "manual review of occurrences — all name references only"
+    }
+  ],
+  "summary": "PUBLIC PROJECTION SAFE — 0 secrets, 0 paths, 0 private URLs, 3 documented inert/allowlisted references. DEPLOYMENT NOT EXECUTED (Gate F not authorized)."
+}

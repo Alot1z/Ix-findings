@@ -1,0 +1,53 @@
+{
+  "phase": "5",
+  "gate": "C",
+  "generated": "2026-08-10",
+  "status": "EXECUTED — local rebase complete and verified; NOT pushed; NO PR",
+  "worktree": "E:/E-github-repos/Ix-remap",
+  "branch": "feat/ix-remap-hardening",
+  "old_sha": "c021b52",
+  "new_sha": "a05e740",
+  "base": "5488741 (origin/main, v0.9.2 #387)",
+  "command": "git branch feat/ix-remap-hardening-backup-c021b52 c021b52 && git rebase origin/main",
+  "rebase_result": "clean — 1 commit replayed, 0 conflicts",
+  "patch_equivalence": {
+    "files_changed": 4,
+    "insertions": 251,
+    "deletions": 10,
+    "files": ["docs/api/README.md", "ix-cli/src/cli/commands/view.ts", "ix-cli/test/view-server.test.ts", "skills/ix/scripts/bootstrap.sh"],
+    "note": "git show HEAD matches the packet expectation exactly (+251/-10, same 4 files)"
+  },
+  "diff_vs_upstream": {
+    "command": "git diff --stat origin/main",
+    "files": ["docs/api/README.md (+16)", "ix-cli/src/cli/commands/view.ts (+58)", "ix-cli/test/view-server.test.ts (+178)", "skills/ix/scripts/bootstrap.sh (+9)"],
+    "total": "4 files, 251 insertions, 10 deletions"
+  },
+  "merge_tree_recheck": {
+    "command": "git merge-tree --write-tree origin/main HEAD",
+    "exit": 0,
+    "tree": "101f63add1caeef0362fb8a1aa3bf70a34604b28",
+    "conflicts": 0,
+    "note": "tree hash identical to pre-rebase prediction"
+  },
+  "tests": {
+    "command": "cd ix-cli && node scripts/build-core-ingestion.mjs && npx vitest run",
+    "node": "v26.5.0",
+    "result": "PASS",
+    "test_files": "52 passed | 1 skipped (53)",
+    "tests": "706 passed | 2 skipped (708)",
+    "note": "includes the 10-scenario guard matrix in test/view-server.test.ts; upstream 5488741 alone is 696/698"
+  },
+  "worktree_after": {"head": "a05e740", "dirty": 0},
+  "fork_state": {
+    "feat/ix-remap-hardening": "c021b52 (UNCHANGED on fork — force-update not authorized)",
+    "main": "c4f8fea -> 5488741 (Gate D sync, separate action)"
+  },
+  "force_push_required": false,
+  "force_push_performed": false,
+  "pr_opened": false,
+  "push_performed": false,
+  "notes": [
+    "Force-updating the fork branch to a05e740 would require force-with-lease (history rewritten by rebase); Phase 5 rule 1.7 forbids force-push without separate authorization.",
+    "The rebased branch is contribution-ready locally; PR remains prohibited (user instruction)."
+  ]
+}

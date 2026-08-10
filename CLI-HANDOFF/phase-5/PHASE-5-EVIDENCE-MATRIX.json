@@ -1,0 +1,25 @@
+{
+  "phase": "5",
+  "generated": "2026-08-10",
+  "evidence": [
+    {"id": "E5-001", "claim": "Upstream main = 5488741 (v0.9.2, #387)", "source": "GitHub API commits/main", "verified": true, "timestamp": "2026-08-10T20:46:14Z"},
+    {"id": "E5-002", "claim": "Fork main = c4f8fea (9 behind upstream) at Phase 5 start", "source": "GitHub API commits/main + compare", "verified": true},
+    {"id": "E5-003", "claim": "Fork main fast-forwarded to 5488741, 9 commits, 0 divergence", "source": "gh repo sync + GitHub API verify", "verified": true},
+    {"id": "E5-004", "claim": "Fork feat/ix-remap-hardening unchanged at c021b52", "source": "GitHub API branches", "verified": true},
+    {"id": "E5-005", "claim": "F-009 registerPatchesCommand has zero import sites on 5488741", "source": "git grep -n registerPatchesCommand origin/main", "verified": true, "finding": "F-009"},
+    {"id": "E5-006", "claim": "F-008 three-track version comparison on 5488741 (no cross-series isNewer)", "source": "git show origin/main:ix-cli/src/cli/commands/upgrade.ts (call sites 799-825, 850, 885, 1075, 1159)", "verified": true, "finding": "F-008"},
+    {"id": "E5-007", "claim": "Upstream suite 696 passed / 2 skipped / 0 failed on 5488741", "source": "vitest run in Ix-test (node v26.5.0)", "verified": true, "command": "node scripts/build-core-ingestion.mjs && npx vitest run"},
+    {"id": "E5-008", "claim": "Remap rebase c021b52 -> a05e740 clean on 5488741", "source": "git rebase output + git log", "verified": true},
+    {"id": "E5-009", "claim": "Remap patch equivalence (+251/-10, 4 files) preserved after rebase", "source": "git show --stat HEAD + git diff --stat origin/main", "verified": true},
+    {"id": "E5-010", "claim": "Remap merge-tree exit 0, tree 101f63a, 0 conflicts vs 5488741", "source": "git merge-tree --write-tree origin/main HEAD", "verified": true},
+    {"id": "E5-011", "claim": "Remap suite 706 passed / 2 skipped / 0 failed on a05e740", "source": "vitest run in Ix-remap/ix-cli", "verified": true},
+    {"id": "E5-012", "claim": "PR #378 does not overlap remap files", "source": "GitHub API pulls/378/files vs git diff --stat origin/main", "verified": true},
+    {"id": "E5-013", "claim": "Standalone generation byte-identical across runs (f53d88b5)", "source": "sha256sum x2", "verified": true, "candidate": "CAND-021"},
+    {"id": "E5-014", "claim": "Regenerated standalone embeds evidence 28 / graph 165/141 (current state)", "source": "node parse of embedded data + browser smoke (0 console errors)", "verified": true},
+    {"id": "E5-015", "claim": "Pages public projection 16/16 validation PASS", "source": "planning/pages/validate-public.mjs", "verified": true},
+    {"id": "E5-016", "claim": "Pages public projection: 0 secrets, 0 local paths, 0 private URLs; 3 inert/allowlisted references classified", "source": "grep scans + manual context inspection", "verified": true},
+    {"id": "E5-017", "claim": "Protected worktrees unchanged (Ix b038c46/14, dist 396426b/3, test restored c4f8fea/0)", "source": "git rev-parse + status before/after", "verified": true},
+    {"id": "E5-018", "claim": "No PRs/upstream mutations/force-pushes performed", "source": "git + GitHub API verification; fork branch refs unchanged except main sync", "verified": true}
+  ],
+  "provenance_standard": "Every claim above has: source type (GitHub API / git / test run / file inspection), repository, commit/branch where applicable, timestamp, confidence (all high)."
+}

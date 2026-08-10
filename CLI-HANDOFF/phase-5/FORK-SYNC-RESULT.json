@@ -1,0 +1,60 @@
+{
+  "phase": "5",
+  "gate": "D",
+  "generated": "2026-08-10",
+  "status": "EXECUTED — fork main fast-forwarded to upstream 5488741, API-verified",
+  "repository": "Alot1z/Ix",
+  "branch": "main",
+  "old_sha": "c4f8fea3916c87e83167bdfaaee945159f64ad0f",
+  "new_sha": "5488741155d69a5f03fce41416643ddceca6f8a0",
+  "upstream_source": "ix-infrastructure/Ix main @ 5488741",
+  "divergence_precheck": {
+    "compare": "c4f8fea...5488741",
+    "status": "ahead (upstream ahead of fork)",
+    "ahead_by": 9,
+    "behind_by": 0,
+    "note": "pure fast-forward, no divergence"
+  },
+  "commits_pushed": 9,
+  "commit_list": [
+    "5488741 chore(release): 0.9.2 (#387)",
+    "83a534f fix(windows): ix.cmd launcher self-diagnosis (#386)",
+    "b190083 fix(ingest): PHP typed receivers (#382)",
+    "fa10045 fix(resolve): same-kind ambiguity (#380)",
+    "43a644c fix(cli): Pro stub for goals (#384)",
+    "2e246e8 fix(install): Windows 8.3 short TEMP path (#352)",
+    "ed36119 feat(llm): --format llm (#372)",
+    "e117b6d fix(view): -p not honoured + URL in status (#362)",
+    "fc24655 ci(release): brew PR conventional title (#373)"
+  ],
+  "method": "gh repo sync Alot1z/Ix --source ix-infrastructure/Ix",
+  "attempt_log": [
+    {
+      "attempt": 1,
+      "method": "git push fork origin/main:refs/heads/main",
+      "result": "REJECTED — NO MUTATION (remote rejected: PAT without workflow scope cannot update .github/workflows/release.yml)",
+      "mutation_occurred": false,
+      "note": "The credential manager token lacked workflow scope; the gh token has it. Recorded as clean rejection with zero remote change."
+    },
+    {
+      "attempt": 2,
+      "method": "gh repo sync Alot1z/Ix --source ix-infrastructure/Ix",
+      "result": "SUCCESS (exit 0)"
+    }
+  ],
+  "verification": {
+    "method": "GitHub API repos/Alot1z/Ix/commits/main",
+    "fork_main_after": "5488741155d69a5f03fce41416643ddceca6f8a0",
+    "fork_main_date": "2026-08-10T20:46:14Z",
+    "matched_expected": true,
+    "unrelated_branches_touched": false,
+    "feat/ix-remap-hardening": "c021b52 (unchanged)",
+    "feat/ix-agent-skill": "0c9087c (unchanged)"
+  },
+  "force_push_used": false,
+  "rollback_available": "fast-forward rollback would require force-push to restore c4f8fea — not performed (not needed; sync is the intended state)",
+  "notes": [
+    "Fork main is now identical to upstream main (0 behind).",
+    "The remap contribution branch was deliberately NOT force-updated (separate authorization required)."
+  ]
+}
