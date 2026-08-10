@@ -45,7 +45,7 @@ Root: `E:\E-github-repos\Ix-findings\`
 | `./repositories/` | Repository map | 1 |
 | `./security/` | Security findings | 1 |
 | `./state/` | Phase state files | 5 |
-| `./IX-INVESTIGATION-HANDOFF/` | **This handoff** | (being written) |
+| `./CLI-HANDOFF/` | **This handoff** | (being written) |
 
 ---
 

@@ -1,4 +1,4 @@
-# IX / Compass Investigation — Freebuff CLI Handoff
+# IX / Compass Investigation — CLI Handoff
 
 **Generated:** 2026-08-10 (from verified Desktop workspace state)
 **Status:** READ-ONLY investigation package — no external actions authorized
@@ -8,10 +8,10 @@
 
 ## What This Is
 
-A self-contained handoff package for Freebuff CLI. Every repository, path, branch,
+A self-contained handoff package for CLI agents. Every repository, path, branch,
 commit, PR, finding, decision, and evidence is recorded with exact paths and URLs.
 
-Freebuff CLI can read this directory and immediately know:
+A CLI agent can read this directory and immediately know:
 - What to investigate
 - Where everything lives on disk
 - What has already been established
@@ -40,7 +40,7 @@ Freebuff CLI can read this directory and immediately know:
 | `STALE-CLAIMS.md` | Known discrepancies found during final audit | — |
 | `FILE-MANIFEST.md` | Complete file inventory with reading priorities | YES |
 | `CLI-READING-PLAN.md` | Ordered reading plan for CLI (MUST → SHOULD → OPTIONAL) | YES |
-| `FREEBUFF-CLI-PROMPT.md` | The main investigation prompt for Freebuff CLI | YES |
+| `CLI-PROMPT.md` | The main investigation prompt for CLI agents | YES |
 | `manifest.json` | Machine-readable: repos, paths, branches, findings, decisions, constraints | YES |
 
 ---
@@ -82,7 +82,7 @@ REMOTE MUTATION: NO
 
 ## CLI Safety Contract
 
-Freebuff CLI, upon receiving this handoff:
+CLI agent, upon receiving this handoff:
 
 **MUST NOT:**
 - `git reset --hard`, `git clean`, destructive checkout
@@ -97,7 +97,7 @@ Freebuff CLI, upon receiving this handoff:
 - Read all files, fetch public metadata, inspect Git state
 - Build, test, run `tsc --noEmit`, `npm test`
 - Generate reports, graph data, registry updates
-- Write new local files in `planning/` or `IX-INVESTIGATION-HANDOFF/`
+- Write new local files in `planning/` or `CLI-HANDOFF/`
 
 ---
 

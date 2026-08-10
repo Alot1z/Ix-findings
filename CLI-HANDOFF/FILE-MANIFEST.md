@@ -45,7 +45,7 @@
 | PR packet #376 | `pr-packets/ix-376-version-mismatch/README.md` | 6.5 KB | #376 fix spec |
 | Per-phase READMEs | `planning/phases/phase-*/README.md` (15 files) | ~20 KB | Phase-by-phase details |
 | PR planning | `planning/pr-planning/*.md` (5 files) | ~7 KB | PR recommendation matrix |
-| Stake claims | `IX-INVESTIGATION-HANDOFF/STALE-CLAIMS.md` | — | Known discrepancies |
+| Stake claims | `CLI-HANDOFF/STALE-CLAIMS.md` | — | Known discrepancies |
 
 ---
 

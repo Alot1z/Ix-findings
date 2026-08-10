@@ -9,10 +9,10 @@
 
 Read these in order:
 
-1. `IX-INVESTIGATION-HANDOFF/README.md` — what this handoff contains
-2. `IX-INVESTIGATION-HANDOFF/REPOSITORIES.md` — every repository with URLs
-3. `IX-INVESTIGATION-HANDOFF/PATHS.md` — exact filesystem paths
-4. `IX-INVESTIGATION-HANDOFF/GIT-STATE.md` — current Git state
+1. `CLI-HANDOFF/README.md` — what this handoff contains
+2. `CLI-HANDOFF/REPOSITORIES.md` — every repository with URLs
+3. `CLI-HANDOFF/PATHS.md` — exact filesystem paths
+4. `CLI-HANDOFF/GIT-STATE.md` — current Git state
 
 **After phase 1, you should know:**
 - What repos exist, where they're cloned, what forks exist
@@ -26,9 +26,9 @@ Read these in order:
 Read in order:
 
 1. `planning/final/EXECUTIVE-SUMMARY.md` — the big picture
-2. `IX-INVESTIGATION-HANDOFF/FINDINGS.md` — all 13 findings with evidence
-3. `IX-INVESTIGATION-HANDOFF/DECISIONS.md` — all 14 decisions
-4. `IX-INVESTIGATION-HANDOFF/PR-MATRIX.md` — PR/issue relationships
+2. `CLI-HANDOFF/FINDINGS.md` — all 13 findings with evidence
+3. `CLI-HANDOFF/DECISIONS.md` — all 14 decisions
+4. `CLI-HANDOFF/PR-MATRIX.md` — PR/issue relationships
 5. `planning/final/MASTER-REPORT.md` — full investigation report
 
 **After phase 2, you should know:**
@@ -159,4 +159,4 @@ Do NOT attempt to access system-compass (private repository).
 2. Generate provenance report (what came from where)
 3. Generate consistency report (cross-registry integrity)
 4. Generate master report update (if any change warrants it)
-5. Save everything to `IX-INVESTIGATION-HANDOFF/` and `planning/final/`
+5. Save everything to `CLI-HANDOFF/` and `planning/final/`
