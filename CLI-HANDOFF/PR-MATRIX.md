@@ -16,7 +16,16 @@
 | #365 | Compass stamp | https://github.com/ix-infrastructure/Ix/pull/365 | KageBinary | `dcc0962` | main | MERGED | — |
 | #366 | Tar pairing | https://github.com/ix-infrastructure/Ix/pull/366 | KageBinary | — | main | MERGED | — |
 | **#368** | Agent skill + HTTP API docs | https://github.com/ix-infrastructure/Ix/pull/368 | Alot1z | `2157158` | main | MERGED | F-001..F-007, F-010, D-014 |
-| #372 | --format llm | https://github.com/ix-infrastructure/Ix/pull/372 | — | — | — | — | — |
+| #372 | --format llm | https://github.com/ix-infrastructure/Ix/pull/372 | KageBinary | — | main | MERGED | — |
+| #373 | Brew PR conventional title | https://github.com/ix-infrastructure/Ix/pull/373 | — | — | main | MERGED | F-008 (release) |
+| #375 | Resolve JS/TS calls across parse batches | https://github.com/ix-infrastructure/Ix/pull/375 | — | — | main | OPEN | #374 (fixes) |
+| #378 | Remove stale graph entities | https://github.com/ix-infrastructure/Ix/pull/378 | — | — | main | OPEN | #377 (fixes) |
+| #380 | Preserve same-kind ambiguity | https://github.com/ix-infrastructure/Ix/pull/380 | — | — | main | OPEN | #379 (fixes) |
+| #382 | Resolve PHP calls through typed receivers | https://github.com/ix-infrastructure/Ix/pull/382 | — | — | main | OPEN | — |
+
+> **State notes (2026-08-10, GitHub API verified):** #362, #372, #373 are MERGED
+> (merged_at 16:24, 16:27, 16:07 UTC). #371 and #376 are **ISSUES**, not PRs
+> (C-007/C-008 resolved). PR #375 fixes #374; #378 fixes #377; #380 fixes #379.
 
 ---
 
@@ -32,8 +41,10 @@
 | #348 | ix-infrastructure/Ix | Ingest: stop DEP0151 warnings | https://github.com/ix-infrastructure/Ix/issues/348 | — |
 | #369 | ix-infrastructure/Ix | Bump dev-dependencies | https://github.com/ix-infrastructure/Ix/issues/369 | — |
 | **#371** | ix-infrastructure/Ix | `patches` command dead/unregistered | https://github.com/ix-infrastructure/Ix/issues/371 | F-009 |
-| **#374** | ix-infrastructure/Ix | Cross-batch calls | https://github.com/ix-infrastructure/Ix/issues/374 | — |
+| **#374** | ix-infrastructure/Ix | Cross-batch calls | https://github.com/ix-infrastructure/Ix/issues/374 | PR #375 (fixes) |
 | **#376** | ix-infrastructure/Ix | Version-series mismatch in `ix upgrade` | https://github.com/ix-infrastructure/Ix/issues/376 | F-008 |
+| **#377** | ix-infrastructure/Ix | Remapping keeps deleted/renamed symbols in graph | https://github.com/ix-infrastructure/Ix/issues/377 | PR #378 (fixes) |
+| **#379** | ix-infrastructure/Ix | --kind silently selects among duplicate same-kind symbols | https://github.com/ix-infrastructure/Ix/issues/379 | PR #380 (fixes) |
 
 ---
 

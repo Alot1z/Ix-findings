@@ -1,0 +1,55 @@
+{
+  "phase": "4",
+  "generated": "2026-08-10",
+  "deferred": [
+    {
+      "candidate_id": "CAND-010",
+      "title": "Fresh F-008/F-009 reproduction against current Ix main",
+      "defer_reason": "NEEDS_EVIDENCE",
+      "detail": "Requires fetching/checkout of upstream main (now fa10045) in Ix-test and running the full vitest suite (646/648). Deferred to Phase 5 so the validation baseline refresh is done with an authorized, clean environment.",
+      "resolved_by": "Phase 5: fetch fa10045 into Ix-test, run suite, record fresh results."
+    },
+    {
+      "candidate_id": "CAND-006",
+      "title": "Playwright reproduction of delayed-data on public dist",
+      "defer_reason": "NEEDS_EVIDENCE",
+      "detail": "Optional evidence-generation task against public dist v0.3.0. Not required for the Phase 4 knowledge tranche.",
+      "resolved_by": "Phase 5 (optional) — write reproduction script under reproductions/."
+    },
+    {
+      "candidate_id": "CAND-019",
+      "title": "Ix docs/API reference gap closure",
+      "defer_reason": "OUT_OF_PHASE_SCOPE / NEEDS_EVIDENCE",
+      "detail": "Docs scope (which commands) needs definition; touches upstream Ix docs. Not selected for the foundational tranche.",
+      "resolved_by": "Phase 5 after scope decision."
+    },
+    {
+      "candidate_id": "CAND-013",
+      "title": "Sync fork main (Alot1z/Ix) to upstream",
+      "defer_reason": "EXTERNAL_AUTHORIZATION_REQUIRED",
+      "detail": "Pushing fork main requires user authorization. User decision: not authorized this phase.",
+      "resolved_by": "Phase 5 with explicit user authorization."
+    },
+    {
+      "candidate_id": "CAND-012 (execution)",
+      "title": "Rebase remap branch onto new upstream main",
+      "defer_reason": "EXTERNAL_AUTHORIZATION_REQUIRED",
+      "detail": "User decision: document-only. Rebase + force-update fork branch deferred; procedure fully documented in pr-packets/ix-remap-hardening/README.md.",
+      "resolved_by": "Phase 5 with explicit user authorization."
+    },
+    {
+      "candidate_id": "CAND-008 (execution)",
+      "title": "Enable GitHub Pages deployment",
+      "defer_reason": "EXTERNAL_AUTHORIZATION_REQUIRED",
+      "detail": "User decision: local package only. Deployment (workflow activation, Pages source, visibility change) requires explicit authorization + sanitization sign-off.",
+      "resolved_by": "Later explicitly authorized phase; package ready in planning/pages/."
+    },
+    {
+      "candidate_id": "CAND-021 (new)",
+      "title": "Reproducible standalone (index-standalone.html) generation",
+      "defer_reason": "NEEDS_DECISION / OUT_OF_PHASE_SCOPE",
+      "detail": "User decision: do not create a new build pipeline this phase. The standalone was committed with the validated fix but is not yet reproducibly generated from sources. Documented as a new candidate for Phase 5.",
+      "resolved_by": "Phase 5: define deterministic standalone assembly from build-data.mjs output + wiki.js + wiki.css."
+    }
+  ]
+}

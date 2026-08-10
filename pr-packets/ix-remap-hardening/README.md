@@ -193,10 +193,67 @@ unaffected.
 
 - **Branch**: `feat/ix-remap-hardening`
 - **Commit**: `c021b52`
-- **Base**: `origin/main` @ `c4f8fea`
+- **Base**: `origin/main` @ `c4f8fea` (stale — upstream has advanced)
 - **Pushed**: No
 - **PR opened**: No
 - **Merged**: No
+
+---
+
+## Phase 4 — Merge Verification & Rebase Procedure (DOCUMENT ONLY, not executed)
+
+**Date:** 2026-08-10  
+**Status:** VERIFIED (merge) — rebase NOT executed, nothing pushed.
+
+### Merge verification (executed read-only, 2026-08-10)
+
+| Check | Result |
+|---|---|
+| Upstream main HEAD | `fa10045` (advanced past `2e246e8`; +2 commits #380, #384) |
+| Commits upstream past `c4f8fea` | 6 (`fc24655`, `e117b6d`, `ed36119`, `2e246e8`, `43a644c`, `fa10045`) |
+| `git merge-tree --write-tree origin/main HEAD` | exit **0**, merged tree `f5359738` — **no conflicts** |
+| Worktree state after verification | `c021b52`, clean, unchanged |
+
+### Exact rebase procedure (NOT executed — requires explicit authorization)
+
+```bash
+cd E:/E-github-repos/Ix-remap
+git fetch origin main                # upstream main -> origin/main (fa10045)
+# create a safety backup ref first
+git branch feat/ix-remap-hardening-backup-c021b52 c021b52
+git rebase origin/main               # replay c021b52's single commit onto fa10045
+# expected: clean (merge-tree already proves no textual conflicts)
+# verify:
+git log --oneline -3                 # base should be fa10045
+git diff --stat origin/main          # only the 4 remap files
+npm test                             # vitest: expect 646/648 + 10 guard tests
+git push --force-with-lease origin feat/ix-remap-hardening   # ONLY with authorization
+```
+
+### Expected result
+
+- Branch base becomes `fa10045`; single remap commit replays cleanly.
+- Diff vs upstream remains exactly the 4 files (+251/−10): `view.ts`,
+  `view-server.test.ts`, `bootstrap.sh`, `docs/api/README.md`.
+- No force-push without explicit user authorization; no PR opened.
+
+### Contribution rationale
+
+- Loopback-guarded `/__ix/remap` endpoint closes a real functional gap (the
+  route previously fell through to the SPA handler).
+- 10-scenario guard matrix in `view-server.test.ts`.
+- WSL bootstrap installer fix (dead `node_ok` removal + correct curl|sh path).
+- Upstream `#362` (view -p warning) merged; no overlap with remap changes
+  (verified conflict-free by merge-tree).
+
+### Future PR plan (preparation only)
+
+1. Obtain user authorization to rebase + force-update fork branch.
+2. Execute the procedure above in `Ix-remap`.
+3. Re-run full suite + tsc + eslint; record fresh results.
+4. Push `feat/ix-remap-hardening` to fork, open PR against
+   `ix-infrastructure/Ix:main` with this packet as body.
+5. **Do not** open the PR automatically; submit only when the user authorizes.
 
 ---
 

@@ -36,15 +36,52 @@ const worktrees = manifest.worktrees || {};
 const testResults = manifest.test_results || {};
 
 // ── Contribution gate ──
+// CAND-015: derived from canonical sources instead of hardcoding.
+// Status/blocker/nextAction come from CLI-HANDOFF/phase-3/CONTRIBUTION-READINESS.json
+// (the authoritative contribution-state record); test counts come from the manifest.
+const contribReadiness = (() => {
+  try { return readJ(join(handoff, "phase-3/CONTRIBUTION-READINESS.json")).contributions || []; }
+  catch { return []; }
+})();
+const readinessById = Object.fromEntries(contribReadiness.map(c => [c.id, c]));
+const suiteTests = testResults.tests ? `${testResults.tests} (manifest @ ${testResults.sha || "c4f8fea"})` : "646/648 (manifest)";
+
+const CONTRIB_META = [
+  { id: "CONTRIB-remap", repo: "ix-infrastructure/Ix", branch: "feat/ix-remap-hardening", sha: "c021b52", title: "Remap hardening — loopback-guarded /__ix/remap endpoint + WSL bootstrap fix", files: 4, packet: "pr-packets/ix-remap-hardening/README.md" },
+  { id: "CONTRIB-agent-skill", repo: "ix-infrastructure/Ix", branch: "feat/ix-agent-skill", sha: "b038c46", title: "Agent skill with Compass patch — active development, 14 dirty files", files: "14 uncommitted", packet: null },
+  { id: "CONTRIB-376", repo: "ix-infrastructure/Ix", branch: null, sha: null, title: "Fix version-series mismatch (#376) — stamp dist version not Ix version", files: "1 (.github/workflows/release.yml)", packet: "pr-packets/ix-376-version-mismatch/README.md" },
+  { id: "CONTRIB-371", repo: "ix-infrastructure/Ix", branch: null, sha: null, title: "Fix dead patches command (#371) — register or delete", files: "1-2", packet: "pr-packets/ix-371-patches-dead-code/README.md" },
+  { id: "CONTRIB-fkey", repo: "system-compass", branch: null, sha: null, title: "F-key fit-to-viewport — keyboard exposure of existing 0-key fit", files: "~4 (~93 lines)", packet: "pr-packets/compass-f-key/README.md" },
+  { id: "CONTRIB-delayed", repo: "system-compass", branch: null, sha: null, title: "Fix delayed-data blank — rollup timing + zoom floor", files: "unknown", packet: "pr-packets/compass-delayed-data/README.md" },
+];
+const shortStatus = (s) => {
+  if (!s) return "UNKNOWN";
+  if (s.includes("NEAR_READY")) return "NEAR_READY";
+  if (s.includes("IN_DEVELOPMENT")) return "IN DEVELOPMENT";
+  if (s.includes("BLOCKED")) return "BLOCKED";
+  if (s.includes("NEEDS_EVIDENCE") || s.includes("NEEDS_DECISION")) return "NEEDS_ACTION";
+  if (s.includes("READY")) return "READY";
+  return s;
+};
 const contribGate = {
-  candidates: [
-    { id: "CONTRIB-remap", repo: "ix-infrastructure/Ix", branch: "feat/ix-remap-hardening", sha: "c021b52", status: "READY", title: "Remap hardening — loopback-guarded /__ix/remap endpoint + WSL bootstrap fix", files: 4, tests: "656/2 + 10 guard tests", packet: "pr-packets/ix-remap-hardening/README.md", blocker: null, nextAction: "Open PR against ix-infrastructure/Ix:main (requires authorization)" },
-    { id: "CONTRIB-agent", repo: "ix-infrastructure/Ix", branch: "feat/ix-agent-skill", sha: "b038c46", status: "IN DEVELOPMENT", title: "Agent skill with Compass patch — active development, 14 dirty files", files: "14 uncommitted", tests: null, packet: null, blocker: "Active development — PR #368 already merged (patched version stripped per reviewer)", nextAction: "Complete overhaul, then separate PR if warranted" },
-    { id: "CONTRIB-376", repo: "ix-infrastructure/Ix", branch: null, sha: null, status: "BLOCKED", title: "Fix version-series mismatch (#376) — stamp dist version not Ix version", files: "1 (.github/workflows/release.yml)", tests: "Spec ready", packet: "pr-packets/ix-376-version-mismatch/README.md", blocker: "Needs maintainer direction on approach (Option A vs B)", nextAction: "Discuss with KageBinary after remap PR establishes credibility" },
-    { id: "CONTRIB-371", repo: "ix-infrastructure/Ix", branch: null, sha: null, status: "BLOCKED", title: "Fix dead patches command (#371) — register or delete", files: "1-2", tests: "Spec ready", packet: null, blocker: "Needs OSS vs Pro decision from maintainer", nextAction: "Ask maintainer in context of remap PR" },
-    { id: "CONTRIB-fkey", repo: "system-compass", branch: null, sha: null, status: "BLOCKED", title: "F-key fit-to-viewport — keyboard exposure of existing 0-key fit", files: "~4 (~93 lines)", tests: "15 test spec ready", packet: "pr-packets/compass-f-key/README.md", blocker: "system-compass source access (D-014)", nextAction: "Request access from KageBinary" },
-    { id: "CONTRIB-delayed", repo: "system-compass", branch: null, sha: null, status: "BLOCKED", title: "Fix delayed-data blank — rollup timing + zoom floor", files: "unknown", tests: "Reproduction confirmed", packet: "pr-packets/compass-delayed-data/README.md", blocker: "system-compass source access", nextAction: "Investigate source when access granted" },
-  ]
+  candidates: CONTRIB_META.map(m => {
+    const r = readinessById[m.id] || {};
+    return {
+      id: m.id,
+      repo: m.repo,
+      branch: m.branch,
+      sha: m.sha,
+      status: shortStatus(r.state),
+      stateDetail: r.state || null,
+      findings: r.findings || [],
+      title: m.title,
+      files: m.files,
+      tests: m.id === "CONTRIB-remap" ? suiteTests : (r.tests || "Spec ready"),
+      packet: m.packet && readM(join(root, m.packet)) ? m.packet : null,
+      blocker: r.blocker || null,
+      nextAction: r.next_safe_action || null,
+    };
+  }),
 };
 
 // ── Stale claims ──

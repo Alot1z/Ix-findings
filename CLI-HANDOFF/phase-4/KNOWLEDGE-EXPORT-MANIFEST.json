@@ -1,0 +1,42 @@
+{
+  "phase": "4",
+  "generated": "2026-08-10",
+  "authoritative_sources": {
+    "graph": "planning/maps/investigation-map.json",
+    "evidence_registry": "planning/evidence/registry.json",
+    "findings_registry": "planning/findings/registry.json",
+    "suggestions_registry": "planning/suggestions/registry.json",
+    "decisions_registry": "planning/decisions/registry.json",
+    "manifest": "CLI-HANDOFF/manifest.json",
+    "contribution_readiness": "CLI-HANDOFF/phase-3/CONTRIBUTION-READINESS.json"
+  },
+  "generation_pipeline": {
+    "step1": "node planning/wiki/build-data.mjs -> planning/wiki/data/data.js (canonical, full)",
+    "step2": "node planning/pages/build-public.mjs -> planning/pages/public/ (sanitized projection)",
+    "step3": "node planning/pages/validate-public.mjs (deployment gate)"
+  },
+  "sanitized_projection": {
+    "output": "planning/pages/public/",
+    "size_bytes": 136000,
+    "files": ["index.html", "data/data.js", "assets/wiki.css", "assets/wiki.js"],
+    "graph": { "nodes": 162, "edges": 133, "note": "3 worktree nodes excluded (local paths); private-URL edges filtered" },
+    "findings": 13,
+    "evidence": 28,
+    "suggestions": 33,
+    "decisions": 14,
+    "contributions": 6,
+    "prs": 11,
+    "issues": 6,
+    "worktrees": 0,
+    "excluded_by_allowlist": ["worktrees (local paths)", "raw manifest (local_paths, execution constraints)", "graph node note/file fields", "system-compass private URLs (nulled)", "repo local_path/head_sha fields"]
+  },
+  "validation": {
+    "checks_total": 16,
+    "checks_passed": 16,
+    "result": "PASS",
+    "secret_scan": "CLEAN",
+    "path_scan": "CLEAN (no E:\\ / C:\\ / E-github-repos)",
+    "localhost_scan": "index.html clean; wiki.js contains 3 loopback/127.0.0.1 refs as INERT public documentation of the remap endpoint security model (validator-whitelisted per phase-3 spec)"
+  },
+  "deployment_status": "NOT DEPLOYED — workflow is a .template; Pages not enabled; nothing pushed or published. Activation requires explicit user authorization (Phase 5+)."
+}

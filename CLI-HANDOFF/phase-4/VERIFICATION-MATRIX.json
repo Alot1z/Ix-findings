@@ -1,0 +1,118 @@
+{
+  "phase": "4",
+  "generated": "2026-08-10",
+  "entries": [
+    {
+      "candidate": "CAND-011",
+      "claim": "8 dangling graph edges reference absent nodes",
+      "implementation": "added 4 suggestion + 2 file nodes",
+      "test": "endpoint validation in repair script",
+      "verification": "PASS",
+      "evidence": "dangling edges 8 -> 0; graph 152/136 -> 165/141"
+    },
+    {
+      "candidate": "CAND-002",
+      "claim": "registry (25) missing 3 real evidence records present in graph (28)",
+      "implementation": "promoted E-026/E-027/E-028 into evidence registry",
+      "test": "set-difference registry<->graph",
+      "verification": "PASS",
+      "evidence": "registry 28 == graph evidence 28; missing-in-registry NONE"
+    },
+    {
+      "candidate": "CAND-001",
+      "claim": "manifest claims 290/240/28; live is 165/141/28 (post-repair)",
+      "implementation": "manifest updated to live counts + PR/issue/fork state",
+      "test": "JSON.parse + count cross-check",
+      "verification": "PASS",
+      "evidence": "manifest graph 165/141, evidence 28, PRs 11, issues 6, fork c4f8fea/4-behind"
+    },
+    {
+      "candidate": "CAND-003/CAND-009",
+      "claim": "PR #362/#372 merged but graph says open; new PRs/issues absent",
+      "implementation": "corrected statuses; added PR-373/375/378/380/382 + ISSUE-377/379 + fixes edges",
+      "test": "endpoint validation + GitHub API cross-check",
+      "verification": "PASS",
+      "evidence": "PR nodes 6->11, issue nodes 4->6; PR-362/372 merged; fixes edges #375->#374, #378->#377, #380->#379"
+    },
+    {
+      "candidate": "CAND-004",
+      "claim": "#371/#376 mislabeled as PRs",
+      "implementation": "verified matrix already correct; added state note",
+      "test": "grep for PR #371/pull/371 mislabels",
+      "verification": "PASS",
+      "evidence": "zero mislabels; #371/#376 in Issues table; C-007/C-008 resolved"
+    },
+    {
+      "candidate": "CAND-007",
+      "claim": "GRAPH-AUDIT presents ~290/240 as current",
+      "implementation": "rewrote to HISTORICAL vs ACTUAL",
+      "test": "doc counts vs live graph",
+      "verification": "PASS",
+      "evidence": "audit states 165/141 authoritative; 290/240 labeled never-materialized narrative"
+    },
+    {
+      "candidate": "CAND-014/CAND-020",
+      "claim": "committed explorer has syntax error; working copy has the fix",
+      "implementation": "validated and committed the 1-char fix (no new pipeline)",
+      "test": "node --check + browser smoke",
+      "verification": "PASS",
+      "evidence": "fixed wiki.js passes node --check (committed fails); findings view renders F-001..F-013 with 0 console errors"
+    },
+    {
+      "candidate": "CAND-015",
+      "claim": "build-data.mjs hardcodes stale contribution gate",
+      "implementation": "derives from CONTRIBUTION-READINESS.json + manifest test_results + pr-packets existence",
+      "test": "rebuild data.js + generated-field audit",
+      "verification": "PASS",
+      "evidence": "CONTRIB-376 NEAR_READY (was BLOCKED); remap tests 646/648 (was 656/2); CONTRIB-371 packet now resolves"
+    },
+    {
+      "candidate": "CAND-005",
+      "claim": "no PACK-371 packet exists; PR #372 did not cover F-009",
+      "implementation": "wrote pr-packets/ix-371-patches-dead-code/README.md",
+      "test": "packet content review",
+      "verification": "PASS",
+      "evidence": "packet documents register-vs-delete options, evidence, tests, blocker; PR #372 merged files verified not to touch oss.ts/patches.ts"
+    },
+    {
+      "candidate": "CAND-012",
+      "claim": "remap merges cleanly onto current upstream main",
+      "implementation": "verified via merge-tree; documented exact rebase procedure + PR plan (no execution)",
+      "test": "git merge-tree --write-tree origin/main HEAD",
+      "verification": "PASS",
+      "evidence": "exit 0, clean tree f5359738 vs fa10045; worktree c021b52 unchanged"
+    },
+    {
+      "candidate": "CAND-008",
+      "claim": "static Pages deployment feasible with sanitization",
+      "implementation": "built planning/pages/ package: allowlist model, sanitize+export, validation, workflow template",
+      "test": "node planning/pages/validate-public.mjs",
+      "verification": "PASS",
+      "evidence": "15/15 checks; no local paths/secrets/localhost; worktrees+raw manifest excluded; graph edges valid"
+    },
+    {
+      "candidate": "CAND-016",
+      "claim": "dual version series: source 0.6.1 vs releases v0.9.x",
+      "implementation": "recorded in phase-4 report + knowledge note",
+      "test": "evidence cross-check (package.json + releases API)",
+      "verification": "PASS",
+      "evidence": "package.json @ c4f8fea AND upstream main both 0.6.1; latest release v0.9.1"
+    },
+    {
+      "candidate": "CAND-017",
+      "claim": "forge divergence measurable (U-003)",
+      "implementation": "recorded in phase-4 report",
+      "test": "git rev-list (phase 3 evidence)",
+      "verification": "PASS",
+      "evidence": "freebuff-forge 3 commits ahead of CodebuffAI/freebuff public snapshot main"
+    },
+    {
+      "candidate": "CAND-018",
+      "claim": "--format llm implemented upstream",
+      "implementation": "recorded in phase-4 report + PR-MATRIX",
+      "test": "GitHub API merged_at verification",
+      "verification": "PASS",
+      "evidence": "PR #372 MERGED 2026-08-10T16:27:42Z"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "phase": "4",
+  "generated": "2026-08-10",
+  "entries": [
+    { "candidate": "CAND-001", "work": "WORK-001", "status": "IMPLEMENTED", "component": "CLI-HANDOFF/manifest.json", "verified": true },
+    { "candidate": "CAND-002", "work": "WORK-002", "status": "IMPLEMENTED", "component": "planning/evidence/registry.json", "verified": true },
+    { "candidate": "CAND-003", "work": "WORK-003", "status": "IMPLEMENTED", "component": "investigation-map.json + PR-MATRIX.md", "verified": true },
+    { "candidate": "CAND-004", "work": "WORK-004", "status": "IMPLEMENTED", "component": "PR-MATRIX.md (verified already-correct + note)", "verified": true },
+    { "candidate": "CAND-005", "work": "WORK-005", "status": "IMPLEMENTED", "component": "pr-packets/ix-371-patches-dead-code/", "verified": true },
+    { "candidate": "CAND-007", "work": "WORK-007", "status": "IMPLEMENTED", "component": "CLI-HANDOFF/GRAPH-AUDIT.md", "verified": true },
+    { "candidate": "CAND-008", "work": "WORK-008", "status": "IMPLEMENTED (local package only)", "component": "planning/pages/", "verified": true },
+    { "candidate": "CAND-009", "work": "WORK-009", "status": "IMPLEMENTED", "component": "investigation-map.json (with CAND-003/011)", "verified": true },
+    { "candidate": "CAND-011", "work": "WORK-011", "status": "IMPLEMENTED", "component": "investigation-map.json", "verified": true },
+    { "candidate": "CAND-012", "work": "WORK-012", "status": "IMPLEMENTED (doc only)", "component": "pr-packets/ix-remap-hardening/README.md", "verified": true },
+    { "candidate": "CAND-014", "work": "WORK-014", "status": "IMPLEMENTED", "component": "wiki.js + index-standalone.html", "verified": true },
+    { "candidate": "CAND-015", "work": "WORK-015", "status": "IMPLEMENTED", "component": "build-data.mjs + data.js", "verified": true },
+    { "candidate": "CAND-016", "work": "WORK-016", "status": "RECORDED (report)", "component": "phase-4 report + knowledge note", "verified": true },
+    { "candidate": "CAND-017", "work": "WORK-017", "status": "RECORDED (report)", "component": "phase-4 report + knowledge note", "verified": true },
+    { "candidate": "CAND-018", "work": "WORK-018", "status": "RECORDED (report)", "component": "phase-4 report + knowledge note", "verified": true },
+    { "candidate": "CAND-020", "work": "WORK-020", "status": "IMPLEMENTED", "component": "wiki.js + index-standalone.html (commit)", "verified": true },
+    { "candidate": "CAND-010", "work": "WORK-010", "status": "DEFERRED", "reason": "NEEDS_EVIDENCE — full-suite validation deferred to Phase 5" },
+    { "candidate": "CAND-006", "work": "WORK-006", "status": "DEFERRED", "reason": "NEEDS_EVIDENCE — optional Playwright repro" },
+    { "candidate": "CAND-013", "work": "WORK-013", "status": "DEFERRED", "reason": "EXTERNAL_AUTHORIZATION_REQUIRED" },
+    { "candidate": "CAND-019", "work": "WORK-019", "status": "DEFERRED", "reason": "OUT_OF_PHASE_SCOPE / scope needs definition" }
+  ]
+}

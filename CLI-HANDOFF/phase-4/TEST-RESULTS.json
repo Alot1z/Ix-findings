@@ -1,0 +1,94 @@
+{
+  "phase": "4",
+  "generated": "2026-08-10",
+  "environment": "Windows / bash; node v26.5.0; git",
+  "results": [
+    {
+      "command": "node .tmp-repair.mjs (graph repair + registry promotion, with inline validation)",
+      "repository": "Alot1z/Ix-findings",
+      "commit": "4b839ec (pre-phase-4 HEAD)",
+      "result": "PASS",
+      "tests_passed": 1,
+      "notes": "dangling edges 8->0; graph 152/136 -> 165/141; evidence registry 25->28, set == graph"
+    },
+    {
+      "command": "node JSON.parse on CLI-HANDOFF/manifest.json + count cross-check",
+      "repository": "Alot1z/Ix-findings",
+      "commit": "pre-commit working tree",
+      "result": "PASS",
+      "tests_passed": 1,
+      "notes": "manifest graph 165/141, evidence 28, PRs 11, issues 6"
+    },
+    {
+      "command": "node --check planning/wiki/assets/wiki.js (FIXED working copy)",
+      "repository": "Alot1z/Ix-findings",
+      "commit": "pre-commit working tree",
+      "result": "PASS",
+      "notes": "syntax fix verified; committed version FAILS node --check (BUG-001 reproduction)"
+    },
+    {
+      "command": "node planning/wiki/build-data.mjs (regenerate data.js)",
+      "repository": "Alot1z/Ix-findings",
+      "commit": "pre-commit working tree",
+      "result": "PASS",
+      "notes": "data.js regenerated (132KB); graph 165/141; evidence 28; contributions derived from canonical readiness"
+    },
+    {
+      "command": "node --check planning/wiki/data/data.js",
+      "repository": "Alot1z/Ix-findings",
+      "commit": "pre-commit working tree",
+      "result": "PASS",
+      "notes": "generated data parses"
+    },
+    {
+      "command": "browser smoke: http://127.0.0.1:8765/index.html — Findings view",
+      "repository": "Alot1z/Ix-findings (planning/wiki served statically)",
+      "commit": "pre-commit working tree",
+      "result": "PASS",
+      "tests_passed": 1,
+      "notes": "findings table renders F-001..F-013; 0 console errors; sidebar navigation works"
+    },
+    {
+      "command": "git merge-tree --write-tree origin/main HEAD (in Ix-remap)",
+      "repository": "ix-infrastructure/Ix (Ix-remap worktree)",
+      "commit": "c021b52 vs origin/main fa10045",
+      "result": "PASS",
+      "tests_passed": 1,
+      "notes": "exit 0, merged tree f5359738, zero CONFLICT strings; worktree unchanged (clean)"
+    },
+    {
+      "command": "node planning/pages/build-public.mjs",
+      "repository": "Alot1z/Ix-findings",
+      "commit": "pre-commit working tree",
+      "result": "PASS",
+      "notes": "public projection built: graph 162/133 (worktrees excluded), findings 13, evidence 28"
+    },
+    {
+      "command": "node planning/pages/validate-public.mjs",
+      "repository": "Alot1z/Ix-findings",
+      "commit": "pre-commit working tree",
+      "result": "PASS",
+      "tests_passed": 16,
+      "tests_failed": 0,
+      "notes": "all 16 checks pass: files, parse, snapshot label, no excluded patterns, no local drive paths, worktrees/manifest excluded, graph edges valid, relative refs, no localhost in index.html, wiki.js loopback refs inert (documented), no secrets"
+    },
+    {
+      "command": "grep secret/path scan across planning/pages/public/**",
+      "repository": "Alot1z/Ix-findings",
+      "commit": "pre-commit working tree",
+      "result": "PASS",
+      "notes": "CLEAN — no E:\\\\, C:\\\\, ghp_, github_pat_, BEGIN PRIVATE; wiki.js loopback strings are inert public docs of the remap security model"
+    },
+    {
+      "command": "git status / rev-parse protected-worktree verification",
+      "repository": "all",
+      "commit": "n/a",
+      "result": "PASS",
+      "notes": "Ix b038c46/14, remap c021b52/0, test c4f8fea/0, dist 396426b/3, forge 441cec670/0 — all unchanged"
+    }
+  ],
+  "not_run": [
+    { "command": "Ix full vitest suite @ fa10045 (646/648)", "reason": "DEFERRED — requires Ix-test baseline refresh + full run; Phase 5 (CAND-010)" },
+    { "command": "Ix full vitest suite @ c4f8fea", "reason": "already recorded fresh in Phase 1 (646/648) and manifest; no source changed in Ix" }
+  ]
+}

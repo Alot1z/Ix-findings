@@ -1,0 +1,60 @@
+{
+  "phase": "4",
+  "generated": "2026-08-10",
+  "packets": [
+    {
+      "id": "CONTRIB-371",
+      "target_repository": "ix-infrastructure/Ix",
+      "target_branch": "main (base fa10045)",
+      "problem": "registerPatchesCommand is dead code — registered nowhere (F-009)",
+      "evidence": ["E-018", "E-026", "issue #371 OPEN", "PR #372 merged files verified NOT to touch oss.ts/patches.ts"],
+      "implementation": "packet written: pr-packets/ix-371-patches-dead-code/README.md (register vs delete options)",
+      "tests": ["registration smoke test proposed in packet"],
+      "risk": "low",
+      "compatibility": "verified no overlap with PR #372",
+      "commit": "pending phase-4 ledger commit",
+      "pr_title": "fix(patches): register the patches command or remove it",
+      "pr_body_draft": "In pr-packets/ix-371-patches-dead-code/README.md — includes decision table (register vs delete), evidence, proposed tests, blocker",
+      "status": "PACKET_READY — NOT SUBMITTED",
+      "blocker": "maintainer OSS-vs-Pro decision; external-action firewall"
+    },
+    {
+      "id": "CONTRIB-remap",
+      "target_repository": "ix-infrastructure/Ix",
+      "target_branch": "main",
+      "problem": "remap branch based on stale main; contribution pending rebase",
+      "evidence": ["merge-tree exit 0 vs fa10045", "clean tree f5359738", "4 files +251/-10"],
+      "implementation": "verification + exact rebase procedure + PR plan documented in pr-packets/ix-remap-hardening/README.md (NOT executed)",
+      "tests": ["view-server.test.ts 10 scenarios", "full suite 646/648 after rebase (Phase 5)"],
+      "risk": "low (merge-tree clean)",
+      "compatibility": "no conflicts with #362 view.ts change",
+      "commit": "c021b52 (unchanged)",
+      "pr_title": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap",
+      "pr_body_draft": "existing packet body; add rebase note (base fa10045) after execution",
+      "status": "VERIFIED_MERGEABLE — REBASE+SUBMISSION DEFERRED (authorization required)",
+      "blocker": "user authorization to rebase + force-update fork branch"
+    },
+    {
+      "id": "CONTRIB-376",
+      "target_repository": "ix-infrastructure/Ix",
+      "target_branch": "main",
+      "problem": "ix upgrade compares unrelated version series (F-008)",
+      "evidence": ["issue #376 OPEN", "mitigations #365/#366 merged", "dual version series documented (CAND-016)"],
+      "implementation": "existing packet preserved; readiness updated to NEAR_READY in generated data",
+      "tests": ["upgrade-version-compare.test.ts (fresh repro deferred, CAND-010)"],
+      "risk": "low",
+      "compatibility": "n/a",
+      "commit": "n/a",
+      "pr_title": "fix(release): stamp compass with dist version, not Ix version",
+      "pr_body_draft": "existing pr-packets/ix-376-version-mismatch/README.md",
+      "status": "NEAR_READY — fresh reproduction deferred to Phase 5",
+      "blocker": "fresh reproduction against fa10045; maintainer approach direction"
+    }
+  ],
+  "summary": {
+    "packets_ready_not_submitted": 1,
+    "packets_verified_not_submitted": 1,
+    "packets_near_ready": 1,
+    "external_submissions": 0
+  }
+}

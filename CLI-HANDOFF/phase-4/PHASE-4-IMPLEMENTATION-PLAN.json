@@ -1,0 +1,58 @@
+{
+  "phase": "4",
+  "title": "Controlled Implementation Foundation — plan",
+  "generated": "2026-08-10",
+  "inputs_consumed": [
+    "phase-0/STATE-BASELINE.json", "phase-0/PHASE-0-REPORT.md",
+    "phase-1/PHASE-1-REPORT.md", "phase-1/SKILL-INVENTORY.json", "phase-1/REPOSITORY-ARCHAEOLOGY.json",
+    "phase-2/KNOWLEDGE-MODEL.json", "phase-2/CANDIDATE-WORK.json", "phase-2/FINDING-RECONCILIATION.json", "phase-2/GRAPH-RECONCILIATION.md",
+    "phase-3/MASTER-CANDIDATE-BACKLOG.json", "phase-3/BUG-INVENTORY.json", "phase-3/ENHANCEMENT-INVENTORY.json",
+    "phase-3/CANDIDATE-DEPENDENCY-GRAPH.json", "phase-3/PRIORITY-MATRIX.json", "phase-3/TEST-READINESS-MATRIX.json",
+    "phase-3/CONTRIBUTION-READINESS.json", "phase-3/PHASE-4-IMPLEMENTATION-INPUT.md", "phase-3/GITHUB-PAGES-IMPLEMENTATION-SPEC.md"
+  ],
+  "live_state_verification": {
+    "Ix": { "branch": "feat/ix-agent-skill", "head": "b038c46", "dirty": 14, "unchanged": true },
+    "Ix-remap": { "branch": "feat/ix-remap-hardening", "head": "c021b52", "dirty": 0, "unchanged": true },
+    "Ix-test": { "head": "c4f8fea", "dirty": 0, "unchanged": true },
+    "ix-compass-dist": { "branch": "main", "head": "396426b", "dirty": 3, "unchanged": true },
+    "freebuff-forge": { "branch": "feat/modkit-enhancement-layer", "head": "441cec670", "dirty": 0, "unchanged": true },
+    "Ix-findings": { "branch": "master", "head": "4b839ec", "dirty_before": 2, "note": "2 dirty files = validated wiki syntax fix (preserved)" }
+  },
+  "github_verification": {
+    "upstream_main": "2e246e8 (2026-08-10T16:53Z) — advanced to fa10045 during Phase 4 (remap fetch)",
+    "fork_main": "c4f8fea (2026-08-10T04:58Z)",
+    "pr_states": {
+      "358": "MERGED", "362": "MERGED (16:24Z)", "365": "MERGED", "366": "MERGED",
+      "368": "MERGED (03:58Z)", "372": "MERGED (16:27Z)", "373": "MERGED (16:07Z)",
+      "375": "OPEN", "378": "OPEN", "380": "OPEN", "382": "OPEN"
+    },
+    "issue_states": { "371": "OPEN", "374": "OPEN", "376": "OPEN", "377": "OPEN", "379": "OPEN" }
+  },
+  "selection_method": "Phase 4 tranche = Wave 1+2 (Ix-findings knowledge-system corrections, all local, low-risk, fully reversible) + contribution prep (PACK-371, remap verification doc) + local-only Pages package. External-authorization items (remap rebase/push, fork sync, Pages deploy) prepared but NOT executed per user decision.",
+  "tranche": [
+    { "candidate": "CAND-011", "work": "WORK-011", "title": "Repair 8 dangling graph edges", "selected": true, "reason": "graph integrity prerequisite; P1; low risk" },
+    { "candidate": "CAND-002", "work": "WORK-002", "title": "Promote phantom evidence E-026..E-028 to registry", "selected": true, "reason": "real Class-A evidence nodes; registry==graph==28; P1" },
+    { "candidate": "CAND-001", "work": "WORK-001", "title": "Correct manifest.json counts", "selected": true, "reason": "foundation for generator + deployment; P1" },
+    { "candidate": "CAND-003", "work": "WORK-003", "title": "Add verified PRs/issues to graph + PR-MATRIX", "selected": true, "reason": "live GitHub states verified; P2" },
+    { "candidate": "CAND-004", "work": "WORK-004", "title": "Fix PR-MATRIX #371/#376 classification", "selected": true, "reason": "verified already-correct in current matrix; recorded resolution" },
+    { "candidate": "CAND-007", "work": "WORK-007", "title": "Reconcile GRAPH-AUDIT.md historical-vs-actual", "selected": true, "reason": "doc reconciliation; P2" },
+    { "candidate": "CAND-009", "work": "WORK-009", "title": "Enrich graph with verified execution-state nodes", "selected": true, "reason": "folded into CAND-003/CAND-011 edit; P2" },
+    { "candidate": "CAND-014", "work": "WORK-014", "title": "Validate + commit renderFindings syntax fix", "selected": true, "reason": "committed explorer was broken; fix validated via node --check + browser smoke; P1" },
+    { "candidate": "CAND-015", "work": "WORK-015", "title": "Derive build-data.mjs contribution gate from canonical sources", "selected": true, "reason": "kills generator drift; P2" },
+    { "candidate": "CAND-020", "work": "WORK-020", "title": "Commit two dirty wiki files after validation", "selected": true, "reason": "user authorized after diff review; no new build pipeline" },
+    { "candidate": "CAND-005", "work": "WORK-005", "title": "Write PACK-371 packet", "selected": true, "reason": "contribution prep; P3; packet-only" },
+    { "candidate": "CAND-012", "work": "WORK-012", "title": "Remap merge verification + rebase procedure (doc only)", "selected": true, "reason": "user decision: document-only, no execution, no push" },
+    { "candidate": "CAND-008", "work": "WORK-008", "title": "GitHub Pages deployment package (local only)", "selected": true, "reason": "user decision: prepare complete package locally, do not deploy" },
+    { "candidate": "CAND-016", "work": "WORK-016", "title": "Document dual version series (0.6.1 vs v0.9.x)", "selected": true, "reason": "record-only; evidence in phase-4 report" },
+    { "candidate": "CAND-017", "work": "WORK-017", "title": "Record forge divergence (U-003 resolved)", "selected": true, "reason": "record-only; evidence in phase-4 report" },
+    { "candidate": "CAND-018", "work": "WORK-018", "title": "Record --format llm as implemented upstream", "selected": true, "reason": "record-only; evidence in phase-4 report" }
+  ],
+  "explicitly_deferred": [
+    { "candidate": "CAND-010", "reason": "NEEDS_EVIDENCE — fresh F-008/F-009 repro against fa10045 requires full Ix-test suite run; deferred to Phase 5" },
+    { "candidate": "CAND-006", "reason": "NEEDS_EVIDENCE — optional Playwright repro; low priority" },
+    { "candidate": "CAND-019", "reason": "NEEDS_EVIDENCE — docs scope needs definition" },
+    { "candidate": "CAND-013", "reason": "requires fork push authorization (user decision: not authorized this phase)" },
+    { "candidate": "CAND-012-execution", "reason": "rebase+push requires authorization (user decision: document-only)" },
+    { "candidate": "CAND-008-execution", "reason": "deployment requires authorization + sanitization review (user decision: local package only)" }
+  ]
+}

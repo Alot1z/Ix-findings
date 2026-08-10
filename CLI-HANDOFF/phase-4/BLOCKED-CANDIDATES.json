@@ -1,0 +1,41 @@
+{
+  "phase": "4",
+  "generated": "2026-08-10",
+  "blocked": [
+    {
+      "candidate_id": "F-001..F-004, F-006, F-007, F-013 (findings)",
+      "title": "system-compass source verification",
+      "blocker": "B-001 — ix-infrastructure/system-compass private (HTTP 404), no fork, no access",
+      "required_resolution": "D-014 user decision on access path; no access request made",
+      "phase_resolution": "Phase 5+ (external boundary)"
+    },
+    {
+      "candidate_id": "CONTRIB-fkey",
+      "title": "F-key fit-to-viewport contribution",
+      "blocker": "system-compass source access (D-014)",
+      "required_resolution": "access or maintainer decision; PACK-fkey spec remains ready",
+      "phase_resolution": "Phase 5+"
+    },
+    {
+      "candidate_id": "CONTRIB-delayed",
+      "title": "Delayed-data blank fix contribution",
+      "blocker": "system-compass source access",
+      "required_resolution": "access; reproduction already confirmed; Playwright script deferred (CAND-006)",
+      "phase_resolution": "Phase 5+"
+    },
+    {
+      "candidate_id": "CAND-005 (submission)",
+      "title": "PACK-371 PR submission",
+      "blocker": "maintainer register-vs-delete decision (external) + external-action firewall",
+      "required_resolution": "maintainer decision; packet prepared, NOT submitted",
+      "phase_resolution": "Phase 5+ with authorization"
+    },
+    {
+      "candidate_id": "CAND-012 (push)",
+      "title": "Remap branch rebase + fork push",
+      "blocker": "user authorization required for fork force-update",
+      "required_resolution": "user authorization (documented procedure ready)",
+      "phase_resolution": "Phase 5 with authorization"
+    }
+  ]
+}

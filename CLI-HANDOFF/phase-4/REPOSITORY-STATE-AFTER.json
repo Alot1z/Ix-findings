@@ -1,0 +1,44 @@
+{
+  "phase": "4",
+  "generated": "2026-08-10",
+  "state_after": {
+    "E:/E-github-repos/Ix": { "branch": "feat/ix-agent-skill", "head": "b038c46", "dirty": 14, "protected": true, "unchanged": true },
+    "E:/E-github-repos/Ix-remap": { "branch": "feat/ix-remap-hardening", "head": "c021b52", "dirty": 0, "protected": true, "unchanged": true, "note": "origin/main fetched (fa10045); working tree untouched" },
+    "E:/E-github-repos/Ix-test": { "head": "c4f8fea", "dirty": 0, "protected": true, "unchanged": true },
+    "E:/E-github-repos/ix-compass-dist": { "branch": "main", "head": "396426b", "dirty": 3, "protected": true, "unchanged": true },
+    "E:/E-github-repos/freebuff-forge": { "branch": "feat/modkit-enhancement-layer", "head": "441cec670", "dirty": 0, "protected": true, "unchanged": true },
+    "E:/E-github-repos/Ix-findings": {
+      "branch": "master",
+      "head_before": "4b839ec",
+      "head_after": "PENDING (phase-4 ledger commit)",
+      "dirty_before": 2,
+      "dirty_after": 0,
+      "note": "the 2 pre-existing dirty wiki files were the validated fix; committed per user decision",
+      "changed_files": [
+        "CLI-HANDOFF/manifest.json",
+        "CLI-HANDOFF/PR-MATRIX.md",
+        "CLI-HANDOFF/GRAPH-AUDIT.md",
+        "planning/maps/investigation-map.json",
+        "planning/evidence/registry.json",
+        "planning/wiki/build-data.mjs",
+        "planning/wiki/data/data.js",
+        "planning/wiki/assets/wiki.js",
+        "planning/wiki/index-standalone.html",
+        "pr-packets/ix-remap-hardening/README.md",
+        "pr-packets/ix-371-patches-dead-code/README.md (new)",
+        "planning/pages/** (new)"
+      ]
+    }
+  },
+  "knowledge_state": {
+    "graph": { "nodes": 165, "edges": 141, "dangling": 0 },
+    "evidence_registry": 28,
+    "findings": 13,
+    "suggestions": 33,
+    "decisions": 14,
+    "manifest_graph": { "nodes": 165, "edges": 141 },
+    "pr_nodes": 11,
+    "issue_nodes": 6,
+    "note": "165/141 reflects Phase 4 verified additions (13 nodes, 5 edges); NOT the historical 290/240 narrative"
+  }
+}

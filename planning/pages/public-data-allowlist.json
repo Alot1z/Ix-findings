@@ -1,0 +1,42 @@
+{
+  "title": "Public Data Allowlist — Ix-findings knowledge explorer (GitHub Pages projection)",
+  "generated": "2026-08-10",
+  "principle": "Allowlist by default. Only fields explicitly listed below may be published. Unknown or potentially private information is EXCLUDED unless listed.",
+  "meta": {
+    "allowed": ["title", "generated", "sourceRevision", "phase", "entityCounts", "dataFreshness"],
+    "note": "meta.dataFreshness may contain 'BLOCKED — no source access' strings (public status statement, allowed)."
+  },
+  "collections": {
+    "findings": { "allowedFields": ["id", "title", "evidence_class", "status", "phase", "registry_status", "summary", "recommendation"], "note": "Finding prose is public investigation output." },
+    "evidence": { "allowedFields": ["id", "title", "type", "class", "phase", "repository", "detail", "supports"], "note": "detail must not contain local paths or secrets; build step filters repository names only." },
+    "suggestions": { "allowedFields": ["id", "text", "phase", "repository", "disposition", "reason", "related_findings", "evidence_refs"] },
+    "decisions": { "allowedFields": ["id", "title", "status", "date", "context", "chosen", "rationale"] },
+    "phases": { "allowedFields": ["id", "title", "summary", "status"] },
+    "timeline": { "allowedFields": ["id", "date", "title", "type"] },
+    "graph": {
+      "nodes": { "allowedFields": ["id", "type", "title", "category", "status", "phase", "repository", "number", "url", "author", "commit", "merged_at", "disposition", "evidence_refs"] },
+      "edges": { "allowedFields": ["source", "target", "relationship"] },
+      "note": "node 'note'/'file' fields EXCLUDED by default (may contain local paths). url allowed only for public github.com URLs (system-compass private URLs stripped by build step)."
+    },
+    "repositories": { "allowedFields": ["repo_id", "owner", "name", "url", "role", "default_branch", "visibility", "access", "note"], "excludes": ["local_path", "remote_name", "head_sha", "sync_status", "local_remote_name"] },
+    "branches": { "allowedFields": ["branch", "repo", "sha", "sync", "ahead", "behind_upstream", "dirty", "note"], "excludes": ["worktree"] },
+    "commits": { "allowedFields": ["sha", "repo", "branch", "msg", "pr"] },
+    "worktrees": { "allowed": false, "note": "local filesystem paths — NEVER publish. Entity count may still be reported in meta." },
+    "pullRequests": { "allowedFields": ["number", "url", "state", "sha", "fork_sha", "note"] },
+    "issues": { "allowedFields": ["number", "url", "repo", "access", "state", "finding", "note"], "excludes": ["PRIVATE urls unless access field marks them"] },
+    "testResults": { "allowedFields": ["date", "repository", "sha", "vitest", "tests", "smoke", "tsc", "eslint"] },
+    "contributions": { "allowedFields": ["id", "repo", "branch", "sha", "status", "stateDetail", "title", "files", "tests", "packet", "blocker", "nextAction", "findings"] },
+    "staleClaims": { "allowedFields": ["id", "description"] },
+    "sysCompass": { "allowed": false, "note": "contains access/blocker narrative; publish only meta-level status instead." },
+    "manifest": { "allowed": false, "note": "raw manifest embeds local_paths + execution constraints — NEVER publish the raw object. Only meta counters are used." }
+  },
+  "globalExcludes": [
+    "E:\\", "E:/", "C:\\Users", "C:/Users", ".env", "ghp_", "github_pat_", "BEGIN RSA PRIVATE", "BEGIN OPENSSH PRIVATE", "localhost:", "127.0.0.1:"
+  ],
+  "labeling": {
+    "requireSnapshotLabel": true,
+    "requireGeneratedTimestamp": true,
+    "requireSourceRevision": true,
+    "siteLabel": "SNAPSHOT — generated from canonical investigation data; not a live view of GitHub state."
+  }
+}

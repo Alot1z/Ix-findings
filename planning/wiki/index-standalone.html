@@ -5160,7 +5160,7 @@ function renderFindings(){
   ['A','B','C','D'].forEach(cl=>{const c=el('button','chip');c.textContent='class '+cl;c.onclick=()=>{state.cls=state.cls.includes(cl)?state.cls.filter(x=>x!==cl):[...state.cls,cl];draw();};chips.append(c);});
   ['PR_READY','OPEN','REPRODUCED','CONFIRMED','VERIFIED','OBSERVED','IN_REMAP_PR'].forEach(s=>{const c=el('button','chip');c.textContent=s.toLowerCase();c.onclick=()=>{state.st=state.st===s?'all':s;draw();};chips.append(c);});
   function draw(){
-    chips.querySelectorAll('.chip').forEach(c=>{if(c.dataset){}else c.classList.toggle('on',c.textContent===state.st||state.cls.includes(c.textContent.replace('class ','')))})});
+    chips.querySelectorAll('.chip').forEach(c=>{if(c.dataset){}else c.classList.toggle('on',c.textContent===state.st||state.cls.includes(c.textContent.replace('class ','')))});
     table.querySelector('tbody').innerHTML='';
     D.findings.forEach(f=>{
       const base=f.evidence_class.split('+')[0];

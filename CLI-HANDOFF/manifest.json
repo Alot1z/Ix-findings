@@ -1,7 +1,7 @@
 {
   "version": "4.0.0",
-  "generated": "2026-08-10T16:00:00Z",
-  "source": "CLI Execution Phase — live testing, worktree creation, workspace audit",
+  "generated": "2026-08-10T18:30:00Z",
+  "source": "CLI Execution Phase — Phase 4 reconciliation: graph repaired (165/141/0 dangling), evidence registry promoted to 28, live PR/issue states",
   "status": "READ-ONLY - no external actions authorized",
   "repositories": [
     {
@@ -13,7 +13,8 @@
       "local_path": "E:\\E-github-repos\\Ix",
       "remote_name": "origin",
       "default_branch": "main",
-      "head_sha": "c4f8fea"
+      "head_sha": "2e246e8",
+      "note": "upstream main advanced past local baseline (Phase 4 verified)"
     },
     {
       "repo_id": "Alot1z/Ix",
@@ -23,8 +24,8 @@
       "role": "fork",
       "fork_of": "ix-infrastructure/Ix",
       "local_remote_name": "fork",
-      "head_sha": "0437abf",
-      "sync_status": "5 commits behind upstream"
+      "head_sha": "c4f8fea",
+      "sync_status": "4 commits behind upstream"
     },
     {
       "repo_id": "ix-infrastructure/ix-compass-dist",
@@ -52,9 +53,9 @@
       "name": "Ix-findings",
       "role": "investigation-ledger",
       "local_path": "E:\\E-github-repos\\Ix-findings",
-      "commits": 0,
-      "untracked": "165 files (17 top-level entries)",
-      "note": "0 commits - all files untracked"
+      "commits": 4,
+      "untracked": "2 files (wiki syntax fix preserved)",
+      "note": "investigation ledger with committed phase records"
     }
   ],
   "local_paths": {
@@ -70,8 +71,8 @@
     {
       "branch": "main",
       "repo": "ix-infrastructure/Ix",
-      "sha": "c4f8fea",
-      "sync": "synchronized"
+      "sha": "2e246e8",
+      "note": "upstream HEAD (Phase 4 live-verified); local/fork baselines are 4 behind"
     },
     {
       "branch": "feat/ix-agent-skill",
@@ -90,8 +91,8 @@
     {
       "branch": "fork/main",
       "repo": "Alot1z/Ix",
-      "sha": "0437abf",
-      "behind_upstream": 5
+      "sha": "c4f8fea",
+      "behind_upstream": 4
     },
     {
       "branch": "fork/feat/ix-agent-skill",
@@ -107,15 +108,21 @@
     {
       "branch": "master",
       "repo": "Ix-findings",
-      "sha": null,
-      "commits": 0
+      "sha": "4b839ec",
+      "commits": 4
     }
   ],
   "commits": [
     {
-      "sha": "c4f8fea",
+      "sha": "2e246e8",
       "repo": "ix-infrastructure/Ix",
       "branch": "main",
+      "msg": "upstream main HEAD (Phase 4 live-verified; 4 commits past c4f8fea)"
+    },
+    {
+      "sha": "c4f8fea",
+      "repo": "ix-infrastructure/Ix",
+      "branch": "fork/main + Ix-test",
       "msg": "chore(deps-dev): bump dev-dependencies (#369)"
     },
     {
@@ -134,7 +141,9 @@
       "sha": "0437abf",
       "repo": "Alot1z/Ix",
       "branch": "fork/main",
-      "msg": "fix(upgrade): pair tar binary (#366)"
+      "msg": "fix(upgrade): pair tar binary (#366)",
+      "historical": true,
+      "note": "previous fork head; superseded by c4f8fea (Phase 4 verified)"
     },
     {
       "sha": "0c9087c",
@@ -189,6 +198,40 @@
       "sha": "2157158",
       "fork_sha": "0c9087c",
       "state": "MERGED"
+    },
+    {
+      "number": 372,
+      "url": "https://github.com/ix-infrastructure/Ix/pull/372",
+      "state": "MERGED",
+      "note": "--format llm (Phase 4 verified merged)"
+    },
+    {
+      "number": 373,
+      "url": "https://github.com/ix-infrastructure/Ix/pull/373",
+      "state": "MERGED"
+    },
+    {
+      "number": 375,
+      "url": "https://github.com/ix-infrastructure/Ix/pull/375",
+      "state": "OPEN",
+      "note": "fixes #374"
+    },
+    {
+      "number": 378,
+      "url": "https://github.com/ix-infrastructure/Ix/pull/378",
+      "state": "OPEN",
+      "note": "fixes #377"
+    },
+    {
+      "number": 380,
+      "url": "https://github.com/ix-infrastructure/Ix/pull/380",
+      "state": "OPEN",
+      "note": "fixes #379"
+    },
+    {
+      "number": 382,
+      "url": "https://github.com/ix-infrastructure/Ix/pull/382",
+      "state": "OPEN"
     }
   ],
   "issues": [
@@ -208,6 +251,24 @@
       "repo": "system-compass",
       "access": "PRIVATE",
       "finding": "F-005"
+    },
+    {
+      "number": 374,
+      "url": "https://github.com/ix-infrastructure/Ix/issues/374",
+      "state": "OPEN",
+      "note": "cross-batch calls; PR #375 open"
+    },
+    {
+      "number": 377,
+      "url": "https://github.com/ix-infrastructure/Ix/issues/377",
+      "state": "OPEN",
+      "note": "stale graph entities; PR #378 open"
+    },
+    {
+      "number": 379,
+      "url": "https://github.com/ix-infrastructure/Ix/issues/379",
+      "state": "OPEN",
+      "note": "same-kind ambiguity; PR #380 open"
     }
   ],
   "findings": {
@@ -230,7 +291,7 @@
   },
   "evidence": {
     "count": 28,
-    "note": "S-038: previous counts of 28/164 were stale; live count is 165 files",
+    "note": "Phase 4: registry promoted E-026..E-028 (real Class-A source nodes) — registry == graph == 28",
     "ids": [
       "E-001",
       "E-002",
@@ -268,9 +329,9 @@
     "open": []
   },
   "graph": {
-    "nodes": 290,
-    "edges": 240,
-    "status": "EXPANDED - test worktree, fresh results, fork gap confirmed; see GRAPH-AUDIT.md"
+    "nodes": 165,
+    "edges": 141,
+    "status": "Phase 4 repaired: 165 nodes / 141 edges / 0 dangling; 28 evidence nodes == registry; PR/issue states live-verified; see GRAPH-AUDIT.md"
   },
   "worktrees": {
     "primary": {"path": "E:\\E-github-repos\\Ix", "branch": "feat/ix-agent-skill", "sha": "b038c46", "dirty": 14},

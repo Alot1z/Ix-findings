@@ -1,0 +1,59 @@
+# GitHub Pages deployment workflow — PREPARED, NOT ENABLED (Phase 4)
+#
+# IMPORTANT:
+#   This file is a TEMPLATE. It is intentionally NOT placed at
+#   .github/workflows/pages.yml and MUST NOT be activated without explicit
+#   user authorization (CAND-008, D-NEW). Activating it requires:
+#     1. User authorization to publish the sanitized public projection.
+#     2. Sanitization review sign-off (planning/pages/validate-public.mjs passes).
+#     3. Repository visibility decision (public or private Pages).
+#   When authorized, copy this file to .github/workflows/pages.yml and set the
+#   Pages source to "GitHub Actions".
+name: pages
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'planning/**'
+      - 'CLI-HANDOFF/manifest.json'
+      - 'pr-packets/**'
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Generate canonical data
+        run: node planning/wiki/build-data.mjs
+      - name: Build sanitized public projection
+        run: node planning/pages/build-public.mjs
+      - name: Validate public projection
+        run: node planning/pages/validate-public.mjs
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: planning/pages/public
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,65 @@
+{
+  "phase": "4",
+  "generated": "2026-08-10",
+  "repositories_changed": [
+    {
+      "repository": "Alot1z/Ix-findings",
+      "branch": "master",
+      "worktree": "E:/E-github-repos/Ix-findings",
+      "before_sha": "4b839ec",
+      "after_sha": "PENDING (phase-4 ledger commit)",
+      "files_added": [
+        "CLI-HANDOFF/phase-4/PHASE-4-IMPLEMENTATION-PLAN.json",
+        "CLI-HANDOFF/phase-4/IMPLEMENTED-CANDIDATES.json",
+        "CLI-HANDOFF/phase-4/DEFERRED-CANDIDATES.json",
+        "CLI-HANDOFF/phase-4/BLOCKED-CANDIDATES.json",
+        "CLI-HANDOFF/phase-4/IMPLEMENTATION-MATRIX.json",
+        "CLI-HANDOFF/phase-4/CHANGESET-MANIFEST.json",
+        "CLI-HANDOFF/phase-4/TEST-RESULTS.json",
+        "CLI-HANDOFF/phase-4/VERIFICATION-MATRIX.json",
+        "CLI-HANDOFF/phase-4/CONTRIBUTION-PACKETS.json",
+        "CLI-HANDOFF/phase-4/KNOWLEDGE-EXPORT-MANIFEST.json",
+        "CLI-HANDOFF/phase-4/REPOSITORY-STATE-AFTER.json",
+        "CLI-HANDOFF/phase-4/PHASE-4-REPORT.md",
+        "CLI-HANDOFF/phase-4/IMPLEMENTATION-DECISIONS.md",
+        "CLI-HANDOFF/phase-4/CONTRIBUTION-READY-CHANGES.md",
+        "CLI-HANDOFF/phase-4/PHASE-5-IMPLEMENTATION-INPUT.md",
+        "pr-packets/ix-371-patches-dead-code/README.md",
+        "planning/pages/README.md",
+        "planning/pages/public-data-allowlist.json",
+        "planning/pages/build-public.mjs",
+        "planning/pages/validate-public.mjs",
+        "planning/pages/workflow/pages.yml.template",
+        "planning/pages/public/index.html",
+        "planning/pages/public/data/data.js",
+        "planning/pages/public/assets/wiki.css",
+        "planning/pages/public/assets/wiki.js"
+      ],
+      "files_modified": [
+        "CLI-HANDOFF/manifest.json",
+        "CLI-HANDOFF/PR-MATRIX.md",
+        "CLI-HANDOFF/GRAPH-AUDIT.md",
+        "planning/maps/investigation-map.json",
+        "planning/evidence/registry.json",
+        "planning/wiki/build-data.mjs",
+        "planning/wiki/data/data.js",
+        "planning/wiki/assets/wiki.js",
+        "planning/wiki/index-standalone.html",
+        "pr-packets/ix-remap-hardening/README.md"
+      ],
+      "files_deleted": [],
+      "tests_added": ["planning/pages/validate-public.mjs"],
+      "tests_modified": [],
+      "reason": "Phase 4 controlled implementation: graph repair, evidence promotion, manifest/PR-MATRIX/GRAPH-AUDIT reconciliation, generator derivation, validated wiki syntax fix commit, PACK-371, remap verification doc, local Pages package",
+      "candidate_ids": ["CAND-001", "CAND-002", "CAND-003", "CAND-004", "CAND-005", "CAND-007", "CAND-008", "CAND-009", "CAND-011", "CAND-012", "CAND-014", "CAND-015", "CAND-016", "CAND-017", "CAND-018", "CAND-020"]
+    }
+  ],
+  "protected_repositories_verified_unchanged": [
+    { "repository": "E:/E-github-repos/Ix", "head": "b038c46", "dirty": 14, "unchanged": true },
+    { "repository": "E:/E-github-repos/Ix-remap", "head": "c021b52", "dirty": 0, "unchanged": true, "note": "read-only fetch of origin/main performed; working tree untouched" },
+    { "repository": "E:/E-github-repos/Ix-test", "head": "c4f8fea", "dirty": 0, "unchanged": true },
+    { "repository": "E:/E-github-repos/ix-compass-dist", "head": "396426b", "dirty": 3, "unchanged": true },
+    { "repository": "E:/E-github-repos/freebuff-forge", "head": "441cec670", "dirty": 0, "unchanged": true }
+  ],
+  "no_mutation": ["ix-infrastructure/Ix (upstream)", "Alot1z/Ix (fork)", "ix-compass-dist", "system-compass", "CodebuffAI/freebuff", "Alot1z/freebuff-forge"]
+}
