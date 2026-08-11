@@ -69,4 +69,46 @@ try {
   rmSync(tempRoot, { recursive: true, force: true });
 }
 
-console.log("freshness-gate tests passed: fresh state passes; head, PR, and issue drift fail closed; degraded baseline fallback passes");
+// Superseded-commit staleness: a manifest-era commit marked CURRENT while the
+// live capture records a newer head for the same branch must fail the gate.
+const liveForSuperseded = {
+  repository: "ix-infrastructure/Ix",
+  defaultBranch: "main",
+  head: "abc123",
+  openPRs: new Set([393]),
+  openIssues: new Set([219]),
+  fetchedAt: "fixture",
+};
+const supersededBase = {
+  ...canonical,
+  phaseManifestCommits: [{ sha: "old1", branch: "feat/ix-remap-hardening" }],
+  liveCapturePRs: [{ number: 393, head_ref: "feat/ix-remap-hardening", head_sha: "newhead" }],
+};
+const unreconciled = compareFreshness({ ...supersededBase, commitEntityStatus: new Map([["COMMIT-old1", "CURRENT"]]) }, liveForSuperseded, snapshot);
+assert.equal(unreconciled.gate, "STALE");
+assert.ok(unreconciled.checks.some(check => check.id === "superseded-commit:old1" && !check.ok));
+
+const reconciled = compareFreshness({ ...supersededBase, commitEntityStatus: new Map([["COMMIT-old1", "HISTORICAL"]]) }, liveForSuperseded, snapshot);
+assert.equal(reconciled.gate, "PASS");
+assert.equal(reconciled.stale_count, 0);
+
+// Tolerant branch match: the manifest record names the branch with a suffix,
+// and the live capture must still supersede it.
+const tolerant = compareFreshness({
+  ...supersededBase,
+  phaseManifestCommits: [{ sha: "old2", branch: "feat/ix-remap-hardening (fork, pushed)" }],
+  commitEntityStatus: new Map([["COMMIT-old2", "CURRENT"]]),
+}, liveForSuperseded, snapshot);
+assert.equal(tolerant.gate, "STALE");
+assert.ok(tolerant.checks.some(check => check.id === "superseded-commit:old2" && !check.ok));
+
+// No live PR for the branch: no superseded-commit check is emitted.
+const unrelated = compareFreshness({
+  ...canonical,
+  phaseManifestCommits: [{ sha: "abc", branch: "some/unrelated-branch" }],
+  commitEntityStatus: new Map([["COMMIT-abc", "CURRENT"]]),
+}, liveForSuperseded, snapshot);
+assert.equal(unrelated.gate, "PASS");
+assert.equal(unrelated.stale_count, 0);
+
+console.log("freshness-gate tests passed: fresh state passes; head, PR, and issue drift fail closed; degraded baseline fallback passes; superseded-commit staleness fails closed");

@@ -23,6 +23,8 @@ const parseRepo = url => String(url || "").match(/github\.com\/([^/]+\/[^/]+)/)?
 function canonicalState(root = ROOT) {
   const knowledge = join(root, "knowledge");
   const manifest = readJson(join(knowledge, "manifest.json"));
+  const phaseManifest = readJson(join(root, "CLI-HANDOFF/manifest.json")) || {};
+  const liveCapture = readJson(join(root, "knowledge/live-github-state.json")) || {};
   const entities = readJson(join(knowledge, "entities.json"));
   const snapshots = readJson(join(knowledge, "snapshots.json"));
   const branches = entities.filter(entity => entity.entity_type === "BRANCH");
@@ -45,6 +47,11 @@ function canonicalState(root = ROOT) {
     baselineHead: manifest.live_baseline?.upstream_head,
     baselineOpenPRs: setOf(manifest.live_baseline?.open_prs),
     baselineOpenIssues: setOf(manifest.live_baseline?.open_issues),
+    // Manifest-era commit records (phase snapshot) and the live capture's PR
+    // heads, used by the superseded-commit check below.
+    phaseManifestCommits: phaseManifest.commits || [],
+    liveCapturePRs: liveCapture.open_pull_requests || [],
+    commitEntityStatus: new Map(entities.filter(entity => entity.entity_type === "COMMIT").map(entity => [entity.canonical_id, entity.status])),
   };
 }
 
@@ -142,6 +149,21 @@ export function compareFreshness(canonical, live, snapshotMeta = [], options = {
   check(checks, "graph-open-issues", graphIssues.missing.length === 0 && graphIssues.unexpected.length === 0, `missing ${graphIssues.missing.join(",") || "none"}; unexpected ${graphIssues.unexpected.join(",") || "none"}`);
   check(checks, "graph-pr-coverage", knownPrsMissing.length === 0, `live open PRs absent from canonical graph: ${knownPrsMissing.join(",") || "none"}`);
   check(checks, "graph-issue-coverage", knownIssuesMissing.length === 0, `live open issues absent from canonical graph: ${knownIssuesMissing.join(",") || "none"}`);
+
+  // Manifest-era commits must not be presented as CURRENT when the live
+  // capture records a newer head for the same branch. The canonical builder
+  // reconciles these to HISTORICAL; if any remain CURRENT, the graph is
+  // presenting a superseded commit as the live state.
+  for (const c of canonical.phaseManifestCommits || []) {
+    const branch = c.branch || "";
+    if (!branch) continue;
+    const livePR = (canonical.liveCapturePRs || []).find(p => p.head_ref && (branch.includes(p.head_ref) || p.head_ref.includes(branch)));
+    const currentHead = livePR?.head_sha;
+    if (!currentHead || c.sha === currentHead) continue;
+    const entityStatus = canonical.commitEntityStatus.get(`COMMIT-${c.sha}`);
+    if (!entityStatus) continue;
+    check(checks, `superseded-commit:${c.sha}`, entityStatus !== "CURRENT", `commit ${c.sha} entity status is ${entityStatus}; live capture records ${currentHead.slice(0, 8)} as head of ${branch} — superseded manifest-era commits must be HISTORICAL, not CURRENT`);
+  }
 
   for (const snapshot of snapshotMeta) {
     check(checks, `snapshot-parse:${snapshot.dataset}`, !snapshot.parse_error, snapshot.parse_error || "parsed");
