@@ -20,7 +20,8 @@
     "pages_enable": { "endpoint": "POST repos/Alot1z/Ix-findings/pages", "build_type": "workflow", "public": true, "html_url": "https://alot1z.github.io/Ix-findings/" },
     "run_1": { "id": 31446466304, "head_sha": "8285409", "conclusion": "success" },
     "run_2": { "id": 31446667797, "head_sha": "d6443e4", "conclusion": "success" },
-    "run_3": { "id": 31446801837, "head_sha": "5d34d2a", "conclusion": "success", "note": "final re-deploy with contribution states" }
+    "run_3": { "id": 31446801837, "head_sha": "5d34d2a", "conclusion": "success", "note": "re-deploy with contribution states" },
+    "run_4": { "id": 31446937131, "head_sha": "98f5c3f", "conclusion": "success", "note": "final ledger commit re-deploy" }
   },
   "verification": {
     "http": { "index": 200, "data.js": 200, "wiki.js": 200, "wiki.css": 200 },
