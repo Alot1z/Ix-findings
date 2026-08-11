@@ -12,8 +12,8 @@ window.IX_DATA = {
       "branches": 7,
       "worktrees": 3,
       "commits": 12,
-      "findings": 13,
-      "evidence": 28,
+      "findings": 15,
+      "evidence": 30,
       "decisions": 14,
       "suggestions": 33,
       "prs": 20,
@@ -85,43 +85,57 @@ window.IX_DATA = {
       "id": "F-008",
       "title": "Version-series mismatch in ix upgrade (#376)",
       "evidence_class": "A",
-      "status": "OPEN",
-      "recommendation": "Separate PR; Option A (stamp dist version); coordinate with KageBinary"
+      "status": "FIXED_UPSTREAM",
+      "recommendation": "RESOLVED 2026-08-11: #391 stamps $VERSION+release.<sha> and skips comparison for release bundles (supersedes Option A)"
     },
     {
       "id": "F-009",
       "title": "patches command dead/unregistered (#371)",
       "evidence_class": "A",
-      "status": "OPEN",
-      "recommendation": "Register in oss.ts or delete patches.ts; separate from remap"
+      "status": "FIXED_UPSTREAM",
+      "recommendation": "RESOLVED 2026-08-11: #390 registers patches in oss.ts (OSS path), drops from PRO_COMMANDS"
     },
     {
       "id": "F-010",
       "title": "Loopback-hardened /__ix/remap endpoint (implemented)",
       "evidence_class": "A",
-      "status": "PR_READY",
-      "recommendation": "Push + open PR upon authorization (phase-13)"
+      "status": "PR_OPEN",
+      "recommendation": "PR #393 open since 2026-08-11 — awaiting maintainer review"
     },
     {
       "id": "F-011",
       "title": "WSL bootstrap fix",
       "evidence_class": "A",
-      "status": "IN_REMAP_PR",
-      "recommendation": "Ship with remap PR"
+      "status": "IN_PR_393",
+      "recommendation": "Shipped in remap PR #393 (open, awaiting review)"
     },
     {
       "id": "F-012",
       "title": "Dead node_ok removal",
       "evidence_class": "A",
-      "status": "IN_REMAP_PR",
-      "recommendation": "Ship with remap PR"
+      "status": "IN_PR_393",
+      "recommendation": "Shipped in remap PR #393 (open, awaiting review)"
     },
     {
       "id": "F-013",
       "title": "Zoom-in multiplier discrepancy (x1.25 observed vs x1.1 in constants)",
       "evidence_class": "D",
-      "status": "OPEN",
+      "status": "INCONCLUSIVE",
       "recommendation": "Re-verify with source access or a dedicated experiment before claiming anything"
+    },
+    {
+      "id": "N-001",
+      "title": "Evidence registry duplicate IDs (E-014, E-015)",
+      "evidence_class": "A",
+      "status": "OPEN",
+      "recommendation": "Renumber second set to E-029/E-030"
+    },
+    {
+      "id": "N-002",
+      "title": "Fork-main is 7 commits behind upstream",
+      "evidence_class": "A",
+      "status": "OPEN",
+      "recommendation": "Sync fork main when convenient"
     }
   ],
   "evidence": [
@@ -482,6 +496,30 @@ window.IX_DATA = {
       "repository": "ix-infrastructure/Ix",
       "detail": "Root package.json says 0.5.0; actual CLI is 0.6.1 — dual version series (CAND-016)",
       "supports": []
+    },
+    {
+      "id": "E-029",
+      "title": "#385 upgrade-breaks-wrapper fix — PR #386 + #392 merged upstream",
+      "type": "merged-pr",
+      "class": "A",
+      "phase": "phase-11",
+      "repository": "ix-infrastructure/Ix",
+      "detail": "PR #386 (ix.cmd launcher diagnosis, +149 test lines) merged 2026-08-10. PR #392 (upgrade under IX_HOME, +171 test lines) merged 2026-08-11. Both include regression tests. Issues #385 remains open as admin backlog, not code defect.",
+      "supports": [
+        "#385"
+      ]
+    },
+    {
+      "id": "E-030",
+      "title": "#349 installer-space-in-path fix — PR #352 + #392 merged upstream",
+      "type": "merged-pr",
+      "class": "A",
+      "phase": "phase-11",
+      "repository": "ix-infrastructure/Ix",
+      "detail": "PR #352 (install.ps1 short TEMP path, +35 test lines) merged 2026-08-10. PR #392 (IX_HOME staging) also contributes. PR #395 (space-in-path test, open) adds the final coverage. Issue #349 remains open as admin backlog.",
+      "supports": [
+        "#349"
+      ]
     }
   ],
   "suggestions": [
@@ -3276,6 +3314,42 @@ window.IX_DATA = {
     {
       "id": "S-041",
       "description": "\"Alot1z/Ix is the fork\" — system-compass fork assumed"
+    },
+    {
+      "id": "S-042",
+      "description": "F-008 \"OPEN (no fix)\" / \"Open, no fix\""
+    },
+    {
+      "id": "S-043",
+      "description": "F-009 \"OPEN\" / \"Open, no fix\""
+    },
+    {
+      "id": "S-044",
+      "description": "F-010 \"PR_READY (not pushed)\"; remap gates \"Branch pushed ❌ / PR opened ❌\""
+    },
+    {
+      "id": "S-045",
+      "description": "PR-MATRIX: #375/#378/#380/#382 listed OPEN"
+    },
+    {
+      "id": "S-046",
+      "description": "CLI-HANDOFF README \"PR CREATED: NO / ISSUE CREATED: NO\" (External Actions)"
+    },
+    {
+      "id": "S-047",
+      "description": "`planning/github/issues.md` marks 371/374/376/379/381 OPEN"
+    },
+    {
+      "id": "S-048",
+      "description": "NEXT-ACTIONS items 5/6/8/9 \"execute on authorization\""
+    },
+    {
+      "id": "S-049",
+      "description": "New items not previously catalogued: #385, #383, #349 (still open), #219 (feature), #395 (PR), #388 (brew PR), v0.9.2 re"
+    },
+    {
+      "id": "S-050",
+      "description": "Fork `main` state (\"5 behind\" in 2026-08-10 snapshots)"
     }
   ],
   "sysCompass": {

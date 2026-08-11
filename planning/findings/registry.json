@@ -4,175 +4,491 @@
   "note": "F-### IDs are the planning-layer canonical IDs; ixf_id is the 1:1 alias used by the earlier ledger (manifests/findings-index.json). Evidence classes: A=source, B=artifact/runtime, C=reconstruction, D=inference.",
   "findings": [
     {
-      "id": "F-001", "ixf_id": "IXF-001", "title": "Keyboard handler invariant across 4 releases",
-      "repository": "system-compass", "subsystem": "keyboard",
-      "first_phase": "phase-05", "latest_phase": "phase-final",
-      "evidence_class": "B", "confidence": "high", "status": "REPRODUCED", "severity": null,
-      "affected_versions": ["v0.1.0", "v0.1.1", "v0.2.0", "v0.3.0"],
-      "evidence_refs": ["E-005"],
+      "id": "F-001",
+      "ixf_id": "IXF-001",
+      "title": "Keyboard handler invariant across 4 releases",
+      "repository": "system-compass",
+      "subsystem": "keyboard",
+      "first_phase": "phase-05",
+      "latest_phase": "phase-final",
+      "evidence_class": "B",
+      "confidence": "high",
+      "status": "REPRODUCED",
+      "severity": null,
+      "affected_versions": [
+        "v0.1.0",
+        "v0.1.1",
+        "v0.2.0",
+        "v0.3.0"
+      ],
+      "evidence_refs": [
+        "E-005"
+      ],
       "reproduction": "Byte comparison of extracted keyboard switch across all 4 tarballs",
-      "related_files": ["comparisons/keyboard/reconstruction.md", "comparisons/historical-matrix.md"],
-      "related_issues": [], "related_prs": ["pr-packets/compass-f-key/README.md"],
-      "related_suggestions": ["S-007"],
+      "related_files": [
+        "comparisons/keyboard/reconstruction.md",
+        "comparisons/historical-matrix.md"
+      ],
+      "related_issues": [],
+      "related_prs": [
+        "pr-packets/compass-f-key/README.md"
+      ],
+      "related_suggestions": [
+        "S-007"
+      ],
       "recommendation": "Use as evidence that a keyboard addition is conflict-free"
     },
     {
-      "id": "F-002", "ixf_id": "IXF-002", "title": "F/f genuinely unbound in all releases",
-      "repository": "system-compass", "subsystem": "keyboard",
-      "first_phase": "phase-05", "latest_phase": "phase-final",
-      "evidence_class": "B", "confidence": "high", "status": "REPRODUCED", "severity": null,
-      "affected_versions": ["v0.1.0", "v0.1.1", "v0.2.0", "v0.3.0"],
-      "evidence_refs": ["E-005"],
+      "id": "F-002",
+      "ixf_id": "IXF-002",
+      "title": "F/f genuinely unbound in all releases",
+      "repository": "system-compass",
+      "subsystem": "keyboard",
+      "first_phase": "phase-05",
+      "latest_phase": "phase-final",
+      "evidence_class": "B",
+      "confidence": "high",
+      "status": "REPRODUCED",
+      "severity": null,
+      "affected_versions": [
+        "v0.1.0",
+        "v0.1.1",
+        "v0.2.0",
+        "v0.3.0"
+      ],
+      "evidence_refs": [
+        "E-005"
+      ],
       "reproduction": "Zero grep matches for F/f key bindings in any artifact",
-      "related_files": ["comparisons/keyboard/reconstruction.md"],
-      "related_issues": [], "related_prs": ["pr-packets/compass-f-key/README.md"],
-      "related_suggestions": ["S-007"],
+      "related_files": [
+        "comparisons/keyboard/reconstruction.md"
+      ],
+      "related_issues": [],
+      "related_prs": [
+        "pr-packets/compass-f-key/README.md"
+      ],
+      "related_suggestions": [
+        "S-007"
+      ],
       "recommendation": "F-key addition has zero historical conflict"
     },
     {
-      "id": "F-003", "ixf_id": "IXF-003", "title": "KeyboardHelp byte-identical, no F entry",
-      "repository": "system-compass", "subsystem": "keyboard-help",
-      "first_phase": "phase-05", "latest_phase": "phase-final",
-      "evidence_class": "B", "confidence": "high", "status": "VERIFIED", "severity": null,
-      "affected_versions": ["v0.1.0", "v0.1.1", "v0.2.0", "v0.3.0"],
-      "evidence_refs": ["E-006"],
+      "id": "F-003",
+      "ixf_id": "IXF-003",
+      "title": "KeyboardHelp byte-identical, no F entry",
+      "repository": "system-compass",
+      "subsystem": "keyboard-help",
+      "first_phase": "phase-05",
+      "latest_phase": "phase-final",
+      "evidence_class": "B",
+      "confidence": "high",
+      "status": "VERIFIED",
+      "severity": null,
+      "affected_versions": [
+        "v0.1.0",
+        "v0.1.1",
+        "v0.2.0",
+        "v0.3.0"
+      ],
+      "evidence_refs": [
+        "E-006"
+      ],
       "reproduction": "Extracted KeyboardHelp-KnF66B2h.js (v0.3.0): 8 entries, no F",
-      "related_files": ["comparisons/keyboard/reconstruction.md"],
-      "related_issues": [], "related_prs": ["pr-packets/compass-f-key/README.md"],
-      "related_suggestions": ["S-007"],
+      "related_files": [
+        "comparisons/keyboard/reconstruction.md"
+      ],
+      "related_issues": [],
+      "related_prs": [
+        "pr-packets/compass-f-key/README.md"
+      ],
+      "related_suggestions": [
+        "S-007"
+      ],
       "recommendation": "Add {keys:['F'], label:'Fit view'} when source access exists"
     },
     {
-      "id": "F-004", "ixf_id": "IXF-004", "title": "Fit math + constants invariant",
-      "repository": "system-compass", "subsystem": "camera-fit",
-      "first_phase": "phase-05", "latest_phase": "phase-final",
-      "evidence_class": "B", "confidence": "high", "status": "VERIFIED", "severity": null,
-      "affected_versions": ["v0.1.0", "v0.1.1", "v0.2.0", "v0.3.0"],
-      "evidence_refs": ["E-007", "E-011"],
+      "id": "F-004",
+      "ixf_id": "IXF-004",
+      "title": "Fit math + constants invariant",
+      "repository": "system-compass",
+      "subsystem": "camera-fit",
+      "first_phase": "phase-05",
+      "latest_phase": "phase-final",
+      "evidence_class": "B",
+      "confidence": "high",
+      "status": "VERIFIED",
+      "severity": null,
+      "affected_versions": [
+        "v0.1.0",
+        "v0.1.1",
+        "v0.2.0",
+        "v0.3.0"
+      ],
+      "evidence_refs": [
+        "E-007",
+        "E-011"
+      ],
       "reproduction": "9 constants (1200,700,56,1.25,112,36,2.5,1.1,96) + contain + snap extracted",
-      "related_files": ["comparisons/camera-fit/reconstruction.md", "comparisons/historical-matrix.md"],
-      "related_issues": [], "related_prs": [],
-      "related_suggestions": ["S-007"],
+      "related_files": [
+        "comparisons/camera-fit/reconstruction.md",
+        "comparisons/historical-matrix.md"
+      ],
+      "related_issues": [],
+      "related_prs": [],
+      "related_suggestions": [
+        "S-007"
+      ],
       "recommendation": "F-key reuses existing fit math; no duplication (D-005)"
     },
     {
-      "id": "F-005", "ixf_id": "IXF-005", "title": "#57 one-shot fit latch -> keyed refit (v0.2.0->v0.3.0)",
-      "repository": "system-compass", "subsystem": "camera-fit-lifecycle",
-      "first_phase": "phase-05", "latest_phase": "phase-final",
-      "evidence_class": "A+B", "confidence": "high", "status": "CONFIRMED", "severity": null,
-      "affected_versions": ["v0.1.0", "v0.1.1", "v0.2.0", "v0.3.0"],
-      "evidence_refs": ["E-008", "E-003", "E-004"],
+      "id": "F-005",
+      "ixf_id": "IXF-005",
+      "title": "#57 one-shot fit latch -> keyed refit (v0.2.0->v0.3.0)",
+      "repository": "system-compass",
+      "subsystem": "camera-fit-lifecycle",
+      "first_phase": "phase-05",
+      "latest_phase": "phase-final",
+      "evidence_class": "A+B",
+      "confidence": "high",
+      "status": "CONFIRMED",
+      "severity": null,
+      "affected_versions": [
+        "v0.1.0",
+        "v0.1.1",
+        "v0.2.0",
+        "v0.3.0"
+      ],
+      "evidence_refs": [
+        "E-008",
+        "E-003",
+        "E-004"
+      ],
       "reproduction": "v0.2.0 bundle latch guard (!q||A||) vs v0.3.0 keyed refit effect; release notes confirm",
-      "related_files": ["comparisons/camera-fit/reconstruction.md", "comparisons/releases/timeline.md"],
-      "related_issues": ["system-compass#57"], "related_prs": [],
-      "related_suggestions": ["S-032", "S-033"],
+      "related_files": [
+        "comparisons/camera-fit/reconstruction.md",
+        "comparisons/releases/timeline.md"
+      ],
+      "related_issues": [
+        "system-compass#57"
+      ],
+      "related_prs": [],
+      "related_suggestions": [
+        "S-032",
+        "S-033"
+      ],
       "recommendation": "F-key must NOT add auto-frame or drill reframe (duplicates #57)"
     },
     {
-      "id": "F-006", "ixf_id": "IXF-006", "title": "Delayed-data blank persists on v0.3.0",
-      "repository": "system-compass", "subsystem": "camera-fit-lifecycle",
-      "first_phase": "phase-07", "latest_phase": "phase-final",
-      "evidence_class": "B+C", "confidence": "high (repro), medium (mechanism)",
-      "status": "REPRODUCED_LIVE", "severity": "P1",
-      "affected_versions": ["v0.2.0", "v0.3.0"],
-      "evidence_refs": ["E-009"],
+      "id": "F-006",
+      "ixf_id": "IXF-006",
+      "title": "Delayed-data blank persists on v0.3.0",
+      "repository": "system-compass",
+      "subsystem": "camera-fit-lifecycle",
+      "first_phase": "phase-07",
+      "latest_phase": "phase-final",
+      "evidence_class": "B+C",
+      "confidence": "high (repro), medium (mechanism)",
+      "status": "REPRODUCED_LIVE",
+      "severity": "P1",
+      "affected_versions": [
+        "v0.2.0",
+        "v0.3.0"
+      ],
+      "evidence_refs": [
+        "E-009"
+      ],
       "reproduction": "60s proxy delay -> camera frozen at placeholder fit, 0 cards visible; fast path correct",
-      "related_files": ["comparisons/camera-fit/delayed-data-investigation.md", "pr-packets/compass-delayed-data/README.md"],
-      "related_issues": ["system-compass#57"], "related_prs": ["pr-packets/compass-delayed-data/README.md"],
-      "related_suggestions": ["S-008", "S-018"],
+      "related_files": [
+        "comparisons/camera-fit/delayed-data-investigation.md",
+        "pr-packets/compass-delayed-data/README.md"
+      ],
+      "related_issues": [
+        "system-compass#57"
+      ],
+      "related_prs": [
+        "pr-packets/compass-delayed-data/README.md"
+      ],
+      "related_suggestions": [
+        "S-008",
+        "S-018"
+      ],
       "recommendation": "Separate Compass issue/PR; call out as known limitation in F-key PR; do not fold into F-key (D-006)"
     },
     {
-      "id": "F-007", "ixf_id": "IXF-007", "title": "Region-rollup aggregate formation is timing-dependent",
-      "repository": "system-compass", "subsystem": "region-rollup",
-      "first_phase": "phase-07", "latest_phase": "phase-final",
-      "evidence_class": "B", "confidence": "medium", "status": "OBSERVED", "severity": "P2",
-      "affected_versions": ["v0.3.0"],
-      "evidence_refs": ["E-012"],
+      "id": "F-007",
+      "ixf_id": "IXF-007",
+      "title": "Region-rollup aggregate formation is timing-dependent",
+      "repository": "system-compass",
+      "subsystem": "region-rollup",
+      "first_phase": "phase-07",
+      "latest_phase": "phase-final",
+      "evidence_class": "B",
+      "confidence": "medium",
+      "status": "OBSERVED",
+      "severity": "P2",
+      "affected_versions": [
+        "v0.3.0"
+      ],
+      "evidence_refs": [
+        "E-012"
+      ],
       "reproduction": "Fast: 9 cards + 1 aggregate. Delayed: 15 cards, no aggregate. Same map_rev.",
-      "related_files": ["comparisons/camera-fit/reconstruction.md"],
-      "related_issues": [], "related_prs": [],
-      "related_suggestions": ["S-008"],
+      "related_files": [
+        "comparisons/camera-fit/reconstruction.md"
+      ],
+      "related_issues": [],
+      "related_prs": [],
+      "related_suggestions": [
+        "S-008"
+      ],
       "recommendation": "Investigate rollup decision timing after data completes"
     },
     {
-      "id": "F-008", "ixf_id": "IXF-008", "title": "Version-series mismatch in ix upgrade (#376)",
-      "repository": "ix-infrastructure/Ix", "subsystem": "upgrade",
-      "first_phase": "phase-03", "latest_phase": "phase-final",
-      "evidence_class": "A", "confidence": "high", "status": "RESOLVED_UPSTREAM", "severity": "P1",
-      "affected_versions": ["v0.9.1+"], "affected_commits": ["dcc0962 (#365)"],
-      "evidence_refs": ["E-017", "state/phase-7-upstream-reconciliation-2026-08-11.md"],
+      "id": "F-008",
+      "ixf_id": "IXF-008",
+      "title": "Version-series mismatch in ix upgrade (#376)",
+      "repository": "ix-infrastructure/Ix",
+      "subsystem": "upgrade",
+      "first_phase": "phase-03",
+      "latest_phase": "phase-14",
+      "evidence_class": "A",
+      "confidence": "high",
+      "status": "FIXED_UPSTREAM",
+      "severity": "P1",
+      "affected_versions": [
+        "v0.9.1+"
+      ],
+      "affected_commits": [
+        "dcc0962 (#365)"
+      ],
+      "evidence_refs": [
+        "E-017",
+        "state/phase-7-upstream-reconciliation-2026-08-11.md"
+      ],
       "reproduction": "Deterministic from source: isNewer('0.3.0','0.9.1') false today; flips when dist > Ix version",
-      "related_files": ["github/issues/376/README.md", "pr-packets/ix-376-version-mismatch/README.md"],
-      "related_issues": ["Ix#376 (closed 2026-08-11)"], "related_prs": ["Ix#365", "Ix#366", "Ix#344", "Ix#391 (fix, merged)"],
-      "related_suggestions": ["S-013"],
+      "related_files": [
+        "github/issues/376/README.md",
+        "pr-packets/ix-376-version-mismatch/README.md"
+      ],
+      "related_issues": [
+        "Ix#376 (closed 2026-08-11)"
+      ],
+      "related_prs": [
+        "Ix#365",
+        "Ix#366",
+        "Ix#344",
+        "Ix#391 (fix, merged)"
+      ],
+      "related_suggestions": [
+        "S-013"
+      ],
       "recommendation": "RESOLVED 2026-08-11: #391 stamps $VERSION+release.<sha> and skips comparison for release bundles (supersedes Option A)"
     },
     {
-      "id": "F-009", "ixf_id": "IXF-009", "title": "patches command dead/unregistered (#371)",
-      "repository": "ix-infrastructure/Ix", "subsystem": "cli-registration",
-      "first_phase": "phase-04", "latest_phase": "phase-final",
-      "evidence_class": "A", "confidence": "high", "status": "RESOLVED_UPSTREAM", "severity": "P2",
-      "affected_versions": ["current main"],
-      "evidence_refs": ["E-018", "state/phase-7-upstream-reconciliation-2026-08-11.md"],
+      "id": "F-009",
+      "ixf_id": "IXF-009",
+      "title": "patches command dead/unregistered (#371)",
+      "repository": "ix-infrastructure/Ix",
+      "subsystem": "cli-registration",
+      "first_phase": "phase-04",
+      "latest_phase": "phase-14",
+      "evidence_class": "A",
+      "confidence": "high",
+      "status": "FIXED_UPSTREAM",
+      "severity": "P2",
+      "affected_versions": [
+        "current main"
+      ],
+      "evidence_refs": [
+        "E-018",
+        "state/phase-7-upstream-reconciliation-2026-08-11.md"
+      ],
       "reproduction": "registerPatchesCommand exported but never imported (absent from oss.ts); PRO_COMMANDS masks it",
-      "related_files": ["github/issues/371/README.md"],
-      "related_issues": ["Ix#371 (closed as completed 2026-08-11)"], "related_prs": ["Ix#372", "Ix#390 (fix, merged)"],
-      "related_suggestions": ["S-014"],
+      "related_files": [
+        "github/issues/371/README.md"
+      ],
+      "related_issues": [
+        "Ix#371 (closed as completed 2026-08-11)"
+      ],
+      "related_prs": [
+        "Ix#372",
+        "Ix#390 (fix, merged)"
+      ],
+      "related_suggestions": [
+        "S-014"
+      ],
       "recommendation": "RESOLVED 2026-08-11: #390 registers patches in oss.ts (OSS path), drops from PRO_COMMANDS"
     },
     {
-      "id": "F-010", "ixf_id": "IXF-010", "title": "Loopback-hardened /__ix/remap endpoint (implemented)",
-      "repository": "ix-infrastructure/Ix", "subsystem": "view-server",
-      "first_phase": "phase-02", "latest_phase": "phase-13",
-      "evidence_class": "A", "confidence": "high", "status": "PR_OPEN", "severity": null,
-      "affected_versions": ["new feature"],
-      "affected_commits": ["c021b52", "1497596 (PR #393 head)"],
-      "evidence_refs": ["E-014", "E-015", "E-016", "state/phase-7-upstream-reconciliation-2026-08-11.md"],
+      "id": "F-010",
+      "ixf_id": "IXF-010",
+      "title": "Loopback-hardened /__ix/remap endpoint (implemented)",
+      "repository": "ix-infrastructure/Ix",
+      "subsystem": "view-server",
+      "first_phase": "phase-02",
+      "latest_phase": "phase-13",
+      "evidence_class": "A",
+      "confidence": "high",
+      "status": "PR_OPEN",
+      "severity": null,
+      "affected_versions": [
+        "new feature"
+      ],
+      "affected_commits": [
+        "c021b52",
+        "1497596 (PR #393 head)"
+      ],
+      "evidence_refs": [
+        "E-014",
+        "E-015",
+        "E-016",
+        "state/phase-7-upstream-reconciliation-2026-08-11.md"
+      ],
       "reproduction": "10-test guard matrix + full suite green (730 on rebased base); live curl 200/403 per packet",
-      "related_files": ["pr-packets/ix-remap-hardening/README.md", "state/phase-2-remap-report.md"],
-      "related_issues": [], "related_prs": ["Ix#393 (open, CI green)"],
-      "related_suggestions": ["S-003", "S-004", "S-012", "S-030"],
+      "related_files": [
+        "pr-packets/ix-remap-hardening/README.md",
+        "state/phase-2-remap-report.md"
+      ],
+      "related_issues": [],
+      "related_prs": [
+        "Ix#393 (open, CI green)"
+      ],
+      "related_suggestions": [
+        "S-003",
+        "S-004",
+        "S-012",
+        "S-030"
+      ],
       "recommendation": "PR #393 open since 2026-08-11 — awaiting maintainer review"
     },
     {
-      "id": "F-011", "ixf_id": "IXF-011", "title": "WSL bootstrap fix",
-      "repository": "ix-infrastructure/Ix", "subsystem": "bootstrap",
-      "first_phase": "phase-02", "latest_phase": "phase-final",
-      "evidence_class": "A", "confidence": "high", "status": "IN_PR_393", "severity": null,
-      "affected_versions": ["current main"],
-      "evidence_refs": ["E-014"],
+      "id": "F-011",
+      "ixf_id": "IXF-011",
+      "title": "WSL bootstrap fix",
+      "repository": "ix-infrastructure/Ix",
+      "subsystem": "bootstrap",
+      "first_phase": "phase-02",
+      "latest_phase": "phase-final",
+      "evidence_class": "A",
+      "confidence": "high",
+      "status": "IN_PR_393",
+      "severity": null,
+      "affected_versions": [
+        "current main"
+      ],
+      "evidence_refs": [
+        "E-014"
+      ],
       "reproduction": "is_windows() treated WSL_DISTRO_NAME as Windows -> wrong installer path",
-      "related_files": ["pr-packets/ix-remap-hardening/README.md"],
-      "related_issues": [], "related_prs": ["ix-remap-hardening", "Ix#393 (open)"],
+      "related_files": [
+        "pr-packets/ix-remap-hardening/README.md"
+      ],
+      "related_issues": [],
+      "related_prs": [
+        "ix-remap-hardening",
+        "Ix#393 (open)"
+      ],
       "related_suggestions": [],
       "recommendation": "Shipped in remap PR #393 (open, awaiting review)"
     },
     {
-      "id": "F-012", "ixf_id": "IXF-012", "title": "Dead node_ok removal",
-      "repository": "ix-infrastructure/Ix", "subsystem": "bootstrap",
-      "first_phase": "phase-02", "latest_phase": "phase-final",
-      "evidence_class": "A", "confidence": "high", "status": "IN_PR_393", "severity": null,
-      "affected_versions": ["current main"],
-      "evidence_refs": ["E-014"],
+      "id": "F-012",
+      "ixf_id": "IXF-012",
+      "title": "Dead node_ok removal",
+      "repository": "ix-infrastructure/Ix",
+      "subsystem": "bootstrap",
+      "first_phase": "phase-02",
+      "latest_phase": "phase-final",
+      "evidence_class": "A",
+      "confidence": "high",
+      "status": "IN_PR_393",
+      "severity": null,
+      "affected_versions": [
+        "current main"
+      ],
+      "evidence_refs": [
+        "E-014"
+      ],
       "reproduction": "node_ok set but never read in bootstrap.sh",
-      "related_files": ["pr-packets/ix-remap-hardening/README.md"],
-      "related_issues": [], "related_prs": ["ix-remap-hardening", "Ix#393 (open)"],
+      "related_files": [
+        "pr-packets/ix-remap-hardening/README.md"
+      ],
+      "related_issues": [],
+      "related_prs": [
+        "ix-remap-hardening",
+        "Ix#393 (open)"
+      ],
       "related_suggestions": [],
       "recommendation": "Shipped in remap PR #393 (open, awaiting review)"
     },
     {
-      "id": "F-013", "ixf_id": null, "title": "Zoom-in multiplier discrepancy (x1.25 observed vs x1.1 in constants)",
-      "repository": "system-compass", "subsystem": "camera-zoom",
-      "first_phase": "phase-07", "latest_phase": "phase-final",
-      "evidence_class": "D", "confidence": "low", "status": "OPEN", "severity": "P3",
-      "affected_versions": ["v0.3.0 (observed)"],
-      "evidence_refs": ["E-011"],
+      "id": "F-013",
+      "ixf_id": null,
+      "title": "Zoom-in multiplier discrepancy (x1.25 observed vs x1.1 in constants)",
+      "repository": "system-compass",
+      "subsystem": "camera-zoom",
+      "first_phase": "phase-07",
+      "latest_phase": "phase-14",
+      "evidence_class": "D",
+      "confidence": "low",
+      "status": "INCONCLUSIVE",
+      "severity": "P3",
+      "affected_versions": [
+        "v0.3.0 (observed)"
+      ],
+      "evidence_refs": [
+        "E-011"
+      ],
       "reproduction": "On-screen zoom button appeared to apply ~x1.25",
-      "related_files": ["comparisons/camera-fit/delayed-data-investigation.md"],
-      "related_issues": [], "related_prs": [],
-      "related_suggestions": ["S-017"],
+      "related_files": [
+        "comparisons/camera-fit/delayed-data-investigation.md"
+      ],
+      "related_issues": [],
+      "related_prs": [],
+      "related_suggestions": [
+        "S-017"
+      ],
       "recommendation": "Re-verify with source access or a dedicated experiment before claiming anything"
+    },
+    {
+      "id": "N-001",
+      "title": "Evidence registry duplicate IDs (E-014, E-015)",
+      "repository": "Ix-findings",
+      "subsystem": "data-quality",
+      "first_phase": "phase-14",
+      "latest_phase": "phase-14",
+      "evidence_class": "A",
+      "confidence": "high",
+      "status": "OPEN",
+      "severity": "P3",
+      "reproduction": "E-014 and E-015 appear twice in planning/evidence/registry.json with different meanings",
+      "evidence_refs": [],
+      "related_files": [
+        "planning/evidence/registry.json"
+      ],
+      "related_issues": [],
+      "related_prs": [],
+      "related_suggestions": [],
+      "recommendation": "Renumber second set to E-029/E-030"
+    },
+    {
+      "id": "N-002",
+      "title": "Fork-main is 7 commits behind upstream",
+      "repository": "Ix",
+      "subsystem": "fork-management",
+      "first_phase": "phase-14",
+      "latest_phase": "phase-14",
+      "evidence_class": "A",
+      "confidence": "high",
+      "status": "OPEN",
+      "severity": "P3",
+      "reproduction": "GitHub API: Alot1z/Ix:main @ 5488741 vs upstream @ 1292375 (behind_by: 7)",
+      "evidence_refs": [],
+      "related_files": [],
+      "related_issues": [],
+      "related_prs": [],
+      "related_suggestions": [],
+      "recommendation": "Sync fork main when convenient"
     }
   ]
 }
