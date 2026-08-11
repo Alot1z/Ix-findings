@@ -1,128 +1,231 @@
-# PHASE 9 — COMPASS FORK READINESS & F-KEY/DELAYED-DATA CONSOLIDATION
+# PHASE 9 — `ix mcp` HARDENING, SECURITY & REAL-CLIENT VERIFICATION
 
 ## STATUS
-READY TO EXECUTE — expected outcome BLOCKED or READINESS_ONLY (honest per access)
+READY TO EXECUTE — complete independent phase (supersedes the earlier short draft)
 
-## PURPOSE
+## ROLE
 
-Consolidate the Compass thread (F-001…F-007, F-013) into a drop-in
-implementation package for the day `Alot1z/system-compass` can exist, and
-**immediately create that fork if access is granted** — while committing
-**nothing upstream** and never fabricating source access.
+You are executing **Phase 9** of the ladder. Phase 8 built `ix mcp` on the
+fork. This phase **attacks it**: adversarial protocol testing, security
+review, cross-platform verification, real-client end-to-end runs, performance
+measurement, and finalization of the PR packet. Nothing is submitted upstream.
 
-Standing constraint (user, 2026-08-11): **NO PRs and NO commits to
-`ix-infrastructure/*`. External writes ONLY to `Alot1z/Ix`,
-`Alot1z/system-compass` (fork does not exist — if access is granted, create it
-and commit only there), `Alot1z/Ix-findings`.**
+Standing constraint (user, 2026-08-11): **NO PRs and NO commits to any
+`ix-infrastructure/*` repository. External writes ONLY to `Alot1z/Ix`,
+`Alot1z/system-compass` (nonexistent — skip), `Alot1z/Ix-findings`.**
 
-## AUTHORITATIVE INPUTS
+---
 
-- `pr-packets/compass-f-key/README.md` (complete implementation spec:
-  2-line keyboard entry + KeyboardHelp entry, fit math reuse, what NOT to do)
-- `pr-packets/compass-delayed-data/README.md` (investigation packet)
-- `planning/compass/*` (reconstruction, historical matrix, lifecycle)
-- `comparisons/*` (keyboard, camera-fit, releases timeline)
-- `state/phase-6-f-key-gate.md` (the access gate)
-- `github/issues/383/README.md` (ecosystem split — system-compass source stays
-  private; the F-key belongs there, not in Ix)
+# 0. AUTHORITATIVE INPUTS
 
-## CURRENT VERIFIED BASELINE
+- `CLI-HANDOFF/phase-8/PHASE-9-IMPLEMENTATION-INPUT.md` (required — do not
+  start if absent; Phase 8 must have completed)
+- `planning/ix/ix-mcp.md` (design + decisions — the attack surface)
+- `pr-packets/ix-mcp/README.md` (PR body to finalize with evidence)
+- Live fork branch `feat/ix-mcp` (the code under test)
+- `ix-cli/test/view-server.test.ts` (F-010 guard-matrix precedent)
+- `planning/findings/registry.json` (F-011 WSL, F-012, F-013 contexts)
+- `github/issues/383/README.md` (native-Windows/PATHEXT lesson from the plugin)
+- `CLI-HANDOFF/PR-MATRIX.md`, `CLI-HANDOFF/STALE-CLAIMS.md`
 
-- `Alot1z/system-compass`: **404 (does not exist)**; `ix-infrastructure/
-  system-compass`: private; v0.3.0 source rev known (`7f98724`) from release
-  notes only.
-- ix-compass-dist: still v0.3.0 (2026-08-11 verified) — artifact analysis
-  current.
-- F-001…F-005 CONFIRMED/VERIFIED/REPRODUCED (Class A/B artifact evidence);
-  F-006 REPRODUCED_LIVE; F-007 OBSERVED; F-013 Class D (low confidence).
-- The release pipeline (#391) now records the system-compass source SHA per
-  bundle — a future access grant can be verified against those SHAs.
+---
 
-## NEXT-PHASE OBJECTIVES
+# 1. CURRENT VERIFIED BASELINE (expect per Phase 8 report)
 
-1. **Readiness consolidation**: verify the F-key spec is complete and
-   unambiguous (2 code lines + KeyboardHelp entry + 15-point test plan);
-   refresh the delayed-data packet against the latest v0.3.0 bundle if the
-   bundle changed (it has not).
-2. **Fork attempt**: attempt to create `Alot1z/system-compass` ONLY if access
-   has been granted (API or explicit user confirmation). Never attempt access
-   escalation. If 404 persists → record BLOCKED with the exact gate (D-014:
-   source access from KageBinary / PAT Contents:read / fork grant).
-3. If the fork exists: implement F-key per spec on a fork branch, run the
-   specified test plan against the real source, commit to the fork only.
-4. Prepare (not submit) a PR body for the Compass f-key change against
-   `ix-infrastructure/system-compass`.
-5. Re-verify F-013 (zoom ×1.25 vs ×1.1) with a dedicated experiment ONLY if
-   source access exists; otherwise leave Class D.
+| Item | State |
+|---|---|
+| `feat/ix-mcp` | Built + pushed to `Alot1z/Ix` (per Phase 8 report — re-verify HEAD) |
+| Tool set | read: map/status, explain, trace, impact, search, rank · write: remap |
+| Transport | stdio JSON-RPC 2.0 (framing per official spec, recorded in design doc) |
+| Registration | `oss.ts`, OSS command, no Pro-stub shadow (Phase 8 guard) |
+| Suite | 730 + Phase 8 additions (re-verify actual counts) |
+| Fork main | `5488741` (or newer if the user synced; verify) |
+| Protected | Ix `b038c46/14`; ix-compass-dist `396426b/3`; remap `1497596` |
 
-## AUTHORIZATION MODEL
+---
+
+# 2. UNIVERSAL RULES (mandatory)
+
+Same block as Phase 8 — source-driven, verification-before-completion,
+doubt-driven, no fabrication, privacy allowlist, tool safety. **Full skill
+inventory applies (all 85, / prefixes — see Phase 8 §2 for the complete list;
+copy it into your session context).**
+
+**Phase 9 emphasis:** `/security-and-hardening` `/debug-thinking`
+`/browser-testing-with-devtools` `/playwright-cli` `/performance-optimization`
+`/verification-before-completion` `/doubt-driven-development`
+`/source-driven-development` `/code-review-and-quality` `/stop-slop`
+
+Re-invoke thinking skills START / BETWEEN / AFTER every milestone.
+
+---
+
+# 3. PHASE OBJECTIVES
+
+1. **Adversarial protocol testing** — malformed input, protocol violations,
+   resource exhaustion, concurrency, lifecycle abuse.
+2. **Security review** — argument injection, information disclosure, privilege
+   discipline, no-shell guarantee, dependency surface.
+3. **Real-client E2E** — connect actual MCP clients (Claude Code, Cursor,
+   OpenCode, generic MCP inspector) to the running server and exercise tools.
+4. **Cross-platform matrix** — WSL (F-011 lesson), native Windows (PATHEXT /
+   `ix.cmd` lessons from #383/#386), macOS — at minimum static + logic review
+   per platform, plus runtime where the platform is available.
+5. **Performance** — large-workspace latency, payload truncation, memory
+   bounds; record numbers with methodology (no fabricated benchmarks).
+6. **PR packet finalization** — fold all evidence into `pr-packets/ix-mcp/
+   README.md`; flag any new findings; update the ledger.
+7. **Close-out** — `PHASE-9-REPORT.md` + `PHASE-10-IMPLEMENTATION-INPUT.md`.
+
+---
+
+# 4. AUTHORIZATION MODEL
 
 | Action | State |
 |---|---|
-| Read-only spec consolidation | AUTHORIZED |
-| Create `Alot1z/system-compass` | ONLY if access granted (otherwise IMPOSSIBLE) |
-| Commit to `Alot1z/system-compass` fork | AUTHORIZED once it exists |
-| PR to `ix-infrastructure/system-compass` | **PROHIBITED** (body prepared only) |
-| Any upstream contact / access request | **PROHIBITED** (standing rule: present public data, never request) |
+| Local adversarial testing / real-client runs | AUTHORIZED |
+| Commit + push fixes to `Alot1z/Ix:feat/ix-mcp` | **AUTHORIZED** |
+| Install MCP clients locally (npm/pip, user-level) | AUTHORIZED with user awareness (local tooling only) |
+| PR to upstream / comments / maintainer contact | **PROHIBITED** |
+| Touch protected worktrees | PROHIBITED |
 
-## PROTECTED WORK
+---
 
-- Ix `b038c46/14` — untouched.
-- ix-compass-dist `396426b/3` — untouched (distribution channel, D-007).
-- PR #393 remap branch + `feat/ix-mcp` — untouched.
+# 5. PROTECTED WORK
 
-## IMPLEMENTATION PLAN
+Identical to Phase 8: Ix `b038c46/14`, ix-compass-dist `396426b/3`, remap
+`1497596`, upstream read-only.
 
-1. Re-read the F-key spec + delayed-data packet; gap-check against v0.3.0
-   artifacts (unchanged bundle → no re-extraction needed).
-2. Try fork creation (gated on access); record exact result.
-3. If fork exists: branch `feat/f-key-fit-view`, implement, test per the
-   15-point plan, commit, push.
-4. Write/refresh `pr-packets/compass-f-key/README.md` PR-body section.
-5. `PHASE-9-REPORT.md` + `PHASE-10-IMPLEMENTATION-INPUT.md`.
+---
 
-## VALIDATION PLAN
+# 6. IMPLEMENTATION PLAN (ordered)
 
-- Spec completeness checklist (from the F-key packet).
-- If implemented: the 15-point test plan + full Compass build.
-- If blocked: no false claims — status = BLOCKED, evidence = API 404.
+## 6.1 Adversarial protocol matrix
 
-## SECURITY / PRIVACY
+1. **Malformed framing**: truncated line, huge line (>64 KiB?), invalid JSON,
+   JSON not an object, unknown JSON-RPC version, bad `id` types, missing `method`.
+2. **Method abuse**: `tools/call` with unknown tool, wrong arg types, extra
+   unknown args, args that are arrays/objects where strings expected, missing
+   `params`, `initialize` twice with conflicting versions, `ping` during a
+   long `tools/call`, `notifications/initialized` before `initialize`.
+3. **Resource exhaustion**: oversized tool args, deep recursion in schema
+   validation, many rapid concurrent calls, call that spawns `remap` twice
+   concurrently (single-flight?), messages arriving during shutdown.
+4. **Lifecycle**: EOF mid-call (child cleanup?), SIGINT/SIGTERM exit codes,
+   stdin close then delayed stdout flush, restart without drain.
+5. **Determinism**: same input → same output across runs (record hashes).
 
-- No private source content may be quoted beyond release-note facts.
-- No access tokens, no paths, no fabrications.
+## 6.2 Security review
 
-## TOOLS / SKILLS
+1. **No-shell guarantee**: grep the diff for `exec(`/`spawn(` with shell:
+   true; assert tool args can never reach a shell (the F-010 URL-API lesson —
+   prefer structured invocation over string building).
+2. **Disclosure**: run each tool against a workspace containing a fake secret
+   and a private path; assert responses never echo them.
+3. **Privilege**: `ix mcp` must not read credentials beyond what the underlying
+   commands do; document the trust model ("the client has the same power as
+   the user at the terminal").
+4. **Dependency surface**: zero new runtime deps preferred (record actual);
+   if any, list them with justification.
+5. **Reuse the F-010 checklist**: bind-nothing, no Origin/Host surface because
+   there is no network; state this explicitly in the packet.
 
-`verification-before-completion`, `doubt-driven-development`,
-`spec-driven-development`, `source-driven-development` (strictly),
-`documentation-writer` (spec consolidation).
+## 6.3 Real-client E2E
 
-## DELIVERABLES
+1. **MCP Inspector / generic client** — full session (already covered in 6.1,
+   re-run with the built CLI).
+2. **Claude Code** — `.mcp.json` (or `claude mcp add --transport stdio ...`);
+   configure `ix mcp`; drive a real task: explain a symbol, trace a flow,
+   run remap; record transcripts (sanitized).
+3. **Cursor / OpenCode** — config-file E2E where runnable locally; otherwise
+   document the exact config and mark UNVERIFIED (do not claim).
+4. Record: client, version, config snippet (public-safe), tools exercised,
+   result, evidence.
 
-- Updated `pr-packets/compass-f-key/README.md` (drop-in ready)
-- `CLI-HANDOFF/phase-9/PHASE-9-REPORT.md` (status: READINESS_ONLY or BLOCKED
-  unless access exists)
+## 6.4 Cross-platform
+
+1. **WSL** — the F-011 lesson (WSL is Linux; `curl|sh` path). Verify the
+   server starts under WSL/bash; stdio through WSL interop is client-side —
+   document.
+2. **Native Windows** — PATHEXT lesson (#383/plugin#19): if `ix` is resolved
+   as a subprocess anywhere in the mcp path, ensure `ix.CMD` resolution;
+   verify `ix mcp` runs under cmd/PowerShell.
+3. **macOS** — logic review + any available runtime.
+4. Static: Node version floor (`>=22` per bootstrap), no platform-specific
+   paths in the code.
+
+## 6.5 Performance (methodology mandatory)
+
+1. Workspace fixture sizes: small (<1k files), medium (10k), large (100k) —
+   synthesize deterministically (do not map the protected worktrees).
+2. Measure: `initialize`, `tools/list`, `tools/call` per tool (p50/p95),
+   memory RSS delta, payload sizes, truncation behavior.
+3. Record: fixture size, tool, timing method, numbers, machine. Never report
+   an unmeasured number.
+
+## 6.6 Packet + ledger finalization
+
+1. Fold every finding + evidence into `pr-packets/ix-mcp/README.md`
+   (adversarial results, security posture, client E2E, platform matrix, perf
+   numbers with methodology).
+2. Any NEW bug found → classify (A/B/C/D), add to
+   `planning/findings/registry.json` with provenance (e.g., F-014 if
+   mcp-specific; follow the numbering convention).
+3. Update manifest, `CLI-HANDOFF/STALE-CLAIMS.md` if needed, commit to
+   `Alot1z/Ix-findings`.
+
+---
+
+# 7. VALIDATION PLAN
+
+| Area | Checks |
+|---|---|
+| Protocol | full adversarial matrix green; every case has an expected behavior (error or defined handling), none crash or hang |
+| Security | no-shell grep clean; disclosure test clean; dep surface recorded |
+| Clients | each claimed client run recorded with version + result; unverified = UNVERIFIED |
+| Platforms | WSL/Windows/macOS items recorded with evidence or UNVERIFIED |
+| Perf | numbers + methodology + fixture descriptions |
+| Regression | full suite + tsc + eslint after any fixes |
+| Fork | `feat/ix-mcp` HEAD matches latest commit; API-verified |
+
+# 8. SECURITY / PRIVACY
+
+- Real-client transcripts sanitized (no paths/secrets/personal data).
+- No new credentials; config snippets in the packet use placeholders.
+- Secret scan on every new artifact.
+
+# 9. DELIVERABLES
+
+- `CLI-HANDOFF/phase-9/PHASE-9-REPORT.md`
 - `CLI-HANDOFF/phase-9/PHASE-10-IMPLEMENTATION-INPUT.md`
-- (Conditional) `Alot1z/system-compass` fork branch
+- Updated `pr-packets/ix-mcp/README.md` (final evidence)
+- Any fixes committed to `Alot1z/Ix:feat/ix-mcp`
+- Registry updates (new findings with provenance, if any)
 
-## COMPLETION CRITERIA
+# 10. COMPLETION CRITERIA
 
-□ Spec verified complete □ fork attempt recorded with evidence □ no access
-escalation □ no fabrication □ (if access) implementation + tests done □ ledger
-in sync
+□ adversarial matrix executed with recorded expected/actual □ no-shell
+guarantee verified by grep + test □ disclosure test clean □ at least one real
+client E2E recorded (or all marked UNVERIFIED with reason) □ platform matrix
+recorded □ perf methodology documented □ PR packet final □ registry consistent
+□ ledger pushed □ protected work untouched □ zero upstream mutations
 
-## FAILURE / RECOVERY
+# 11. FAILURE / RECOVERY
 
-- Access blocked → record, keep packets warm, do not attempt workarounds.
-- If access appears mid-phase → STOP, re-read the gate doc, proceed only with
-  user confirmation.
+- **Test hangs** → kill child, tighten timeout, record; never ship a hang.
+- **Client not installable** → mark UNVERIFIED with the exact blocker; never
+  claim success.
+- **New bug found** → fix on the fork with a regression test; do not disable
+  the test.
+- **Fork push guard** → record, do not force.
 
-## PHASE 10 HANDOFF
+# 12. PHASE 10 HANDOFF
 
-`PHASE-10-IMPLEMENTATION-INPUT.md` must list every prepared-but-unsubmitted
-contribution (remap #393 already open; ix-mcp; compass f-key), their PR bodies,
-and the exact user instruction needed to submit any of them.
+`PHASE-10-IMPLEMENTATION-INPUT.md` must specify: the compass thread state
+(F-key spec at `pr-packets/compass-f-key/README.md`, delayed-data packet,
+F-001…F-007/F-013), the fork-creation gate (`Alot1z/system-compass` 404,
+source access D-014), and the exact readiness checklist for a source-gated
+implementation.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 END PHASE 9
