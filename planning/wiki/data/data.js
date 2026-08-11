@@ -13516,7 +13516,7 @@ window.IX_DATA = {
         "ix-infrastructure/Ix#393"
       ],
       "commit_refs": [
-        "1497596a03bbf916f26d34dfd18f986844175d43"
+        "a6a47267af21a49d6942ee6e07e18d1d0a82517b"
       ],
       "file_refs": [
         {
@@ -13524,63 +13524,63 @@ window.IX_DATA = {
           "symbol": "serverScript — /__ix/remap + loopback guards",
           "start_line": 181,
           "end_line": 347,
-          "commit": "1497596a03bbf916f26d34dfd18f986844175d43",
+          "commit": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
           "repository": "ix-infrastructure/Ix",
-          "url": "https://github.com/ix-infrastructure/Ix/blob/1497596a03bbf916f26d34dfd18f986844175d43/ix-cli/src/cli/commands/view.ts#L181-L347"
+          "url": "https://github.com/ix-infrastructure/Ix/blob/a6a47267af21a49d6942ee6e07e18d1d0a82517b/ix-cli/src/cli/commands/view.ts#L181-L347"
         },
         {
           "path": "ix-cli/src/cli/commands/view.ts",
           "symbol": "POST /__ix/remap handler block",
           "start_line": 246,
           "end_line": 324,
-          "commit": "1497596a03bbf916f26d34dfd18f986844175d43",
+          "commit": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
           "repository": "ix-infrastructure/Ix",
-          "url": "https://github.com/ix-infrastructure/Ix/blob/1497596a03bbf916f26d34dfd18f986844175d43/ix-cli/src/cli/commands/view.ts#L246-L324"
+          "url": "https://github.com/ix-infrastructure/Ix/blob/a6a47267af21a49d6942ee6e07e18d1d0a82517b/ix-cli/src/cli/commands/view.ts#L246-L324"
         },
         {
           "path": "ix-cli/src/cli/commands/view.ts",
           "symbol": "loopback bind server.listen(PORT, 127.0.0.1)",
           "start_line": 328,
           "end_line": 328,
-          "commit": "1497596a03bbf916f26d34dfd18f986844175d43",
+          "commit": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
           "repository": "ix-infrastructure/Ix",
-          "url": "https://github.com/ix-infrastructure/Ix/blob/1497596a03bbf916f26d34dfd18f986844175d43/ix-cli/src/cli/commands/view.ts#L328"
+          "url": "https://github.com/ix-infrastructure/Ix/blob/a6a47267af21a49d6942ee6e07e18d1d0a82517b/ix-cli/src/cli/commands/view.ts#L328"
         },
         {
           "path": "ix-cli/test/view-server.test.ts",
           "symbol": "remap guard-matrix tests",
           "start_line": 1,
           "end_line": 178,
-          "commit": "1497596a03bbf916f26d34dfd18f986844175d43",
+          "commit": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
           "repository": "ix-infrastructure/Ix",
-          "url": "https://github.com/ix-infrastructure/Ix/blob/1497596a03bbf916f26d34dfd18f986844175d43/ix-cli/test/view-server.test.ts#L1-L178"
+          "url": "https://github.com/ix-infrastructure/Ix/blob/a6a47267af21a49d6942ee6e07e18d1d0a82517b/ix-cli/test/view-server.test.ts#L1-L178"
         },
         {
           "path": "skills/ix/scripts/bootstrap.sh",
           "symbol": "is_windows() WSL fix",
           "start_line": 42,
           "end_line": 45,
-          "commit": "1497596a03bbf916f26d34dfd18f986844175d43",
+          "commit": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
           "repository": "ix-infrastructure/Ix",
-          "url": "https://github.com/ix-infrastructure/Ix/blob/1497596a03bbf916f26d34dfd18f986844175d43/skills/ix/scripts/bootstrap.sh#L42-L45"
+          "url": "https://github.com/ix-infrastructure/Ix/blob/a6a47267af21a49d6942ee6e07e18d1d0a82517b/skills/ix/scripts/bootstrap.sh#L42-L45"
         },
         {
           "path": "skills/ix/scripts/bootstrap.sh",
           "symbol": "curl|sh installer routing",
           "start_line": 103,
           "end_line": 110,
-          "commit": "1497596a03bbf916f26d34dfd18f986844175d43",
+          "commit": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
           "repository": "ix-infrastructure/Ix",
-          "url": "https://github.com/ix-infrastructure/Ix/blob/1497596a03bbf916f26d34dfd18f986844175d43/skills/ix/scripts/bootstrap.sh#L103-L110"
+          "url": "https://github.com/ix-infrastructure/Ix/blob/a6a47267af21a49d6942ee6e07e18d1d0a82517b/skills/ix/scripts/bootstrap.sh#L103-L110"
         },
         {
           "path": "docs/api/README.md",
           "symbol": "POST /__ix/remap API documentation",
           "start_line": 478,
           "end_line": 488,
-          "commit": "1497596a03bbf916f26d34dfd18f986844175d43",
+          "commit": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
           "repository": "ix-infrastructure/Ix",
-          "url": "https://github.com/ix-infrastructure/Ix/blob/1497596a03bbf916f26d34dfd18f986844175d43/docs/api/README.md#L478-L488"
+          "url": "https://github.com/ix-infrastructure/Ix/blob/a6a47267af21a49d6942ee6e07e18d1d0a82517b/docs/api/README.md#L478-L488"
         }
       ],
       "test_refs": [
@@ -13625,7 +13625,7 @@ window.IX_DATA = {
         "ix-infrastructure/Ix#393"
       ],
       "commit_refs": [
-        "1497596a03bbf916f26d34dfd18f986844175d43"
+        "a6a47267af21a49d6942ee6e07e18d1d0a82517b"
       ],
       "file_refs": [
         {
@@ -13633,63 +13633,63 @@ window.IX_DATA = {
           "symbol": "serverScript — /__ix/remap + loopback guards",
           "start_line": 181,
           "end_line": 347,
-          "commit": "1497596a03bbf916f26d34dfd18f986844175d43",
+          "commit": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
           "repository": "ix-infrastructure/Ix",
-          "url": "https://github.com/ix-infrastructure/Ix/blob/1497596a03bbf916f26d34dfd18f986844175d43/ix-cli/src/cli/commands/view.ts#L181-L347"
+          "url": "https://github.com/ix-infrastructure/Ix/blob/a6a47267af21a49d6942ee6e07e18d1d0a82517b/ix-cli/src/cli/commands/view.ts#L181-L347"
         },
         {
           "path": "ix-cli/src/cli/commands/view.ts",
           "symbol": "POST /__ix/remap handler block",
           "start_line": 246,
           "end_line": 324,
-          "commit": "1497596a03bbf916f26d34dfd18f986844175d43",
+          "commit": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
           "repository": "ix-infrastructure/Ix",
-          "url": "https://github.com/ix-infrastructure/Ix/blob/1497596a03bbf916f26d34dfd18f986844175d43/ix-cli/src/cli/commands/view.ts#L246-L324"
+          "url": "https://github.com/ix-infrastructure/Ix/blob/a6a47267af21a49d6942ee6e07e18d1d0a82517b/ix-cli/src/cli/commands/view.ts#L246-L324"
         },
         {
           "path": "ix-cli/src/cli/commands/view.ts",
           "symbol": "loopback bind server.listen(PORT, 127.0.0.1)",
           "start_line": 328,
           "end_line": 328,
-          "commit": "1497596a03bbf916f26d34dfd18f986844175d43",
+          "commit": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
           "repository": "ix-infrastructure/Ix",
-          "url": "https://github.com/ix-infrastructure/Ix/blob/1497596a03bbf916f26d34dfd18f986844175d43/ix-cli/src/cli/commands/view.ts#L328"
+          "url": "https://github.com/ix-infrastructure/Ix/blob/a6a47267af21a49d6942ee6e07e18d1d0a82517b/ix-cli/src/cli/commands/view.ts#L328"
         },
         {
           "path": "ix-cli/test/view-server.test.ts",
           "symbol": "remap guard-matrix tests",
           "start_line": 1,
           "end_line": 178,
-          "commit": "1497596a03bbf916f26d34dfd18f986844175d43",
+          "commit": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
           "repository": "ix-infrastructure/Ix",
-          "url": "https://github.com/ix-infrastructure/Ix/blob/1497596a03bbf916f26d34dfd18f986844175d43/ix-cli/test/view-server.test.ts#L1-L178"
+          "url": "https://github.com/ix-infrastructure/Ix/blob/a6a47267af21a49d6942ee6e07e18d1d0a82517b/ix-cli/test/view-server.test.ts#L1-L178"
         },
         {
           "path": "skills/ix/scripts/bootstrap.sh",
           "symbol": "is_windows() WSL fix",
           "start_line": 42,
           "end_line": 45,
-          "commit": "1497596a03bbf916f26d34dfd18f986844175d43",
+          "commit": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
           "repository": "ix-infrastructure/Ix",
-          "url": "https://github.com/ix-infrastructure/Ix/blob/1497596a03bbf916f26d34dfd18f986844175d43/skills/ix/scripts/bootstrap.sh#L42-L45"
+          "url": "https://github.com/ix-infrastructure/Ix/blob/a6a47267af21a49d6942ee6e07e18d1d0a82517b/skills/ix/scripts/bootstrap.sh#L42-L45"
         },
         {
           "path": "skills/ix/scripts/bootstrap.sh",
           "symbol": "curl|sh installer routing",
           "start_line": 103,
           "end_line": 110,
-          "commit": "1497596a03bbf916f26d34dfd18f986844175d43",
+          "commit": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
           "repository": "ix-infrastructure/Ix",
-          "url": "https://github.com/ix-infrastructure/Ix/blob/1497596a03bbf916f26d34dfd18f986844175d43/skills/ix/scripts/bootstrap.sh#L103-L110"
+          "url": "https://github.com/ix-infrastructure/Ix/blob/a6a47267af21a49d6942ee6e07e18d1d0a82517b/skills/ix/scripts/bootstrap.sh#L103-L110"
         },
         {
           "path": "docs/api/README.md",
           "symbol": "POST /__ix/remap API documentation",
           "start_line": 478,
           "end_line": 488,
-          "commit": "1497596a03bbf916f26d34dfd18f986844175d43",
+          "commit": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
           "repository": "ix-infrastructure/Ix",
-          "url": "https://github.com/ix-infrastructure/Ix/blob/1497596a03bbf916f26d34dfd18f986844175d43/docs/api/README.md#L478-L488"
+          "url": "https://github.com/ix-infrastructure/Ix/blob/a6a47267af21a49d6942ee6e07e18d1d0a82517b/docs/api/README.md#L478-L488"
         }
       ],
       "test_refs": [
@@ -13734,7 +13734,7 @@ window.IX_DATA = {
         "ix-infrastructure/Ix#393"
       ],
       "commit_refs": [
-        "1497596a03bbf916f26d34dfd18f986844175d43"
+        "a6a47267af21a49d6942ee6e07e18d1d0a82517b"
       ],
       "file_refs": [
         {
@@ -13742,63 +13742,63 @@ window.IX_DATA = {
           "symbol": "serverScript — /__ix/remap + loopback guards",
           "start_line": 181,
           "end_line": 347,
-          "commit": "1497596a03bbf916f26d34dfd18f986844175d43",
+          "commit": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
           "repository": "ix-infrastructure/Ix",
-          "url": "https://github.com/ix-infrastructure/Ix/blob/1497596a03bbf916f26d34dfd18f986844175d43/ix-cli/src/cli/commands/view.ts#L181-L347"
+          "url": "https://github.com/ix-infrastructure/Ix/blob/a6a47267af21a49d6942ee6e07e18d1d0a82517b/ix-cli/src/cli/commands/view.ts#L181-L347"
         },
         {
           "path": "ix-cli/src/cli/commands/view.ts",
           "symbol": "POST /__ix/remap handler block",
           "start_line": 246,
           "end_line": 324,
-          "commit": "1497596a03bbf916f26d34dfd18f986844175d43",
+          "commit": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
           "repository": "ix-infrastructure/Ix",
-          "url": "https://github.com/ix-infrastructure/Ix/blob/1497596a03bbf916f26d34dfd18f986844175d43/ix-cli/src/cli/commands/view.ts#L246-L324"
+          "url": "https://github.com/ix-infrastructure/Ix/blob/a6a47267af21a49d6942ee6e07e18d1d0a82517b/ix-cli/src/cli/commands/view.ts#L246-L324"
         },
         {
           "path": "ix-cli/src/cli/commands/view.ts",
           "symbol": "loopback bind server.listen(PORT, 127.0.0.1)",
           "start_line": 328,
           "end_line": 328,
-          "commit": "1497596a03bbf916f26d34dfd18f986844175d43",
+          "commit": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
           "repository": "ix-infrastructure/Ix",
-          "url": "https://github.com/ix-infrastructure/Ix/blob/1497596a03bbf916f26d34dfd18f986844175d43/ix-cli/src/cli/commands/view.ts#L328"
+          "url": "https://github.com/ix-infrastructure/Ix/blob/a6a47267af21a49d6942ee6e07e18d1d0a82517b/ix-cli/src/cli/commands/view.ts#L328"
         },
         {
           "path": "ix-cli/test/view-server.test.ts",
           "symbol": "remap guard-matrix tests",
           "start_line": 1,
           "end_line": 178,
-          "commit": "1497596a03bbf916f26d34dfd18f986844175d43",
+          "commit": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
           "repository": "ix-infrastructure/Ix",
-          "url": "https://github.com/ix-infrastructure/Ix/blob/1497596a03bbf916f26d34dfd18f986844175d43/ix-cli/test/view-server.test.ts#L1-L178"
+          "url": "https://github.com/ix-infrastructure/Ix/blob/a6a47267af21a49d6942ee6e07e18d1d0a82517b/ix-cli/test/view-server.test.ts#L1-L178"
         },
         {
           "path": "skills/ix/scripts/bootstrap.sh",
           "symbol": "is_windows() WSL fix",
           "start_line": 42,
           "end_line": 45,
-          "commit": "1497596a03bbf916f26d34dfd18f986844175d43",
+          "commit": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
           "repository": "ix-infrastructure/Ix",
-          "url": "https://github.com/ix-infrastructure/Ix/blob/1497596a03bbf916f26d34dfd18f986844175d43/skills/ix/scripts/bootstrap.sh#L42-L45"
+          "url": "https://github.com/ix-infrastructure/Ix/blob/a6a47267af21a49d6942ee6e07e18d1d0a82517b/skills/ix/scripts/bootstrap.sh#L42-L45"
         },
         {
           "path": "skills/ix/scripts/bootstrap.sh",
           "symbol": "curl|sh installer routing",
           "start_line": 103,
           "end_line": 110,
-          "commit": "1497596a03bbf916f26d34dfd18f986844175d43",
+          "commit": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
           "repository": "ix-infrastructure/Ix",
-          "url": "https://github.com/ix-infrastructure/Ix/blob/1497596a03bbf916f26d34dfd18f986844175d43/skills/ix/scripts/bootstrap.sh#L103-L110"
+          "url": "https://github.com/ix-infrastructure/Ix/blob/a6a47267af21a49d6942ee6e07e18d1d0a82517b/skills/ix/scripts/bootstrap.sh#L103-L110"
         },
         {
           "path": "docs/api/README.md",
           "symbol": "POST /__ix/remap API documentation",
           "start_line": 478,
           "end_line": 488,
-          "commit": "1497596a03bbf916f26d34dfd18f986844175d43",
+          "commit": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
           "repository": "ix-infrastructure/Ix",
-          "url": "https://github.com/ix-infrastructure/Ix/blob/1497596a03bbf916f26d34dfd18f986844175d43/docs/api/README.md#L478-L488"
+          "url": "https://github.com/ix-infrastructure/Ix/blob/a6a47267af21a49d6942ee6e07e18d1d0a82517b/docs/api/README.md#L478-L488"
         }
       ],
       "test_refs": [
@@ -13843,7 +13843,7 @@ window.IX_DATA = {
         "ix-infrastructure/Ix#393"
       ],
       "commit_refs": [
-        "1497596a03bbf916f26d34dfd18f986844175d43"
+        "a6a47267af21a49d6942ee6e07e18d1d0a82517b"
       ],
       "file_refs": [
         {
@@ -13851,63 +13851,63 @@ window.IX_DATA = {
           "symbol": "serverScript — /__ix/remap + loopback guards",
           "start_line": 181,
           "end_line": 347,
-          "commit": "1497596a03bbf916f26d34dfd18f986844175d43",
+          "commit": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
           "repository": "ix-infrastructure/Ix",
-          "url": "https://github.com/ix-infrastructure/Ix/blob/1497596a03bbf916f26d34dfd18f986844175d43/ix-cli/src/cli/commands/view.ts#L181-L347"
+          "url": "https://github.com/ix-infrastructure/Ix/blob/a6a47267af21a49d6942ee6e07e18d1d0a82517b/ix-cli/src/cli/commands/view.ts#L181-L347"
         },
         {
           "path": "ix-cli/src/cli/commands/view.ts",
           "symbol": "POST /__ix/remap handler block",
           "start_line": 246,
           "end_line": 324,
-          "commit": "1497596a03bbf916f26d34dfd18f986844175d43",
+          "commit": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
           "repository": "ix-infrastructure/Ix",
-          "url": "https://github.com/ix-infrastructure/Ix/blob/1497596a03bbf916f26d34dfd18f986844175d43/ix-cli/src/cli/commands/view.ts#L246-L324"
+          "url": "https://github.com/ix-infrastructure/Ix/blob/a6a47267af21a49d6942ee6e07e18d1d0a82517b/ix-cli/src/cli/commands/view.ts#L246-L324"
         },
         {
           "path": "ix-cli/src/cli/commands/view.ts",
           "symbol": "loopback bind server.listen(PORT, 127.0.0.1)",
           "start_line": 328,
           "end_line": 328,
-          "commit": "1497596a03bbf916f26d34dfd18f986844175d43",
+          "commit": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
           "repository": "ix-infrastructure/Ix",
-          "url": "https://github.com/ix-infrastructure/Ix/blob/1497596a03bbf916f26d34dfd18f986844175d43/ix-cli/src/cli/commands/view.ts#L328"
+          "url": "https://github.com/ix-infrastructure/Ix/blob/a6a47267af21a49d6942ee6e07e18d1d0a82517b/ix-cli/src/cli/commands/view.ts#L328"
         },
         {
           "path": "ix-cli/test/view-server.test.ts",
           "symbol": "remap guard-matrix tests",
           "start_line": 1,
           "end_line": 178,
-          "commit": "1497596a03bbf916f26d34dfd18f986844175d43",
+          "commit": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
           "repository": "ix-infrastructure/Ix",
-          "url": "https://github.com/ix-infrastructure/Ix/blob/1497596a03bbf916f26d34dfd18f986844175d43/ix-cli/test/view-server.test.ts#L1-L178"
+          "url": "https://github.com/ix-infrastructure/Ix/blob/a6a47267af21a49d6942ee6e07e18d1d0a82517b/ix-cli/test/view-server.test.ts#L1-L178"
         },
         {
           "path": "skills/ix/scripts/bootstrap.sh",
           "symbol": "is_windows() WSL fix",
           "start_line": 42,
           "end_line": 45,
-          "commit": "1497596a03bbf916f26d34dfd18f986844175d43",
+          "commit": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
           "repository": "ix-infrastructure/Ix",
-          "url": "https://github.com/ix-infrastructure/Ix/blob/1497596a03bbf916f26d34dfd18f986844175d43/skills/ix/scripts/bootstrap.sh#L42-L45"
+          "url": "https://github.com/ix-infrastructure/Ix/blob/a6a47267af21a49d6942ee6e07e18d1d0a82517b/skills/ix/scripts/bootstrap.sh#L42-L45"
         },
         {
           "path": "skills/ix/scripts/bootstrap.sh",
           "symbol": "curl|sh installer routing",
           "start_line": 103,
           "end_line": 110,
-          "commit": "1497596a03bbf916f26d34dfd18f986844175d43",
+          "commit": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
           "repository": "ix-infrastructure/Ix",
-          "url": "https://github.com/ix-infrastructure/Ix/blob/1497596a03bbf916f26d34dfd18f986844175d43/skills/ix/scripts/bootstrap.sh#L103-L110"
+          "url": "https://github.com/ix-infrastructure/Ix/blob/a6a47267af21a49d6942ee6e07e18d1d0a82517b/skills/ix/scripts/bootstrap.sh#L103-L110"
         },
         {
           "path": "docs/api/README.md",
           "symbol": "POST /__ix/remap API documentation",
           "start_line": 478,
           "end_line": 488,
-          "commit": "1497596a03bbf916f26d34dfd18f986844175d43",
+          "commit": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
           "repository": "ix-infrastructure/Ix",
-          "url": "https://github.com/ix-infrastructure/Ix/blob/1497596a03bbf916f26d34dfd18f986844175d43/docs/api/README.md#L478-L488"
+          "url": "https://github.com/ix-infrastructure/Ix/blob/a6a47267af21a49d6942ee6e07e18d1d0a82517b/docs/api/README.md#L478-L488"
         }
       ],
       "test_refs": [
@@ -14216,7 +14216,7 @@ window.IX_DATA = {
     }
   ],
   "sectionMeta": {
-    "captured_at": "2026-08-11",
+    "captured_at": "2026-08-11T19:10:00Z",
     "source": "read-only GitHub API via gh api",
     "commit_messages": {
       "36c7c7eccd8068d48df4f61394b42a3ffa62483c": "feat(mcp): add ix mcp subcommand exposing the code graph as MCP tools (#219)",
@@ -14224,7 +14224,7 @@ window.IX_DATA = {
       "66111917a2a58437c91372616f98928876121395": "fix(mcp): abort in-flight calls on EOF, add ix_read tool, executor timeout coverage",
       "1a5b0b93c9e8871610370c0f36212be8f6cf6980": "fix(mcp): harden the stdio server — line-size cap, tree-kill, protocol-abuse matrix (#219)",
       "606f18f7ca1a69f4b8ede7c27c1079b024297856": "docs(mcp): document the hardening contract — line cap, batch rejection, tree reaping",
-      "1497596a03bbf916f26d34dfd18f986844175d43": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap"
+      "a6a47267af21a49d6942ee6e07e18d1d0a82517b": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap"
     }
   },
   "sysCompass": {

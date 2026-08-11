@@ -1,5 +1,6 @@
 {
-  "captured_at": "2026-08-11",
+  "captured_at": "2026-08-11T19:10:00Z",
+  "capture_note": "Refreshed after commit-message cleanup: PR #393 head 1497596a -> a6a4726 (footer stripped). No other state changed.",
   "source": "read-only GitHub API via gh api",
   "upstream": {
     "repository": "ix-infrastructure/Ix",
@@ -61,7 +62,7 @@
       "user": "Alot1z",
       "url": "https://github.com/ix-infrastructure/Ix/pull/393",
       "head_ref": "feat/ix-remap-hardening",
-      "head_sha": "1497596a03bbf916f26d34dfd18f986844175d43",
+      "head_sha": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
       "head_repo": "Alot1z/Ix"
     },
     {
@@ -262,9 +263,9 @@
         "ix-infrastructure/Ix#393"
       ],
       "commit_refs": [
-        "1497596a03bbf916f26d34dfd18f986844175d43"
+        "a6a47267af21a49d6942ee6e07e18d1d0a82517b"
       ],
-      "head_sha": "1497596a03bbf916f26d34dfd18f986844175d43",
+      "head_sha": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
       "finding_refs": [
         "F-010",
         "F-011",
@@ -294,49 +295,49 @@
           "symbol": "serverScript — /__ix/remap + loopback guards",
           "start_line": 181,
           "end_line": 347,
-          "commit": "1497596a03bbf916f26d34dfd18f986844175d43"
+          "commit": "a6a47267af21a49d6942ee6e07e18d1d0a82517b"
         },
         {
           "path": "ix-cli/src/cli/commands/view.ts",
           "symbol": "POST /__ix/remap handler block",
           "start_line": 246,
           "end_line": 324,
-          "commit": "1497596a03bbf916f26d34dfd18f986844175d43"
+          "commit": "a6a47267af21a49d6942ee6e07e18d1d0a82517b"
         },
         {
           "path": "ix-cli/src/cli/commands/view.ts",
           "symbol": "loopback bind server.listen(PORT, 127.0.0.1)",
           "start_line": 328,
           "end_line": 328,
-          "commit": "1497596a03bbf916f26d34dfd18f986844175d43"
+          "commit": "a6a47267af21a49d6942ee6e07e18d1d0a82517b"
         },
         {
           "path": "ix-cli/test/view-server.test.ts",
           "symbol": "remap guard-matrix tests",
           "start_line": 1,
           "end_line": 178,
-          "commit": "1497596a03bbf916f26d34dfd18f986844175d43"
+          "commit": "a6a47267af21a49d6942ee6e07e18d1d0a82517b"
         },
         {
           "path": "skills/ix/scripts/bootstrap.sh",
           "symbol": "is_windows() WSL fix",
           "start_line": 42,
           "end_line": 45,
-          "commit": "1497596a03bbf916f26d34dfd18f986844175d43"
+          "commit": "a6a47267af21a49d6942ee6e07e18d1d0a82517b"
         },
         {
           "path": "skills/ix/scripts/bootstrap.sh",
           "symbol": "curl|sh installer routing",
           "start_line": 103,
           "end_line": 110,
-          "commit": "1497596a03bbf916f26d34dfd18f986844175d43"
+          "commit": "a6a47267af21a49d6942ee6e07e18d1d0a82517b"
         },
         {
           "path": "docs/api/README.md",
           "symbol": "POST /__ix/remap API documentation",
           "start_line": 478,
           "end_line": 488,
-          "commit": "1497596a03bbf916f26d34dfd18f986844175d43"
+          "commit": "a6a47267af21a49d6942ee6e07e18d1d0a82517b"
         }
       ],
       "tests": [

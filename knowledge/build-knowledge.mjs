@@ -199,7 +199,7 @@ const commitMessages = {
   "66111917a2a58437c91372616f98928876121395": "fix(mcp): abort in-flight calls on EOF, add ix_read tool, executor timeout coverage",
   "1a5b0b93c9e8871610370c0f36212be8f6cf6980": "fix(mcp): harden the stdio server — line-size cap, tree-kill, protocol-abuse matrix (#219)",
   "606f18f7ca1a69f4b8ede7c27c1079b024297856": "docs(mcp): document the hardening contract — line cap, batch rejection, tree reaping",
-  "1497596a03bbf916f26d34dfd18f986844175d43": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap"
+  "a6a47267af21a49d6942ee6e07e18d1d0a82517b": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap"
 };
 for (const impl of liveGitHub.implementations || []) {
   const implId = `IMPL-${safe(impl.id).replaceAll(/[^A-Za-z0-9_-]/g, "-")}`;
