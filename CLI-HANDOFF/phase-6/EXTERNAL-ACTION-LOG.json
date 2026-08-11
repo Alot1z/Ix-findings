@@ -1,0 +1,68 @@
+{
+  "phase": "6",
+  "generated": "2026-08-11",
+  "summary": "Three authorized external mutations executed and API/HTTP-verified. No unauthorized external actions.",
+  "actions": [
+    {
+      "action": "Fork branch push (Gate A)",
+      "repository": "Alot1z/Ix",
+      "branch": "feat/ix-remap-hardening",
+      "operation": "force-with-lease update",
+      "old_sha": "c021b52",
+      "new_sha": "1497596",
+      "authorization": "Gate A (user 2026-08-11)",
+      "verified": "GitHub API: branch HEAD = 1497596; message matches; force-with-lease only after remote HEAD == c021b52 confirmed",
+      "reversible": "yes — force-with-lease back to c021b52 or backup refs; not rolled back"
+    },
+    {
+      "action": "PR created (Gate B)",
+      "repository": "ix-infrastructure/Ix",
+      "pr": 393,
+      "url": "https://github.com/ix-infrastructure/Ix/pull/393",
+      "authorization": "Gate B (user 2026-08-11)",
+      "verified": "GitHub API: PR 393 open, head 1497596, base main, 4 files +251/-10, exactly one PR for head",
+      "reversible": "yes — close PR (not performed); merge requires separate authorization"
+    },
+    {
+      "action": "GitHub Pages enabled (Gate D)",
+      "repository": "Alot1z/Ix-findings",
+      "operation": "POST /pages with build_type=workflow; deploy workflow runs",
+      "url": "https://alot1z.github.io/Ix-findings/",
+      "authorization": "Gate D (user 2026-08-11)",
+      "verified": "workflow runs success (31446466304, 31446667797, +final); HTTP 200 on all assets; browser smoke clean",
+      "reversible": "yes — disable Pages / delete workflow file; site regenerable",
+      "visibility_changed": false
+    },
+    {
+      "action": "Ix-findings ledger push",
+      "repository": "Alot1z/Ix-findings",
+      "branch": "master",
+      "commits": ["8285409", "d6443e4", "5d34d2a"],
+      "authorization": "phase ledger (consistent with Phases 3-5)",
+      "verified": "remote HEAD matches local"
+    }
+  ],
+  "rejected_attempts": [
+    {
+      "action": "raw git push of workflow-bearing commit",
+      "result": "rejected by workflow-scope guard (credential-manager token lacks workflow scope); NO mutation; retried via workflow-scoped token",
+      "classification": "NO_MUTATION — failure-handling evidence"
+    }
+  ],
+  "zero_actions": {
+    "issues_created": 0,
+    "reviews": 0,
+    "comments": 0,
+    "maintainer_contacts": 0,
+    "repos_created": 0,
+    "merges": 0,
+    "upstream_mutations": 0,
+    "releases": 0,
+    "visibility_changes": 0,
+    "unconditional_force_pushes": 0,
+    "reopened_historical_prs": 0
+  },
+  "gate_c_external_actions": 0,
+  "gate_e_external_actions": 0,
+  "gate_f_external_actions": 0
+}

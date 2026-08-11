@@ -1,0 +1,41 @@
+{
+  "phase": "6",
+  "gate": "D — GITHUB PAGES DEPLOYMENT",
+  "generated": "2026-08-11",
+  "status": "EXECUTED — DEPLOYED and VERIFIED",
+  "authorization": "User ask_user response 2026-08-11 (Gate D). Target repo: Alot1z/Ix-findings (public, default branch master; the knowledge-ledger repo where the pipeline lives).",
+  "pre_deploy_validation": {
+    "build_data": "planning/wiki/build-data.mjs -> data.js (165 nodes, 13 findings, evidence 28)",
+    "build_public": "planning/pages/build-public.mjs -> planning/pages/public/ (graph 162/133 sanitized, evidence 28)",
+    "validate_public": "16/16 checks PASS",
+    "public_data_audit": "CLEAN — 0 secrets, 0 local drive paths, 0 private URLs; 3 inert refs classified (wiki.js security-model docs + sysCompass public status marker)",
+    "repo_visibility_check": "Alot1z/Ix-findings is PUBLIC (verified); Pages not previously enabled (404 before)",
+    "artifact_hashes": { "index.html": "3732480914b2b871", "data/data.js": "1be4dba451a6476b" }
+  },
+  "deployment": {
+    "workflow_file": ".github/workflows/pages.yml (activated from planning/pages/workflow/pages.yml.template; header cleaned; validation gate retained)",
+    "push_1": { "sha": "8285409", "note": "workflow + Phase 6 baseline/auth records" },
+    "push_2": { "sha": "d6443e4", "note": "ledger 4.2.0 + regenerated data" },
+    "push_3": { "sha": "5d34d2a", "note": "contribution-state projection fix" },
+    "pages_enable": { "endpoint": "POST repos/Alot1z/Ix-findings/pages", "build_type": "workflow", "public": true, "html_url": "https://alot1z.github.io/Ix-findings/" },
+    "run_1": { "id": 31446466304, "head_sha": "8285409", "conclusion": "success" },
+    "run_2": { "id": 31446667797, "head_sha": "d6443e4", "conclusion": "success" },
+    "run_3": { "id": 31446801837, "head_sha": "5d34d2a", "conclusion": "success", "note": "final re-deploy with contribution states" }
+  },
+  "verification": {
+    "http": { "index": 200, "data.js": 200, "wiki.js": 200, "wiki.css": 200 },
+    "deployed_data": { "evidence": 28, "findings": 13, "graph": "162/133", "pullRequests": "20 (contains #393)", "note": "contribution states now exposed after projection fix" },
+    "relative_refs": "assets/wiki.css, data/data.js, assets/wiki.js (correct for /Ix-findings/ base path)",
+    "browser": { "tool": "browser-use (Chrome DevTools)", "top_bar": "IX / COMPASS renders", "sidebar": "visible with nav items", "findings_table": "F-001..F-013 renders", "console_errors": "1 benign favicon.ico 404 (favicon not referenced in index; not a data/path/secret issue)" },
+    "no_forbidden_data": "no local paths, no secrets, no private URLs in deployed projection (validator + audit re-run on final state)"
+  },
+  "rollback": {
+    "procedure": "Disable Pages in repo settings or delete .github/workflows/pages.yml and push; the site is fully regenerable from the committed pipeline (planning/pages/build-public.mjs + validate-public.mjs). Prior deployment SHA can be restored by re-pushing the earlier commit.",
+    "visibility": "repo remains public (was already public; no visibility change made)"
+  },
+  "notes": [
+    "GitHub Pages enabled for the first time on Alot1z/Ix-findings (no Pages site existed on any repo before).",
+    "Raw git push of the workflow file was rejected by the credential-manager token lacking workflow scope (recorded as failure-handling evidence); pushed via the workflow-scoped token from the authorized credentials file.",
+    "Deployed artifact is the sanitized public projection ONLY — internal ledger, packets with internal notes, and local paths are never deployed."
+  ]
+}

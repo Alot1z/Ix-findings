@@ -1,0 +1,34 @@
+{
+  "phase": "6",
+  "generated": "2026-08-11",
+  "status": "INTEGRITY VERIFIED",
+  "protected_worktrees": {
+    "Ix": { "before": { "head": "b038c46", "branch": "feat/ix-agent-skill", "dirty": 14 }, "after": { "head": "b038c46", "branch": "feat/ix-agent-skill", "dirty": 14 }, "status": "UNCHANGED" },
+    "ix-compass-dist": { "before": { "head": "396426b", "branch": "main", "dirty": 3 }, "after": { "head": "396426b", "branch": "main", "dirty": 3 }, "status": "UNCHANGED" },
+    "freebuff-forge": { "before": { "head": "441cec670", "dirty": 0 }, "after": { "head": "441cec670", "dirty": 0 }, "status": "UNCHANGED" },
+    "Ix-test": { "before": { "head": "c4f8fea", "dirty": 0 }, "after": { "head": "c4f8fea", "dirty": 0 }, "status": "UNCHANGED (restored baseline)" }
+  },
+  "intended_changes": {
+    "Ix-remap": { "before": { "head": "a05e740", "dirty": 0 }, "after": { "head": "1497596", "dirty": 0 }, "note": "AUTHORIZED base refresh + fork push (Gate A)" },
+    "Ix-findings": { "before": { "head": "c9179eb", "dirty": 0 }, "after": { "head": "5d34d2a", "dirty": 0 }, "note": "ledger commits + Pages workflow + regenerated data (phase record)" }
+  },
+  "json_validation": {
+    "phase_6_jsons": "PHASE-6-AUTHORIZATION-STATE, PHASE-6-LIVE-BASELINE, REMAP-EXECUTION-RESULT, REMAP-PR-RESULT, PACK-371-EXECUTION-RESULT, PAGES-DEPLOYMENT-RESULT, EXTERNAL-ACTION-LOG, KNOWLEDGE-RECONCILIATION, POST-MUTATION-INTEGRITY",
+    "manifest": "valid (4.2.0)",
+    "contribution_readiness": "valid",
+    "graph_registry": "165/141/0 dangling; evidence 28"
+  },
+  "github_reverification": {
+    "fork_remap_branch": "1497596 (API)",
+    "pr_393": "open, head 1497596, 4 files +251/-10 (API)",
+    "fork_main": "5488741 (API; 3 behind upstream ffe21f0)",
+    "upstream_main": "ffe21f0 (API)",
+    "pages": "live at https://alot1z.github.io/Ix-findings/ (HTTP 200, workflow runs success)"
+  },
+  "zero_unintended_mutations": true,
+  "notes": [
+    "The only local worktree changes are the authorized remap base refresh and the Ix-findings ledger/deployment commits.",
+    "No protected worktree was modified.",
+    "No upstream repository mutation; upstream read-only throughout."
+  ]
+}

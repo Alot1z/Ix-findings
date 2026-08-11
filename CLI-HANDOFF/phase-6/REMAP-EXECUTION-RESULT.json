@@ -1,0 +1,41 @@
+{
+  "phase": "6",
+  "gate": "A — REMAP FORK PUSH",
+  "generated": "2026-08-11",
+  "status": "EXECUTED — VERIFIED",
+  "authorization": "User ask_user response 2026-08-11 (Gate A + base refresh onto ffe21f0 approved)",
+  "worktree": "E:/E-github-repos/Ix-remap",
+  "branch": "feat/ix-remap-hardening",
+  "base_refresh": {
+    "pre_sha": "a05e740",
+    "new_base": "ffe21f0 (origin/main; 3 commits past 5488741: #375, #378, #389 merged)",
+    "command": "git rebase origin/main",
+    "result": "clean — 1 commit replayed, 0 conflicts",
+    "post_sha": "1497596",
+    "patch_identity": "identical patch-id 310dd4ab (a05e740 == 1497596)",
+    "patch": { "files": 4, "insertions": 251, "deletions": 10, "files_list": ["docs/api/README.md", "ix-cli/src/cli/commands/view.ts", "ix-cli/test/view-server.test.ts", "skills/ix/scripts/bootstrap.sh"] },
+    "merge_tree_vs_ffe21f0": { "exit": 0, "tree": "de64717516aa91caa8fc3fe5fc4c8f192d6a8541", "conflicts": 0, "note": "upstream security PR #389 touches view.ts but in disjoint hunks (upstream 51/108/328 vs remap 142/206/235)" },
+    "tests": { "command": "cd ix-cli && node scripts/build-core-ingestion.mjs && npx vitest run", "result": "PASS", "test_files": "54 passed | 1 skipped (55)", "tests": "730 passed | 2 skipped (732)", "note": "includes 10 guard tests + upstream new tests from merged #375/#378/#389" },
+    "backup_refs_created": ["feat/ix-remap-hardening-backup-c021b52 (Phase 5)", "feat/ix-remap-hardening-backup-a05e740 (Phase 6)"]
+  },
+  "push": {
+    "pre_remote_head": "c021b52 (API-verified before push)",
+    "post_remote_head": "1497596 (API-verified after push)",
+    "command": "git push --force-with-lease fork feat/ix-remap-hardening",
+    "result": "forced update c021b52...1497596, exit 0",
+    "method": "force-with-lease (authorized); remote HEAD verified == expected c021b52 before push",
+    "unconditional_force": false
+  },
+  "post_push_verification": {
+    "api_branch_sha": "1497596",
+    "api_branch_message": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap",
+    "fork_main_untouched": true,
+    "fork_main_sha": "5488741",
+    "unrelated_branches_touched": 0
+  },
+  "notes": [
+    "The rebased branch is now on the fork at the current upstream base ffe21f0.",
+    "PR #393 opened separately (Gate B).",
+    "No upstream mutation; upstream read-only."
+  ]
+}

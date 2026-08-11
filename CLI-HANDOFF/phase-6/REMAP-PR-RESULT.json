@@ -1,0 +1,43 @@
+{
+  "phase": "6",
+  "gate": "B — REMAP PR CREATION",
+  "generated": "2026-08-11",
+  "status": "EXECUTED — PR #393 OPENED and VERIFIED",
+  "authorization": "User ask_user response 2026-08-11 (Gate B — overrides the earlier no-PR instruction for this single PR)",
+  "pre_checks": {
+    "existing_pr_for_head": "none ([] returned for head feat/ix-remap-hardening before creation)",
+    "equivalent_merged_pr": "none",
+    "overlapping_open_prs": "none — PRs #390/#391/#392 cover patches/upgrade only; no file overlap with remap's 4 files",
+    "patch_valid_against_base": "merge-tree vs ffe21f0 exit 0 tree de647175",
+    "target_branch": "main",
+    "source_branch": "Alot1z:feat/ix-remap-hardening @ 1497596"
+  },
+  "pr": {
+    "number": 393,
+    "url": "https://github.com/ix-infrastructure/Ix/pull/393",
+    "title": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap",
+    "state": "open",
+    "author": "Alot1z",
+    "head": "feat/ix-remap-hardening",
+    "head_sha": "1497596",
+    "base": "main",
+    "changed_files": 4,
+    "additions": 251,
+    "deletions": 10,
+    "created": "2026-08-11T00:31:52Z",
+    "mergeable_state": "blocked (pending CI checks)",
+    "body_source": "packet pr-packets/ix-remap-hardening/README.md (Phase 6 update) via CLI-HANDOFF/phase-6/.tmp-remap-pr-body.md"
+  },
+  "post_creation_verification": {
+    "api_pr_number": 393,
+    "api_head_sha": "1497596",
+    "api_files": ["docs/api/README.md", "ix-cli/src/cli/commands/view.ts", "ix-cli/test/view-server.test.ts", "skills/ix/scripts/bootstrap.sh"],
+    "exactly_one_pr_for_head": true,
+    "duplicate_prs": 0
+  },
+  "not_performed": ["merge", "review", "comment", "request maintainer action", "reopen of historical PRs"],
+  "notes": [
+    "Exactly one PR created for this contribution, as authorized.",
+    "PR is open; merge decision is upstream's. No further local action required for this gate."
+  ]
+}

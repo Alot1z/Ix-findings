@@ -1,0 +1,50 @@
+{
+  "phase": "6",
+  "generated": "2026-08-11",
+  "status": "RECONCILED — ledger updated with all verified Phase 6 facts",
+  "graph": {
+    "nodes": 165,
+    "edges": 141,
+    "dangling": 0,
+    "note": "unchanged — no new graph entities added (PR #393 recorded in manifest/pullRequests data, not as a graph node; see graph section of manifest graph spec)",
+    "verified_via": "node -e graph consistency check (planning/maps/investigation-map.json)"
+  },
+  "evidence": { "count": 28, "note": "unchanged — registry == graph == 28" },
+  "manifest": {
+    "version": "4.1.0 -> 4.2.0",
+    "updated_fields": [
+      "upstream head 5488741 -> ffe21f0 (3 commits: #375/#378/#389 merged)",
+      "fork main note: now 3 behind upstream",
+      "remap branch: a05e740 -> 1497596 (pushed; PR #393)",
+      "pull_requests: added #389 (MERGED), #390/#391/#392/#393 (OPEN); #375/#378 -> MERGED",
+      "issues: #377 -> CLOSED",
+      "test_results: 730/732 on 1497596 (base ffe21f0)",
+      "worktrees.remap: 1497596, backup refs updated",
+      "new phase_6 block (authorization, remap_push, remap_pr, pack_371, contrib_376, pages_deployment, new_discoveries)",
+      "execution_constraints: NO_remote_push/NO_pr_create -> false (authorized)",
+      "external_actions_performed: pr_created YES #393; remote_push YES; pages_deployed YES"
+    ]
+  },
+  "pr_mappings": {
+    "393": { "contribution": "CONTRIB-remap", "findings": ["F-010", "F-011", "F-012"], "state": "OPEN", "note": "ours" },
+    "390": { "contribution": "PACK-371 / CONTRIB-371", "finding": "F-009", "state": "OPEN", "note": "supersedes PACK-371" },
+    "391": { "contribution": "CONTRIB-376", "finding": "F-008", "state": "OPEN", "note": "supersedes CONTRIB-376; issue #376 cross-referenced" },
+    "389": { "finding": null, "state": "MERGED (ffe21f0)", "note": "view security fix; disjoint from remap view.ts hunks" }
+  },
+  "deployment_mapping": {
+    "pages": { "repo": "Alot1z/Ix-findings", "url": "https://alot1z.github.io/Ix-findings/", "first_deployment": true, "state": "LIVE" }
+  },
+  "packet_updates": [
+    "pr-packets/ix-remap-hardening/README.md: Phase 6 execution record (push + PR #393)",
+    "pr-packets/ix-371-patches-dead-code/README.md: SUPERSEDED annotation (PR #390)",
+    "CLI-HANDOFF/phase-3/CONTRIBUTION-READINESS.json: CONTRIB-remap -> SUBMITTED (PR #393); CONTRIB-371 remains as-is with supersession noted"
+  ],
+  "regenerated_artifacts": [
+    "planning/wiki/data/data.js (165 nodes, 13 findings, evidence 28)",
+    "planning/wiki/index-standalone.html (reproducible generator)",
+    "planning/pages/public/ (sanitized projection; contribution states now exposed)",
+    "planning/pages/build-public.mjs (field-name normalization fix)"
+  ],
+  "stale_claims_preserved": true,
+  "historical_records_preserved": true
+}
