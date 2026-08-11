@@ -10,7 +10,7 @@ window.IX_DATA = {
       "repositories": 5,
       "branches": 8,
       "worktrees": 0,
-      "commits": 22,
+      "commits": 21,
       "releases": 0,
       "files": 345,
       "symbols": 0,
@@ -23,7 +23,7 @@ window.IX_DATA = {
       "prs": 21,
       "issues": 10,
       "contributions": 30,
-      "graphNodes": 570,
+      "graphNodes": 569,
       "graphEdges": 1007,
       "staleClaims": 0
     },
@@ -4293,7 +4293,7 @@ window.IX_DATA = {
         "id": "BRANCH-7888482e155d",
         "type": "branch",
         "title": "ix-infrastructure/Ix:feat/ix-agent-skill",
-        "status": "IN_PROGRESS"
+        "status": "CURRENT"
       },
       {
         "id": "BRANCH-bb1d25e4c9d1",
@@ -4353,7 +4353,7 @@ window.IX_DATA = {
         "id": "COMMIT-c4f8fea",
         "type": "commit",
         "title": "c4f8fea",
-        "status": "CURRENT"
+        "status": "HISTORICAL"
       },
       {
         "id": "COMMIT-c021b52",
@@ -4365,7 +4365,7 @@ window.IX_DATA = {
         "id": "COMMIT-b038c46",
         "type": "commit",
         "title": "b038c46",
-        "status": "CURRENT"
+        "status": "HISTORICAL"
       },
       {
         "id": "COMMIT-0437abf",
@@ -4377,7 +4377,7 @@ window.IX_DATA = {
         "id": "COMMIT-0c9087c",
         "type": "commit",
         "title": "0c9087c",
-        "status": "CURRENT"
+        "status": "HISTORICAL"
       },
       {
         "id": "COMMIT-396426b",
@@ -4389,13 +4389,13 @@ window.IX_DATA = {
         "id": "COMMIT-dcc0962",
         "type": "commit",
         "title": "dcc0962",
-        "status": "HISTORICAL"
+        "status": "CURRENT"
       },
       {
         "id": "COMMIT-2157158",
         "type": "commit",
         "title": "2157158",
-        "status": "HISTORICAL"
+        "status": "CURRENT"
       },
       {
         "id": "PR-358",
@@ -4641,9 +4641,9 @@ window.IX_DATA = {
         "url": "https://github.com/ix-infrastructure/Ix/pull/395"
       },
       {
-        "id": "COMMIT-d676a9484a961337a43ce2e6a63e12adfed902b0",
+        "id": "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
         "type": "commit",
-        "title": "d676a9484a961337a43ce2e6a63e12adfed902b0",
+        "title": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
         "status": "CURRENT"
       },
       {
@@ -4680,12 +4680,6 @@ window.IX_DATA = {
         "id": "COMMIT-606f18f7ca1a69f4b8ede7c27c1079b024297856",
         "type": "commit",
         "title": "606f18f7ca1a69f4b8ede7c27c1079b024297856",
-        "status": "CURRENT"
-      },
-      {
-        "id": "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
-        "type": "commit",
-        "title": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
         "status": "CURRENT"
       },
       {
@@ -5471,7 +5465,7 @@ window.IX_DATA = {
         "id": "phase-00",
         "type": "phase",
         "title": "Phase 0 — Initial State Audit",
-        "status": "CURRENT",
+        "status": "HISTORICAL",
         "category": "DISCOVERY",
         "repository": "ix-infrastructure/Ix",
         "number": 0
@@ -5480,7 +5474,7 @@ window.IX_DATA = {
         "id": "phase-01",
         "type": "phase",
         "title": "Phase 1 — Fork Synchronization",
-        "status": "CURRENT",
+        "status": "HISTORICAL",
         "category": "SYNCHRONIZATION",
         "repository": "ix-infrastructure/Ix",
         "number": 1
@@ -5489,7 +5483,7 @@ window.IX_DATA = {
         "id": "phase-02",
         "type": "phase",
         "title": "Phase 2 — Remap Finalization",
-        "status": "CURRENT",
+        "status": "HISTORICAL",
         "category": "IMPLEMENTATION",
         "repository": "ix-infrastructure/Ix",
         "number": 2
@@ -5498,7 +5492,7 @@ window.IX_DATA = {
         "id": "phase-03",
         "type": "phase",
         "title": "Phase 3 — Issue #376 Investigation",
-        "status": "CURRENT",
+        "status": "HISTORICAL",
         "category": "RESEARCH",
         "repository": "ix-infrastructure/Ix",
         "number": 3
@@ -5507,7 +5501,7 @@ window.IX_DATA = {
         "id": "phase-04",
         "type": "phase",
         "title": "Phase 4 — Full Security & Historical Audit",
-        "status": "CURRENT",
+        "status": "HISTORICAL",
         "category": "AUDIT",
         "repository": "ix-infrastructure/Ix",
         "number": 4
@@ -5516,7 +5510,7 @@ window.IX_DATA = {
         "id": "phase-05",
         "type": "phase",
         "title": "Phase 5 — Compass Historical Reconstruction",
-        "status": "CURRENT",
+        "status": "HISTORICAL",
         "category": "RESEARCH",
         "repository": "ix-infrastructure/system-compass",
         "number": 5
@@ -5534,7 +5528,7 @@ window.IX_DATA = {
         "id": "phase-07",
         "type": "phase",
         "title": "Phase 7 — Delayed-Data Deep Investigation",
-        "status": "CURRENT",
+        "status": "HISTORICAL",
         "category": "REPRODUCTION",
         "repository": "ix-infrastructure/system-compass",
         "number": 7
@@ -5543,7 +5537,7 @@ window.IX_DATA = {
         "id": "phase-08",
         "type": "phase",
         "title": "Phase 8 — Repository Architecture Audit",
-        "status": "CURRENT",
+        "status": "HISTORICAL",
         "category": "AUDIT",
         "repository": "ALL",
         "number": 8
@@ -5552,7 +5546,7 @@ window.IX_DATA = {
         "id": "phase-09",
         "type": "phase",
         "title": "Phase 9 — Ix-findings Evidence Repository",
-        "status": "CURRENT",
+        "status": "HISTORICAL",
         "category": "AUDIT",
         "repository": "Ix-findings",
         "number": 9
@@ -5561,7 +5555,7 @@ window.IX_DATA = {
         "id": "phase-10",
         "type": "phase",
         "title": "Phase 10 — GitHub History & Maintainer Context",
-        "status": "CURRENT",
+        "status": "HISTORICAL",
         "category": "GITHUB",
         "repository": "ALL",
         "number": 10
@@ -5570,7 +5564,7 @@ window.IX_DATA = {
         "id": "phase-11",
         "type": "phase",
         "title": "Phase 11 — PR Packet Generation",
-        "status": "CURRENT",
+        "status": "HISTORICAL",
         "category": "PR PREPARATION",
         "repository": "ALL",
         "number": 11
@@ -5579,7 +5573,7 @@ window.IX_DATA = {
         "id": "phase-12",
         "type": "phase",
         "title": "Phase 12 — Pre-Publish Verification Gate",
-        "status": "CURRENT",
+        "status": "HISTORICAL",
         "category": "VERIFICATION",
         "repository": "ix-infrastructure/Ix",
         "number": 12
@@ -5980,7 +5974,7 @@ window.IX_DATA = {
     "edges": [
       {
         "source": "PR-393",
-        "target": "COMMIT-d676a9484a961337a43ce2e6a63e12adfed902b0",
+        "target": "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
         "relationship": "CHANGED_BY",
         "confidence": "HIGH"
       },
@@ -12073,39 +12067,55 @@ window.IX_DATA = {
       "branch": "main",
       "repo": "ix-infrastructure/Ix",
       "sha": "1292375548fb",
-      "note": "ix-infrastructure/Ix:main at 1292375548fb.",
-      "historical_sha": "ffe21f0"
+      "historical_sha": "ffe21f0",
+      "live_head": "1292375548fb",
+      "dirty": false,
+      "historical_note": "upstream HEAD (Phase 6 live-verified; = #389 security merge)",
+      "note": "ix-infrastructure/Ix:main at 1292375548fb."
     },
     {
       "branch": "feat/ix-agent-skill",
       "repo": "ix-infrastructure/Ix",
-      "sha": "b038c46",
+      "sha": "30f28b3c7f2771a7003af83b5be618a7913d447a",
       "worktree": "Ix_primary",
-      "dirty": 14,
-      "note": "ix-infrastructure/Ix:feat/ix-agent-skill at b038c46."
+      "dirty": false,
+      "historical_sha": "b038c46",
+      "live_head": "30f28b3c7f2771a7003af83b5be618a7913d447a",
+      "historical_dirty": 14,
+      "note": "ix-infrastructure/Ix:feat/ix-agent-skill at 30f28b3c7f2771a7003af83b5be618a7913d447a."
     },
     {
       "branch": "feat/ix-remap-hardening",
       "repo": "ix-infrastructure/Ix",
-      "sha": "d676a9484a961337a43ce2e6a63e12adfed902b0",
+      "sha": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
       "worktree": "Ix_remap",
       "ahead": 1,
-      "note": "ix-infrastructure/Ix:feat/ix-remap-hardening at d676a9484a961337a43ce2e6a63e12adfed902b0.",
       "historical_sha": "1497596",
-      "live_head": "d676a9484a961337a43ce2e6a63e12adfed902b0"
+      "live_head": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+      "dirty": false,
+      "historical_note": "Phase 6 base-refresh onto ffe21f0 + fork force-updated c021b52->1497596; PR #393 OPEN. Backup refs: backup-c021b52, backup-a05e740",
+      "note": "ix-infrastructure/Ix:feat/ix-remap-hardening at a6a47267af21a49d6942ee6e07e18d1d0a82517b."
     },
     {
       "branch": "fork/main",
       "repo": "Alot1z/Ix",
-      "sha": "5488741",
+      "sha": "7e28e05e36e8f890e8f8a9a6ba7a7ff8c6ea18b8",
       "behind_upstream": 0,
-      "note": "Alot1z/Ix:fork/main at 5488741."
+      "historical_sha": "5488741",
+      "live_head": "7e28e05e36e8f890e8f8a9a6ba7a7ff8c6ea18b8",
+      "dirty": false,
+      "historical_note": "Phase 5 synced via gh repo sync",
+      "note": "Alot1z/Ix:fork/main at 7e28e05e36e8f890e8f8a9a6ba7a7ff8c6ea18b8."
     },
     {
       "branch": "fork/feat/ix-agent-skill",
       "repo": "Alot1z/Ix",
-      "sha": "0c9087c",
-      "note": "Alot1z/Ix:fork/feat/ix-agent-skill at 0c9087c."
+      "sha": "30f28b3c7f2771a7003af83b5be618a7913d447a",
+      "historical_sha": "0c9087c",
+      "live_head": "30f28b3c7f2771a7003af83b5be618a7913d447a",
+      "dirty": false,
+      "historical_note": "PR #368 head",
+      "note": "Alot1z/Ix:fork/feat/ix-agent-skill at 30f28b3c7f2771a7003af83b5be618a7913d447a."
     },
     {
       "branch": "main",
@@ -12139,9 +12149,9 @@ window.IX_DATA = {
       "repo": "ix-infrastructure/Ix",
       "branch": "feat/ix-remap-hardening (fork, pushed)",
       "msg": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap — Phase 6 rebase onto ffe21f0; PR #393",
-      "superseded_by": "d676a9484a961337a43ce2e6a63e12adfed902b0",
+      "superseded_by": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
       "superseded_at": "2026-08-11",
-      "live_head": "d676a9484a961337a43ce2e6a63e12adfed902b0"
+      "live_head": "a6a47267af21a49d6942ee6e07e18d1d0a82517b"
     },
     {
       "sha": "b25bf2e",
@@ -12161,22 +12171,28 @@ window.IX_DATA = {
       "sha": "c4f8fea",
       "repo": "ix-infrastructure/Ix",
       "branch": "fork/main + Ix-test",
-      "msg": "chore(deps-dev): bump dev-dependencies (#369)"
+      "msg": "chore(deps-dev): bump dev-dependencies (#369)",
+      "superseded_by": "7e28e05e36e8f890e8f8a9a6ba7a7ff8c6ea18b8",
+      "superseded_at": "2026-08-11",
+      "live_head": "7e28e05e36e8f890e8f8a9a6ba7a7ff8c6ea18b8"
     },
     {
       "sha": "c021b52",
       "repo": "ix-infrastructure/Ix",
       "branch": "feat/ix-remap-hardening",
       "msg": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap",
-      "superseded_by": "d676a9484a961337a43ce2e6a63e12adfed902b0",
+      "superseded_by": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
       "superseded_at": "2026-08-11",
-      "live_head": "d676a9484a961337a43ce2e6a63e12adfed902b0"
+      "live_head": "a6a47267af21a49d6942ee6e07e18d1d0a82517b"
     },
     {
       "sha": "b038c46",
       "repo": "ix-infrastructure/Ix",
       "branch": "feat/ix-agent-skill",
-      "msg": "feat(skill): ship agent skill with Compass patch"
+      "msg": "feat(skill): ship agent skill with Compass patch",
+      "superseded_by": "30f28b3c7f2771a7003af83b5be618a7913d447a",
+      "superseded_at": "2026-08-11",
+      "live_head": "30f28b3c7f2771a7003af83b5be618a7913d447a"
     },
     {
       "sha": "0437abf",
@@ -12184,13 +12200,19 @@ window.IX_DATA = {
       "branch": "fork/main",
       "msg": "fix(upgrade): pair tar binary (#366)",
       "historical": true,
-      "note": "previous fork head; superseded by c4f8fea (Phase 4 verified)"
+      "note": "previous fork head; superseded by c4f8fea (Phase 4 verified)",
+      "superseded_by": "7e28e05e36e8f890e8f8a9a6ba7a7ff8c6ea18b8",
+      "superseded_at": "2026-08-11",
+      "live_head": "7e28e05e36e8f890e8f8a9a6ba7a7ff8c6ea18b8"
     },
     {
       "sha": "0c9087c",
       "repo": "Alot1z/Ix",
       "branch": "fork/feat/ix-agent-skill",
-      "msg": "fix(skill): drop Compass monkey-patch"
+      "msg": "fix(skill): drop Compass monkey-patch",
+      "superseded_by": "30f28b3c7f2771a7003af83b5be618a7913d447a",
+      "superseded_at": "2026-08-11",
+      "live_head": "30f28b3c7f2771a7003af83b5be618a7913d447a"
     },
     {
       "sha": "396426b",
@@ -12202,27 +12224,21 @@ window.IX_DATA = {
       "sha": "dcc0962",
       "repo": "ix-infrastructure/Ix",
       "pr": "#365",
-      "msg": "Compass stamp",
-      "superseded_by": "d676a9484a961337a43ce2e6a63e12adfed902b0",
-      "superseded_at": "2026-08-11",
-      "live_head": "d676a9484a961337a43ce2e6a63e12adfed902b0"
+      "msg": "Compass stamp"
     },
     {
       "sha": "2157158",
       "repo": "ix-infrastructure/Ix",
       "pr": "#368",
-      "msg": "PR #368 merge",
-      "superseded_by": "d676a9484a961337a43ce2e6a63e12adfed902b0",
-      "superseded_at": "2026-08-11",
-      "live_head": "d676a9484a961337a43ce2e6a63e12adfed902b0"
+      "msg": "PR #368 merge"
     },
     {
       "repo": "Alot1z/Ix",
       "branch": "feat/ix-remap-hardening",
-      "sha": "d676a9484a961337a43ce2e6a63e12adfed902b0",
+      "sha": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
       "pr": 393,
       "live": true,
-      "msg": "d676a948 — current head of feat/ix-remap-hardening (Alot1z/Ix)."
+      "msg": "a6a47267 — current head of feat/ix-remap-hardening (Alot1z/Ix)."
     },
     {
       "repo": "Alot1z/Ix",
@@ -12271,14 +12287,6 @@ window.IX_DATA = {
       "implementation_id": "ix-mcp",
       "live": true,
       "msg": "606f18f7 — implementation commit for feat/ix-mcp."
-    },
-    {
-      "repo": "ix-infrastructure/Ix",
-      "branch": "feat/ix-remap-hardening",
-      "sha": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
-      "implementation_id": "remap-pr393",
-      "live": true,
-      "msg": "a6a47267 — implementation commit for feat/ix-remap-hardening."
     },
     {
       "repo": "Alot1z/Ix",
@@ -12401,8 +12409,8 @@ window.IX_DATA = {
       "number": 393,
       "url": "https://github.com/ix-infrastructure/Ix/pull/393",
       "state": "OPEN",
-      "sha": "d676a94",
-      "note": "REMAP CONTRIBUTION (ours) — head d676a94, base main, 4 files +251/-10; Phase 6 user-authorized (head refreshed 2026-08-11 after AGENTS.md cherry-pick)",
+      "sha": "a6a4726",
+      "note": "REMAP CONTRIBUTION (ours) — head a6a4726, base main, 4 files +251/-10; Phase 6 user-authorized (head refreshed 2026-08-11; AGENTS.md cherry-pick removed, head back to a6a4726)",
       "historical_manifest_state": "OPEN",
       "live_state": "OPEN"
     },
@@ -12802,7 +12810,7 @@ window.IX_DATA = {
     {
       "id": "IMPL-REMAP-PR393",
       "branch": "feat/ix-remap-hardening",
-      "sha": "d676a9484a961337a43ce2e6a63e12adfed902b0",
+      "sha": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
       "status": "PR_OPEN",
       "stateDetail": "PR_OPEN",
       "title": "Remap hardening implementation",
@@ -14552,7 +14560,7 @@ window.IX_DATA = {
     }
   ],
   "sectionMeta": {
-    "captured_at": "2026-08-11T20:05:00Z",
+    "captured_at": "2026-08-11T21:11:00Z",
     "source": "read-only GitHub API via gh api",
     "commit_messages": {
       "36c7c7eccd8068d48df4f61394b42a3ffa62483c": "feat(mcp): add ix mcp subcommand exposing the code graph as MCP tools (#219)",

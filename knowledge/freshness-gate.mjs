@@ -48,9 +48,10 @@ function canonicalState(root = ROOT) {
     baselineOpenPRs: setOf(manifest.live_baseline?.open_prs),
     baselineOpenIssues: setOf(manifest.live_baseline?.open_issues),
     // Manifest-era commit records (phase snapshot) and the live capture's PR
-    // heads, used by the superseded-commit check below.
+    // heads + fork branch heads, used by the superseded-commit check below.
     phaseManifestCommits: phaseManifest.commits || [],
     liveCapturePRs: liveCapture.open_pull_requests || [],
+    liveCaptureForkBranches: liveCapture.fork_branches || {},
     commitEntityStatus: new Map(entities.filter(entity => entity.entity_type === "COMMIT").map(entity => [entity.canonical_id, entity.status])),
   };
 }
@@ -158,7 +159,19 @@ export function compareFreshness(canonical, live, snapshotMeta = [], options = {
     const branch = c.branch || "";
     if (!branch) continue;
     const livePR = (canonical.liveCapturePRs || []).find(p => p.head_ref && (branch.includes(p.head_ref) || p.head_ref.includes(branch)));
-    const currentHead = livePR?.head_sha;
+    let currentHead = livePR?.head_sha;
+    // No open PR for the branch: fall back to the captured fork branch heads,
+    // repo-guarded so upstream main snapshots and unrelated repos never match.
+    if (!currentHead && branch !== "main") {
+      if (c.repo === "Alot1z/Ix" || c.repo === "ix-infrastructure/Ix") {
+        for (const branches of Object.values(canonical.liveCaptureForkBranches || {})) {
+          for (const [name, sha] of Object.entries(branches || {})) {
+            if (sha && (branch.includes(name) || name.includes(branch))) { currentHead = sha; break; }
+          }
+          if (currentHead) break;
+        }
+      }
+    }
     if (!currentHead || c.sha === currentHead) continue;
     const entityStatus = canonical.commitEntityStatus.get(`COMMIT-${c.sha}`);
     if (!entityStatus) continue;

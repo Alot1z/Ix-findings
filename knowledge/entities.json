@@ -509,7 +509,7 @@
     "status": "CURRENT",
     "confidence": "HIGH",
     "human_summary": "CLI-HANDOFF/manifest.json (HISTORICAL).",
-    "deep_summary": "Local source artifact CLI-HANDOFF/manifest.json; format json; 17888 bytes; content hash 0736c767f5f2.",
+    "deep_summary": "Local source artifact CLI-HANDOFF/manifest.json; format json; 17907 bytes; content hash eacc8403ff31.",
     "evidence_ids": [],
     "source_refs": [],
     "temporal": {
@@ -590,10 +590,10 @@
       "source_id": "SRC-2a5998452c1a",
       "path": "CLI-HANDOFF/manifest.json",
       "format": "json",
-      "bytes": 17888,
+      "bytes": 17907,
       "role": "HISTORICAL",
       "readable": true,
-      "sha1": "0736c767f5f2",
+      "sha1": "eacc8403ff31",
       "generated_at": "UNKNOWN"
     },
     "related_entities": [
@@ -18920,8 +18920,10 @@
       "branch": "main",
       "repo": "ix-infrastructure/Ix",
       "sha": "1292375548fb",
-      "note": "upstream HEAD (Phase 6 live-verified; = #389 security merge)",
-      "historical_sha": "ffe21f0"
+      "historical_sha": "ffe21f0",
+      "live_head": "1292375548fb",
+      "dirty": false,
+      "historical_note": "upstream HEAD (Phase 6 live-verified; = #389 security merge)"
     },
     "related_entities": [
       "REPO-ix-infrastructure-Ix",
@@ -18940,10 +18942,10 @@
     "aliases": [
       "BRANCH-7888482e155d"
     ],
-    "status": "IN_PROGRESS",
+    "status": "CURRENT",
     "confidence": "HIGH",
-    "human_summary": "ix-infrastructure/Ix:feat/ix-agent-skill at b038c46.",
-    "deep_summary": "ix-infrastructure/Ix:feat/ix-agent-skill at b038c46.",
+    "human_summary": "ix-infrastructure/Ix:feat/ix-agent-skill at 30f28b3c7f2771a7003af83b5be618a7913d447a.",
+    "deep_summary": "ix-infrastructure/Ix:feat/ix-agent-skill at 30f28b3c7f2771a7003af83b5be618a7913d447a.",
     "evidence_ids": [],
     "source_refs": [
       "SRC-2a5998452c1a",
@@ -18958,7 +18960,7 @@
       "fixed_by": "UNKNOWN"
     },
     "llm": {
-      "llm_summary": "ix-infrastructure/Ix:feat/ix-agent-skill at b038c46.",
+      "llm_summary": "ix-infrastructure/Ix:feat/ix-agent-skill at 30f28b3c7f2771a7003af83b5be618a7913d447a.",
       "llm_context": "",
       "llm_facts": [],
       "llm_uncertainties": [],
@@ -18978,9 +18980,12 @@
     "metadata": {
       "branch": "feat/ix-agent-skill",
       "repo": "ix-infrastructure/Ix",
-      "sha": "b038c46",
+      "sha": "30f28b3c7f2771a7003af83b5be618a7913d447a",
       "worktree": "Ix_primary",
-      "dirty": 14
+      "dirty": false,
+      "historical_sha": "b038c46",
+      "live_head": "30f28b3c7f2771a7003af83b5be618a7913d447a",
+      "historical_dirty": 14
     },
     "related_entities": [
       "REPO-ix-infrastructure-Ix",
@@ -18998,8 +19003,8 @@
     ],
     "status": "CURRENT",
     "confidence": "HIGH",
-    "human_summary": "ix-infrastructure/Ix:feat/ix-remap-hardening at d676a9484a961337a43ce2e6a63e12adfed902b0.",
-    "deep_summary": "ix-infrastructure/Ix:feat/ix-remap-hardening at d676a9484a961337a43ce2e6a63e12adfed902b0.",
+    "human_summary": "ix-infrastructure/Ix:feat/ix-remap-hardening at a6a47267af21a49d6942ee6e07e18d1d0a82517b.",
+    "deep_summary": "ix-infrastructure/Ix:feat/ix-remap-hardening at a6a47267af21a49d6942ee6e07e18d1d0a82517b.",
     "evidence_ids": [],
     "source_refs": [
       "SRC-2a5998452c1a",
@@ -19014,7 +19019,7 @@
       "fixed_by": "UNKNOWN"
     },
     "llm": {
-      "llm_summary": "ix-infrastructure/Ix:feat/ix-remap-hardening at d676a9484a961337a43ce2e6a63e12adfed902b0.",
+      "llm_summary": "ix-infrastructure/Ix:feat/ix-remap-hardening at a6a47267af21a49d6942ee6e07e18d1d0a82517b.",
       "llm_context": "",
       "llm_facts": [],
       "llm_uncertainties": [],
@@ -19036,12 +19041,13 @@
     "metadata": {
       "branch": "feat/ix-remap-hardening",
       "repo": "ix-infrastructure/Ix",
-      "sha": "d676a9484a961337a43ce2e6a63e12adfed902b0",
+      "sha": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
       "worktree": "Ix_remap",
       "ahead": 1,
-      "note": "Phase 6 base-refresh onto ffe21f0 + fork force-updated c021b52->1497596; PR #393 OPEN. Backup refs: backup-c021b52, backup-a05e740",
       "historical_sha": "1497596",
-      "live_head": "d676a9484a961337a43ce2e6a63e12adfed902b0"
+      "live_head": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+      "dirty": false,
+      "historical_note": "Phase 6 base-refresh onto ffe21f0 + fork force-updated c021b52->1497596; PR #393 OPEN. Backup refs: backup-c021b52, backup-a05e740"
     },
     "related_entities": [
       "REPO-ix-infrastructure-Ix",
@@ -19061,8 +19067,8 @@
     ],
     "status": "CURRENT",
     "confidence": "HIGH",
-    "human_summary": "Alot1z/Ix:fork/main at 5488741.",
-    "deep_summary": "Alot1z/Ix:fork/main at 5488741.",
+    "human_summary": "Alot1z/Ix:fork/main at 7e28e05e36e8f890e8f8a9a6ba7a7ff8c6ea18b8.",
+    "deep_summary": "Alot1z/Ix:fork/main at 7e28e05e36e8f890e8f8a9a6ba7a7ff8c6ea18b8.",
     "evidence_ids": [],
     "source_refs": [
       "SRC-2a5998452c1a",
@@ -19077,7 +19083,7 @@
       "fixed_by": "UNKNOWN"
     },
     "llm": {
-      "llm_summary": "Alot1z/Ix:fork/main at 5488741.",
+      "llm_summary": "Alot1z/Ix:fork/main at 7e28e05e36e8f890e8f8a9a6ba7a7ff8c6ea18b8.",
       "llm_context": "",
       "llm_facts": [],
       "llm_uncertainties": [],
@@ -19097,9 +19103,12 @@
     "metadata": {
       "branch": "fork/main",
       "repo": "Alot1z/Ix",
-      "sha": "5488741",
+      "sha": "7e28e05e36e8f890e8f8a9a6ba7a7ff8c6ea18b8",
       "behind_upstream": 0,
-      "note": "Phase 5 synced via gh repo sync"
+      "historical_sha": "5488741",
+      "live_head": "7e28e05e36e8f890e8f8a9a6ba7a7ff8c6ea18b8",
+      "dirty": false,
+      "historical_note": "Phase 5 synced via gh repo sync"
     },
     "related_entities": [
       "REPO-Alot1z-Ix",
@@ -19117,8 +19126,8 @@
     ],
     "status": "CURRENT",
     "confidence": "HIGH",
-    "human_summary": "Alot1z/Ix:fork/feat/ix-agent-skill at 0c9087c.",
-    "deep_summary": "Alot1z/Ix:fork/feat/ix-agent-skill at 0c9087c.",
+    "human_summary": "Alot1z/Ix:fork/feat/ix-agent-skill at 30f28b3c7f2771a7003af83b5be618a7913d447a.",
+    "deep_summary": "Alot1z/Ix:fork/feat/ix-agent-skill at 30f28b3c7f2771a7003af83b5be618a7913d447a.",
     "evidence_ids": [],
     "source_refs": [
       "SRC-2a5998452c1a",
@@ -19133,7 +19142,7 @@
       "fixed_by": "UNKNOWN"
     },
     "llm": {
-      "llm_summary": "Alot1z/Ix:fork/feat/ix-agent-skill at 0c9087c.",
+      "llm_summary": "Alot1z/Ix:fork/feat/ix-agent-skill at 30f28b3c7f2771a7003af83b5be618a7913d447a.",
       "llm_context": "",
       "llm_facts": [],
       "llm_uncertainties": [],
@@ -19153,8 +19162,11 @@
     "metadata": {
       "branch": "fork/feat/ix-agent-skill",
       "repo": "Alot1z/Ix",
-      "sha": "0c9087c",
-      "note": "PR #368 head"
+      "sha": "30f28b3c7f2771a7003af83b5be618a7913d447a",
+      "historical_sha": "0c9087c",
+      "live_head": "30f28b3c7f2771a7003af83b5be618a7913d447a",
+      "dirty": false,
+      "historical_note": "PR #368 head"
     },
     "related_entities": [
       "REPO-Alot1z-Ix",
@@ -19327,8 +19339,8 @@
     ],
     "status": "HISTORICAL",
     "confidence": "HIGH",
-    "human_summary": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap — Phase 6 rebase onto ffe21f0; PR #393 Superseded: feat/ix-remap-hardening (fork, pushed) head is now d676a948.",
-    "deep_summary": "ix-infrastructure/Ix feat/ix-remap-hardening (fork, pushed) — feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap — Phase 6 rebase onto ffe21f0; PR #393. The live capture records a newer head (d676a948) for this branch; the manifest-era commit is retained as provenance.",
+    "human_summary": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap — Phase 6 rebase onto ffe21f0; PR #393 Superseded: feat/ix-remap-hardening (fork, pushed) head is now a6a47267.",
+    "deep_summary": "ix-infrastructure/Ix feat/ix-remap-hardening (fork, pushed) — feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap — Phase 6 rebase onto ffe21f0; PR #393. The live capture records a newer head (a6a47267) for this branch; the manifest-era commit is retained as provenance.",
     "evidence_ids": [],
     "source_refs": [
       "SRC-2a5998452c1a"
@@ -19362,9 +19374,9 @@
       "repo": "ix-infrastructure/Ix",
       "branch": "feat/ix-remap-hardening (fork, pushed)",
       "msg": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap — Phase 6 rebase onto ffe21f0; PR #393",
-      "superseded_by": "d676a9484a961337a43ce2e6a63e12adfed902b0",
+      "superseded_by": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
       "superseded_at": "2026-08-11",
-      "live_head": "d676a9484a961337a43ce2e6a63e12adfed902b0"
+      "live_head": "a6a47267af21a49d6942ee6e07e18d1d0a82517b"
     },
     "related_entities": [
       "SRC-2a5998452c1a",
@@ -19480,10 +19492,10 @@
     "aliases": [
       "COMMIT-c4f8fea"
     ],
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "confidence": "HIGH",
-    "human_summary": "chore(deps-dev): bump dev-dependencies (#369)",
-    "deep_summary": "ix-infrastructure/Ix fork/main + Ix-test — chore(deps-dev): bump dev-dependencies (#369).",
+    "human_summary": "chore(deps-dev): bump dev-dependencies (#369) Superseded: fork/main + Ix-test head is now 7e28e05e.",
+    "deep_summary": "ix-infrastructure/Ix fork/main + Ix-test — chore(deps-dev): bump dev-dependencies (#369). The live capture records a newer head (7e28e05e) for this branch; the manifest-era commit is retained as provenance.",
     "evidence_ids": [],
     "source_refs": [
       "SRC-2a5998452c1a"
@@ -19515,7 +19527,10 @@
       "sha": "c4f8fea",
       "repo": "ix-infrastructure/Ix",
       "branch": "fork/main + Ix-test",
-      "msg": "chore(deps-dev): bump dev-dependencies (#369)"
+      "msg": "chore(deps-dev): bump dev-dependencies (#369)",
+      "superseded_by": "7e28e05e36e8f890e8f8a9a6ba7a7ff8c6ea18b8",
+      "superseded_at": "2026-08-11",
+      "live_head": "7e28e05e36e8f890e8f8a9a6ba7a7ff8c6ea18b8"
     },
     "related_entities": [
       "SRC-2a5998452c1a"
@@ -19530,8 +19545,8 @@
     ],
     "status": "HISTORICAL",
     "confidence": "HIGH",
-    "human_summary": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap Superseded: feat/ix-remap-hardening head is now d676a948.",
-    "deep_summary": "ix-infrastructure/Ix feat/ix-remap-hardening — feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap. The live capture records a newer head (d676a948) for this branch; the manifest-era commit is retained as provenance.",
+    "human_summary": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap Superseded: feat/ix-remap-hardening head is now a6a47267.",
+    "deep_summary": "ix-infrastructure/Ix feat/ix-remap-hardening — feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap. The live capture records a newer head (a6a47267) for this branch; the manifest-era commit is retained as provenance.",
     "evidence_ids": [],
     "source_refs": [
       "SRC-2a5998452c1a"
@@ -19565,9 +19580,9 @@
       "repo": "ix-infrastructure/Ix",
       "branch": "feat/ix-remap-hardening",
       "msg": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap",
-      "superseded_by": "d676a9484a961337a43ce2e6a63e12adfed902b0",
+      "superseded_by": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
       "superseded_at": "2026-08-11",
-      "live_head": "d676a9484a961337a43ce2e6a63e12adfed902b0"
+      "live_head": "a6a47267af21a49d6942ee6e07e18d1d0a82517b"
     },
     "related_entities": [
       "BRANCH-bb1d25e4c9d1",
@@ -19581,10 +19596,10 @@
     "aliases": [
       "COMMIT-b038c46"
     ],
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "confidence": "HIGH",
-    "human_summary": "feat(skill): ship agent skill with Compass patch",
-    "deep_summary": "ix-infrastructure/Ix feat/ix-agent-skill — feat(skill): ship agent skill with Compass patch.",
+    "human_summary": "feat(skill): ship agent skill with Compass patch Superseded: feat/ix-agent-skill head is now 30f28b3c.",
+    "deep_summary": "ix-infrastructure/Ix feat/ix-agent-skill — feat(skill): ship agent skill with Compass patch. The live capture records a newer head (30f28b3c) for this branch; the manifest-era commit is retained as provenance.",
     "evidence_ids": [],
     "source_refs": [
       "SRC-2a5998452c1a"
@@ -19617,7 +19632,10 @@
       "sha": "b038c46",
       "repo": "ix-infrastructure/Ix",
       "branch": "feat/ix-agent-skill",
-      "msg": "feat(skill): ship agent skill with Compass patch"
+      "msg": "feat(skill): ship agent skill with Compass patch",
+      "superseded_by": "30f28b3c7f2771a7003af83b5be618a7913d447a",
+      "superseded_at": "2026-08-11",
+      "live_head": "30f28b3c7f2771a7003af83b5be618a7913d447a"
     },
     "related_entities": [
       "BRANCH-7888482e155d",
@@ -19633,8 +19651,8 @@
     ],
     "status": "HISTORICAL",
     "confidence": "HIGH",
-    "human_summary": "fix(upgrade): pair tar binary (#366)",
-    "deep_summary": "Alot1z/Ix fork/main — fix(upgrade): pair tar binary (#366).",
+    "human_summary": "fix(upgrade): pair tar binary (#366) Superseded: fork/main head is now 7e28e05e.",
+    "deep_summary": "Alot1z/Ix fork/main — fix(upgrade): pair tar binary (#366). The live capture records a newer head (7e28e05e) for this branch; the manifest-era commit is retained as provenance.",
     "evidence_ids": [],
     "source_refs": [
       "SRC-2a5998452c1a"
@@ -19669,7 +19687,10 @@
       "branch": "fork/main",
       "msg": "fix(upgrade): pair tar binary (#366)",
       "historical": true,
-      "note": "previous fork head; superseded by c4f8fea (Phase 4 verified)"
+      "note": "previous fork head; superseded by c4f8fea (Phase 4 verified)",
+      "superseded_by": "7e28e05e36e8f890e8f8a9a6ba7a7ff8c6ea18b8",
+      "superseded_at": "2026-08-11",
+      "live_head": "7e28e05e36e8f890e8f8a9a6ba7a7ff8c6ea18b8"
     },
     "related_entities": [
       "BRANCH-09d906f6088f",
@@ -19683,10 +19704,10 @@
     "aliases": [
       "COMMIT-0c9087c"
     ],
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "confidence": "HIGH",
-    "human_summary": "fix(skill): drop Compass monkey-patch",
-    "deep_summary": "Alot1z/Ix fork/feat/ix-agent-skill — fix(skill): drop Compass monkey-patch.",
+    "human_summary": "fix(skill): drop Compass monkey-patch Superseded: fork/feat/ix-agent-skill head is now 30f28b3c.",
+    "deep_summary": "Alot1z/Ix fork/feat/ix-agent-skill — fix(skill): drop Compass monkey-patch. The live capture records a newer head (30f28b3c) for this branch; the manifest-era commit is retained as provenance.",
     "evidence_ids": [],
     "source_refs": [
       "SRC-2a5998452c1a"
@@ -19719,7 +19740,10 @@
       "sha": "0c9087c",
       "repo": "Alot1z/Ix",
       "branch": "fork/feat/ix-agent-skill",
-      "msg": "fix(skill): drop Compass monkey-patch"
+      "msg": "fix(skill): drop Compass monkey-patch",
+      "superseded_by": "30f28b3c7f2771a7003af83b5be618a7913d447a",
+      "superseded_at": "2026-08-11",
+      "live_head": "30f28b3c7f2771a7003af83b5be618a7913d447a"
     },
     "related_entities": [
       "BRANCH-d12857f89099",
@@ -19783,10 +19807,10 @@
     "aliases": [
       "COMMIT-dcc0962"
     ],
-    "status": "HISTORICAL",
+    "status": "CURRENT",
     "confidence": "HIGH",
-    "human_summary": "Compass stamp Superseded: undefined head is now d676a948.",
-    "deep_summary": "ix-infrastructure/Ix #365 — Compass stamp. The live capture records a newer head (d676a948) for this branch; the manifest-era commit is retained as provenance.",
+    "human_summary": "Compass stamp",
+    "deep_summary": "ix-infrastructure/Ix #365 — Compass stamp.",
     "evidence_ids": [],
     "source_refs": [
       "SRC-2a5998452c1a"
@@ -19819,10 +19843,7 @@
       "sha": "dcc0962",
       "repo": "ix-infrastructure/Ix",
       "pr": "#365",
-      "msg": "Compass stamp",
-      "superseded_by": "d676a9484a961337a43ce2e6a63e12adfed902b0",
-      "superseded_at": "2026-08-11",
-      "live_head": "d676a9484a961337a43ce2e6a63e12adfed902b0"
+      "msg": "Compass stamp"
     },
     "related_entities": [
       "PR-365",
@@ -19836,10 +19857,10 @@
     "aliases": [
       "COMMIT-2157158"
     ],
-    "status": "HISTORICAL",
+    "status": "CURRENT",
     "confidence": "HIGH",
-    "human_summary": "PR #368 merge Superseded: undefined head is now d676a948.",
-    "deep_summary": "ix-infrastructure/Ix #368 — PR #368 merge. The live capture records a newer head (d676a948) for this branch; the manifest-era commit is retained as provenance.",
+    "human_summary": "PR #368 merge",
+    "deep_summary": "ix-infrastructure/Ix #368 — PR #368 merge.",
     "evidence_ids": [],
     "source_refs": [
       "SRC-2a5998452c1a"
@@ -19872,10 +19893,7 @@
       "sha": "2157158",
       "repo": "ix-infrastructure/Ix",
       "pr": "#368",
-      "msg": "PR #368 merge",
-      "superseded_by": "d676a9484a961337a43ce2e6a63e12adfed902b0",
-      "superseded_at": "2026-08-11",
-      "live_head": "d676a9484a961337a43ce2e6a63e12adfed902b0"
+      "msg": "PR #368 merge"
     },
     "related_entities": [
       "PR-368",
@@ -20636,7 +20654,7 @@
       "llm_questions": [],
       "llm_evidence_chain": [],
       "llm_relationships": [
-        "COMMIT-d676a9484a961337a43ce2e6a63e12adfed902b0",
+        "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
         "REPO-ix-infrastructure-Ix",
         "F-010",
         "F-011",
@@ -20660,13 +20678,13 @@
       "number": 393,
       "url": "https://github.com/ix-infrastructure/Ix/pull/393",
       "state": "OPEN",
-      "sha": "d676a94",
-      "note": "REMAP CONTRIBUTION (ours) — head d676a94, base main, 4 files +251/-10; Phase 6 user-authorized (head refreshed 2026-08-11 after AGENTS.md cherry-pick)",
+      "sha": "a6a4726",
+      "note": "REMAP CONTRIBUTION (ours) — head a6a4726, base main, 4 files +251/-10; Phase 6 user-authorized (head refreshed 2026-08-11; AGENTS.md cherry-pick removed, head back to a6a4726)",
       "historical_manifest_state": "OPEN",
       "live_state": "OPEN"
     },
     "related_entities": [
-      "COMMIT-d676a9484a961337a43ce2e6a63e12adfed902b0",
+      "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
       "REPO-ix-infrastructure-Ix",
       "F-010",
       "F-011",
@@ -21600,15 +21618,15 @@
     ]
   },
   {
-    "canonical_id": "COMMIT-d676a9484a961337a43ce2e6a63e12adfed902b0",
+    "canonical_id": "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
     "entity_type": "COMMIT",
-    "canonical_name": "d676a9484a961337a43ce2e6a63e12adfed902b0",
+    "canonical_name": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
     "aliases": [
-      "COMMIT-d676a9484a961337a43ce2e6a63e12adfed902b0"
+      "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b"
     ],
     "status": "CURRENT",
     "confidence": "HIGH",
-    "human_summary": "d676a948 — current head of feat/ix-remap-hardening (Alot1z/Ix).",
+    "human_summary": "a6a47267 — current head of feat/ix-remap-hardening (Alot1z/Ix).",
     "deep_summary": "Live-verified head of feat/ix-remap-hardening for open PR #393; captured in knowledge/live-github-state.json.",
     "evidence_ids": [],
     "source_refs": [],
@@ -21621,29 +21639,37 @@
       "fixed_by": "UNKNOWN"
     },
     "llm": {
-      "llm_summary": "d676a948 — current head of feat/ix-remap-hardening (Alot1z/Ix).",
+      "llm_summary": "a6a47267 — current head of feat/ix-remap-hardening (Alot1z/Ix).",
       "llm_context": "",
       "llm_facts": [],
       "llm_uncertainties": [],
       "llm_questions": [],
       "llm_evidence_chain": [],
       "llm_relationships": [
-        "PR-393"
+        "PR-393",
+        "SECTION-prs_393",
+        "SECTION-prs_393_remap",
+        "SECTION-prs_393_security",
+        "SECTION-prs_393_tests"
       ],
       "llm_search_terms": [
-        "COMMIT-d676a9484a961337a43ce2e6a63e12adfed902b0",
-        "d676a9484a961337a43ce2e6a63e12adfed902b0"
+        "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+        "a6a47267af21a49d6942ee6e07e18d1d0a82517b"
       ]
     },
     "metadata": {
       "repo": "Alot1z/Ix",
       "branch": "feat/ix-remap-hardening",
-      "sha": "d676a9484a961337a43ce2e6a63e12adfed902b0",
+      "sha": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
       "pr": 393,
       "live": true
     },
     "related_entities": [
-      "PR-393"
+      "PR-393",
+      "SECTION-prs_393",
+      "SECTION-prs_393_remap",
+      "SECTION-prs_393_security",
+      "SECTION-prs_393_tests"
     ]
   },
   {
@@ -21976,59 +22002,6 @@
       "SECTION-mcp_tools",
       "SECTION-mcp_security",
       "SECTION-mcp_tests"
-    ]
-  },
-  {
-    "canonical_id": "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
-    "entity_type": "COMMIT",
-    "canonical_name": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
-    "aliases": [
-      "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b"
-    ],
-    "status": "CURRENT",
-    "confidence": "HIGH",
-    "human_summary": "a6a47267 — implementation commit for feat/ix-remap-hardening.",
-    "deep_summary": "Live-verified implementation commit referenced by remap-pr393.",
-    "evidence_ids": [],
-    "source_refs": [],
-    "temporal": {
-      "valid_from": "UNKNOWN",
-      "valid_until": "UNKNOWN",
-      "observed_at": "UNKNOWN",
-      "verified_at": "UNKNOWN",
-      "introduced_by": "UNKNOWN",
-      "fixed_by": "UNKNOWN"
-    },
-    "llm": {
-      "llm_summary": "a6a47267 — implementation commit for feat/ix-remap-hardening.",
-      "llm_context": "",
-      "llm_facts": [],
-      "llm_uncertainties": [],
-      "llm_questions": [],
-      "llm_evidence_chain": [],
-      "llm_relationships": [
-        "SECTION-prs_393",
-        "SECTION-prs_393_remap",
-        "SECTION-prs_393_security",
-        "SECTION-prs_393_tests"
-      ],
-      "llm_search_terms": [
-        "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
-        "a6a47267af21a49d6942ee6e07e18d1d0a82517b"
-      ]
-    },
-    "metadata": {
-      "repo": "ix-infrastructure/Ix",
-      "branch": "feat/ix-remap-hardening",
-      "sha": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
-      "implementation_id": "remap-pr393",
-      "live": true
-    },
-    "related_entities": [
-      "SECTION-prs_393",
-      "SECTION-prs_393_remap",
-      "SECTION-prs_393_security",
-      "SECTION-prs_393_tests"
     ]
   },
   {
@@ -28188,7 +28161,7 @@
     "aliases": [
       "phase-00"
     ],
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "confidence": "HIGH",
     "human_summary": "Initial State Audit: COMPLETE.",
     "deep_summary": "Establish exact current state of every repository, worktree, branch, remote, and fork Key findings: Ix primary worktree has 18 uncommitted overhaul files; Remap worktree clean at c021b52 on origin/main; Fork main 5 behind origin/main; system-compass private and inaccessible; ix-compass-dist is distribution channel, not source",
@@ -28259,7 +28232,7 @@
     "aliases": [
       "phase-01"
     ],
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "confidence": "HIGH",
     "human_summary": "Fork Synchronization: COMPLETE.",
     "deep_summary": "Synchronize Ix fork and local branches without losing uncommitted work Key findings: Local main fast-forwarded from 01308e6 to c4f8fea; Remap branch already correctly positioned on origin/main; Only 2 of 10 incorporated commits touched remap files; Fork NOT pushed (stays at 0437abf)",
@@ -28333,7 +28306,7 @@
     "aliases": [
       "phase-02"
     ],
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "confidence": "HIGH",
     "human_summary": "Remap Finalization: COMPLETE.",
     "deep_summary": "Prepare feat/ix-remap-hardening as clean, focused, reviewable PR candidate Key findings: 4 files changed, +251/-10 lines; 656 tests passing, TypeScript clean, ESLint clean; Full guard matrix verified in code and tests; No secrets or personal data in diff",
@@ -28415,7 +28388,7 @@
     "aliases": [
       "phase-03"
     ],
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "confidence": "HIGH",
     "human_summary": "Issue #376 Investigation: COMPLETE.",
     "deep_summary": "Investigate Ix #376 comprehensively Key findings: Two version series feed into one isNewer comparison; Currently correct by accident (0.3.0 < 0.9.1 → false); Would break when ix-compass-dist version exceeds Ix version; Caused by PR #365 stamp decision",
@@ -28489,7 +28462,7 @@
     "aliases": [
       "phase-04"
     ],
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "confidence": "HIGH",
     "human_summary": "Full Security & Historical Audit: COMPLETE.",
     "deep_summary": "Broad security and historical audit of the Ix repository Key findings: 8 open issues catalogued; Security posture: STRONG (gitleaks, Trivy, Scorecard, etc.); No secrets found in codebase; Remap PR cleared — zero overlap with any open issue",
@@ -28567,7 +28540,7 @@
     "aliases": [
       "phase-05"
     ],
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "confidence": "HIGH",
     "human_summary": "Compass Historical Reconstruction: COMPLETE.",
     "deep_summary": "Deep behavioral reconstruction of all 4 Compass artifact versions Key findings: Keyboard handler invariant across 4 releases; KeyboardHelp byte-identical, 8 entries, no F; All 9 fit constants verified in v0.3.0; #57: one-shot latch → keyed refit (Class A from release notes)",
@@ -28728,7 +28701,7 @@
     "aliases": [
       "phase-07"
     ],
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "confidence": "HIGH",
     "human_summary": "Delayed-Data Deep Investigation: COMPLETE.",
     "deep_summary": "Deep runtime probing of the delayed-data finding Key findings: Live reproduction: zoom 0.441, 15 nodes, 78,600px canvas; Root cause: timing-dependent rollup + refit effect gap; Zoom-in multiplier appears to be ×1.25 not ×1.1; 4 interactive experiments performed",
@@ -28806,7 +28779,7 @@
     "aliases": [
       "phase-08"
     ],
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "confidence": "HIGH",
     "human_summary": "Repository Architecture Audit: COMPLETE.",
     "deep_summary": "Determine exact relationships between all repositories Key findings: 5 repositories mapped with complete relationships; ix-compass-dist is manual distribution channel, no CI; Ix-findings has no GitHub repo, not Git-initialized; system-compass is only source for Compass UI",
@@ -28877,7 +28850,7 @@
     "aliases": [
       "phase-09"
     ],
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "confidence": "HIGH",
     "human_summary": "Ix-findings Evidence Repository: COMPLETE.",
     "deep_summary": "Build Ix-findings as central evidence repository Key findings: Git repo initialized with .gitignore; 13 findings registered with IXF-IDs; 9 decisions documented; 28 evidence files organized",
@@ -28958,7 +28931,7 @@
     "aliases": [
       "phase-10"
     ],
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "confidence": "HIGH",
     "human_summary": "GitHub History & Maintainer Context: COMPLETE.",
     "deep_summary": "Investigate relevant GitHub history, maintainers, and review context Key findings: KageBinary: active COLLABORATOR, 14 of last 30 commits; josephismikhail: CODE OWNER, reviews KageBinary's PRs; Hiro-Chiba: CONTRIBUTOR, targeted bug fixes; TannerTorrey3: inactive historic releaser",
@@ -29036,7 +29009,7 @@
     "aliases": [
       "phase-11"
     ],
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "confidence": "HIGH",
     "human_summary": "PR Packet Generation: COMPLETE.",
     "deep_summary": "Generate final PR packets for every justified change Key findings: 4 PR packets generated: remap, F-key, delayed-data, #376; All packets sanitized, no secrets or personal data; Remap: PR-ready. F-key/delayed-data: block on source",
@@ -29119,7 +29092,7 @@
     "aliases": [
       "phase-12"
     ],
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "confidence": "HIGH",
     "human_summary": "Pre-Publish Verification Gate: COMPLETE.",
     "deep_summary": "Final independent verification before any remote action Key findings: READY TO PUSH: YES; READY TO OPEN PR: YES; BLOCKERS: NONE; All tests re-run fresh: 656/2/51, TSC 0, ESLint clean",
@@ -31029,7 +31002,7 @@
     "metadata": {
       "pr": 393,
       "branch": "feat/ix-remap-hardening",
-      "head": "d676a9484a961337a43ce2e6a63e12adfed902b0",
+      "head": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
       "known_limitations": [
         "descendant cleanup requires stronger proof",
         "concurrent expensive requests are not explicitly bounded"

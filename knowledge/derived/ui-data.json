@@ -2116,7 +2116,7 @@
       "id": "BRANCH-7888482e155d",
       "type": "branch",
       "title": "ix-infrastructure/Ix:feat/ix-agent-skill",
-      "status": "IN_PROGRESS"
+      "status": "CURRENT"
     },
     {
       "id": "BRANCH-bb1d25e4c9d1",
@@ -2176,7 +2176,7 @@
       "id": "COMMIT-c4f8fea",
       "type": "commit",
       "title": "c4f8fea",
-      "status": "CURRENT"
+      "status": "HISTORICAL"
     },
     {
       "id": "COMMIT-c021b52",
@@ -2188,7 +2188,7 @@
       "id": "COMMIT-b038c46",
       "type": "commit",
       "title": "b038c46",
-      "status": "CURRENT"
+      "status": "HISTORICAL"
     },
     {
       "id": "COMMIT-0437abf",
@@ -2200,7 +2200,7 @@
       "id": "COMMIT-0c9087c",
       "type": "commit",
       "title": "0c9087c",
-      "status": "CURRENT"
+      "status": "HISTORICAL"
     },
     {
       "id": "COMMIT-396426b",
@@ -2212,13 +2212,13 @@
       "id": "COMMIT-dcc0962",
       "type": "commit",
       "title": "dcc0962",
-      "status": "HISTORICAL"
+      "status": "CURRENT"
     },
     {
       "id": "COMMIT-2157158",
       "type": "commit",
       "title": "2157158",
-      "status": "HISTORICAL"
+      "status": "CURRENT"
     },
     {
       "id": "PR-358",
@@ -2401,9 +2401,9 @@
       "status": "OPEN"
     },
     {
-      "id": "COMMIT-d676a9484a961337a43ce2e6a63e12adfed902b0",
+      "id": "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
       "type": "commit",
-      "title": "d676a9484a961337a43ce2e6a63e12adfed902b0",
+      "title": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
       "status": "CURRENT"
     },
     {
@@ -2440,12 +2440,6 @@
       "id": "COMMIT-606f18f7ca1a69f4b8ede7c27c1079b024297856",
       "type": "commit",
       "title": "606f18f7ca1a69f4b8ede7c27c1079b024297856",
-      "status": "CURRENT"
-    },
-    {
-      "id": "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
-      "type": "commit",
-      "title": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
       "status": "CURRENT"
     },
     {
@@ -3010,37 +3004,37 @@
       "id": "phase-00",
       "type": "phase",
       "title": "Phase 0 — Initial State Audit",
-      "status": "CURRENT"
+      "status": "HISTORICAL"
     },
     {
       "id": "phase-01",
       "type": "phase",
       "title": "Phase 1 — Fork Synchronization",
-      "status": "CURRENT"
+      "status": "HISTORICAL"
     },
     {
       "id": "phase-02",
       "type": "phase",
       "title": "Phase 2 — Remap Finalization",
-      "status": "CURRENT"
+      "status": "HISTORICAL"
     },
     {
       "id": "phase-03",
       "type": "phase",
       "title": "Phase 3 — Issue #376 Investigation",
-      "status": "CURRENT"
+      "status": "HISTORICAL"
     },
     {
       "id": "phase-04",
       "type": "phase",
       "title": "Phase 4 — Full Security & Historical Audit",
-      "status": "CURRENT"
+      "status": "HISTORICAL"
     },
     {
       "id": "phase-05",
       "type": "phase",
       "title": "Phase 5 — Compass Historical Reconstruction",
-      "status": "CURRENT"
+      "status": "HISTORICAL"
     },
     {
       "id": "phase-06",
@@ -3052,37 +3046,37 @@
       "id": "phase-07",
       "type": "phase",
       "title": "Phase 7 — Delayed-Data Deep Investigation",
-      "status": "CURRENT"
+      "status": "HISTORICAL"
     },
     {
       "id": "phase-08",
       "type": "phase",
       "title": "Phase 8 — Repository Architecture Audit",
-      "status": "CURRENT"
+      "status": "HISTORICAL"
     },
     {
       "id": "phase-09",
       "type": "phase",
       "title": "Phase 9 — Ix-findings Evidence Repository",
-      "status": "CURRENT"
+      "status": "HISTORICAL"
     },
     {
       "id": "phase-10",
       "type": "phase",
       "title": "Phase 10 — GitHub History & Maintainer Context",
-      "status": "CURRENT"
+      "status": "HISTORICAL"
     },
     {
       "id": "phase-11",
       "type": "phase",
       "title": "Phase 11 — PR Packet Generation",
-      "status": "CURRENT"
+      "status": "HISTORICAL"
     },
     {
       "id": "phase-12",
       "type": "phase",
       "title": "Phase 12 — Pre-Publish Verification Gate",
-      "status": "CURRENT"
+      "status": "HISTORICAL"
     },
     {
       "id": "phase-13",
@@ -3430,7 +3424,7 @@
   "edges": [
     {
       "source": "PR-393",
-      "target": "COMMIT-d676a9484a961337a43ce2e6a63e12adfed902b0",
+      "target": "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
       "relationship": "CHANGED_BY",
       "confidence": "HIGH"
     },

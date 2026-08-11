@@ -1,12 +1,20 @@
 {
-  "captured_at": "2026-08-11T20:05:00Z",
-  "capture_note": "PR #393 head a6a4726 -> d676a94 (AGENTS.md cherry-pick onto the remap branch). Implementation file refs remain pinned to a6a4726, the commit containing the code. No other state changed.",
+  "captured_at": "2026-08-11T21:11:00Z",
+  "capture_note": "PR #393 head is a6a4726 again (the AGENTS.md cherry-pick d676a94 was removed from the branch, so implementation head == PR head). Added fork_branches with live-verified heads for Alot1z/Ix branches: main 7e28e05, feat/ix-mcp 603e51f, feat/ix-remap-hardening a6a4726, feat/ix-agent-skill 30f28b3. Upstream head unchanged; PR #388/#395 heads unchanged.",
   "source": "read-only GitHub API via gh api",
   "upstream": {
     "repository": "ix-infrastructure/Ix",
     "default_branch": "main",
     "head_sha": "1292375548fb8f4431ac5afc34c68fe2573434d1",
     "head_sha_short": "1292375548fb"
+  },
+  "fork_branches": {
+    "Alot1z/Ix": {
+      "main": "7e28e05e36e8f890e8f8a9a6ba7a7ff8c6ea18b8",
+      "feat/ix-mcp": "603e51f7f877bb59677516be08ee83ef30e562a8",
+      "feat/ix-remap-hardening": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+      "feat/ix-agent-skill": "30f28b3c7f2771a7003af83b5be618a7913d447a"
+    }
   },
   "open_issues": [
     {
@@ -62,7 +70,7 @@
       "user": "Alot1z",
       "url": "https://github.com/ix-infrastructure/Ix/pull/393",
       "head_ref": "feat/ix-remap-hardening",
-      "head_sha": "d676a9484a961337a43ce2e6a63e12adfed902b0",
+      "head_sha": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
       "head_repo": "Alot1z/Ix"
     },
     {
@@ -265,7 +273,7 @@
       "commit_refs": [
         "a6a47267af21a49d6942ee6e07e18d1d0a82517b"
       ],
-      "head_sha": "d676a9484a961337a43ce2e6a63e12adfed902b0",
+      "head_sha": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
       "finding_refs": [
         "F-010",
         "F-011",

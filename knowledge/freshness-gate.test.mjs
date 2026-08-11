@@ -111,4 +111,33 @@ const unrelated = compareFreshness({
 assert.equal(unrelated.gate, "PASS");
 assert.equal(unrelated.stale_count, 0);
 
-console.log("freshness-gate tests passed: fresh state passes; head, PR, and issue drift fail closed; degraded baseline fallback passes; superseded-commit staleness fails closed");
+// Fork-branch fallback: a branch with no open PR (e.g. feat/ix-agent-skill) is
+// superseded by the captured fork branch head; CURRENT entity fails, HISTORICAL passes.
+const liveForForkSuperseded = { ...liveForSuperseded };
+const forkSupersededBase = {
+  ...canonical,
+  phaseManifestCommits: [{ sha: "old3", branch: "feat/ix-agent-skill", repo: "Alot1z/Ix" }],
+  liveCapturePRs: [],
+  liveCaptureForkBranches: { "Alot1z/Ix": { main: "abc123", "feat/ix-agent-skill": "newagenthead" } },
+};
+const forkUnreconciled = compareFreshness({ ...forkSupersededBase, commitEntityStatus: new Map([["COMMIT-old3", "CURRENT"]]) }, liveForForkSuperseded, snapshot);
+assert.equal(forkUnreconciled.gate, "STALE");
+assert.ok(forkUnreconciled.checks.some(check => check.id === "superseded-commit:old3" && !check.ok));
+
+const forkReconciled = compareFreshness({ ...forkSupersededBase, commitEntityStatus: new Map([["COMMIT-old3", "HISTORICAL"]]) }, liveForForkSuperseded, snapshot);
+assert.equal(forkReconciled.gate, "PASS");
+assert.equal(forkReconciled.stale_count, 0);
+
+// Repo guard: an upstream main snapshot (repo ix-infrastructure/Ix, branch main)
+// must never match the fork's main head, even when fork branches are captured.
+const mainGuard = compareFreshness({
+  ...canonical,
+  phaseManifestCommits: [{ sha: "upmain", branch: "main", repo: "ix-infrastructure/Ix" }],
+  liveCapturePRs: [],
+  liveCaptureForkBranches: { "Alot1z/Ix": { main: "newmain", "feat/ix-agent-skill": "newagenthead" } },
+  commitEntityStatus: new Map([["COMMIT-upmain", "CURRENT"]]),
+}, liveForForkSuperseded, snapshot);
+assert.equal(mainGuard.gate, "PASS");
+assert.equal(mainGuard.stale_count, 0);
+
+console.log("freshness-gate tests passed: fresh state passes; head, PR, and issue drift fail closed; degraded baseline fallback passes; superseded-commit staleness fails closed (open-PR and fork-branch heads); upstream-main repo guard holds");

@@ -3833,8 +3833,8 @@
     "next": []
   },
   "BRANCH-7888482e155d": {
-    "summary": "ix-infrastructure/Ix:feat/ix-agent-skill at b038c46.",
-    "status": "IN_PROGRESS",
+    "summary": "ix-infrastructure/Ix:feat/ix-agent-skill at 30f28b3c7f2771a7003af83b5be618a7913d447a.",
+    "status": "CURRENT",
     "evidence": [],
     "neighbors": [
       "REPO-ix-infrastructure-Ix",
@@ -3845,7 +3845,7 @@
     "next": []
   },
   "BRANCH-bb1d25e4c9d1": {
-    "summary": "ix-infrastructure/Ix:feat/ix-remap-hardening at d676a9484a961337a43ce2e6a63e12adfed902b0.",
+    "summary": "ix-infrastructure/Ix:feat/ix-remap-hardening at a6a47267af21a49d6942ee6e07e18d1d0a82517b.",
     "status": "CURRENT",
     "evidence": [],
     "neighbors": [
@@ -3859,7 +3859,7 @@
     "next": []
   },
   "BRANCH-09d906f6088f": {
-    "summary": "Alot1z/Ix:fork/main at 5488741.",
+    "summary": "Alot1z/Ix:fork/main at 7e28e05e36e8f890e8f8a9a6ba7a7ff8c6ea18b8.",
     "status": "CURRENT",
     "evidence": [],
     "neighbors": [
@@ -3871,7 +3871,7 @@
     "next": []
   },
   "BRANCH-d12857f89099": {
-    "summary": "Alot1z/Ix:fork/feat/ix-agent-skill at 0c9087c.",
+    "summary": "Alot1z/Ix:fork/feat/ix-agent-skill at 30f28b3c7f2771a7003af83b5be618a7913d447a.",
     "status": "CURRENT",
     "evidence": [],
     "neighbors": [
@@ -3915,7 +3915,7 @@
     "next": []
   },
   "COMMIT-1497596": {
-    "summary": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap — Phase 6 rebase onto ffe21f0; PR #393 Superseded: feat/ix-remap-hardening (fork, pushed) head is now d676a948.",
+    "summary": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap — Phase 6 rebase onto ffe21f0; PR #393 Superseded: feat/ix-remap-hardening (fork, pushed) head is now a6a47267.",
     "status": "HISTORICAL",
     "evidence": [],
     "neighbors": [
@@ -3945,8 +3945,8 @@
     "next": []
   },
   "COMMIT-c4f8fea": {
-    "summary": "chore(deps-dev): bump dev-dependencies (#369)",
-    "status": "CURRENT",
+    "summary": "chore(deps-dev): bump dev-dependencies (#369) Superseded: fork/main + Ix-test head is now 7e28e05e.",
+    "status": "HISTORICAL",
     "evidence": [],
     "neighbors": [
       "SRC-2a5998452c1a"
@@ -3954,7 +3954,7 @@
     "next": []
   },
   "COMMIT-c021b52": {
-    "summary": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap Superseded: feat/ix-remap-hardening head is now d676a948.",
+    "summary": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap Superseded: feat/ix-remap-hardening head is now a6a47267.",
     "status": "HISTORICAL",
     "evidence": [],
     "neighbors": [
@@ -3964,8 +3964,8 @@
     "next": []
   },
   "COMMIT-b038c46": {
-    "summary": "feat(skill): ship agent skill with Compass patch",
-    "status": "CURRENT",
+    "summary": "feat(skill): ship agent skill with Compass patch Superseded: feat/ix-agent-skill head is now 30f28b3c.",
+    "status": "HISTORICAL",
     "evidence": [],
     "neighbors": [
       "BRANCH-7888482e155d",
@@ -3974,7 +3974,7 @@
     "next": []
   },
   "COMMIT-0437abf": {
-    "summary": "fix(upgrade): pair tar binary (#366)",
+    "summary": "fix(upgrade): pair tar binary (#366) Superseded: fork/main head is now 7e28e05e.",
     "status": "HISTORICAL",
     "evidence": [],
     "neighbors": [
@@ -3984,8 +3984,8 @@
     "next": []
   },
   "COMMIT-0c9087c": {
-    "summary": "fix(skill): drop Compass monkey-patch",
-    "status": "CURRENT",
+    "summary": "fix(skill): drop Compass monkey-patch Superseded: fork/feat/ix-agent-skill head is now 30f28b3c.",
+    "status": "HISTORICAL",
     "evidence": [],
     "neighbors": [
       "BRANCH-d12857f89099",
@@ -4004,8 +4004,8 @@
     "next": []
   },
   "COMMIT-dcc0962": {
-    "summary": "Compass stamp Superseded: undefined head is now d676a948.",
-    "status": "HISTORICAL",
+    "summary": "Compass stamp",
+    "status": "CURRENT",
     "evidence": [],
     "neighbors": [
       "PR-365",
@@ -4014,8 +4014,8 @@
     "next": []
   },
   "COMMIT-2157158": {
-    "summary": "PR #368 merge Superseded: undefined head is now d676a948.",
-    "status": "HISTORICAL",
+    "summary": "PR #368 merge",
+    "status": "CURRENT",
     "evidence": [],
     "neighbors": [
       "PR-368",
@@ -4169,7 +4169,7 @@
     "status": "OPEN",
     "evidence": [],
     "neighbors": [
-      "COMMIT-d676a9484a961337a43ce2e6a63e12adfed902b0",
+      "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
       "REPO-ix-infrastructure-Ix",
       "F-010",
       "F-011",
@@ -4368,12 +4368,16 @@
     ],
     "next": []
   },
-  "COMMIT-d676a9484a961337a43ce2e6a63e12adfed902b0": {
-    "summary": "d676a948 — current head of feat/ix-remap-hardening (Alot1z/Ix).",
+  "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b": {
+    "summary": "a6a47267 — current head of feat/ix-remap-hardening (Alot1z/Ix).",
     "status": "CURRENT",
     "evidence": [],
     "neighbors": [
-      "PR-393"
+      "PR-393",
+      "SECTION-prs_393",
+      "SECTION-prs_393_remap",
+      "SECTION-prs_393_security",
+      "SECTION-prs_393_tests"
     ],
     "next": []
   },
@@ -4453,18 +4457,6 @@
       "SECTION-mcp_tools",
       "SECTION-mcp_security",
       "SECTION-mcp_tests"
-    ],
-    "next": []
-  },
-  "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b": {
-    "summary": "a6a47267 — implementation commit for feat/ix-remap-hardening.",
-    "status": "CURRENT",
-    "evidence": [],
-    "neighbors": [
-      "SECTION-prs_393",
-      "SECTION-prs_393_remap",
-      "SECTION-prs_393_security",
-      "SECTION-prs_393_tests"
     ],
     "next": []
   },
@@ -5741,7 +5733,7 @@
   },
   "phase-00": {
     "summary": "Initial State Audit: COMPLETE.",
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "evidence": [],
     "neighbors": [
       "phase-01",
@@ -5753,7 +5745,7 @@
   },
   "phase-01": {
     "summary": "Fork Synchronization: COMPLETE.",
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "evidence": [],
     "neighbors": [
       "phase-00",
@@ -5766,7 +5758,7 @@
   },
   "phase-02": {
     "summary": "Remap Finalization: COMPLETE.",
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "evidence": [],
     "neighbors": [
       "phase-01",
@@ -5779,7 +5771,7 @@
   },
   "phase-03": {
     "summary": "Issue #376 Investigation: COMPLETE.",
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "evidence": [],
     "neighbors": [
       "phase-02",
@@ -5792,7 +5784,7 @@
   },
   "phase-04": {
     "summary": "Full Security & Historical Audit: COMPLETE.",
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "evidence": [],
     "neighbors": [
       "phase-03",
@@ -5806,7 +5798,7 @@
   },
   "phase-05": {
     "summary": "Compass Historical Reconstruction: COMPLETE.",
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "evidence": [],
     "neighbors": [
       "phase-04",
@@ -5835,7 +5827,7 @@
   },
   "phase-07": {
     "summary": "Delayed-Data Deep Investigation: COMPLETE.",
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "evidence": [],
     "neighbors": [
       "phase-06",
@@ -5849,7 +5841,7 @@
   },
   "phase-08": {
     "summary": "Repository Architecture Audit: COMPLETE.",
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "evidence": [],
     "neighbors": [
       "phase-07",
@@ -5861,7 +5853,7 @@
   },
   "phase-09": {
     "summary": "Ix-findings Evidence Repository: COMPLETE.",
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "evidence": [],
     "neighbors": [
       "phase-08",
@@ -5875,7 +5867,7 @@
   },
   "phase-10": {
     "summary": "GitHub History & Maintainer Context: COMPLETE.",
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "evidence": [],
     "neighbors": [
       "phase-09",
@@ -5889,7 +5881,7 @@
   },
   "phase-11": {
     "summary": "PR Packet Generation: COMPLETE.",
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "evidence": [],
     "neighbors": [
       "phase-10",
@@ -5904,7 +5896,7 @@
   },
   "phase-12": {
     "summary": "Pre-Publish Verification Gate: COMPLETE.",
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "evidence": [],
     "neighbors": [
       "phase-11",

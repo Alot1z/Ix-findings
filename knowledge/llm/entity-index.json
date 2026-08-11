@@ -4186,8 +4186,8 @@
   "BRANCH-7888482e155d": {
     "type": "BRANCH",
     "name": "ix-infrastructure/Ix:feat/ix-agent-skill",
-    "status": "IN_PROGRESS",
-    "summary": "ix-infrastructure/Ix:feat/ix-agent-skill at b038c46.",
+    "status": "CURRENT",
+    "summary": "ix-infrastructure/Ix:feat/ix-agent-skill at 30f28b3c7f2771a7003af83b5be618a7913d447a.",
     "evidence": [],
     "neighbors": [
       "REPO-ix-infrastructure-Ix",
@@ -4200,7 +4200,7 @@
     "type": "BRANCH",
     "name": "ix-infrastructure/Ix:feat/ix-remap-hardening",
     "status": "CURRENT",
-    "summary": "ix-infrastructure/Ix:feat/ix-remap-hardening at d676a9484a961337a43ce2e6a63e12adfed902b0.",
+    "summary": "ix-infrastructure/Ix:feat/ix-remap-hardening at a6a47267af21a49d6942ee6e07e18d1d0a82517b.",
     "evidence": [],
     "neighbors": [
       "REPO-ix-infrastructure-Ix",
@@ -4215,7 +4215,7 @@
     "type": "BRANCH",
     "name": "Alot1z/Ix:fork/main",
     "status": "CURRENT",
-    "summary": "Alot1z/Ix:fork/main at 5488741.",
+    "summary": "Alot1z/Ix:fork/main at 7e28e05e36e8f890e8f8a9a6ba7a7ff8c6ea18b8.",
     "evidence": [],
     "neighbors": [
       "REPO-Alot1z-Ix",
@@ -4228,7 +4228,7 @@
     "type": "BRANCH",
     "name": "Alot1z/Ix:fork/feat/ix-agent-skill",
     "status": "CURRENT",
-    "summary": "Alot1z/Ix:fork/feat/ix-agent-skill at 0c9087c.",
+    "summary": "Alot1z/Ix:fork/feat/ix-agent-skill at 30f28b3c7f2771a7003af83b5be618a7913d447a.",
     "evidence": [],
     "neighbors": [
       "REPO-Alot1z-Ix",
@@ -4308,7 +4308,7 @@
   "COMMIT-c4f8fea": {
     "type": "COMMIT",
     "name": "c4f8fea",
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "summary": "chore(deps-dev): bump dev-dependencies (#369)",
     "evidence": [],
     "neighbors": [
@@ -4329,7 +4329,7 @@
   "COMMIT-b038c46": {
     "type": "COMMIT",
     "name": "b038c46",
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "summary": "feat(skill): ship agent skill with Compass patch",
     "evidence": [],
     "neighbors": [
@@ -4351,7 +4351,7 @@
   "COMMIT-0c9087c": {
     "type": "COMMIT",
     "name": "0c9087c",
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "summary": "fix(skill): drop Compass monkey-patch",
     "evidence": [],
     "neighbors": [
@@ -4373,7 +4373,7 @@
   "COMMIT-dcc0962": {
     "type": "COMMIT",
     "name": "dcc0962",
-    "status": "HISTORICAL",
+    "status": "CURRENT",
     "summary": "Compass stamp",
     "evidence": [],
     "neighbors": [
@@ -4384,7 +4384,7 @@
   "COMMIT-2157158": {
     "type": "COMMIT",
     "name": "2157158",
-    "status": "HISTORICAL",
+    "status": "CURRENT",
     "summary": "PR #368 merge",
     "evidence": [],
     "neighbors": [
@@ -4553,7 +4553,7 @@
     "summary": "Ix pull request #393: OPEN.",
     "evidence": [],
     "neighbors": [
-      "COMMIT-d676a9484a961337a43ce2e6a63e12adfed902b0",
+      "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
       "REPO-ix-infrastructure-Ix",
       "F-010",
       "F-011",
@@ -4767,14 +4767,18 @@
       "REPO-ix-infrastructure-Ix"
     ]
   },
-  "COMMIT-d676a9484a961337a43ce2e6a63e12adfed902b0": {
+  "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b": {
     "type": "COMMIT",
-    "name": "d676a9484a961337a43ce2e6a63e12adfed902b0",
+    "name": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
     "status": "CURRENT",
-    "summary": "d676a948 — current head of feat/ix-remap-hardening (Alot1z/Ix).",
+    "summary": "a6a47267 — current head of feat/ix-remap-hardening (Alot1z/Ix).",
     "evidence": [],
     "neighbors": [
-      "PR-393"
+      "PR-393",
+      "SECTION-prs_393",
+      "SECTION-prs_393_remap",
+      "SECTION-prs_393_security",
+      "SECTION-prs_393_tests"
     ]
   },
   "COMMIT-13e96bacc648ee979f35e2874cd8aa2004f920e1": {
@@ -4860,19 +4864,6 @@
       "SECTION-mcp_tools",
       "SECTION-mcp_security",
       "SECTION-mcp_tests"
-    ]
-  },
-  "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b": {
-    "type": "COMMIT",
-    "name": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
-    "status": "CURRENT",
-    "summary": "a6a47267 — implementation commit for feat/ix-remap-hardening.",
-    "evidence": [],
-    "neighbors": [
-      "SECTION-prs_393",
-      "SECTION-prs_393_remap",
-      "SECTION-prs_393_security",
-      "SECTION-prs_393_tests"
     ]
   },
   "ISSUE-349": {
@@ -6242,7 +6233,7 @@
   "phase-00": {
     "type": "PHASE",
     "name": "Phase 0 — Initial State Audit",
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "summary": "Initial State Audit: COMPLETE.",
     "evidence": [],
     "neighbors": [
@@ -6255,7 +6246,7 @@
   "phase-01": {
     "type": "PHASE",
     "name": "Phase 1 — Fork Synchronization",
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "summary": "Fork Synchronization: COMPLETE.",
     "evidence": [],
     "neighbors": [
@@ -6269,7 +6260,7 @@
   "phase-02": {
     "type": "PHASE",
     "name": "Phase 2 — Remap Finalization",
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "summary": "Remap Finalization: COMPLETE.",
     "evidence": [],
     "neighbors": [
@@ -6283,7 +6274,7 @@
   "phase-03": {
     "type": "PHASE",
     "name": "Phase 3 — Issue #376 Investigation",
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "summary": "Issue #376 Investigation: COMPLETE.",
     "evidence": [],
     "neighbors": [
@@ -6297,7 +6288,7 @@
   "phase-04": {
     "type": "PHASE",
     "name": "Phase 4 — Full Security & Historical Audit",
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "summary": "Full Security & Historical Audit: COMPLETE.",
     "evidence": [],
     "neighbors": [
@@ -6312,7 +6303,7 @@
   "phase-05": {
     "type": "PHASE",
     "name": "Phase 5 — Compass Historical Reconstruction",
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "summary": "Compass Historical Reconstruction: COMPLETE.",
     "evidence": [],
     "neighbors": [
@@ -6343,7 +6334,7 @@
   "phase-07": {
     "type": "PHASE",
     "name": "Phase 7 — Delayed-Data Deep Investigation",
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "summary": "Delayed-Data Deep Investigation: COMPLETE.",
     "evidence": [],
     "neighbors": [
@@ -6358,7 +6349,7 @@
   "phase-08": {
     "type": "PHASE",
     "name": "Phase 8 — Repository Architecture Audit",
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "summary": "Repository Architecture Audit: COMPLETE.",
     "evidence": [],
     "neighbors": [
@@ -6371,7 +6362,7 @@
   "phase-09": {
     "type": "PHASE",
     "name": "Phase 9 — Ix-findings Evidence Repository",
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "summary": "Ix-findings Evidence Repository: COMPLETE.",
     "evidence": [],
     "neighbors": [
@@ -6386,7 +6377,7 @@
   "phase-10": {
     "type": "PHASE",
     "name": "Phase 10 — GitHub History & Maintainer Context",
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "summary": "GitHub History & Maintainer Context: COMPLETE.",
     "evidence": [],
     "neighbors": [
@@ -6401,7 +6392,7 @@
   "phase-11": {
     "type": "PHASE",
     "name": "Phase 11 — PR Packet Generation",
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "summary": "PR Packet Generation: COMPLETE.",
     "evidence": [],
     "neighbors": [
@@ -6417,7 +6408,7 @@
   "phase-12": {
     "type": "PHASE",
     "name": "Phase 12 — Pre-Publish Verification Gate",
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "summary": "Pre-Publish Verification Gate: COMPLETE.",
     "evidence": [],
     "neighbors": [

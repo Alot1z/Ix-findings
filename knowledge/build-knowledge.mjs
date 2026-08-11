@@ -64,18 +64,35 @@ const timelineReg = readJson(join(root, "planning/maps/timeline-map.json")) || {
 const graphReg = readJson(join(root, "planning/maps/investigation-map.json")) || { nodes: [], edges: [] };
 const auditCandidates = readJson(join(root, "CLI-HANDOFF/phase-15/AUDIT-CANDIDATE-UNIVERSE.json")) || { candidates: [] };
 const finalAudit = readJson(join(root, "CLI-HANDOFF/phase-15/FINAL-PR-WORTHINESS-AUDIT.json")) || {};
-const liveGitHub = readJson(join(root, "knowledge/live-github-state.json")) || { open_issues: [], open_pull_requests: [], implementations: [] };
+const liveGitHub = readJson(join(root, "knowledge/live-github-state.json")) || { open_issues: [], open_pull_requests: [], implementations: [], fork_branches: {} };
 const liveHead = finalAudit.live_baseline?.upstream_head || "1292375548fb";
 const liveOpenPRs = new Set(finalAudit.live_baseline?.open_prs || [395, 393, 388]);
 const liveOpenIssues = new Set(finalAudit.live_baseline?.open_issues || [385, 383, 349, 219]);
 const liveMergedPRs = new Set([352, 368, 372, 375, 378, 380, 382, 384, 386, 387, 389, 390, 391, 392, 394]);
 const liveClosedIssues = new Set([371, 376, 377, 379]);
+// Live-verified head for a manifest branch/commit: open-PR heads first, then
+// the captured fork branch heads (repo-guarded so unrelated repos and upstream
+// main snapshots are never matched to the fork's branches).
+const liveHeadFor = (branch, repo) => {
+  if (!branch) return null;
+  const livePR = (liveGitHub.open_pull_requests || []).find(p => p.head_ref && p.head_sha && (branch.includes(p.head_ref) || p.head_ref.includes(branch)));
+  if (livePR?.head_sha) return livePR.head_sha;
+  if (branch === "main" && repo !== "Alot1z/Ix") return null;
+  if (!["Alot1z/Ix", "ix-infrastructure/Ix"].includes(repo)) return null;
+  for (const [forkRepo, branches] of Object.entries(liveGitHub.fork_branches || {})) {
+    if (forkRepo !== "Alot1z/Ix") continue;
+    for (const [name, sha] of Object.entries(branches || {})) {
+      if (sha && (branch.includes(name) || name.includes(branch))) return sha;
+    }
+  }
+  return null;
+};
 
 // Source files are first-class nodes so every provenance reference resolves.
 for (const s of sourceEntities) entity("SOURCE", s.source_id, s.path, { status: s.role === "PUBLIC_SNAPSHOT" ? "HISTORICAL" : "CURRENT", confidence: "HIGH", human_summary: `${s.path} (${s.role}).`, deep_summary: `Local source artifact ${s.path}; format ${s.format}; ${s.bytes} bytes; content hash ${s.sha1}.`, metadata: s });
 
 for (const r of manifest.repositories || []) entity("REPOSITORY", `REPO-${safe(r.repo_id || r.name).replaceAll("/", "-")}`, r.repo_id || r.name, { status: r.access === "PRIVATE" ? "BLOCKED" : "CURRENT", confidence: "HIGH", aliases: [r.url].filter(Boolean), human_summary: `${r.repo_id || r.name} (${r.role || "repository"}).`, deep_summary: safe(r.note || r.role || "Repository in the Ix investigation ecosystem."), source_refs: sourceRefs("CLI-HANDOFF/manifest.json"), metadata: { role: r.role, url: r.url, access: r.access || "PUBLIC" } });
-for (const r of manifest.branches || []) { const livePR = (liveGitHub.open_pull_requests || []).find(p => p.head_ref === r.branch && p.head_sha); const current = r.repo === "ix-infrastructure/Ix" && r.branch === "main" ? { ...r, sha: liveHead, historical_sha: r.sha } : livePR ? { ...r, sha: livePR.head_sha, historical_sha: r.sha, live_head: livePR.head_sha } : r; entity("BRANCH", `BRANCH-${idHash(`${r.repo}-${r.branch}`)}`, `${r.repo}:${r.branch}`, { status: current.dirty ? "IN_PROGRESS" : "CURRENT", confidence: "HIGH", human_summary: `${r.repo}:${r.branch} at ${current.sha || UNKNOWN}.`, source_refs: sourceRefs("CLI-HANDOFF/manifest.json", "CLI-HANDOFF/phase-15/FINAL-PR-WORTHINESS-AUDIT.json", "knowledge/live-github-state.json"), metadata: current }); }
+for (const r of manifest.branches || []) { const lh = r.repo === "ix-infrastructure/Ix" && r.branch === "main" ? liveHead : liveHeadFor(r.branch, r.repo); const current = lh ? { ...r, sha: lh, historical_sha: r.sha, live_head: lh, dirty: false, historical_dirty: r.dirty, note: undefined, historical_note: r.note } : r; entity("BRANCH", `BRANCH-${idHash(`${r.repo}-${r.branch}`)}`, `${r.repo}:${r.branch}`, { status: current.dirty ? "IN_PROGRESS" : "CURRENT", confidence: "HIGH", human_summary: `${r.repo}:${r.branch} at ${current.sha || UNKNOWN}.`, source_refs: sourceRefs("CLI-HANDOFF/manifest.json", "CLI-HANDOFF/phase-15/FINAL-PR-WORTHINESS-AUDIT.json", "knowledge/live-github-state.json"), metadata: current }); }
 for (const c of manifest.commits || []) entity("COMMIT", `COMMIT-${c.sha}`, c.sha, { status: c.historical ? "HISTORICAL" : "CURRENT", confidence: "HIGH", human_summary: c.msg || c.sha, deep_summary: `${c.repo || UNKNOWN} ${c.branch || c.pr || ""} — ${c.msg || UNKNOWN}.`, source_refs: sourceRefs("CLI-HANDOFF/manifest.json"), metadata: c });
 for (const p of manifest.pull_requests || []) { const status = liveOpenPRs.has(p.number) ? "OPEN" : liveMergedPRs.has(p.number) || p.state === "MERGED" ? "RESOLVED" : "HISTORICAL"; entity("PULL_REQUEST", `PR-${p.number}`, `Ix PR #${p.number}`, { status, confidence: "HIGH", aliases: [p.url].filter(Boolean), human_summary: `Ix pull request #${p.number}: ${status}.`, source_refs: sourceRefs("CLI-HANDOFF/manifest.json", "CLI-HANDOFF/phase-15/FINAL-PR-WORTHINESS-AUDIT.json"), metadata: { ...p, historical_manifest_state: p.state, live_state: status } }); }
 for (const i of manifest.issues || []) { const status = liveOpenIssues.has(i.number) ? "OPEN" : liveClosedIssues.has(i.number) || i.state === "CLOSED" ? "RESOLVED" : "HISTORICAL"; entity("ISSUE", `ISSUE-${i.number}`, `Ix issue #${i.number}`, { status, confidence: "HIGH", aliases: [i.url].filter(Boolean), human_summary: `Ix issue #${i.number}; current recorded state: ${status}.`, source_refs: sourceRefs("CLI-HANDOFF/manifest.json", "CLI-HANDOFF/phase-15/FINAL-PR-WORTHINESS-AUDIT.json"), metadata: { ...i, historical_manifest_state: i.state, live_state: status } }); }
@@ -102,8 +119,7 @@ for (const impl of liveGitHub.implementations || []) {
 // never deleted, so stale branch heads are retained as provenance only.
 for (const c of manifest.commits || []) {
   const branch = c.branch || "";
-  const liveForBranch = (liveGitHub.open_pull_requests || []).find(p => p.head_ref && (branch.includes(p.head_ref) || p.head_ref.includes(branch)));
-  const currentHead = liveForBranch?.head_sha;
+  const currentHead = liveHeadFor(branch, c.repo);
   if (currentHead && c.sha !== currentHead && entities.has(`COMMIT-${c.sha}`)) {
     const e = entities.get(`COMMIT-${c.sha}`);
     e.status = "HISTORICAL";
@@ -139,7 +155,7 @@ const phaseRecords = [...(phasesReg.phases || []),
   { id:"phase-15", number:15, title:"Final Adversarial PR-Worthiness Audit", category:"AUDIT", date:"2026-08-11", repository:"Ix-findings", objective:"Reconcile the full candidate universe and apply the contribution gate.", status:"HISTORICAL", outputs:["CLI-HANDOFF/phase-15/PHASE-FINAL-REPORT.md"] },
   { id:"phase-16", number:16, title:"Full Knowledge Graph & Live Evidence Reconstruction", category:"KNOWLEDGE", date:"2026-08-11", repository:"Ix-findings", objective:"Reconstruct the canonical semantic layer beneath the unchanged explorer UI.", status:"CURRENT", outputs:["knowledge/PHASE-16-REPORT.md"] }
 ];
-for (const p of phaseRecords) entity("PHASE", p.id, `Phase ${p.number} — ${p.title}`, { status: String(p.status).includes("BLOCKED") ? "BLOCKED" : p.status === "HISTORICAL" ? "HISTORICAL" : "CURRENT", confidence: "HIGH", source_refs: sourceRefs("planning/maps/phases.json", ...(p.outputs || [])), human_summary: `${p.title}: ${p.status}.`, deep_summary: `${p.objective || ""} Key findings: ${(p.key_findings || []).join("; ")}`, temporal: { valid_from: p.date || UNKNOWN, valid_until: UNKNOWN, observed_at: p.date || UNKNOWN, verified_at: UNKNOWN, introduced_by: UNKNOWN, fixed_by: UNKNOWN }, metadata: p });
+for (const p of phaseRecords) entity("PHASE", p.id, `Phase ${p.number} — ${p.title}`, { status: String(p.status).includes("BLOCKED") ? "BLOCKED" : p.status === "HISTORICAL" || String(p.status).includes("COMPLETE") ? "HISTORICAL" : "CURRENT", confidence: "HIGH", source_refs: sourceRefs("planning/maps/phases.json", ...(p.outputs || [])), human_summary: `${p.title}: ${p.status}.`, deep_summary: `${p.objective || ""} Key findings: ${(p.key_findings || []).join("; ")}`, temporal: { valid_from: p.date || UNKNOWN, valid_until: UNKNOWN, observed_at: p.date || UNKNOWN, verified_at: UNKNOWN, introduced_by: UNKNOWN, fixed_by: UNKNOWN }, metadata: p });
 for (const p of phaseRecords) { for (const dep of p.dependencies || []) edge(p.id, dep, "DEPENDS_ON", { source_refs: sourceRefs("planning/maps/phases.json") }); for (const next of [p.next_phase].filter(Boolean)) { const n = String(next).match(/phase-\d+/)?.[0]; if (n && entities.has(n)) edge(p.id, n, "ENABLES", { source_refs: sourceRefs("planning/maps/phases.json") }); } } 
 
 for (const c of auditCandidates.candidates || []) entity("CANDIDATE", c.id, c.legacy || c.subject || c.id, { status: ({ A_CONTRIBUTION_READY:"CURRENT", B_CONTRIBUTE_AFTER_REWORK:"CONTRIBUTE_AFTER_REWORK", C_NEEDS_REPRODUCTION:"NEEDS_REPRODUCTION", D_NEEDS_UPSTREAM_INTENT:"NEEDS_UPSTREAM_INTENT", E_ALREADY_FIXED:"ALREADY_FIXED", F_DUPLICATE:"DUPLICATE", G_SUPERSEDED:"SUPERSEDED", H_NOT_WORTH_CONTRIBUTING:"DECLINED", I_AI_SLOP_UNSUPPORTED:"UNSUPPORTED", J_BLOCKED:"BLOCKED", K_INTERNAL_LEDGER_ONLY:"INTERNAL_LEDGER_ONLY" }[c.disposition] || "UNKNOWN"), confidence: c.disposition === "I_AI_SLOP_UNSUPPORTED" ? "LOW" : "MEDIUM", source_refs: sourceRefs("CLI-HANDOFF/phase-15/AUDIT-CANDIDATE-UNIVERSE.json"), human_summary: `${c.legacy || c.id}: ${c.disposition}.`, deep_summary: c.action || c.reason || c.legacy || c.id, metadata: c, llm: { llm_summary: `${c.id}: ${c.disposition}.`, llm_context: c.legacy || "", llm_facts: c.evidence || [], llm_uncertainties: c.disposition === "C_NEEDS_REPRODUCTION" || c.disposition === "J_BLOCKED" ? [c.action || "Additional evidence is required."] : c.disposition === "I_AI_SLOP_UNSUPPORTED" ? ["The claim is unsupported and must not be treated as fact."] : [], llm_questions: c.action ? [c.action] : [], llm_evidence_chain: [], llm_relationships: [], llm_search_terms: [c.id, c.legacy].filter(Boolean) } });
@@ -268,6 +284,16 @@ const contradictions = [
 ];
 for (const c of contradictions) entity("CONTRADICTION", c.id, c.subject, { status:c.status, confidence:"HIGH", source_refs:sourceRefs(...c.sources), human_summary:`${c.subject}: ${c.resolution}`, deep_summary:`Claim A: ${c.claim_a} Claim B: ${c.claim_b} Resolution: ${c.resolution}`, metadata:c });
 for (const e of entities.values()) for (const sid of e.source_refs || []) if (entities.has(sid) && sid !== e.canonical_id) edge(e.canonical_id, sid, "HAS_SOURCE", { confidence: "HIGH" });
+
+// Edges touching a superseded (HISTORICAL) commit entity are provenance
+// records, not live claims; downgrade them so no CURRENT edge resolves against
+// a commit that was rewritten or purged.
+for (const rel of relationships) {
+  if (rel.status === "HISTORICAL") continue;
+  const fromE = entities.get(rel.from);
+  const toE = entities.get(rel.to);
+  if ((fromE?.entity_type === "COMMIT" && fromE.status === "HISTORICAL") || (toE?.entity_type === "COMMIT" && toE.status === "HISTORICAL")) rel.status = "HISTORICAL";
+}
 
 const entitiesArray = [...entities.values()].map(e => { const neighbors = relationships.filter(r => r.from === e.canonical_id || r.to === e.canonical_id).map(r => r.from === e.canonical_id ? r.to : r.from); e.related_entities = [...new Set(neighbors)]; e.llm.llm_relationships = e.related_entities; e.aliases = [...new Set([...(e.aliases || []), e.canonical_id])]; return e; });
 const relationshipArray = relationships;
