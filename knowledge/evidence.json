@@ -1,0 +1,482 @@
+[
+  {
+    "evidence_id": "E-001",
+    "title": "compass-0.1.0.tar.gz",
+    "class": "B",
+    "what": "SHA256 19bc427d0eca77b2...; Rolldown, 13 chunks; released 2026-03-28",
+    "where": "ix-compass-dist",
+    "when": "phase-05",
+    "source_refs": [
+      "SRC-11b62787a2c7"
+    ],
+    "observation": "SHA256 19bc427d0eca77b2...; Rolldown, 13 chunks; released 2026-03-28",
+    "method": "artifact",
+    "result": "compass-0.1.0.tar.gz (class B).",
+    "confidence": "MEDIUM",
+    "limitations": "UNKNOWN"
+  },
+  {
+    "evidence_id": "E-002",
+    "title": "compass-0.1.1.tar.gz",
+    "class": "B",
+    "what": "SHA256 74e56488c5daf970...; hotfix; several chunks byte-identical to v0.1.0",
+    "where": "ix-compass-dist",
+    "when": "phase-05",
+    "source_refs": [
+      "SRC-11b62787a2c7"
+    ],
+    "observation": "SHA256 74e56488c5daf970...; hotfix; several chunks byte-identical to v0.1.0",
+    "method": "artifact",
+    "result": "compass-0.1.1.tar.gz (class B).",
+    "confidence": "MEDIUM",
+    "limitations": "UNKNOWN"
+  },
+  {
+    "evidence_id": "E-003",
+    "title": "compass-0.2.0.tar.gz",
+    "class": "B",
+    "what": "SHA256 863583084c91719f...; released 2026-06-08; one-shot fit latch present",
+    "where": "ix-compass-dist",
+    "when": "phase-05",
+    "source_refs": [
+      "SRC-11b62787a2c7"
+    ],
+    "observation": "SHA256 863583084c91719f...; released 2026-06-08; one-shot fit latch present",
+    "method": "artifact",
+    "result": "compass-0.2.0.tar.gz (class B).",
+    "confidence": "MEDIUM",
+    "limitations": "UNKNOWN"
+  },
+  {
+    "evidence_id": "E-004",
+    "title": "compass-0.3.0.tar.gz",
+    "class": "B",
+    "what": "SHA256 7ed6cc82fe58b3ad...; built from system-compass main @ 7f98724; keyed refit effect present",
+    "where": "ix-compass-dist",
+    "when": "phase-05",
+    "source_refs": [
+      "SRC-11b62787a2c7"
+    ],
+    "observation": "SHA256 7ed6cc82fe58b3ad...; built from system-compass main @ 7f98724; keyed refit effect present",
+    "method": "artifact",
+    "result": "compass-0.3.0.tar.gz (class B).",
+    "confidence": "MEDIUM",
+    "limitations": "UNKNOWN"
+  },
+  {
+    "evidence_id": "E-005",
+    "title": "keyboard switch byte-identity",
+    "class": "B",
+    "what": "identical switch + guards across all 4 releases; F/f zero matches in every chunk",
+    "where": "system-compass",
+    "when": "phase-05",
+    "source_refs": [
+      "SRC-11b62787a2c7"
+    ],
+    "observation": "identical switch + guards across all 4 releases; F/f zero matches in every chunk",
+    "method": "artifact",
+    "result": "keyboard switch byte-identity (class B).",
+    "confidence": "MEDIUM",
+    "limitations": "UNKNOWN"
+  },
+  {
+    "evidence_id": "E-006",
+    "title": "KeyboardHelp extraction",
+    "class": "B",
+    "what": "KeyboardHelp-KnF66B2h.js (1784 B): 8 entries, no F; byte-identical across releases",
+    "where": "system-compass",
+    "when": "phase-05",
+    "source_refs": [
+      "SRC-11b62787a2c7"
+    ],
+    "observation": "KeyboardHelp-KnF66B2h.js (1784 B): 8 entries, no F; byte-identical across releases",
+    "method": "artifact",
+    "result": "KeyboardHelp extraction (class B).",
+    "confidence": "MEDIUM",
+    "limitations": "UNKNOWN"
+  },
+  {
+    "evidence_id": "E-007",
+    "title": "fit-constants extraction",
+    "class": "B",
+    "what": "1200,700,56,1.25,112,36,2.5,1.1,96 + contain + snap invariant",
+    "where": "system-compass",
+    "when": "phase-05",
+    "source_refs": [
+      "SRC-11b62787a2c7"
+    ],
+    "observation": "1200,700,56,1.25,112,36,2.5,1.1,96 + contain + snap invariant",
+    "method": "artifact",
+    "result": "fit-constants extraction (class B).",
+    "confidence": "MEDIUM",
+    "limitations": "UNKNOWN"
+  },
+  {
+    "evidence_id": "E-008",
+    "title": "v0.3.0 release notes (KageBinary)",
+    "class": "A",
+    "what": "#57/#58/#59; exists to stop a downgrade; aggregation 1471->33; bounded layout; searchable roll-ups; breadcrumb collapse",
+    "where": "ix-compass-dist",
+    "when": "phase-05",
+    "source_refs": [
+      "SRC-11b62787a2c7"
+    ],
+    "observation": "#57/#58/#59; exists to stop a downgrade; aggregation 1471->33; bounded layout; searchable roll-ups; breadcrumb collapse",
+    "method": "release note",
+    "result": "v0.3.0 release notes (KageBinary) (class A).",
+    "confidence": "HIGH",
+    "limitations": "UNKNOWN"
+  },
+  {
+    "evidence_id": "E-009",
+    "title": "delayed-data A/B runs",
+    "class": "B",
+    "what": "A v0.2.0 0.439@(39,315) 0 cards; B v0.3.0 0.441@(39,388) 0 cards; B2 repeat 0 cards; C fast 0.129@(39,254) visible; map_rev constant",
+    "where": "system-compass",
+    "when": "phase-07",
+    "source_refs": [
+      "SRC-11b62787a2c7"
+    ],
+    "observation": "A v0.2.0 0.439@(39,315) 0 cards; B v0.3.0 0.441@(39,388) 0 cards; B2 repeat 0 cards; C fast 0.129@(39,254) visible; map_rev constant",
+    "method": "reproduction",
+    "result": "delayed-data A/B runs (class B).",
+    "confidence": "MEDIUM",
+    "limitations": "UNKNOWN"
+  },
+  {
+    "evidence_id": "E-010",
+    "title": "F-key PoC (patched v0.3.0)",
+    "class": "B",
+    "what": "F == 0 target byte-identical; INPUT guard holds; CmdK/Esc unchanged; zero console errors",
+    "where": "system-compass",
+    "when": "phase-05",
+    "source_refs": [
+      "SRC-11b62787a2c7"
+    ],
+    "observation": "F == 0 target byte-identical; INPUT guard holds; CmdK/Esc unchanged; zero console errors",
+    "method": "runtime",
+    "result": "F-key PoC (patched v0.3.0) (class B).",
+    "confidence": "MEDIUM",
+    "limitations": "UNKNOWN"
+  },
+  {
+    "evidence_id": "E-011",
+    "title": "zoom-contract live checks",
+    "class": "B",
+    "what": "x1.1 in / x0.9 out / 2.5 cap / floor=fit; x1.25 button anomaly",
+    "where": "system-compass",
+    "when": "phase-07",
+    "source_refs": [
+      "SRC-11b62787a2c7"
+    ],
+    "observation": "x1.1 in / x0.9 out / 2.5 cap / floor=fit; x1.25 button anomaly",
+    "method": "runtime",
+    "result": "zoom-contract live checks (class B).",
+    "confidence": "MEDIUM",
+    "limitations": "UNKNOWN"
+  },
+  {
+    "evidence_id": "E-012",
+    "title": "rollup timing A/B",
+    "class": "B",
+    "what": "fast 9 cards + 1 aggregate vs delayed 15 cards, no aggregate; same map_rev",
+    "where": "system-compass",
+    "when": "phase-07",
+    "source_refs": [
+      "SRC-11b62787a2c7"
+    ],
+    "observation": "fast 9 cards + 1 aggregate vs delayed 15 cards, no aggregate; same map_rev",
+    "method": "runtime",
+    "result": "rollup timing A/B (class B).",
+    "confidence": "MEDIUM",
+    "limitations": "UNKNOWN"
+  },
+  {
+    "evidence_id": "E-013",
+    "title": "view.ts pre-fix bind",
+    "class": "A",
+    "what": "server.listen(PORT) no host -> binds ::/0.0.0.0 (P0)",
+    "where": "ix-infrastructure/Ix",
+    "when": "phase-00",
+    "source_refs": [
+      "SRC-11b62787a2c7"
+    ],
+    "observation": "server.listen(PORT) no host -> binds ::/0.0.0.0 (P0)",
+    "method": "source",
+    "result": "view.ts pre-fix bind (class A).",
+    "confidence": "HIGH",
+    "limitations": "UNKNOWN"
+  },
+  {
+    "evidence_id": "E-014",
+    "title": "remap diff c021b52",
+    "class": "A",
+    "what": "4 files +250/-11: view.ts endpoint + guard, tests, bootstrap.sh WSL/node_ok, docs",
+    "where": "ix-infrastructure/Ix",
+    "when": "phase-02",
+    "source_refs": [
+      "SRC-11b62787a2c7"
+    ],
+    "observation": "4 files +250/-11: view.ts endpoint + guard, tests, bootstrap.sh WSL/node_ok, docs",
+    "method": "source",
+    "result": "remap diff c021b52 (class A).",
+    "confidence": "HIGH",
+    "limitations": "UNKNOWN"
+  },
+  {
+    "evidence_id": "E-015",
+    "title": "guard-matrix tests",
+    "class": "B",
+    "what": "10 scenarios, ix-cli/test/view-server.test.ts; real server + real child process",
+    "where": "ix-infrastructure/Ix",
+    "when": "phase-02",
+    "source_refs": [
+      "SRC-11b62787a2c7"
+    ],
+    "observation": "10 scenarios, ix-cli/test/view-server.test.ts; real server + real child process",
+    "method": "test",
+    "result": "guard-matrix tests (class B).",
+    "confidence": "MEDIUM",
+    "limitations": "UNKNOWN"
+  },
+  {
+    "evidence_id": "E-016",
+    "title": "suite runs (fresh)",
+    "class": "B",
+    "what": "vitest 656/2 (51 files), tsc 0 errors, eslint clean; re-run at phases 02 & 12",
+    "where": "ix-infrastructure/Ix",
+    "when": "phase-12",
+    "source_refs": [
+      "SRC-11b62787a2c7"
+    ],
+    "observation": "vitest 656/2 (51 files), tsc 0 errors, eslint clean; re-run at phases 02 & 12",
+    "method": "test",
+    "result": "suite runs (fresh) (class B).",
+    "confidence": "MEDIUM",
+    "limitations": "UNKNOWN"
+  },
+  {
+    "evidence_id": "E-017",
+    "title": "#376 source analysis",
+    "class": "A",
+    "what": "upgrade.ts isNewer/getInstalledCompassVersion/writeCache; release.yml stamping; PR #365/#366/#344",
+    "where": "ix-infrastructure/Ix",
+    "when": "phase-03",
+    "source_refs": [
+      "SRC-11b62787a2c7"
+    ],
+    "observation": "upgrade.ts isNewer/getInstalledCompassVersion/writeCache; release.yml stamping; PR #365/#366/#344",
+    "method": "source",
+    "result": "#376 source analysis (class A).",
+    "confidence": "HIGH",
+    "limitations": "UNKNOWN"
+  },
+  {
+    "evidence_id": "E-018",
+    "title": "#371 source analysis",
+    "class": "A",
+    "what": "patches.ts:6 export; absent from oss.ts; listed in PRO_COMMANDS",
+    "where": "ix-infrastructure/Ix",
+    "when": "phase-04",
+    "source_refs": [
+      "SRC-11b62787a2c7"
+    ],
+    "observation": "patches.ts:6 export; absent from oss.ts; listed in PRO_COMMANDS",
+    "method": "source",
+    "result": "#371 source analysis (class A).",
+    "confidence": "HIGH",
+    "limitations": "UNKNOWN"
+  },
+  {
+    "evidence_id": "E-019",
+    "title": "git divergence numbers",
+    "class": "A",
+    "what": "main 0/0; fork 5 behind; remap 1 ahead/0 behind; refs c4f8fea/0437abf/c021b52/b038c46/396426b",
+    "where": "ALL",
+    "when": "phase-final",
+    "source_refs": [
+      "SRC-11b62787a2c7"
+    ],
+    "observation": "main 0/0; fork 5 behind; remap 1 ahead/0 behind; refs c4f8fea/0437abf/c021b52/b038c46/396426b",
+    "method": "git",
+    "result": "git divergence numbers (class A).",
+    "confidence": "HIGH",
+    "limitations": "UNKNOWN"
+  },
+  {
+    "evidence_id": "E-020",
+    "title": "GitHub maintainer context",
+    "class": "A",
+    "what": "identities/roles via API + last-30-commit history; issue->PR->maintainer map; tagging guidance",
+    "where": "ALL",
+    "when": "phase-10",
+    "source_refs": [
+      "SRC-11b62787a2c7"
+    ],
+    "observation": "identities/roles via API + last-30-commit history; issue->PR->maintainer map; tagging guidance",
+    "method": "github",
+    "result": "GitHub maintainer context (class A).",
+    "confidence": "HIGH",
+    "limitations": "UNKNOWN"
+  },
+  {
+    "evidence_id": "E-021",
+    "title": "worktree map",
+    "class": "A",
+    "what": "primary <IX_REPO> + linked <IX_REMAP_WORKTREE>; standalone <COMPASS_DIST_REPO>",
+    "where": "ix-infrastructure/Ix",
+    "when": "phase-final",
+    "source_refs": [
+      "SRC-11b62787a2c7"
+    ],
+    "observation": "primary <IX_REPO> + linked <IX_REMAP_WORKTREE>; standalone <COMPASS_DIST_REPO>",
+    "method": "git",
+    "result": "worktree map (class A).",
+    "confidence": "HIGH",
+    "limitations": "UNKNOWN"
+  },
+  {
+    "evidence_id": "E-022",
+    "title": "placeholder-fit instability",
+    "class": "B",
+    "what": "0.439 vs 0.441 across runs (mount-timing dependent)",
+    "where": "system-compass",
+    "when": "phase-07",
+    "source_refs": [
+      "SRC-11b62787a2c7"
+    ],
+    "observation": "0.439 vs 0.441 across runs (mount-timing dependent)",
+    "method": "runtime",
+    "result": "placeholder-fit instability (class B).",
+    "confidence": "MEDIUM",
+    "limitations": "UNKNOWN"
+  },
+  {
+    "evidence_id": "E-023",
+    "title": "source-maps scan",
+    "class": "B",
+    "what": "no .map files shipped in any release",
+    "where": "ix-compass-dist",
+    "when": "phase-05",
+    "source_refs": [
+      "SRC-11b62787a2c7"
+    ],
+    "observation": "no .map files shipped in any release",
+    "method": "artifact",
+    "result": "source-maps scan (class B).",
+    "confidence": "MEDIUM",
+    "limitations": "UNKNOWN"
+  },
+  {
+    "evidence_id": "E-024",
+    "title": "bootstrap.sh is_windows()/node_ok",
+    "class": "A",
+    "what": "WSL misrouting + dead variable on merged main",
+    "where": "ix-infrastructure/Ix",
+    "when": "phase-02",
+    "source_refs": [
+      "SRC-11b62787a2c7"
+    ],
+    "observation": "WSL misrouting + dead variable on merged main",
+    "method": "source",
+    "result": "bootstrap.sh is_windows()/node_ok (class A).",
+    "confidence": "HIGH",
+    "limitations": "UNKNOWN"
+  },
+  {
+    "evidence_id": "E-025",
+    "title": "F-key source-equivalent spec",
+    "class": "C",
+    "what": "tasks/compass-f-key-source-equivalent.md: PR material from artifact + PoC + review",
+    "where": "system-compass",
+    "when": "phase-05",
+    "source_refs": [
+      "SRC-11b62787a2c7"
+    ],
+    "observation": "tasks/compass-f-key-source-equivalent.md: PR material from artifact + PoC + review",
+    "method": "document",
+    "result": "F-key source-equivalent spec (class C).",
+    "confidence": "LOW",
+    "limitations": "UNKNOWN"
+  },
+  {
+    "evidence_id": "E-026",
+    "title": "oss.ts PRO_COMMANDS list",
+    "class": "A",
+    "what": "patches in PRO_COMMANDS, not imported in registerOssCommands (F-009 source)",
+    "where": "ix-infrastructure/Ix",
+    "when": "phase-04",
+    "source_refs": [
+      "SRC-11b62787a2c7"
+    ],
+    "observation": "patches in PRO_COMMANDS, not imported in registerOssCommands (F-009 source)",
+    "method": "source",
+    "result": "oss.ts PRO_COMMANDS list (class A).",
+    "confidence": "HIGH",
+    "limitations": "UNKNOWN"
+  },
+  {
+    "evidence_id": "E-027",
+    "title": "upgrade.ts isNewer implementation",
+    "class": "A",
+    "what": "Semver comparison at line 141 (F-008 source)",
+    "where": "ix-infrastructure/Ix",
+    "when": "phase-03",
+    "source_refs": [
+      "SRC-11b62787a2c7"
+    ],
+    "observation": "Semver comparison at line 141 (F-008 source)",
+    "method": "source",
+    "result": "upgrade.ts isNewer implementation (class A).",
+    "confidence": "HIGH",
+    "limitations": "UNKNOWN"
+  },
+  {
+    "evidence_id": "E-028",
+    "title": "ix-cli actual version v0.6.1",
+    "class": "A",
+    "what": "Root package.json says 0.5.0; actual CLI is 0.6.1 — dual version series (CAND-016)",
+    "where": "ix-infrastructure/Ix",
+    "when": "phase-fc7",
+    "source_refs": [
+      "SRC-11b62787a2c7"
+    ],
+    "observation": "Root package.json says 0.5.0; actual CLI is 0.6.1 — dual version series (CAND-016)",
+    "method": "source",
+    "result": "ix-cli actual version v0.6.1 (class A).",
+    "confidence": "HIGH",
+    "limitations": "UNKNOWN"
+  },
+  {
+    "evidence_id": "E-029",
+    "title": "#385 upgrade-breaks-wrapper fix — PR #386 + #392 merged upstream",
+    "class": "A",
+    "what": "PR #386 (ix.cmd launcher diagnosis, +149 test lines) merged 2026-08-10. PR #392 (upgrade under IX_HOME, +171 test lines) merged 2026-08-11. Both include regression tests. Issues #385 remains open as admin backlog, not code defect.",
+    "where": "ix-infrastructure/Ix",
+    "when": "phase-11",
+    "source_refs": [
+      "SRC-11b62787a2c7"
+    ],
+    "observation": "PR #386 (ix.cmd launcher diagnosis, +149 test lines) merged 2026-08-10. PR #392 (upgrade under IX_HOME, +171 test lines) merged 2026-08-11. Both include regression tests. Issues #385 remains open as admin backlog, not code defect.",
+    "method": "merged-pr",
+    "result": "#385 upgrade-breaks-wrapper fix — PR #386 + #392 merged upstream (class A).",
+    "confidence": "HIGH",
+    "limitations": "UNKNOWN"
+  },
+  {
+    "evidence_id": "E-030",
+    "title": "#349 installer-space-in-path fix — PR #352 + #392 merged upstream",
+    "class": "A",
+    "what": "PR #352 (install.ps1 short TEMP path, +35 test lines) merged 2026-08-10. PR #392 (IX_HOME staging) also contributes. PR #395 (space-in-path test, open) adds the final coverage. Issue #349 remains open as admin backlog.",
+    "where": "ix-infrastructure/Ix",
+    "when": "phase-11",
+    "source_refs": [
+      "SRC-11b62787a2c7"
+    ],
+    "observation": "PR #352 (install.ps1 short TEMP path, +35 test lines) merged 2026-08-10. PR #392 (IX_HOME staging) also contributes. PR #395 (space-in-path test, open) adds the final coverage. Issue #349 remains open as admin backlog.",
+    "method": "merged-pr",
+    "result": "#349 installer-space-in-path fix — PR #352 + #392 merged upstream (class A).",
+    "confidence": "HIGH",
+    "limitations": "UNKNOWN"
+  }
+]

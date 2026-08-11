@@ -1,0 +1,10 @@
+{
+  "phase": 15,
+  "needs_reproduction": [
+    {"id":"AUDIT-CAND-005","subject":"Native Windows Codex hooks issue #383","required":"Native Windows run of hooks and Python subprocess invocation; inspect current plugin source; record expected vs actual."},
+    {"id":"CAND-019","subject":"Ix documentation gap","required":"Fresh current-main command inventory and a scoped maintainer-value proposal."},
+    {"id":"CAND-006","subject":"Compass delayed-data","required":"Accessible current Compass runtime/source plus automated delayed-data reproduction."},
+    {"id":"F-007","subject":"Compass rollup timing","required":"Source-backed causal reproduction; current artifact behavior alone is insufficient."},
+    {"id":"MCP-CONFORMANCE","subject":"Modern MCP interoperability","required":"Run a standards-conforming client or Inspector with required _meta fields, null-id negative tests, concurrent requests, cancellation, and tools capability checks."}
+  ]
+}

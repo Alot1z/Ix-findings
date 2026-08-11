@@ -1,0 +1,368 @@
+{
+  "captured_at": "2026-08-11",
+  "source": "read-only GitHub API via gh api",
+  "upstream": {
+    "repository": "ix-infrastructure/Ix",
+    "default_branch": "main",
+    "head_sha": "1292375548fb8f4431ac5afc34c68fe2573434d1",
+    "head_sha_short": "1292375548fb"
+  },
+  "open_issues": [
+    {
+      "number": 219,
+      "title": "Add ix mcp subcommand: expose ix as a local MCP server",
+      "state": "open",
+      "user": "josephismikhail",
+      "url": "https://github.com/ix-infrastructure/Ix/issues/219",
+      "labels": [
+        "enhancement"
+      ]
+    },
+    {
+      "number": 349,
+      "title": "[bug] Windows installer — path with spaces",
+      "state": "open",
+      "user": "RMA1313",
+      "url": "https://github.com/ix-infrastructure/Ix/issues/349",
+      "labels": [
+        "bug"
+      ]
+    },
+    {
+      "number": 383,
+      "title": "[bug] Codex hooks and CLI subprocess calls fail on native Windows",
+      "state": "open",
+      "user": "tept-creator",
+      "url": "https://github.com/ix-infrastructure/Ix/issues/383"
+    },
+    {
+      "number": 385,
+      "title": "[bug] ix upgrade breaks Windows CLI when upgrading from 0.8.1 to 0.9.1",
+      "state": "open",
+      "user": "RMA1313",
+      "url": "https://github.com/ix-infrastructure/Ix/issues/385",
+      "labels": [
+        "bug"
+      ]
+    }
+  ],
+  "open_pull_requests": [
+    {
+      "number": 388,
+      "title": "chore(brew): update formula for v0.9.2",
+      "state": "open",
+      "user": "github-actions[bot]",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/388"
+    },
+    {
+      "number": 393,
+      "title": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap",
+      "state": "open",
+      "user": "Alot1z",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/393",
+      "head_ref": "feat/ix-remap-hardening",
+      "head_sha": "1497596a03bbf916f26d34dfd18f986844175d43",
+      "head_repo": "Alot1z/Ix"
+    },
+    {
+      "number": 395,
+      "title": "test(upgrade): cover an IX_HOME containing a space",
+      "state": "open",
+      "user": "KageBinary",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/395",
+      "head_ref": "test/ix-home-with-space",
+      "head_sha": "13e96bacc648ee979f35e2874cd8aa2004f920e1",
+      "head_repo": "Alot1z/Ix",
+      "related_issue": 349
+    }
+  ],
+  "implementations": [
+    {
+      "id": "ix-mcp",
+      "type": "implementation",
+      "title": "ix mcp subcommand — local MCP server",
+      "repository": "Alot1z/Ix",
+      "branch": "feat/ix-mcp",
+      "status": "partially_implemented",
+      "status_note": "Functional stdio MCP server implemented on the fork branch; no upstream PR exists. Phase 15 audit disposition is CONTRIBUTE_AFTER_REWORK (modern metadata/request-ID conformance and scope clarification remain).",
+      "issue_refs": [
+        "ix-infrastructure/Ix#219"
+      ],
+      "pr_refs": [],
+      "commit_refs": [
+        "36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+        "a5350b6d6dc67958fa4abef63559affcd74aff56",
+        "66111917a2a58437c91372616f98928876121395",
+        "1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+        "606f18f7ca1a69f4b8ede7c27c1079b024297856"
+      ],
+      "head_sha": "606f18f7ca1a69f4b8ede7c27c1079b024297856",
+      "finding_refs": [],
+      "sections": {
+        "mcp": {
+          "title": "MCP implementation",
+          "graph_path": "/mcp"
+        },
+        "mcp_implementation": {
+          "title": "MCP implementation",
+          "graph_path": "/mcp/implementation"
+        },
+        "mcp_stdio": {
+          "title": "MCP stdio server",
+          "graph_path": "/mcp/implementation/stdio"
+        },
+        "mcp_tools": {
+          "title": "MCP tools",
+          "graph_path": "/mcp/implementation/tools"
+        },
+        "mcp_security": {
+          "title": "MCP security",
+          "graph_path": "/mcp/security"
+        },
+        "mcp_tests": {
+          "title": "MCP tests",
+          "graph_path": "/mcp/tests"
+        }
+      },
+      "files": [
+        {
+          "path": "ix-cli/src/cli/commands/mcp.ts",
+          "symbol": "mcp command registration",
+          "start_line": 1,
+          "end_line": 63,
+          "commit": "36c7c7eccd8068d48df4f61394b42a3ffa62483c"
+        },
+        {
+          "path": "ix-cli/src/cli/mcp/server.ts",
+          "symbol": "McpServer (stdio transport)",
+          "start_line": 1,
+          "end_line": 440,
+          "commit": "66111917a2a58437c91372616f98928876121395"
+        },
+        {
+          "path": "ix-cli/src/cli/mcp/protocol.ts",
+          "symbol": "protocol framing, line cap, batch rejection",
+          "start_line": 1,
+          "end_line": 120,
+          "commit": "1a5b0b93c9e8871610370c0f36212be8f6cf6980"
+        },
+        {
+          "path": "ix-cli/src/cli/mcp/tools.ts",
+          "symbol": "MCP tool registry (ix graph tools)",
+          "start_line": 1,
+          "end_line": 355,
+          "commit": "36c7c7eccd8068d48df4f61394b42a3ffa62483c"
+        },
+        {
+          "path": "ix-cli/src/cli/mcp/stdio-main.ts",
+          "symbol": "stdio entry point",
+          "start_line": 1,
+          "end_line": 36,
+          "commit": "66111917a2a58437c91372616f98928876121395"
+        },
+        {
+          "path": "ix-cli/src/cli/mcp/cli-executor.ts",
+          "symbol": "CLI subprocess executor, cancellation, tree-kill",
+          "start_line": 1,
+          "end_line": 250,
+          "commit": "1a5b0b93c9e8871610370c0f36212be8f6cf6980"
+        },
+        {
+          "path": "ix-cli/src/cli/mcp/types.ts",
+          "symbol": "MCP type contracts",
+          "start_line": 1,
+          "end_line": 88,
+          "commit": "36c7c7eccd8068d48df4f61394b42a3ffa62483c"
+        },
+        {
+          "path": "ix-cli/src/cli/__tests__/mcp-abuse.test.ts",
+          "symbol": "protocol-abuse matrix",
+          "start_line": 1,
+          "end_line": 236,
+          "commit": "1a5b0b93c9e8871610370c0f36212be8f6cf6980"
+        },
+        {
+          "path": "ix-cli/src/cli/__tests__/mcp-stdio.integration.test.ts",
+          "symbol": "stdio integration tests",
+          "start_line": 1,
+          "end_line": 128,
+          "commit": "66111917a2a58437c91372616f98928876121395"
+        },
+        {
+          "path": "ix-cli/src/cli/__tests__/mcp-protocol.test.ts",
+          "symbol": "protocol tests",
+          "start_line": 1,
+          "end_line": 117,
+          "commit": "1a5b0b93c9e8871610370c0f36212be8f6cf6980"
+        },
+        {
+          "path": "ix-cli/src/cli/__tests__/mcp-server.test.ts",
+          "symbol": "server tests",
+          "start_line": 1,
+          "end_line": 310,
+          "commit": "66111917a2a58437c91372616f98928876121395"
+        },
+        {
+          "path": "ix-cli/src/cli/__tests__/mcp-cli-executor.test.ts",
+          "symbol": "executor tests",
+          "start_line": 1,
+          "end_line": 123,
+          "commit": "66111917a2a58437c91372616f98928876121395"
+        },
+        {
+          "path": "ix-cli/src/cli/__tests__/mcp-command.test.ts",
+          "symbol": "command tests",
+          "start_line": 1,
+          "end_line": 67,
+          "commit": "36c7c7eccd8068d48df4f61394b42a3ffa62483c"
+        }
+      ],
+      "tests": [
+        {
+          "name": "MCP protocol-abuse matrix",
+          "file": "ix-cli/src/cli/__tests__/mcp-abuse.test.ts",
+          "start_line": 1,
+          "end_line": 236
+        },
+        {
+          "name": "MCP stdio integration",
+          "file": "ix-cli/src/cli/__tests__/mcp-stdio.integration.test.ts",
+          "start_line": 1,
+          "end_line": 128
+        },
+        {
+          "name": "MCP protocol conformance",
+          "file": "ix-cli/src/cli/__tests__/mcp-protocol.test.ts",
+          "start_line": 1,
+          "end_line": 117
+        }
+      ],
+      "evidence": [
+        "Phase 9 hardening results: CLI-HANDOFF/phase-9/PHASE-9-HARDENING-RESULTS.json",
+        "Phase 9 real-client run: CLI-HANDOFF/phase-9/REAL-CLIENT-RUN.json",
+        "Phase 15 audit: CLI-HANDOFF/phase-15/PHASE-FINAL-REPORT.md",
+        "Phase 15 implementation quality matrix: CLI-HANDOFF/phase-15/IMPLEMENTATION-QUALITY-MATRIX.json"
+      ],
+      "security": [
+        "Line-size cap and batch rejection: protocol.ts (1a5b0b9)",
+        "In-flight abort on EOF and process tree kill: cli-executor.ts + server.ts (6611191)",
+        "Remaining per Phase 15: modern metadata/request-ID conformance and scope clarification"
+      ]
+    },
+    {
+      "id": "remap-pr393",
+      "type": "implementation",
+      "title": "/__ix/remap loopback-hardened endpoint (PR #393)",
+      "repository": "ix-infrastructure/Ix",
+      "branch": "feat/ix-remap-hardening",
+      "status": "implemented_with_remaining_hardening",
+      "status_note": "Open PR #393 carries the implementation. Phase 15 retained lifecycle/concurrency review concerns (descendant cleanup proof, bounded concurrency).",
+      "issue_refs": [],
+      "pr_refs": [
+        "ix-infrastructure/Ix#393"
+      ],
+      "commit_refs": [
+        "1497596a03bbf916f26d34dfd18f986844175d43"
+      ],
+      "head_sha": "1497596a03bbf916f26d34dfd18f986844175d43",
+      "finding_refs": [
+        "F-010",
+        "F-011",
+        "F-012"
+      ],
+      "sections": {
+        "prs_393": {
+          "title": "PR #393 — remap hardening",
+          "graph_path": "/prs/393"
+        },
+        "prs_393_remap": {
+          "title": "PR #393 — remap endpoint",
+          "graph_path": "/prs/393/remap"
+        },
+        "prs_393_security": {
+          "title": "PR #393 — security",
+          "graph_path": "/prs/393/security"
+        },
+        "prs_393_tests": {
+          "title": "PR #393 — tests",
+          "graph_path": "/prs/393/tests"
+        }
+      },
+      "files": [
+        {
+          "path": "ix-cli/src/cli/commands/view.ts",
+          "symbol": "serverScript — /__ix/remap + loopback guards",
+          "start_line": 181,
+          "end_line": 347,
+          "commit": "1497596a03bbf916f26d34dfd18f986844175d43"
+        },
+        {
+          "path": "ix-cli/src/cli/commands/view.ts",
+          "symbol": "POST /__ix/remap handler block",
+          "start_line": 246,
+          "end_line": 324,
+          "commit": "1497596a03bbf916f26d34dfd18f986844175d43"
+        },
+        {
+          "path": "ix-cli/src/cli/commands/view.ts",
+          "symbol": "loopback bind server.listen(PORT, 127.0.0.1)",
+          "start_line": 328,
+          "end_line": 328,
+          "commit": "1497596a03bbf916f26d34dfd18f986844175d43"
+        },
+        {
+          "path": "ix-cli/test/view-server.test.ts",
+          "symbol": "remap guard-matrix tests",
+          "start_line": 1,
+          "end_line": 178,
+          "commit": "1497596a03bbf916f26d34dfd18f986844175d43"
+        },
+        {
+          "path": "skills/ix/scripts/bootstrap.sh",
+          "symbol": "is_windows() WSL fix",
+          "start_line": 42,
+          "end_line": 45,
+          "commit": "1497596a03bbf916f26d34dfd18f986844175d43"
+        },
+        {
+          "path": "skills/ix/scripts/bootstrap.sh",
+          "symbol": "curl|sh installer routing",
+          "start_line": 103,
+          "end_line": 110,
+          "commit": "1497596a03bbf916f26d34dfd18f986844175d43"
+        },
+        {
+          "path": "docs/api/README.md",
+          "symbol": "POST /__ix/remap API documentation",
+          "start_line": 478,
+          "end_line": 488,
+          "commit": "1497596a03bbf916f26d34dfd18f986844175d43"
+        }
+      ],
+      "tests": [
+        {
+          "name": "remap guard-matrix tests",
+          "file": "ix-cli/test/view-server.test.ts",
+          "start_line": 1,
+          "end_line": 178
+        },
+        {
+          "name": "full suite at PR head (recorded in packet)",
+          "file": "ix-cli/test",
+          "start_line": 1,
+          "end_line": 178
+        }
+      ],
+      "evidence": [
+        "E-014 (remap diff), E-015 (guard-matrix tests), E-016 (suite runs)",
+        "pr-packets/ix-remap-hardening/README.md"
+      ],
+      "security": [
+        "Loopback bind 127.0.0.1 (view.ts:328)",
+        "Host whitelist localhost/127.0.0.1/[::1] and Origin parse via URL API (view.ts:246-324)",
+        "30-minute map timeout; kill child on client disconnect",
+        "Phase 15 remaining: descendant cleanup proof, bounded concurrency"
+      ]
+    }
+  ]
+}

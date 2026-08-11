@@ -1,0 +1,11 @@
+{
+  "phase": 15,
+  "security_review": [
+    {"surface":"MCP stdio","status":"REWORK_REQUIRED","evidence":["schema allowlists","execFile-style spawn","1 MiB line cap","output cap","tree kill on timeout/signals"],"risks":["modern requests without required metadata accepted","null IDs accepted","queued cancellation may miss a request before it enters pending map"],"mitigation":"Conformance tests and explicit modern/legacy negotiation; reject invalid requests before dispatch."},
+    {"surface":"Remap HTTP endpoint","status":"REWORK_REQUIRED","evidence":["127.0.0.1 bind","Host/Origin loopback checks","no shell interpolation"],"risks":["privileged map process can be launched repeatedly by local callers","disconnect path kills only direct child in reviewed source","no rate/concurrency policy"],"mitigation":"Bound concurrent maps, define cancellation/tree semantics, test hostile local clients and Windows."},
+    {"surface":"Ix-findings Pages","status":"PUBLIC_SNAPSHOT_ACCEPTABLE_WITH_REVIEW","evidence":["allowlist build-public.mjs","private Compass marker","local path redaction","snapshot label"],"risks":["generated snapshot can become stale","public graph may expose more relationship metadata than intended","raw GitHub conversation/footer history is not controlled by this projection"],"mitigation":"Keep explicit snapshot labeling, rerun allowlist/secret scan before each publication, never publish raw manifests."},
+    {"surface":"Audit artifacts","status":"SAFE_BY_INSPECTION","evidence":["no credentials copied into artifacts reviewed","private Compass URLs represented as access status"],"risks":["local paths appear in historical files outside the public projection"],"mitigation":"Do not publish raw handoff/manifest files without sanitizer."
+    }
+  ],
+  "no_manufactured_vulnerabilities": true
+}

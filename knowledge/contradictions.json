@@ -1,0 +1,74 @@
+[
+  {
+    "id": "CONTRA-001",
+    "subject": "F-008/F-009 status",
+    "status": "RESOLVED",
+    "claim_a": "Historical phases described the defects as OPEN.",
+    "claim_b": "Phase 15/current upstream evidence records both fixed by merged PRs #390/#391.",
+    "resolution": "Current upstream source and GitHub state wins; retain OPEN as historical state.",
+    "sources": [
+      "CLI-HANDOFF/phase-15/ALREADY-FIXED.json",
+      "planning/findings/registry.json"
+    ]
+  },
+  {
+    "id": "CONTRA-002",
+    "subject": "MCP contribution readiness",
+    "status": "CONTESTED",
+    "claim_a": "Phase 14 called MCP production-quality/PR-ready.",
+    "claim_b": "Phase 15 found modern metadata, null-ID, and scope concerns.",
+    "resolution": "Phase 15 is the later independent gate; disposition is CONTRIBUTE_AFTER_REWORK until conformance is tested.",
+    "sources": [
+      "CLI-HANDOFF/phase-14/PHASE-14-REPORT.md",
+      "CLI-HANDOFF/phase-15/PHASE-FINAL-REPORT.md"
+    ]
+  },
+  {
+    "id": "CONTRA-003",
+    "subject": "Remap readiness",
+    "status": "CONTESTED",
+    "claim_a": "Phase 14 called PR #393 sound and awaiting review.",
+    "claim_b": "Phase 15 retained lifecycle/concurrency review concerns.",
+    "resolution": "Do not call it contribution-ready; the existing PR remains the only contribution and is untouched.",
+    "sources": [
+      "CLI-HANDOFF/phase-14/PHASE-14-REPORT.md",
+      "CLI-HANDOFF/phase-15/PHASE-FINAL-REPORT.md"
+    ]
+  },
+  {
+    "id": "CONTRA-004",
+    "subject": "Phase ladder closure",
+    "status": "RESOLVED",
+    "claim_a": "Phase 13 declared the ladder terminal with no Phase 14.",
+    "claim_b": "Phases 14 and 15 were subsequently created and audited.",
+    "resolution": "Phase 13 is historical; Phase 15 is the latest audit phase.",
+    "sources": [
+      "CLI-HANDOFF/phase-13/PHASE-13-REPORT.md",
+      "CLI-HANDOFF/phase-15/PHASE-FINAL-REPORT.md"
+    ]
+  },
+  {
+    "id": "CONTRA-005",
+    "subject": "public graph freshness",
+    "status": "CURRENT",
+    "claim_a": "The explorer presents investigation data.",
+    "claim_b": "Its public data explicitly labels itself as a sanitized snapshot, not live GitHub state.",
+    "resolution": "Treat Pages/UI data as a derived snapshot and use current source/GitHub for present status.",
+    "sources": [
+      "planning/pages/public/data/data.js",
+      "planning/pages/build-public.mjs"
+    ]
+  },
+  {
+    "id": "CONTRA-006",
+    "subject": "evidence duplicate-ID report",
+    "status": "NEEDS_UPDATE",
+    "claim_a": "Phase 14 reported duplicate E-014/E-015 IDs.",
+    "claim_b": "The current registry must be rechecked before renumbering; Phase 15 intentionally did not edit it.",
+    "resolution": "Keep the claim as a historical data-quality observation pending a fresh validator run.",
+    "sources": [
+      "CLI-HANDOFF/phase-14/PHASE-14-REPORT.md",
+      "CLI-HANDOFF/phase-15/LEDGER-RECONCILIATION.json"
+    ]
+  }
+]

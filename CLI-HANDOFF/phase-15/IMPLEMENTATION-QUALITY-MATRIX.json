@@ -1,0 +1,9 @@
+{
+  "phase": 15,
+  "implementations": [
+    {"name":"ix-mcp","branch":"Alot1z/Ix:feat/ix-mcp","head":"606f18f","quality":"GOOD_WITH_CHANGES","strengths":["read-only tool boundary","schema validation","no shell interpolation","line cap","tree cleanup on timeout/signals","real-process tests"],"defects_or_uncertainty":["modern spec requires per-request protocol metadata and non-null request IDs; code accepts absent metadata/null IDs","issue #219 proposes a broader tool set","sequential queue/cancellation behavior needs official-client testing"],"minimum_rework":["implement or explicitly negotiate modern metadata contract","reject null IDs","test Inspector/modern client and queued cancellation","refresh docs and test counts"]},
+    {"name":"ix-remap","branch":"Alot1z/Ix:feat/ix-remap-hardening","head":"1497596","quality":"GOOD_WITH_CHANGES","strengths":["source-layer implementation","127.0.0.1 bind","Host and Origin checks","real server guard matrix","WSL correction"],"defects_or_uncertainty":["client disconnect invokes child.kill rather than guaranteed tree termination","multiple POSTs can launch expensive maps concurrently","native Windows process-tree behavior not independently verified in this phase"],"minimum_rework":["define bounded concurrency","reuse tree-kill discipline or document why a single child is sufficient","add disconnect/concurrency/platform tests"]},
+    {"name":"Compass packets","quality":"NOT_REVIEWABLE","reason":"Private source unavailable; packets are specifications and reconstructions, not reviewed patches."},
+    {"name":"Ix-findings Pages","quality":"FUNCTIONAL_SNAPSHOT","reason":"Public projection loads from generated data and is explicitly labeled non-live; not an upstream contribution."}
+  ]
+}

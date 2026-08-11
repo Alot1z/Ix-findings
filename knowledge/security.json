@@ -1,0 +1,29 @@
+[
+  {
+    "security_id": "SEC-REMAP",
+    "title": "Remap endpoint lifecycle/concurrency review",
+    "severity": "REVIEW_RISK",
+    "status": "CONTRIBUTE_AFTER_REWORK",
+    "affected_implementation": "IMPL-REMAP-PR393",
+    "evidence": [
+      "E-014",
+      "E-015"
+    ],
+    "mitigation": "Prove descendant cleanup and define bounded concurrency; do not claim exploitability without reproduction.",
+    "source_refs": [
+      "SRC-01c77278e6db"
+    ]
+  },
+  {
+    "security_id": "SEC-MCP",
+    "title": "MCP protocol/resource-abuse review",
+    "severity": "REVIEW_RISK",
+    "status": "CONTRIBUTE_AFTER_REWORK",
+    "affected_implementation": "IMPL-MCP-FORK",
+    "evidence": [],
+    "mitigation": "Add strict modern metadata/request-ID conformance and modern-client negative tests.",
+    "source_refs": [
+      "SRC-01c77278e6db"
+    ]
+  }
+]

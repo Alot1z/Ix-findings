@@ -588,4 +588,7 @@ searchEl.addEventListener('input',()=>{const q=searchEl.value;if(q.trim())doSear
 searchEl.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();doSearch(searchEl.value);}});
 
 render();
+
+/* Deep-link bridge — exposes the minimal app API to assets/sections.js. */
+window.IX_APP = { setView, render, openEntity, content, closeDrawer };
 })();

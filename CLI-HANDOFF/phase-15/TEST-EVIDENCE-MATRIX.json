@@ -1,0 +1,10 @@
+{
+  "phase": 15,
+  "tests": [
+    {"candidate":"MCP","proven":["unit protocol tests reported","real stdio process test reported","line cap abuse case reported","timeout/orphan fixture reported","Codex smoke reported"],"missing":["official modern MCP client/Inspector","required _meta fields","null request-id rejection","queued cancellation","native Windows run"],"gate":"FAILS_CONTRIBUTION_READY"},
+    {"candidate":"Remap #393","proven":["10 guard scenarios in PR description","TypeScript and suite results reported","merge-tree/patch identity reported"],"missing":["client-disconnect grandchild reaping","concurrent remap bound","native Windows process cleanup","current rerun against latest upstream HEAD"],"gate":"FAILS_CONTRIBUTION_READY"},
+    {"candidate":"F-008/F-009","proven":["current source confirms fixes","merged PR history"],"missing":[],"gate":"ALREADY_FIXED"},
+    {"candidate":"#383","proven":["issue body provides a concrete reproduction recipe"],"missing":["independent native Windows execution","current plugin source review"],"gate":"NEEDS_REPRODUCTION"},
+    {"candidate":"Ix-findings","proven":["public projection data parses as raw JavaScript","README links to Pages","Phase 14 build/validate reported"],"missing":["fresh local node/browser validation because shell unavailable"],"gate":"INTERNAL_ONLY"}
+  ]
+}

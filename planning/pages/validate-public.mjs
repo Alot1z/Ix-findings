@@ -5,6 +5,7 @@
 import { readFileSync, readdirSync, statSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { runGate } from "../../knowledge/freshness-gate.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const outDir = join(here, "public");
@@ -78,7 +79,28 @@ try {
   (hits === 0 || inert) ? ok("wiki.js localhost refs are inert security-model documentation (" + hits + " occurrences)") : fail("unexpected localhost refs in wiki.js");
 } catch (e) { fail("wiki.js read: " + e.message); }
 
-// 8. No secret file blobs in output tree
+// 8. Freshness gate: publication is blocked when canonical state or snapshots
+// diverge from the current read-only GitHub state. Use --skip-freshness only
+// for offline structural checks; that mode is not a publication approval.
+const skipFreshness = process.argv.includes("--skip-freshness");
+if (skipFreshness) {
+  console.log("WARN: freshness gate skipped — this validation is not publication-safe");
+} else {
+  try {
+    const fixtureIndex = process.argv.indexOf("--fixture");
+    const fixture = fixtureIndex >= 0 ? process.argv[fixtureIndex + 1] : undefined;
+    const ageIndex = process.argv.indexOf("--max-age-hours");
+    const maxAgeHours = ageIndex >= 0 ? Number(process.argv[ageIndex + 1]) : undefined;
+    const report = runGate({ fixture, maxAgeHours });
+    report.gate === "PASS"
+      ? ok("freshness gate passed")
+      : fail(`freshness gate ${report.gate.toLowerCase()} (${report.stale_count || 0} stale check(s))`);
+  } catch (e) {
+    fail("freshness gate unavailable: " + e.message);
+  }
+}
+
+// 9. No secret file blobs in output tree
 const walk = (d) => readdirSync(d).flatMap(f => { const p = join(d, f); return statSync(p).isDirectory() ? walk(p) : [p]; });
 const files = walk(outDir);
 const secretRe = /ghp_[A-Za-z0-9]{20,}|github_pat_|BEGIN (RSA|OPENSSH) PRIVATE/;

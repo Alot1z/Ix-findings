@@ -1,0 +1,11 @@
+{
+  "phase": 15,
+  "already_fixed": [
+    {"id":"F-008","issue":376,"fix_pr":391,"current_evidence":"upstream upgrade.ts has CompassStamp provenance and shouldOfferCompassUpgradeFor; issue #376 is closed/merged history."},
+    {"id":"F-009","issue":371,"fix_pr":390,"current_evidence":"upstream oss.ts imports and calls registerPatchesCommand and omits patches from PRO_COMMANDS."},
+    {"id":"CAND-005","fix_pr":390,"current_evidence":"live upstream PR #390 page records merge into main and tests."},
+    {"id":"CAND-010","fix_pr":391,"current_evidence":"live upstream PR #391 page records merge and subsequent review-driven corrections."},
+    {"id":"CAND-018","fix_pr":372,"current_evidence":"live upstream history records --format llm implementation."},
+    {"id":"CAND-016","fix_pr":391,"current_evidence":"provenance-aware handling supersedes the old dual-series defect premise."}
+  ]
+}

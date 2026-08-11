@@ -1,0 +1,26 @@
+[
+  {
+    "snapshot_id": "SNAPSHOT-WIKI-2026-08-11",
+    "dataset": "planning/wiki/data/data.js",
+    "live_or_snapshot": "SNAPSHOT",
+    "generated_at": "2026-08-11",
+    "source_revision": "1292375548fb",
+    "known_staleness": [
+      "derived UI data includes historical statuses and is not live GitHub truth"
+    ],
+    "source_refs": [
+      "SRC-9e660cbf742f"
+    ]
+  },
+  {
+    "snapshot_id": "SNAPSHOT-PAGES-2026-08-11",
+    "dataset": "planning/pages/public/data/data.js",
+    "live_or_snapshot": "SNAPSHOT",
+    "generated_at": "2026-08-11",
+    "source_revision": "1292375548fb",
+    "known_staleness": [
+      "sanitized public projection; refresh requires explicit publication authorization"
+    ],
+    "source_refs": []
+  }
+]

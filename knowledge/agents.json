@@ -1,0 +1,26 @@
+[
+  {
+    "agent_id": "AGENT-PREVIOUS-PHASES",
+    "agent": "previous phase agents",
+    "phase_range": "phase-0..phase-14",
+    "task": "investigation and implementation reports",
+    "conclusion": "historical evidence only; independently reconciled",
+    "confidence": "UNKNOWN",
+    "accepted": false,
+    "source_refs": [
+      "SRC-0bec9ebe781b"
+    ]
+  },
+  {
+    "agent_id": "AGENT-PHASE15-AUDIT",
+    "agent": "independent adversarial audit",
+    "phase": "phase-15",
+    "task": "current-state PR-worthiness review",
+    "conclusion": "zero contribution-ready candidates",
+    "confidence": "HIGH",
+    "accepted": true,
+    "source_refs": [
+      "SRC-8a458dae3346"
+    ]
+  }
+]

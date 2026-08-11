@@ -1,0 +1,87 @@
+{
+  "phase": 15,
+  "title": "Final Adversarial PR-Worthiness Audit",
+  "date": "2026-08-11",
+  "status": "PARTIALLY_COMPLETE",
+  "scope": "Read-only contribution gate; no upstream or GitHub mutations",
+  "live_baseline": {
+    "upstream": "ix-infrastructure/Ix",
+    "upstream_head": "1292375548fb",
+    "open_prs": [395, 393, 388],
+    "open_issues": [385, 383, 349, 219],
+    "mcp_fork_head": "606f18f",
+    "remap_pr": 393,
+    "remap_pr_state": "OPEN",
+    "pages": "Previously deployed; not changed in this phase"
+  },
+  "disposition_counts": {
+    "A_CONTRIBUTION_READY": 0,
+    "B_CONTRIBUTE_AFTER_REWORK": 2,
+    "C_NEEDS_REPRODUCTION": 3,
+    "D_NEEDS_UPSTREAM_INTENT": 2,
+    "E_ALREADY_FIXED": 6,
+    "F_DUPLICATE": 2,
+    "G_SUPERSEDED": 3,
+    "H_NOT_WORTH_CONTRIBUTING": 8,
+    "I_AI_SLOP_UNSUPPORTED": 3,
+    "J_BLOCKED": 5,
+    "K_INTERNAL_LEDGER_ONLY": 10
+  },
+  "contribution_ready": [],
+  "key_conclusions": [
+    {
+      "id": "MCP",
+      "disposition": "B_CONTRIBUTE_AFTER_REWORK",
+      "fact": "The fork contains a substantial read-only stdio implementation and real-process tests.",
+      "evidence": ["Alot1z/Ix feat/ix-mcp at 606f18f", "official MCP 2026-07-28 basic/transports/tools specifications"],
+      "interpretation": "It is not contribution-ready because the implementation does not enforce required modern per-request metadata and accepts null request IDs, while issue #219 describes a broader curated read/write surface than the eight read-only tools implemented.",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "REMAP",
+      "disposition": "B_CONTRIBUTE_AFTER_REWORK",
+      "fact": "PR #393 is open and proposes a loopback-guarded POST /__ix/remap endpoint plus WSL bootstrap changes.",
+      "evidence": ["live PR #393 page", "fork branch source at 1497596"],
+      "interpretation": "The feature is valuable, but client-disconnect cleanup calls child.kill rather than guaranteed process-tree cleanup, and concurrency/rate behavior is not bounded despite the endpoint executing a privileged map. Re-review is required before promotion.",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "UPSTREAM_FIXES",
+      "disposition": "E_ALREADY_FIXED",
+      "fact": "Current upstream main registers patches and contains the version-series and IX_HOME staging fixes.",
+      "evidence": ["raw upstream oss.ts", "raw upstream upgrade.ts", "PRs #390, #391, #392"],
+      "interpretation": "F-008/F-009 and related Phase 3 candidates must not be proposed as new upstream work.",
+      "confidence": "HIGH"
+    },
+    {
+      "id": "PAGES",
+      "disposition": "K_INTERNAL_LEDGER_ONLY",
+      "fact": "Ix-findings has a previously deployed sanitized Pages projection.",
+      "evidence": ["Alot1z/Ix-findings README", "published planning/pages/public/data/data.js snapshot"],
+      "interpretation": "It is an investigation deliverable, not an Ix upstream contribution; its snapshot is explicitly not live GitHub state.",
+      "confidence": "HIGH"
+    }
+  ],
+  "external_actions": {
+    "prs": 0,
+    "issues": 0,
+    "reviews": 0,
+    "comments": 0,
+    "maintainer_contacts": 0,
+    "upstream_commits": 0,
+    "upstream_pushes": 0,
+    "upstream_merges": 0,
+    "fork_prs": 0,
+    "pages_deployments": 0
+  },
+  "important_history_discrepancy": {
+    "fact": "PR #393's public conversation still contains the old Codebuff footer in previously posted text.",
+    "impact": "Local commit hooks and rewritten commit messages do not remove already-published PR conversation history.",
+    "action": "Record only; no deletion or comment mutation performed because prohibited by this phase."
+  },
+  "limitations": [
+    "The shell runner failed to spawn bash during final local validation, so no commit or push was executed.",
+    "No local source mutation was performed during this audit.",
+    "The current live baseline is established from live GitHub pages/raw source plus existing Phase 14 evidence; inaccessible private Compass source remains blocked."
+  ]
+}

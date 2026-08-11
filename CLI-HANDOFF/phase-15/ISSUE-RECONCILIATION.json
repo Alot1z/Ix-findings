@@ -1,0 +1,11 @@
+{
+  "phase": 15,
+  "issues": [
+    {"number":219,"state":"OPEN","title":"Add ix mcp subcommand: expose ix as a local MCP server","relevance":"CURRENT","candidate":"AUDIT-CAND-001","conclusion":"Issue is real, but the fork implementation is a partial eight-read-tool design and needs MCP conformance rework plus upstream intent on scope."},
+    {"number":349,"state":"OPEN","title":"Windows installer — path with spaces","relevance":"HISTORICAL_OPEN_NEEDS_REPORTER_CONFIRMATION","candidate":"CAND-010","conclusion":"Install-side changes merged (#352); upgrade-side changes merged (#392); #395 adds space-path tests. Do not claim fully closed until reporter/native-Windows confirmation."},
+    {"number":371,"state":"CLOSED","title":"patches command dead/unregistered","relevance":"RESOLVED","candidate":"F-009","conclusion":"Fixed by #390; current oss.ts directly confirms."},
+    {"number":376,"state":"CLOSED","title":"Version-series mismatch in ix upgrade","relevance":"RESOLVED","candidate":"F-008","conclusion":"Fixed by #391 and current upgrade.ts provenance handling."},
+    {"number":383,"state":"OPEN","title":"Codex hooks and CLI subprocess calls fail on native Windows","relevance":"CURRENT_NEEDS_REPRODUCTION","candidate":"AUDIT-CAND-005","conclusion":"Concrete issue body, but no independent native-Windows reproduction in this audit; likely separate plugin/repository scope."},
+    {"number":385,"state":"OPEN","title":"ix upgrade breaks Windows CLI when upgrading from 0.8.1 to 0.9.1","relevance":"OPEN_REPORTER_CONFIRMATION","candidate":"NONE","conclusion":"#386 launcher recovery and #392 upgrade staging are merged; issue remains open deliberately pending affected-machine confirmation."}
+  ]
+}

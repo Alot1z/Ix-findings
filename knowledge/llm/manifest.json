@@ -1,0 +1,12 @@
+{
+  "dataset_identity":"ix-findings-knowledge-graph",
+  "dataset_version":"1.0.0",
+  "canonical_files":{"entities":"knowledge/entities.json","relationships":"knowledge/relationships.json","evidence":"knowledge/evidence.json","sources":"knowledge/sources.json","contradictions":"knowledge/contradictions.json","indexes":"knowledge/indexes.json"},
+  "ontology":"knowledge/ontology.json",
+  "source_of_truth_rules":["Current upstream source/tests/GitHub state wins over stale historical claims.","Direct evidence wins over inference.","Derived UI/Pages data is a snapshot, not canonical truth."],
+  "evidence_classes":{"A":"direct source/authoritative","B":"runtime/artifact","C":"corroborated reconstruction","D":"inference/speculation"},
+  "status_values":["CURRENT","HISTORICAL","RESOLVED","CONTESTED","BLOCKED","UNSUPPORTED","NEEDS_REPRODUCTION","INTERNAL_LEDGER_ONLY"],
+  "traversal_rules":["Resolve aliases first.","Follow typed edges only.","Read temporal state and uncertainty before concluding.","Preserve contradictions.","Never fabricate inaccessible source details."],
+  "known_limitations":["Private system-compass source unavailable in the audited baseline.","Live GitHub evidence requires refresh before a new publication decision.","The existing UI projection remains a separate derived snapshot."],
+  "ui_unchanged":true
+}

@@ -1,0 +1,13 @@
+{
+  "phase": 15,
+  "rejected": [
+    {"id":"CAND-013","disposition":"H_NOT_WORTH_CONTRIBUTING","reason":"Fork synchronization is contributor hygiene, not an Ix maintainer-facing change."},
+    {"id":"CAND-016","disposition":"H_NOT_WORTH_CONTRIBUTING","reason":"Version-series behavior is already addressed in #391; a standalone documentation change lacks demonstrated maintainer value."},
+    {"id":"CAND-017","disposition":"H_NOT_WORTH_CONTRIBUTING","reason":"Freebuff-forge divergence is unrelated to Ix upstream."},
+    {"id":"AUDIT-CAND-008","disposition":"I_AI_SLOP_UNSUPPORTED","reason":"F-013 is a low-confidence visual inference with no source or instrumented reproduction."},
+    {"id":"CAND-005","disposition":"E_ALREADY_FIXED","reason":"#390 merged and current upstream oss.ts registers patches."},
+    {"id":"CAND-010","disposition":"E_ALREADY_FIXED","reason":"#391 merged and current upstream upgrade.ts contains provenance-aware comparison."},
+    {"id":"CAND-018","disposition":"E_ALREADY_FIXED","reason":"#372 merged the llm format capability."},
+    {"id":"CAND-020","disposition":"F_DUPLICATE","reason":"Same ledger change as CAND-014."}
+  ]
+}

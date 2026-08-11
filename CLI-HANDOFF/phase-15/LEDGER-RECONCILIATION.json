@@ -1,0 +1,15 @@
+{
+  "phase": 15,
+  "applied_changes": [],
+  "proposed_reconciliation": [
+    {"entity":"F-008","from":"FIXED_UPSTREAM","to":"RESOLVED","reason":"Current upstream source and PR #391 confirm the fix; retain historical provenance."},
+    {"entity":"F-009","from":"FIXED_UPSTREAM","to":"RESOLVED","reason":"Current upstream oss.ts confirms registration; retain historical provenance."},
+    {"entity":"F-013","from":"INCONCLUSIVE","to":"UNSUPPORTED","reason":"T5 visual inference has no current source or instrumented reproduction."},
+    {"entity":"N-001","from":"OPEN","to":"NEEDS_UPDATE","reason":"Duplicate-ID claim must be rechecked against the current registry before renumbering."},
+    {"entity":"N-002","from":"OPEN","to":"STALE","reason":"Fork divergence is operational hygiene, not an Ix defect or contribution candidate."},
+    {"entity":"CAND-MCP-SUBMIT","from":"PR_READY","to":"CONTRIBUTE_AFTER_REWORK","reason":"Official 2026-07-28 MCP requirements were not fully enforced by the reviewed branch."},
+    {"entity":"CAND-REMAP-SUBMIT","from":"SOUND_AWAITING_REVIEW","to":"CONTRIBUTE_AFTER_REWORK","reason":"Lifecycle and concurrency claims need targeted review before calling it ready."},
+    {"entity":"PAGES","from":"LIVE_SNAPSHOT","to":"INTERNAL_LEDGER_ONLY","reason":"Published explorer explicitly labels itself a sanitized snapshot, not live GitHub state."}
+  ],
+  "policy": "Do not rewrite historical reports; apply status changes only in a separately authorized ledger-maintenance pass."
+}

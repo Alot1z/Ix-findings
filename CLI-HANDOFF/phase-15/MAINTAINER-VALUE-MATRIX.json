@@ -1,0 +1,11 @@
+{
+  "phase": 15,
+  "scores": [
+    {"candidate":"MCP","correctness":"medium","user_impact":"high","maintenance":"medium-high","scope":"large","regression_risk":"medium","testability":"medium","value":"Potentially high, but only after protocol contract and scope are made explicit."},
+    {"candidate":"Remap #393","correctness":"medium-high","user_impact":"medium-high","maintenance":"medium","scope":"small","regression_risk":"medium","testability":"high","value":"Good focused feature if lifecycle/security rework is accepted."},
+    {"candidate":"#383 Windows Codex hooks","correctness":"unknown","user_impact":"high for affected users","maintenance":"unknown","scope":"unknown","regression_risk":"unknown","testability":"low without native Windows","value":"Potentially high, but no PR-worthy scope until reproduced and owning repository identified."},
+    {"candidate":"Compass F-key","correctness":"unknown source-gated","user_impact":"low-medium","maintenance":"unknown","scope":"small if source exists","regression_risk":"unknown","testability":"blocked","value":"Not actionable now."},
+    {"candidate":"Ledger graph cleanup","correctness":"high","user_impact":"internal","maintenance":"low","scope":"small-medium","regression_risk":"low","testability":"high","value":"Useful for Ix-findings only, not upstream."}
+  ],
+  "principle":"Maintainer value is not inferred from implementation size or test count; current need, scope, and interoperability must be demonstrated."
+}

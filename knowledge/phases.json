@@ -1,0 +1,370 @@
+[
+  {
+    "id": "phase-00",
+    "number": 0,
+    "title": "Initial State Audit",
+    "category": "DISCOVERY",
+    "date": "2026-08-10",
+    "repository": "ix-infrastructure/Ix",
+    "objective": "Establish exact current state of every repository, worktree, branch, remote, and fork",
+    "status": "COMPLETE",
+    "key_findings": [
+      "Ix primary worktree has 18 uncommitted overhaul files",
+      "Remap worktree clean at c021b52 on origin/main",
+      "Fork main 5 behind origin/main",
+      "system-compass private and inaccessible",
+      "ix-compass-dist is distribution channel, not source"
+    ],
+    "outputs": [
+      "state/phase-0-audit.md"
+    ],
+    "dependencies": [],
+    "next_phase": "phase-01"
+  },
+  {
+    "id": "phase-01",
+    "number": 1,
+    "title": "Fork Synchronization",
+    "category": "SYNCHRONIZATION",
+    "date": "2026-08-10",
+    "repository": "ix-infrastructure/Ix",
+    "objective": "Synchronize Ix fork and local branches without losing uncommitted work",
+    "status": "COMPLETE",
+    "key_findings": [
+      "Local main fast-forwarded from 01308e6 to c4f8fea",
+      "Remap branch already correctly positioned on origin/main",
+      "Only 2 of 10 incorporated commits touched remap files",
+      "Fork NOT pushed (stays at 0437abf)"
+    ],
+    "outputs": [
+      "state/phase-1-sync-report.md"
+    ],
+    "dependencies": [
+      "phase-00"
+    ],
+    "next_phase": "phase-02"
+  },
+  {
+    "id": "phase-02",
+    "number": 2,
+    "title": "Remap Finalization",
+    "category": "IMPLEMENTATION",
+    "date": "2026-08-10",
+    "repository": "ix-infrastructure/Ix",
+    "objective": "Prepare feat/ix-remap-hardening as clean, focused, reviewable PR candidate",
+    "status": "COMPLETE",
+    "key_findings": [
+      "4 files changed, +251/-10 lines",
+      "656 tests passing, TypeScript clean, ESLint clean",
+      "Full guard matrix verified in code and tests",
+      "No secrets or personal data in diff"
+    ],
+    "changes": [
+      "ix-cli/src/cli/commands/view.ts: +55/-3 (real remap endpoint)",
+      "ix-cli/test/view-server.test.ts: +178 (guard matrix)",
+      "skills/ix/scripts/bootstrap.sh: +4/-5 (WSL fix)",
+      "docs/api/README.md: +13/-3 (documentation)"
+    ],
+    "outputs": [
+      "state/phase-2-remap-report.md",
+      "pr-packets/ix-remap-hardening/README.md"
+    ],
+    "dependencies": [
+      "phase-01"
+    ],
+    "next_phase": "phase-03"
+  },
+  {
+    "id": "phase-03",
+    "number": 3,
+    "title": "Issue #376 Investigation",
+    "category": "RESEARCH",
+    "date": "2026-08-10",
+    "repository": "ix-infrastructure/Ix",
+    "objective": "Investigate Ix #376 comprehensively",
+    "status": "COMPLETE",
+    "key_findings": [
+      "Two version series feed into one isNewer comparison",
+      "Currently correct by accident (0.3.0 < 0.9.1 → false)",
+      "Would break when ix-compass-dist version exceeds Ix version",
+      "Caused by PR #365 stamp decision"
+    ],
+    "outputs": [
+      "github/issues/376/README.md"
+    ],
+    "dependencies": [
+      "phase-01"
+    ],
+    "next_phase": "phase-04"
+  },
+  {
+    "id": "phase-04",
+    "number": 4,
+    "title": "Full Security & Historical Audit",
+    "category": "AUDIT",
+    "date": "2026-08-10",
+    "repository": "ix-infrastructure/Ix",
+    "objective": "Broad security and historical audit of the Ix repository",
+    "status": "COMPLETE",
+    "key_findings": [
+      "8 open issues catalogued",
+      "Security posture: STRONG (gitleaks, Trivy, Scorecard, etc.)",
+      "No secrets found in codebase",
+      "Remap PR cleared — zero overlap with any open issue"
+    ],
+    "outputs": [
+      "findings/phase-4-audit.md",
+      "github/maintainer-context.md"
+    ],
+    "dependencies": [
+      "phase-03"
+    ],
+    "next_phase": "phase-05"
+  },
+  {
+    "id": "phase-05",
+    "number": 5,
+    "title": "Compass Historical Reconstruction",
+    "category": "RESEARCH",
+    "date": "2026-08-10",
+    "repository": "ix-infrastructure/system-compass",
+    "objective": "Deep behavioral reconstruction of all 4 Compass artifact versions",
+    "status": "COMPLETE",
+    "key_findings": [
+      "Keyboard handler invariant across 4 releases",
+      "KeyboardHelp byte-identical, 8 entries, no F",
+      "All 9 fit constants verified in v0.3.0",
+      "#57: one-shot latch → keyed refit (Class A from release notes)"
+    ],
+    "outputs": [
+      "comparisons/historical-matrix.md",
+      "comparisons/keyboard/reconstruction.md",
+      "comparisons/camera-fit/reconstruction.md",
+      "comparisons/releases/timeline.md"
+    ],
+    "dependencies": [
+      "phase-04"
+    ],
+    "next_phase": "phase-06"
+  },
+  {
+    "id": "phase-06",
+    "number": 6,
+    "title": "F-Key Source-Access Gate",
+    "category": "VERIFICATION",
+    "date": "2026-08-10",
+    "repository": "ix-infrastructure/system-compass",
+    "objective": "Determine whether system-compass source is accessible",
+    "status": "COMPLETE (BLOCKED)",
+    "key_findings": [
+      "system-compass remains private (404)",
+      "No local checkout possible",
+      "F-key PR finalized as specification only"
+    ],
+    "outputs": [
+      "state/phase-6-f-key-gate.md",
+      "pr-packets/compass-f-key/README.md"
+    ],
+    "dependencies": [
+      "phase-05"
+    ],
+    "next_phase": "phase-07"
+  },
+  {
+    "id": "phase-07",
+    "number": 7,
+    "title": "Delayed-Data Deep Investigation",
+    "category": "REPRODUCTION",
+    "date": "2026-08-10",
+    "repository": "ix-infrastructure/system-compass",
+    "objective": "Deep runtime probing of the delayed-data finding",
+    "status": "COMPLETE",
+    "key_findings": [
+      "Live reproduction: zoom 0.441, 15 nodes, 78,600px canvas",
+      "Root cause: timing-dependent rollup + refit effect gap",
+      "Zoom-in multiplier appears to be ×1.25 not ×1.1",
+      "4 interactive experiments performed"
+    ],
+    "outputs": [
+      "comparisons/camera-fit/delayed-data-investigation.md",
+      "pr-packets/compass-delayed-data/README.md"
+    ],
+    "dependencies": [
+      "phase-05"
+    ],
+    "next_phase": "phase-08"
+  },
+  {
+    "id": "phase-08",
+    "number": 8,
+    "title": "Repository Architecture Audit",
+    "category": "AUDIT",
+    "date": "2026-08-10",
+    "repository": "ALL",
+    "objective": "Determine exact relationships between all repositories",
+    "status": "COMPLETE",
+    "key_findings": [
+      "5 repositories mapped with complete relationships",
+      "ix-compass-dist is manual distribution channel, no CI",
+      "Ix-findings has no GitHub repo, not Git-initialized",
+      "system-compass is only source for Compass UI"
+    ],
+    "outputs": [
+      "repositories/repository-map.md"
+    ],
+    "dependencies": [
+      "phase-00"
+    ],
+    "next_phase": "phase-09"
+  },
+  {
+    "id": "phase-09",
+    "number": 9,
+    "title": "Ix-findings Evidence Repository",
+    "category": "AUDIT",
+    "date": "2026-08-10",
+    "repository": "Ix-findings",
+    "objective": "Build Ix-findings as central evidence repository",
+    "status": "COMPLETE",
+    "key_findings": [
+      "Git repo initialized with .gitignore",
+      "13 findings registered with IXF-IDs",
+      "9 decisions documented",
+      "28 evidence files organized"
+    ],
+    "outputs": [
+      "README.md",
+      "manifests/findings-index.json",
+      "decisions/log.md",
+      "reports/phase-summaries.md"
+    ],
+    "dependencies": [
+      "phase-08"
+    ],
+    "next_phase": "phase-10"
+  },
+  {
+    "id": "phase-10",
+    "number": 10,
+    "title": "GitHub History & Maintainer Context",
+    "category": "GITHUB",
+    "date": "2026-08-10",
+    "repository": "ALL",
+    "objective": "Investigate relevant GitHub history, maintainers, and review context",
+    "status": "COMPLETE",
+    "key_findings": [
+      "KageBinary: active COLLABORATOR, 14 of last 30 commits",
+      "josephismikhail: CODE OWNER, reviews KageBinary's PRs",
+      "Hiro-Chiba: CONTRIBUTOR, targeted bug fixes",
+      "TannerTorrey3: inactive historic releaser"
+    ],
+    "outputs": [
+      "github/maintainer-context.md",
+      "github/historical-prs.md"
+    ],
+    "dependencies": [
+      "phase-04"
+    ],
+    "next_phase": "phase-11"
+  },
+  {
+    "id": "phase-11",
+    "number": 11,
+    "title": "PR Packet Generation",
+    "category": "PR PREPARATION",
+    "date": "2026-08-10",
+    "repository": "ALL",
+    "objective": "Generate final PR packets for every justified change",
+    "status": "COMPLETE",
+    "key_findings": [
+      "4 PR packets generated: remap, F-key, delayed-data, #376",
+      "All packets sanitized, no secrets or personal data",
+      "Remap: PR-ready. F-key/delayed-data: block on source"
+    ],
+    "outputs": [
+      "pr-packets/ix-remap-hardening/README.md",
+      "pr-packets/compass-f-key/README.md",
+      "pr-packets/compass-delayed-data/README.md",
+      "pr-packets/ix-376-version-mismatch/README.md"
+    ],
+    "dependencies": [
+      "phase-10"
+    ],
+    "next_phase": "phase-12"
+  },
+  {
+    "id": "phase-12",
+    "number": 12,
+    "title": "Pre-Publish Verification Gate",
+    "category": "VERIFICATION",
+    "date": "2026-08-10",
+    "repository": "ix-infrastructure/Ix",
+    "objective": "Final independent verification before any remote action",
+    "status": "COMPLETE",
+    "key_findings": [
+      "READY TO PUSH: YES",
+      "READY TO OPEN PR: YES",
+      "BLOCKERS: NONE",
+      "All tests re-run fresh: 656/2/51, TSC 0, ESLint clean"
+    ],
+    "outputs": [
+      "state/phase-12-publication-gate.md"
+    ],
+    "dependencies": [
+      "phase-11"
+    ],
+    "next_phase": "phase-13 (requires authorization)"
+  },
+  {
+    "id": "phase-13",
+    "number": 13,
+    "title": "Final Ledger Close-Out",
+    "category": "AUDIT",
+    "date": "2026-08-11",
+    "repository": "Ix-findings",
+    "objective": "Consolidate the ladder and close the historical phase sequence.",
+    "status": "HISTORICAL",
+    "outputs": [
+      "CLI-HANDOFF/phase-13/PHASE-13-REPORT.md"
+    ]
+  },
+  {
+    "id": "phase-14",
+    "number": 14,
+    "title": "Independent Forensic Audit",
+    "category": "AUDIT",
+    "date": "2026-08-11",
+    "repository": "Ix-findings",
+    "objective": "Independently challenge prior findings against current upstream reality.",
+    "status": "HISTORICAL",
+    "outputs": [
+      "CLI-HANDOFF/phase-14/PHASE-14-REPORT.md"
+    ]
+  },
+  {
+    "id": "phase-15",
+    "number": 15,
+    "title": "Final Adversarial PR-Worthiness Audit",
+    "category": "AUDIT",
+    "date": "2026-08-11",
+    "repository": "Ix-findings",
+    "objective": "Reconcile the full candidate universe and apply the contribution gate.",
+    "status": "HISTORICAL",
+    "outputs": [
+      "CLI-HANDOFF/phase-15/PHASE-FINAL-REPORT.md"
+    ]
+  },
+  {
+    "id": "phase-16",
+    "number": 16,
+    "title": "Full Knowledge Graph & Live Evidence Reconstruction",
+    "category": "KNOWLEDGE",
+    "date": "2026-08-11",
+    "repository": "Ix-findings",
+    "objective": "Reconstruct the canonical semantic layer beneath the unchanged explorer UI.",
+    "status": "CURRENT",
+    "outputs": [
+      "knowledge/PHASE-16-REPORT.md"
+    ]
+  }
+]
