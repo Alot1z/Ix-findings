@@ -6,6 +6,8 @@
 > - **Ix-remap worktree** — `feat/ix-remap-hardening` now @ `1497596` (was
 >   `c021b52`), ahead 1, clean, **PUSHED**; **PR #393 open** (2026-08-11).
 > - **Fork (Alot1z/Ix)** — `fork/feat/ix-remap-hardening` pushed @ `1497596`
+> - **Fork (Alot1z/Ix)** — NEW (Phase 8, 2026-08-11): `feat/ix-mcp` @ `863b3fd`
+>   pushed (3 commits, 19 files, +1936/−0); PR packet prepared, not submitted
 >   (was NONE); `fork/main` @ `5488741`, **behind upstream** (upstream main
 >   `1292375`) — re-sync pending. `fork/feat/ix-agent-skill` `0c9087c` (PR #368
 >   head, merged).

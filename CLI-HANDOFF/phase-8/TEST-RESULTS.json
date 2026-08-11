@@ -1,0 +1,16 @@
+{
+  "phase": 8,
+  "date": "2026-08-11",
+  "results": [
+    { "check": "tsc --noEmit (whole ix-cli)", "result": "PASS", "note": "run multiple times during development; clean at end" },
+    { "check": "eslint src (npm run lint)", "result": "PASS", "note": "0 errors (38 pre-existing warnings, none in changed files)" },
+    { "check": "npm run build (core-ingestion + tsc)", "result": "PASS" },
+    { "check": "new MCP tests (5 files)", "result": "39 passed / 0 failed", "note": "protocol units, tools units, in-memory dual-era session, registration guard, real-process stdio integration, real-process timeout kill" },
+    { "check": "full suite (npm test)", "result": "735 passed / 2 skipped (737) + parser smoke PASS", "note": "baseline was 730/2; delta = 39 new tests + 1 pre-existing test file discovered during run (config-file-mode 2 skipped)" },
+    { "check": "real binary smoke: ix mcp --list-tools", "result": "PASS", "note": "8 tools with schemas" },
+    { "check": "real binary smoke: stdio session (initialize, tools/list, tools/call, ping)", "result": "PASS", "note": "tools/call ix_map returned graceful isError with no backend running" }
+  ],
+  "flaky_or_transient": [
+    { "item": "npm test core-ingestion npm ci", "note": "first run failed transiently (registry/install hiccup); identical rerun passed; no code change involved" }
+  ]
+}

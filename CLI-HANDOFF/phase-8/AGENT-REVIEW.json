@@ -1,0 +1,19 @@
+{
+  "phase": 8,
+  "date": "2026-08-11",
+  "reviewed_artifact": "feat/ix-mcp @ 863b3fd (19 files, +1936/-0)",
+  "roles": [
+    { "role": "A — Skeptical Archaeologist", "verdict": "CONFIRMED", "note": "Prompt's adapter-seam assumption (exported run functions) disproven against source: command modules expose only register* with inline actions; codebase's real seam is CLI spawning (F-010 view.ts). Seam deviation recorded as justified. Remap tool assumption disproven (absent on base)." },
+    { "role": "B — Principal Engineer", "verdict": "CONFIRMED", "findings": [ "FIXED: sequential queue deadlocked notifications/cancelled — notifications now bypass the queue", "FIXED: EOF shutdown waited for in-flight calls and wrote after the pipe was gone (EPIPE) — abort-on-close + closed guard added" ] },
+    { "role": "C — Security Engineer", "verdict": "CONFIRMED", "findings": [ "No shell in the exec path (spawn argv only); whitelisted flags; schema additionalProperties:false; __proto__-style keys rejected as unknown", "Deferred to Phase 9: no request-line size cap (resource exhaustion); children of spawned CLI (backend) not reaped by us (shared service)" ] },
+    { "role": "D — Test Engineer", "verdict": "CONFIRMED", "findings": [ "FIXED: no test exercised the real timeout kill — added CliToolExecutor real-process timeout test (slow fixture, 500ms)", "FIXED: no test for EOF-during-call — added", "Coverage: protocol matrix, version gate, cancellation, registration guard, real stdio session all covered" ] },
+    { "role": "E — Git/GitHub Maintainer", "verdict": "CONFIRMED", "note": "Branch feat/ix-mcp from fork main 5488741; no force; PR #393 untouched; upstream main 1292375 has no conflicts on touched paths; fork push API-verified." },
+    { "role": "F — Product/UX", "verdict": "CONFIRMED", "finding": "ADDED ix_read — raw source is the highest-value tool for an LLM caller; registry grew read×7 → read×8." },
+    { "role": "G — Knowledge Architect", "verdict": "CONFIRMED", "note": "Docs ↔ CLI consistent (CLAUDE.md, docs/api/README.md, SKILL.md list the same 8 tools); ledger update pending in this phase." },
+    { "role": "H — Adversarial Reviewer", "verdict": "CONFIRMED", "note": "Failed to disprove the plan. Challenges examined: ix-codex-plugin overlap (different surface — CLI subcommand vs Codex plugin), upstream rejection risk (feature is maintainer-requested #219), spec drift (mitigated by dual-era + pinned refs)." }
+  ],
+  "disputes": [
+    { "id": "DISPUTE-8-1", "question": "Should tool calls be processed sequentially or concurrently?", "positions": { "A": "Sequential bounds child processes", "F": "Concurrent would be faster for parallel probes" }, "decision": "Sequential; notifications bypass. Pipelining would pile up unbounded child processes.", "confidence": "high" },
+    { "id": "DISPUTE-8-2", "question": "ix_read beyond the prompt baseline — scope creep or justified?", "positions": { "F": "Highest-value LLM tool", "A": "Prompt baseline said read×6" }, "decision": "Include; design gate B permits justified additions; tests + docs updated.", "confidence": "high" }
+  ]
+}

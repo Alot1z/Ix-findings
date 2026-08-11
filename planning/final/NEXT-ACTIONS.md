@@ -40,7 +40,8 @@
 | 16 | **#385** `ix upgrade` breaks Windows CLI 0.8.1→0.9.1 | issue (RMA1313) | KageBinary: forward path complete on main (#386/#392); awaiting reporter confirm |
 | 17 | **#383** Codex hooks + CLI subprocess fail on native Windows | issue (tept-creator) | open; two independent causes per report |
 | 18 | **#349** Windows installer — path with spaces | issue (RMA1313) | #352 fixed 8.3 short-TEMP variant only; spaces case open (#395 tests IX_HOME space) |
-| 19 | **#219** add `ix mcp` subcommand | issue (josephismikhail) | maintainer feature request; natural fit with agent skill + MCP work |
+| 19 | **#219** add `ix mcp` subcommand | issue (josephismikhail) | **IMPLEMENTED on fork** `feat/ix-mcp` @ `863b3fd` (Phase 8, 2026-08-11); PR packet at `pr-packets/ix-mcp/` — submission gated on user authorization |
+| 21 | **CAND-020** — `ix_mcp` remap write tool | follow-up | add once PR #393 merges (`/__ix/remap` on main); tracked in `planning/ix/ix-mcp.md` |
 | 20 | **#388** brew formula v0.9.2 (bot PR) + release v0.9.2 (#387) | PR/release | tracking only |
 
 ## OPTIONAL (worth doing when time allows)

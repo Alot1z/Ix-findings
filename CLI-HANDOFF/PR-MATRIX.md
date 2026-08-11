@@ -28,6 +28,12 @@
 | **#391** | Stop comparing unrelated version series | https://github.com/ix-infrastructure/Ix/pull/391 | KageBinary | — | main | MERGED | **F-008 (#376) — fixes** |
 | **#392** | Stage upgrade downloads under IX_HOME | https://github.com/ix-infrastructure/Ix/pull/392 | KageBinary | — | main | MERGED | #385 (mitigates) |
 | **#393** | Real /__ix/remap + loopback guard; WSL fix | https://github.com/ix-infrastructure/Ix/pull/393 | Alot1z | `1497596` | main | **OPEN (CI green)** | **F-010/F-011/F-012** |
+
+### Fork contribution branches (Alot1z/Ix) — prepared, NOT submitted
+
+| Branch | Head SHA | Base | Files / delta | State | Notes |
+|---|---|---|---|---|---|
+| `feat/ix-mcp` | `863b3fd` | fork main `5488741` | 19 / +1936 −0 | **PUSHED to fork** | #219 `ix mcp` (Phase 8); PR packet at `pr-packets/ix-mcp/`; submission = user gate |
 | **#395** | Test: IX_HOME containing a space | https://github.com/ix-infrastructure/Ix/pull/395 | KageBinary | — | main | OPEN | #392, #349 |
 
 > **State notes (2026-08-11, GitHub API verified):** #375/#378/#380/#382 are

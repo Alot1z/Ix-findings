@@ -133,6 +133,12 @@ Ix-findings/
 > by the maintainers (PRs #391/#390, both merged); the remap PR #393 is open.
 > See `state/phase-7-upstream-reconciliation-2026-08-11.md`.
 
+> **Phase 8 (2026-08-11):** issue #219 (`ix mcp`) implemented on the fork —
+> `Alot1z/Ix:feat/ix-mcp` @ `863b3fd` (8 read-only MCP tools, dual-era protocol,
+> 39 tests, suite green). Pushed; PR packet prepared at
+> `pr-packets/ix-mcp/` — **submission to upstream is a user gate** (standing
+> rule: no upstream PRs without explicit authorization).
+
 ## Key Constraints
 
 - **Never fabricate** source access, GitHub activity, usernames, PR numbers, or technical facts

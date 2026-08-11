@@ -1,0 +1,22 @@
+{
+  "phase": 8,
+  "registry": [
+    { "name": "ix_map", "command": "map", "positional": { "property": "path", "required": false }, "flags": ["--level", "--min-confidence", "--max-items", "--sort", "--all-items"], "format": "llm", "timeout_ms": 300000 },
+    { "name": "ix_status", "command": "status", "positional": null, "flags": ["--root"], "format": "llm", "timeout_ms": 120000 },
+    { "name": "ix_explain", "command": "explain", "positional": { "property": "symbol", "required": true }, "flags": ["--kind", "--path", "--pick"], "format": "llm", "timeout_ms": 120000 },
+    { "name": "ix_trace", "command": "trace", "positional": { "property": "symbol", "required": true }, "flags": ["--to", "--upstream", "--downstream", "--kind", "--depth", "--cap", "--pick", "--path", "--include-tests", "--tests-only"], "format": "llm", "timeout_ms": 120000 },
+    { "name": "ix_impact", "command": "impact", "positional": { "property": "symbol", "required": true }, "flags": ["--kind", "--pick", "--depth", "--limit"], "format": "llm", "timeout_ms": 120000 },
+    { "name": "ix_search", "command": "search", "positional": { "property": "query", "required": true }, "flags": ["--limit", "--kind", "--language", "--path", "--as-of", "--include-tests", "--tests-only", "--semantic"], "format": "llm", "timeout_ms": 120000 },
+    { "name": "ix_rank", "command": "rank", "positional": null, "flags": ["--top", "--path", "--exclude-path", "--exclude-kind"], "format": "llm", "timeout_ms": 120000 },
+    { "name": "ix_read", "command": "read", "positional": { "property": "target", "required": true }, "flags": ["--kind", "--path", "--pick", "--root"], "format": "llm", "timeout_ms": 120000 }
+  ],
+  "protocol": {
+    "modern": "2026-07-28",
+    "legacy": "2025-06-18",
+    "transport": "stdio (NDJSON JSON-RPC 2.0)",
+    "server_info": { "name": "ix", "version": "0.9.2" }
+  },
+  "deferred": [
+    { "candidate": "CAND-020", "tool": "ix_remap (write)", "reason": "/__ix/remap does not exist on base 5488741; added by PR #393", "gate": "once #393 merges to main" }
+  ]
+}

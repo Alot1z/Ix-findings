@@ -1,0 +1,14 @@
+{
+  "phase": 8,
+  "date": "2026-08-11",
+  "gates": [
+    { "action": "Local implementation / tests / docs in Ix-mcp worktree", "state": "AUTHORIZED + EXECUTED" },
+    { "action": "Commit on fork branch feat/ix-mcp", "state": "AUTHORIZED + EXECUTED (3 commits)" },
+    { "action": "Push feat/ix-mcp to Alot1z/Ix", "state": "AUTHORIZED + EXECUTED (API-verified @ 863b3fd)" },
+    { "action": "Ledger commit/push to Alot1z/Ix-findings", "state": "AUTHORIZED (standing)" },
+    { "action": "PR creation against ix-infrastructure/Ix", "state": "PROHIBITED — packet prepared (pr-packets/ix-mcp/)" },
+    { "action": "Upstream issue/comment/maintainer contact", "state": "PROHIBITED" },
+    { "action": "Fork-main sync", "state": "BLOCKED (PAT workflow scope; user action)" },
+    { "action": "Protected worktrees (Ix, ix-compass-dist, Ix-remap)", "state": "PROHIBITED — untouched, verified before/after" }
+  ]
+}
