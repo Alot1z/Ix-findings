@@ -1,0 +1,70 @@
+{
+  "phase": "6",
+  "generated": "2026-08-11",
+  "method": "live git state + GitHub REST API (read-only), verified via gh",
+  "baseline": {
+    "upstream": {
+      "repository": "ix-infrastructure/Ix",
+      "branch": "main",
+      "head_sha": "ffe21f0",
+      "head_sha_full": "(ffe21f0 verified via API)",
+      "commits_since_phase5_base_5488741": [
+        "fix(ingest): resolve JS and TS calls across parse batches (#375)",
+        "fix(ingest): remove stale graph entities (#378)",
+        "fix(security): close the view file-system race, screen the ingest rev, clear three CVEs (#389)"
+      ],
+      "behind_ahead": "3 ahead of 5488741",
+      "latest_release": "v0.9.2 (tag fetched locally)"
+    },
+    "fork": {
+      "repository": "Alot1z/Ix",
+      "main_sha": "5488741",
+      "main_note": "now 3 commits BEHIND upstream ffe21f0 (Phase 5 synced it to 5488741)",
+      "remap_branch": "feat/ix-remap-hardening",
+      "remap_sha": "c021b52",
+      "remap_note": "UNCHANGED from Phase 5 — the original remap commit, NOT the rebased a05e740"
+    },
+    "local_worktrees": {
+      "Ix": { "branch": "feat/ix-agent-skill", "head": "b038c46", "dirty": 14, "protected": true, "status": "UNCHANGED" },
+      "Ix-remap": { "branch": "feat/ix-remap-hardening", "head": "a05e740", "dirty": 0, "status": "rebased Phase 5; now 3 behind new upstream ffe21f0; merge-tree vs ffe21f0 exit 0 (tree de647175); fork branch still c021b52" },
+      "Ix-test": { "branch": "(detached)", "head": "c4f8fea", "dirty": 0, "status": "restored clean" },
+      "ix-compass-dist": { "branch": "main", "head": "396426b", "dirty": 3, "protected": true, "status": "UNCHANGED" },
+      "freebuff-forge": { "branch": "feat/modkit-enhancement-layer", "head": "441cec670", "dirty": 0, "status": "UNCHANGED" },
+      "Ix-findings": { "branch": "master", "head": "c9179eb", "dirty": 0, "status": "Phase 5 ledger committed" }
+    },
+    "remap_branch_analysis": {
+      "local": "a05e740",
+      "fork_remote": "c021b52",
+      "behind_new_upstream": 3,
+      "ahead_of_new_upstream": 1,
+      "merge_tree_vs_ffe21f0": { "exit": 0, "tree": "de64717516aa91caa8fc3fe5fc4c8f192d6a8541", "conflicts": 0 },
+      "view_ts_overlap_with_PR389": {
+        "note": "Both PR #389 (merged security fix) and the remap branch modify ix-cli/src/cli/commands/view.ts",
+        "upstream_hunks": [51, 108, 328],
+        "remap_hunks": [142, 206, 235],
+        "overlap": "DISJOINT regions; 3-way merge clean (exit 0)",
+        "implication": "a base refresh (rebase onto ffe21f0) is technically clean, but must be re-executed and re-tested before any push"
+      }
+    },
+    "pr_issue_state": {
+      "open_prs_from_contributors": [
+        { "number": 392, "title": "fix(upgrade): stage downloads under IX_HOME, not TEMP", "user": "KageBinary", "files": ["upgrade.ts", "upgrade-archive-shape.test.ts"] },
+        { "number": 391, "title": "fix(upgrade): stop comparing compass versions across two unrelated series", "user": "KageBinary", "files": ["release.yml", "upgrade.ts", "install.sh", "install.ps1", "upgrade-compass-stamp.test.ts"], "covers": "F-008 / CONTRIB-376" },
+        { "number": 390, "title": "fix(cli): register the patches command instead of stubbing it", "user": "KageBinary", "files": ["CLAUDE.md", "patches.ts", "register/oss.ts", "pro-stub-message.test.ts"], "covers": "F-009 / PACK-371" },
+        { "number": 388, "title": "chore(brew): update formula for v0.9.2", "user": "github-actions[bot]" }
+      ],
+      "issue_371": { "state": "open", "cross_referenced_by": [368, 390], "note": "PR #390 directly addresses F-009 (patches registration)" },
+      "issue_376": { "state": "open", "cross_referenced_by": [391], "note": "PR #391 directly addresses F-008 (compass version series); 0 comments" },
+      "issue_377": { "state": "closed", "note": "remap-related issue now closed upstream" },
+      "pages_enabled": { "Alot1z/Ix-findings": false, "Alot1z/Ix": false, "ix-infrastructure/Ix": false, "note": "404 on all three — no Pages site exists anywhere" }
+    },
+    "key_facts": [
+      "PR #390 (F-009/PACK-371) and PR #391 (F-008/CONTRIB-376) are OPEN upstream — the deferred contributions are already being handled by upstream contributor KageBinary",
+      "PACK-371 decision resolved upstream: REGISTER the patches command (not delete)",
+      "Remap branch base is now stale (3 behind); needs base refresh + re-test before any push",
+      "Fork main is now 3 behind upstream again",
+      "Standalone reproducibility, Pages package (16/16), graph 165/141/0, evidence 28 all verified at Phase 5 end"
+    ],
+    "timestamp": "2026-08-11T00:xx:xxZ"
+  }
+}

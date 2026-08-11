@@ -1,0 +1,80 @@
+{
+  "phase": "6",
+  "generated": "2026-08-11",
+  "authorization_source": "User ask_user response 2026-08-11: Gates A (remap fork push), B (remap PR), D (Pages deploy) AUTHORIZED; remap base refresh onto ffe21f0 approved. Gate C superseded by upstream PR #390 (record only, do NOT submit). Gates E/F remain unauthorized/blocked.",
+  "authorization_model": "Every external mutation is independently gated. A planned/prepared action is NOT authorization. Default = NOT_AUTHORIZED for all external gates until the user explicitly authorizes.",
+  "inherited_restrictions": [
+    "User standing instruction (Phase 5): no PRs created",
+    "No upstream mutation",
+    "No unauthorized push",
+    "No unauthorized publication",
+    "No private data publication",
+    "No destructive git operations",
+    "No maintainer contact",
+    "No repository visibility change",
+    "No force-push without authorization"
+  ],
+  "gates": [
+    {
+      "gate": "A",
+      "name": "REMAP FORK PUSH",
+      "operation": "base-refresh local remap onto ffe21f0, re-test, then force-with-lease update fork feat/ix-remap-hardening c021b52 -> new SHA",
+      "status": "AUTHORIZED (2026-08-11 user decision)",
+      "reason": "User explicitly authorized Gate A. Base refresh onto ffe21f0 approved; force-with-lease to update fork branch c021b52 -> new SHA after refresh + re-test.",
+      "prepared": "REMAP-EXECUTION-RESULT.json will record the decision; packet pr-packets/ix-remap-hardening/README.md",
+      "requires": "explicit user authorization (push + force-with-lease + base refresh)"
+    },
+    {
+      "gate": "B",
+      "name": "REMAP PR CREATION",
+      "operation": "open exactly one PR feat/ix-remap-hardening -> ix-infrastructure/Ix:main",
+      "status": "AUTHORIZED (2026-08-11 user decision)",
+      "reason": "User explicitly authorized opening the remap PR (overrides the earlier no-PR instruction for this single PR).",
+      "prepared": "PR title/body draft in packet; REMAP-PR-RESULT.json will record the decision",
+      "requires": "explicit user authorization to create the PR"
+    },
+    {
+      "gate": "C",
+      "name": "PACK-371 EXTERNAL CONTRIBUTION",
+      "operation": "submit patches-registration fix for issue #371",
+      "status": "SUPERSEDED",
+      "reason": "Upstream PR #390 (fix/cli: register the patches command instead of stubbing it) already covers F-009 / PACK-371. Issue #371 cross-referenced. Creating a duplicate PR would violate Phase 5/6 do-not-do rules.",
+      "prepared": "packet pr-packets/ix-371-patches-dead-code/README.md retained as historical record; will be annotated with supersession",
+      "requires": "nothing further — do NOT submit"
+    },
+    {
+      "gate": "D",
+      "name": "GITHUB PAGES DEPLOYMENT",
+      "operation": "enable Pages on a target repo and deploy planning/pages/public/",
+      "status": "AUTHORIZED (2026-08-11 user decision)",
+      "reason": "User explicitly authorized Pages deployment. Target repo to be selected (default Alot1z/Ix-findings); full validation gate + audit re-run before enabling Pages.",
+      "prepared": "PAGES-DEPLOYMENT-PACKAGE.md (Phase 5); PAGES-DEPLOYMENT-RESULT.json will record the decision",
+      "requires": "explicit user authorization (repo target + workflow activation + publication)"
+    },
+    {
+      "gate": "E",
+      "name": "MAINTAINER / ISSUE ACTIONS",
+      "operation": "comments, issue updates, maintainer contact, reviews",
+      "status": "NOT_AUTHORIZED",
+      "reason": "Maintainer contact prohibited by standing rules; no authorization received.",
+      "prepared": "n/a",
+      "requires": "explicit user authorization per action"
+    },
+    {
+      "gate": "F",
+      "name": "SYSTEM-COMPASS ACCESS",
+      "operation": "obtain/use private system-compass source",
+      "status": "BLOCKED",
+      "reason": "Repository private/404 since Phase 2 (B-001/D-014). No access request permitted without user authorization.",
+      "prepared": "n/a",
+      "requires": "user-provided access or explicit authorization"
+    }
+  ],
+  "local_actions_allowed": [
+    "read-only inspection",
+    "local re-verification and base-refresh PREPARATION (e.g., merge-tree checks, test runs in Ix-remap worktree)",
+    "Ix-findings ledger updates and commits (phase record)",
+    "packet annotation updates (supersession records)"
+  ],
+  "summary": "Gates A, B, D AUTHORIZED by user 2026-08-11. Gate C SUPERSEDED by upstream PR #390 (record only). Gate E NOT_AUTHORIZED. Gate F BLOCKED. Execution order: (1) base-refresh remap onto ffe21f0 + re-test, (2) force-with-lease push fork branch, (3) open remap PR, (4) Pages validation + deployment to selected repo."
+}

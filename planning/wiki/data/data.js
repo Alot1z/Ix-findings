@@ -3,7 +3,7 @@
 window.IX_DATA = {
   "meta": {
     "title": "IX Compass — Knowledge Explorer",
-    "generated": "2026-08-10",
+    "generated": "2026-08-11",
     "sourceRevision": "unknown",
     "phase": "EXECUTION",
     "entityCounts": {
@@ -5009,6 +5009,9 @@ window.IX_DATA = {
         "validation": "16/16 PASS",
         "deployed": false,
         "deploy_authorization": "NOT GRANTED"
+      },
+      "post_sync_churn": {
+        "note": "Upstream advanced 2 commits past the Phase 5 sync point (b25bf2e = PR #378 merged 'fix(ingest): remove stale graph entities'); fork main remains 5488741 (synced). Re-verify base at any future submission."
       }
     },
     "system_compass": {
