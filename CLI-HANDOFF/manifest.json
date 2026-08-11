@@ -1,8 +1,8 @@
 {
-  "version": "4.1.0",
-  "generated": "2026-08-10T23:20:00Z",
-  "source": "Phase 5: rebase executed (c021b52->a05e740 onto 5488741), fork main synced to 5488741, F-008 structurally fixed on main, F-009 confirmed open, standalone reproducible (CAND-021), Pages package revalidated 16/16",
-  "status": "Phase 5 — local actions executed per authorization; PRs/Pages deployment prohibited",
+  "version": "4.2.0",
+  "generated": "2026-08-11T00:40:00Z",
+  "source": "Phase 6: remap base-refresh onto ffe21f0 (1497596), fork branch force-updated c021b52->1497596, PR #393 OPENED (remap), Pages DEPLOYED to Alot1z/Ix-findings, PACK-371 SUPERSEDED by upstream PR #390, CONTRIB-376 SUPERSEDED by upstream PR #391",
+  "status": "Phase 6 — Gates A (remap push), B (remap PR #393), D (Pages deployment) EXECUTED and verified; upstream moved to ffe21f0; PACK-371/CONTRIB-376 superseded by upstream PRs #390/#391",
   "repositories": [
     {
       "repo_id": "ix-infrastructure/Ix",
@@ -13,8 +13,8 @@
       "local_path": "E:\\E-github-repos\\Ix",
       "remote_name": "origin",
       "default_branch": "main",
-      "head_sha": "5488741",
-      "note": "upstream main = v0.9.2 release (#387), Phase 5 live-verified; latest release tag v0.9.2"
+      "head_sha": "ffe21f0",
+      "note": "upstream main = ffe21f0 (Phase 6 live-verified 2026-08-11; 3 commits past 5488741: #375, #378, #389 merged); latest release tag v0.9.2"
     },
     {
       "repo_id": "Alot1z/Ix",
@@ -25,7 +25,7 @@
       "fork_of": "ix-infrastructure/Ix",
       "local_remote_name": "fork",
       "head_sha": "5488741",
-      "sync_status": "SYNCED to upstream 5488741 (Phase 5 gh repo sync, API-verified)"
+      "sync_status": "3 commits BEHIND upstream ffe21f0 (Phase 5 synced to 5488741; upstream advanced via #375/#378/#389)"
     },
     {
       "repo_id": "ix-infrastructure/ix-compass-dist",
@@ -71,8 +71,8 @@
     {
       "branch": "main",
       "repo": "ix-infrastructure/Ix",
-      "sha": "5488741",
-      "note": "upstream HEAD v0.9.2 (#387) Phase 5 live-verified"
+      "sha": "ffe21f0",
+      "note": "upstream HEAD (Phase 6 live-verified; = #389 security merge)"
     },
     {
       "branch": "feat/ix-agent-skill",
@@ -84,10 +84,10 @@
     {
       "branch": "feat/ix-remap-hardening",
       "repo": "ix-infrastructure/Ix",
-      "sha": "a05e740",
+      "sha": "1497596",
       "worktree": "Ix_remap",
       "ahead": 1,
-      "note": "Phase 5 local rebase onto 5488741 (backup ref feat/ix-remap-hardening-backup-c021b52); fork branch still c021b52"
+      "note": "Phase 6 base-refresh onto ffe21f0 + fork force-updated c021b52->1497596; PR #393 OPEN. Backup refs: backup-c021b52, backup-a05e740"
     },
     {
       "branch": "fork/main",
@@ -110,22 +110,36 @@
     {
       "branch": "master",
       "repo": "Ix-findings",
-      "sha": "4b839ec",
-      "commits": 4
+      "sha": "8285409",
+      "note": "Phase 6 commit (Pages workflow activated + Phase 6 ledger); pushed, Pages DEPLOYED"
     }
   ],
   "commits": [
+    {
+      "sha": "ffe21f0",
+      "repo": "ix-infrastructure/Ix",
+      "branch": "main",
+      "msg": "fix(security): close the view file-system race, screen the ingest rev, clear three CVEs (#389) — upstream HEAD Phase 6"
+    },
+    {
+      "sha": "1497596",
+      "repo": "ix-infrastructure/Ix",
+      "branch": "feat/ix-remap-hardening (fork, pushed)",
+      "msg": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap — Phase 6 rebase onto ffe21f0; PR #393"
+    },
+    {
+      "sha": "b25bf2e",
+      "repo": "ix-infrastructure/Ix",
+      "branch": "main",
+      "msg": "fix(ingest): remove stale graph entities (#378)",
+      "historical": true,
+      "note": "intermediate upstream commit between 5488741 and ffe21f0"
+    },
     {
       "sha": "5488741",
       "repo": "ix-infrastructure/Ix",
       "branch": "main",
       "msg": "chore(release): 0.9.2 (#387) — upstream HEAD Phase 5"
-    },
-    {
-      "sha": "a05e740",
-      "repo": "ix-infrastructure/Ix",
-      "branch": "feat/ix-remap-hardening (local)",
-      "msg": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap — Phase 5 rebase onto 5488741"
     },
     {
       "sha": "c4f8fea",
@@ -221,14 +235,45 @@
     {
       "number": 375,
       "url": "https://github.com/ix-infrastructure/Ix/pull/375",
-      "state": "OPEN",
-      "note": "fixes #374"
+      "state": "MERGED",
+      "note": "fixes #374 — MERGED into ffe21f0 (Phase 6 API-verified)"
     },
     {
       "number": 378,
       "url": "https://github.com/ix-infrastructure/Ix/pull/378",
+      "state": "MERGED",
+      "note": "fixes #377 — MERGED into ffe21f0 (Phase 6 API-verified); issue #377 now CLOSED"
+    },
+    {
+      "number": 389,
+      "url": "https://github.com/ix-infrastructure/Ix/pull/389",
+      "state": "MERGED",
+      "note": "fix(security): close view file-system race + CVEs — merged as ffe21f0; touches view.ts (disjoint from remap)"
+    },
+    {
+      "number": 390,
+      "url": "https://github.com/ix-infrastructure/Ix/pull/390",
       "state": "OPEN",
-      "note": "fixes #377"
+      "note": "fix(cli): register the patches command — SUPERSEDES PACK-371/F-009 (Phase 6 discovery); cross-refs #371"
+    },
+    {
+      "number": 391,
+      "url": "https://github.com/ix-infrastructure/Ix/pull/391",
+      "state": "OPEN",
+      "note": "fix(upgrade): stop comparing compass version series — SUPERSEDES CONTRIB-376/F-008 (Phase 6 discovery); cross-refs #376"
+    },
+    {
+      "number": 392,
+      "url": "https://github.com/ix-infrastructure/Ix/pull/392",
+      "state": "OPEN",
+      "note": "fix(upgrade): stage downloads under IX_HOME, not TEMP"
+    },
+    {
+      "number": 393,
+      "url": "https://github.com/ix-infrastructure/Ix/pull/393",
+      "state": "OPEN",
+      "sha": "1497596",
+      "note": "REMAP CONTRIBUTION (ours) — head 1497596, base main, 4 files +251/-10; Phase 6 user-authorized"
     },
     {
       "number": 380,
@@ -294,8 +339,8 @@
     {
       "number": 377,
       "url": "https://github.com/ix-infrastructure/Ix/issues/377",
-      "state": "OPEN",
-      "note": "stale graph entities; PR #378 open"
+      "state": "CLOSED",
+      "note": "stale graph entities; PR #378 MERGED (Phase 6 API-verified)"
     },
     {
       "number": 379,
@@ -380,16 +425,16 @@
   },
   "worktrees": {
     "primary": {"path": "E:\\E-github-repos\\Ix", "branch": "feat/ix-agent-skill", "sha": "b038c46", "dirty": 14},
-    "remap": {"path": "E:\\E-github-repos\\Ix-remap", "branch": "feat/ix-remap-hardening", "sha": "a05e740", "ahead": 1, "dirty": 0, "note": "Phase 5 rebased onto 5488741; fork branch still c021b52", "backup_ref": "feat/ix-remap-hardening-backup-c021b52"},
+    "remap": {"path": "E:\\E-github-repos\\Ix-remap", "branch": "feat/ix-remap-hardening", "sha": "1497596", "ahead": 1, "dirty": 0, "note": "Phase 6 rebased onto ffe21f0; fork branch force-updated c021b52->1497596; PR #393 OPEN", "backup_refs": ["feat/ix-remap-hardening-backup-c021b52", "feat/ix-remap-hardening-backup-a05e740"]},
     "test": {"path": "E:\\E-github-repos\\Ix-test", "sha": "c4f8fea", "dirty": 0, "tests": "696/698 on 5488741 (Phase 5 fresh run)", "tsc": "clean", "eslint": "0 errors"}
   },
   "test_results": {
-    "date": "2026-08-10",
+    "date": "2026-08-11",
     "repository": "ix-infrastructure/Ix",
-    "sha": "5488741",
-    "vitest": "51 passed, 1 skipped (52 files)",
-    "tests": "696 passed, 2 skipped (698 total) on upstream main 5488741 (Phase 5 fresh run)",
-    "remap_rebase_suite": "706 passed, 2 skipped (708 total) on a05e740 (Phase 5, includes 10 guard tests)",
+    "sha": "ffe21f0",
+    "vitest": "54 passed, 1 skipped (55 files)",
+    "tests": "730 passed, 2 skipped (732 total) on remap 1497596 (Phase 6, base ffe21f0; includes 10 guard tests + upstream new tests from #375/#378/#389)",
+    "remap_rebase_suite": "730 passed, 2 skipped (732) on 1497596 (Phase 6)",
     "smoke": "passed",
     "tsc": "clean",
     "eslint": "0 errors"
@@ -402,6 +447,15 @@
     "pages": {"package": "planning/pages/", "validation": "16/16 PASS", "deployed": false, "deploy_authorization": "NOT GRANTED"},
     "post_sync_churn": {"note": "Upstream advanced 2 commits past the Phase 5 sync point (b25bf2e = PR #378 merged 'fix(ingest): remove stale graph entities'); fork main remains 5488741 (synced). Re-verify base at any future submission."}
   },
+  "phase_6": {
+    "authorization": {"gates": {"A": "AUTHORIZED", "B": "AUTHORIZED", "C": "SUPERSEDED", "D": "AUTHORIZED", "E": "NOT_AUTHORIZED", "F": "BLOCKED"}, "source": "User ask_user response 2026-08-11"},
+    "remap_push": {"branch": "feat/ix-remap-hardening", "old_fork_sha": "c021b52", "new_fork_sha": "1497596", "base": "ffe21f0", "method": "force-with-lease (authorized)", "merge_tree": "de647175 exit 0", "suite": "730/732", "patch_id": "310dd4ab", "backup_refs": ["backup-c021b52", "backup-a05e740"]},
+    "remap_pr": {"number": 393, "url": "https://github.com/ix-infrastructure/Ix/pull/393", "state": "OPEN", "head_sha": "1497596", "files": 4, "insertions": 251, "deletions": 10},
+    "pack_371": {"status": "SUPERSEDED", "reason": "upstream PR #390 (fix/cli: register the patches command) covers F-009; cross-refs #371; DO NOT SUBMIT"},
+    "contrib_376": {"status": "SUPERSEDED", "reason": "upstream PR #391 (compass version series) covers F-008; cross-refs #376; DO NOT SUBMIT"},
+    "pages_deployment": {"repo": "Alot1z/Ix-findings", "url": "https://alot1z.github.io/Ix-findings/", "workflow": ".github/workflows/pages.yml", "build_type": "workflow", "public": true, "run_id": 31446466304, "run_conclusion": "success", "deployed_data": "evidence 28, findings 13, graph 162/133 (sanitized)", "browser_verified": true, "console_errors": "1 benign favicon.ico 404 (not referenced in index)"},
+    "new_discoveries": ["ND-6-1: upstream ffe21f0 (3 past 5488741; #375/#378/#389 merged)", "ND-6-2: PR #390 covers PACK-371/F-009 -> SUPERSEDED", "ND-6-3: PR #391 covers CONTRIB-376/F-008 -> SUPERSEDED", "ND-6-4: issue #377 CLOSED (PR #378 merged)", "ND-6-5: view.ts security fix #389 disjoint from remap hunks; merge clean", "ND-6-6: Pages deployed to alot1z.github.io/Ix-findings (first Pages site)", "ND-6-7: PR #393 opened (remap contribution)"]
+  },
   "system_compass": {
     "upstream": "PRIVATE — returns 404",
     "fork": "DOES NOT EXIST — Alot1z/system-compass returns 404",
@@ -409,8 +463,8 @@
     "blocker": "B-001: cannot source-verify F-001 through F-007, F-013"
   },
   "execution_constraints": {
-    "NO_remote_push": true,
-    "NO_pr_create": true,
+    "NO_remote_push": false,
+    "NO_pr_create": false,
     "NO_pr_merge": true,
     "NO_maintainer_contact": true,
     "PRESERVE_agent_skill_worktree": true,
@@ -420,11 +474,12 @@
     "MAY_expand_graph": true
   },
   "external_actions_performed": {
-    "pr_created": "NO",
+    "pr_created": "YES — PR #393 (remap, user-authorized)",
     "pr_merged": "NO",
     "issue_created": "NO",
     "maintainer_contact": "NO",
     "access_requested": "NO",
-    "remote_push": "NO"
+    "remote_push": "YES — fork feat/ix-remap-hardening (c021b52->1497596, force-with-lease) + Ix-findings master (8285409)",
+    "pages_deployed": "YES — https://alot1z.github.io/Ix-findings/ (workflow run 31446466304 success)"
   }
 }

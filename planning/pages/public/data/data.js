@@ -4,19 +4,19 @@ window.IX_DATA = {
   "meta": {
     "title": "Ix / Compass Investigation — Knowledge Wiki",
     "snapshotLabel": "SNAPSHOT — generated from canonical investigation data; not a live view of GitHub state.",
-    "generated": "2026-08-10",
-    "sourceRevision": "4b839ec",
+    "generated": "2026-08-11",
+    "sourceRevision": "8285409",
     "phase": "EXECUTION",
     "entityCounts": {
       "repositories": 5,
       "branches": 7,
       "worktrees": 3,
-      "commits": 10,
+      "commits": 12,
       "findings": 13,
       "evidence": 28,
       "decisions": 14,
       "suggestions": 33,
-      "prs": 15,
+      "prs": 20,
       "issues": 8,
       "contributions": 6,
       "graphNodes": 165,
@@ -25,7 +25,7 @@ window.IX_DATA = {
     "dataFreshness": {
       "findings": "2026-08-10",
       "evidence": "2026-08-10",
-      "tests": "696 passed, 2 skipped (698 total) on upstream main 5488741 (Phase 5 fresh run) @ 5488741"
+      "tests": "730 passed, 2 skipped (732 total) on remap 1497596 (Phase 6, base ffe21f0; includes 10 guard tests + upstream new tests from #375/#378/#389) @ ffe21f0"
     },
     "published": {
       "note": "Sanitized public projection — internal fields (local paths, worktrees, raw manifest) excluded by allowlist."
@@ -2841,7 +2841,7 @@ window.IX_DATA = {
       "url": "https://github.com/ix-infrastructure/Ix",
       "role": "upstream",
       "default_branch": "main",
-      "note": "upstream main = v0.9.2 release (#387), Phase 5 live-verified; latest release tag v0.9.2"
+      "note": "upstream main = ffe21f0 (Phase 6 live-verified 2026-08-11; 3 commits past 5488741: #375, #378, #389 merged); latest release tag v0.9.2"
     },
     {
       "repo_id": "Alot1z/Ix",
@@ -2879,8 +2879,8 @@ window.IX_DATA = {
     {
       "branch": "main",
       "repo": "ix-infrastructure/Ix",
-      "sha": "5488741",
-      "note": "upstream HEAD v0.9.2 (#387) Phase 5 live-verified"
+      "sha": "ffe21f0",
+      "note": "upstream HEAD (Phase 6 live-verified; = #389 security merge)"
     },
     {
       "branch": "feat/ix-agent-skill",
@@ -2891,9 +2891,9 @@ window.IX_DATA = {
     {
       "branch": "feat/ix-remap-hardening",
       "repo": "ix-infrastructure/Ix",
-      "sha": "a05e740",
+      "sha": "1497596",
       "ahead": 1,
-      "note": "Phase 5 local rebase onto 5488741 (backup ref feat/ix-remap-hardening-backup-c021b52); fork branch still c021b52"
+      "note": "Phase 6 base-refresh onto ffe21f0 + fork force-updated c021b52->1497596; PR #393 OPEN. Backup refs: backup-c021b52, backup-a05e740"
     },
     {
       "branch": "fork/main",
@@ -2916,21 +2916,34 @@ window.IX_DATA = {
     {
       "branch": "master",
       "repo": "Ix-findings",
-      "sha": "4b839ec"
+      "sha": "8285409",
+      "note": "Phase 6 commit (Pages workflow activated + Phase 6 ledger); pushed, Pages DEPLOYED"
     }
   ],
   "commits": [
+    {
+      "sha": "ffe21f0",
+      "repo": "ix-infrastructure/Ix",
+      "branch": "main",
+      "msg": "fix(security): close the view file-system race, screen the ingest rev, clear three CVEs (#389) — upstream HEAD Phase 6"
+    },
+    {
+      "sha": "1497596",
+      "repo": "ix-infrastructure/Ix",
+      "branch": "feat/ix-remap-hardening (fork, pushed)",
+      "msg": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap — Phase 6 rebase onto ffe21f0; PR #393"
+    },
+    {
+      "sha": "b25bf2e",
+      "repo": "ix-infrastructure/Ix",
+      "branch": "main",
+      "msg": "fix(ingest): remove stale graph entities (#378)"
+    },
     {
       "sha": "5488741",
       "repo": "ix-infrastructure/Ix",
       "branch": "main",
       "msg": "chore(release): 0.9.2 (#387) — upstream HEAD Phase 5"
-    },
-    {
-      "sha": "a05e740",
-      "repo": "ix-infrastructure/Ix",
-      "branch": "feat/ix-remap-hardening (local)",
-      "msg": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap — Phase 5 rebase onto 5488741"
     },
     {
       "sha": "c4f8fea",
@@ -3025,14 +3038,45 @@ window.IX_DATA = {
     {
       "number": 375,
       "url": "https://github.com/ix-infrastructure/Ix/pull/375",
-      "state": "OPEN",
-      "note": "fixes #374"
+      "state": "MERGED",
+      "note": "fixes #374 — MERGED into ffe21f0 (Phase 6 API-verified)"
     },
     {
       "number": 378,
       "url": "https://github.com/ix-infrastructure/Ix/pull/378",
+      "state": "MERGED",
+      "note": "fixes #377 — MERGED into ffe21f0 (Phase 6 API-verified); issue #377 now CLOSED"
+    },
+    {
+      "number": 389,
+      "url": "https://github.com/ix-infrastructure/Ix/pull/389",
+      "state": "MERGED",
+      "note": "fix(security): close view file-system race + CVEs — merged as ffe21f0; touches view.ts (disjoint from remap)"
+    },
+    {
+      "number": 390,
+      "url": "https://github.com/ix-infrastructure/Ix/pull/390",
       "state": "OPEN",
-      "note": "fixes #377"
+      "note": "fix(cli): register the patches command — SUPERSEDES PACK-371/F-009 (Phase 6 discovery); cross-refs #371"
+    },
+    {
+      "number": 391,
+      "url": "https://github.com/ix-infrastructure/Ix/pull/391",
+      "state": "OPEN",
+      "note": "fix(upgrade): stop comparing compass version series — SUPERSEDES CONTRIB-376/F-008 (Phase 6 discovery); cross-refs #376"
+    },
+    {
+      "number": 392,
+      "url": "https://github.com/ix-infrastructure/Ix/pull/392",
+      "state": "OPEN",
+      "note": "fix(upgrade): stage downloads under IX_HOME, not TEMP"
+    },
+    {
+      "number": 393,
+      "url": "https://github.com/ix-infrastructure/Ix/pull/393",
+      "state": "OPEN",
+      "sha": "1497596",
+      "note": "REMAP CONTRIBUTION (ours) — head 1497596, base main, 4 files +251/-10; Phase 6 user-authorized"
     },
     {
       "number": 380,
@@ -3098,8 +3142,8 @@ window.IX_DATA = {
     {
       "number": 377,
       "url": "https://github.com/ix-infrastructure/Ix/issues/377",
-      "state": "OPEN",
-      "note": "stale graph entities; PR #378 open"
+      "state": "CLOSED",
+      "note": "stale graph entities; PR #378 MERGED (Phase 6 API-verified)"
     },
     {
       "number": 379,
@@ -3121,11 +3165,11 @@ window.IX_DATA = {
     }
   ],
   "testResults": {
-    "date": "2026-08-10",
+    "date": "2026-08-11",
     "repository": "ix-infrastructure/Ix",
-    "sha": "5488741",
-    "vitest": "51 passed, 1 skipped (52 files)",
-    "tests": "696 passed, 2 skipped (698 total) on upstream main 5488741 (Phase 5 fresh run)",
+    "sha": "ffe21f0",
+    "vitest": "54 passed, 1 skipped (55 files)",
+    "tests": "730 passed, 2 skipped (732 total) on remap 1497596 (Phase 6, base ffe21f0; includes 10 guard tests + upstream new tests from #375/#378/#389)",
     "smoke": "passed",
     "tsc": "clean",
     "eslint": "0 errors"

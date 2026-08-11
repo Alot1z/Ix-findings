@@ -294,5 +294,35 @@ but not a force-push of the branch. The rebased branch is ready locally.
 
 ---
 
+## Phase 6 — Fork Push + PR #393 OPENED (2026-08-11, user-authorized)
+
+**Status:** fork branch force-updated; **PR #393 opened** against
+`ix-infrastructure/Ix:main`. Not merged.
+
+### Execution record
+
+| Step | Result |
+|---|---|
+| User authorization | Gates A (push) + B (PR) authorized via ask_user 2026-08-11 |
+| Upstream at execution time | `ffe21f0` (3 commits past Phase 5's `5488741`; incl. merged security PR #389 touching view.ts in disjoint hunks) |
+| Base refresh | rebased `a05e740` -> `1497596` onto `ffe21f0`; clean, 0 conflicts |
+| Patch identity | identical patch-id `310dd4ab` across both rebases (a05e740 == 1497596) |
+| Merge-tree vs `ffe21f0` | exit 0, tree `de647175`, 0 conflicts |
+| Full suite on new base | **730 passed | 2 skipped (732)** — includes the 10 guard tests + upstream's new tests from #375/#378/#389 |
+| Fork push | `git push --force-with-lease fork feat/ix-remap-hardening` `c021b52` -> `1497596` (forced update, exit 0) |
+| Post-push API verify | fork branch HEAD = `1497596`, message `feat(view): real /__ix/remap endpoint...` |
+| PR created | **#393** `feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap` — head `1497596`, base `main`, 4 files +251/-10, author Alot1z |
+| PR verify | API-confirmed open, exactly one PR for this head; mergeable_state blocked (pending CI checks) |
+| Overlap re-check | no existing PR for head before creation ([]); PRs #390/#391/#392 cover patches/upgrade only — no file overlap with remap's 4 files |
+
+### Notes
+
+- Backup refs preserved: `feat/ix-remap-hardening-backup-c021b52`,
+  `feat/ix-remap-hardening-backup-a05e740`.
+- No merge performed; no review/comments; no force beyond the authorized
+  force-with-lease of this branch.
+
+---
+
 *All paths sanitized. No secrets, credentials, or personal information in
 this diff.*

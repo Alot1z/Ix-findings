@@ -69,3 +69,28 @@ Requires maintainer OSS-vs-Pro scoping decision (recorded as D-014-adjacent, iss
 - Suggestion **S-014**
 - Issue **#371**
 - PR **#372** (verified NOT to cover this)
+
+---
+
+## Phase 6 — SUPERSEDED by upstream PR #390 (2026-08-11)
+
+**Status: SUPERSEDED — DO NOT SUBMIT.**
+
+Upstream contributor **KageBinary** opened **PR #390**
+(`fix/cli: register the patches command instead of stubbing it`,
+2026-08-11) which directly implements the "register" branch of the
+register-vs-delete decision for F-009. Files: `CLAUDE.md`,
+`ix-cli/src/cli/commands/patches.ts`, `ix-cli/src/cli/register/oss.ts`,
+`pro-stub-message.test.ts`. Issue #371 is cross-referenced to #390.
+
+- Phase 5 confirmed F-009 open on `5488741` (zero import sites); on the
+  current upstream `ffe21f0` the only `registerPatchesCommand` occurrence is
+  still the definition in `commands/patches.ts` — no import site — so PR
+  #390's premise is valid and it is the authoritative fix.
+- **Submitting PACK-371 now would create a duplicate PR** (prohibited by
+  Phase 5/6 do-not-do rules).
+- Recommended action: monitor PR #390; if it stalls or is closed without a
+  merge, re-evaluate whether a follow-up contribution is needed.
+
+This packet is retained as the historical investigation record. No external
+submission was performed in Phase 6.
