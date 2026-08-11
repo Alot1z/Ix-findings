@@ -95,56 +95,56 @@ never upgraded by repetition. Machine-readable: `registry.json`.
 ## F-008 — Version-series mismatch in `ix upgrade` (#376)
 - **Repository:** ix-infrastructure/Ix · **Subsystem:** upgrade
 - **First phase:** 03 · **Latest phase:** final
-- **Evidence class:** A · **Confidence:** high · **Status:** OPEN (no fix)
+- **Evidence class:** A · **Confidence:** high · **Status:** RESOLVED_UPSTREAM (PR #391 merged 2026-08-11)
 - **Severity:** P1 (latent downgrade risk)
 - **Affected versions:** v0.9.1 (stamping since PR #365)
 - **Supporting evidence:** E-017
 - **Reproduction:** deterministic from source — `isNewer("0.3.0","0.9.1")` false today; flips when dist > Ix version
-- **Related files:** `../github/issues/376/README.md`, `../pr-packets/ix-376-version-mismatch/README.md`
-- **Related commits:** `dcc0962` (#365) · **Related issues:** Ix#376 · **Related PRs:** #365, #366, #344
+- **Related files:** `../github/issues/376/README.md`, `../pr-packets/ix-376-version-mismatch/README.md`, `../state/phase-7-upstream-reconciliation-2026-08-11.md`
+- **Related commits:** `dcc0962` (#365) · **Related issues:** Ix#376 · **Related PRs:** #365, #366, #344, **#391 (fix)**
 - **Related suggestions:** S-013 · **Alternative explanations:** none — source-proven
-- **Current recommendation:** separate PR; Option A (stamp dist version) simplest; coordinate with KageBinary (issue author)
+- **Upstream resolution (2026-08-11):** KageBinary merged #391 — `release.yml` stamps `compass/.version` with `$VERSION+release.<sha>` and the CLI skips the comparison for release bundles. The fix comments cite this finding's exact failure scenario ("the first dist tag above the running Ix version…"). Shipped fix is a superset of Option C (identity marker), better than Option A. Analysis retained as validated; status corrected per `state/phase-7-upstream-reconciliation-2026-08-11.md`.
 
 ## F-009 — `patches` command dead/unregistered (#371)
 - **Repository:** ix-infrastructure/Ix · **Subsystem:** CLI registration
 - **First phase:** 04 · **Latest phase:** final
-- **Evidence class:** A · **Confidence:** high · **Status:** OPEN
+- **Evidence class:** A · **Confidence:** high · **Status:** RESOLVED_UPSTREAM (PR #390 merged 2026-08-11)
 - **Affected versions:** current main
 - **Supporting evidence:** E-018
 - **Reproduction:** `registerPatchesCommand` exported but never imported (absent from `oss.ts`); `PRO_COMMANDS` masks it
-- **Related files:** `../github/issues/371/README.md`
-- **Related issues:** Ix#371 · **Related PRs:** #372 (--format llm) · **Related suggestions:** S-014
-- **Current recommendation:** register in `oss.ts` or delete `patches.ts`; separate from remap
+- **Related files:** `../github/issues/371/README.md`, `../state/phase-7-upstream-reconciliation-2026-08-11.md`
+- **Related issues:** Ix#371 · **Related PRs:** #372 (--format llm), **#390 (fix)** · **Related suggestions:** S-014
+- **Upstream resolution (2026-08-11):** KageBinary merged #390, choosing this investigation's Option 1 (OSS path) — `patches` registered in `oss.ts`, removed from `PRO_COMMANDS`. Issue #371 closed as completed.
 
 ## F-010 — Loopback-hardened `/__ix/remap` endpoint (implemented)
 - **Repository:** ix-infrastructure/Ix · **Subsystem:** view server
-- **First phase:** 02 · **Latest phase:** 13 (pending push)
-- **Evidence class:** A · **Confidence:** high · **Status:** PR_READY (not pushed)
+- **First phase:** 02 · **Latest phase:** 13 (PR open)
+- **Evidence class:** A · **Confidence:** high · **Status:** PR_OPEN (#393, CI green)
 - **Affected versions:** n/a (new feature)
 - **Supporting evidence:** E-014, E-015, E-016
-- **Reproduction:** 10-test guard matrix + 656-suite green; live curl 200/403 (per packet)
+- **Reproduction:** 10-test guard matrix + full suite green (730 passed on rebased base); live curl 200/403 (per packet)
 - **Related files:** `ix-cli/src/cli/commands/view.ts`, `ix-cli/test/view-server.test.ts`, `../pr-packets/ix-remap-hardening/README.md`
-- **Related commits:** `c021b52` · **Related suggestions:** S-003, S-004, S-012, S-030
-- **Current recommendation:** push + open PR upon authorization (phase-13)
+- **Related commits:** `c021b52` → `a05e740` → `1497596` (PR head) · **Related PRs:** **#393 (open)** · **Related suggestions:** S-003, S-004, S-012, S-030
+- **Current recommendation:** awaiting maintainer review on #393; merge blocked on REVIEW_REQUIRED only (14/14 checks green)
 
 ## F-011 — WSL bootstrap fix
 - **Repository:** ix-infrastructure/Ix · **Subsystem:** bootstrap/install
 - **First phase:** 02 · **Latest phase:** final
-- **Evidence class:** A · **Confidence:** high · **Status:** IN_REMAP_PR
+- **Evidence class:** A · **Confidence:** high · **Status:** IN_PR_393 (open)
 - **Affected versions:** current main (merged `bootstrap.sh`)
 - **Supporting evidence:** E-014
 - **Reproduction:** `is_windows()` treats `WSL_DISTRO_NAME` as Windows; WSL has no PowerShell on PATH → installer takes wrong path
-- **Related PRs:** remap PR (c021b52) · **Related suggestions:** S-002
-- **Current recommendation:** ship with remap PR
+- **Related PRs:** remap PR #393 (open) · **Related suggestions:** S-002
+- **Current recommendation:** ship with remap PR — now in #393, awaiting review
 
 ## F-012 — Dead `node_ok` removal
 - **Repository:** ix-infrastructure/Ix · **Subsystem:** bootstrap/install
 - **First phase:** 02 · **Latest phase:** final
-- **Evidence class:** A · **Confidence:** high · **Status:** IN_REMAP_PR
+- **Evidence class:** A · **Confidence:** high · **Status:** IN_PR_393 (open)
 - **Affected versions:** current main
 - **Supporting evidence:** E-014
 - **Reproduction:** `node_ok` set but never read
-- **Related PRs:** remap PR · **Current recommendation:** ship with remap PR
+- **Related PRs:** remap PR #393 (open) · **Current recommendation:** ship with remap PR — now in #393, awaiting review
 
 ## F-013 — Zoom-in multiplier discrepancy (×1.25 observed vs ×1.1 in constants)
 - **Repository:** system-compass · **Subsystem:** camera/zoom
@@ -164,4 +164,4 @@ never upgraded by repetition. Machine-readable: `registry.json`.
 
 - **Never upgraded:** F-006's mechanism stayed C even though three agents reproduced the symptom (repetition does not upgrade class).
 - **Severity legend:** P0 critical / P1 high / P2 medium / P3 low / n/a informational.
-- **Statuses:** REPRODUCED · VERIFIED · CONFIRMED · REPRODUCED_LIVE · OBSERVED · OPEN · PR_READY · IN_REMAP_PR.
+- **Statuses:** REPRODUCED · VERIFIED · CONFIRMED · REPRODUCED_LIVE · OBSERVED · OPEN · PR_READY · PR_OPEN · IN_REMAP_PR · IN_PR_393 · RESOLVED_UPSTREAM.

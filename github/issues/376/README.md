@@ -4,11 +4,25 @@
 **Title:** ix upgrade compares two unrelated version series to decide if Compass is stale  
 **Author:** KageBinary (Collaborator)  
 **Opened:** 2026-08-10  
-**Status:** Open  
+**Status:** **CLOSED (completed) — fixed by PR #391, merged 2026-08-11**  
 **Labels:** None  
 **Assignee:** None  
-**Linked PRs:** None  
+**Linked PRs:** #391 (fix, merged)  
 **Comments:** 0
+
+## Resolution (2026-08-11, verified via GitHub API)
+
+KageBinary merged **PR #391** (`fix(upgrade): stop comparing compass versions
+across two unrelated series`). The shipped fix is a superset of this
+investigation's Option C: `release.yml` now records the system-compass source
+commit and stamps `compass/.version` with `$VERSION+release.<sha>` (semver
+build metadata, one line — multi-line stamps would break old CLIs, which read
+the whole file). `upgrade.ts` skips the comparison entirely for release
+bundles, and `install.sh`/the dist-upgrade path still write a plain dist
+version. The fix comments describe the exact failure scenario documented here
+("the first dist tag above the running Ix version would have replaced this
+newer bundle with an older dist build — Ix#376"). This analysis was validated;
+the recommended Option A was superseded by the better marker approach.
 
 ## 1. Issue Body (Verbatim)
 
@@ -204,13 +218,25 @@ Stamp both the Ix version AND the compass commit. Compare commit identity for th
 
 | Attribute | Value |
 |-----------|-------|
-| Open/Closed | **Open** |
-| Has fix PR | No |
+| Open/Closed | **CLOSED (completed)** — 2026-08-11 |
+| Has fix PR | **Yes — #391 (merged)** |
 | Assigned | None |
 | Priority | Not labeled |
 | Blocked by | Nothing |
 | Blocks | Nothing |
 | Evidence class | Class A (source-proven) |
+
+## 8a. Post-resolution notes
+
+- **#391's design** — `$VERSION+release.<sha>` marker; CLI skips comparison for
+  release bundles. Supersedes Option A (dist-tag stamp) and is closer to
+  Option C (identity) without the migration cost.
+- **Corroboration for the Compass findings** — #391's comment confirms the
+  ledger's observation that system-compass's own `package.json` version is not
+  maintained against the dist series ("it read 0.2.0 while dist was on
+  v0.3.0"), matching F-001…F-007 context.
+- **Follow-on** — the new `ix-compass-dist` fetch/compare path in #392/#395
+  (staging under `IX_HOME`, IX_HOME-with-space test) continues to evolve.
 
 ## 9. Recommended Action
 

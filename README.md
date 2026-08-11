@@ -103,11 +103,11 @@ Ix-findings/
 | IXF-005 | #57 one-shot fit latch → keyed refit (v0.2.0→v0.3.0) | system-compass | A | Confirmed |
 | IXF-006 | Delayed-data blank (rollup timing + refit gap) | system-compass | B | Reproduced live |
 | IXF-007 | Region rollup timing-dependent | system-compass | B | Observed |
-| IXF-008 | Version series mismatch in upgrade (#376) | Ix | A | Open, no fix |
-| IXF-009 | patches command dead/unregistered (#371) | Ix | A | Open, no fix |
-| IXF-010 | Loopback-hardened /__ix/remap endpoint | Ix | A | PR-ready |
-| IXF-011 | WSL bootstrap fix | Ix | A | In remap PR |
-| IXF-012 | Dead node_ok removal | Ix | A | In remap PR |
+| IXF-008 | Version series mismatch in upgrade (#376) | Ix | A | **Resolved upstream** — #391 merged 2026-08-11 |
+| IXF-009 | patches command dead/unregistered (#371) | Ix | A | **Resolved upstream** — #390 merged 2026-08-11 |
+| IXF-010 | Loopback-hardened /__ix/remap endpoint | Ix | A | **PR #393 open** (CI green, awaiting review) |
+| IXF-011 | WSL bootstrap fix | Ix | A | In remap PR #393 (open) |
+| IXF-012 | Dead node_ok removal | Ix | A | In remap PR #393 (open) |
 
 ## Evidence Classes
 
@@ -124,10 +124,14 @@ Ix-findings/
 |------|----------|---------------|---------------------|
 | Source access | N/A (public) | ❌ Blocked | ❌ Blocked |
 | Implementation | ✅ Complete | ❌ Blocked | ❌ Blocked |
-| Tests | ✅ 656 passing | Spec only | Spec only |
-| Branch pushed | ❌ Not yet | ❌ | ❌ |
-| PR opened | ❌ Not yet | ❌ | ❌ |
-| Merged | ❌ | ❌ | ❌ |
+| Tests | ✅ 730 passing (rebased base) | Spec only | Spec only |
+| Branch pushed | ✅ `feat/ix-remap-hardening` @ `1497596` | ❌ | ❌ |
+| PR opened | ✅ **#393** (open, CI green) | ❌ | ❌ |
+| Merged | ❌ awaiting review | ❌ | ❌ |
+
+> **Reconciliation (2026-08-11):** Ix findings F-008/F-009 were fixed upstream
+> by the maintainers (PRs #391/#390, both merged); the remap PR #393 is open.
+> See `state/phase-7-upstream-reconciliation-2026-08-11.md`.
 
 ## Key Constraints
 

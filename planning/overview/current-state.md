@@ -1,5 +1,13 @@
 # Current State (verified 2026-08-10, final phase)
 
+> ⚠️ **SUPERSEDED IN PART (2026-08-11).** This snapshot is from 2026-08-10 and
+> predates the remap push/PR and the upstream fixes. For the current picture
+> see `../state/phase-7-upstream-reconciliation-2026-08-11.md`. Key deltas:
+> remap branch is now `1497596` and PR **#393 is open** (was "ready, not
+> pushed"); F-008/F-009 resolved upstream (#391/#390 merged); fork/main needs
+> re-sync (behind upstream since v0.9.2); local Ix `main` behind 12. The
+> snapshot below is preserved as a historical record.
+
 Live re-verification performed during PHASE FINAL — not carried over from older
 reports. Commands: `git remote -v`, `git rev-parse`, `git rev-list --left-right --count`,
 `git status --porcelain`, `git worktree list`.

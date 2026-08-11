@@ -1,6 +1,13 @@
 # Ix — `/__ix/remap` Endpoint (F-010)
 
-## Verified implementation (SOURCE — `feat/ix-remap-hardening` @ `c021b52`)
+> **State 2026-08-11:** PR **#393** is OPEN against `ix-infrastructure/Ix:main`
+> (head `feat/ix-remap-hardening` @ `1497596`, 4 files +251/−10). 14/14 CI
+> checks green; `mergeable: MERGEABLE`; blocked only on `REVIEW_REQUIRED`.
+> Rebased twice since `c021b52` (→ `a05e740` → `1497596`); patch-id identical
+> (`310dd4ab`). See `../pr-packets/ix-remap-hardening/README.md` Phase 6 and
+> `../state/phase-7-upstream-reconciliation-2026-08-11.md`.
+
+## Verified implementation (SOURCE — `feat/ix-remap-hardening` @ `c021b52` → `1497596`)
 
 - `POST /__ix/remap` in `view.ts` `serverScript()` runs `ix map .` in the
   workspace cwd with a 30-minute timeout; responds `{ok:true}` /
@@ -44,5 +51,8 @@ URL API avoids that entire bug class (S-012).
 
 ## State
 
-PR-ready, NOT pushed (D-009). Phase-12 gate: READY TO PUSH / READY TO OPEN PR.
-Planning: `../pr-planning/ix-remap.md`.
+**PR #393 OPEN (2026-08-11)** — pushed + opened with user authorization
+(Gates A+B; packet Phase 6). CI green, awaiting maintainer review. #389
+(merged upstream) fixed a disjoint fs-race in the same file — no hunks overlap
+and it does NOT add the loopback bind, so the remap hardening is still a
+distinct contribution. Planning: `../pr-planning/ix-remap.md`.

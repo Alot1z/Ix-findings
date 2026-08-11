@@ -21,6 +21,24 @@
 
 ---
 
+## Newly Discovered Discrepancies (2026-08-11 upstream reconciliation)
+
+> Source: live GitHub API re-verification — `state/phase-7-upstream-reconciliation-2026-08-11.md`
+
+| # | Claim | File(s) | Authoritative Value | Status |
+|---|---|---|---|---|
+| **S-042** | F-008 "OPEN (no fix)" / "Open, no fix" | `planning/findings/registry.md`, `README.md`, `manifests/findings-index.json` | **RESOLVED** — #391 merged 2026-08-11 (release.yml stamps `+release.<sha>`; comparison skipped for release bundles) | UPDATED |
+| **S-043** | F-009 "OPEN" / "Open, no fix" | `planning/findings/registry.md`, `README.md`, `manifests/findings-index.json` | **RESOLVED** — #390 merged 2026-08-11 (OSS path; #371 closed as completed) | UPDATED |
+| **S-044** | F-010 "PR_READY (not pushed)"; remap gates "Branch pushed ❌ / PR opened ❌" | `planning/findings/registry.md`, `planning/ix/remap.md`, `README.md`, `planning/final/NEXT-ACTIONS.md` | **PR #393 OPEN** (head `1497596`, 4 files +251/−10, 14/14 CI green, blocked only on REVIEW_REQUIRED) | UPDATED |
+| **S-045** | PR-MATRIX: #375/#378/#380/#382 listed OPEN | `CLI-HANDOFF/PR-MATRIX.md`, `planning/github/pull-requests.md` | All **MERGED** (Hiro-Chiba fix pairs for #374/#377/#379/#381, all closed) | UPDATED |
+| **S-046** | CLI-HANDOFF README "PR CREATED: NO / ISSUE CREATED: NO" (External Actions) | `CLI-HANDOFF/README.md` | **PR #393 created** 2026-08-11 (user-authorized, per packet Phase 6) — snapshot predates it | CORRECTED (banner) |
+| **S-047** | `planning/github/issues.md` marks 371/374/376/379/381 OPEN | `planning/github/issues.md` | All **CLOSED** (371, 376 completed; 374/379/381 fixed) | UPDATED |
+| **S-048** | NEXT-ACTIONS items 5/6/8/9 "execute on authorization" | `planning/final/NEXT-ACTIONS.md` | Items 5/6 done (PR #393); 8/9 done upstream (#391/#390) | UPDATED |
+| **S-049** | New items not previously catalogued: #385, #383, #349 (still open), #219 (feature), #395 (PR), #388 (brew PR), v0.9.2 release | — | Catalogued in `state/phase-7-upstream-reconciliation-2026-08-11.md` + NEXT-ACTIONS | ADDED |
+| **S-050** | Fork `main` state ("5 behind" in 2026-08-10 snapshots) | `planning/overview/current-state.md`, `CLI-HANDOFF/GIT-STATE.md` | Fork main `5488741`; upstream main `1292375` — **fork needs re-sync** | OPEN (maintenance) |
+
+---
+
 ## Resolved Discrepancies (fixed in final Desktop audit)
 
 | # | Claim | File(s) | Authoritative Value | Status |

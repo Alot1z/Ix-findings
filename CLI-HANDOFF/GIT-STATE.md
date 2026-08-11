@@ -1,6 +1,25 @@
 # GIT-STATE.md — Verified Git State (2026-08-10)
 
-> ALL values are DESKTOP-OBSERVED. Freebuff CLI MUST REVALIDATE independently.
+> ⚠️ **RE-VERIFIED 2026-08-11 (local + GitHub API).** The snapshot below is
+> preserved as history; the values marked **CURRENT** supersede it:
+>
+> - **Ix-remap worktree** — `feat/ix-remap-hardening` now @ `1497596` (was
+>   `c021b52`), ahead 1, clean, **PUSHED**; **PR #393 open** (2026-08-11).
+> - **Fork (Alot1z/Ix)** — `fork/feat/ix-remap-hardening` pushed @ `1497596`
+>   (was NONE); `fork/main` @ `5488741`, **behind upstream** (upstream main
+>   `1292375`) — re-sync pending. `fork/feat/ix-agent-skill` `0c9087c` (PR #368
+>   head, merged).
+> - **Ix primary** — `feat/ix-agent-skill` @ `b038c46`, uncommitted overhaul
+>   unchanged (6M + 5D + 3??); local `main` `c4f8fea` now **12 behind**
+>   `origin/main`.
+> - **Ix-findings** — `master` has commits now (HEAD `9b4859c` 2026-08-11),
+>   pushed to `Alot1z/Ix-findings` (public).
+> - Upstream merged since snapshot: #389 (security), **#390 (patches, F-009)**,
+>   **#391 (version series, F-008)**, #392 (IX_HOME staging), #386, #384, #394.
+>
+> Full record: `../state/phase-7-upstream-reconciliation-2026-08-11.md`.
+
+> ALL values below are DESKTOP-OBSERVED (2026-08-10). Freebuff CLI MUST REVALIDATE independently.
 > No destructive operations authorized. Preserve uncommitted work.
 
 ---

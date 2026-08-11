@@ -3,8 +3,8 @@
 **URL:** https://github.com/ix-infrastructure/Ix/issues/374  
 **Author:** Hiro-Chiba (Contributor)  
 **Opened:** 2026-08-10  
-**Status:** Open  
-**Linked PR:** #375 (fix open)  
+**Status:** **CLOSED — fixed by PR #375 (merged 2026-08-10)**  
+**Linked PR:** #375 (fix, merged)  
 **Evidence Class:** Class A (source-proven reproduction steps)
 
 ## Summary
@@ -13,7 +13,8 @@
 
 ## Fix PR
 
-PR #375 by Hiro-Chiba is open with 5 of 14 tasks complete and 1 comment.
+PR #375 by Hiro-Chiba **merged** (2026-08-10) — resolves JS and TS calls across
+parse batches. Verified via GitHub API on 2026-08-11.
 
 ## Relationship to Remap
 

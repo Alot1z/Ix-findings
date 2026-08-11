@@ -4,6 +4,13 @@
 **Status:** READ-ONLY investigation package — no external actions authorized
 **Parent:** `../planning/` — canonical investigation layer (this handoff is a derivative index)
 
+> ⚠️ **DATED CORRECTION (2026-08-11):** the "External Actions: NONE" block
+> below predates the authorized push + PR opening. Since this snapshot:
+> `feat/ix-remap-hardening` was pushed @ `1497596` and **PR #393 was opened**
+> (2026-08-11, user-authorized, Gates A+B per `../pr-packets/ix-remap-hardening/README.md`
+> Phase 6). F-008/F-009 were fixed upstream (#391/#390 merged). Nothing else
+> in the NONE list has changed. See `../state/phase-7-upstream-reconciliation-2026-08-11.md`.
+
 ---
 
 ## What This Is

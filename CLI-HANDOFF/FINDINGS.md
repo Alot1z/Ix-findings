@@ -3,6 +3,8 @@
 > Authoritative count: **13 findings**.
 > Source: `../planning/findings/registry.json` (canonical).
 > Evidence class: A=source, B=artifact/runtime, C=reconstruction, D=inference.
+> **Reconciled 2026-08-11:** F-008/F-009 resolved upstream (#391/#390 merged);
+> F-010/F-011/F-012 in open PR #393. See `../state/phase-7-upstream-reconciliation-2026-08-11.md`.
 
 ---
 
@@ -15,11 +17,11 @@
 | **F-005** | #57 one-shot fit latch → keyed refit (v0.2.0 → v0.3.0) | A+ | system-compass | — | CONFIRMED | E-008 (release notes) |
 | **F-006** | Delayed-data blank persists on v0.3.0 | B+ | system-compass | P1 | REPRODUCED_LIVE | E-009, E-012 |
 | **F-007** | Region-rollup aggregate formation timing-dependent | B | system-compass | P2 | OBSERVED | E-009, E-012 |
-| **F-008** | Version-series mismatch in `ix upgrade` (#376) | A | ix-infrastructure/Ix | P1 | OPEN | E-017 |
-| **F-009** | `patches` command dead/unregistered (#371) | A | ix-infrastructure/Ix | P2 | OPEN | E-018 |
-| **F-010** | Loopback-hardened /__ix/remap endpoint (IMPLEMENTED) | A | ix-infrastructure/Ix | — | PR_READY | E-014, E-015, E-016 |
-| **F-011** | WSL bootstrap fix | A | ix-infrastructure/Ix | — | IN_REMAP_PR | E-014, E-015 |
-| **F-012** | Dead node_ok removal | A | ix-infrastructure/Ix | — | IN_REMAP_PR | E-014, E-015 |
+| **F-008** | Version-series mismatch in `ix upgrade` (#376) | A | ix-infrastructure/Ix | P1 | **RESOLVED_UPSTREAM** (#391 merged) | E-017 |
+| **F-009** | `patches` command dead/unregistered (#371) | A | ix-infrastructure/Ix | P2 | **RESOLVED_UPSTREAM** (#390 merged) | E-018 |
+| **F-010** | Loopback-hardened /__ix/remap endpoint (IMPLEMENTED) | A | ix-infrastructure/Ix | — | **PR_OPEN** (#393, CI green) | E-014, E-015, E-016 |
+| **F-011** | WSL bootstrap fix | A | ix-infrastructure/Ix | — | **IN_PR_393** | E-014, E-015 |
+| **F-012** | Dead node_ok removal | A | ix-infrastructure/Ix | — | **IN_PR_393** | E-014, E-015 |
 | **F-013** | Zoom-in multiplier discrepancy (×1.25 observed vs ×1.1 in constants) | D | system-compass | P3 | OPEN | E-011 |
 
 ---

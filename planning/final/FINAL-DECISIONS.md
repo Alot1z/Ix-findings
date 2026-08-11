@@ -12,7 +12,7 @@
 | D-006 | Delayed-data separate from F-key | two packets |
 | D-007 | ix-compass-dist never modified | distribution channel safe |
 | D-008 | Ix-findings standalone ledger | evidence separate from code |
-| D-009 | No remote action without authorization | nothing published |
+| D-009 | No remote action without authorization | nothing published without explicit gates — 2026-08-11: remap push + PR #393 opened under Gates A/B (authorized); still governs all remaining remote actions |
 
 ## Open — need your call (D-010…D-014)
 

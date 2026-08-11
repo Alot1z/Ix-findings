@@ -3,11 +3,11 @@
 ## ix-infrastructure/Ix
 | ID | Title | Class | Status |
 |---|---|---|---|
-| F-008 | Version-series mismatch in `ix upgrade` (#376) | A | OPEN |
-| F-009 | `patches` command dead (#371) | A | OPEN |
-| F-010 | Loopback-hardened `/__ix/remap` endpoint | A | PR_READY |
-| F-011 | WSL bootstrap fix | A | IN_REMAP_PR |
-| F-012 | Dead `node_ok` removal | A | IN_REMAP_PR |
+| F-008 | Version-series mismatch in `ix upgrade` (#376) | A | **RESOLVED_UPSTREAM** (#391) |
+| F-009 | `patches` command dead (#371) | A | **RESOLVED_UPSTREAM** (#390) |
+| F-010 | Loopback-hardened `/__ix/remap` endpoint | A | **PR_OPEN** (#393) |
+| F-011 | WSL bootstrap fix | A | **IN_PR_393** |
+| F-012 | Dead `node_ok` removal | A | **IN_PR_393** |
 
 ## ix-infrastructure/system-compass (artifact/runtime evidence)
 | ID | Title | Class | Status |

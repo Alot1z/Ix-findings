@@ -8,11 +8,11 @@ Class is per-claim and never upgraded by repetition.
 | ID | Title | Status |
 |---|---|---|
 | F-005 | #57 latch → keyed refit (release notes + bundle diff) | CONFIRMED |
-| F-008 | Version-series mismatch (#376) | OPEN |
-| F-009 | `patches` dead (#371) | OPEN |
-| F-010 | Loopback-hardened `/__ix/remap` | PR_READY |
-| F-011 | WSL bootstrap fix | IN_REMAP_PR |
-| F-012 | Dead `node_ok` removal | IN_REMAP_PR |
+| F-008 | Version-series mismatch (#376) | **RESOLVED_UPSTREAM** (#391) |
+| F-009 | `patches` dead (#371) | **RESOLVED_UPSTREAM** (#390) |
+| F-010 | Loopback-hardened `/__ix/remap` | **PR_OPEN** (#393) |
+| F-011 | WSL bootstrap fix | **IN_PR_393** |
+| F-012 | Dead `node_ok` removal | **IN_PR_393** |
 
 ## Class B (artifact/runtime)
 | ID | Title | Status |
