@@ -89,6 +89,29 @@ export function fetchLiveState() {
   };
 }
 
+// Hermetic CI fallback: when the GitHub API is unreachable (e.g. GitHub Actions
+// runner without a usable token), compare the canonical graph against the last
+// live-verified capture committed as knowledge/live-github-state.json instead of
+// failing the build. The authoritative live check still runs whenever gh is
+// authenticated (local runs, maintainer pre-publish gate).
+const BASELINE_FILE = "knowledge/live-github-state.json";
+
+export function baselineLiveState(root = ROOT) {
+  const path = join(root, BASELINE_FILE);
+  if (!existsSync(path)) return null;
+  const baseline = readJson(path);
+  const upstream = baseline.upstream || {};
+  return {
+    repository: upstream.repository || DEFAULT_REPO,
+    defaultBranch: upstream.default_branch || "main",
+    head: upstream.head_sha,
+    openPRs: setOf((baseline.open_pull_requests || []).map(pr => pr.number)),
+    openIssues: setOf((baseline.open_issues || []).map(issue => issue.number)),
+    fetchedAt: baseline.captured_at || new Date().toISOString(),
+    source: "captured baseline knowledge/live-github-state.json (live API unavailable)",
+  };
+}
+
 function diffSet(expected, actual) {
   return {
     missing: sorted([...expected].filter(value => !actual.has(value))),
@@ -159,15 +182,32 @@ export function compareFreshness(canonical, live, snapshotMeta = [], options = {
 export function runGate({ root = ROOT, fixture, snapshotPaths = DEFAULT_SNAPSHOT_FILES, maxAgeHours } = {}) {
   const canonical = canonicalState(root);
   const fixtureState = fixture ? readJson(resolve(root, fixture)) : null;
-  const live = fixtureState
-    ? { ...fixtureState, openPRs: setOf(fixtureState.openPRs), openIssues: setOf(fixtureState.openIssues) }
-    : fetchLiveState();
+  const degraded = { mode: "live", live_check_error: null };
+  let live;
+  if (fixtureState) {
+    live = { ...fixtureState, openPRs: setOf(fixtureState.openPRs), openIssues: setOf(fixtureState.openIssues) };
+  } else {
+    try {
+      live = fetchLiveState();
+    } catch (error) {
+      const baseline = baselineLiveState(root);
+      if (!baseline) throw error;
+      live = baseline;
+      degraded.mode = "degraded-baseline";
+      degraded.live_check_error = error.message;
+    }
+  }
   const snapshots = readSnapshotMeta(root, snapshotPaths);
-  return compareFreshness(canonical, live, snapshots, { maxAgeHours });
+  const report = compareFreshness(canonical, live, snapshots, { maxAgeHours });
+  report.mode = degraded.mode;
+  report.live_check_error = degraded.live_check_error;
+  return report;
 }
 
 function printHuman(report) {
   console.log(`Freshness gate: ${report.gate}`);
+  console.log(`Mode: ${report.mode}`);
+  if (report.live_check_error) console.log(`Live API unavailable (${report.live_check_error}); checked against captured baseline.`);
   console.log(`Repository: ${report.repository}`);
   console.log(`Live head: ${report.live.head || "UNKNOWN"}`);
   console.log(`Open PRs: ${sorted(report.live.openPRs).join(", ") || "none"}`);

@@ -98,7 +98,9 @@ node knowledge/freshness-gate.mjs --json
 node planning/pages/validate-public.mjs
 ```
 
-The gate performs read-only GitHub API reads through `gh api` and checks the upstream default branch/head, open PR and issue sets, canonical graph coverage, derived snapshot revisions, and the records in `knowledge/snapshots.json`. It exits `0` only when fresh, `2` when stale, and `3` when live state cannot be read. `validate-public.mjs` runs the gate by default; `--skip-freshness` is explicitly offline structural validation and is not publication approval. Use `--fixture FILE` to make the comparison deterministic in tests without network access. The built-in deterministic checks can be run with `node knowledge/freshness-gate.test.mjs`.
+The gate performs read-only GitHub API reads through `gh api` and checks the upstream default branch/head, open PR and issue sets, canonical graph coverage, derived snapshot revisions, and the records in `knowledge/snapshots.json`. It exits `0` only when fresh, `2` when stale, and `3` when live state cannot be read **and no baseline exists**. `validate-public.mjs` runs the gate by default; `--skip-freshness` is explicitly offline structural validation and is not publication approval. Use `--fixture FILE` to make the comparison deterministic in tests without network access. The built-in deterministic checks can be run with `node knowledge/freshness-gate.test.mjs`.
+
+**Degraded mode (hermetic CI).** When the GitHub API is unreachable — e.g. a GitHub Actions runner without a usable token — the gate falls back to comparing the canonical graph against the last live-verified capture committed as `knowledge/live-github-state.json`. This run is reported as `Mode: degraded-baseline` with the API error surfaced, and still fails closed if the committed graph drifts from that capture. It is a consistency check, not a freshness check: the authoritative live comparison always runs when `gh` is authenticated (local/pre-publish runs). The report's `mode` field distinguishes `live` from `degraded-baseline`.
 
 ## Privacy
 
