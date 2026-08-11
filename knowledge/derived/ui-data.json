@@ -2158,7 +2158,7 @@
       "id": "COMMIT-1497596",
       "type": "commit",
       "title": "1497596",
-      "status": "CURRENT"
+      "status": "HISTORICAL"
     },
     {
       "id": "COMMIT-b25bf2e",
@@ -2182,7 +2182,7 @@
       "id": "COMMIT-c021b52",
       "type": "commit",
       "title": "c021b52",
-      "status": "CURRENT"
+      "status": "HISTORICAL"
     },
     {
       "id": "COMMIT-b038c46",
@@ -2212,13 +2212,13 @@
       "id": "COMMIT-dcc0962",
       "type": "commit",
       "title": "dcc0962",
-      "status": "CURRENT"
+      "status": "HISTORICAL"
     },
     {
       "id": "COMMIT-2157158",
       "type": "commit",
       "title": "2157158",
-      "status": "CURRENT"
+      "status": "HISTORICAL"
     },
     {
       "id": "PR-358",
@@ -2399,6 +2399,54 @@
       "type": "pull_request",
       "title": "Ix PR #395",
       "status": "OPEN"
+    },
+    {
+      "id": "COMMIT-d676a9484a961337a43ce2e6a63e12adfed902b0",
+      "type": "commit",
+      "title": "d676a9484a961337a43ce2e6a63e12adfed902b0",
+      "status": "CURRENT"
+    },
+    {
+      "id": "COMMIT-13e96bacc648ee979f35e2874cd8aa2004f920e1",
+      "type": "commit",
+      "title": "13e96bacc648ee979f35e2874cd8aa2004f920e1",
+      "status": "CURRENT"
+    },
+    {
+      "id": "COMMIT-36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+      "type": "commit",
+      "title": "36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+      "status": "CURRENT"
+    },
+    {
+      "id": "COMMIT-a5350b6d6dc67958fa4abef63559affcd74aff56",
+      "type": "commit",
+      "title": "a5350b6d6dc67958fa4abef63559affcd74aff56",
+      "status": "CURRENT"
+    },
+    {
+      "id": "COMMIT-66111917a2a58437c91372616f98928876121395",
+      "type": "commit",
+      "title": "66111917a2a58437c91372616f98928876121395",
+      "status": "CURRENT"
+    },
+    {
+      "id": "COMMIT-1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+      "type": "commit",
+      "title": "1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+      "status": "CURRENT"
+    },
+    {
+      "id": "COMMIT-606f18f7ca1a69f4b8ede7c27c1079b024297856",
+      "type": "commit",
+      "title": "606f18f7ca1a69f4b8ede7c27c1079b024297856",
+      "status": "CURRENT"
+    },
+    {
+      "id": "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+      "type": "commit",
+      "title": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+      "status": "CURRENT"
     },
     {
       "id": "ISSUE-349",
@@ -3381,9 +3429,21 @@
   ],
   "edges": [
     {
+      "source": "PR-393",
+      "target": "COMMIT-d676a9484a961337a43ce2e6a63e12adfed902b0",
+      "relationship": "CHANGED_BY",
+      "confidence": "HIGH"
+    },
+    {
       "source": "PR-395",
       "target": "ISSUE-349",
       "relationship": "RESPONDS_TO",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "PR-395",
+      "target": "COMMIT-13e96bacc648ee979f35e2874cd8aa2004f920e1",
+      "relationship": "CHANGED_BY",
       "confidence": "HIGH"
     },
     {
@@ -4980,12 +5040,6 @@
       "source": "PR-391",
       "target": "ISSUE-376",
       "relationship": "RESPONDS_TO",
-      "confidence": "MEDIUM"
-    },
-    {
-      "source": "PR-393",
-      "target": "COMMIT-1497596",
-      "relationship": "CHANGED_BY",
       "confidence": "MEDIUM"
     },
     {
@@ -8967,6 +9021,36 @@
       "confidence": "HIGH"
     },
     {
+      "source": "SECTION-mcp",
+      "target": "COMMIT-36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+      "relationship": "DOCUMENTS_COMMIT",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SECTION-mcp",
+      "target": "COMMIT-a5350b6d6dc67958fa4abef63559affcd74aff56",
+      "relationship": "DOCUMENTS_COMMIT",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SECTION-mcp",
+      "target": "COMMIT-66111917a2a58437c91372616f98928876121395",
+      "relationship": "DOCUMENTS_COMMIT",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SECTION-mcp",
+      "target": "COMMIT-1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+      "relationship": "DOCUMENTS_COMMIT",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SECTION-mcp",
+      "target": "COMMIT-606f18f7ca1a69f4b8ede7c27c1079b024297856",
+      "relationship": "DOCUMENTS_COMMIT",
+      "confidence": "HIGH"
+    },
+    {
       "source": "SECTION-mcp_implementation",
       "target": "IMPL-MCP-FORK",
       "relationship": "PART_OF_IMPLEMENTATION",
@@ -8976,6 +9060,36 @@
       "source": "SECTION-mcp_implementation",
       "target": "ISSUE-219",
       "relationship": "DOCUMENTS_ISSUE",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SECTION-mcp_implementation",
+      "target": "COMMIT-36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+      "relationship": "DOCUMENTS_COMMIT",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SECTION-mcp_implementation",
+      "target": "COMMIT-a5350b6d6dc67958fa4abef63559affcd74aff56",
+      "relationship": "DOCUMENTS_COMMIT",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SECTION-mcp_implementation",
+      "target": "COMMIT-66111917a2a58437c91372616f98928876121395",
+      "relationship": "DOCUMENTS_COMMIT",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SECTION-mcp_implementation",
+      "target": "COMMIT-1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+      "relationship": "DOCUMENTS_COMMIT",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SECTION-mcp_implementation",
+      "target": "COMMIT-606f18f7ca1a69f4b8ede7c27c1079b024297856",
+      "relationship": "DOCUMENTS_COMMIT",
       "confidence": "HIGH"
     },
     {
@@ -8991,6 +9105,36 @@
       "confidence": "HIGH"
     },
     {
+      "source": "SECTION-mcp_stdio",
+      "target": "COMMIT-36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+      "relationship": "DOCUMENTS_COMMIT",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SECTION-mcp_stdio",
+      "target": "COMMIT-a5350b6d6dc67958fa4abef63559affcd74aff56",
+      "relationship": "DOCUMENTS_COMMIT",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SECTION-mcp_stdio",
+      "target": "COMMIT-66111917a2a58437c91372616f98928876121395",
+      "relationship": "DOCUMENTS_COMMIT",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SECTION-mcp_stdio",
+      "target": "COMMIT-1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+      "relationship": "DOCUMENTS_COMMIT",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SECTION-mcp_stdio",
+      "target": "COMMIT-606f18f7ca1a69f4b8ede7c27c1079b024297856",
+      "relationship": "DOCUMENTS_COMMIT",
+      "confidence": "HIGH"
+    },
+    {
       "source": "SECTION-mcp_tools",
       "target": "IMPL-MCP-FORK",
       "relationship": "PART_OF_IMPLEMENTATION",
@@ -9000,6 +9144,36 @@
       "source": "SECTION-mcp_tools",
       "target": "ISSUE-219",
       "relationship": "DOCUMENTS_ISSUE",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SECTION-mcp_tools",
+      "target": "COMMIT-36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+      "relationship": "DOCUMENTS_COMMIT",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SECTION-mcp_tools",
+      "target": "COMMIT-a5350b6d6dc67958fa4abef63559affcd74aff56",
+      "relationship": "DOCUMENTS_COMMIT",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SECTION-mcp_tools",
+      "target": "COMMIT-66111917a2a58437c91372616f98928876121395",
+      "relationship": "DOCUMENTS_COMMIT",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SECTION-mcp_tools",
+      "target": "COMMIT-1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+      "relationship": "DOCUMENTS_COMMIT",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SECTION-mcp_tools",
+      "target": "COMMIT-606f18f7ca1a69f4b8ede7c27c1079b024297856",
+      "relationship": "DOCUMENTS_COMMIT",
       "confidence": "HIGH"
     },
     {
@@ -9015,6 +9189,36 @@
       "confidence": "HIGH"
     },
     {
+      "source": "SECTION-mcp_security",
+      "target": "COMMIT-36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+      "relationship": "DOCUMENTS_COMMIT",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SECTION-mcp_security",
+      "target": "COMMIT-a5350b6d6dc67958fa4abef63559affcd74aff56",
+      "relationship": "DOCUMENTS_COMMIT",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SECTION-mcp_security",
+      "target": "COMMIT-66111917a2a58437c91372616f98928876121395",
+      "relationship": "DOCUMENTS_COMMIT",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SECTION-mcp_security",
+      "target": "COMMIT-1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+      "relationship": "DOCUMENTS_COMMIT",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SECTION-mcp_security",
+      "target": "COMMIT-606f18f7ca1a69f4b8ede7c27c1079b024297856",
+      "relationship": "DOCUMENTS_COMMIT",
+      "confidence": "HIGH"
+    },
+    {
       "source": "SECTION-mcp_tests",
       "target": "IMPL-MCP-FORK",
       "relationship": "PART_OF_IMPLEMENTATION",
@@ -9024,6 +9228,36 @@
       "source": "SECTION-mcp_tests",
       "target": "ISSUE-219",
       "relationship": "DOCUMENTS_ISSUE",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SECTION-mcp_tests",
+      "target": "COMMIT-36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+      "relationship": "DOCUMENTS_COMMIT",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SECTION-mcp_tests",
+      "target": "COMMIT-a5350b6d6dc67958fa4abef63559affcd74aff56",
+      "relationship": "DOCUMENTS_COMMIT",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SECTION-mcp_tests",
+      "target": "COMMIT-66111917a2a58437c91372616f98928876121395",
+      "relationship": "DOCUMENTS_COMMIT",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SECTION-mcp_tests",
+      "target": "COMMIT-1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+      "relationship": "DOCUMENTS_COMMIT",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SECTION-mcp_tests",
+      "target": "COMMIT-606f18f7ca1a69f4b8ede7c27c1079b024297856",
+      "relationship": "DOCUMENTS_COMMIT",
       "confidence": "HIGH"
     },
     {
@@ -9036,6 +9270,12 @@
       "source": "SECTION-prs_393",
       "target": "PR-393",
       "relationship": "DOCUMENTS_PR",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SECTION-prs_393",
+      "target": "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+      "relationship": "DOCUMENTS_COMMIT",
       "confidence": "HIGH"
     },
     {
@@ -9070,6 +9310,12 @@
     },
     {
       "source": "SECTION-prs_393_remap",
+      "target": "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+      "relationship": "DOCUMENTS_COMMIT",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SECTION-prs_393_remap",
       "target": "F-010",
       "relationship": "DOCUMENTS_FINDING",
       "confidence": "HIGH"
@@ -9096,6 +9342,12 @@
       "source": "SECTION-prs_393_security",
       "target": "PR-393",
       "relationship": "DOCUMENTS_PR",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SECTION-prs_393_security",
+      "target": "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+      "relationship": "DOCUMENTS_COMMIT",
       "confidence": "HIGH"
     },
     {
@@ -9126,6 +9378,12 @@
       "source": "SECTION-prs_393_tests",
       "target": "PR-393",
       "relationship": "DOCUMENTS_PR",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SECTION-prs_393_tests",
+      "target": "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+      "relationship": "DOCUMENTS_COMMIT",
       "confidence": "HIGH"
     },
     {

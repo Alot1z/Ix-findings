@@ -509,7 +509,7 @@
     "status": "CURRENT",
     "confidence": "HIGH",
     "human_summary": "CLI-HANDOFF/manifest.json (HISTORICAL).",
-    "deep_summary": "Local source artifact CLI-HANDOFF/manifest.json; format json; 17832 bytes; content hash 94abd203ee27.",
+    "deep_summary": "Local source artifact CLI-HANDOFF/manifest.json; format json; 17888 bytes; content hash 0736c767f5f2.",
     "evidence_ids": [],
     "source_refs": [],
     "temporal": {
@@ -590,10 +590,10 @@
       "source_id": "SRC-2a5998452c1a",
       "path": "CLI-HANDOFF/manifest.json",
       "format": "json",
-      "bytes": 17832,
+      "bytes": 17888,
       "role": "HISTORICAL",
       "readable": true,
-      "sha1": "94abd203ee27",
+      "sha1": "0736c767f5f2",
       "generated_at": "UNKNOWN"
     },
     "related_entities": [
@@ -14661,7 +14661,7 @@
     "status": "CURRENT",
     "confidence": "HIGH",
     "human_summary": "planning/wiki/data/data.js (HISTORICAL).",
-    "deep_summary": "Local source artifact planning/wiki/data/data.js; format js; 414602 bytes; content hash 274279684c16.",
+    "deep_summary": "Local source artifact planning/wiki/data/data.js; format js; 414508 bytes; content hash 5d64bac0f764.",
     "evidence_ids": [],
     "source_refs": [],
     "temporal": {
@@ -14691,10 +14691,10 @@
       "source_id": "SRC-9e660cbf742f",
       "path": "planning/wiki/data/data.js",
       "format": "js",
-      "bytes": 414602,
+      "bytes": 414508,
       "role": "HISTORICAL",
       "readable": true,
-      "sha1": "274279684c16",
+      "sha1": "5d64bac0f764",
       "generated_at": "UNKNOWN"
     },
     "related_entities": [
@@ -18998,8 +18998,8 @@
     ],
     "status": "CURRENT",
     "confidence": "HIGH",
-    "human_summary": "ix-infrastructure/Ix:feat/ix-remap-hardening at 1497596.",
-    "deep_summary": "ix-infrastructure/Ix:feat/ix-remap-hardening at 1497596.",
+    "human_summary": "ix-infrastructure/Ix:feat/ix-remap-hardening at d676a9484a961337a43ce2e6a63e12adfed902b0.",
+    "deep_summary": "ix-infrastructure/Ix:feat/ix-remap-hardening at d676a9484a961337a43ce2e6a63e12adfed902b0.",
     "evidence_ids": [],
     "source_refs": [
       "SRC-2a5998452c1a",
@@ -19014,7 +19014,7 @@
       "fixed_by": "UNKNOWN"
     },
     "llm": {
-      "llm_summary": "ix-infrastructure/Ix:feat/ix-remap-hardening at 1497596.",
+      "llm_summary": "ix-infrastructure/Ix:feat/ix-remap-hardening at d676a9484a961337a43ce2e6a63e12adfed902b0.",
       "llm_context": "",
       "llm_facts": [],
       "llm_uncertainties": [],
@@ -19036,10 +19036,12 @@
     "metadata": {
       "branch": "feat/ix-remap-hardening",
       "repo": "ix-infrastructure/Ix",
-      "sha": "1497596",
+      "sha": "d676a9484a961337a43ce2e6a63e12adfed902b0",
       "worktree": "Ix_remap",
       "ahead": 1,
-      "note": "Phase 6 base-refresh onto ffe21f0 + fork force-updated c021b52->1497596; PR #393 OPEN. Backup refs: backup-c021b52, backup-a05e740"
+      "note": "Phase 6 base-refresh onto ffe21f0 + fork force-updated c021b52->1497596; PR #393 OPEN. Backup refs: backup-c021b52, backup-a05e740",
+      "historical_sha": "1497596",
+      "live_head": "d676a9484a961337a43ce2e6a63e12adfed902b0"
     },
     "related_entities": [
       "REPO-ix-infrastructure-Ix",
@@ -19323,10 +19325,10 @@
     "aliases": [
       "COMMIT-1497596"
     ],
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "confidence": "HIGH",
-    "human_summary": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap — Phase 6 rebase onto ffe21f0; PR #393",
-    "deep_summary": "ix-infrastructure/Ix feat/ix-remap-hardening (fork, pushed) — feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap — Phase 6 rebase onto ffe21f0; PR #393.",
+    "human_summary": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap — Phase 6 rebase onto ffe21f0; PR #393 Superseded: feat/ix-remap-hardening (fork, pushed) head is now d676a948.",
+    "deep_summary": "ix-infrastructure/Ix feat/ix-remap-hardening (fork, pushed) — feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap — Phase 6 rebase onto ffe21f0; PR #393. The live capture records a newer head (d676a948) for this branch; the manifest-era commit is retained as provenance.",
     "evidence_ids": [],
     "source_refs": [
       "SRC-2a5998452c1a"
@@ -19347,7 +19349,6 @@
       "llm_questions": [],
       "llm_evidence_chain": [],
       "llm_relationships": [
-        "PR-393",
         "SRC-2a5998452c1a",
         "BRANCH-bb1d25e4c9d1"
       ],
@@ -19360,10 +19361,12 @@
       "sha": "1497596",
       "repo": "ix-infrastructure/Ix",
       "branch": "feat/ix-remap-hardening (fork, pushed)",
-      "msg": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap — Phase 6 rebase onto ffe21f0; PR #393"
+      "msg": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap — Phase 6 rebase onto ffe21f0; PR #393",
+      "superseded_by": "d676a9484a961337a43ce2e6a63e12adfed902b0",
+      "superseded_at": "2026-08-11",
+      "live_head": "d676a9484a961337a43ce2e6a63e12adfed902b0"
     },
     "related_entities": [
-      "PR-393",
       "SRC-2a5998452c1a",
       "BRANCH-bb1d25e4c9d1"
     ]
@@ -19525,10 +19528,10 @@
     "aliases": [
       "COMMIT-c021b52"
     ],
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "confidence": "HIGH",
-    "human_summary": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap",
-    "deep_summary": "ix-infrastructure/Ix feat/ix-remap-hardening — feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap.",
+    "human_summary": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap Superseded: feat/ix-remap-hardening head is now d676a948.",
+    "deep_summary": "ix-infrastructure/Ix feat/ix-remap-hardening — feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap. The live capture records a newer head (d676a948) for this branch; the manifest-era commit is retained as provenance.",
     "evidence_ids": [],
     "source_refs": [
       "SRC-2a5998452c1a"
@@ -19561,7 +19564,10 @@
       "sha": "c021b52",
       "repo": "ix-infrastructure/Ix",
       "branch": "feat/ix-remap-hardening",
-      "msg": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap"
+      "msg": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap",
+      "superseded_by": "d676a9484a961337a43ce2e6a63e12adfed902b0",
+      "superseded_at": "2026-08-11",
+      "live_head": "d676a9484a961337a43ce2e6a63e12adfed902b0"
     },
     "related_entities": [
       "BRANCH-bb1d25e4c9d1",
@@ -19777,10 +19783,10 @@
     "aliases": [
       "COMMIT-dcc0962"
     ],
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "confidence": "HIGH",
-    "human_summary": "Compass stamp",
-    "deep_summary": "ix-infrastructure/Ix #365 — Compass stamp.",
+    "human_summary": "Compass stamp Superseded: undefined head is now d676a948.",
+    "deep_summary": "ix-infrastructure/Ix #365 — Compass stamp. The live capture records a newer head (d676a948) for this branch; the manifest-era commit is retained as provenance.",
     "evidence_ids": [],
     "source_refs": [
       "SRC-2a5998452c1a"
@@ -19813,7 +19819,10 @@
       "sha": "dcc0962",
       "repo": "ix-infrastructure/Ix",
       "pr": "#365",
-      "msg": "Compass stamp"
+      "msg": "Compass stamp",
+      "superseded_by": "d676a9484a961337a43ce2e6a63e12adfed902b0",
+      "superseded_at": "2026-08-11",
+      "live_head": "d676a9484a961337a43ce2e6a63e12adfed902b0"
     },
     "related_entities": [
       "PR-365",
@@ -19827,10 +19836,10 @@
     "aliases": [
       "COMMIT-2157158"
     ],
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "confidence": "HIGH",
-    "human_summary": "PR #368 merge",
-    "deep_summary": "ix-infrastructure/Ix #368 — PR #368 merge.",
+    "human_summary": "PR #368 merge Superseded: undefined head is now d676a948.",
+    "deep_summary": "ix-infrastructure/Ix #368 — PR #368 merge. The live capture records a newer head (d676a948) for this branch; the manifest-era commit is retained as provenance.",
     "evidence_ids": [],
     "source_refs": [
       "SRC-2a5998452c1a"
@@ -19863,7 +19872,10 @@
       "sha": "2157158",
       "repo": "ix-infrastructure/Ix",
       "pr": "#368",
-      "msg": "PR #368 merge"
+      "msg": "PR #368 merge",
+      "superseded_by": "d676a9484a961337a43ce2e6a63e12adfed902b0",
+      "superseded_at": "2026-08-11",
+      "live_head": "d676a9484a961337a43ce2e6a63e12adfed902b0"
     },
     "related_entities": [
       "PR-368",
@@ -20624,11 +20636,11 @@
       "llm_questions": [],
       "llm_evidence_chain": [],
       "llm_relationships": [
+        "COMMIT-d676a9484a961337a43ce2e6a63e12adfed902b0",
         "REPO-ix-infrastructure-Ix",
         "F-010",
         "F-011",
         "F-012",
-        "COMMIT-1497596",
         "SRC-2a5998452c1a",
         "SRC-90ab8426282e",
         "BRANCH-bb1d25e4c9d1",
@@ -20648,17 +20660,17 @@
       "number": 393,
       "url": "https://github.com/ix-infrastructure/Ix/pull/393",
       "state": "OPEN",
-      "sha": "1497596",
-      "note": "REMAP CONTRIBUTION (ours) — head 1497596, base main, 4 files +251/-10; Phase 6 user-authorized",
+      "sha": "d676a94",
+      "note": "REMAP CONTRIBUTION (ours) — head d676a94, base main, 4 files +251/-10; Phase 6 user-authorized (head refreshed 2026-08-11 after AGENTS.md cherry-pick)",
       "historical_manifest_state": "OPEN",
       "live_state": "OPEN"
     },
     "related_entities": [
+      "COMMIT-d676a9484a961337a43ce2e6a63e12adfed902b0",
       "REPO-ix-infrastructure-Ix",
       "F-010",
       "F-011",
       "F-012",
-      "COMMIT-1497596",
       "SRC-2a5998452c1a",
       "SRC-90ab8426282e",
       "BRANCH-bb1d25e4c9d1",
@@ -21562,6 +21574,7 @@
       "llm_evidence_chain": [],
       "llm_relationships": [
         "ISSUE-349",
+        "COMMIT-13e96bacc648ee979f35e2874cd8aa2004f920e1",
         "REPO-ix-infrastructure-Ix"
       ],
       "llm_search_terms": [
@@ -21582,7 +21595,440 @@
     },
     "related_entities": [
       "ISSUE-349",
+      "COMMIT-13e96bacc648ee979f35e2874cd8aa2004f920e1",
       "REPO-ix-infrastructure-Ix"
+    ]
+  },
+  {
+    "canonical_id": "COMMIT-d676a9484a961337a43ce2e6a63e12adfed902b0",
+    "entity_type": "COMMIT",
+    "canonical_name": "d676a9484a961337a43ce2e6a63e12adfed902b0",
+    "aliases": [
+      "COMMIT-d676a9484a961337a43ce2e6a63e12adfed902b0"
+    ],
+    "status": "CURRENT",
+    "confidence": "HIGH",
+    "human_summary": "d676a948 — current head of feat/ix-remap-hardening (Alot1z/Ix).",
+    "deep_summary": "Live-verified head of feat/ix-remap-hardening for open PR #393; captured in knowledge/live-github-state.json.",
+    "evidence_ids": [],
+    "source_refs": [],
+    "temporal": {
+      "valid_from": "UNKNOWN",
+      "valid_until": "UNKNOWN",
+      "observed_at": "UNKNOWN",
+      "verified_at": "UNKNOWN",
+      "introduced_by": "UNKNOWN",
+      "fixed_by": "UNKNOWN"
+    },
+    "llm": {
+      "llm_summary": "d676a948 — current head of feat/ix-remap-hardening (Alot1z/Ix).",
+      "llm_context": "",
+      "llm_facts": [],
+      "llm_uncertainties": [],
+      "llm_questions": [],
+      "llm_evidence_chain": [],
+      "llm_relationships": [
+        "PR-393"
+      ],
+      "llm_search_terms": [
+        "COMMIT-d676a9484a961337a43ce2e6a63e12adfed902b0",
+        "d676a9484a961337a43ce2e6a63e12adfed902b0"
+      ]
+    },
+    "metadata": {
+      "repo": "Alot1z/Ix",
+      "branch": "feat/ix-remap-hardening",
+      "sha": "d676a9484a961337a43ce2e6a63e12adfed902b0",
+      "pr": 393,
+      "live": true
+    },
+    "related_entities": [
+      "PR-393"
+    ]
+  },
+  {
+    "canonical_id": "COMMIT-13e96bacc648ee979f35e2874cd8aa2004f920e1",
+    "entity_type": "COMMIT",
+    "canonical_name": "13e96bacc648ee979f35e2874cd8aa2004f920e1",
+    "aliases": [
+      "COMMIT-13e96bacc648ee979f35e2874cd8aa2004f920e1"
+    ],
+    "status": "CURRENT",
+    "confidence": "HIGH",
+    "human_summary": "13e96bac — current head of test/ix-home-with-space (Alot1z/Ix).",
+    "deep_summary": "Live-verified head of test/ix-home-with-space for open PR #395; captured in knowledge/live-github-state.json.",
+    "evidence_ids": [],
+    "source_refs": [],
+    "temporal": {
+      "valid_from": "UNKNOWN",
+      "valid_until": "UNKNOWN",
+      "observed_at": "UNKNOWN",
+      "verified_at": "UNKNOWN",
+      "introduced_by": "UNKNOWN",
+      "fixed_by": "UNKNOWN"
+    },
+    "llm": {
+      "llm_summary": "13e96bac — current head of test/ix-home-with-space (Alot1z/Ix).",
+      "llm_context": "",
+      "llm_facts": [],
+      "llm_uncertainties": [],
+      "llm_questions": [],
+      "llm_evidence_chain": [],
+      "llm_relationships": [
+        "PR-395"
+      ],
+      "llm_search_terms": [
+        "COMMIT-13e96bacc648ee979f35e2874cd8aa2004f920e1",
+        "13e96bacc648ee979f35e2874cd8aa2004f920e1"
+      ]
+    },
+    "metadata": {
+      "repo": "Alot1z/Ix",
+      "branch": "test/ix-home-with-space",
+      "sha": "13e96bacc648ee979f35e2874cd8aa2004f920e1",
+      "pr": 395,
+      "live": true
+    },
+    "related_entities": [
+      "PR-395"
+    ]
+  },
+  {
+    "canonical_id": "COMMIT-36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+    "entity_type": "COMMIT",
+    "canonical_name": "36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+    "aliases": [
+      "COMMIT-36c7c7eccd8068d48df4f61394b42a3ffa62483c"
+    ],
+    "status": "CURRENT",
+    "confidence": "HIGH",
+    "human_summary": "36c7c7ec — implementation commit for feat/ix-mcp.",
+    "deep_summary": "Live-verified implementation commit referenced by ix-mcp.",
+    "evidence_ids": [],
+    "source_refs": [],
+    "temporal": {
+      "valid_from": "UNKNOWN",
+      "valid_until": "UNKNOWN",
+      "observed_at": "UNKNOWN",
+      "verified_at": "UNKNOWN",
+      "introduced_by": "UNKNOWN",
+      "fixed_by": "UNKNOWN"
+    },
+    "llm": {
+      "llm_summary": "36c7c7ec — implementation commit for feat/ix-mcp.",
+      "llm_context": "",
+      "llm_facts": [],
+      "llm_uncertainties": [],
+      "llm_questions": [],
+      "llm_evidence_chain": [],
+      "llm_relationships": [
+        "SECTION-mcp",
+        "SECTION-mcp_implementation",
+        "SECTION-mcp_stdio",
+        "SECTION-mcp_tools",
+        "SECTION-mcp_security",
+        "SECTION-mcp_tests"
+      ],
+      "llm_search_terms": [
+        "COMMIT-36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+        "36c7c7eccd8068d48df4f61394b42a3ffa62483c"
+      ]
+    },
+    "metadata": {
+      "repo": "Alot1z/Ix",
+      "branch": "feat/ix-mcp",
+      "sha": "36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+      "implementation_id": "ix-mcp",
+      "live": true
+    },
+    "related_entities": [
+      "SECTION-mcp",
+      "SECTION-mcp_implementation",
+      "SECTION-mcp_stdio",
+      "SECTION-mcp_tools",
+      "SECTION-mcp_security",
+      "SECTION-mcp_tests"
+    ]
+  },
+  {
+    "canonical_id": "COMMIT-a5350b6d6dc67958fa4abef63559affcd74aff56",
+    "entity_type": "COMMIT",
+    "canonical_name": "a5350b6d6dc67958fa4abef63559affcd74aff56",
+    "aliases": [
+      "COMMIT-a5350b6d6dc67958fa4abef63559affcd74aff56"
+    ],
+    "status": "CURRENT",
+    "confidence": "HIGH",
+    "human_summary": "a5350b6d — implementation commit for feat/ix-mcp.",
+    "deep_summary": "Live-verified implementation commit referenced by ix-mcp.",
+    "evidence_ids": [],
+    "source_refs": [],
+    "temporal": {
+      "valid_from": "UNKNOWN",
+      "valid_until": "UNKNOWN",
+      "observed_at": "UNKNOWN",
+      "verified_at": "UNKNOWN",
+      "introduced_by": "UNKNOWN",
+      "fixed_by": "UNKNOWN"
+    },
+    "llm": {
+      "llm_summary": "a5350b6d — implementation commit for feat/ix-mcp.",
+      "llm_context": "",
+      "llm_facts": [],
+      "llm_uncertainties": [],
+      "llm_questions": [],
+      "llm_evidence_chain": [],
+      "llm_relationships": [
+        "SECTION-mcp",
+        "SECTION-mcp_implementation",
+        "SECTION-mcp_stdio",
+        "SECTION-mcp_tools",
+        "SECTION-mcp_security",
+        "SECTION-mcp_tests"
+      ],
+      "llm_search_terms": [
+        "COMMIT-a5350b6d6dc67958fa4abef63559affcd74aff56",
+        "a5350b6d6dc67958fa4abef63559affcd74aff56"
+      ]
+    },
+    "metadata": {
+      "repo": "Alot1z/Ix",
+      "branch": "feat/ix-mcp",
+      "sha": "a5350b6d6dc67958fa4abef63559affcd74aff56",
+      "implementation_id": "ix-mcp",
+      "live": true
+    },
+    "related_entities": [
+      "SECTION-mcp",
+      "SECTION-mcp_implementation",
+      "SECTION-mcp_stdio",
+      "SECTION-mcp_tools",
+      "SECTION-mcp_security",
+      "SECTION-mcp_tests"
+    ]
+  },
+  {
+    "canonical_id": "COMMIT-66111917a2a58437c91372616f98928876121395",
+    "entity_type": "COMMIT",
+    "canonical_name": "66111917a2a58437c91372616f98928876121395",
+    "aliases": [
+      "COMMIT-66111917a2a58437c91372616f98928876121395"
+    ],
+    "status": "CURRENT",
+    "confidence": "HIGH",
+    "human_summary": "66111917 — implementation commit for feat/ix-mcp.",
+    "deep_summary": "Live-verified implementation commit referenced by ix-mcp.",
+    "evidence_ids": [],
+    "source_refs": [],
+    "temporal": {
+      "valid_from": "UNKNOWN",
+      "valid_until": "UNKNOWN",
+      "observed_at": "UNKNOWN",
+      "verified_at": "UNKNOWN",
+      "introduced_by": "UNKNOWN",
+      "fixed_by": "UNKNOWN"
+    },
+    "llm": {
+      "llm_summary": "66111917 — implementation commit for feat/ix-mcp.",
+      "llm_context": "",
+      "llm_facts": [],
+      "llm_uncertainties": [],
+      "llm_questions": [],
+      "llm_evidence_chain": [],
+      "llm_relationships": [
+        "SECTION-mcp",
+        "SECTION-mcp_implementation",
+        "SECTION-mcp_stdio",
+        "SECTION-mcp_tools",
+        "SECTION-mcp_security",
+        "SECTION-mcp_tests"
+      ],
+      "llm_search_terms": [
+        "COMMIT-66111917a2a58437c91372616f98928876121395",
+        "66111917a2a58437c91372616f98928876121395"
+      ]
+    },
+    "metadata": {
+      "repo": "Alot1z/Ix",
+      "branch": "feat/ix-mcp",
+      "sha": "66111917a2a58437c91372616f98928876121395",
+      "implementation_id": "ix-mcp",
+      "live": true
+    },
+    "related_entities": [
+      "SECTION-mcp",
+      "SECTION-mcp_implementation",
+      "SECTION-mcp_stdio",
+      "SECTION-mcp_tools",
+      "SECTION-mcp_security",
+      "SECTION-mcp_tests"
+    ]
+  },
+  {
+    "canonical_id": "COMMIT-1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+    "entity_type": "COMMIT",
+    "canonical_name": "1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+    "aliases": [
+      "COMMIT-1a5b0b93c9e8871610370c0f36212be8f6cf6980"
+    ],
+    "status": "CURRENT",
+    "confidence": "HIGH",
+    "human_summary": "1a5b0b93 — implementation commit for feat/ix-mcp.",
+    "deep_summary": "Live-verified implementation commit referenced by ix-mcp.",
+    "evidence_ids": [],
+    "source_refs": [],
+    "temporal": {
+      "valid_from": "UNKNOWN",
+      "valid_until": "UNKNOWN",
+      "observed_at": "UNKNOWN",
+      "verified_at": "UNKNOWN",
+      "introduced_by": "UNKNOWN",
+      "fixed_by": "UNKNOWN"
+    },
+    "llm": {
+      "llm_summary": "1a5b0b93 — implementation commit for feat/ix-mcp.",
+      "llm_context": "",
+      "llm_facts": [],
+      "llm_uncertainties": [],
+      "llm_questions": [],
+      "llm_evidence_chain": [],
+      "llm_relationships": [
+        "SECTION-mcp",
+        "SECTION-mcp_implementation",
+        "SECTION-mcp_stdio",
+        "SECTION-mcp_tools",
+        "SECTION-mcp_security",
+        "SECTION-mcp_tests"
+      ],
+      "llm_search_terms": [
+        "COMMIT-1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+        "1a5b0b93c9e8871610370c0f36212be8f6cf6980"
+      ]
+    },
+    "metadata": {
+      "repo": "Alot1z/Ix",
+      "branch": "feat/ix-mcp",
+      "sha": "1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+      "implementation_id": "ix-mcp",
+      "live": true
+    },
+    "related_entities": [
+      "SECTION-mcp",
+      "SECTION-mcp_implementation",
+      "SECTION-mcp_stdio",
+      "SECTION-mcp_tools",
+      "SECTION-mcp_security",
+      "SECTION-mcp_tests"
+    ]
+  },
+  {
+    "canonical_id": "COMMIT-606f18f7ca1a69f4b8ede7c27c1079b024297856",
+    "entity_type": "COMMIT",
+    "canonical_name": "606f18f7ca1a69f4b8ede7c27c1079b024297856",
+    "aliases": [
+      "COMMIT-606f18f7ca1a69f4b8ede7c27c1079b024297856"
+    ],
+    "status": "CURRENT",
+    "confidence": "HIGH",
+    "human_summary": "606f18f7 — implementation commit for feat/ix-mcp.",
+    "deep_summary": "Live-verified implementation commit referenced by ix-mcp.",
+    "evidence_ids": [],
+    "source_refs": [],
+    "temporal": {
+      "valid_from": "UNKNOWN",
+      "valid_until": "UNKNOWN",
+      "observed_at": "UNKNOWN",
+      "verified_at": "UNKNOWN",
+      "introduced_by": "UNKNOWN",
+      "fixed_by": "UNKNOWN"
+    },
+    "llm": {
+      "llm_summary": "606f18f7 — implementation commit for feat/ix-mcp.",
+      "llm_context": "",
+      "llm_facts": [],
+      "llm_uncertainties": [],
+      "llm_questions": [],
+      "llm_evidence_chain": [],
+      "llm_relationships": [
+        "SECTION-mcp",
+        "SECTION-mcp_implementation",
+        "SECTION-mcp_stdio",
+        "SECTION-mcp_tools",
+        "SECTION-mcp_security",
+        "SECTION-mcp_tests"
+      ],
+      "llm_search_terms": [
+        "COMMIT-606f18f7ca1a69f4b8ede7c27c1079b024297856",
+        "606f18f7ca1a69f4b8ede7c27c1079b024297856"
+      ]
+    },
+    "metadata": {
+      "repo": "Alot1z/Ix",
+      "branch": "feat/ix-mcp",
+      "sha": "606f18f7ca1a69f4b8ede7c27c1079b024297856",
+      "implementation_id": "ix-mcp",
+      "live": true
+    },
+    "related_entities": [
+      "SECTION-mcp",
+      "SECTION-mcp_implementation",
+      "SECTION-mcp_stdio",
+      "SECTION-mcp_tools",
+      "SECTION-mcp_security",
+      "SECTION-mcp_tests"
+    ]
+  },
+  {
+    "canonical_id": "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+    "entity_type": "COMMIT",
+    "canonical_name": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+    "aliases": [
+      "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b"
+    ],
+    "status": "CURRENT",
+    "confidence": "HIGH",
+    "human_summary": "a6a47267 — implementation commit for feat/ix-remap-hardening.",
+    "deep_summary": "Live-verified implementation commit referenced by remap-pr393.",
+    "evidence_ids": [],
+    "source_refs": [],
+    "temporal": {
+      "valid_from": "UNKNOWN",
+      "valid_until": "UNKNOWN",
+      "observed_at": "UNKNOWN",
+      "verified_at": "UNKNOWN",
+      "introduced_by": "UNKNOWN",
+      "fixed_by": "UNKNOWN"
+    },
+    "llm": {
+      "llm_summary": "a6a47267 — implementation commit for feat/ix-remap-hardening.",
+      "llm_context": "",
+      "llm_facts": [],
+      "llm_uncertainties": [],
+      "llm_questions": [],
+      "llm_evidence_chain": [],
+      "llm_relationships": [
+        "SECTION-prs_393",
+        "SECTION-prs_393_remap",
+        "SECTION-prs_393_security",
+        "SECTION-prs_393_tests"
+      ],
+      "llm_search_terms": [
+        "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+        "a6a47267af21a49d6942ee6e07e18d1d0a82517b"
+      ]
+    },
+    "metadata": {
+      "repo": "ix-infrastructure/Ix",
+      "branch": "feat/ix-remap-hardening",
+      "sha": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+      "implementation_id": "remap-pr393",
+      "live": true
+    },
+    "related_entities": [
+      "SECTION-prs_393",
+      "SECTION-prs_393_remap",
+      "SECTION-prs_393_security",
+      "SECTION-prs_393_tests"
     ]
   },
   {
@@ -30583,7 +31029,7 @@
     "metadata": {
       "pr": 393,
       "branch": "feat/ix-remap-hardening",
-      "head": "1497596",
+      "head": "d676a9484a961337a43ce2e6a63e12adfed902b0",
       "known_limitations": [
         "descendant cleanup requires stronger proof",
         "concurrent expensive requests are not explicitly bounded"
@@ -31039,7 +31485,12 @@
       "llm_evidence_chain": [],
       "llm_relationships": [
         "IMPL-MCP-FORK",
-        "ISSUE-219"
+        "ISSUE-219",
+        "COMMIT-36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+        "COMMIT-a5350b6d6dc67958fa4abef63559affcd74aff56",
+        "COMMIT-66111917a2a58437c91372616f98928876121395",
+        "COMMIT-1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+        "COMMIT-606f18f7ca1a69f4b8ede7c27c1079b024297856"
       ],
       "llm_search_terms": [
         "SECTION-mcp",
@@ -31218,7 +31669,12 @@
     },
     "related_entities": [
       "IMPL-MCP-FORK",
-      "ISSUE-219"
+      "ISSUE-219",
+      "COMMIT-36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+      "COMMIT-a5350b6d6dc67958fa4abef63559affcd74aff56",
+      "COMMIT-66111917a2a58437c91372616f98928876121395",
+      "COMMIT-1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+      "COMMIT-606f18f7ca1a69f4b8ede7c27c1079b024297856"
     ]
   },
   {
@@ -31251,7 +31707,12 @@
       "llm_evidence_chain": [],
       "llm_relationships": [
         "IMPL-MCP-FORK",
-        "ISSUE-219"
+        "ISSUE-219",
+        "COMMIT-36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+        "COMMIT-a5350b6d6dc67958fa4abef63559affcd74aff56",
+        "COMMIT-66111917a2a58437c91372616f98928876121395",
+        "COMMIT-1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+        "COMMIT-606f18f7ca1a69f4b8ede7c27c1079b024297856"
       ],
       "llm_search_terms": [
         "SECTION-mcp_implementation",
@@ -31430,7 +31891,12 @@
     },
     "related_entities": [
       "IMPL-MCP-FORK",
-      "ISSUE-219"
+      "ISSUE-219",
+      "COMMIT-36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+      "COMMIT-a5350b6d6dc67958fa4abef63559affcd74aff56",
+      "COMMIT-66111917a2a58437c91372616f98928876121395",
+      "COMMIT-1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+      "COMMIT-606f18f7ca1a69f4b8ede7c27c1079b024297856"
     ]
   },
   {
@@ -31463,7 +31929,12 @@
       "llm_evidence_chain": [],
       "llm_relationships": [
         "IMPL-MCP-FORK",
-        "ISSUE-219"
+        "ISSUE-219",
+        "COMMIT-36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+        "COMMIT-a5350b6d6dc67958fa4abef63559affcd74aff56",
+        "COMMIT-66111917a2a58437c91372616f98928876121395",
+        "COMMIT-1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+        "COMMIT-606f18f7ca1a69f4b8ede7c27c1079b024297856"
       ],
       "llm_search_terms": [
         "SECTION-mcp_stdio",
@@ -31642,7 +32113,12 @@
     },
     "related_entities": [
       "IMPL-MCP-FORK",
-      "ISSUE-219"
+      "ISSUE-219",
+      "COMMIT-36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+      "COMMIT-a5350b6d6dc67958fa4abef63559affcd74aff56",
+      "COMMIT-66111917a2a58437c91372616f98928876121395",
+      "COMMIT-1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+      "COMMIT-606f18f7ca1a69f4b8ede7c27c1079b024297856"
     ]
   },
   {
@@ -31675,7 +32151,12 @@
       "llm_evidence_chain": [],
       "llm_relationships": [
         "IMPL-MCP-FORK",
-        "ISSUE-219"
+        "ISSUE-219",
+        "COMMIT-36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+        "COMMIT-a5350b6d6dc67958fa4abef63559affcd74aff56",
+        "COMMIT-66111917a2a58437c91372616f98928876121395",
+        "COMMIT-1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+        "COMMIT-606f18f7ca1a69f4b8ede7c27c1079b024297856"
       ],
       "llm_search_terms": [
         "SECTION-mcp_tools",
@@ -31854,7 +32335,12 @@
     },
     "related_entities": [
       "IMPL-MCP-FORK",
-      "ISSUE-219"
+      "ISSUE-219",
+      "COMMIT-36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+      "COMMIT-a5350b6d6dc67958fa4abef63559affcd74aff56",
+      "COMMIT-66111917a2a58437c91372616f98928876121395",
+      "COMMIT-1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+      "COMMIT-606f18f7ca1a69f4b8ede7c27c1079b024297856"
     ]
   },
   {
@@ -31887,7 +32373,12 @@
       "llm_evidence_chain": [],
       "llm_relationships": [
         "IMPL-MCP-FORK",
-        "ISSUE-219"
+        "ISSUE-219",
+        "COMMIT-36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+        "COMMIT-a5350b6d6dc67958fa4abef63559affcd74aff56",
+        "COMMIT-66111917a2a58437c91372616f98928876121395",
+        "COMMIT-1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+        "COMMIT-606f18f7ca1a69f4b8ede7c27c1079b024297856"
       ],
       "llm_search_terms": [
         "SECTION-mcp_security",
@@ -32066,7 +32557,12 @@
     },
     "related_entities": [
       "IMPL-MCP-FORK",
-      "ISSUE-219"
+      "ISSUE-219",
+      "COMMIT-36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+      "COMMIT-a5350b6d6dc67958fa4abef63559affcd74aff56",
+      "COMMIT-66111917a2a58437c91372616f98928876121395",
+      "COMMIT-1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+      "COMMIT-606f18f7ca1a69f4b8ede7c27c1079b024297856"
     ]
   },
   {
@@ -32099,7 +32595,12 @@
       "llm_evidence_chain": [],
       "llm_relationships": [
         "IMPL-MCP-FORK",
-        "ISSUE-219"
+        "ISSUE-219",
+        "COMMIT-36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+        "COMMIT-a5350b6d6dc67958fa4abef63559affcd74aff56",
+        "COMMIT-66111917a2a58437c91372616f98928876121395",
+        "COMMIT-1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+        "COMMIT-606f18f7ca1a69f4b8ede7c27c1079b024297856"
       ],
       "llm_search_terms": [
         "SECTION-mcp_tests",
@@ -32278,7 +32779,12 @@
     },
     "related_entities": [
       "IMPL-MCP-FORK",
-      "ISSUE-219"
+      "ISSUE-219",
+      "COMMIT-36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+      "COMMIT-a5350b6d6dc67958fa4abef63559affcd74aff56",
+      "COMMIT-66111917a2a58437c91372616f98928876121395",
+      "COMMIT-1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+      "COMMIT-606f18f7ca1a69f4b8ede7c27c1079b024297856"
     ]
   },
   {
@@ -32312,6 +32818,7 @@
       "llm_relationships": [
         "IMPL-REMAP-PR393",
         "PR-393",
+        "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
         "F-010",
         "F-011",
         "F-012"
@@ -32433,6 +32940,7 @@
     "related_entities": [
       "IMPL-REMAP-PR393",
       "PR-393",
+      "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
       "F-010",
       "F-011",
       "F-012"
@@ -32469,6 +32977,7 @@
       "llm_relationships": [
         "IMPL-REMAP-PR393",
         "PR-393",
+        "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
         "F-010",
         "F-011",
         "F-012"
@@ -32590,6 +33099,7 @@
     "related_entities": [
       "IMPL-REMAP-PR393",
       "PR-393",
+      "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
       "F-010",
       "F-011",
       "F-012"
@@ -32626,6 +33136,7 @@
       "llm_relationships": [
         "IMPL-REMAP-PR393",
         "PR-393",
+        "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
         "F-010",
         "F-011",
         "F-012"
@@ -32747,6 +33258,7 @@
     "related_entities": [
       "IMPL-REMAP-PR393",
       "PR-393",
+      "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
       "F-010",
       "F-011",
       "F-012"
@@ -32783,6 +33295,7 @@
       "llm_relationships": [
         "IMPL-REMAP-PR393",
         "PR-393",
+        "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
         "F-010",
         "F-011",
         "F-012"
@@ -32904,6 +33417,7 @@
     "related_entities": [
       "IMPL-REMAP-PR393",
       "PR-393",
+      "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
       "F-010",
       "F-011",
       "F-012"

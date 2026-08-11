@@ -10,7 +10,7 @@ window.IX_DATA = {
       "repositories": 5,
       "branches": 8,
       "worktrees": 0,
-      "commits": 14,
+      "commits": 22,
       "releases": 0,
       "files": 345,
       "symbols": 0,
@@ -23,8 +23,8 @@ window.IX_DATA = {
       "prs": 21,
       "issues": 10,
       "contributions": 30,
-      "graphNodes": 562,
-      "graphEdges": 972,
+      "graphNodes": 570,
+      "graphEdges": 1007,
       "staleClaims": 0
     },
     "dataFreshness": {
@@ -4335,7 +4335,7 @@ window.IX_DATA = {
         "id": "COMMIT-1497596",
         "type": "commit",
         "title": "1497596",
-        "status": "CURRENT"
+        "status": "HISTORICAL"
       },
       {
         "id": "COMMIT-b25bf2e",
@@ -4359,7 +4359,7 @@ window.IX_DATA = {
         "id": "COMMIT-c021b52",
         "type": "commit",
         "title": "c021b52",
-        "status": "CURRENT"
+        "status": "HISTORICAL"
       },
       {
         "id": "COMMIT-b038c46",
@@ -4389,13 +4389,13 @@ window.IX_DATA = {
         "id": "COMMIT-dcc0962",
         "type": "commit",
         "title": "dcc0962",
-        "status": "CURRENT"
+        "status": "HISTORICAL"
       },
       {
         "id": "COMMIT-2157158",
         "type": "commit",
         "title": "2157158",
-        "status": "CURRENT"
+        "status": "HISTORICAL"
       },
       {
         "id": "PR-358",
@@ -4639,6 +4639,54 @@ window.IX_DATA = {
         "status": "OPEN",
         "number": 395,
         "url": "https://github.com/ix-infrastructure/Ix/pull/395"
+      },
+      {
+        "id": "COMMIT-d676a9484a961337a43ce2e6a63e12adfed902b0",
+        "type": "commit",
+        "title": "d676a9484a961337a43ce2e6a63e12adfed902b0",
+        "status": "CURRENT"
+      },
+      {
+        "id": "COMMIT-13e96bacc648ee979f35e2874cd8aa2004f920e1",
+        "type": "commit",
+        "title": "13e96bacc648ee979f35e2874cd8aa2004f920e1",
+        "status": "CURRENT"
+      },
+      {
+        "id": "COMMIT-36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+        "type": "commit",
+        "title": "36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+        "status": "CURRENT"
+      },
+      {
+        "id": "COMMIT-a5350b6d6dc67958fa4abef63559affcd74aff56",
+        "type": "commit",
+        "title": "a5350b6d6dc67958fa4abef63559affcd74aff56",
+        "status": "CURRENT"
+      },
+      {
+        "id": "COMMIT-66111917a2a58437c91372616f98928876121395",
+        "type": "commit",
+        "title": "66111917a2a58437c91372616f98928876121395",
+        "status": "CURRENT"
+      },
+      {
+        "id": "COMMIT-1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+        "type": "commit",
+        "title": "1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+        "status": "CURRENT"
+      },
+      {
+        "id": "COMMIT-606f18f7ca1a69f4b8ede7c27c1079b024297856",
+        "type": "commit",
+        "title": "606f18f7ca1a69f4b8ede7c27c1079b024297856",
+        "status": "CURRENT"
+      },
+      {
+        "id": "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+        "type": "commit",
+        "title": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+        "status": "CURRENT"
       },
       {
         "id": "ISSUE-349",
@@ -5931,9 +5979,21 @@ window.IX_DATA = {
     ],
     "edges": [
       {
+        "source": "PR-393",
+        "target": "COMMIT-d676a9484a961337a43ce2e6a63e12adfed902b0",
+        "relationship": "CHANGED_BY",
+        "confidence": "HIGH"
+      },
+      {
         "source": "PR-395",
         "target": "ISSUE-349",
         "relationship": "RESPONDS_TO",
+        "confidence": "HIGH"
+      },
+      {
+        "source": "PR-395",
+        "target": "COMMIT-13e96bacc648ee979f35e2874cd8aa2004f920e1",
+        "relationship": "CHANGED_BY",
         "confidence": "HIGH"
       },
       {
@@ -7530,12 +7590,6 @@ window.IX_DATA = {
         "source": "PR-391",
         "target": "ISSUE-376",
         "relationship": "RESPONDS_TO",
-        "confidence": "MEDIUM"
-      },
-      {
-        "source": "PR-393",
-        "target": "COMMIT-1497596",
-        "relationship": "CHANGED_BY",
         "confidence": "MEDIUM"
       },
       {
@@ -11517,6 +11571,36 @@ window.IX_DATA = {
         "confidence": "HIGH"
       },
       {
+        "source": "SECTION-mcp",
+        "target": "COMMIT-36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+        "relationship": "DOCUMENTS_COMMIT",
+        "confidence": "HIGH"
+      },
+      {
+        "source": "SECTION-mcp",
+        "target": "COMMIT-a5350b6d6dc67958fa4abef63559affcd74aff56",
+        "relationship": "DOCUMENTS_COMMIT",
+        "confidence": "HIGH"
+      },
+      {
+        "source": "SECTION-mcp",
+        "target": "COMMIT-66111917a2a58437c91372616f98928876121395",
+        "relationship": "DOCUMENTS_COMMIT",
+        "confidence": "HIGH"
+      },
+      {
+        "source": "SECTION-mcp",
+        "target": "COMMIT-1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+        "relationship": "DOCUMENTS_COMMIT",
+        "confidence": "HIGH"
+      },
+      {
+        "source": "SECTION-mcp",
+        "target": "COMMIT-606f18f7ca1a69f4b8ede7c27c1079b024297856",
+        "relationship": "DOCUMENTS_COMMIT",
+        "confidence": "HIGH"
+      },
+      {
         "source": "SECTION-mcp_implementation",
         "target": "IMPL-MCP-FORK",
         "relationship": "PART_OF_IMPLEMENTATION",
@@ -11526,6 +11610,36 @@ window.IX_DATA = {
         "source": "SECTION-mcp_implementation",
         "target": "ISSUE-219",
         "relationship": "DOCUMENTS_ISSUE",
+        "confidence": "HIGH"
+      },
+      {
+        "source": "SECTION-mcp_implementation",
+        "target": "COMMIT-36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+        "relationship": "DOCUMENTS_COMMIT",
+        "confidence": "HIGH"
+      },
+      {
+        "source": "SECTION-mcp_implementation",
+        "target": "COMMIT-a5350b6d6dc67958fa4abef63559affcd74aff56",
+        "relationship": "DOCUMENTS_COMMIT",
+        "confidence": "HIGH"
+      },
+      {
+        "source": "SECTION-mcp_implementation",
+        "target": "COMMIT-66111917a2a58437c91372616f98928876121395",
+        "relationship": "DOCUMENTS_COMMIT",
+        "confidence": "HIGH"
+      },
+      {
+        "source": "SECTION-mcp_implementation",
+        "target": "COMMIT-1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+        "relationship": "DOCUMENTS_COMMIT",
+        "confidence": "HIGH"
+      },
+      {
+        "source": "SECTION-mcp_implementation",
+        "target": "COMMIT-606f18f7ca1a69f4b8ede7c27c1079b024297856",
+        "relationship": "DOCUMENTS_COMMIT",
         "confidence": "HIGH"
       },
       {
@@ -11541,6 +11655,36 @@ window.IX_DATA = {
         "confidence": "HIGH"
       },
       {
+        "source": "SECTION-mcp_stdio",
+        "target": "COMMIT-36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+        "relationship": "DOCUMENTS_COMMIT",
+        "confidence": "HIGH"
+      },
+      {
+        "source": "SECTION-mcp_stdio",
+        "target": "COMMIT-a5350b6d6dc67958fa4abef63559affcd74aff56",
+        "relationship": "DOCUMENTS_COMMIT",
+        "confidence": "HIGH"
+      },
+      {
+        "source": "SECTION-mcp_stdio",
+        "target": "COMMIT-66111917a2a58437c91372616f98928876121395",
+        "relationship": "DOCUMENTS_COMMIT",
+        "confidence": "HIGH"
+      },
+      {
+        "source": "SECTION-mcp_stdio",
+        "target": "COMMIT-1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+        "relationship": "DOCUMENTS_COMMIT",
+        "confidence": "HIGH"
+      },
+      {
+        "source": "SECTION-mcp_stdio",
+        "target": "COMMIT-606f18f7ca1a69f4b8ede7c27c1079b024297856",
+        "relationship": "DOCUMENTS_COMMIT",
+        "confidence": "HIGH"
+      },
+      {
         "source": "SECTION-mcp_tools",
         "target": "IMPL-MCP-FORK",
         "relationship": "PART_OF_IMPLEMENTATION",
@@ -11550,6 +11694,36 @@ window.IX_DATA = {
         "source": "SECTION-mcp_tools",
         "target": "ISSUE-219",
         "relationship": "DOCUMENTS_ISSUE",
+        "confidence": "HIGH"
+      },
+      {
+        "source": "SECTION-mcp_tools",
+        "target": "COMMIT-36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+        "relationship": "DOCUMENTS_COMMIT",
+        "confidence": "HIGH"
+      },
+      {
+        "source": "SECTION-mcp_tools",
+        "target": "COMMIT-a5350b6d6dc67958fa4abef63559affcd74aff56",
+        "relationship": "DOCUMENTS_COMMIT",
+        "confidence": "HIGH"
+      },
+      {
+        "source": "SECTION-mcp_tools",
+        "target": "COMMIT-66111917a2a58437c91372616f98928876121395",
+        "relationship": "DOCUMENTS_COMMIT",
+        "confidence": "HIGH"
+      },
+      {
+        "source": "SECTION-mcp_tools",
+        "target": "COMMIT-1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+        "relationship": "DOCUMENTS_COMMIT",
+        "confidence": "HIGH"
+      },
+      {
+        "source": "SECTION-mcp_tools",
+        "target": "COMMIT-606f18f7ca1a69f4b8ede7c27c1079b024297856",
+        "relationship": "DOCUMENTS_COMMIT",
         "confidence": "HIGH"
       },
       {
@@ -11565,6 +11739,36 @@ window.IX_DATA = {
         "confidence": "HIGH"
       },
       {
+        "source": "SECTION-mcp_security",
+        "target": "COMMIT-36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+        "relationship": "DOCUMENTS_COMMIT",
+        "confidence": "HIGH"
+      },
+      {
+        "source": "SECTION-mcp_security",
+        "target": "COMMIT-a5350b6d6dc67958fa4abef63559affcd74aff56",
+        "relationship": "DOCUMENTS_COMMIT",
+        "confidence": "HIGH"
+      },
+      {
+        "source": "SECTION-mcp_security",
+        "target": "COMMIT-66111917a2a58437c91372616f98928876121395",
+        "relationship": "DOCUMENTS_COMMIT",
+        "confidence": "HIGH"
+      },
+      {
+        "source": "SECTION-mcp_security",
+        "target": "COMMIT-1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+        "relationship": "DOCUMENTS_COMMIT",
+        "confidence": "HIGH"
+      },
+      {
+        "source": "SECTION-mcp_security",
+        "target": "COMMIT-606f18f7ca1a69f4b8ede7c27c1079b024297856",
+        "relationship": "DOCUMENTS_COMMIT",
+        "confidence": "HIGH"
+      },
+      {
         "source": "SECTION-mcp_tests",
         "target": "IMPL-MCP-FORK",
         "relationship": "PART_OF_IMPLEMENTATION",
@@ -11574,6 +11778,36 @@ window.IX_DATA = {
         "source": "SECTION-mcp_tests",
         "target": "ISSUE-219",
         "relationship": "DOCUMENTS_ISSUE",
+        "confidence": "HIGH"
+      },
+      {
+        "source": "SECTION-mcp_tests",
+        "target": "COMMIT-36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+        "relationship": "DOCUMENTS_COMMIT",
+        "confidence": "HIGH"
+      },
+      {
+        "source": "SECTION-mcp_tests",
+        "target": "COMMIT-a5350b6d6dc67958fa4abef63559affcd74aff56",
+        "relationship": "DOCUMENTS_COMMIT",
+        "confidence": "HIGH"
+      },
+      {
+        "source": "SECTION-mcp_tests",
+        "target": "COMMIT-66111917a2a58437c91372616f98928876121395",
+        "relationship": "DOCUMENTS_COMMIT",
+        "confidence": "HIGH"
+      },
+      {
+        "source": "SECTION-mcp_tests",
+        "target": "COMMIT-1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+        "relationship": "DOCUMENTS_COMMIT",
+        "confidence": "HIGH"
+      },
+      {
+        "source": "SECTION-mcp_tests",
+        "target": "COMMIT-606f18f7ca1a69f4b8ede7c27c1079b024297856",
+        "relationship": "DOCUMENTS_COMMIT",
         "confidence": "HIGH"
       },
       {
@@ -11586,6 +11820,12 @@ window.IX_DATA = {
         "source": "SECTION-prs_393",
         "target": "PR-393",
         "relationship": "DOCUMENTS_PR",
+        "confidence": "HIGH"
+      },
+      {
+        "source": "SECTION-prs_393",
+        "target": "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+        "relationship": "DOCUMENTS_COMMIT",
         "confidence": "HIGH"
       },
       {
@@ -11620,6 +11860,12 @@ window.IX_DATA = {
       },
       {
         "source": "SECTION-prs_393_remap",
+        "target": "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+        "relationship": "DOCUMENTS_COMMIT",
+        "confidence": "HIGH"
+      },
+      {
+        "source": "SECTION-prs_393_remap",
         "target": "F-010",
         "relationship": "DOCUMENTS_FINDING",
         "confidence": "HIGH"
@@ -11646,6 +11892,12 @@ window.IX_DATA = {
         "source": "SECTION-prs_393_security",
         "target": "PR-393",
         "relationship": "DOCUMENTS_PR",
+        "confidence": "HIGH"
+      },
+      {
+        "source": "SECTION-prs_393_security",
+        "target": "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+        "relationship": "DOCUMENTS_COMMIT",
         "confidence": "HIGH"
       },
       {
@@ -11676,6 +11928,12 @@ window.IX_DATA = {
         "source": "SECTION-prs_393_tests",
         "target": "PR-393",
         "relationship": "DOCUMENTS_PR",
+        "confidence": "HIGH"
+      },
+      {
+        "source": "SECTION-prs_393_tests",
+        "target": "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+        "relationship": "DOCUMENTS_COMMIT",
         "confidence": "HIGH"
       },
       {
@@ -11829,10 +12087,12 @@ window.IX_DATA = {
     {
       "branch": "feat/ix-remap-hardening",
       "repo": "ix-infrastructure/Ix",
-      "sha": "1497596",
+      "sha": "d676a9484a961337a43ce2e6a63e12adfed902b0",
       "worktree": "Ix_remap",
       "ahead": 1,
-      "note": "ix-infrastructure/Ix:feat/ix-remap-hardening at 1497596."
+      "note": "ix-infrastructure/Ix:feat/ix-remap-hardening at d676a9484a961337a43ce2e6a63e12adfed902b0.",
+      "historical_sha": "1497596",
+      "live_head": "d676a9484a961337a43ce2e6a63e12adfed902b0"
     },
     {
       "branch": "fork/main",
@@ -11878,7 +12138,10 @@ window.IX_DATA = {
       "sha": "1497596",
       "repo": "ix-infrastructure/Ix",
       "branch": "feat/ix-remap-hardening (fork, pushed)",
-      "msg": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap — Phase 6 rebase onto ffe21f0; PR #393"
+      "msg": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap — Phase 6 rebase onto ffe21f0; PR #393",
+      "superseded_by": "d676a9484a961337a43ce2e6a63e12adfed902b0",
+      "superseded_at": "2026-08-11",
+      "live_head": "d676a9484a961337a43ce2e6a63e12adfed902b0"
     },
     {
       "sha": "b25bf2e",
@@ -11904,7 +12167,10 @@ window.IX_DATA = {
       "sha": "c021b52",
       "repo": "ix-infrastructure/Ix",
       "branch": "feat/ix-remap-hardening",
-      "msg": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap"
+      "msg": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap",
+      "superseded_by": "d676a9484a961337a43ce2e6a63e12adfed902b0",
+      "superseded_at": "2026-08-11",
+      "live_head": "d676a9484a961337a43ce2e6a63e12adfed902b0"
     },
     {
       "sha": "b038c46",
@@ -11936,13 +12202,83 @@ window.IX_DATA = {
       "sha": "dcc0962",
       "repo": "ix-infrastructure/Ix",
       "pr": "#365",
-      "msg": "Compass stamp"
+      "msg": "Compass stamp",
+      "superseded_by": "d676a9484a961337a43ce2e6a63e12adfed902b0",
+      "superseded_at": "2026-08-11",
+      "live_head": "d676a9484a961337a43ce2e6a63e12adfed902b0"
     },
     {
       "sha": "2157158",
       "repo": "ix-infrastructure/Ix",
       "pr": "#368",
-      "msg": "PR #368 merge"
+      "msg": "PR #368 merge",
+      "superseded_by": "d676a9484a961337a43ce2e6a63e12adfed902b0",
+      "superseded_at": "2026-08-11",
+      "live_head": "d676a9484a961337a43ce2e6a63e12adfed902b0"
+    },
+    {
+      "repo": "Alot1z/Ix",
+      "branch": "feat/ix-remap-hardening",
+      "sha": "d676a9484a961337a43ce2e6a63e12adfed902b0",
+      "pr": 393,
+      "live": true,
+      "msg": "d676a948 — current head of feat/ix-remap-hardening (Alot1z/Ix)."
+    },
+    {
+      "repo": "Alot1z/Ix",
+      "branch": "test/ix-home-with-space",
+      "sha": "13e96bacc648ee979f35e2874cd8aa2004f920e1",
+      "pr": 395,
+      "live": true,
+      "msg": "13e96bac — current head of test/ix-home-with-space (Alot1z/Ix)."
+    },
+    {
+      "repo": "Alot1z/Ix",
+      "branch": "feat/ix-mcp",
+      "sha": "36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+      "implementation_id": "ix-mcp",
+      "live": true,
+      "msg": "36c7c7ec — implementation commit for feat/ix-mcp."
+    },
+    {
+      "repo": "Alot1z/Ix",
+      "branch": "feat/ix-mcp",
+      "sha": "a5350b6d6dc67958fa4abef63559affcd74aff56",
+      "implementation_id": "ix-mcp",
+      "live": true,
+      "msg": "a5350b6d — implementation commit for feat/ix-mcp."
+    },
+    {
+      "repo": "Alot1z/Ix",
+      "branch": "feat/ix-mcp",
+      "sha": "66111917a2a58437c91372616f98928876121395",
+      "implementation_id": "ix-mcp",
+      "live": true,
+      "msg": "66111917 — implementation commit for feat/ix-mcp."
+    },
+    {
+      "repo": "Alot1z/Ix",
+      "branch": "feat/ix-mcp",
+      "sha": "1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+      "implementation_id": "ix-mcp",
+      "live": true,
+      "msg": "1a5b0b93 — implementation commit for feat/ix-mcp."
+    },
+    {
+      "repo": "Alot1z/Ix",
+      "branch": "feat/ix-mcp",
+      "sha": "606f18f7ca1a69f4b8ede7c27c1079b024297856",
+      "implementation_id": "ix-mcp",
+      "live": true,
+      "msg": "606f18f7 — implementation commit for feat/ix-mcp."
+    },
+    {
+      "repo": "ix-infrastructure/Ix",
+      "branch": "feat/ix-remap-hardening",
+      "sha": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+      "implementation_id": "remap-pr393",
+      "live": true,
+      "msg": "a6a47267 — implementation commit for feat/ix-remap-hardening."
     },
     {
       "repo": "Alot1z/Ix",
@@ -12065,8 +12401,8 @@ window.IX_DATA = {
       "number": 393,
       "url": "https://github.com/ix-infrastructure/Ix/pull/393",
       "state": "OPEN",
-      "sha": "1497596",
-      "note": "REMAP CONTRIBUTION (ours) — head 1497596, base main, 4 files +251/-10; Phase 6 user-authorized",
+      "sha": "d676a94",
+      "note": "REMAP CONTRIBUTION (ours) — head d676a94, base main, 4 files +251/-10; Phase 6 user-authorized (head refreshed 2026-08-11 after AGENTS.md cherry-pick)",
       "historical_manifest_state": "OPEN",
       "live_state": "OPEN"
     },
@@ -12466,7 +12802,7 @@ window.IX_DATA = {
     {
       "id": "IMPL-REMAP-PR393",
       "branch": "feat/ix-remap-hardening",
-      "sha": "1497596",
+      "sha": "d676a9484a961337a43ce2e6a63e12adfed902b0",
       "status": "PR_OPEN",
       "stateDetail": "PR_OPEN",
       "title": "Remap hardening implementation",

@@ -4200,7 +4200,7 @@
     "type": "BRANCH",
     "name": "ix-infrastructure/Ix:feat/ix-remap-hardening",
     "status": "CURRENT",
-    "summary": "ix-infrastructure/Ix:feat/ix-remap-hardening at 1497596.",
+    "summary": "ix-infrastructure/Ix:feat/ix-remap-hardening at d676a9484a961337a43ce2e6a63e12adfed902b0.",
     "evidence": [],
     "neighbors": [
       "REPO-ix-infrastructure-Ix",
@@ -4275,11 +4275,10 @@
   "COMMIT-1497596": {
     "type": "COMMIT",
     "name": "1497596",
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "summary": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap — Phase 6 rebase onto ffe21f0; PR #393",
     "evidence": [],
     "neighbors": [
-      "PR-393",
       "SRC-2a5998452c1a",
       "BRANCH-bb1d25e4c9d1"
     ]
@@ -4319,7 +4318,7 @@
   "COMMIT-c021b52": {
     "type": "COMMIT",
     "name": "c021b52",
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "summary": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap",
     "evidence": [],
     "neighbors": [
@@ -4374,7 +4373,7 @@
   "COMMIT-dcc0962": {
     "type": "COMMIT",
     "name": "dcc0962",
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "summary": "Compass stamp",
     "evidence": [],
     "neighbors": [
@@ -4385,7 +4384,7 @@
   "COMMIT-2157158": {
     "type": "COMMIT",
     "name": "2157158",
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "summary": "PR #368 merge",
     "evidence": [],
     "neighbors": [
@@ -4554,11 +4553,11 @@
     "summary": "Ix pull request #393: OPEN.",
     "evidence": [],
     "neighbors": [
+      "COMMIT-d676a9484a961337a43ce2e6a63e12adfed902b0",
       "REPO-ix-infrastructure-Ix",
       "F-010",
       "F-011",
       "F-012",
-      "COMMIT-1497596",
       "SRC-2a5998452c1a",
       "SRC-90ab8426282e",
       "BRANCH-bb1d25e4c9d1",
@@ -4764,7 +4763,116 @@
     "evidence": [],
     "neighbors": [
       "ISSUE-349",
+      "COMMIT-13e96bacc648ee979f35e2874cd8aa2004f920e1",
       "REPO-ix-infrastructure-Ix"
+    ]
+  },
+  "COMMIT-d676a9484a961337a43ce2e6a63e12adfed902b0": {
+    "type": "COMMIT",
+    "name": "d676a9484a961337a43ce2e6a63e12adfed902b0",
+    "status": "CURRENT",
+    "summary": "d676a948 — current head of feat/ix-remap-hardening (Alot1z/Ix).",
+    "evidence": [],
+    "neighbors": [
+      "PR-393"
+    ]
+  },
+  "COMMIT-13e96bacc648ee979f35e2874cd8aa2004f920e1": {
+    "type": "COMMIT",
+    "name": "13e96bacc648ee979f35e2874cd8aa2004f920e1",
+    "status": "CURRENT",
+    "summary": "13e96bac — current head of test/ix-home-with-space (Alot1z/Ix).",
+    "evidence": [],
+    "neighbors": [
+      "PR-395"
+    ]
+  },
+  "COMMIT-36c7c7eccd8068d48df4f61394b42a3ffa62483c": {
+    "type": "COMMIT",
+    "name": "36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+    "status": "CURRENT",
+    "summary": "36c7c7ec — implementation commit for feat/ix-mcp.",
+    "evidence": [],
+    "neighbors": [
+      "SECTION-mcp",
+      "SECTION-mcp_implementation",
+      "SECTION-mcp_stdio",
+      "SECTION-mcp_tools",
+      "SECTION-mcp_security",
+      "SECTION-mcp_tests"
+    ]
+  },
+  "COMMIT-a5350b6d6dc67958fa4abef63559affcd74aff56": {
+    "type": "COMMIT",
+    "name": "a5350b6d6dc67958fa4abef63559affcd74aff56",
+    "status": "CURRENT",
+    "summary": "a5350b6d — implementation commit for feat/ix-mcp.",
+    "evidence": [],
+    "neighbors": [
+      "SECTION-mcp",
+      "SECTION-mcp_implementation",
+      "SECTION-mcp_stdio",
+      "SECTION-mcp_tools",
+      "SECTION-mcp_security",
+      "SECTION-mcp_tests"
+    ]
+  },
+  "COMMIT-66111917a2a58437c91372616f98928876121395": {
+    "type": "COMMIT",
+    "name": "66111917a2a58437c91372616f98928876121395",
+    "status": "CURRENT",
+    "summary": "66111917 — implementation commit for feat/ix-mcp.",
+    "evidence": [],
+    "neighbors": [
+      "SECTION-mcp",
+      "SECTION-mcp_implementation",
+      "SECTION-mcp_stdio",
+      "SECTION-mcp_tools",
+      "SECTION-mcp_security",
+      "SECTION-mcp_tests"
+    ]
+  },
+  "COMMIT-1a5b0b93c9e8871610370c0f36212be8f6cf6980": {
+    "type": "COMMIT",
+    "name": "1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+    "status": "CURRENT",
+    "summary": "1a5b0b93 — implementation commit for feat/ix-mcp.",
+    "evidence": [],
+    "neighbors": [
+      "SECTION-mcp",
+      "SECTION-mcp_implementation",
+      "SECTION-mcp_stdio",
+      "SECTION-mcp_tools",
+      "SECTION-mcp_security",
+      "SECTION-mcp_tests"
+    ]
+  },
+  "COMMIT-606f18f7ca1a69f4b8ede7c27c1079b024297856": {
+    "type": "COMMIT",
+    "name": "606f18f7ca1a69f4b8ede7c27c1079b024297856",
+    "status": "CURRENT",
+    "summary": "606f18f7 — implementation commit for feat/ix-mcp.",
+    "evidence": [],
+    "neighbors": [
+      "SECTION-mcp",
+      "SECTION-mcp_implementation",
+      "SECTION-mcp_stdio",
+      "SECTION-mcp_tools",
+      "SECTION-mcp_security",
+      "SECTION-mcp_tests"
+    ]
+  },
+  "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b": {
+    "type": "COMMIT",
+    "name": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+    "status": "CURRENT",
+    "summary": "a6a47267 — implementation commit for feat/ix-remap-hardening.",
+    "evidence": [],
+    "neighbors": [
+      "SECTION-prs_393",
+      "SECTION-prs_393_remap",
+      "SECTION-prs_393_security",
+      "SECTION-prs_393_tests"
     ]
   },
   "ISSUE-349": {
@@ -6766,7 +6874,12 @@
     "evidence": [],
     "neighbors": [
       "IMPL-MCP-FORK",
-      "ISSUE-219"
+      "ISSUE-219",
+      "COMMIT-36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+      "COMMIT-a5350b6d6dc67958fa4abef63559affcd74aff56",
+      "COMMIT-66111917a2a58437c91372616f98928876121395",
+      "COMMIT-1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+      "COMMIT-606f18f7ca1a69f4b8ede7c27c1079b024297856"
     ]
   },
   "SECTION-mcp_implementation": {
@@ -6777,7 +6890,12 @@
     "evidence": [],
     "neighbors": [
       "IMPL-MCP-FORK",
-      "ISSUE-219"
+      "ISSUE-219",
+      "COMMIT-36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+      "COMMIT-a5350b6d6dc67958fa4abef63559affcd74aff56",
+      "COMMIT-66111917a2a58437c91372616f98928876121395",
+      "COMMIT-1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+      "COMMIT-606f18f7ca1a69f4b8ede7c27c1079b024297856"
     ]
   },
   "SECTION-mcp_stdio": {
@@ -6788,7 +6906,12 @@
     "evidence": [],
     "neighbors": [
       "IMPL-MCP-FORK",
-      "ISSUE-219"
+      "ISSUE-219",
+      "COMMIT-36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+      "COMMIT-a5350b6d6dc67958fa4abef63559affcd74aff56",
+      "COMMIT-66111917a2a58437c91372616f98928876121395",
+      "COMMIT-1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+      "COMMIT-606f18f7ca1a69f4b8ede7c27c1079b024297856"
     ]
   },
   "SECTION-mcp_tools": {
@@ -6799,7 +6922,12 @@
     "evidence": [],
     "neighbors": [
       "IMPL-MCP-FORK",
-      "ISSUE-219"
+      "ISSUE-219",
+      "COMMIT-36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+      "COMMIT-a5350b6d6dc67958fa4abef63559affcd74aff56",
+      "COMMIT-66111917a2a58437c91372616f98928876121395",
+      "COMMIT-1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+      "COMMIT-606f18f7ca1a69f4b8ede7c27c1079b024297856"
     ]
   },
   "SECTION-mcp_security": {
@@ -6810,7 +6938,12 @@
     "evidence": [],
     "neighbors": [
       "IMPL-MCP-FORK",
-      "ISSUE-219"
+      "ISSUE-219",
+      "COMMIT-36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+      "COMMIT-a5350b6d6dc67958fa4abef63559affcd74aff56",
+      "COMMIT-66111917a2a58437c91372616f98928876121395",
+      "COMMIT-1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+      "COMMIT-606f18f7ca1a69f4b8ede7c27c1079b024297856"
     ]
   },
   "SECTION-mcp_tests": {
@@ -6821,7 +6954,12 @@
     "evidence": [],
     "neighbors": [
       "IMPL-MCP-FORK",
-      "ISSUE-219"
+      "ISSUE-219",
+      "COMMIT-36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+      "COMMIT-a5350b6d6dc67958fa4abef63559affcd74aff56",
+      "COMMIT-66111917a2a58437c91372616f98928876121395",
+      "COMMIT-1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+      "COMMIT-606f18f7ca1a69f4b8ede7c27c1079b024297856"
     ]
   },
   "SECTION-prs_393": {
@@ -6833,6 +6971,7 @@
     "neighbors": [
       "IMPL-REMAP-PR393",
       "PR-393",
+      "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
       "F-010",
       "F-011",
       "F-012"
@@ -6847,6 +6986,7 @@
     "neighbors": [
       "IMPL-REMAP-PR393",
       "PR-393",
+      "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
       "F-010",
       "F-011",
       "F-012"
@@ -6861,6 +7001,7 @@
     "neighbors": [
       "IMPL-REMAP-PR393",
       "PR-393",
+      "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
       "F-010",
       "F-011",
       "F-012"
@@ -6875,6 +7016,7 @@
     "neighbors": [
       "IMPL-REMAP-PR393",
       "PR-393",
+      "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
       "F-010",
       "F-011",
       "F-012"
