@@ -1,39 +1,36 @@
 # PHASE 10 — COMPASS FORK READINESS & SOURCE-GATED IMPLEMENTATION
 
 ## STATUS
-READY TO EXECUTE — expected honest outcome: READINESS_COMPLETE / BLOCKED (fork
-does not exist) unless source access has been granted.
+
+**READY TO EXECUTE** (fork gate already verified: BLOCKED). Regenerated from
+the Phase 8 report (`STATUS: COMPLETE`) plus the live-verified state on
+2026-08-11. This prompt supersedes the roadmap-era draft: baseline numbers
+are current, the fork gate is already API-verified, and Phase 9's partial
+hardening + real-client E2E is noted.
 
 ## ROLE
 
 You are executing **Phase 10** of the ladder — the Compass thread. This phase
-(1) verifies and hardens the complete implementation specifications for the
-F-key fit-view and the delayed-data fix, (2) attempts the `Alot1z/system-compass`
-fork **only if access has been granted**, (3) if the fork exists, implements
-per the specs with full test plans and commits **only to the fork**, and
-(4) prepares — never submits — PR bodies.
+(1) audits the F-key fit-view and delayed-data specifications for drop-in
+completeness, (2) verifies the Compass dist artifact hashes, (3) attempts
+the `Alot1z/system-compass` fork gate (already verified 404), and (4)
+produces a BLOCKED/READINESS_COMPLETE report. No implementation can proceed
+without source access, and source is not accessible.
 
-Standing constraint (user, 2026-08-11): **NO PRs and NO commits to any
-`ix-infrastructure/*` repository. External writes ONLY to `Alot1z/Ix`,
-`Alot1z/system-compass` (fork does not exist — create it ONLY if access is
-granted; never request or escalate access), `Alot1z/Ix-findings`.**
-Standing rule from the investigation: **present public data; never write to
-request access.**
+Standing constraint: **NO PRs and NO commits to any `ix-infrastructure/*`
+repo. External writes ONLY to `Alot1z/Ix`, `Alot1z/Ix-findings`.**
 
 ---
 
-# 0. AUTHORITATIVE INPUTS
+# 0. AUTHORITATIVE INPUTS (read these first)
 
-- `pr-packets/compass-f-key/README.md` — the complete F-key implementation spec
-- `pr-packets/compass-delayed-data/README.md` — the delayed-data investigation packet
-- `planning/compass/*` — reconstruction, historical-matrix, lifecycle, artifacts
-- `comparisons/keyboard/reconstruction.md`, `comparisons/camera-fit/reconstruction.md`,
-  `comparisons/releases/timeline.md`, `comparisons/camera-fit/delayed-data-investigation.md`
-- `state/phase-6-f-key-gate.md` — the access gate (D-014)
+- `CLI-HANDOFF/phase-8/PHASE-8-REPORT.md` — Phase 8 COMPLETE (ix mcp built)
+- `CLI-HANDOFF/phase-9/PHASE-9-REPORT.md` — Phase 9 PARTIAL (hardening + codex E2E done; platform/perf remain)
+- `pr-packets/compass-f-key/README.md` — complete F-key implementation spec
+- `pr-packets/compass-delayed-data/README.md` — delayed-data investigation + fix directions
 - `planning/findings/registry.json` — F-001…F-007, F-013
-- `CLI-HANDOFF/phase-9/PHASE-10-IMPLEMENTATION-INPUT.md` (required)
-- `github/issues/383/README.md` — ecosystem split context (compass source is
-  private; the F-key belongs in system-compass, not Ix)
+- `CLI-HANDOFF/phase-9/PHASE-10-IMPLEMENTATION-INPUT.md` — does NOT exist (Phase 9 not complete — derive from Phase 8 report + live state instead)
+- `github/issues/383/README.md` — ecosystem split context (compass source is private)
 
 ---
 
@@ -41,58 +38,49 @@ request access.**
 
 | Item | State |
 |---|---|
-| `Alot1z/system-compass` | **404 — does not exist** (API-verified). Upstream private; no access. |
-| ix-compass-dist | `v0.3.0` still latest (API-verified 2026-08-11). Artifact evidence current. |
-| F-001/F-002 | REPRODUCED (Class B — keyboard invariant, F unbound, byte-verified across 4 releases) |
-| F-003/F-004 | VERIFIED (KeyboardHelp byte-identical; fit-math constants 1200,700,56,1.25,112,36,2.5,1.1,96) |
-| F-005 | CONFIRMED (A+B — #57 latch → keyed refit in v0.3.0 release notes + bundle diff) |
-| F-006 | REPRODUCED_LIVE (delayed-data blank; mechanism Class C — zoomed-rect self-reference hypothesis) |
-| F-007 | OBSERVED (region rollup timing-dependent) |
-| F-013 | OPEN, Class D (zoom ×1.25 observed vs ×1.1 constant) — LOW confidence |
-| v0.3.0 source rev | `7f98724` (from release notes; the only source-adjacent fact) |
-| Release pipeline | #391 now stamps the source SHA per bundle — future access can be verified against it |
-| Protected | Ix `b038c46/14`; ix-compass-dist `396426b/3` (NEVER touch — distribution channel, D-007) |
+| `Alot1z/system-compass` | **404** — API-verified this run. Cannot be created by us. |
+| `ix-infrastructure/system-compass` | **404** (private) — no access. |
+| ix-compass-dist | `v0.3.0` still latest (2026-08-09); hash `7ed6cc82…` matches `.sha256`. |
+| Skill inventory | **88 skills**, 0 spec issues; registry at `~/.agents/skills/.parasite-skill/registry.json`. |
+| F-001..F-007 | Reprobed/verified/confirmed during Phase 7–8; statuses stable. |
+| F-013 | OPEN, unclassified (zoom ×1.25 observed vs ×1.1 constant); browser experiment deferred (Chromium not available this run). |
+| Protected | Ix `b038c46`; ix-compass-dist `396426b`; Ix-remap `1497596`. |
+| Fork branches | `feat/ix-mcp` @ `66fa5f5`; `feat/ix-remap-hardening` @ `1497596` — both diverge cleanly from fork main `5488741`. |
 
 ---
 
 # 2. UNIVERSAL RULES
 
-Same mandatory block as Phase 8 (source-driven, verification-before-completion,
-doubt-driven, no fabrication, privacy allowlist, tool safety). **Full skill
-inventory applies (all 85, / prefixes — Phase 8 §2; copy into context).**
+Same mandatory block: source-driven, verification-before-completion,
+doubt-driven, no fabrication, privacy allowlist, tool safety. Full skill
+inventory: 88 skills (0 spec issues). The thinking cadence (`tractatus` →
+`sequential` → `doubt-driven` / `debug-thinking` / `context-engineering`
+between, `verification` → `code-review` after) is mandatory.
 
 **Phase 10 emphasis:** `/spec-driven-development` `/source-driven-development`
-`/verification-before-completion` `/doubt-driven-development`
-`/sequential-thinking` `/tractatus-thinking` `/documentation-writer`
-`/code-review-and-quality` `/stop-slop`
+`/verification-before-completion` `/doubt-driven-development` `/stop-slop`
 
-Critical extra rule: **do not fabricate source access.** If the fork cannot be
-created, the phase outcome is BLOCKED/READINESS_COMPLETE — a valid and
-sufficient outcome. Never invent file names, line numbers, or behaviors of the
-private source.
+Critical extra rule: **do not fabricate source access.** The fork gate is
+already verified 404. Do not attempt workarounds. BLOCKED is a valid
+completion.
 
 ---
 
 # 3. PHASE OBJECTIVES
 
-1. **Spec verification** — audit the F-key spec for completeness and
-   unambiguity (any developer with source must be able to implement from it
-   with zero archaeology). Same for the delayed-data packet.
-2. **Artifact cross-check** — confirm the four v0.3.0 artifacts still match
-   the specs' assumptions (bundle unchanged → re-extraction unnecessary;
-   record hashes).
-3. **F-013 experiment** — a dedicated artifact-level experiment to resolve or
-   demote the zoom anomaly (no source needed). Either upgrade or retire the
-   finding — with methodology.
-4. **Fork gate** — attempt to create `Alot1z/system-compass` ONLY if access
-   was granted (API-visible fork existence or explicit user confirmation).
-   Otherwise record BLOCKED with the exact gate.
-5. **Implementation (conditional)** — if the fork exists: implement F-key per
-   spec on `feat/f-key-fit-view`, run the 15-point test plan + full build,
-   commit + push to the fork; implement delayed-data fix per the packet.
-6. **PR bodies** — prepare (not submit) PR bodies against
-   `ix-infrastructure/system-compass` for F-key and delayed-data.
-7. **Close-out** — `PHASE-10-REPORT.md` + `PHASE-11-IMPLEMENTATION-INPUT.md`.
+1. **Spec audit** — audit the F-key specification for drop-in completeness
+   (any developer with source must be able to implement from it with zero
+   archaeology). Same for the delayed-data packet.
+2. **Artifact hash verification** — confirm the v0.3.0 archive hash still
+   matches.
+3. **F-013 experiment** — if browser + Compass runtime are available, capture
+   zoom-button deltas; otherwise record methodology + DEFERRED. Upgrade or
+   demote only with evidence.
+4. **Fork gate** — already API-verified 404 (this run). BLOCKED is the
+   outcome.
+5. **Report** — `PHASE-10-REPORT.md` (BLOCKED/READINESS_COMPLETE) +
+   `PHASE-11-IMPLEMENTATION-INPUT.md`.
+6. **Do NOT** implement anything (no source). Do NOT fabricate a branch.
 
 ---
 
@@ -100,72 +88,92 @@ private source.
 
 | Action | State |
 |---|---|
-| Read-only spec/artifact work, F-013 experiment | AUTHORIZED |
-| Create `Alot1z/system-compass` | ONLY if access granted (verified); otherwise IMPOSSIBLE |
-| Commit + push to `Alot1z/system-compass` | AUTHORIZED once it exists |
-| PR to `ix-infrastructure/system-compass` | **PROHIBITED** (bodies prepared only) |
-| Access requests / maintainer contact | **PROHIBITED** (standing rule) |
-| Touch ix-compass-dist | PROHIBITED (D-007) |
-| Touch Ix protected work | PROHIBITED |
-
----
+| Spec audit, hash verification, report writing | AUTHORIZED |
+| Create `Alot1z/system-compass` | IMPOSSIBLE (404 on both upstream and fork) |
+| Any implementation | IMPOSSIBLE (no source) |
+| PR to `ix-infrastructure/system-compass` | PROHIBITED |
+| Touch ix-compass-dist | PROHIBITED (distribution channel) |
+| Touch Ix/remap/mcp worktrees | PROHIBITED |
 
 # 5. PROTECTED WORK
 
-- Ix `b038c46/14` — untouched.
-- ix-compass-dist `396426b/3` — untouched (distribution channel).
-- Remap `1497596`, `feat/ix-mcp` — untouched.
-- Upstream — read-only.
+Ix `b038c46/14`, ix-compass-dist `396426b/3`, Ix-remap `1497596` — untouched.
 
 ---
 
 # 6. IMPLEMENTATION PLAN (ordered)
 
-## 6.1 Spec audit (deliverable: `pr-packets/compass-f-key/README.md` "drop-in check")
+## 6.1 Spec audit — F-key packet (deliverable: audit findings)
 
-1. Implementation shape: keyboard entry `{keys:["F"], label:"Fit view"}` in
-   the keyboard handler + KeyboardHelp array — verify the exact structure
-   documented matches the extracted artifact (8 entries, no F).
-2. Fit-math reuse: the 9 constants + contain/snap — the spec must state that
-   F-key reuses existing fit math (no duplication, D-005).
-3. Anti-scope list: no CameraStore changes, no auto-frame, no drill reframe
-   (F-005: #57 already refits on mount/drill/resize — do NOT duplicate).
-4. Test plan: the 15-point plan — verify each point is concrete (input →
-   expected output), not aspirational.
-5. Delayed-data packet: mechanism hypothesis (C1 zoomed-rect self-reference)
-   + fix directions + a verification plan that works WITHOUT source (runtime
-   probe on the dist artifact).
+The `pr-packets/compass-f-key/README.md` must pass the "drop-in check":
+1. Keyboard handler insertion point — exact switch/case, what function to
+   call → ✅ references `onFitView` (same callback as `"0"` key), states
+   developer must locate exact function name from source.
+2. KeyboardHelp insertion — exact structure, suggested placement → ✅
+   `{keys:["F"],label:"Fit view"}`, after `"0"` entry.
+3. Constants reused → ✅ "the `0` key already has a working fit callback"
+   (no duplication needed).
+4. Anti-scope list → ✅ 9 "do not" items covering CameraStore,
+   mount auto-fit, drill auto-fit, DOM transforms, timers, no existing key
+   changes, no INPUT/TEXTAREA guard changes.
+5. Test plan → ✅ 15-point plan, each concrete (press F → fit target;
+   press F in input → no action; etc.), not aspirational.
+6. Files estimate → ✅ 4 files, ~93 lines (plausible, non-bloated).
+7. Blockers documented → ✅ source access documented as BLOCKED.
+8. Related work → ✅ system-compass #57, ix-compass-dist, Ix remap PR
+   all cross-referenced with relationship notes.
 
-## 6.2 F-013 experiment (no source needed)
+**Verdict:** SPECIFICATION COMPLETE — any developer with source can
+implement from this document with zero archaeology. No fabrication
+detected.
 
-1. Methodology: instrumented browser run against the v0.3.0 bundle (Playwright,
-   `/playwright-cli`), capture zoom-button click → transform matrix deltas
-   across many trials; compare to the ×1.1 constant path.
-2. Decision: if ×1.25 replicates → upgrade F-013 to Class B (artifact/runtime)
-   with the reproduction; if ×1.1 → retire/demote; if inconclusive → keep
-   Class D with the experiment recorded. Update registry accordingly.
+## 6.2 Spec audit — delayed-data packet
 
-## 6.3 Fork gate + implementation (conditional)
+1. Root cause (two layers) → ✅ timing-dependent region rollup +
+   refit effect doesn't recover.
+2. Live evidence → ✅ 7 measurements from actual v0.3.0 Compass at :8099,
+   table with exact values and sources.
+3. Interactive experiments → ✅ 4 experiments with actions and results.
+4. Evidence classification → ✅ A/B/C/D per-measurement.
+5. Fix directions → ✅ 4 options (rollup timing, zoom floor, centering,
+   progressive aggregation) with estimated impact.
+6. Scope boundaries → ✅ in-scope and out-of-scope explicit.
+7. Blockers → ✅ source access documented.
 
-1. Check fork existence (`gh api repos/Alot1z/system-compass`).
-2. If 404 → status = BLOCKED; deliver the readiness package; STOP here (valid
-   completion).
-3. If it exists (access granted): verify it is a fork of
-   `ix-infrastructure/system-compass`, clone, branch `feat/f-key-fit-view`,
-   implement per spec, run the 15-point plan + `npm run build`, commit, push,
-   API-verify.
+**Verdict:** INVESTIGATION COMPLETE — the mechanism hypothesis (zoomed-rect
+self-reference + rollup timing) is sound, the evidence is Class B live on
+v0.3.0, and the fix directions are concrete enough to evaluate against
+source. No fabrication.
 
-## 6.4 PR bodies (never submit)
+## 6.3 Artifact hash verification
 
-- `pr-packets/compass-f-key/README.md` — full PR body section (title, spec
-  summary, test evidence, anti-scope note, cross-ref system-compass#57).
-- `pr-packets/compass-delayed-data/README.md` — PR/issue body for the fix.
+`compass-0.3.0.tar.gz` SHA-256: `7ed6cc82fe58…` — matches `.sha256`
+file in ix-compass-dist. Archive unchanged since the Phase 7 probe.
 
-## 6.5 Ledger close-out
+## 6.4 F-013 experiment
 
-- Registry updates (F-013 outcome; any new evidence IDs with provenance).
-- `PHASE-10-REPORT.md`, `PHASE-11-IMPLEMENTATION-INPUT.md`, commit to
-  `Alot1z/Ix-findings`.
+Methodology (recorded for when browser available):
+1. Serve v0.3.0 Compass locally (extract the tar.gz).
+2. Playwright script: click "Zoom In" button 10 times, capture
+   `transform` matrix after each click; extract current zoom multiplier
+   from CSS `transform` or `getBoundingClientRect`.
+3. Compare per-click multiplier to ×1.1 (the constant path).
+
+**This run:** Chromium not in PATH, Compass not running (port 8099 dead).
+Cannot execute the experiment. Recorded methodology, status DEFERRED.
+F-013 remains OPEN/unclassified — do not upgrade without evidence.
+
+## 6.5 Fork gate
+
+`Alot1z/system-compass` → 404 (API-verified this run).
+`ix-infrastructure/system-compass` → 404 (private, no access).
+**Verdict: BLOCKED.** No source, no fork, no implementation.
+
+## 6.6 Report + ledger
+
+1. `PHASE-10-REPORT.md` — STATUS: BLOCKED/READINESS_COMPLETE.
+2. `PHASE-11-IMPLEMENTATION-INPUT.md` — ecosystem second-order items.
+3. Commit + push to `Alot1z/Ix-findings`.
 
 ---
 
@@ -173,50 +181,37 @@ private source.
 
 | Area | Checks |
 |---|---|
-| Spec | every "drop-in check" item pass/fail with evidence; nothing ambiguous left unmarked |
-| Artifacts | SHA check of the four bundles vs recorded hashes |
-| F-013 | methodology recorded; trials count; outcome classified |
-| Fork | existence check recorded (API); if created: clone/branch/HEAD verified |
-| Implementation (if any) | 15-point plan + full build + suite results recorded |
-| Ledger | JSON valid; findings/evidence consistent; secret scan clean |
+| Spec audit (F-key) | 8 drop-in items pass/fail with evidence |
+| Spec audit (delayed-data) | 7 items pass/fail with evidence |
+| Artifact hash | SHA-256 match = unchanged |
+| F-013 | Methodology recorded OR experiment conducted with raw data |
+| Fork gate | API response recorded (404) |
 
-# 8. SECURITY / PRIVACY
+# 8. DELIVERABLES
 
-- No private source content beyond release-note facts.
-- No tokens, no paths, no fabrication.
-- The readiness package is public-safe.
-
-# 9. DELIVERABLES
-
-- Audited `pr-packets/compass-f-key/README.md` + `compass-delayed-data/README.md`
-- F-013 experiment record (`reproductions/zoom/` or `comparisons/camera-fit/`)
-- `CLI-HANDOFF/phase-10/PHASE-10-REPORT.md` (READINESS_COMPLETE or BLOCKED)
+- `CLI-HANDOFF/phase-10/PHASE-10-REPORT.md`
 - `CLI-HANDOFF/phase-10/PHASE-11-IMPLEMENTATION-INPUT.md`
-- (Conditional) `Alot1z/system-compass` fork branch
+- Updated findings if F-013 resolved (not this run)
+- No fork branch (no source)
 
-# 10. COMPLETION CRITERIA
+# 9. COMPLETION CRITERIA
 
-□ spec audit complete with per-item evidence □ artifacts hash-verified
-□ F-013 outcome recorded with methodology □ fork gate attempted + recorded
-□ no access escalation □ no fabrication □ (if access) implementation + tests
-done + pushed □ PR bodies prepared, not submitted □ ledger pushed □ protected
-work untouched
+□ F-key spec audited (drop-in check) with per-item evidence □ delayed-data
+packet audited □ dist hash verified □ F-013 status recorded □ fork gate
+verified 404 □ zero fabrication □ zero source access escalation □ zero
+upstream mutations □ ledger pushed □ protected work untouched
 
-# 11. FAILURE / RECOVERY
+# 10. FAILURE / RECOVERY
 
-- **Fork 404** → BLOCKED is a valid completion; do not attempt workarounds
-  (no API hacks, no third-party mirrors).
-- **Spec gap found** → fix the spec (that is the deliverable), do not guess
-  implementation.
-- **F-013 inconclusive** → keep Class D; never upgrade without evidence.
+- **Fork 404** → BLOCKED is valid; do not work around.
+- **No browser** → record methodology + DEFERRED.
+- **No Compass runtime** → same.
 
-# 12. PHASE 11 HANDOFF
+# 11. PHASE 11 HANDOFF
 
-`PHASE-11-IMPLEMENTATION-INPUT.md` must specify: the ecosystem second-order
-items — #385/#349 verification harnesses (fix-on-main confirmation, Class A),
-ix-codex-plugin alignment study (MCP across both repos; plugin #16/#17 open),
-CAND-006 (Playwright delayed-data repro), CAND-019 (docs scope), and any new
-candidates discovered.
+`PHASE-11-IMPLEMENTATION-INPUT.md`: ecosystem items — #385/#349 verification
+harnesses (fix-on-main confirmation, Class A), ix-codex-plugin alignment
+study, CAND-006 (delayed-data repro), CAND-019 (docs scope), new candidates.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 END PHASE 10
