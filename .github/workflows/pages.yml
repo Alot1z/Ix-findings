@@ -11,6 +11,7 @@ on:
     branches: [master]
     paths:
       - 'planning/**'
+      - 'knowledge/**'
       - 'CLI-HANDOFF/manifest.json'
       - 'pr-packets/**'
   workflow_dispatch: {}
