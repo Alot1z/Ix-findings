@@ -5,18 +5,19 @@
   "contributions": [
     {   "id": "CONTRIB-remap",
    "target": "ix-infrastructure/Ix",
-   "branch": "feat/ix-remap-hardening @ c021b52 (fork) / a05e740 (local rebased, Phase 5)",
+   "branch": "feat/ix-remap-hardening @ 1497596 (fork, pushed Phase 6) / base ffe21f0",
    "findings": [
     "F-010",
     "F-011",
     "F-012"
    ],
-   "state": "READY (rebase EXECUTED onto 5488741; fork branch not force-updated)",
+   "state": "SUBMITTED — PR #393 OPEN (feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap)",
    "phase_5_update": "2026-08-10: local rebase c021b52 -> a05e740 onto origin/main 5488741 executed and verified (merge-tree exit 0, tree 101f63a, 706/708 tests pass, 0 dirty). Fork branch left at c021b52 (force-push not authorized). Fork main fast-forwarded c4f8fea -> 5488741 via gh repo sync. PR not opened.",
-   "blocker": "user authorization to force-update fork branch (a05e740) + open PR; PR creation prohibited in Phase 5",
-   "evidence": "merge-tree --write-tree 5488741 HEAD = clean 101f63a; suite 706 passed/2 skipped/0 failed on new base; no conflicts with #362/#380 view.ts changes",
-   "next_safe_action": "push a05e740 to fork with authorization, then open PR with packet as body",
-   "tests": "view-server.test.ts 10 scenarios; full suite 706/708 on a05e740 (rebase base 5488741)"
+   "phase_6_update": "2026-08-11: user authorized Gates A (push) + B (PR). Base-refresh rebase a05e740 -> 1497596 onto ffe21f0 (3 new upstream commits #375/#378/#389; view.ts security fix disjoint from remap hunks; patch-id identical 310dd4ab). Merge-tree vs ffe21f0 exit 0 tree de647175. Suite 730 passed/2 skipped (732) incl. 10 guard tests. Fork branch force-with-lease updated c021b52 -> 1497596 (API-verified). PR #393 OPENED (head 1497596, base main, 4 files +251/-10). NOT merged.",
+   "blocker": "none for submission (submitted); merge decision upstream",
+   "evidence": "merge-tree --write-tree ffe21f0 HEAD = clean de647175; suite 730/732 on 1497596; patch-id 310dd4ab; PR #393 API-verified open, exactly one PR for head",
+   "next_safe_action": "await upstream review/merge of PR #393; no further local action required",
+   "tests": "view-server.test.ts 10 scenarios; full suite 730/732 on 1497596 (rebase base ffe21f0)"
   },
     {
       "id": "CONTRIB-376",

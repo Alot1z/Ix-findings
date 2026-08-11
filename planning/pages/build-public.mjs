@@ -35,8 +35,18 @@ const worktrees = manifest.worktrees || {};
 const testResults = manifest.test_results || {};
 
 // Contribution states come from the canonical Phase 3 record.
+// The readiness record uses `state` / `next_safe_action`; the public allowlist
+// names are `status`/`stateDetail`/`nextAction`. Normalize so the published
+// explorer shows contribution states.
 let contributions = [];
-try { contributions = readJ(join(handoff, "phase-3/CONTRIBUTION-READINESS.json")).contributions || []; }
+try {
+  contributions = (readJ(join(handoff, "phase-3/CONTRIBUTION-READINESS.json")).contributions || []).map(r => ({
+    ...r,
+    stateDetail: r.stateDetail !== undefined ? r.stateDetail : r.state,
+    status: r.status !== undefined ? r.status : r.state,
+    nextAction: r.nextAction !== undefined ? r.nextAction : r.next_safe_action,
+  }));
+}
 catch { /* fall back to empty */ }
 
 // ── Allowlist field picker ──

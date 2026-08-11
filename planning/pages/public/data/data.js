@@ -3177,9 +3177,12 @@ window.IX_DATA = {
   "contributions": [
     {
       "id": "CONTRIB-remap",
-      "branch": "feat/ix-remap-hardening @ c021b52 (fork) / a05e740 (local rebased, Phase 5)",
-      "tests": "view-server.test.ts 10 scenarios; full suite 706/708 on a05e740 (rebase base 5488741)",
-      "blocker": "user authorization to force-update fork branch (a05e740) + open PR; PR creation prohibited in Phase 5",
+      "branch": "feat/ix-remap-hardening @ 1497596 (fork, pushed Phase 6) / base ffe21f0",
+      "status": "SUBMITTED — PR #393 OPEN (feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap)",
+      "stateDetail": "SUBMITTED — PR #393 OPEN (feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap)",
+      "tests": "view-server.test.ts 10 scenarios; full suite 730/732 on 1497596 (rebase base ffe21f0)",
+      "blocker": "none for submission (submitted); merge decision upstream",
+      "nextAction": "await upstream review/merge of PR #393; no further local action required",
       "findings": [
         "F-010",
         "F-011",
@@ -3188,23 +3191,32 @@ window.IX_DATA = {
     },
     {
       "id": "CONTRIB-376",
+      "status": "NEAR_READY",
+      "stateDetail": "NEAR_READY",
       "tests": "upgrade-version-compare.test.ts",
       "blocker": "fresh reproduction against current main 2e246e8; maintainer approach direction",
+      "nextAction": "WORK-010 reproduction; then update packet",
       "findings": [
         "F-008"
       ]
     },
     {
       "id": "CONTRIB-371",
+      "status": "NEEDS_EVIDENCE -> READY_FOR_PACKET",
+      "stateDetail": "NEEDS_EVIDENCE -> READY_FOR_PACKET",
       "tests": "none yet; packet lists proposed tests",
       "blocker": "register-vs-delete decision from maintainer (non-blocking for packet prep)",
+      "nextAction": "WORK-005 prepare PACK-371",
       "findings": [
         "F-009"
       ]
     },
     {
       "id": "CONTRIB-fkey",
+      "status": "BLOCKED",
+      "stateDetail": "BLOCKED",
       "blocker": "system-compass private (HTTP 404); no fork; D-014 access decision",
+      "nextAction": "D-014 user decision only",
       "findings": [
         "F-001",
         "F-002",
@@ -3214,7 +3226,10 @@ window.IX_DATA = {
     },
     {
       "id": "CONTRIB-delayed",
+      "status": "BLOCKED",
+      "stateDetail": "BLOCKED",
       "blocker": "system-compass private; separate concern (D-006)",
+      "nextAction": "optional public-dist reproduction (no access needed)",
       "findings": [
         "F-006",
         "F-007"
@@ -3222,7 +3237,10 @@ window.IX_DATA = {
     },
     {
       "id": "CONTRIB-agent-skill",
+      "status": "IN_DEVELOPMENT (PROTECTED)",
+      "stateDetail": "IN_DEVELOPMENT (PROTECTED)",
       "blocker": "14 dirty files @ b038c46; PR #368 already merged original skill+docs",
+      "nextAction": "continue development only; no PR action",
       "findings": []
     }
   ],
