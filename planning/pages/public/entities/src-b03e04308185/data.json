@@ -1,0 +1,31 @@
+{
+  "id": "SRC-b03e04308185",
+  "type": "file",
+  "title": "pr-packets/ix-mcp/README.md",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/src-b03e04308185",
+  "summary": {
+    "id": "SRC-b03e04308185",
+    "type": "file",
+    "title": "pr-packets/ix-mcp/README.md",
+    "status": "CURRENT"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "PART_OF",
+      "other": "REPO-Ix-findings",
+      "other_type": "repository",
+      "other_title": "Ix-findings",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-findings"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "PACKET-ix-mcp",
+      "other_type": "pr_packet",
+      "other_title": "ix-mcp",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/packet-ix-mcp"
+    }
+  ]
+}

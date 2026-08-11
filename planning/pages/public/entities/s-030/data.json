@@ -1,0 +1,50 @@
+{
+  "id": "S-030",
+  "type": "suggestion",
+  "title": "Bind the remap server to 0.0.0.0",
+  "status": "DECLINED",
+  "url": "https://alot1z.github.io/Ix-findings/entities/s-030",
+  "summary": {
+    "id": "S-030",
+    "type": "suggestion",
+    "title": "Bind the remap server to 0.0.0.0",
+    "status": "DECLINED",
+    "phase": "phase-02",
+    "repository": "Ix",
+    "disposition": "REJECTED"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "RESPONDS_TO",
+      "other": "F-010",
+      "other_type": "finding",
+      "other_title": "Loopback-hardened /__ix/remap endpoint (implemented)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-010"
+    },
+    {
+      "direction": "out",
+      "relationship": "APPLIES_TO",
+      "other": "F-010",
+      "other_type": "finding",
+      "other_title": "Loopback-hardened /__ix/remap endpoint (implemented)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-010"
+    },
+    {
+      "direction": "out",
+      "relationship": "SUPPORTED_BY",
+      "other": "E-014",
+      "other_type": "evidence",
+      "other_title": "remap diff c021b52",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-014"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-fd02a1972a73",
+      "other_type": "file",
+      "other_title": "planning/suggestions/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-fd02a1972a73"
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "id": "F-011",
+  "type": "finding",
+  "title": "WSL bootstrap fix",
+  "status": "IN_PR",
+  "url": "https://alot1z.github.io/Ix-findings/entities/f-011",
+  "summary": {
+    "id": "F-011",
+    "type": "finding",
+    "title": "WSL bootstrap fix",
+    "status": "IN_PR",
+    "repository": "ix-infrastructure/Ix"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "SUPPORTED_BY",
+      "other": "E-014",
+      "other_type": "evidence",
+      "other_title": "remap diff c021b52",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-014"
+    },
+    {
+      "direction": "out",
+      "relationship": "RELATED_TO_PR",
+      "other": "PR-393",
+      "other_type": "pr",
+      "other_title": "Ix PR #393",
+      "other_url": "https://alot1z.github.io/Ix-findings/prs/393/tests"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTS",
+      "other": "E-014",
+      "other_type": "evidence",
+      "other_title": "remap diff c021b52",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-014"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTS",
+      "other": "E-024",
+      "other_type": "evidence",
+      "other_title": "bootstrap.sh is_windows()/node_ok",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-024"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-125a277e8e67",
+      "other_type": "file",
+      "other_title": "planning/findings/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-125a277e8e67"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-702f832ef02c",
+      "other_type": "file",
+      "other_title": "pr-packets/ix-remap-hardening/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-702f832ef02c"
+    },
+    {
+      "direction": "in",
+      "relationship": "DOCUMENTS_FINDING",
+      "other": "SECTION-prs_393",
+      "other_type": "artifact",
+      "other_title": "PR #393 — remap hardening",
+      "other_url": "https://alot1z.github.io/Ix-findings/prs/393"
+    },
+    {
+      "direction": "in",
+      "relationship": "DOCUMENTS_FINDING",
+      "other": "SECTION-prs_393_remap",
+      "other_type": "artifact",
+      "other_title": "PR #393 — remap endpoint",
+      "other_url": "https://alot1z.github.io/Ix-findings/prs/393/remap"
+    },
+    {
+      "direction": "in",
+      "relationship": "DOCUMENTS_FINDING",
+      "other": "SECTION-prs_393_security",
+      "other_type": "artifact",
+      "other_title": "PR #393 — security",
+      "other_url": "https://alot1z.github.io/Ix-findings/prs/393/security"
+    },
+    {
+      "direction": "in",
+      "relationship": "DOCUMENTS_FINDING",
+      "other": "SECTION-prs_393_tests",
+      "other_type": "artifact",
+      "other_title": "PR #393 — tests",
+      "other_url": "https://alot1z.github.io/Ix-findings/prs/393/tests"
+    }
+  ]
+}

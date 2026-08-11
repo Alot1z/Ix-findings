@@ -1,0 +1,287 @@
+{
+  "id": "SRC-fd02a1972a73",
+  "type": "file",
+  "title": "planning/suggestions/registry.json",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/src-fd02a1972a73",
+  "summary": {
+    "id": "SRC-fd02a1972a73",
+    "type": "file",
+    "title": "planning/suggestions/registry.json",
+    "status": "CURRENT"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "PART_OF",
+      "other": "REPO-Ix-findings",
+      "other_type": "repository",
+      "other_title": "Ix-findings",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-findings"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "S-001",
+      "other_type": "suggestion",
+      "other_title": "Use a dedicated Git worktree for remap work",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-001"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "S-002",
+      "other_type": "suggestion",
+      "other_title": "Base remap branch on origin/main, not stale local/fork main",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-002"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "S-003",
+      "other_type": "suggestion",
+      "other_title": "Export serverScript() from view.ts for testing",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-003"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "S-004",
+      "other_type": "suggestion",
+      "other_title": "IX_VIEW_MAP_MAIN env seam for stub CLI in tests",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-004"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "S-005",
+      "other_type": "suggestion",
+      "other_title": "Four-tier evidence classification A/B/C/D",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-005"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "S-006",
+      "other_type": "suggestion",
+      "other_title": "Keep Compass changes separate from Ix changes",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-006"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "S-007",
+      "other_type": "suggestion",
+      "other_title": "F-key = keyboard exposure only; no CameraStore, no duplicate fit math",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-007"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "S-008",
+      "other_type": "suggestion",
+      "other_title": "Delayed-data is a separate concern from F-key",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-008"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "S-009",
+      "other_type": "suggestion",
+      "other_title": "Ix-findings as a standalone evidence repo",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-009"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "S-010",
+      "other_type": "suggestion",
+      "other_title": "PR packet for #376",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-010"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "S-011",
+      "other_type": "suggestion",
+      "other_title": "Keep improved compass-patch as local stopgap with documented expiry",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-011"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "S-012",
+      "other_type": "suggestion",
+      "other_title": "Parse Origin with new URL(), not regex (template-literal pipeline)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-012"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "S-013",
+      "other_type": "suggestion",
+      "other_title": "Fix #376 (stamp dist version / identity compare)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-013"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "S-014",
+      "other_type": "suggestion",
+      "other_title": "Fix #371 (register or delete patches)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-014"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "S-015",
+      "other_type": "suggestion",
+      "other_title": "Commit Ix-findings",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-015"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "S-016",
+      "other_type": "suggestion",
+      "other_title": "Sync fork main after remap push",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-016"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "S-017",
+      "other_type": "suggestion",
+      "other_title": "Re-verify zoom multiplier (x1.1 vs x1.25)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-017"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "S-018",
+      "other_type": "suggestion",
+      "other_title": "Reproduce delayed-data via Playwright automation",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-018"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "S-019",
+      "other_type": "suggestion",
+      "other_title": "Investigate system-compass #58/#59",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-019"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "S-020",
+      "other_type": "suggestion",
+      "other_title": "No-map hint chip with feature-detect on /__ix/remap",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-020"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "S-021",
+      "other_type": "suggestion",
+      "other_title": "Create a CameraStore abstraction for Compass",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-021"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "S-022",
+      "other_type": "suggestion",
+      "other_title": "DOM zoom patch (style.zoom, timers) for Compass",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-022"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "S-023",
+      "other_type": "suggestion",
+      "other_title": "Combine F-key + delayed-data in one PR",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-023"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "S-024",
+      "other_type": "suggestion",
+      "other_title": "Mix Compass UI changes into the Ix PR",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-024"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "S-025",
+      "other_type": "suggestion",
+      "other_title": "Stash the Ix overhaul to free the main worktree",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-025"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "S-026",
+      "other_type": "suggestion",
+      "other_title": "Base/compare remap against fork/main",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-026"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "S-027",
+      "other_type": "suggestion",
+      "other_title": "Manually modify ix-compass-dist artifacts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-027"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "S-028",
+      "other_type": "suggestion",
+      "other_title": "Push fork/main without first syncing",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-028"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "S-029",
+      "other_type": "suggestion",
+      "other_title": "git reset --hard on the primary worktree",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-029"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "S-030",
+      "other_type": "suggestion",
+      "other_title": "Bind the remap server to 0.0.0.0",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-030"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "S-031",
+      "other_type": "suggestion",
+      "other_title": "Pass the claim to the doubt-driven reviewer",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-031"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "S-032",
+      "other_type": "suggestion",
+      "other_title": "Add mount auto-frame to the F-key PR",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-032"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "S-033",
+      "other_type": "suggestion",
+      "other_title": "Add drill-in/out reframe to the F-key PR",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-033"
+    }
+  ]
+}

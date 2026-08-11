@@ -1,0 +1,82 @@
+{
+  "id": "phase-07",
+  "type": "phase",
+  "title": "Phase 7 — Delayed-Data Deep Investigation",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/phase-07",
+  "summary": {
+    "id": "phase-07",
+    "type": "phase",
+    "title": "Phase 7 — Delayed-Data Deep Investigation",
+    "category": "REPRODUCTION",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/system-compass",
+    "number": 7
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "ENABLES",
+      "other": "phase-06",
+      "other_type": "phase",
+      "other_title": "Phase 6 — F-Key Source-Access Gate",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-06"
+    },
+    {
+      "direction": "out",
+      "relationship": "DEPENDS_ON",
+      "other": "phase-05",
+      "other_type": "phase",
+      "other_title": "Phase 5 — Compass Historical Reconstruction",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-05"
+    },
+    {
+      "direction": "out",
+      "relationship": "ENABLES",
+      "other": "phase-08",
+      "other_type": "phase",
+      "other_title": "Phase 8 — Repository Architecture Audit",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-08"
+    },
+    {
+      "direction": "out",
+      "relationship": "GENERATED_FROM",
+      "other": "SRC-e70b6d7f9d45",
+      "other_type": "file",
+      "other_title": "comparisons/camera-fit/delayed-data-investigation.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-e70b6d7f9d45"
+    },
+    {
+      "direction": "out",
+      "relationship": "GENERATED_FROM",
+      "other": "SRC-64086523b533",
+      "other_type": "file",
+      "other_title": "pr-packets/compass-delayed-data/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-64086523b533"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-838d6e0c0428",
+      "other_type": "file",
+      "other_title": "planning/maps/phases.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-838d6e0c0428"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-e70b6d7f9d45",
+      "other_type": "file",
+      "other_title": "comparisons/camera-fit/delayed-data-investigation.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-e70b6d7f9d45"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-64086523b533",
+      "other_type": "file",
+      "other_title": "pr-packets/compass-delayed-data/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-64086523b533"
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "id": "F-007",
+  "type": "finding",
+  "title": "Region-rollup aggregate formation is timing-dependent",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/f-007",
+  "summary": {
+    "id": "F-007",
+    "type": "finding",
+    "title": "Region-rollup aggregate formation is timing-dependent",
+    "status": "CURRENT",
+    "repository": "system-compass"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "SUPPORTED_BY",
+      "other": "E-012",
+      "other_type": "evidence",
+      "other_title": "rollup timing A/B",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-012"
+    },
+    {
+      "direction": "out",
+      "relationship": "RESPONDS_TO",
+      "other": "S-008",
+      "other_type": "suggestion",
+      "other_title": "Delayed-data is a separate concern from F-key",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-008"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTS",
+      "other": "E-008",
+      "other_type": "evidence",
+      "other_title": "v0.3.0 release notes (KageBinary)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-008"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTS",
+      "other": "E-012",
+      "other_type": "evidence",
+      "other_title": "rollup timing A/B",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-012"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-125a277e8e67",
+      "other_type": "file",
+      "other_title": "planning/findings/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-125a277e8e67"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-304debf92137",
+      "other_type": "file",
+      "other_title": "comparisons/camera-fit/reconstruction.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-304debf92137"
+    }
+  ]
+}

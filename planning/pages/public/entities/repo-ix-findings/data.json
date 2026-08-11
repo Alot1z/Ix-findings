@@ -1,0 +1,2791 @@
+{
+  "id": "REPO-Ix-findings",
+  "type": "repository",
+  "title": "Ix-findings",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-findings",
+  "summary": {
+    "id": "REPO-Ix-findings",
+    "type": "repository",
+    "title": "Ix-findings",
+    "status": "CURRENT"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "BRANCH-8a2cfa1a0dd7",
+      "other_type": "branch",
+      "other_title": "Ix-findings:master",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-8a2cfa1a0dd7"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-9e249cefe603",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/BRANCH-MATRIX.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-9e249cefe603"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-3d711e05052e",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/CLI-READING-PLAN.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-3d711e05052e"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-106910498ec8",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/DECISIONS.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-106910498ec8"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-789d335135cd",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/EVIDENCE.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-789d335135cd"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-998b1d42216e",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/FILE-MANIFEST.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-998b1d42216e"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-9e72330093b6",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/FINDINGS.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-9e72330093b6"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-f428949b753d",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/FREEBUFF-CLI-PROMPT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-f428949b753d"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-1dc1bc32101a",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/GIT-STATE.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-1dc1bc32101a"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-eff36532a9f0",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/GRAPH-AUDIT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-eff36532a9f0"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-a74da6b4a7ee",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/INTEGRITY-REPORT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-a74da6b4a7ee"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-2a5998452c1a",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/manifest.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-2a5998452c1a"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-f0f98ea3241a",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/PATHS.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-f0f98ea3241a"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-b1972f8f4003",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-0/PHASE-0-REPORT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-b1972f8f4003"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-6567e40a6c76",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-0/STATE-BASELINE.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-6567e40a6c76"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-27c8552f5ab7",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-1/ARCHITECTURE-GRAPH.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-27c8552f5ab7"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-585be56fb1fc",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-1/CONTRADICTIONS.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-585be56fb1fc"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-77fa7bf1cee2",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-1/FREEBUFF-CLI-SKILLS.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-77fa7bf1cee2"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-c9b448ca9805",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-1/IMPLEMENTATION-CANDIDATES.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-c9b448ca9805"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-e1af5b6823f7",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-1/PHASE-1-REPORT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-e1af5b6823f7"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-aec9fcad7db5",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-1/REPOSITORY-ARCHAEOLOGY.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-aec9fcad7db5"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-7202848b73be",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-1/SKILL-INVENTORY.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-7202848b73be"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-1638f35177aa",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-1/TOOL-PERMISSIONS.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-1638f35177aa"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-21649bab82d8",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-1/UNKNOWN-REGISTER.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-21649bab82d8"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-3947459712fa",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-10/PHASE-10-PROMPT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-3947459712fa"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-3ca253ef6eec",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-10/PHASE-10-REPORT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-3ca253ef6eec"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-6fa779c2df61",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-10/PHASE-11-IMPLEMENTATION-INPUT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-6fa779c2df61"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-50e68560d39b",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-11/PHASE-11-PROMPT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-50e68560d39b"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-08d2809c049b",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-11/PHASE-11-REPORT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-08d2809c049b"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-dfcec515a62c",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-11/PHASE-12-IMPLEMENTATION-INPUT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-dfcec515a62c"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-40785387fd2e",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-12/CONTRIBUTION-INVENTORY.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-40785387fd2e"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-af76d9ddc05c",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-12/PHASE-12-PROMPT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-af76d9ddc05c"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-c8b73f9ce60a",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-12/PHASE-12-REPORT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-c8b73f9ce60a"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-05839a4288e5",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-12/PHASE-13-IMPLEMENTATION-INPUT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-05839a4288e5"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-d9a2d3e77b99",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-13/FINAL-CLOSE-OUT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-d9a2d3e77b99"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-1c1c5fb1ec06",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-13/PHASE-13-PROMPT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-1c1c5fb1ec06"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-bd1f8c165aa1",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-13/PHASE-13-REPORT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-bd1f8c165aa1"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-51206417564a",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-14/AI-SLOP-AUDIT.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-51206417564a"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-98b8317150c1",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-14/COMPASS-REVIEW.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-98b8317150c1"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-0b6ac0335464",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-14/CURRENT-STATE-AUDIT.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-0b6ac0335464"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-2ebff6fb7a96",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-14/EVIDENCE-QUALITY-MATRIX.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-2ebff6fb7a96"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-6973aa936aac",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-14/FINDING-AUDIT.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-6973aa936aac"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-bf5262a6ebc0",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-14/ISSUE-AUDIT.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-bf5262a6ebc0"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-801fa8bab9b5",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-14/MCP-INDEPENDENT-REVIEW.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-801fa8bab9b5"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-758109a2fc2a",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-14/NEW-FINDINGS.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-758109a2fc2a"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-f95288b86877",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-14/PHASE-14-IMPLEMENTATION-INPUT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-f95288b86877"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-9b80c9c2dade",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-14/PHASE-14-IMPLEMENTATION-RECOMMENDATIONS.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-9b80c9c2dade"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-0bec9ebe781b",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-14/PHASE-14-REPORT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-0bec9ebe781b"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-e0338662f652",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-14/PR-AUDIT.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-e0338662f652"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-fdd6a74bbb7c",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-14/REMAP-REVIEW.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-fdd6a74bbb7c"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-a9e1457d96e0",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-15/ALREADY-FIXED.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-a9e1457d96e0"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-5002aaf623b6",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-15/AUDIT-CANDIDATE-UNIVERSE.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-5002aaf623b6"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-7a28c44757a0",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-15/CONTRIBUTION-READY.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-7a28c44757a0"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-385a224e1238",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-15/CONTRIBUTION-REVIEW-MATRIX.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-385a224e1238"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-68a26c64d65d",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-15/DUPLICATE-SUPERSEDED.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-68a26c64d65d"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-90ab8426282e",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-15/FINAL-PR-WORTHINESS-AUDIT.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-90ab8426282e"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-0fae43e1c0ac",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-15/IMPLEMENTATION-QUALITY-MATRIX.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-0fae43e1c0ac"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-2366433a9090",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-15/ISSUE-RECONCILIATION.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-2366433a9090"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-af70c0dde2be",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-15/LEDGER-RECONCILIATION.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-af70c0dde2be"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-8d897ca7a10e",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-15/MAINTAINER-VALUE-MATRIX.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-8d897ca7a10e"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-e66ec0a12188",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-15/NEEDS-REPRODUCTION.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-e66ec0a12188"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-8a458dae3346",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-15/PHASE-FINAL-REPORT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-8a458dae3346"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-fb6567a40e54",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-15/PR-SUBMISSION-PACKETS.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-fb6567a40e54"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-46941156c642",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-15/REJECTED-CANDIDATES.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-46941156c642"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-01c77278e6db",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-15/SECURITY-REVIEW.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-01c77278e6db"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-df2c469e8ef4",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-15/TEST-EVIDENCE-MATRIX.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-df2c469e8ef4"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-937713c96fb0",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-2/CANDIDATE-WORK.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-937713c96fb0"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-aa7c804a428d",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-2/CONTRIBUTION-CORRELATION.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-aa7c804a428d"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-94fb61826e8a",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-2/CROSS-PROJECT-MAP.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-94fb61826e8a"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-c45ce60b6c7c",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-2/DECISION-RECONCILIATION.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-c45ce60b6c7c"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-027e3b019bbf",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-2/EVIDENCE-RECONCILIATION.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-027e3b019bbf"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-454aa719a0e3",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-2/FINDING-RECONCILIATION.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-454aa719a0e3"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-5b9eee7ce60b",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-2/GITHUB-PAGES-FEASIBILITY.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-5b9eee7ce60b"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-3fbaeeca5d05",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-2/GRAPH-RECONCILIATION.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-3fbaeeca5d05"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-a86f629ba139",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-2/KNOWLEDGE-MODEL.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-a86f629ba139"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-5eeb5d435c86",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-2/PHASE-2-REPORT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-5eeb5d435c86"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-2fec5b37e94c",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-2/SUGGESTION-RECONCILIATION.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-2fec5b37e94c"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-564d7e8749e7",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-2/SYSTEM-COMPASS-KNOWLEDGE.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-564d7e8749e7"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-93a8e60d6546",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-3/BUG-INVENTORY.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-93a8e60d6546"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-a911cba28600",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-3/CANDIDATE-DEPENDENCY-GRAPH.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-a911cba28600"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-cab28416ccca",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-3/CANDIDATE-EVIDENCE-MATRIX.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-cab28416ccca"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-8865d7f959dd",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-3/CONTRIBUTION-READINESS.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-8865d7f959dd"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-950b2debbc13",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-3/ENHANCEMENT-INVENTORY.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-950b2debbc13"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-bb9eebface92",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-3/GITHUB-PAGES-IMPLEMENTATION-SPEC.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-bb9eebface92"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-7abaecc29a63",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-3/IMPLEMENTATION-WORK-BREAKDOWN.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-7abaecc29a63"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-221912dbe482",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-3/KNOWLEDGE-SYSTEM-BACKLOG.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-221912dbe482"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-734b64520be8",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-3/MASTER-CANDIDATE-BACKLOG.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-734b64520be8"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-3047ba9485ec",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-3/PHASE-3-REPORT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-3047ba9485ec"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-88778bdc6a27",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-3/PHASE-4-IMPLEMENTATION-INPUT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-88778bdc6a27"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-24b1805b3a12",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-3/PR-ISSUE-CORRELATION.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-24b1805b3a12"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-905995a8868e",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-3/PRIORITY-MATRIX.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-905995a8868e"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-b5e90849f612",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-3/REPOSITORY-OWNERSHIP-MATRIX.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-b5e90849f612"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-9426018249a5",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-3/TEST-READINESS-MATRIX.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-9426018249a5"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-7df3baa1ff96",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-4/BLOCKED-CANDIDATES.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-7df3baa1ff96"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-702d506c6f3f",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-4/CHANGESET-MANIFEST.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-702d506c6f3f"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-1518c95b5015",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-4/CONTRIBUTION-PACKETS.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-1518c95b5015"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-75a427d2d2cd",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-4/CONTRIBUTION-READY-CHANGES.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-75a427d2d2cd"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-4e2fd931ec21",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-4/DEFERRED-CANDIDATES.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-4e2fd931ec21"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-8e5e380c4321",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-4/IMPLEMENTATION-DECISIONS.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-8e5e380c4321"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-1af0e26893e2",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-4/IMPLEMENTATION-MATRIX.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-1af0e26893e2"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-0823442d2454",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-4/IMPLEMENTED-CANDIDATES.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-0823442d2454"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-988ee816079a",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-4/KNOWLEDGE-EXPORT-MANIFEST.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-988ee816079a"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-5e1fc693b690",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-4/PHASE-4-IMPLEMENTATION-PLAN.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-5e1fc693b690"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-6bee3eae2fd5",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-4/PHASE-4-REPORT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-6bee3eae2fd5"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-82ee02809744",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-4/PHASE-5-IMPLEMENTATION-INPUT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-82ee02809744"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-c699fb262c5f",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-4/REPOSITORY-STATE-AFTER.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-c699fb262c5f"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-f9d5f47feb85",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-4/TEST-RESULTS.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-f9d5f47feb85"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-bf18b2cda595",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-4/VERIFICATION-MATRIX.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-bf18b2cda595"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-fd1dfee96688",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-5/CONTRIBUTION-EXECUTION-READINESS.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-fd1dfee96688"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-5badf0438b57",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-5/FORK-SYNC-RESULT.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-5badf0438b57"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-c9742e552613",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-5/PAGES-DEPLOYMENT-PACKAGE.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-c9742e552613"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-117f78b220cb",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-5/PAGES-LOCAL-VALIDATION.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-117f78b220cb"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-a7be009ed564",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-5/PAGES-PUBLIC-DATA-AUDIT.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-a7be009ed564"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-218d158589eb",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-5/PHASE-5-AUTHORIZATION-STATE.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-218d158589eb"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-bac895e57721",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-5/PHASE-5-EVIDENCE-MATRIX.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-bac895e57721"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-b4556f72d4f9",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-5/PHASE-5-EXTERNAL-ACTIONS.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-b4556f72d4f9"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-9cd68338cdaa",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-5/PHASE-5-LIVE-BASELINE.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-9cd68338cdaa"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-fe02f8bd337f",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-5/PHASE-5-REPORT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-fe02f8bd337f"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-2637f9203036",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-5/PHASE-5-REPRODUCTION-RESULTS.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-2637f9203036"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-9ed384a3feca",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-5/PHASE-5-TEST-RESULTS.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-9ed384a3feca"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-4de5a4042e69",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-5/PHASE-6-IMPLEMENTATION-INPUT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-4de5a4042e69"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-63e3a3285761",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-5/REMAP-REBASE-PRESTATE.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-63e3a3285761"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-8e609cb252f2",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-5/REMAP-REBASE-RESULT.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-8e609cb252f2"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-82ca3273f5e4",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-5/STANDALONE-GENERATION-RESULT.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-82ca3273f5e4"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-7012efaa34c7",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-5/STANDALONE-GENERATION-SPEC.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-7012efaa34c7"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-398ec4e7ec26",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-6/EXTERNAL-ACTION-LOG.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-398ec4e7ec26"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-02e788aac48b",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-6/KNOWLEDGE-RECONCILIATION.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-02e788aac48b"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-391626a8232c",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-6/PACK-371-EXECUTION-RESULT.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-391626a8232c"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-23042cb76761",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-6/PAGES-DEPLOYMENT-RESULT.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-23042cb76761"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-fe1eeb56df3e",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-6/PHASE-6-AUTHORIZATION-STATE.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-fe1eeb56df3e"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-fa306d371f14",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-6/PHASE-6-LIVE-BASELINE.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-fa306d371f14"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-16fde581f6c1",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-6/PHASE-6-REPORT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-16fde581f6c1"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-02a260dd6ac6",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-6/PHASE-7-IMPLEMENTATION-INPUT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-02a260dd6ac6"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-9ec8bf34ba0e",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-6/POST-MUTATION-INTEGRITY.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-9ec8bf34ba0e"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-23679dad63ef",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-6/REMAP-EXECUTION-RESULT.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-23679dad63ef"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-1111e48d5f6d",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-6/REMAP-PR-RESULT.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-1111e48d5f6d"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-a81418cd4ea1",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-7/PHASE-7-PROMPT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-a81418cd4ea1"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-9bc115339629",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-7/PHASE-7-REPORT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-9bc115339629"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-22bb90235365",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-7/PHASE-8-IMPLEMENTATION-INPUT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-22bb90235365"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-7d7043f135e6",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-8/AGENT-REVIEW.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-7d7043f135e6"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-e4f749693eed",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-8/EXTERNAL-ACTION-LOG.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-e4f749693eed"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-b2352e6b7d2f",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-8/PHASE-8-AUTHORIZATION-STATE.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-b2352e6b7d2f"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-16f22f8e366e",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-8/PHASE-8-LIVE-BASELINE.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-16f22f8e366e"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-2628994c16df",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-8/PHASE-8-PROMPT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-2628994c16df"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-f5fbbd40f342",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-8/PHASE-8-REPORT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-f5fbbd40f342"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-e1466056ed64",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-8/PHASE-9-IMPLEMENTATION-INPUT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-e1466056ed64"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-ae3a5adf0b1c",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-8/TEST-RESULTS.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-ae3a5adf0b1c"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-e9ac47d5c68d",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-8/TOOL-REGISTRY.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-e9ac47d5c68d"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-ab21363803ef",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-9/PHASE-9-HARDENING-RESULTS.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-ab21363803ef"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-361df5a808f7",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-9/PHASE-9-PROMPT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-361df5a808f7"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-e83be4caf1c1",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-9/PHASE-9-REPORT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-e83be4caf1c1"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-9fc0a40c1d86",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-9/REAL-CLIENT-RUN.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-9fc0a40c1d86"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-7b91a817cb84",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/PHASE-LADDER.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-7b91a817cb84"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-8f1401b89782",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/POST-LADDER-AUDIT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-8f1401b89782"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-326cb3d80199",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/PR-MATRIX.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-326cb3d80199"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-c063b464bd2c",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/PUBLIC-REFERENCES.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-c063b464bd2c"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-f9020429a11d",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-f9020429a11d"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-62ef17225267",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/repomix-bundle/output.1.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-62ef17225267"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-2f7e10368ab5",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/REPOSITORIES.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-2f7e10368ab5"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-7ac1a3faf10b",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/STALE-CLAIMS.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-7ac1a3faf10b"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-cc1bb4a76b8d",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/SYSTEM-COMPASS-CONTRIBUTION-SPEC.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-cc1bb4a76b8d"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-e769c741ffbd",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/WORKTREES.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-e769c741ffbd"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-3f1b9b23ddf5",
+      "other_type": "file",
+      "other_title": "planning/.probe",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-3f1b9b23ddf5"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-ea279e9f1777",
+      "other_type": "file",
+      "other_title": "planning/compass/artifacts.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-ea279e9f1777"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-60b3abf2ff06",
+      "other_type": "file",
+      "other_title": "planning/compass/delayed-data.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-60b3abf2ff06"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-5b3c4374026a",
+      "other_type": "file",
+      "other_title": "planning/compass/fit.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-5b3c4374026a"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-ad4a6f3a9819",
+      "other_type": "file",
+      "other_title": "planning/compass/historical-matrix.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-ad4a6f3a9819"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-b540d9ffd821",
+      "other_type": "file",
+      "other_title": "planning/compass/keyboard.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-b540d9ffd821"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-8abc4c9aebd3",
+      "other_type": "file",
+      "other_title": "planning/compass/lifecycle.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-8abc4c9aebd3"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-ff02074c54d7",
+      "other_type": "file",
+      "other_title": "planning/compass/reconstruction.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-ff02074c54d7"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-0bf92b81ad31",
+      "other_type": "file",
+      "other_title": "planning/decisions/decision-log.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-0bf92b81ad31"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-1b87df9736ba",
+      "other_type": "file",
+      "other_title": "planning/decisions/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-1b87df9736ba"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-3b85ae7123ac",
+      "other_type": "file",
+      "other_title": "planning/decisions/registry.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-3b85ae7123ac"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-ec9ec7c68b9e",
+      "other_type": "file",
+      "other_title": "planning/evidence/artifacts/index.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-ec9ec7c68b9e"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-274f329dab34",
+      "other_type": "file",
+      "other_title": "planning/evidence/github/index.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-274f329dab34"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-11b62787a2c7",
+      "other_type": "file",
+      "other_title": "planning/evidence/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-11b62787a2c7"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-f932c2be9504",
+      "other_type": "file",
+      "other_title": "planning/evidence/registry.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-f932c2be9504"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-34514c511827",
+      "other_type": "file",
+      "other_title": "planning/evidence/reproduction/index.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-34514c511827"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-6b5aa2c04b5a",
+      "other_type": "file",
+      "other_title": "planning/evidence/runtime/index.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-6b5aa2c04b5a"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-5dea25c84d45",
+      "other_type": "file",
+      "other_title": "planning/evidence/source/index.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-5dea25c84d45"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-df11822ab121",
+      "other_type": "file",
+      "other_title": "planning/final/AI-BRIEFING-PROMPT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-df11822ab121"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-c7ef93a86406",
+      "other_type": "file",
+      "other_title": "planning/final/EXECUTIVE-SUMMARY.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-c7ef93a86406"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-2fe6e140c25c",
+      "other_type": "file",
+      "other_title": "planning/final/FINAL-DECISIONS.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-2fe6e140c25c"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-4682beee8fdd",
+      "other_type": "file",
+      "other_title": "planning/final/MASTER-REPORT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-4682beee8fdd"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-07d32abf91e3",
+      "other_type": "file",
+      "other_title": "planning/final/NEXT-ACTIONS.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-07d32abf91e3"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-fedea678c555",
+      "other_type": "file",
+      "other_title": "planning/final/REMAINING-BLOCKERS.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-fedea678c555"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-e45f189cc0b6",
+      "other_type": "file",
+      "other_title": "planning/final/verification.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-e45f189cc0b6"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-8bfdc08abd85",
+      "other_type": "file",
+      "other_title": "planning/findings/by-evidence-class.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-8bfdc08abd85"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-66daa267af2f",
+      "other_type": "file",
+      "other_title": "planning/findings/by-repository.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-66daa267af2f"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-cc0f778ab554",
+      "other_type": "file",
+      "other_title": "planning/findings/by-severity.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-cc0f778ab554"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-ac6da3f51931",
+      "other_type": "file",
+      "other_title": "planning/findings/by-status.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-ac6da3f51931"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-125a277e8e67",
+      "other_type": "file",
+      "other_title": "planning/findings/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-125a277e8e67"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-11f33e1eba18",
+      "other_type": "file",
+      "other_title": "planning/findings/registry.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-11f33e1eba18"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-7b1022aa5551",
+      "other_type": "file",
+      "other_title": "planning/git/branches.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-7b1022aa5551"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-1ffd0d77aa20",
+      "other_type": "file",
+      "other_title": "planning/git/commits.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-1ffd0d77aa20"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-991392c600a8",
+      "other_type": "file",
+      "other_title": "planning/git/forks.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-991392c600a8"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-4589b1081ed4",
+      "other_type": "file",
+      "other_title": "planning/git/synchronization.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-4589b1081ed4"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-f9f37ef344ae",
+      "other_type": "file",
+      "other_title": "planning/git/worktrees.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-f9f37ef344ae"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-ce984839fb71",
+      "other_type": "file",
+      "other_title": "planning/github/comments.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-ce984839fb71"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-d67e093efa0b",
+      "other_type": "file",
+      "other_title": "planning/github/issues.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-d67e093efa0b"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-df745ce53e1b",
+      "other_type": "file",
+      "other_title": "planning/github/maintainers.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-df745ce53e1b"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-8f4c0c5e19e9",
+      "other_type": "file",
+      "other_title": "planning/github/pull-requests.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-8f4c0c5e19e9"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-8e011cd08c48",
+      "other_type": "file",
+      "other_title": "planning/github/references.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-8e011cd08c48"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-9bedc6c7397e",
+      "other_type": "file",
+      "other_title": "planning/github/releases.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-9bedc6c7397e"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-23be60acc505",
+      "other_type": "file",
+      "other_title": "planning/ix/architecture.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-23be60acc505"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-d7038fbc4263",
+      "other_type": "file",
+      "other_title": "planning/ix/ix-376.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-d7038fbc4263"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-bc7aa699fd75",
+      "other_type": "file",
+      "other_title": "planning/ix/ix-mcp.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-bc7aa699fd75"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-12e10fb156b6",
+      "other_type": "file",
+      "other_title": "planning/ix/remap.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-12e10fb156b6"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-35dc43ee347b",
+      "other_type": "file",
+      "other_title": "planning/ix/security.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-35dc43ee347b"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-909e8f77d282",
+      "other_type": "file",
+      "other_title": "planning/maps/decision-map.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-909e8f77d282"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-10928dad29ee",
+      "other_type": "file",
+      "other_title": "planning/maps/dependency-map.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-10928dad29ee"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-83c8009bf2e3",
+      "other_type": "file",
+      "other_title": "planning/maps/evidence-map.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-83c8009bf2e3"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-f58e55220f49",
+      "other_type": "file",
+      "other_title": "planning/maps/finding-map.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-f58e55220f49"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-480ea45689d0",
+      "other_type": "file",
+      "other_title": "planning/maps/investigation-map.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-480ea45689d0"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-fd1f275c7de6",
+      "other_type": "file",
+      "other_title": "planning/maps/legacy/investigation-map-v1.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-fd1f275c7de6"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-838d6e0c0428",
+      "other_type": "file",
+      "other_title": "planning/maps/phases.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-838d6e0c0428"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-d437e14e31e5",
+      "other_type": "file",
+      "other_title": "planning/maps/repository-map.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-d437e14e31e5"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-91bdd456e7d8",
+      "other_type": "file",
+      "other_title": "planning/maps/timeline-map.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-91bdd456e7d8"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-5e1af334388c",
+      "other_type": "file",
+      "other_title": "planning/overview/current-state.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-5e1af334388c"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-70b793adc4d8",
+      "other_type": "file",
+      "other_title": "planning/overview/investigation-overview.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-70b793adc4d8"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-edb857d7d477",
+      "other_type": "file",
+      "other_title": "planning/overview/methodology.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-edb857d7d477"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-9e68db392ca7",
+      "other_type": "file",
+      "other_title": "planning/overview/objectives.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-9e68db392ca7"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-a3361781c047",
+      "other_type": "file",
+      "other_title": "planning/overview/phase-overview.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-a3361781c047"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-5790517a5290",
+      "other_type": "file",
+      "other_title": "planning/overview/scope.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-5790517a5290"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-17755b21f6d6",
+      "other_type": "file",
+      "other_title": "planning/overview/timeline.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-17755b21f6d6"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-9ffac45b7321",
+      "other_type": "file",
+      "other_title": "planning/pages/build-public.mjs",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-9ffac45b7321"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-2cc12519bc12",
+      "other_type": "file",
+      "other_title": "planning/pages/public-data-allowlist.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-2cc12519bc12"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-819f3277bdff",
+      "other_type": "file",
+      "other_title": "planning/pages/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-819f3277bdff"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-a24821768058",
+      "other_type": "file",
+      "other_title": "planning/pages/validate-public.mjs",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-a24821768058"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-aaf47d3d657b",
+      "other_type": "file",
+      "other_title": "planning/pages/workflow/pages.yml.template",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-aaf47d3d657b"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-b50473a3d022",
+      "other_type": "file",
+      "other_title": "planning/phases/phase-00/blockers.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-b50473a3d022"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-e4cf570f751e",
+      "other_type": "file",
+      "other_title": "planning/phases/phase-00/evidence.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-e4cf570f751e"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-a3c70d32ace4",
+      "other_type": "file",
+      "other_title": "planning/phases/phase-00/findings.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-a3c70d32ace4"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-0981a42505f8",
+      "other_type": "file",
+      "other_title": "planning/phases/phase-00/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-0981a42505f8"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-aaa274efc387",
+      "other_type": "file",
+      "other_title": "planning/phases/phase-01/changes.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-aaa274efc387"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-d83242cc0657",
+      "other_type": "file",
+      "other_title": "planning/phases/phase-01/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-d83242cc0657"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-765d1d5a204b",
+      "other_type": "file",
+      "other_title": "planning/phases/phase-02/changes.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-765d1d5a204b"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-4b81f705b7ec",
+      "other_type": "file",
+      "other_title": "planning/phases/phase-02/evidence.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-4b81f705b7ec"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-5f7136a58b49",
+      "other_type": "file",
+      "other_title": "planning/phases/phase-02/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-5f7136a58b49"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-7c8cf14d5ce8",
+      "other_type": "file",
+      "other_title": "planning/phases/phase-02/tests.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-7c8cf14d5ce8"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-c65ee05d6e9a",
+      "other_type": "file",
+      "other_title": "planning/phases/phase-03/findings.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-c65ee05d6e9a"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-a86de113bf0c",
+      "other_type": "file",
+      "other_title": "planning/phases/phase-03/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-a86de113bf0c"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-8f942ed130a5",
+      "other_type": "file",
+      "other_title": "planning/phases/phase-04/findings.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-8f942ed130a5"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-d62061266e40",
+      "other_type": "file",
+      "other_title": "planning/phases/phase-04/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-d62061266e40"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-a2553a6e9b70",
+      "other_type": "file",
+      "other_title": "planning/phases/phase-05/evidence.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-a2553a6e9b70"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-7784f012f284",
+      "other_type": "file",
+      "other_title": "planning/phases/phase-05/findings.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-7784f012f284"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-e333c0c9bf68",
+      "other_type": "file",
+      "other_title": "planning/phases/phase-05/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-e333c0c9bf68"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-81745a6429fb",
+      "other_type": "file",
+      "other_title": "planning/phases/phase-06/blockers.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-81745a6429fb"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-5420a105c4b9",
+      "other_type": "file",
+      "other_title": "planning/phases/phase-06/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-5420a105c4b9"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-5ff2a1e5e9b3",
+      "other_type": "file",
+      "other_title": "planning/phases/phase-07/evidence.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-5ff2a1e5e9b3"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-1ca01d017b08",
+      "other_type": "file",
+      "other_title": "planning/phases/phase-07/findings.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-1ca01d017b08"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-8a43d1d6ed36",
+      "other_type": "file",
+      "other_title": "planning/phases/phase-07/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-8a43d1d6ed36"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-f712fa17ebe1",
+      "other_type": "file",
+      "other_title": "planning/phases/phase-08/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-f712fa17ebe1"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-56cda21e38a1",
+      "other_type": "file",
+      "other_title": "planning/phases/phase-09/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-56cda21e38a1"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-c89ae770518e",
+      "other_type": "file",
+      "other_title": "planning/phases/phase-10/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-c89ae770518e"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-fab6ee4acba2",
+      "other_type": "file",
+      "other_title": "planning/phases/phase-11/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-fab6ee4acba2"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-4484bbf61d86",
+      "other_type": "file",
+      "other_title": "planning/phases/phase-12/blockers.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-4484bbf61d86"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-de72880c1051",
+      "other_type": "file",
+      "other_title": "planning/phases/phase-12/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-de72880c1051"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-952b79f81615",
+      "other_type": "file",
+      "other_title": "planning/phases/phase-12/tests.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-952b79f81615"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-e29def1b2141",
+      "other_type": "file",
+      "other_title": "planning/phases/phase-13/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-e29def1b2141"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-f8bc47358c13",
+      "other_type": "file",
+      "other_title": "planning/pr-planning/compass-delayed-data.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-f8bc47358c13"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-91ccfd59ca41",
+      "other_type": "file",
+      "other_title": "planning/pr-planning/compass-f-key.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-91ccfd59ca41"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-2df36380ae78",
+      "other_type": "file",
+      "other_title": "planning/pr-planning/ix-376.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-2df36380ae78"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-8d80b25f1dff",
+      "other_type": "file",
+      "other_title": "planning/pr-planning/ix-compass-dist.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-8d80b25f1dff"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-57e1ceab6268",
+      "other_type": "file",
+      "other_title": "planning/pr-planning/ix-remap.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-57e1ceab6268"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-1155d9efddc3",
+      "other_type": "file",
+      "other_title": "planning/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-1155d9efddc3"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-c37d54c58320",
+      "other_type": "file",
+      "other_title": "planning/repositories/ix-compass-dist.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-c37d54c58320"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-e865abef33a7",
+      "other_type": "file",
+      "other_title": "planning/repositories/Ix-findings.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-e865abef33a7"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-c7f186ad4db8",
+      "other_type": "file",
+      "other_title": "planning/repositories/Ix-remap.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-c7f186ad4db8"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-318f607f834d",
+      "other_type": "file",
+      "other_title": "planning/repositories/Ix.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-318f607f834d"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-0d1023afe1e8",
+      "other_type": "file",
+      "other_title": "planning/repositories/system-compass.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-0d1023afe1e8"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-652be6fbab0c",
+      "other_type": "file",
+      "other_title": "planning/security/audit.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-652be6fbab0c"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-e7f9d69fda5e",
+      "other_type": "file",
+      "other_title": "planning/security/privacy.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-e7f9d69fda5e"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-a486d5e8cb20",
+      "other_type": "file",
+      "other_title": "planning/suggestions/accepted.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-a486d5e8cb20"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-b684fc5468bb",
+      "other_type": "file",
+      "other_title": "planning/suggestions/deferred.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-b684fc5468bb"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-fd02a1972a73",
+      "other_type": "file",
+      "other_title": "planning/suggestions/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-fd02a1972a73"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-b665e358721c",
+      "other_type": "file",
+      "other_title": "planning/suggestions/registry.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-b665e358721c"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-34275d4e5161",
+      "other_type": "file",
+      "other_title": "planning/suggestions/rejected.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-34275d4e5161"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-fb67986316cc",
+      "other_type": "file",
+      "other_title": "planning/suggestions/superseded.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-fb67986316cc"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-b864930ec47f",
+      "other_type": "file",
+      "other_title": "planning/wiki/assets/sections.js",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-b864930ec47f"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-77790380b22c",
+      "other_type": "file",
+      "other_title": "planning/wiki/assets/wiki.css",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-77790380b22c"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-ec1a5b07f363",
+      "other_type": "file",
+      "other_title": "planning/wiki/assets/wiki.js",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-ec1a5b07f363"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-25f911094df7",
+      "other_type": "file",
+      "other_title": "planning/wiki/build-data.mjs",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-25f911094df7"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-e0d8093fa77b",
+      "other_type": "file",
+      "other_title": "planning/wiki/build-standalone.mjs",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-e0d8093fa77b"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-9e660cbf742f",
+      "other_type": "file",
+      "other_title": "planning/wiki/data/data.js",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-9e660cbf742f"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-018098da9dfb",
+      "other_type": "file",
+      "other_title": "planning/wiki/index-standalone.html",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-018098da9dfb"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-1f85d30d8ea1",
+      "other_type": "file",
+      "other_title": "planning/wiki/index.html",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-1f85d30d8ea1"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-a3118f6383ee",
+      "other_type": "file",
+      "other_title": "planning/wiki/repomix-bundle/output.1.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-a3118f6383ee"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-adc3120803e5",
+      "other_type": "file",
+      "other_title": "planning/wiki/standalone-template.html",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-adc3120803e5"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-64086523b533",
+      "other_type": "file",
+      "other_title": "pr-packets/compass-delayed-data/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-64086523b533"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-cf88149934b8",
+      "other_type": "file",
+      "other_title": "pr-packets/compass-f-key/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-cf88149934b8"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-6d9a70e7c433",
+      "other_type": "file",
+      "other_title": "pr-packets/ix-371-patches-dead-code/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-6d9a70e7c433"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-efe94e86a48a",
+      "other_type": "file",
+      "other_title": "pr-packets/ix-376-version-mismatch/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-efe94e86a48a"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-d487ebfc50f9",
+      "other_type": "file",
+      "other_title": "pr-packets/ix-mcp/PR-BODY.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-d487ebfc50f9"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-b03e04308185",
+      "other_type": "file",
+      "other_title": "pr-packets/ix-mcp/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-b03e04308185"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-702f832ef02c",
+      "other_type": "file",
+      "other_title": "pr-packets/ix-remap-hardening/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-702f832ef02c"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-bb8e26e581d0",
+      "other_type": "file",
+      "other_title": "reports/master-report.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-bb8e26e581d0"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-f465053b9434",
+      "other_type": "file",
+      "other_title": "reports/phase-summaries.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-f465053b9434"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-e70b6d7f9d45",
+      "other_type": "file",
+      "other_title": "comparisons/camera-fit/delayed-data-investigation.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-e70b6d7f9d45"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-304debf92137",
+      "other_type": "file",
+      "other_title": "comparisons/camera-fit/reconstruction.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-304debf92137"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-e50802750741",
+      "other_type": "file",
+      "other_title": "comparisons/historical-matrix.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-e50802750741"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-185924b8ebcf",
+      "other_type": "file",
+      "other_title": "comparisons/keyboard/reconstruction.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-185924b8ebcf"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-988cd4dc2884",
+      "other_type": "file",
+      "other_title": "comparisons/releases/timeline.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-988cd4dc2884"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-891c93ad6699",
+      "other_type": "file",
+      "other_title": "decisions/log.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-891c93ad6699"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-cbae8e94d9d6",
+      "other_type": "file",
+      "other_title": "findings/phase-4-audit.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-cbae8e94d9d6"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-cc8543919226",
+      "other_type": "file",
+      "other_title": "github/historical-prs.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-cc8543919226"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-e57190740d47",
+      "other_type": "file",
+      "other_title": "github/issues/219/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-e57190740d47"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-40c0aec9830c",
+      "other_type": "file",
+      "other_title": "github/issues/349/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-40c0aec9830c"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-99ca1094080f",
+      "other_type": "file",
+      "other_title": "github/issues/371/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-99ca1094080f"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-06ffe07674f0",
+      "other_type": "file",
+      "other_title": "github/issues/374/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-06ffe07674f0"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-9e05122aa7e6",
+      "other_type": "file",
+      "other_title": "github/issues/376/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-9e05122aa7e6"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-5ebc3052904e",
+      "other_type": "file",
+      "other_title": "github/issues/379/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-5ebc3052904e"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-f73d60322b99",
+      "other_type": "file",
+      "other_title": "github/issues/381/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-f73d60322b99"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-1f8815c8bb82",
+      "other_type": "file",
+      "other_title": "github/issues/383/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-1f8815c8bb82"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-57e431db34ee",
+      "other_type": "file",
+      "other_title": "github/issues/385/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-57e431db34ee"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-0581f2a0e273",
+      "other_type": "file",
+      "other_title": "github/maintainer-context.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-0581f2a0e273"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-0d7688160fd9",
+      "other_type": "file",
+      "other_title": "state/phase-0-audit.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-0d7688160fd9"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-cf952a4925c0",
+      "other_type": "file",
+      "other_title": "state/phase-1-sync-report.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-cf952a4925c0"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-f0a2c3a606fb",
+      "other_type": "file",
+      "other_title": "state/phase-12-publication-gate.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-f0a2c3a606fb"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-269f8ebcaf45",
+      "other_type": "file",
+      "other_title": "state/phase-2-remap-report.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-269f8ebcaf45"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-dcf7735a458a",
+      "other_type": "file",
+      "other_title": "state/phase-6-f-key-gate.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-dcf7735a458a"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-e6bbf12f0cfb",
+      "other_type": "file",
+      "other_title": "state/phase-7-upstream-reconciliation-2026-08-11.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-e6bbf12f0cfb"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-01c754c5a030",
+      "other_type": "file",
+      "other_title": "manifests/artifact-sha256.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-01c754c5a030"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-442914659421",
+      "other_type": "file",
+      "other_title": "manifests/findings-index.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-442914659421"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-8db7e3494758",
+      "other_type": "file",
+      "other_title": "manifests/investigation-index.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-8db7e3494758"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-de50e37c5f43",
+      "other_type": "file",
+      "other_title": "security/findings.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-de50e37c5f43"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-b6c4dc7d08c1",
+      "other_type": "file",
+      "other_title": "artifacts/v0.3.0/compass-0.3.0/assets/CommandBar-O5zSntkc.js",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-b6c4dc7d08c1"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-5dd00bc5c825",
+      "other_type": "file",
+      "other_title": "artifacts/v0.3.0/compass-0.3.0/assets/EntityDetailPanel-B7DxefdP.js",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-5dd00bc5c825"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-93b36cff9362",
+      "other_type": "file",
+      "other_title": "artifacts/v0.3.0/compass-0.3.0/assets/icons-BbGX8vRd.js",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-93b36cff9362"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-81d226a33417",
+      "other_type": "file",
+      "other_title": "artifacts/v0.3.0/compass-0.3.0/assets/index-C9dqEzlZ.js",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-81d226a33417"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-05adb9969c5d",
+      "other_type": "file",
+      "other_title": "artifacts/v0.3.0/compass-0.3.0/assets/index-CzUkHmOn.css",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-05adb9969c5d"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-f569bf73b619",
+      "other_type": "file",
+      "other_title": "artifacts/v0.3.0/compass-0.3.0/assets/KeyboardHelp-KnF66B2h.js",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-f569bf73b619"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-37f15c228263",
+      "other_type": "file",
+      "other_title": "artifacts/v0.3.0/compass-0.3.0/assets/logo-IGRLvZ8I.png",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-37f15c228263"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-335b705562cb",
+      "other_type": "file",
+      "other_title": "artifacts/v0.3.0/compass-0.3.0/assets/motion-B-0H7FSW.js",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-335b705562cb"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-53fc0195fab4",
+      "other_type": "file",
+      "other_title": "artifacts/v0.3.0/compass-0.3.0/assets/query-Du9o4BLB.js",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-53fc0195fab4"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-81b4186901aa",
+      "other_type": "file",
+      "other_title": "artifacts/v0.3.0/compass-0.3.0/assets/radix-CLCOOwfT.js",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-81b4186901aa"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-ef4419774d26",
+      "other_type": "file",
+      "other_title": "artifacts/v0.3.0/compass-0.3.0/assets/react-vendor-B1T8XXUA.js",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-ef4419774d26"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-d06d9700265b",
+      "other_type": "file",
+      "other_title": "artifacts/v0.3.0/compass-0.3.0/assets/rolldown-runtime-B0Z9INg1.js",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-d06d9700265b"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-20fccb258a57",
+      "other_type": "file",
+      "other_title": "artifacts/v0.3.0/compass-0.3.0/assets/TimelineScrubber-Bupqd8oD.js",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-20fccb258a57"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-d0e0b6fceed9",
+      "other_type": "file",
+      "other_title": "artifacts/v0.3.0/compass-0.3.0/assets/vendor-By_s-5m5.js",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-d0e0b6fceed9"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-16dcdee7104c",
+      "other_type": "file",
+      "other_title": "artifacts/v0.3.0/compass-0.3.0/favicon.ico",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-16dcdee7104c"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-fc1968f9ea9f",
+      "other_type": "file",
+      "other_title": "artifacts/v0.3.0/compass-0.3.0/index.html",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-fc1968f9ea9f"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-2352920bc734",
+      "other_type": "file",
+      "other_title": "artifacts/v0.3.0/compass-0.3.0/ix-compass-favicon-light.png",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-2352920bc734"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-375f5738e03e",
+      "other_type": "file",
+      "other_title": "artifacts/v0.3.0/compass-0.3.0/ix-compass-favicon.png",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-375f5738e03e"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-a1bafe774982",
+      "other_type": "file",
+      "other_title": "artifacts/v0.3.0/compass-0.3.0/placeholder.svg",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-a1bafe774982"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "SRC-323a823295ff",
+      "other_type": "file",
+      "other_title": "artifacts/v0.3.0/compass-0.3.0/robots.txt",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-323a823295ff"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-2a5998452c1a",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/manifest.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-2a5998452c1a"
+    }
+  ]
+}

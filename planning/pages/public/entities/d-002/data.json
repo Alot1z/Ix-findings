@@ -1,0 +1,40 @@
+{
+  "id": "D-002",
+  "type": "decision",
+  "title": "Dedicated worktree for remap work",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/d-002",
+  "summary": {
+    "id": "D-002",
+    "type": "decision",
+    "title": "Dedicated worktree for remap work",
+    "status": "CURRENT",
+    "phase": "phase-00"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "ACCEPTED_BY",
+      "other": "S-001",
+      "other_type": "suggestion",
+      "other_title": "Use a dedicated Git worktree for remap work",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-001"
+    },
+    {
+      "direction": "out",
+      "relationship": "ACCEPTED_BY",
+      "other": "S-025",
+      "other_type": "suggestion",
+      "other_title": "Stash the Ix overhaul to free the main worktree",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-025"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-1b87df9736ba",
+      "other_type": "file",
+      "other_title": "planning/decisions/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-1b87df9736ba"
+    }
+  ]
+}

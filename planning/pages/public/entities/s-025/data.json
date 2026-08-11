@@ -1,0 +1,42 @@
+{
+  "id": "S-025",
+  "type": "suggestion",
+  "title": "Stash the Ix overhaul to free the main worktree",
+  "status": "DECLINED",
+  "url": "https://alot1z.github.io/Ix-findings/entities/s-025",
+  "summary": {
+    "id": "S-025",
+    "type": "suggestion",
+    "title": "Stash the Ix overhaul to free the main worktree",
+    "status": "DECLINED",
+    "phase": "phase-01",
+    "repository": "Ix",
+    "disposition": "REJECTED"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "SUPPORTED_BY",
+      "other": "E-019",
+      "other_type": "evidence",
+      "other_title": "git divergence numbers",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-019"
+    },
+    {
+      "direction": "in",
+      "relationship": "ACCEPTED_BY",
+      "other": "D-002",
+      "other_type": "decision",
+      "other_title": "Dedicated worktree for remap work",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/d-002"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-fd02a1972a73",
+      "other_type": "file",
+      "other_title": "planning/suggestions/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-fd02a1972a73"
+    }
+  ]
+}

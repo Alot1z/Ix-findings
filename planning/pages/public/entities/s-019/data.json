@@ -1,0 +1,34 @@
+{
+  "id": "S-019",
+  "type": "suggestion",
+  "title": "Investigate system-compass #58/#59",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/s-019",
+  "summary": {
+    "id": "S-019",
+    "type": "suggestion",
+    "title": "Investigate system-compass #58/#59",
+    "status": "HISTORICAL",
+    "phase": "phase-05",
+    "repository": "system-compass",
+    "disposition": "DEFERRED"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "SUPPORTED_BY",
+      "other": "E-008",
+      "other_type": "evidence",
+      "other_title": "v0.3.0 release notes (KageBinary)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-008"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-fd02a1972a73",
+      "other_type": "file",
+      "other_title": "planning/suggestions/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-fd02a1972a73"
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "id": "E-024",
+  "type": "evidence",
+  "title": "bootstrap.sh is_windows()/node_ok",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/e-024",
+  "summary": {
+    "id": "E-024",
+    "type": "evidence",
+    "title": "bootstrap.sh is_windows()/node_ok",
+    "status": "HISTORICAL",
+    "phase": "phase-02",
+    "repository": "ix-infrastructure/Ix"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "SUPPORTS",
+      "other": "F-011",
+      "other_type": "finding",
+      "other_title": "WSL bootstrap fix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-011"
+    },
+    {
+      "direction": "out",
+      "relationship": "SUPPORTS",
+      "other": "F-012",
+      "other_type": "finding",
+      "other_title": "Dead node_ok removal",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-012"
+    },
+    {
+      "direction": "out",
+      "relationship": "FOUND_IN",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-11b62787a2c7",
+      "other_type": "file",
+      "other_title": "planning/evidence/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-11b62787a2c7"
+    }
+  ]
+}

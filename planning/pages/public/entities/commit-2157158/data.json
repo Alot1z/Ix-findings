@@ -1,0 +1,39 @@
+{
+  "id": "COMMIT-2157158",
+  "type": "commit",
+  "title": "2157158",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-2157158",
+  "summary": {
+    "id": "COMMIT-2157158",
+    "type": "commit",
+    "title": "2157158",
+    "status": "CURRENT"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "RELATED_TO_PR",
+      "other": "PR-368",
+      "other_type": "pr",
+      "other_title": "Ix PR #368",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-368"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGED_BY",
+      "other": "PR-368",
+      "other_type": "pr",
+      "other_title": "Ix PR #368",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-368"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-2a5998452c1a",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/manifest.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-2a5998452c1a"
+    }
+  ]
+}

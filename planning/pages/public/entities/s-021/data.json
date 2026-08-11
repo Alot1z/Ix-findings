@@ -1,0 +1,50 @@
+{
+  "id": "S-021",
+  "type": "suggestion",
+  "title": "Create a CameraStore abstraction for Compass",
+  "status": "DECLINED",
+  "url": "https://alot1z.github.io/Ix-findings/entities/s-021",
+  "summary": {
+    "id": "S-021",
+    "type": "suggestion",
+    "title": "Create a CameraStore abstraction for Compass",
+    "status": "DECLINED",
+    "phase": "phase-05",
+    "repository": "system-compass",
+    "disposition": "REJECTED"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "APPLIES_TO",
+      "other": "F-004",
+      "other_type": "finding",
+      "other_title": "Fit math + constants invariant",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-004"
+    },
+    {
+      "direction": "out",
+      "relationship": "SUPPORTED_BY",
+      "other": "E-010",
+      "other_type": "evidence",
+      "other_title": "F-key PoC (patched v0.3.0)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-010"
+    },
+    {
+      "direction": "in",
+      "relationship": "ACCEPTED_BY",
+      "other": "D-005",
+      "other_type": "decision",
+      "other_title": "F-key = keyboard exposure only, no new camera system",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/d-005"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-fd02a1972a73",
+      "other_type": "file",
+      "other_title": "planning/suggestions/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-fd02a1972a73"
+    }
+  ]
+}

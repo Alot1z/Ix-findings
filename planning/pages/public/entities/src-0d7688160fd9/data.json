@@ -1,0 +1,39 @@
+{
+  "id": "SRC-0d7688160fd9",
+  "type": "file",
+  "title": "state/phase-0-audit.md",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/src-0d7688160fd9",
+  "summary": {
+    "id": "SRC-0d7688160fd9",
+    "type": "file",
+    "title": "state/phase-0-audit.md",
+    "status": "CURRENT"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "GENERATED_FROM",
+      "other": "phase-00",
+      "other_type": "phase",
+      "other_title": "Phase 0 — Initial State Audit",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-00"
+    },
+    {
+      "direction": "out",
+      "relationship": "PART_OF",
+      "other": "REPO-Ix-findings",
+      "other_type": "repository",
+      "other_title": "Ix-findings",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-findings"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "phase-00",
+      "other_type": "phase",
+      "other_title": "Phase 0 — Initial State Audit",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-00"
+    }
+  ]
+}

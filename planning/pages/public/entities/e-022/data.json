@@ -1,0 +1,33 @@
+{
+  "id": "E-022",
+  "type": "evidence",
+  "title": "placeholder-fit instability",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/e-022",
+  "summary": {
+    "id": "E-022",
+    "type": "evidence",
+    "title": "placeholder-fit instability",
+    "status": "HISTORICAL",
+    "phase": "phase-07",
+    "repository": "system-compass"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "SUPPORTS",
+      "other": "F-006",
+      "other_type": "finding",
+      "other_title": "Delayed-data blank persists on v0.3.0",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-006"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-11b62787a2c7",
+      "other_type": "file",
+      "other_title": "planning/evidence/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-11b62787a2c7"
+    }
+  ]
+}

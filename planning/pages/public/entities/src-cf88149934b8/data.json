@@ -1,0 +1,63 @@
+{
+  "id": "SRC-cf88149934b8",
+  "type": "file",
+  "title": "pr-packets/compass-f-key/README.md",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/src-cf88149934b8",
+  "summary": {
+    "id": "SRC-cf88149934b8",
+    "type": "file",
+    "title": "pr-packets/compass-f-key/README.md",
+    "status": "CURRENT"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "GENERATED_FROM",
+      "other": "phase-06",
+      "other_type": "phase",
+      "other_title": "Phase 6 — F-Key Source-Access Gate",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-06"
+    },
+    {
+      "direction": "in",
+      "relationship": "GENERATED_FROM",
+      "other": "phase-11",
+      "other_type": "phase",
+      "other_title": "Phase 11 — PR Packet Generation",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-11"
+    },
+    {
+      "direction": "out",
+      "relationship": "PART_OF",
+      "other": "REPO-Ix-findings",
+      "other_type": "repository",
+      "other_title": "Ix-findings",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-findings"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "phase-06",
+      "other_type": "phase",
+      "other_title": "Phase 6 — F-Key Source-Access Gate",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-06"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "phase-11",
+      "other_type": "phase",
+      "other_title": "Phase 11 — PR Packet Generation",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-11"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "PACKET-compass-f-key",
+      "other_type": "pr_packet",
+      "other_title": "compass-f-key",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/packet-compass-f-key"
+    }
+  ]
+}

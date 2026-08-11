@@ -1,0 +1,71 @@
+{
+  "id": "BRANCH-1c828029ee8b",
+  "type": "branch",
+  "title": "ix-infrastructure/Ix:main",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/branch-1c828029ee8b",
+  "summary": {
+    "id": "BRANCH-1c828029ee8b",
+    "type": "branch",
+    "title": "ix-infrastructure/Ix:main",
+    "status": "CURRENT"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "PART_OF",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "in",
+      "relationship": "INTRODUCED_BY",
+      "other": "COMMIT-ffe21f0",
+      "other_type": "commit",
+      "other_title": "ffe21f0",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-ffe21f0"
+    },
+    {
+      "direction": "in",
+      "relationship": "INTRODUCED_BY",
+      "other": "COMMIT-b25bf2e",
+      "other_type": "commit",
+      "other_title": "b25bf2e",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b25bf2e"
+    },
+    {
+      "direction": "in",
+      "relationship": "INTRODUCED_BY",
+      "other": "COMMIT-5488741",
+      "other_type": "commit",
+      "other_title": "5488741",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-5488741"
+    },
+    {
+      "direction": "out",
+      "relationship": "CURRENT_STATE_OF",
+      "other": "COMMIT-1292375548fb",
+      "other_type": "commit",
+      "other_title": "1292375548fb",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-1292375548fb"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-2a5998452c1a",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/manifest.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-2a5998452c1a"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-90ab8426282e",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-15/FINAL-PR-WORTHINESS-AUDIT.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-90ab8426282e"
+    }
+  ]
+}

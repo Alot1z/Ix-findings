@@ -1,0 +1,335 @@
+{
+  "id": "SRC-90ab8426282e",
+  "type": "file",
+  "title": "CLI-HANDOFF/phase-15/FINAL-PR-WORTHINESS-AUDIT.json",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/src-90ab8426282e",
+  "summary": {
+    "id": "SRC-90ab8426282e",
+    "type": "file",
+    "title": "CLI-HANDOFF/phase-15/FINAL-PR-WORTHINESS-AUDIT.json",
+    "status": "CURRENT"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "PART_OF",
+      "other": "REPO-Ix-findings",
+      "other_type": "repository",
+      "other_title": "Ix-findings",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-findings"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "BRANCH-1c828029ee8b",
+      "other_type": "branch",
+      "other_title": "ix-infrastructure/Ix:main",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-1c828029ee8b"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "BRANCH-7888482e155d",
+      "other_type": "branch",
+      "other_title": "ix-infrastructure/Ix:feat/ix-agent-skill",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-7888482e155d"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "BRANCH-bb1d25e4c9d1",
+      "other_type": "branch",
+      "other_title": "ix-infrastructure/Ix:feat/ix-remap-hardening",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-bb1d25e4c9d1"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "BRANCH-09d906f6088f",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix:fork/main",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-09d906f6088f"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "BRANCH-d12857f89099",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix:fork/feat/ix-agent-skill",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-d12857f89099"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "BRANCH-e3306154dffa",
+      "other_type": "branch",
+      "other_title": "ix-compass-dist:main",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-e3306154dffa"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "BRANCH-8a2cfa1a0dd7",
+      "other_type": "branch",
+      "other_title": "Ix-findings:master",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-8a2cfa1a0dd7"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "PR-358",
+      "other_type": "pr",
+      "other_title": "Ix PR #358",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-358"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "PR-362",
+      "other_type": "pr",
+      "other_title": "Ix PR #362",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-362"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "PR-365",
+      "other_type": "pr",
+      "other_title": "Ix PR #365",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-365"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "PR-366",
+      "other_type": "pr",
+      "other_title": "Ix PR #366",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-366"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "PR-368",
+      "other_type": "pr",
+      "other_title": "Ix PR #368",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-368"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "PR-372",
+      "other_type": "pr",
+      "other_title": "Ix PR #372",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-372"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "PR-373",
+      "other_type": "pr",
+      "other_title": "Ix PR #373",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-373"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "PR-375",
+      "other_type": "pr",
+      "other_title": "Ix PR #375",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-375"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "PR-378",
+      "other_type": "pr",
+      "other_title": "Ix PR #378",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-378"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "PR-389",
+      "other_type": "pr",
+      "other_title": "Ix PR #389",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-389"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "PR-390",
+      "other_type": "pr",
+      "other_title": "Ix PR #390",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-390"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "PR-391",
+      "other_type": "pr",
+      "other_title": "Ix PR #391",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-391"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "PR-392",
+      "other_type": "pr",
+      "other_title": "Ix PR #392",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-392"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "PR-393",
+      "other_type": "pr",
+      "other_title": "Ix PR #393",
+      "other_url": "https://alot1z.github.io/Ix-findings/prs/393/tests"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "PR-380",
+      "other_type": "pr",
+      "other_title": "Ix PR #380",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-380"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "PR-382",
+      "other_type": "pr",
+      "other_title": "Ix PR #382",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-382"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "PR-384",
+      "other_type": "pr",
+      "other_title": "Ix PR #384",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-384"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "PR-386",
+      "other_type": "pr",
+      "other_title": "Ix PR #386",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-386"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "PR-387",
+      "other_type": "pr",
+      "other_title": "Ix PR #387",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-387"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "PR-388",
+      "other_type": "pr",
+      "other_title": "Ix PR #388",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-388"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "ISSUE-371",
+      "other_type": "issue",
+      "other_title": "Ix issue #371",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/issue-371"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "ISSUE-376",
+      "other_type": "issue",
+      "other_title": "Ix issue #376",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/issue-376"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "ISSUE-57",
+      "other_type": "issue",
+      "other_title": "Ix issue #57",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/issue-57"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "ISSUE-374",
+      "other_type": "issue",
+      "other_title": "Ix issue #374",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/issue-374"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "ISSUE-377",
+      "other_type": "issue",
+      "other_title": "Ix issue #377",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/issue-377"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "ISSUE-379",
+      "other_type": "issue",
+      "other_title": "Ix issue #379",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/issue-379"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "ISSUE-383",
+      "other_type": "issue",
+      "other_title": "Ix issue #383",
+      "other_url": "https://alot1z.github.io/Ix-findings/issues/383"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "ISSUE-385",
+      "other_type": "issue",
+      "other_title": "Ix issue #385",
+      "other_url": "https://alot1z.github.io/Ix-findings/issues/385"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "ISSUE-219",
+      "other_type": "issue",
+      "other_title": "Ix issue #219",
+      "other_url": "https://alot1z.github.io/Ix-findings/issues/219"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "BRANCH-fork-ix-mcp",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix:feat/ix-mcp",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-fork-ix-mcp"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "COMMIT-606f18f",
+      "other_type": "commit",
+      "other_title": "606f18f",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-606f18f"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "COMMIT-1292375548fb",
+      "other_type": "commit",
+      "other_title": "1292375548fb",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-1292375548fb"
+    }
+  ]
+}

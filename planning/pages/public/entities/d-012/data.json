@@ -1,0 +1,32 @@
+{
+  "id": "D-012",
+  "type": "decision",
+  "title": "No-map chip timing",
+  "status": "OPEN",
+  "url": "https://alot1z.github.io/Ix-findings/entities/d-012",
+  "summary": {
+    "id": "D-012",
+    "type": "decision",
+    "title": "No-map chip timing",
+    "status": "OPEN",
+    "phase": "phase-final"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "ACCEPTED_BY",
+      "other": "S-020",
+      "other_type": "suggestion",
+      "other_title": "No-map hint chip with feature-detect on /__ix/remap",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-020"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-1b87df9736ba",
+      "other_type": "file",
+      "other_title": "planning/decisions/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-1b87df9736ba"
+    }
+  ]
+}

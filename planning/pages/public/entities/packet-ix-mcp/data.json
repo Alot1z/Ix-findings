@@ -1,0 +1,31 @@
+{
+  "id": "PACKET-ix-mcp",
+  "type": "pr_packet",
+  "title": "ix-mcp",
+  "status": "CONTRIBUTE_AFTER_REWORK",
+  "url": "https://alot1z.github.io/Ix-findings/entities/packet-ix-mcp",
+  "summary": {
+    "id": "PACKET-ix-mcp",
+    "type": "pr_packet",
+    "title": "ix-mcp",
+    "status": "CONTRIBUTE_AFTER_REWORK"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-b03e04308185",
+      "other_type": "file",
+      "other_title": "pr-packets/ix-mcp/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-b03e04308185"
+    },
+    {
+      "direction": "in",
+      "relationship": "PRESENTED_AS",
+      "other": "IMPL-MCP-FORK",
+      "other_type": "artifact",
+      "other_title": "ix mcp fork implementation",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/impl-mcp-fork"
+    }
+  ]
+}

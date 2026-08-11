@@ -1,0 +1,32 @@
+{
+  "id": "CAND-012",
+  "type": "contribution",
+  "title": "rebase remap branch",
+  "status": "DUPLICATE",
+  "url": "https://alot1z.github.io/Ix-findings/entities/cand-012",
+  "summary": {
+    "id": "CAND-012",
+    "type": "contribution",
+    "title": "rebase remap branch",
+    "status": "DUPLICATE",
+    "disposition": "F_DUPLICATE"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-5002aaf623b6",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-15/AUDIT-CANDIDATE-UNIVERSE.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-5002aaf623b6"
+    },
+    {
+      "direction": "out",
+      "relationship": "DUPLICATES",
+      "other": "PR-393",
+      "other_type": "pr",
+      "other_title": "Ix PR #393",
+      "other_url": "https://alot1z.github.io/Ix-findings/prs/393/tests"
+    }
+  ]
+}

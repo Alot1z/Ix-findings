@@ -1,0 +1,40 @@
+{
+  "id": "D-004",
+  "type": "decision",
+  "title": "Maintainer release notes count as Class A evidence",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/d-004",
+  "summary": {
+    "id": "D-004",
+    "type": "decision",
+    "title": "Maintainer release notes count as Class A evidence",
+    "status": "CURRENT",
+    "phase": "phase-03"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "DECIDES_FOR",
+      "other": "F-005",
+      "other_type": "finding",
+      "other_title": "#57 one-shot fit latch -> keyed refit (v0.2.0->v0.3.0)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-005"
+    },
+    {
+      "direction": "out",
+      "relationship": "DECIDES_FOR",
+      "other": "F-008",
+      "other_type": "finding",
+      "other_title": "Version-series mismatch in ix upgrade (#376)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-008"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-1b87df9736ba",
+      "other_type": "file",
+      "other_title": "planning/decisions/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-1b87df9736ba"
+    }
+  ]
+}

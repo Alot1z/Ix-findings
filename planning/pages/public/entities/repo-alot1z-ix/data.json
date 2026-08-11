@@ -1,0 +1,48 @@
+{
+  "id": "REPO-Alot1z-Ix",
+  "type": "repository",
+  "title": "Alot1z/Ix",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/repo-alot1z-ix",
+  "summary": {
+    "id": "REPO-Alot1z-Ix",
+    "type": "repository",
+    "title": "Alot1z/Ix",
+    "status": "CURRENT",
+    "url": "https://github.com/Alot1z/Ix"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "BRANCH-09d906f6088f",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix:fork/main",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-09d906f6088f"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "BRANCH-d12857f89099",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix:fork/feat/ix-agent-skill",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-d12857f89099"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-2a5998452c1a",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/manifest.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-2a5998452c1a"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "BRANCH-fork-ix-mcp",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix:feat/ix-mcp",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-fork-ix-mcp"
+    }
+  ]
+}

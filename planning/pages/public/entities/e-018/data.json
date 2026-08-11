@@ -1,0 +1,57 @@
+{
+  "id": "E-018",
+  "type": "evidence",
+  "title": "#371 source analysis",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/e-018",
+  "summary": {
+    "id": "E-018",
+    "type": "evidence",
+    "title": "#371 source analysis",
+    "status": "HISTORICAL",
+    "phase": "phase-04",
+    "repository": "ix-infrastructure/Ix"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "SUPPORTED_BY",
+      "other": "F-009",
+      "other_type": "finding",
+      "other_title": "patches command dead/unregistered (#371)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-009"
+    },
+    {
+      "direction": "out",
+      "relationship": "SUPPORTS",
+      "other": "F-009",
+      "other_type": "finding",
+      "other_title": "patches command dead/unregistered (#371)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-009"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTED_BY",
+      "other": "S-014",
+      "other_type": "suggestion",
+      "other_title": "Fix #371 (register or delete patches)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-014"
+    },
+    {
+      "direction": "out",
+      "relationship": "FOUND_IN",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-11b62787a2c7",
+      "other_type": "file",
+      "other_title": "planning/evidence/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-11b62787a2c7"
+    }
+  ]
+}

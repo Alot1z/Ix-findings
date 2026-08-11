@@ -1,0 +1,71 @@
+{
+  "id": "IMPL-REMAP-PR393",
+  "type": "artifact",
+  "title": "Remap hardening implementation",
+  "status": "PR_OPEN",
+  "url": "https://alot1z.github.io/Ix-findings/entities/impl-remap-pr393",
+  "summary": {
+    "id": "IMPL-REMAP-PR393",
+    "type": "artifact",
+    "title": "Remap hardening implementation",
+    "status": "PR_OPEN"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-0fae43e1c0ac",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-15/IMPLEMENTATION-QUALITY-MATRIX.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-0fae43e1c0ac"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-702f832ef02c",
+      "other_type": "file",
+      "other_title": "pr-packets/ix-remap-hardening/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-702f832ef02c"
+    },
+    {
+      "direction": "out",
+      "relationship": "IMPLEMENTED_BY",
+      "other": "PR-393",
+      "other_type": "pr",
+      "other_title": "Ix PR #393",
+      "other_url": "https://alot1z.github.io/Ix-findings/prs/393/tests"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF_IMPLEMENTATION",
+      "other": "SECTION-prs_393",
+      "other_type": "artifact",
+      "other_title": "PR #393 — remap hardening",
+      "other_url": "https://alot1z.github.io/Ix-findings/prs/393"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF_IMPLEMENTATION",
+      "other": "SECTION-prs_393_remap",
+      "other_type": "artifact",
+      "other_title": "PR #393 — remap endpoint",
+      "other_url": "https://alot1z.github.io/Ix-findings/prs/393/remap"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF_IMPLEMENTATION",
+      "other": "SECTION-prs_393_security",
+      "other_type": "artifact",
+      "other_title": "PR #393 — security",
+      "other_url": "https://alot1z.github.io/Ix-findings/prs/393/security"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF_IMPLEMENTATION",
+      "other": "SECTION-prs_393_tests",
+      "other_type": "artifact",
+      "other_title": "PR #393 — tests",
+      "other_url": "https://alot1z.github.io/Ix-findings/prs/393/tests"
+    }
+  ]
+}

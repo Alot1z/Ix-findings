@@ -1,0 +1,65 @@
+{
+  "id": "E-019",
+  "type": "evidence",
+  "title": "git divergence numbers",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/e-019",
+  "summary": {
+    "id": "E-019",
+    "type": "evidence",
+    "title": "git divergence numbers",
+    "status": "HISTORICAL",
+    "phase": "phase-final",
+    "repository": "ALL"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "SUPPORTED_BY",
+      "other": "S-002",
+      "other_type": "suggestion",
+      "other_title": "Base remap branch on origin/main, not stale local/fork main",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-002"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTED_BY",
+      "other": "S-016",
+      "other_type": "suggestion",
+      "other_title": "Sync fork main after remap push",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-016"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTED_BY",
+      "other": "S-025",
+      "other_type": "suggestion",
+      "other_title": "Stash the Ix overhaul to free the main worktree",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-025"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTED_BY",
+      "other": "S-026",
+      "other_type": "suggestion",
+      "other_title": "Base/compare remap against fork/main",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-026"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTED_BY",
+      "other": "S-028",
+      "other_type": "suggestion",
+      "other_title": "Push fork/main without first syncing",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-028"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-11b62787a2c7",
+      "other_type": "file",
+      "other_title": "planning/evidence/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-11b62787a2c7"
+    }
+  ]
+}

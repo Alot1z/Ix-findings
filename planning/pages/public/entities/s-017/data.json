@@ -1,0 +1,50 @@
+{
+  "id": "S-017",
+  "type": "suggestion",
+  "title": "Re-verify zoom multiplier (x1.1 vs x1.25)",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/s-017",
+  "summary": {
+    "id": "S-017",
+    "type": "suggestion",
+    "title": "Re-verify zoom multiplier (x1.1 vs x1.25)",
+    "status": "HISTORICAL",
+    "phase": "phase-07",
+    "repository": "system-compass",
+    "disposition": "DEFERRED"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "RESPONDS_TO",
+      "other": "F-013",
+      "other_type": "finding",
+      "other_title": "Zoom-in multiplier discrepancy (x1.25 observed vs x1.1 in constants)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-013"
+    },
+    {
+      "direction": "out",
+      "relationship": "APPLIES_TO",
+      "other": "F-013",
+      "other_type": "finding",
+      "other_title": "Zoom-in multiplier discrepancy (x1.25 observed vs x1.1 in constants)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-013"
+    },
+    {
+      "direction": "out",
+      "relationship": "SUPPORTED_BY",
+      "other": "E-011",
+      "other_type": "evidence",
+      "other_title": "zoom-contract live checks",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-011"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-fd02a1972a73",
+      "other_type": "file",
+      "other_title": "planning/suggestions/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-fd02a1972a73"
+    }
+  ]
+}

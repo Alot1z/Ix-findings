@@ -1,0 +1,107 @@
+{
+  "meta": {
+    "generated": "2026-08-11",
+    "sourceRevision": "1292375548fb8f4431ac5afc34c68fe2573434d1",
+    "count": 14
+  },
+  "items": [
+    {
+      "id": "D-001",
+      "title": "Base remap branch on origin/main",
+      "status": "DECIDED",
+      "chosen": "origin/main (c4f8fea)",
+      "rationale": "origin/main is the canonical target; fork stale"
+    },
+    {
+      "id": "D-002",
+      "title": "Dedicated worktree for remap work",
+      "status": "DECIDED",
+      "chosen": "dedicated worktree",
+      "rationale": "complete isolation; no stash risk"
+    },
+    {
+      "id": "D-003",
+      "title": "Four-tier evidence classification A/B/C/D",
+      "status": "DECIDED",
+      "chosen": "A=source, B=artifact/runtime, C=reconstruction, D=inference",
+      "rationale": "credibility; prevents overclaiming"
+    },
+    {
+      "id": "D-004",
+      "title": "Maintainer release notes count as Class A evidence",
+      "status": "DECIDED",
+      "chosen": "Class A for asserted behavior, not implementation details",
+      "rationale": "authoritative about behavior, not filenames/line numbers"
+    },
+    {
+      "id": "D-005",
+      "title": "F-key = keyboard exposure only, no new camera system",
+      "status": "DECIDED",
+      "chosen": "keyboard case + callback + help entry",
+      "rationale": "fit system invariant; 0 key already works"
+    },
+    {
+      "id": "D-006",
+      "title": "Delayed-data stays separate from F-key",
+      "status": "DECIDED",
+      "chosen": "separate PRs/packets",
+      "rationale": "different root causes/reviews"
+    },
+    {
+      "id": "D-007",
+      "title": "ix-compass-dist is a distribution channel, not source",
+      "status": "DECIDED",
+      "chosen": "never manually modify its artifacts",
+      "rationale": "artifacts built from system-compass"
+    },
+    {
+      "id": "D-008",
+      "title": "Ix-findings is a standalone evidence repo",
+      "status": "DECIDED",
+      "chosen": "standalone Git repo, no upstream",
+      "rationale": "keeps evidence separate; shareable"
+    },
+    {
+      "id": "D-009",
+      "title": "No remote operation without explicit authorization",
+      "status": "DECIDED",
+      "chosen": "PR-ready means local-only; publishing requires go-ahead",
+      "rationale": "user controls the remote workflow"
+    },
+    {
+      "id": "D-010",
+      "title": "Where to prep the Compass port",
+      "status": "OPEN",
+      "chosen": null,
+      "rationale": "recommended: standalone (avoids wrong-layer review)"
+    },
+    {
+      "id": "D-011",
+      "title": "Compass PR scope",
+      "status": "OPEN",
+      "chosen": null,
+      "rationale": "recommended: F key + help + chip (drill reframe ships via #57)"
+    },
+    {
+      "id": "D-012",
+      "title": "No-map chip timing",
+      "status": "OPEN",
+      "chosen": null,
+      "rationale": "recommended: defer (S-020)"
+    },
+    {
+      "id": "D-013",
+      "title": "Stopgap compass-patch fate",
+      "status": "OPEN",
+      "chosen": null,
+      "rationale": "recommended: keep local + expiry (S-011)"
+    },
+    {
+      "id": "D-014",
+      "title": "Access path for system-compass",
+      "status": "OPEN",
+      "chosen": null,
+      "rationale": "recommended: ask KageBinary (offered review)"
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "id": "SRC-8a458dae3346",
+  "type": "file",
+  "title": "CLI-HANDOFF/phase-15/PHASE-FINAL-REPORT.md",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/src-8a458dae3346",
+  "summary": {
+    "id": "SRC-8a458dae3346",
+    "type": "file",
+    "title": "CLI-HANDOFF/phase-15/PHASE-FINAL-REPORT.md",
+    "status": "CURRENT"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "GENERATED_FROM",
+      "other": "phase-15",
+      "other_type": "phase",
+      "other_title": "Phase 15 — Final Adversarial PR-Worthiness Audit",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-15"
+    },
+    {
+      "direction": "out",
+      "relationship": "PART_OF",
+      "other": "REPO-Ix-findings",
+      "other_type": "repository",
+      "other_title": "Ix-findings",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-findings"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "phase-15",
+      "other_type": "phase",
+      "other_title": "Phase 15 — Final Adversarial PR-Worthiness Audit",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-15"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "CONTRA-002",
+      "other_type": "artifact",
+      "other_title": "MCP contribution readiness",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/contra-002"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "CONTRA-003",
+      "other_type": "artifact",
+      "other_title": "Remap readiness",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/contra-003"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "CONTRA-004",
+      "other_type": "artifact",
+      "other_title": "Phase ladder closure",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/contra-004"
+    }
+  ]
+}

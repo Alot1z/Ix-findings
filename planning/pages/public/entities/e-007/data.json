@@ -1,0 +1,49 @@
+{
+  "id": "E-007",
+  "type": "evidence",
+  "title": "fit-constants extraction",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/e-007",
+  "summary": {
+    "id": "E-007",
+    "type": "evidence",
+    "title": "fit-constants extraction",
+    "status": "HISTORICAL",
+    "phase": "phase-05",
+    "repository": "system-compass"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "SUPPORTED_BY",
+      "other": "F-004",
+      "other_type": "finding",
+      "other_title": "Fit math + constants invariant",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-004"
+    },
+    {
+      "direction": "out",
+      "relationship": "SUPPORTS",
+      "other": "F-004",
+      "other_type": "finding",
+      "other_title": "Fit math + constants invariant",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-004"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTED_BY",
+      "other": "S-007",
+      "other_type": "suggestion",
+      "other_title": "F-key = keyboard exposure only; no CameraStore, no duplicate fit math",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-007"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-11b62787a2c7",
+      "other_type": "file",
+      "other_title": "planning/evidence/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-11b62787a2c7"
+    }
+  ]
+}

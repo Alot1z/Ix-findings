@@ -1,0 +1,82 @@
+{
+  "id": "phase-02",
+  "type": "phase",
+  "title": "Phase 2 — Remap Finalization",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/phase-02",
+  "summary": {
+    "id": "phase-02",
+    "type": "phase",
+    "title": "Phase 2 — Remap Finalization",
+    "category": "IMPLEMENTATION",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "number": 2
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "ENABLES",
+      "other": "phase-01",
+      "other_type": "phase",
+      "other_title": "Phase 1 — Fork Synchronization",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-01"
+    },
+    {
+      "direction": "out",
+      "relationship": "DEPENDS_ON",
+      "other": "phase-01",
+      "other_type": "phase",
+      "other_title": "Phase 1 — Fork Synchronization",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-01"
+    },
+    {
+      "direction": "out",
+      "relationship": "ENABLES",
+      "other": "phase-03",
+      "other_type": "phase",
+      "other_title": "Phase 3 — Issue #376 Investigation",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-03"
+    },
+    {
+      "direction": "out",
+      "relationship": "GENERATED_FROM",
+      "other": "SRC-269f8ebcaf45",
+      "other_type": "file",
+      "other_title": "state/phase-2-remap-report.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-269f8ebcaf45"
+    },
+    {
+      "direction": "out",
+      "relationship": "GENERATED_FROM",
+      "other": "SRC-702f832ef02c",
+      "other_type": "file",
+      "other_title": "pr-packets/ix-remap-hardening/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-702f832ef02c"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-838d6e0c0428",
+      "other_type": "file",
+      "other_title": "planning/maps/phases.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-838d6e0c0428"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-269f8ebcaf45",
+      "other_type": "file",
+      "other_title": "state/phase-2-remap-report.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-269f8ebcaf45"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-702f832ef02c",
+      "other_type": "file",
+      "other_title": "pr-packets/ix-remap-hardening/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-702f832ef02c"
+    }
+  ]
+}

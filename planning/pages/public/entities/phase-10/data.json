@@ -1,0 +1,90 @@
+{
+  "id": "phase-10",
+  "type": "phase",
+  "title": "Phase 10 — GitHub History & Maintainer Context",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/phase-10",
+  "summary": {
+    "id": "phase-10",
+    "type": "phase",
+    "title": "Phase 10 — GitHub History & Maintainer Context",
+    "category": "GITHUB",
+    "status": "HISTORICAL",
+    "repository": "ALL",
+    "number": 10
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "ENABLES",
+      "other": "phase-09",
+      "other_type": "phase",
+      "other_title": "Phase 9 — Ix-findings Evidence Repository",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-09"
+    },
+    {
+      "direction": "out",
+      "relationship": "DEPENDS_ON",
+      "other": "phase-04",
+      "other_type": "phase",
+      "other_title": "Phase 4 — Full Security & Historical Audit",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-04"
+    },
+    {
+      "direction": "out",
+      "relationship": "ENABLES",
+      "other": "phase-11",
+      "other_type": "phase",
+      "other_title": "Phase 11 — PR Packet Generation",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-11"
+    },
+    {
+      "direction": "in",
+      "relationship": "DEPENDS_ON",
+      "other": "phase-11",
+      "other_type": "phase",
+      "other_title": "Phase 11 — PR Packet Generation",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-11"
+    },
+    {
+      "direction": "out",
+      "relationship": "GENERATED_FROM",
+      "other": "SRC-0581f2a0e273",
+      "other_type": "file",
+      "other_title": "github/maintainer-context.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-0581f2a0e273"
+    },
+    {
+      "direction": "out",
+      "relationship": "GENERATED_FROM",
+      "other": "SRC-cc8543919226",
+      "other_type": "file",
+      "other_title": "github/historical-prs.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-cc8543919226"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-838d6e0c0428",
+      "other_type": "file",
+      "other_title": "planning/maps/phases.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-838d6e0c0428"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-0581f2a0e273",
+      "other_type": "file",
+      "other_title": "github/maintainer-context.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-0581f2a0e273"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-cc8543919226",
+      "other_type": "file",
+      "other_title": "github/historical-prs.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-cc8543919226"
+    }
+  ]
+}

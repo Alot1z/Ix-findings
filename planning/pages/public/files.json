@@ -1,0 +1,162 @@
+{
+  "meta": {
+    "generated": "2026-08-11",
+    "sourceRevision": "1292375548fb8f4431ac5afc34c68fe2573434d1",
+    "count": 17
+  },
+  "items": [
+    {
+      "path": "ix-cli/src/cli/commands/mcp.ts",
+      "repository": "Alot1z/Ix",
+      "commit": "36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+      "symbol": "mcp command registration",
+      "start_line": 1,
+      "end_line": 63,
+      "url": "https://github.com/Alot1z/Ix/blob/36c7c7eccd8068d48df4f61394b42a3ffa62483c/ix-cli/src/cli/commands/mcp.ts#L1-L63"
+    },
+    {
+      "path": "ix-cli/src/cli/mcp/server.ts",
+      "repository": "Alot1z/Ix",
+      "commit": "66111917a2a58437c91372616f98928876121395",
+      "symbol": "McpServer (stdio transport)",
+      "start_line": 1,
+      "end_line": 440,
+      "url": "https://github.com/Alot1z/Ix/blob/66111917a2a58437c91372616f98928876121395/ix-cli/src/cli/mcp/server.ts#L1-L440"
+    },
+    {
+      "path": "ix-cli/src/cli/mcp/protocol.ts",
+      "repository": "Alot1z/Ix",
+      "commit": "1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+      "symbol": "protocol framing, line cap, batch rejection",
+      "start_line": 1,
+      "end_line": 120,
+      "url": "https://github.com/Alot1z/Ix/blob/1a5b0b93c9e8871610370c0f36212be8f6cf6980/ix-cli/src/cli/mcp/protocol.ts#L1-L120"
+    },
+    {
+      "path": "ix-cli/src/cli/mcp/tools.ts",
+      "repository": "Alot1z/Ix",
+      "commit": "36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+      "symbol": "MCP tool registry (ix graph tools)",
+      "start_line": 1,
+      "end_line": 355,
+      "url": "https://github.com/Alot1z/Ix/blob/36c7c7eccd8068d48df4f61394b42a3ffa62483c/ix-cli/src/cli/mcp/tools.ts#L1-L355"
+    },
+    {
+      "path": "ix-cli/src/cli/mcp/stdio-main.ts",
+      "repository": "Alot1z/Ix",
+      "commit": "66111917a2a58437c91372616f98928876121395",
+      "symbol": "stdio entry point",
+      "start_line": 1,
+      "end_line": 36,
+      "url": "https://github.com/Alot1z/Ix/blob/66111917a2a58437c91372616f98928876121395/ix-cli/src/cli/mcp/stdio-main.ts#L1-L36"
+    },
+    {
+      "path": "ix-cli/src/cli/mcp/cli-executor.ts",
+      "repository": "Alot1z/Ix",
+      "commit": "1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+      "symbol": "CLI subprocess executor, cancellation, tree-kill",
+      "start_line": 1,
+      "end_line": 250,
+      "url": "https://github.com/Alot1z/Ix/blob/1a5b0b93c9e8871610370c0f36212be8f6cf6980/ix-cli/src/cli/mcp/cli-executor.ts#L1-L250"
+    },
+    {
+      "path": "ix-cli/src/cli/mcp/types.ts",
+      "repository": "Alot1z/Ix",
+      "commit": "36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+      "symbol": "MCP type contracts",
+      "start_line": 1,
+      "end_line": 88,
+      "url": "https://github.com/Alot1z/Ix/blob/36c7c7eccd8068d48df4f61394b42a3ffa62483c/ix-cli/src/cli/mcp/types.ts#L1-L88"
+    },
+    {
+      "path": "ix-cli/src/cli/__tests__/mcp-abuse.test.ts",
+      "repository": "Alot1z/Ix",
+      "commit": "1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+      "symbol": "protocol-abuse matrix",
+      "start_line": 1,
+      "end_line": 236,
+      "url": "https://github.com/Alot1z/Ix/blob/1a5b0b93c9e8871610370c0f36212be8f6cf6980/ix-cli/src/cli/__tests__/mcp-abuse.test.ts#L1-L236"
+    },
+    {
+      "path": "ix-cli/src/cli/__tests__/mcp-stdio.integration.test.ts",
+      "repository": "Alot1z/Ix",
+      "commit": "66111917a2a58437c91372616f98928876121395",
+      "symbol": "stdio integration tests",
+      "start_line": 1,
+      "end_line": 128,
+      "url": "https://github.com/Alot1z/Ix/blob/66111917a2a58437c91372616f98928876121395/ix-cli/src/cli/__tests__/mcp-stdio.integration.test.ts#L1-L128"
+    },
+    {
+      "path": "ix-cli/src/cli/__tests__/mcp-protocol.test.ts",
+      "repository": "Alot1z/Ix",
+      "commit": "1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+      "symbol": "protocol tests",
+      "start_line": 1,
+      "end_line": 117,
+      "url": "https://github.com/Alot1z/Ix/blob/1a5b0b93c9e8871610370c0f36212be8f6cf6980/ix-cli/src/cli/__tests__/mcp-protocol.test.ts#L1-L117"
+    },
+    {
+      "path": "ix-cli/src/cli/__tests__/mcp-server.test.ts",
+      "repository": "Alot1z/Ix",
+      "commit": "66111917a2a58437c91372616f98928876121395",
+      "symbol": "server tests",
+      "start_line": 1,
+      "end_line": 310,
+      "url": "https://github.com/Alot1z/Ix/blob/66111917a2a58437c91372616f98928876121395/ix-cli/src/cli/__tests__/mcp-server.test.ts#L1-L310"
+    },
+    {
+      "path": "ix-cli/src/cli/__tests__/mcp-cli-executor.test.ts",
+      "repository": "Alot1z/Ix",
+      "commit": "66111917a2a58437c91372616f98928876121395",
+      "symbol": "executor tests",
+      "start_line": 1,
+      "end_line": 123,
+      "url": "https://github.com/Alot1z/Ix/blob/66111917a2a58437c91372616f98928876121395/ix-cli/src/cli/__tests__/mcp-cli-executor.test.ts#L1-L123"
+    },
+    {
+      "path": "ix-cli/src/cli/__tests__/mcp-command.test.ts",
+      "repository": "Alot1z/Ix",
+      "commit": "36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+      "symbol": "command tests",
+      "start_line": 1,
+      "end_line": 67,
+      "url": "https://github.com/Alot1z/Ix/blob/36c7c7eccd8068d48df4f61394b42a3ffa62483c/ix-cli/src/cli/__tests__/mcp-command.test.ts#L1-L67"
+    },
+    {
+      "path": "ix-cli/src/cli/commands/view.ts",
+      "repository": "ix-infrastructure/Ix",
+      "commit": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+      "symbol": "serverScript — /__ix/remap + loopback guards",
+      "start_line": 181,
+      "end_line": 347,
+      "url": "https://github.com/ix-infrastructure/Ix/blob/a6a47267af21a49d6942ee6e07e18d1d0a82517b/ix-cli/src/cli/commands/view.ts#L181-L347"
+    },
+    {
+      "path": "ix-cli/test/view-server.test.ts",
+      "repository": "ix-infrastructure/Ix",
+      "commit": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+      "symbol": "remap guard-matrix tests",
+      "start_line": 1,
+      "end_line": 178,
+      "url": "https://github.com/ix-infrastructure/Ix/blob/a6a47267af21a49d6942ee6e07e18d1d0a82517b/ix-cli/test/view-server.test.ts#L1-L178"
+    },
+    {
+      "path": "skills/ix/scripts/bootstrap.sh",
+      "repository": "ix-infrastructure/Ix",
+      "commit": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+      "symbol": "is_windows() WSL fix",
+      "start_line": 42,
+      "end_line": 45,
+      "url": "https://github.com/ix-infrastructure/Ix/blob/a6a47267af21a49d6942ee6e07e18d1d0a82517b/skills/ix/scripts/bootstrap.sh#L42-L45"
+    },
+    {
+      "path": "docs/api/README.md",
+      "repository": "ix-infrastructure/Ix",
+      "commit": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+      "symbol": "POST /__ix/remap API documentation",
+      "start_line": 478,
+      "end_line": 488,
+      "url": "https://github.com/ix-infrastructure/Ix/blob/a6a47267af21a49d6942ee6e07e18d1d0a82517b/docs/api/README.md#L478-L488"
+    }
+  ]
+}

@@ -1,0 +1,144 @@
+{
+  "meta": {
+    "generated": "2026-08-11",
+    "sourceRevision": "1292375548fb8f4431ac5afc34c68fe2573434d1",
+    "count": 15
+  },
+  "items": [
+    {
+      "id": "F-001",
+      "title": "Keyboard handler invariant across 4 releases",
+      "evidence_class": "B",
+      "status": "REPRODUCED",
+      "registry_status": "REPRODUCED",
+      "summary": "Keyboard handler invariant across 4 releases. Current semantic status: CURRENT.",
+      "recommendation": "Keyboard handler invariant across 4 releases affects system-compass/keyboard. Historical registry status was REPRODUCED; recommendation: Use as evidence that a keyboard addition is conflict-free."
+    },
+    {
+      "id": "F-002",
+      "title": "F/f genuinely unbound in all releases",
+      "evidence_class": "B",
+      "status": "REPRODUCED",
+      "registry_status": "REPRODUCED",
+      "summary": "F/f genuinely unbound in all releases. Current semantic status: CURRENT.",
+      "recommendation": "F/f genuinely unbound in all releases affects system-compass/keyboard. Historical registry status was REPRODUCED; recommendation: F-key addition has zero historical conflict."
+    },
+    {
+      "id": "F-003",
+      "title": "KeyboardHelp byte-identical, no F entry",
+      "evidence_class": "B",
+      "status": "VERIFIED",
+      "registry_status": "VERIFIED",
+      "summary": "KeyboardHelp byte-identical, no F entry. Current semantic status: CURRENT.",
+      "recommendation": "KeyboardHelp byte-identical, no F entry affects system-compass/keyboard-help. Historical registry status was VERIFIED; recommendation: Add {keys:['F'], label:'Fit view'} when source access exists."
+    },
+    {
+      "id": "F-004",
+      "title": "Fit math + constants invariant",
+      "evidence_class": "B",
+      "status": "VERIFIED",
+      "registry_status": "VERIFIED",
+      "summary": "Fit math + constants invariant. Current semantic status: CURRENT.",
+      "recommendation": "Fit math + constants invariant affects system-compass/camera-fit. Historical registry status was VERIFIED; recommendation: F-key reuses existing fit math; no duplication (D-005)."
+    },
+    {
+      "id": "F-005",
+      "title": "#57 one-shot fit latch -> keyed refit (v0.2.0->v0.3.0)",
+      "evidence_class": "A+B",
+      "status": "CONFIRMED",
+      "registry_status": "CONFIRMED",
+      "summary": "#57 one-shot fit latch -> keyed refit (v0.2.0->v0.3.0). Current semantic status: CURRENT.",
+      "recommendation": "#57 one-shot fit latch -> keyed refit (v0.2.0->v0.3.0) affects system-compass/camera-fit-lifecycle. Historical registry status was CONFIRMED; recommendation: F-key must NOT add auto-frame or drill reframe (duplicates #57)."
+    },
+    {
+      "id": "F-006",
+      "title": "Delayed-data blank persists on v0.3.0",
+      "evidence_class": "B+C",
+      "status": "REPRODUCED_LIVE",
+      "registry_status": "REPRODUCED_LIVE",
+      "summary": "Delayed-data blank persists on v0.3.0. Current semantic status: CURRENT.",
+      "recommendation": "Delayed-data blank persists on v0.3.0 affects system-compass/camera-fit-lifecycle. Historical registry status was REPRODUCED_LIVE; recommendation: Separate Compass issue/PR; call out as known limitation in F-key PR; do not fold into F-key (D-006)."
+    },
+    {
+      "id": "F-007",
+      "title": "Region-rollup aggregate formation is timing-dependent",
+      "evidence_class": "B",
+      "status": "OBSERVED",
+      "registry_status": "OBSERVED",
+      "summary": "Region-rollup aggregate formation is timing-dependent. Current semantic status: CURRENT.",
+      "recommendation": "Region-rollup aggregate formation is timing-dependent affects system-compass/region-rollup. Historical registry status was OBSERVED; recommendation: Investigate rollup decision timing after data completes."
+    },
+    {
+      "id": "F-008",
+      "title": "Version-series mismatch in ix upgrade (#376)",
+      "evidence_class": "A",
+      "status": "FIXED_UPSTREAM",
+      "registry_status": "FIXED_UPSTREAM",
+      "summary": "Version-series mismatch in ix upgrade (#376). Current semantic status: RESOLVED.",
+      "recommendation": "Version-series mismatch in ix upgrade (#376) affects ix-infrastructure/Ix/upgrade. Historical registry status was FIXED_UPSTREAM; recommendation: RESOLVED 2026-08-11: #391 stamps $VERSION+release.<sha> and skips comparison for release bundles (supersedes Option A)."
+    },
+    {
+      "id": "F-009",
+      "title": "patches command dead/unregistered (#371)",
+      "evidence_class": "A",
+      "status": "FIXED_UPSTREAM",
+      "registry_status": "FIXED_UPSTREAM",
+      "summary": "patches command dead/unregistered (#371). Current semantic status: RESOLVED.",
+      "recommendation": "patches command dead/unregistered (#371) affects ix-infrastructure/Ix/cli-registration. Historical registry status was FIXED_UPSTREAM; recommendation: RESOLVED 2026-08-11: #390 registers patches in oss.ts (OSS path), drops from PRO_COMMANDS."
+    },
+    {
+      "id": "F-010",
+      "title": "Loopback-hardened /__ix/remap endpoint (implemented)",
+      "evidence_class": "A",
+      "status": "PR_OPEN",
+      "registry_status": "PR_OPEN",
+      "summary": "Loopback-hardened /__ix/remap endpoint (implemented). Current semantic status: PR_OPEN.",
+      "recommendation": "Loopback-hardened /__ix/remap endpoint (implemented) affects ix-infrastructure/Ix/view-server. Historical registry status was PR_OPEN; recommendation: PR #393 open since 2026-08-11 — awaiting maintainer review."
+    },
+    {
+      "id": "F-011",
+      "title": "WSL bootstrap fix",
+      "evidence_class": "A",
+      "status": "IN_PR_393",
+      "registry_status": "IN_PR_393",
+      "summary": "WSL bootstrap fix. Current semantic status: IN_PR.",
+      "recommendation": "WSL bootstrap fix affects ix-infrastructure/Ix/bootstrap. Historical registry status was IN_PR_393; recommendation: Shipped in remap PR #393 (open, awaiting review)."
+    },
+    {
+      "id": "F-012",
+      "title": "Dead node_ok removal",
+      "evidence_class": "A",
+      "status": "IN_PR_393",
+      "registry_status": "IN_PR_393",
+      "summary": "Dead node_ok removal. Current semantic status: IN_PR.",
+      "recommendation": "Dead node_ok removal affects ix-infrastructure/Ix/bootstrap. Historical registry status was IN_PR_393; recommendation: Shipped in remap PR #393 (open, awaiting review)."
+    },
+    {
+      "id": "F-013",
+      "title": "Zoom-in multiplier discrepancy (x1.25 observed vs x1.1 in constants)",
+      "evidence_class": "D",
+      "status": "INCONCLUSIVE",
+      "registry_status": "INCONCLUSIVE",
+      "summary": "Zoom-in multiplier discrepancy (x1.25 observed vs x1.1 in constants). Current semantic status: UNSUPPORTED.",
+      "recommendation": "Zoom-in multiplier discrepancy (x1.25 observed vs x1.1 in constants) affects system-compass/camera-zoom. Historical registry status was INCONCLUSIVE; recommendation: Re-verify with source access or a dedicated experiment before claiming anything."
+    },
+    {
+      "id": "N-001",
+      "title": "Evidence registry duplicate IDs (E-014, E-015)",
+      "evidence_class": "A",
+      "status": "OPEN",
+      "registry_status": "OPEN",
+      "summary": "Evidence registry duplicate IDs (E-014, E-015). Current semantic status: OPEN.",
+      "recommendation": "Evidence registry duplicate IDs (E-014, E-015) affects Ix-findings/data-quality. Historical registry status was OPEN; recommendation: Renumber second set to E-029/E-030."
+    },
+    {
+      "id": "N-002",
+      "title": "Fork-main is 7 commits behind upstream",
+      "evidence_class": "A",
+      "status": "OPEN",
+      "registry_status": "OPEN",
+      "summary": "Fork-main is 7 commits behind upstream. Current semantic status: OPEN.",
+      "recommendation": "Fork-main is 7 commits behind upstream affects Ix/fork-management. Historical registry status was OPEN; recommendation: Sync fork main when convenient."
+    }
+  ]
+}

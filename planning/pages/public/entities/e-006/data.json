@@ -1,0 +1,49 @@
+{
+  "id": "E-006",
+  "type": "evidence",
+  "title": "KeyboardHelp extraction",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/e-006",
+  "summary": {
+    "id": "E-006",
+    "type": "evidence",
+    "title": "KeyboardHelp extraction",
+    "status": "HISTORICAL",
+    "phase": "phase-05",
+    "repository": "system-compass"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "SUPPORTED_BY",
+      "other": "F-003",
+      "other_type": "finding",
+      "other_title": "KeyboardHelp byte-identical, no F entry",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-003"
+    },
+    {
+      "direction": "out",
+      "relationship": "SUPPORTS",
+      "other": "F-003",
+      "other_type": "finding",
+      "other_title": "KeyboardHelp byte-identical, no F entry",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-003"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTED_BY",
+      "other": "S-007",
+      "other_type": "suggestion",
+      "other_title": "F-key = keyboard exposure only; no CameraStore, no duplicate fit math",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-007"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-11b62787a2c7",
+      "other_type": "file",
+      "other_title": "planning/evidence/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-11b62787a2c7"
+    }
+  ]
+}

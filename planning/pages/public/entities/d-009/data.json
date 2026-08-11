@@ -1,0 +1,32 @@
+{
+  "id": "D-009",
+  "type": "decision",
+  "title": "No remote operation without explicit authorization",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/d-009",
+  "summary": {
+    "id": "D-009",
+    "type": "decision",
+    "title": "No remote operation without explicit authorization",
+    "status": "CURRENT",
+    "phase": "phase-01"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "ACCEPTED_BY",
+      "other": "S-016",
+      "other_type": "suggestion",
+      "other_title": "Sync fork main after remap push",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-016"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-1b87df9736ba",
+      "other_type": "file",
+      "other_title": "planning/decisions/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-1b87df9736ba"
+    }
+  ]
+}

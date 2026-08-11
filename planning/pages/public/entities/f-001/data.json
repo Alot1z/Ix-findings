@@ -1,0 +1,128 @@
+{
+  "id": "F-001",
+  "type": "finding",
+  "title": "Keyboard handler invariant across 4 releases",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/f-001",
+  "summary": {
+    "id": "F-001",
+    "type": "finding",
+    "title": "Keyboard handler invariant across 4 releases",
+    "status": "CURRENT",
+    "repository": "system-compass"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "SUPPORTED_BY",
+      "other": "E-005",
+      "other_type": "evidence",
+      "other_title": "keyboard switch byte-identity",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-005"
+    },
+    {
+      "direction": "out",
+      "relationship": "RESPONDS_TO",
+      "other": "S-007",
+      "other_type": "suggestion",
+      "other_title": "F-key = keyboard exposure only; no CameraStore, no duplicate fit math",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-007"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTS",
+      "other": "E-001",
+      "other_type": "evidence",
+      "other_title": "compass-0.1.0.tar.gz",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-001"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTS",
+      "other": "E-002",
+      "other_type": "evidence",
+      "other_title": "compass-0.1.1.tar.gz",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-002"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTS",
+      "other": "E-003",
+      "other_type": "evidence",
+      "other_title": "compass-0.2.0.tar.gz",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-003"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTS",
+      "other": "E-004",
+      "other_type": "evidence",
+      "other_title": "compass-0.3.0.tar.gz",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-004"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTS",
+      "other": "E-005",
+      "other_type": "evidence",
+      "other_title": "keyboard switch byte-identity",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-005"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTS",
+      "other": "E-010",
+      "other_type": "evidence",
+      "other_title": "F-key PoC (patched v0.3.0)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-010"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTS",
+      "other": "E-025",
+      "other_type": "evidence",
+      "other_title": "F-key source-equivalent spec",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-025"
+    },
+    {
+      "direction": "in",
+      "relationship": "APPLIES_TO",
+      "other": "S-007",
+      "other_type": "suggestion",
+      "other_title": "F-key = keyboard exposure only; no CameraStore, no duplicate fit math",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-007"
+    },
+    {
+      "direction": "in",
+      "relationship": "DECIDES_FOR",
+      "other": "D-005",
+      "other_type": "decision",
+      "other_title": "F-key = keyboard exposure only, no new camera system",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/d-005"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-125a277e8e67",
+      "other_type": "file",
+      "other_title": "planning/findings/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-125a277e8e67"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-185924b8ebcf",
+      "other_type": "file",
+      "other_title": "comparisons/keyboard/reconstruction.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-185924b8ebcf"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-e50802750741",
+      "other_type": "file",
+      "other_title": "comparisons/historical-matrix.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-e50802750741"
+    }
+  ]
+}

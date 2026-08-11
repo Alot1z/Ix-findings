@@ -1,0 +1,32 @@
+{
+  "id": "D-011",
+  "type": "decision",
+  "title": "Compass PR scope",
+  "status": "OPEN",
+  "url": "https://alot1z.github.io/Ix-findings/entities/d-011",
+  "summary": {
+    "id": "D-011",
+    "type": "decision",
+    "title": "Compass PR scope",
+    "status": "OPEN",
+    "phase": "phase-final"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "DECIDES_FOR",
+      "other": "F-005",
+      "other_type": "finding",
+      "other_title": "#57 one-shot fit latch -> keyed refit (v0.2.0->v0.3.0)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-005"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-1b87df9736ba",
+      "other_type": "file",
+      "other_title": "planning/decisions/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-1b87df9736ba"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "id": "S-020",
+  "type": "suggestion",
+  "title": "No-map hint chip with feature-detect on /__ix/remap",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/s-020",
+  "summary": {
+    "id": "S-020",
+    "type": "suggestion",
+    "title": "No-map hint chip with feature-detect on /__ix/remap",
+    "status": "HISTORICAL",
+    "phase": "phase-final",
+    "repository": "system-compass",
+    "disposition": "DEFERRED"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "SUPPORTED_BY",
+      "other": "E-014",
+      "other_type": "evidence",
+      "other_title": "remap diff c021b52",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-014"
+    },
+    {
+      "direction": "in",
+      "relationship": "ACCEPTED_BY",
+      "other": "D-012",
+      "other_type": "decision",
+      "other_title": "No-map chip timing",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/d-012"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-fd02a1972a73",
+      "other_type": "file",
+      "other_title": "planning/suggestions/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-fd02a1972a73"
+    }
+  ]
+}

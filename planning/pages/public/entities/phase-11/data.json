@@ -1,0 +1,122 @@
+{
+  "id": "phase-11",
+  "type": "phase",
+  "title": "Phase 11 — PR Packet Generation",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/phase-11",
+  "summary": {
+    "id": "phase-11",
+    "type": "phase",
+    "title": "Phase 11 — PR Packet Generation",
+    "category": "PR PREPARATION",
+    "status": "HISTORICAL",
+    "repository": "ALL",
+    "number": 11
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "ENABLES",
+      "other": "phase-10",
+      "other_type": "phase",
+      "other_title": "Phase 10 — GitHub History & Maintainer Context",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-10"
+    },
+    {
+      "direction": "out",
+      "relationship": "DEPENDS_ON",
+      "other": "phase-10",
+      "other_type": "phase",
+      "other_title": "Phase 10 — GitHub History & Maintainer Context",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-10"
+    },
+    {
+      "direction": "out",
+      "relationship": "ENABLES",
+      "other": "phase-12",
+      "other_type": "phase",
+      "other_title": "Phase 12 — Pre-Publish Verification Gate",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-12"
+    },
+    {
+      "direction": "in",
+      "relationship": "DEPENDS_ON",
+      "other": "phase-12",
+      "other_type": "phase",
+      "other_title": "Phase 12 — Pre-Publish Verification Gate",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-12"
+    },
+    {
+      "direction": "out",
+      "relationship": "GENERATED_FROM",
+      "other": "SRC-702f832ef02c",
+      "other_type": "file",
+      "other_title": "pr-packets/ix-remap-hardening/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-702f832ef02c"
+    },
+    {
+      "direction": "out",
+      "relationship": "GENERATED_FROM",
+      "other": "SRC-cf88149934b8",
+      "other_type": "file",
+      "other_title": "pr-packets/compass-f-key/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-cf88149934b8"
+    },
+    {
+      "direction": "out",
+      "relationship": "GENERATED_FROM",
+      "other": "SRC-64086523b533",
+      "other_type": "file",
+      "other_title": "pr-packets/compass-delayed-data/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-64086523b533"
+    },
+    {
+      "direction": "out",
+      "relationship": "GENERATED_FROM",
+      "other": "SRC-efe94e86a48a",
+      "other_type": "file",
+      "other_title": "pr-packets/ix-376-version-mismatch/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-efe94e86a48a"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-838d6e0c0428",
+      "other_type": "file",
+      "other_title": "planning/maps/phases.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-838d6e0c0428"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-702f832ef02c",
+      "other_type": "file",
+      "other_title": "pr-packets/ix-remap-hardening/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-702f832ef02c"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-cf88149934b8",
+      "other_type": "file",
+      "other_title": "pr-packets/compass-f-key/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-cf88149934b8"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-64086523b533",
+      "other_type": "file",
+      "other_title": "pr-packets/compass-delayed-data/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-64086523b533"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-efe94e86a48a",
+      "other_type": "file",
+      "other_title": "pr-packets/ix-376-version-mismatch/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-efe94e86a48a"
+    }
+  ]
+}

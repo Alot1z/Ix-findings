@@ -1,0 +1,104 @@
+{
+  "id": "F-009",
+  "type": "finding",
+  "title": "patches command dead/unregistered (#371)",
+  "status": "RESOLVED",
+  "url": "https://alot1z.github.io/Ix-findings/entities/f-009",
+  "summary": {
+    "id": "F-009",
+    "type": "finding",
+    "title": "patches command dead/unregistered (#371)",
+    "status": "RESOLVED",
+    "repository": "ix-infrastructure/Ix"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "SUPPORTED_BY",
+      "other": "E-018",
+      "other_type": "evidence",
+      "other_title": "#371 source analysis",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-018"
+    },
+    {
+      "direction": "out",
+      "relationship": "RELATED_TO_ISSUE",
+      "other": "ISSUE-371",
+      "other_type": "issue",
+      "other_title": "Ix issue #371",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/issue-371"
+    },
+    {
+      "direction": "out",
+      "relationship": "RELATED_TO_PR",
+      "other": "PR-372",
+      "other_type": "pr",
+      "other_title": "Ix PR #372",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-372"
+    },
+    {
+      "direction": "out",
+      "relationship": "RELATED_TO_PR",
+      "other": "PR-390",
+      "other_type": "pr",
+      "other_title": "Ix PR #390",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-390"
+    },
+    {
+      "direction": "out",
+      "relationship": "RESPONDS_TO",
+      "other": "S-014",
+      "other_type": "suggestion",
+      "other_title": "Fix #371 (register or delete patches)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-014"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTS",
+      "other": "E-018",
+      "other_type": "evidence",
+      "other_title": "#371 source analysis",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-018"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTS",
+      "other": "E-026",
+      "other_type": "evidence",
+      "other_title": "oss.ts PRO_COMMANDS list",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-026"
+    },
+    {
+      "direction": "in",
+      "relationship": "APPLIES_TO",
+      "other": "S-014",
+      "other_type": "suggestion",
+      "other_title": "Fix #371 (register or delete patches)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-014"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-125a277e8e67",
+      "other_type": "file",
+      "other_title": "planning/findings/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-125a277e8e67"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-99ca1094080f",
+      "other_type": "file",
+      "other_title": "github/issues/371/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-99ca1094080f"
+    },
+    {
+      "direction": "out",
+      "relationship": "FIXED_BY",
+      "other": "PR-390",
+      "other_type": "pr",
+      "other_title": "Ix PR #390",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-390"
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "id": "IMPL-MCP-FORK",
+  "type": "artifact",
+  "title": "ix mcp fork implementation",
+  "status": "CONTRIBUTE_AFTER_REWORK",
+  "url": "https://alot1z.github.io/Ix-findings/entities/impl-mcp-fork",
+  "summary": {
+    "id": "IMPL-MCP-FORK",
+    "type": "artifact",
+    "title": "ix mcp fork implementation",
+    "status": "CONTRIBUTE_AFTER_REWORK"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-0fae43e1c0ac",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-15/IMPLEMENTATION-QUALITY-MATRIX.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-0fae43e1c0ac"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-e83be4caf1c1",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-9/PHASE-9-REPORT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-e83be4caf1c1"
+    },
+    {
+      "direction": "out",
+      "relationship": "IMPLEMENTED_BY",
+      "other": "BRANCH-fork-ix-mcp",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix:feat/ix-mcp",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-fork-ix-mcp"
+    },
+    {
+      "direction": "out",
+      "relationship": "RELATED_TO_ISSUE",
+      "other": "ISSUE-219",
+      "other_type": "issue",
+      "other_title": "Ix issue #219",
+      "other_url": "https://alot1z.github.io/Ix-findings/issues/219"
+    },
+    {
+      "direction": "out",
+      "relationship": "PRESENTED_AS",
+      "other": "PACKET-ix-mcp",
+      "other_type": "pr_packet",
+      "other_title": "ix-mcp",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/packet-ix-mcp"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF_IMPLEMENTATION",
+      "other": "SECTION-mcp",
+      "other_type": "artifact",
+      "other_title": "MCP implementation",
+      "other_url": "https://alot1z.github.io/Ix-findings/mcp"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF_IMPLEMENTATION",
+      "other": "SECTION-mcp_implementation",
+      "other_type": "artifact",
+      "other_title": "MCP implementation",
+      "other_url": "https://alot1z.github.io/Ix-findings/mcp/implementation"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF_IMPLEMENTATION",
+      "other": "SECTION-mcp_stdio",
+      "other_type": "artifact",
+      "other_title": "MCP stdio server",
+      "other_url": "https://alot1z.github.io/Ix-findings/mcp/implementation/stdio"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF_IMPLEMENTATION",
+      "other": "SECTION-mcp_tools",
+      "other_type": "artifact",
+      "other_title": "MCP tools",
+      "other_url": "https://alot1z.github.io/Ix-findings/mcp/implementation/tools"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF_IMPLEMENTATION",
+      "other": "SECTION-mcp_security",
+      "other_type": "artifact",
+      "other_title": "MCP security",
+      "other_url": "https://alot1z.github.io/Ix-findings/mcp/security"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF_IMPLEMENTATION",
+      "other": "SECTION-mcp_tests",
+      "other_type": "artifact",
+      "other_title": "MCP tests",
+      "other_url": "https://alot1z.github.io/Ix-findings/mcp/tests"
+    }
+  ]
+}

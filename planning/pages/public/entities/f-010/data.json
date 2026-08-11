@@ -1,0 +1,224 @@
+{
+  "id": "F-010",
+  "type": "finding",
+  "title": "Loopback-hardened /__ix/remap endpoint (implemented)",
+  "status": "PR_OPEN",
+  "url": "https://alot1z.github.io/Ix-findings/entities/f-010",
+  "summary": {
+    "id": "F-010",
+    "type": "finding",
+    "title": "Loopback-hardened /__ix/remap endpoint (implemented)",
+    "status": "PR_OPEN",
+    "repository": "ix-infrastructure/Ix"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "SUPPORTED_BY",
+      "other": "E-014",
+      "other_type": "evidence",
+      "other_title": "remap diff c021b52",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-014"
+    },
+    {
+      "direction": "out",
+      "relationship": "SUPPORTED_BY",
+      "other": "E-015",
+      "other_type": "evidence",
+      "other_title": "guard-matrix tests",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-015"
+    },
+    {
+      "direction": "out",
+      "relationship": "SUPPORTED_BY",
+      "other": "E-016",
+      "other_type": "evidence",
+      "other_title": "suite runs (fresh)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-016"
+    },
+    {
+      "direction": "out",
+      "relationship": "RELATED_TO_PR",
+      "other": "PR-393",
+      "other_type": "pr",
+      "other_title": "Ix PR #393",
+      "other_url": "https://alot1z.github.io/Ix-findings/prs/393/tests"
+    },
+    {
+      "direction": "out",
+      "relationship": "RESPONDS_TO",
+      "other": "S-003",
+      "other_type": "suggestion",
+      "other_title": "Export serverScript() from view.ts for testing",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-003"
+    },
+    {
+      "direction": "out",
+      "relationship": "RESPONDS_TO",
+      "other": "S-004",
+      "other_type": "suggestion",
+      "other_title": "IX_VIEW_MAP_MAIN env seam for stub CLI in tests",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-004"
+    },
+    {
+      "direction": "out",
+      "relationship": "RESPONDS_TO",
+      "other": "S-012",
+      "other_type": "suggestion",
+      "other_title": "Parse Origin with new URL(), not regex (template-literal pipeline)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-012"
+    },
+    {
+      "direction": "out",
+      "relationship": "RESPONDS_TO",
+      "other": "S-030",
+      "other_type": "suggestion",
+      "other_title": "Bind the remap server to 0.0.0.0",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-030"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTS",
+      "other": "E-013",
+      "other_type": "evidence",
+      "other_title": "view.ts pre-fix bind",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-013"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTS",
+      "other": "E-014",
+      "other_type": "evidence",
+      "other_title": "remap diff c021b52",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-014"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTS",
+      "other": "E-015",
+      "other_type": "evidence",
+      "other_title": "guard-matrix tests",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-015"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTS",
+      "other": "E-016",
+      "other_type": "evidence",
+      "other_title": "suite runs (fresh)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-016"
+    },
+    {
+      "direction": "in",
+      "relationship": "APPLIES_TO",
+      "other": "S-001",
+      "other_type": "suggestion",
+      "other_title": "Use a dedicated Git worktree for remap work",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-001"
+    },
+    {
+      "direction": "in",
+      "relationship": "APPLIES_TO",
+      "other": "S-002",
+      "other_type": "suggestion",
+      "other_title": "Base remap branch on origin/main, not stale local/fork main",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-002"
+    },
+    {
+      "direction": "in",
+      "relationship": "APPLIES_TO",
+      "other": "S-003",
+      "other_type": "suggestion",
+      "other_title": "Export serverScript() from view.ts for testing",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-003"
+    },
+    {
+      "direction": "in",
+      "relationship": "APPLIES_TO",
+      "other": "S-004",
+      "other_type": "suggestion",
+      "other_title": "IX_VIEW_MAP_MAIN env seam for stub CLI in tests",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-004"
+    },
+    {
+      "direction": "in",
+      "relationship": "APPLIES_TO",
+      "other": "S-012",
+      "other_type": "suggestion",
+      "other_title": "Parse Origin with new URL(), not regex (template-literal pipeline)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-012"
+    },
+    {
+      "direction": "in",
+      "relationship": "APPLIES_TO",
+      "other": "S-030",
+      "other_type": "suggestion",
+      "other_title": "Bind the remap server to 0.0.0.0",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-030"
+    },
+    {
+      "direction": "in",
+      "relationship": "DECIDES_FOR",
+      "other": "D-001",
+      "other_type": "decision",
+      "other_title": "Base remap branch on origin/main",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/d-001"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-125a277e8e67",
+      "other_type": "file",
+      "other_title": "planning/findings/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-125a277e8e67"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-702f832ef02c",
+      "other_type": "file",
+      "other_title": "pr-packets/ix-remap-hardening/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-702f832ef02c"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-269f8ebcaf45",
+      "other_type": "file",
+      "other_title": "state/phase-2-remap-report.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-269f8ebcaf45"
+    },
+    {
+      "direction": "in",
+      "relationship": "DOCUMENTS_FINDING",
+      "other": "SECTION-prs_393",
+      "other_type": "artifact",
+      "other_title": "PR #393 — remap hardening",
+      "other_url": "https://alot1z.github.io/Ix-findings/prs/393"
+    },
+    {
+      "direction": "in",
+      "relationship": "DOCUMENTS_FINDING",
+      "other": "SECTION-prs_393_remap",
+      "other_type": "artifact",
+      "other_title": "PR #393 — remap endpoint",
+      "other_url": "https://alot1z.github.io/Ix-findings/prs/393/remap"
+    },
+    {
+      "direction": "in",
+      "relationship": "DOCUMENTS_FINDING",
+      "other": "SECTION-prs_393_security",
+      "other_type": "artifact",
+      "other_title": "PR #393 — security",
+      "other_url": "https://alot1z.github.io/Ix-findings/prs/393/security"
+    },
+    {
+      "direction": "in",
+      "relationship": "DOCUMENTS_FINDING",
+      "other": "SECTION-prs_393_tests",
+      "other_type": "artifact",
+      "other_title": "PR #393 — tests",
+      "other_url": "https://alot1z.github.io/Ix-findings/prs/393/tests"
+    }
+  ]
+}

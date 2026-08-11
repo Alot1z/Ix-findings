@@ -1,0 +1,47 @@
+{
+  "id": "BRANCH-09d906f6088f",
+  "type": "branch",
+  "title": "Alot1z/Ix:fork/main",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/branch-09d906f6088f",
+  "summary": {
+    "id": "BRANCH-09d906f6088f",
+    "type": "branch",
+    "title": "Alot1z/Ix:fork/main",
+    "status": "CURRENT"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "PART_OF",
+      "other": "REPO-Alot1z-Ix",
+      "other_type": "repository",
+      "other_title": "Alot1z/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-alot1z-ix"
+    },
+    {
+      "direction": "in",
+      "relationship": "INTRODUCED_BY",
+      "other": "COMMIT-0437abf",
+      "other_type": "commit",
+      "other_title": "0437abf",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-0437abf"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-2a5998452c1a",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/manifest.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-2a5998452c1a"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-90ab8426282e",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-15/FINAL-PR-WORTHINESS-AUDIT.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-90ab8426282e"
+    }
+  ]
+}

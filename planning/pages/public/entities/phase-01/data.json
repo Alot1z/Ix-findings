@@ -1,0 +1,82 @@
+{
+  "id": "phase-01",
+  "type": "phase",
+  "title": "Phase 1 — Fork Synchronization",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/phase-01",
+  "summary": {
+    "id": "phase-01",
+    "type": "phase",
+    "title": "Phase 1 — Fork Synchronization",
+    "category": "SYNCHRONIZATION",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "number": 1
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "ENABLES",
+      "other": "phase-00",
+      "other_type": "phase",
+      "other_title": "Phase 0 — Initial State Audit",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-00"
+    },
+    {
+      "direction": "out",
+      "relationship": "DEPENDS_ON",
+      "other": "phase-00",
+      "other_type": "phase",
+      "other_title": "Phase 0 — Initial State Audit",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-00"
+    },
+    {
+      "direction": "out",
+      "relationship": "ENABLES",
+      "other": "phase-02",
+      "other_type": "phase",
+      "other_title": "Phase 2 — Remap Finalization",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-02"
+    },
+    {
+      "direction": "in",
+      "relationship": "DEPENDS_ON",
+      "other": "phase-02",
+      "other_type": "phase",
+      "other_title": "Phase 2 — Remap Finalization",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-02"
+    },
+    {
+      "direction": "in",
+      "relationship": "DEPENDS_ON",
+      "other": "phase-03",
+      "other_type": "phase",
+      "other_title": "Phase 3 — Issue #376 Investigation",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-03"
+    },
+    {
+      "direction": "out",
+      "relationship": "GENERATED_FROM",
+      "other": "SRC-cf952a4925c0",
+      "other_type": "file",
+      "other_title": "state/phase-1-sync-report.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-cf952a4925c0"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-838d6e0c0428",
+      "other_type": "file",
+      "other_title": "planning/maps/phases.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-838d6e0c0428"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-cf952a4925c0",
+      "other_type": "file",
+      "other_title": "state/phase-1-sync-report.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-cf952a4925c0"
+    }
+  ]
+}

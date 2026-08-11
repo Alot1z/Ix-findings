@@ -1,0 +1,74 @@
+{
+  "id": "phase-03",
+  "type": "phase",
+  "title": "Phase 3 — Issue #376 Investigation",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/phase-03",
+  "summary": {
+    "id": "phase-03",
+    "type": "phase",
+    "title": "Phase 3 — Issue #376 Investigation",
+    "category": "RESEARCH",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "number": 3
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "ENABLES",
+      "other": "phase-02",
+      "other_type": "phase",
+      "other_title": "Phase 2 — Remap Finalization",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-02"
+    },
+    {
+      "direction": "out",
+      "relationship": "DEPENDS_ON",
+      "other": "phase-01",
+      "other_type": "phase",
+      "other_title": "Phase 1 — Fork Synchronization",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-01"
+    },
+    {
+      "direction": "out",
+      "relationship": "ENABLES",
+      "other": "phase-04",
+      "other_type": "phase",
+      "other_title": "Phase 4 — Full Security & Historical Audit",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-04"
+    },
+    {
+      "direction": "in",
+      "relationship": "DEPENDS_ON",
+      "other": "phase-04",
+      "other_type": "phase",
+      "other_title": "Phase 4 — Full Security & Historical Audit",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-04"
+    },
+    {
+      "direction": "out",
+      "relationship": "GENERATED_FROM",
+      "other": "SRC-9e05122aa7e6",
+      "other_type": "file",
+      "other_title": "github/issues/376/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-9e05122aa7e6"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-838d6e0c0428",
+      "other_type": "file",
+      "other_title": "planning/maps/phases.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-838d6e0c0428"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-9e05122aa7e6",
+      "other_type": "file",
+      "other_title": "github/issues/376/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-9e05122aa7e6"
+    }
+  ]
+}

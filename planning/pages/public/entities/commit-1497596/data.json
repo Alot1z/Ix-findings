@@ -1,0 +1,31 @@
+{
+  "id": "COMMIT-1497596",
+  "type": "commit",
+  "title": "1497596",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-1497596",
+  "summary": {
+    "id": "COMMIT-1497596",
+    "type": "commit",
+    "title": "1497596",
+    "status": "HISTORICAL"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-2a5998452c1a",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/manifest.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-2a5998452c1a"
+    },
+    {
+      "direction": "out",
+      "relationship": "INTRODUCED_BY",
+      "other": "BRANCH-bb1d25e4c9d1",
+      "other_type": "branch",
+      "other_title": "ix-infrastructure/Ix:feat/ix-remap-hardening",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-bb1d25e4c9d1"
+    }
+  ]
+}

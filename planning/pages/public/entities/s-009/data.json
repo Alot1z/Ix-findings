@@ -1,0 +1,34 @@
+{
+  "id": "S-009",
+  "type": "suggestion",
+  "title": "Ix-findings as a standalone evidence repo",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/s-009",
+  "summary": {
+    "id": "S-009",
+    "type": "suggestion",
+    "title": "Ix-findings as a standalone evidence repo",
+    "status": "CURRENT",
+    "phase": "phase-08",
+    "repository": "Ix-findings",
+    "disposition": "ACCEPTED"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "ACCEPTED_BY",
+      "other": "D-008",
+      "other_type": "decision",
+      "other_title": "Ix-findings is a standalone evidence repo",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/d-008"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-fd02a1972a73",
+      "other_type": "file",
+      "other_title": "planning/suggestions/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-fd02a1972a73"
+    }
+  ]
+}

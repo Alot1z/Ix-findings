@@ -1,0 +1,50 @@
+{
+  "id": "S-001",
+  "type": "suggestion",
+  "title": "Use a dedicated Git worktree for remap work",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/s-001",
+  "summary": {
+    "id": "S-001",
+    "type": "suggestion",
+    "title": "Use a dedicated Git worktree for remap work",
+    "status": "CURRENT",
+    "phase": "phase-00",
+    "repository": "Ix",
+    "disposition": "ACCEPTED"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "APPLIES_TO",
+      "other": "F-010",
+      "other_type": "finding",
+      "other_title": "Loopback-hardened /__ix/remap endpoint (implemented)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-010"
+    },
+    {
+      "direction": "out",
+      "relationship": "SUPPORTED_BY",
+      "other": "E-021",
+      "other_type": "evidence",
+      "other_title": "worktree map",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-021"
+    },
+    {
+      "direction": "in",
+      "relationship": "ACCEPTED_BY",
+      "other": "D-002",
+      "other_type": "decision",
+      "other_title": "Dedicated worktree for remap work",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/d-002"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-fd02a1972a73",
+      "other_type": "file",
+      "other_title": "planning/suggestions/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-fd02a1972a73"
+    }
+  ]
+}

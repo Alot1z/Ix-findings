@@ -1,0 +1,41 @@
+{
+  "id": "E-012",
+  "type": "evidence",
+  "title": "rollup timing A/B",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/e-012",
+  "summary": {
+    "id": "E-012",
+    "type": "evidence",
+    "title": "rollup timing A/B",
+    "status": "HISTORICAL",
+    "phase": "phase-07",
+    "repository": "system-compass"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "SUPPORTED_BY",
+      "other": "F-007",
+      "other_type": "finding",
+      "other_title": "Region-rollup aggregate formation is timing-dependent",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-007"
+    },
+    {
+      "direction": "out",
+      "relationship": "SUPPORTS",
+      "other": "F-007",
+      "other_type": "finding",
+      "other_title": "Region-rollup aggregate formation is timing-dependent",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-007"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-11b62787a2c7",
+      "other_type": "file",
+      "other_title": "planning/evidence/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-11b62787a2c7"
+    }
+  ]
+}

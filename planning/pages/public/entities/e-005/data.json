@@ -1,0 +1,65 @@
+{
+  "id": "E-005",
+  "type": "evidence",
+  "title": "keyboard switch byte-identity",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/e-005",
+  "summary": {
+    "id": "E-005",
+    "type": "evidence",
+    "title": "keyboard switch byte-identity",
+    "status": "HISTORICAL",
+    "phase": "phase-05",
+    "repository": "system-compass"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "SUPPORTED_BY",
+      "other": "F-001",
+      "other_type": "finding",
+      "other_title": "Keyboard handler invariant across 4 releases",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-001"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTED_BY",
+      "other": "F-002",
+      "other_type": "finding",
+      "other_title": "F/f genuinely unbound in all releases",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-002"
+    },
+    {
+      "direction": "out",
+      "relationship": "SUPPORTS",
+      "other": "F-001",
+      "other_type": "finding",
+      "other_title": "Keyboard handler invariant across 4 releases",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-001"
+    },
+    {
+      "direction": "out",
+      "relationship": "SUPPORTS",
+      "other": "F-002",
+      "other_type": "finding",
+      "other_title": "F/f genuinely unbound in all releases",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-002"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTED_BY",
+      "other": "S-007",
+      "other_type": "suggestion",
+      "other_title": "F-key = keyboard exposure only; no CameraStore, no duplicate fit math",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-007"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-11b62787a2c7",
+      "other_type": "file",
+      "other_title": "planning/evidence/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-11b62787a2c7"
+    }
+  ]
+}

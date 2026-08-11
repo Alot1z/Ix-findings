@@ -1,0 +1,3992 @@
+{
+  "meta": {
+    "generated": "2026-08-11",
+    "sourceRevision": "1292375548fb8f4431ac5afc34c68fe2573434d1",
+    "count": 569
+  },
+  "items": [
+    {
+      "id": "AUDIT-CAND-001",
+      "type": "contribution",
+      "title": "MCP modern metadata and request-ID compliance",
+      "status": "CONTRIBUTE_AFTER_REWORK",
+      "url": "https://alot1z.github.io/Ix-findings/entities/audit-cand-001"
+    },
+    {
+      "id": "AUDIT-CAND-002",
+      "type": "contribution",
+      "title": "remap child tree cleanup and concurrency bounds",
+      "status": "CONTRIBUTE_AFTER_REWORK",
+      "url": "https://alot1z.github.io/Ix-findings/entities/audit-cand-002"
+    },
+    {
+      "id": "AUDIT-CAND-003",
+      "type": "contribution",
+      "title": "published Codebuff footer history",
+      "status": "INTERNAL_LEDGER_ONLY",
+      "url": "https://alot1z.github.io/Ix-findings/entities/audit-cand-003"
+    },
+    {
+      "id": "AUDIT-CAND-004",
+      "type": "contribution",
+      "title": "Pages snapshot freshness",
+      "status": "INTERNAL_LEDGER_ONLY",
+      "url": "https://alot1z.github.io/Ix-findings/entities/audit-cand-004"
+    },
+    {
+      "id": "AUDIT-CAND-005",
+      "type": "contribution",
+      "title": "native-Windows Codex hook compatibility (#383)",
+      "status": "NEEDS_REPRODUCTION",
+      "url": "https://alot1z.github.io/Ix-findings/entities/audit-cand-005"
+    },
+    {
+      "id": "AUDIT-CAND-006",
+      "type": "contribution",
+      "title": "Compass F-key",
+      "status": "BLOCKED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/audit-cand-006"
+    },
+    {
+      "id": "AUDIT-CAND-007",
+      "type": "contribution",
+      "title": "Compass delayed-data fix",
+      "status": "BLOCKED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/audit-cand-007"
+    },
+    {
+      "id": "AUDIT-CAND-008",
+      "type": "contribution",
+      "title": "F-013 zoom discrepancy",
+      "status": "UNSUPPORTED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/audit-cand-008"
+    },
+    {
+      "id": "BRANCH-09d906f6088f",
+      "type": "branch",
+      "title": "Alot1z/Ix:fork/main",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/branch-09d906f6088f"
+    },
+    {
+      "id": "BRANCH-1c828029ee8b",
+      "type": "branch",
+      "title": "ix-infrastructure/Ix:main",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/branch-1c828029ee8b"
+    },
+    {
+      "id": "BRANCH-7888482e155d",
+      "type": "branch",
+      "title": "ix-infrastructure/Ix:feat/ix-agent-skill",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/branch-7888482e155d"
+    },
+    {
+      "id": "BRANCH-8a2cfa1a0dd7",
+      "type": "branch",
+      "title": "Ix-findings:master",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/branch-8a2cfa1a0dd7"
+    },
+    {
+      "id": "BRANCH-bb1d25e4c9d1",
+      "type": "branch",
+      "title": "ix-infrastructure/Ix:feat/ix-remap-hardening",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/branch-bb1d25e4c9d1"
+    },
+    {
+      "id": "BRANCH-d12857f89099",
+      "type": "branch",
+      "title": "Alot1z/Ix:fork/feat/ix-agent-skill",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/branch-d12857f89099"
+    },
+    {
+      "id": "BRANCH-e3306154dffa",
+      "type": "branch",
+      "title": "ix-compass-dist:main",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/branch-e3306154dffa"
+    },
+    {
+      "id": "BRANCH-fork-ix-mcp",
+      "type": "branch",
+      "title": "Alot1z/Ix:feat/ix-mcp",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/branch-fork-ix-mcp"
+    },
+    {
+      "id": "CAND-001",
+      "type": "contribution",
+      "title": "manifest stale counts",
+      "status": "INTERNAL_LEDGER_ONLY",
+      "url": "https://alot1z.github.io/Ix-findings/entities/cand-001"
+    },
+    {
+      "id": "CAND-002",
+      "type": "contribution",
+      "title": "phantom evidence nodes",
+      "status": "INTERNAL_LEDGER_ONLY",
+      "url": "https://alot1z.github.io/Ix-findings/entities/cand-002"
+    },
+    {
+      "id": "CAND-003",
+      "type": "contribution",
+      "title": "verified PR/issue graph enrichment",
+      "status": "INTERNAL_LEDGER_ONLY",
+      "url": "https://alot1z.github.io/Ix-findings/entities/cand-003"
+    },
+    {
+      "id": "CAND-004",
+      "type": "contribution",
+      "title": "PR-MATRIX issue/PR labeling",
+      "status": "INTERNAL_LEDGER_ONLY",
+      "url": "https://alot1z.github.io/Ix-findings/entities/cand-004"
+    },
+    {
+      "id": "CAND-005",
+      "type": "contribution",
+      "title": "prepare F-009 patches packet",
+      "status": "ALREADY_FIXED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/cand-005"
+    },
+    {
+      "id": "CAND-006",
+      "type": "contribution",
+      "title": "Playwright delayed-data reproduction",
+      "status": "BLOCKED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/cand-006"
+    },
+    {
+      "id": "CAND-007",
+      "type": "contribution",
+      "title": "reconcile GRAPH-AUDIT narrative",
+      "status": "INTERNAL_LEDGER_ONLY",
+      "url": "https://alot1z.github.io/Ix-findings/entities/cand-007"
+    },
+    {
+      "id": "CAND-008",
+      "type": "contribution",
+      "title": "GitHub Pages deployment",
+      "status": "INTERNAL_LEDGER_ONLY",
+      "url": "https://alot1z.github.io/Ix-findings/entities/cand-008"
+    },
+    {
+      "id": "CAND-009",
+      "type": "contribution",
+      "title": "execution-state graph enrichment",
+      "status": "INTERNAL_LEDGER_ONLY",
+      "url": "https://alot1z.github.io/Ix-findings/entities/cand-009"
+    },
+    {
+      "id": "CAND-010",
+      "type": "contribution",
+      "title": "reverify F-008/F-009 on current main",
+      "status": "ALREADY_FIXED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/cand-010"
+    },
+    {
+      "id": "CAND-011",
+      "type": "contribution",
+      "title": "repair dangling graph edges",
+      "status": "INTERNAL_LEDGER_ONLY",
+      "url": "https://alot1z.github.io/Ix-findings/entities/cand-011"
+    },
+    {
+      "id": "CAND-012",
+      "type": "contribution",
+      "title": "rebase remap branch",
+      "status": "DUPLICATE",
+      "url": "https://alot1z.github.io/Ix-findings/entities/cand-012"
+    },
+    {
+      "id": "CAND-013",
+      "type": "contribution",
+      "title": "sync fork main",
+      "status": "DECLINED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/cand-013"
+    },
+    {
+      "id": "CAND-014",
+      "type": "contribution",
+      "title": "wiki syntax fix",
+      "status": "INTERNAL_LEDGER_ONLY",
+      "url": "https://alot1z.github.io/Ix-findings/entities/cand-014"
+    },
+    {
+      "id": "CAND-015",
+      "type": "contribution",
+      "title": "derive explorer data from canonical sources",
+      "status": "INTERNAL_LEDGER_ONLY",
+      "url": "https://alot1z.github.io/Ix-findings/entities/cand-015"
+    },
+    {
+      "id": "CAND-016",
+      "type": "contribution",
+      "title": "document Ix dual version series",
+      "status": "DECLINED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/cand-016"
+    },
+    {
+      "id": "CAND-017",
+      "type": "contribution",
+      "title": "record Freebuff-forge divergence",
+      "status": "DECLINED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/cand-017"
+    },
+    {
+      "id": "CAND-018",
+      "type": "contribution",
+      "title": "record --format llm implementation",
+      "status": "ALREADY_FIXED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/cand-018"
+    },
+    {
+      "id": "CAND-019",
+      "type": "contribution",
+      "title": "Ix docs/API reference gap",
+      "status": "NEEDS_REPRODUCTION",
+      "url": "https://alot1z.github.io/Ix-findings/entities/cand-019"
+    },
+    {
+      "id": "CAND-020",
+      "type": "contribution",
+      "title": "commit dirty wiki files",
+      "status": "DUPLICATE",
+      "url": "https://alot1z.github.io/Ix-findings/entities/cand-020"
+    },
+    {
+      "id": "COMMIT-0437abf",
+      "type": "commit",
+      "title": "0437abf",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-0437abf"
+    },
+    {
+      "id": "COMMIT-0c9087c",
+      "type": "commit",
+      "title": "0c9087c",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-0c9087c"
+    },
+    {
+      "id": "COMMIT-1292375548fb",
+      "type": "commit",
+      "title": "1292375548fb",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-1292375548fb"
+    },
+    {
+      "id": "COMMIT-13e96bacc648ee979f35e2874cd8aa2004f920e1",
+      "type": "commit",
+      "title": "13e96bacc648ee979f35e2874cd8aa2004f920e1",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-13e96bacc648ee979f35e2874cd8aa2004f920e1"
+    },
+    {
+      "id": "COMMIT-1497596",
+      "type": "commit",
+      "title": "1497596",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-1497596"
+    },
+    {
+      "id": "COMMIT-1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+      "type": "commit",
+      "title": "1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-1a5b0b93c9e8871610370c0f36212be8f6cf6980"
+    },
+    {
+      "id": "COMMIT-2157158",
+      "type": "commit",
+      "title": "2157158",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-2157158"
+    },
+    {
+      "id": "COMMIT-36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+      "type": "commit",
+      "title": "36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-36c7c7eccd8068d48df4f61394b42a3ffa62483c"
+    },
+    {
+      "id": "COMMIT-396426b",
+      "type": "commit",
+      "title": "396426b",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-396426b"
+    },
+    {
+      "id": "COMMIT-5488741",
+      "type": "commit",
+      "title": "5488741",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-5488741"
+    },
+    {
+      "id": "COMMIT-606f18f",
+      "type": "commit",
+      "title": "606f18f",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-606f18f"
+    },
+    {
+      "id": "COMMIT-606f18f7ca1a69f4b8ede7c27c1079b024297856",
+      "type": "commit",
+      "title": "606f18f7ca1a69f4b8ede7c27c1079b024297856",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-606f18f7ca1a69f4b8ede7c27c1079b024297856"
+    },
+    {
+      "id": "COMMIT-66111917a2a58437c91372616f98928876121395",
+      "type": "commit",
+      "title": "66111917a2a58437c91372616f98928876121395",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-66111917a2a58437c91372616f98928876121395"
+    },
+    {
+      "id": "COMMIT-a5350b6d6dc67958fa4abef63559affcd74aff56",
+      "type": "commit",
+      "title": "a5350b6d6dc67958fa4abef63559affcd74aff56",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-a5350b6d6dc67958fa4abef63559affcd74aff56"
+    },
+    {
+      "id": "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+      "type": "commit",
+      "title": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-a6a47267af21a49d6942ee6e07e18d1d0a82517b"
+    },
+    {
+      "id": "COMMIT-b038c46",
+      "type": "commit",
+      "title": "b038c46",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-b038c46"
+    },
+    {
+      "id": "COMMIT-b25bf2e",
+      "type": "commit",
+      "title": "b25bf2e",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-b25bf2e"
+    },
+    {
+      "id": "COMMIT-c021b52",
+      "type": "commit",
+      "title": "c021b52",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-c021b52"
+    },
+    {
+      "id": "COMMIT-c4f8fea",
+      "type": "commit",
+      "title": "c4f8fea",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-c4f8fea"
+    },
+    {
+      "id": "COMMIT-dcc0962",
+      "type": "commit",
+      "title": "dcc0962",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-dcc0962"
+    },
+    {
+      "id": "COMMIT-ffe21f0",
+      "type": "commit",
+      "title": "ffe21f0",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-ffe21f0"
+    },
+    {
+      "id": "CONTRA-001",
+      "type": "artifact",
+      "title": "F-008/F-009 status",
+      "status": "RESOLVED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/contra-001"
+    },
+    {
+      "id": "CONTRA-002",
+      "type": "artifact",
+      "title": "MCP contribution readiness",
+      "status": "CONTESTED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/contra-002"
+    },
+    {
+      "id": "CONTRA-003",
+      "type": "artifact",
+      "title": "Remap readiness",
+      "status": "CONTESTED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/contra-003"
+    },
+    {
+      "id": "CONTRA-004",
+      "type": "artifact",
+      "title": "Phase ladder closure",
+      "status": "RESOLVED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/contra-004"
+    },
+    {
+      "id": "CONTRA-005",
+      "type": "artifact",
+      "title": "public graph freshness",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/contra-005"
+    },
+    {
+      "id": "CONTRA-006",
+      "type": "artifact",
+      "title": "evidence duplicate-ID report",
+      "status": "NEEDS_UPDATE",
+      "url": "https://alot1z.github.io/Ix-findings/entities/contra-006"
+    },
+    {
+      "id": "D-001",
+      "type": "decision",
+      "title": "Base remap branch on origin/main",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/d-001"
+    },
+    {
+      "id": "D-002",
+      "type": "decision",
+      "title": "Dedicated worktree for remap work",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/d-002"
+    },
+    {
+      "id": "D-003",
+      "type": "decision",
+      "title": "Four-tier evidence classification A/B/C/D",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/d-003"
+    },
+    {
+      "id": "D-004",
+      "type": "decision",
+      "title": "Maintainer release notes count as Class A evidence",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/d-004"
+    },
+    {
+      "id": "D-005",
+      "type": "decision",
+      "title": "F-key = keyboard exposure only, no new camera system",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/d-005"
+    },
+    {
+      "id": "D-006",
+      "type": "decision",
+      "title": "Delayed-data stays separate from F-key",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/d-006"
+    },
+    {
+      "id": "D-007",
+      "type": "decision",
+      "title": "ix-compass-dist is a distribution channel, not source",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/d-007"
+    },
+    {
+      "id": "D-008",
+      "type": "decision",
+      "title": "Ix-findings is a standalone evidence repo",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/d-008"
+    },
+    {
+      "id": "D-009",
+      "type": "decision",
+      "title": "No remote operation without explicit authorization",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/d-009"
+    },
+    {
+      "id": "D-010",
+      "type": "decision",
+      "title": "Where to prep the Compass port",
+      "status": "OPEN",
+      "url": "https://alot1z.github.io/Ix-findings/entities/d-010"
+    },
+    {
+      "id": "D-011",
+      "type": "decision",
+      "title": "Compass PR scope",
+      "status": "OPEN",
+      "url": "https://alot1z.github.io/Ix-findings/entities/d-011"
+    },
+    {
+      "id": "D-012",
+      "type": "decision",
+      "title": "No-map chip timing",
+      "status": "OPEN",
+      "url": "https://alot1z.github.io/Ix-findings/entities/d-012"
+    },
+    {
+      "id": "D-013",
+      "type": "decision",
+      "title": "Stopgap compass-patch fate",
+      "status": "OPEN",
+      "url": "https://alot1z.github.io/Ix-findings/entities/d-013"
+    },
+    {
+      "id": "D-014",
+      "type": "decision",
+      "title": "Access path for system-compass",
+      "status": "OPEN",
+      "url": "https://alot1z.github.io/Ix-findings/entities/d-014"
+    },
+    {
+      "id": "E-001",
+      "type": "evidence",
+      "title": "compass-0.1.0.tar.gz",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/e-001"
+    },
+    {
+      "id": "E-002",
+      "type": "evidence",
+      "title": "compass-0.1.1.tar.gz",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/e-002"
+    },
+    {
+      "id": "E-003",
+      "type": "evidence",
+      "title": "compass-0.2.0.tar.gz",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/e-003"
+    },
+    {
+      "id": "E-004",
+      "type": "evidence",
+      "title": "compass-0.3.0.tar.gz",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/e-004"
+    },
+    {
+      "id": "E-005",
+      "type": "evidence",
+      "title": "keyboard switch byte-identity",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/e-005"
+    },
+    {
+      "id": "E-006",
+      "type": "evidence",
+      "title": "KeyboardHelp extraction",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/e-006"
+    },
+    {
+      "id": "E-007",
+      "type": "evidence",
+      "title": "fit-constants extraction",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/e-007"
+    },
+    {
+      "id": "E-008",
+      "type": "evidence",
+      "title": "v0.3.0 release notes (KageBinary)",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/e-008"
+    },
+    {
+      "id": "E-009",
+      "type": "evidence",
+      "title": "delayed-data A/B runs",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/e-009"
+    },
+    {
+      "id": "E-010",
+      "type": "evidence",
+      "title": "F-key PoC (patched v0.3.0)",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/e-010"
+    },
+    {
+      "id": "E-011",
+      "type": "evidence",
+      "title": "zoom-contract live checks",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/e-011"
+    },
+    {
+      "id": "E-012",
+      "type": "evidence",
+      "title": "rollup timing A/B",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/e-012"
+    },
+    {
+      "id": "E-013",
+      "type": "evidence",
+      "title": "view.ts pre-fix bind",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/e-013"
+    },
+    {
+      "id": "E-014",
+      "type": "evidence",
+      "title": "remap diff c021b52",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/e-014"
+    },
+    {
+      "id": "E-015",
+      "type": "evidence",
+      "title": "guard-matrix tests",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/e-015"
+    },
+    {
+      "id": "E-016",
+      "type": "evidence",
+      "title": "suite runs (fresh)",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/e-016"
+    },
+    {
+      "id": "E-017",
+      "type": "evidence",
+      "title": "#376 source analysis",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/e-017"
+    },
+    {
+      "id": "E-018",
+      "type": "evidence",
+      "title": "#371 source analysis",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/e-018"
+    },
+    {
+      "id": "E-019",
+      "type": "evidence",
+      "title": "git divergence numbers",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/e-019"
+    },
+    {
+      "id": "E-020",
+      "type": "evidence",
+      "title": "GitHub maintainer context",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/e-020"
+    },
+    {
+      "id": "E-021",
+      "type": "evidence",
+      "title": "worktree map",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/e-021"
+    },
+    {
+      "id": "E-022",
+      "type": "evidence",
+      "title": "placeholder-fit instability",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/e-022"
+    },
+    {
+      "id": "E-023",
+      "type": "evidence",
+      "title": "source-maps scan",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/e-023"
+    },
+    {
+      "id": "E-024",
+      "type": "evidence",
+      "title": "bootstrap.sh is_windows()/node_ok",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/e-024"
+    },
+    {
+      "id": "E-025",
+      "type": "evidence",
+      "title": "F-key source-equivalent spec",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/e-025"
+    },
+    {
+      "id": "E-026",
+      "type": "evidence",
+      "title": "oss.ts PRO_COMMANDS list",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/e-026"
+    },
+    {
+      "id": "E-027",
+      "type": "evidence",
+      "title": "upgrade.ts isNewer implementation",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/e-027"
+    },
+    {
+      "id": "E-028",
+      "type": "evidence",
+      "title": "ix-cli actual version v0.6.1",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/e-028"
+    },
+    {
+      "id": "E-029",
+      "type": "evidence",
+      "title": "#385 upgrade-breaks-wrapper fix — PR #386 + #392 merged upstream",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/e-029"
+    },
+    {
+      "id": "E-030",
+      "type": "evidence",
+      "title": "#349 installer-space-in-path fix — PR #352 + #392 merged upstream",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/e-030"
+    },
+    {
+      "id": "F-001",
+      "type": "finding",
+      "title": "Keyboard handler invariant across 4 releases",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/f-001"
+    },
+    {
+      "id": "F-002",
+      "type": "finding",
+      "title": "F/f genuinely unbound in all releases",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/f-002"
+    },
+    {
+      "id": "F-003",
+      "type": "finding",
+      "title": "KeyboardHelp byte-identical, no F entry",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/f-003"
+    },
+    {
+      "id": "F-004",
+      "type": "finding",
+      "title": "Fit math + constants invariant",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/f-004"
+    },
+    {
+      "id": "F-005",
+      "type": "finding",
+      "title": "#57 one-shot fit latch -> keyed refit (v0.2.0->v0.3.0)",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/f-005"
+    },
+    {
+      "id": "F-006",
+      "type": "finding",
+      "title": "Delayed-data blank persists on v0.3.0",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/f-006"
+    },
+    {
+      "id": "F-007",
+      "type": "finding",
+      "title": "Region-rollup aggregate formation is timing-dependent",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/f-007"
+    },
+    {
+      "id": "F-008",
+      "type": "finding",
+      "title": "Version-series mismatch in ix upgrade (#376)",
+      "status": "RESOLVED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/f-008"
+    },
+    {
+      "id": "F-009",
+      "type": "finding",
+      "title": "patches command dead/unregistered (#371)",
+      "status": "RESOLVED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/f-009"
+    },
+    {
+      "id": "F-010",
+      "type": "finding",
+      "title": "Loopback-hardened /__ix/remap endpoint (implemented)",
+      "status": "PR_OPEN",
+      "url": "https://alot1z.github.io/Ix-findings/entities/f-010"
+    },
+    {
+      "id": "F-011",
+      "type": "finding",
+      "title": "WSL bootstrap fix",
+      "status": "IN_PR",
+      "url": "https://alot1z.github.io/Ix-findings/entities/f-011"
+    },
+    {
+      "id": "F-012",
+      "type": "finding",
+      "title": "Dead node_ok removal",
+      "status": "IN_PR",
+      "url": "https://alot1z.github.io/Ix-findings/entities/f-012"
+    },
+    {
+      "id": "F-013",
+      "type": "finding",
+      "title": "Zoom-in multiplier discrepancy (x1.25 observed vs x1.1 in constants)",
+      "status": "UNSUPPORTED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/f-013"
+    },
+    {
+      "id": "IMPL-MCP-FORK",
+      "type": "artifact",
+      "title": "ix mcp fork implementation",
+      "status": "CONTRIBUTE_AFTER_REWORK",
+      "url": "https://alot1z.github.io/Ix-findings/entities/impl-mcp-fork"
+    },
+    {
+      "id": "IMPL-REMAP-PR393",
+      "type": "artifact",
+      "title": "Remap hardening implementation",
+      "status": "PR_OPEN",
+      "url": "https://alot1z.github.io/Ix-findings/entities/impl-remap-pr393"
+    },
+    {
+      "id": "ISSUE-219",
+      "type": "issue",
+      "title": "Ix issue #219",
+      "status": "OPEN",
+      "url": "https://alot1z.github.io/Ix-findings/issues/219"
+    },
+    {
+      "id": "ISSUE-349",
+      "type": "issue",
+      "title": "Ix issue #349",
+      "status": "OPEN",
+      "url": "https://alot1z.github.io/Ix-findings/issues/349"
+    },
+    {
+      "id": "ISSUE-371",
+      "type": "issue",
+      "title": "Ix issue #371",
+      "status": "RESOLVED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/issue-371"
+    },
+    {
+      "id": "ISSUE-374",
+      "type": "issue",
+      "title": "Ix issue #374",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/issue-374"
+    },
+    {
+      "id": "ISSUE-376",
+      "type": "issue",
+      "title": "Ix issue #376",
+      "status": "RESOLVED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/issue-376"
+    },
+    {
+      "id": "ISSUE-377",
+      "type": "issue",
+      "title": "Ix issue #377",
+      "status": "RESOLVED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/issue-377"
+    },
+    {
+      "id": "ISSUE-379",
+      "type": "issue",
+      "title": "Ix issue #379",
+      "status": "RESOLVED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/issue-379"
+    },
+    {
+      "id": "ISSUE-383",
+      "type": "issue",
+      "title": "Ix issue #383",
+      "status": "OPEN",
+      "url": "https://alot1z.github.io/Ix-findings/issues/383"
+    },
+    {
+      "id": "ISSUE-385",
+      "type": "issue",
+      "title": "Ix issue #385",
+      "status": "OPEN",
+      "url": "https://alot1z.github.io/Ix-findings/issues/385"
+    },
+    {
+      "id": "ISSUE-57",
+      "type": "issue",
+      "title": "Ix issue #57",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/issue-57"
+    },
+    {
+      "id": "N-001",
+      "type": "finding",
+      "title": "Evidence registry duplicate IDs (E-014, E-015)",
+      "status": "OPEN",
+      "url": "https://alot1z.github.io/Ix-findings/entities/n-001"
+    },
+    {
+      "id": "N-002",
+      "type": "finding",
+      "title": "Fork-main is 7 commits behind upstream",
+      "status": "OPEN",
+      "url": "https://alot1z.github.io/Ix-findings/entities/n-002"
+    },
+    {
+      "id": "PACKET-compass-delayed-data",
+      "type": "pr_packet",
+      "title": "compass-delayed-data",
+      "status": "BLOCKED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/packet-compass-delayed-data"
+    },
+    {
+      "id": "PACKET-compass-f-key",
+      "type": "pr_packet",
+      "title": "compass-f-key",
+      "status": "BLOCKED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/packet-compass-f-key"
+    },
+    {
+      "id": "PACKET-ix-mcp",
+      "type": "pr_packet",
+      "title": "ix-mcp",
+      "status": "CONTRIBUTE_AFTER_REWORK",
+      "url": "https://alot1z.github.io/Ix-findings/entities/packet-ix-mcp"
+    },
+    {
+      "id": "PACKET-ix-remap-hardening",
+      "type": "pr_packet",
+      "title": "ix-remap-hardening",
+      "status": "CONTRIBUTE_AFTER_REWORK",
+      "url": "https://alot1z.github.io/Ix-findings/entities/packet-ix-remap-hardening"
+    },
+    {
+      "id": "phase-00",
+      "type": "phase",
+      "title": "Phase 0 — Initial State Audit",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/phase-00"
+    },
+    {
+      "id": "phase-01",
+      "type": "phase",
+      "title": "Phase 1 — Fork Synchronization",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/phase-01"
+    },
+    {
+      "id": "phase-02",
+      "type": "phase",
+      "title": "Phase 2 — Remap Finalization",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/phase-02"
+    },
+    {
+      "id": "phase-03",
+      "type": "phase",
+      "title": "Phase 3 — Issue #376 Investigation",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/phase-03"
+    },
+    {
+      "id": "phase-04",
+      "type": "phase",
+      "title": "Phase 4 — Full Security & Historical Audit",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/phase-04"
+    },
+    {
+      "id": "phase-05",
+      "type": "phase",
+      "title": "Phase 5 — Compass Historical Reconstruction",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/phase-05"
+    },
+    {
+      "id": "phase-06",
+      "type": "phase",
+      "title": "Phase 6 — F-Key Source-Access Gate",
+      "status": "BLOCKED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/phase-06"
+    },
+    {
+      "id": "phase-07",
+      "type": "phase",
+      "title": "Phase 7 — Delayed-Data Deep Investigation",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/phase-07"
+    },
+    {
+      "id": "phase-08",
+      "type": "phase",
+      "title": "Phase 8 — Repository Architecture Audit",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/phase-08"
+    },
+    {
+      "id": "phase-09",
+      "type": "phase",
+      "title": "Phase 9 — Ix-findings Evidence Repository",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/phase-09"
+    },
+    {
+      "id": "phase-10",
+      "type": "phase",
+      "title": "Phase 10 — GitHub History & Maintainer Context",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/phase-10"
+    },
+    {
+      "id": "phase-11",
+      "type": "phase",
+      "title": "Phase 11 — PR Packet Generation",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/phase-11"
+    },
+    {
+      "id": "phase-12",
+      "type": "phase",
+      "title": "Phase 12 — Pre-Publish Verification Gate",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/phase-12"
+    },
+    {
+      "id": "phase-13",
+      "type": "phase",
+      "title": "Phase 13 — Final Ledger Close-Out",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/phase-13"
+    },
+    {
+      "id": "phase-14",
+      "type": "phase",
+      "title": "Phase 14 — Independent Forensic Audit",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/phase-14"
+    },
+    {
+      "id": "phase-15",
+      "type": "phase",
+      "title": "Phase 15 — Final Adversarial PR-Worthiness Audit",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/phase-15"
+    },
+    {
+      "id": "phase-16",
+      "type": "phase",
+      "title": "Phase 16 — Full Knowledge Graph & Live Evidence Reconstruction",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/phase-16"
+    },
+    {
+      "id": "PR-358",
+      "type": "pr",
+      "title": "Ix PR #358",
+      "status": "RESOLVED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/pr-358"
+    },
+    {
+      "id": "PR-362",
+      "type": "pr",
+      "title": "Ix PR #362",
+      "status": "RESOLVED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/pr-362"
+    },
+    {
+      "id": "PR-365",
+      "type": "pr",
+      "title": "Ix PR #365",
+      "status": "RESOLVED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/pr-365"
+    },
+    {
+      "id": "PR-366",
+      "type": "pr",
+      "title": "Ix PR #366",
+      "status": "RESOLVED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/pr-366"
+    },
+    {
+      "id": "PR-368",
+      "type": "pr",
+      "title": "Ix PR #368",
+      "status": "RESOLVED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/pr-368"
+    },
+    {
+      "id": "PR-372",
+      "type": "pr",
+      "title": "Ix PR #372",
+      "status": "RESOLVED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/pr-372"
+    },
+    {
+      "id": "PR-373",
+      "type": "pr",
+      "title": "Ix PR #373",
+      "status": "RESOLVED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/pr-373"
+    },
+    {
+      "id": "PR-375",
+      "type": "pr",
+      "title": "Ix PR #375",
+      "status": "RESOLVED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/pr-375"
+    },
+    {
+      "id": "PR-378",
+      "type": "pr",
+      "title": "Ix PR #378",
+      "status": "RESOLVED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/pr-378"
+    },
+    {
+      "id": "PR-380",
+      "type": "pr",
+      "title": "Ix PR #380",
+      "status": "RESOLVED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/pr-380"
+    },
+    {
+      "id": "PR-382",
+      "type": "pr",
+      "title": "Ix PR #382",
+      "status": "RESOLVED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/pr-382"
+    },
+    {
+      "id": "PR-384",
+      "type": "pr",
+      "title": "Ix PR #384",
+      "status": "RESOLVED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/pr-384"
+    },
+    {
+      "id": "PR-386",
+      "type": "pr",
+      "title": "Ix PR #386",
+      "status": "RESOLVED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/pr-386"
+    },
+    {
+      "id": "PR-387",
+      "type": "pr",
+      "title": "Ix PR #387",
+      "status": "RESOLVED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/pr-387"
+    },
+    {
+      "id": "PR-388",
+      "type": "pr",
+      "title": "Ix PR #388",
+      "status": "OPEN",
+      "url": "https://alot1z.github.io/Ix-findings/entities/pr-388"
+    },
+    {
+      "id": "PR-389",
+      "type": "pr",
+      "title": "Ix PR #389",
+      "status": "RESOLVED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/pr-389"
+    },
+    {
+      "id": "PR-390",
+      "type": "pr",
+      "title": "Ix PR #390",
+      "status": "RESOLVED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/pr-390"
+    },
+    {
+      "id": "PR-391",
+      "type": "pr",
+      "title": "Ix PR #391",
+      "status": "RESOLVED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/pr-391"
+    },
+    {
+      "id": "PR-392",
+      "type": "pr",
+      "title": "Ix PR #392",
+      "status": "RESOLVED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/pr-392"
+    },
+    {
+      "id": "PR-393",
+      "type": "pr",
+      "title": "Ix PR #393",
+      "status": "OPEN",
+      "url": "https://alot1z.github.io/Ix-findings/prs/393/tests"
+    },
+    {
+      "id": "PR-395",
+      "type": "pr",
+      "title": "Ix PR #395",
+      "status": "OPEN",
+      "url": "https://alot1z.github.io/Ix-findings/entities/pr-395"
+    },
+    {
+      "id": "REPO-Alot1z-Ix",
+      "type": "repository",
+      "title": "Alot1z/Ix",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/repo-alot1z-ix"
+    },
+    {
+      "id": "REPO-Ix-findings",
+      "type": "repository",
+      "title": "Ix-findings",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-findings"
+    },
+    {
+      "id": "REPO-ix-infrastructure-Ix",
+      "type": "repository",
+      "title": "ix-infrastructure/Ix",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "id": "REPO-ix-infrastructure-ix-compass-dist",
+      "type": "repository",
+      "title": "ix-infrastructure/ix-compass-dist",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix-compass-dist"
+    },
+    {
+      "id": "REPO-ix-infrastructure-system-compass",
+      "type": "repository",
+      "title": "ix-infrastructure/system-compass",
+      "status": "BLOCKED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-system-compass"
+    },
+    {
+      "id": "S-001",
+      "type": "suggestion",
+      "title": "Use a dedicated Git worktree for remap work",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/s-001"
+    },
+    {
+      "id": "S-002",
+      "type": "suggestion",
+      "title": "Base remap branch on origin/main, not stale local/fork main",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/s-002"
+    },
+    {
+      "id": "S-003",
+      "type": "suggestion",
+      "title": "Export serverScript() from view.ts for testing",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/s-003"
+    },
+    {
+      "id": "S-004",
+      "type": "suggestion",
+      "title": "IX_VIEW_MAP_MAIN env seam for stub CLI in tests",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/s-004"
+    },
+    {
+      "id": "S-005",
+      "type": "suggestion",
+      "title": "Four-tier evidence classification A/B/C/D",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/s-005"
+    },
+    {
+      "id": "S-006",
+      "type": "suggestion",
+      "title": "Keep Compass changes separate from Ix changes",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/s-006"
+    },
+    {
+      "id": "S-007",
+      "type": "suggestion",
+      "title": "F-key = keyboard exposure only; no CameraStore, no duplicate fit math",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/s-007"
+    },
+    {
+      "id": "S-008",
+      "type": "suggestion",
+      "title": "Delayed-data is a separate concern from F-key",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/s-008"
+    },
+    {
+      "id": "S-009",
+      "type": "suggestion",
+      "title": "Ix-findings as a standalone evidence repo",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/s-009"
+    },
+    {
+      "id": "S-010",
+      "type": "suggestion",
+      "title": "PR packet for #376",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/s-010"
+    },
+    {
+      "id": "S-011",
+      "type": "suggestion",
+      "title": "Keep improved compass-patch as local stopgap with documented expiry",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/s-011"
+    },
+    {
+      "id": "S-012",
+      "type": "suggestion",
+      "title": "Parse Origin with new URL(), not regex (template-literal pipeline)",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/s-012"
+    },
+    {
+      "id": "S-013",
+      "type": "suggestion",
+      "title": "Fix #376 (stamp dist version / identity compare)",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/s-013"
+    },
+    {
+      "id": "S-014",
+      "type": "suggestion",
+      "title": "Fix #371 (register or delete patches)",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/s-014"
+    },
+    {
+      "id": "S-015",
+      "type": "suggestion",
+      "title": "Commit Ix-findings",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/s-015"
+    },
+    {
+      "id": "S-016",
+      "type": "suggestion",
+      "title": "Sync fork main after remap push",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/s-016"
+    },
+    {
+      "id": "S-017",
+      "type": "suggestion",
+      "title": "Re-verify zoom multiplier (x1.1 vs x1.25)",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/s-017"
+    },
+    {
+      "id": "S-018",
+      "type": "suggestion",
+      "title": "Reproduce delayed-data via Playwright automation",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/s-018"
+    },
+    {
+      "id": "S-019",
+      "type": "suggestion",
+      "title": "Investigate system-compass #58/#59",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/s-019"
+    },
+    {
+      "id": "S-020",
+      "type": "suggestion",
+      "title": "No-map hint chip with feature-detect on /__ix/remap",
+      "status": "HISTORICAL",
+      "url": "https://alot1z.github.io/Ix-findings/entities/s-020"
+    },
+    {
+      "id": "S-021",
+      "type": "suggestion",
+      "title": "Create a CameraStore abstraction for Compass",
+      "status": "DECLINED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/s-021"
+    },
+    {
+      "id": "S-022",
+      "type": "suggestion",
+      "title": "DOM zoom patch (style.zoom, timers) for Compass",
+      "status": "DECLINED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/s-022"
+    },
+    {
+      "id": "S-023",
+      "type": "suggestion",
+      "title": "Combine F-key + delayed-data in one PR",
+      "status": "DECLINED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/s-023"
+    },
+    {
+      "id": "S-024",
+      "type": "suggestion",
+      "title": "Mix Compass UI changes into the Ix PR",
+      "status": "DECLINED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/s-024"
+    },
+    {
+      "id": "S-025",
+      "type": "suggestion",
+      "title": "Stash the Ix overhaul to free the main worktree",
+      "status": "DECLINED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/s-025"
+    },
+    {
+      "id": "S-026",
+      "type": "suggestion",
+      "title": "Base/compare remap against fork/main",
+      "status": "DECLINED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/s-026"
+    },
+    {
+      "id": "S-027",
+      "type": "suggestion",
+      "title": "Manually modify ix-compass-dist artifacts",
+      "status": "DECLINED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/s-027"
+    },
+    {
+      "id": "S-028",
+      "type": "suggestion",
+      "title": "Push fork/main without first syncing",
+      "status": "DECLINED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/s-028"
+    },
+    {
+      "id": "S-029",
+      "type": "suggestion",
+      "title": "git reset --hard on the primary worktree",
+      "status": "DECLINED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/s-029"
+    },
+    {
+      "id": "S-030",
+      "type": "suggestion",
+      "title": "Bind the remap server to 0.0.0.0",
+      "status": "DECLINED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/s-030"
+    },
+    {
+      "id": "S-031",
+      "type": "suggestion",
+      "title": "Pass the claim to the doubt-driven reviewer",
+      "status": "DECLINED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/s-031"
+    },
+    {
+      "id": "S-032",
+      "type": "suggestion",
+      "title": "Add mount auto-frame to the F-key PR",
+      "status": "SUPERSEDED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/s-032"
+    },
+    {
+      "id": "S-033",
+      "type": "suggestion",
+      "title": "Add drill-in/out reframe to the F-key PR",
+      "status": "SUPERSEDED",
+      "url": "https://alot1z.github.io/Ix-findings/entities/s-033"
+    },
+    {
+      "id": "SECTION-mcp",
+      "type": "artifact",
+      "title": "MCP implementation",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "url": "https://alot1z.github.io/Ix-findings/mcp"
+    },
+    {
+      "id": "SECTION-mcp_implementation",
+      "type": "artifact",
+      "title": "MCP implementation",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "url": "https://alot1z.github.io/Ix-findings/mcp/implementation"
+    },
+    {
+      "id": "SECTION-mcp_security",
+      "type": "artifact",
+      "title": "MCP security",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "url": "https://alot1z.github.io/Ix-findings/mcp/security"
+    },
+    {
+      "id": "SECTION-mcp_stdio",
+      "type": "artifact",
+      "title": "MCP stdio server",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "url": "https://alot1z.github.io/Ix-findings/mcp/implementation/stdio"
+    },
+    {
+      "id": "SECTION-mcp_tests",
+      "type": "artifact",
+      "title": "MCP tests",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "url": "https://alot1z.github.io/Ix-findings/mcp/tests"
+    },
+    {
+      "id": "SECTION-mcp_tools",
+      "type": "artifact",
+      "title": "MCP tools",
+      "status": "PARTIALLY_IMPLEMENTED",
+      "url": "https://alot1z.github.io/Ix-findings/mcp/implementation/tools"
+    },
+    {
+      "id": "SECTION-prs_393",
+      "type": "artifact",
+      "title": "PR #393 — remap hardening",
+      "status": "IMPLEMENTED_WITH_REMAINING_HARDENING",
+      "url": "https://alot1z.github.io/Ix-findings/prs/393"
+    },
+    {
+      "id": "SECTION-prs_393_remap",
+      "type": "artifact",
+      "title": "PR #393 — remap endpoint",
+      "status": "IMPLEMENTED_WITH_REMAINING_HARDENING",
+      "url": "https://alot1z.github.io/Ix-findings/prs/393/remap"
+    },
+    {
+      "id": "SECTION-prs_393_security",
+      "type": "artifact",
+      "title": "PR #393 — security",
+      "status": "IMPLEMENTED_WITH_REMAINING_HARDENING",
+      "url": "https://alot1z.github.io/Ix-findings/prs/393/security"
+    },
+    {
+      "id": "SECTION-prs_393_tests",
+      "type": "artifact",
+      "title": "PR #393 — tests",
+      "status": "IMPLEMENTED_WITH_REMAINING_HARDENING",
+      "url": "https://alot1z.github.io/Ix-findings/prs/393/tests"
+    },
+    {
+      "id": "SRC-018098da9dfb",
+      "type": "file",
+      "title": "planning/wiki/index-standalone.html",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-018098da9dfb"
+    },
+    {
+      "id": "SRC-01c754c5a030",
+      "type": "file",
+      "title": "manifests/artifact-sha256.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-01c754c5a030"
+    },
+    {
+      "id": "SRC-01c77278e6db",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-15/SECURITY-REVIEW.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-01c77278e6db"
+    },
+    {
+      "id": "SRC-027e3b019bbf",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-2/EVIDENCE-RECONCILIATION.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-027e3b019bbf"
+    },
+    {
+      "id": "SRC-02a260dd6ac6",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-6/PHASE-7-IMPLEMENTATION-INPUT.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-02a260dd6ac6"
+    },
+    {
+      "id": "SRC-02e788aac48b",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-6/KNOWLEDGE-RECONCILIATION.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-02e788aac48b"
+    },
+    {
+      "id": "SRC-0581f2a0e273",
+      "type": "file",
+      "title": "github/maintainer-context.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-0581f2a0e273"
+    },
+    {
+      "id": "SRC-05839a4288e5",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-12/PHASE-13-IMPLEMENTATION-INPUT.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-05839a4288e5"
+    },
+    {
+      "id": "SRC-05adb9969c5d",
+      "type": "file",
+      "title": "artifacts/v0.3.0/compass-0.3.0/assets/index-CzUkHmOn.css",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-05adb9969c5d"
+    },
+    {
+      "id": "SRC-06ffe07674f0",
+      "type": "file",
+      "title": "github/issues/374/README.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-06ffe07674f0"
+    },
+    {
+      "id": "SRC-07d32abf91e3",
+      "type": "file",
+      "title": "planning/final/NEXT-ACTIONS.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-07d32abf91e3"
+    },
+    {
+      "id": "SRC-0823442d2454",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-4/IMPLEMENTED-CANDIDATES.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-0823442d2454"
+    },
+    {
+      "id": "SRC-08d2809c049b",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-11/PHASE-11-REPORT.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-08d2809c049b"
+    },
+    {
+      "id": "SRC-0981a42505f8",
+      "type": "file",
+      "title": "planning/phases/phase-00/README.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-0981a42505f8"
+    },
+    {
+      "id": "SRC-0b6ac0335464",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-14/CURRENT-STATE-AUDIT.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-0b6ac0335464"
+    },
+    {
+      "id": "SRC-0bec9ebe781b",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-14/PHASE-14-REPORT.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-0bec9ebe781b"
+    },
+    {
+      "id": "SRC-0bf92b81ad31",
+      "type": "file",
+      "title": "planning/decisions/decision-log.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-0bf92b81ad31"
+    },
+    {
+      "id": "SRC-0d1023afe1e8",
+      "type": "file",
+      "title": "planning/repositories/system-compass.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-0d1023afe1e8"
+    },
+    {
+      "id": "SRC-0d7688160fd9",
+      "type": "file",
+      "title": "state/phase-0-audit.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-0d7688160fd9"
+    },
+    {
+      "id": "SRC-0fae43e1c0ac",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-15/IMPLEMENTATION-QUALITY-MATRIX.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-0fae43e1c0ac"
+    },
+    {
+      "id": "SRC-106910498ec8",
+      "type": "file",
+      "title": "CLI-HANDOFF/DECISIONS.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-106910498ec8"
+    },
+    {
+      "id": "SRC-10928dad29ee",
+      "type": "file",
+      "title": "planning/maps/dependency-map.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-10928dad29ee"
+    },
+    {
+      "id": "SRC-1111e48d5f6d",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-6/REMAP-PR-RESULT.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-1111e48d5f6d"
+    },
+    {
+      "id": "SRC-1155d9efddc3",
+      "type": "file",
+      "title": "planning/README.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-1155d9efddc3"
+    },
+    {
+      "id": "SRC-117f78b220cb",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-5/PAGES-LOCAL-VALIDATION.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-117f78b220cb"
+    },
+    {
+      "id": "SRC-11b62787a2c7",
+      "type": "file",
+      "title": "planning/evidence/registry.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-11b62787a2c7"
+    },
+    {
+      "id": "SRC-11f33e1eba18",
+      "type": "file",
+      "title": "planning/findings/registry.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-11f33e1eba18"
+    },
+    {
+      "id": "SRC-125a277e8e67",
+      "type": "file",
+      "title": "planning/findings/registry.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-125a277e8e67"
+    },
+    {
+      "id": "SRC-12e10fb156b6",
+      "type": "file",
+      "title": "planning/ix/remap.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-12e10fb156b6"
+    },
+    {
+      "id": "SRC-1518c95b5015",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-4/CONTRIBUTION-PACKETS.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-1518c95b5015"
+    },
+    {
+      "id": "SRC-1638f35177aa",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-1/TOOL-PERMISSIONS.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-1638f35177aa"
+    },
+    {
+      "id": "SRC-16dcdee7104c",
+      "type": "file",
+      "title": "artifacts/v0.3.0/compass-0.3.0/favicon.ico",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-16dcdee7104c"
+    },
+    {
+      "id": "SRC-16f22f8e366e",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-8/PHASE-8-LIVE-BASELINE.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-16f22f8e366e"
+    },
+    {
+      "id": "SRC-16fde581f6c1",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-6/PHASE-6-REPORT.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-16fde581f6c1"
+    },
+    {
+      "id": "SRC-17755b21f6d6",
+      "type": "file",
+      "title": "planning/overview/timeline.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-17755b21f6d6"
+    },
+    {
+      "id": "SRC-185924b8ebcf",
+      "type": "file",
+      "title": "comparisons/keyboard/reconstruction.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-185924b8ebcf"
+    },
+    {
+      "id": "SRC-1af0e26893e2",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-4/IMPLEMENTATION-MATRIX.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-1af0e26893e2"
+    },
+    {
+      "id": "SRC-1b87df9736ba",
+      "type": "file",
+      "title": "planning/decisions/registry.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-1b87df9736ba"
+    },
+    {
+      "id": "SRC-1c1c5fb1ec06",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-13/PHASE-13-PROMPT.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-1c1c5fb1ec06"
+    },
+    {
+      "id": "SRC-1ca01d017b08",
+      "type": "file",
+      "title": "planning/phases/phase-07/findings.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-1ca01d017b08"
+    },
+    {
+      "id": "SRC-1dc1bc32101a",
+      "type": "file",
+      "title": "CLI-HANDOFF/GIT-STATE.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-1dc1bc32101a"
+    },
+    {
+      "id": "SRC-1f85d30d8ea1",
+      "type": "file",
+      "title": "planning/wiki/index.html",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-1f85d30d8ea1"
+    },
+    {
+      "id": "SRC-1f8815c8bb82",
+      "type": "file",
+      "title": "github/issues/383/README.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-1f8815c8bb82"
+    },
+    {
+      "id": "SRC-1ffd0d77aa20",
+      "type": "file",
+      "title": "planning/git/commits.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-1ffd0d77aa20"
+    },
+    {
+      "id": "SRC-20fccb258a57",
+      "type": "file",
+      "title": "artifacts/v0.3.0/compass-0.3.0/assets/TimelineScrubber-Bupqd8oD.js",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-20fccb258a57"
+    },
+    {
+      "id": "SRC-21649bab82d8",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-1/UNKNOWN-REGISTER.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-21649bab82d8"
+    },
+    {
+      "id": "SRC-218d158589eb",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-5/PHASE-5-AUTHORIZATION-STATE.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-218d158589eb"
+    },
+    {
+      "id": "SRC-221912dbe482",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-3/KNOWLEDGE-SYSTEM-BACKLOG.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-221912dbe482"
+    },
+    {
+      "id": "SRC-22bb90235365",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-7/PHASE-8-IMPLEMENTATION-INPUT.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-22bb90235365"
+    },
+    {
+      "id": "SRC-23042cb76761",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-6/PAGES-DEPLOYMENT-RESULT.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-23042cb76761"
+    },
+    {
+      "id": "SRC-2352920bc734",
+      "type": "file",
+      "title": "artifacts/v0.3.0/compass-0.3.0/ix-compass-favicon-light.png",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-2352920bc734"
+    },
+    {
+      "id": "SRC-2366433a9090",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-15/ISSUE-RECONCILIATION.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-2366433a9090"
+    },
+    {
+      "id": "SRC-23679dad63ef",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-6/REMAP-EXECUTION-RESULT.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-23679dad63ef"
+    },
+    {
+      "id": "SRC-23be60acc505",
+      "type": "file",
+      "title": "planning/ix/architecture.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-23be60acc505"
+    },
+    {
+      "id": "SRC-24b1805b3a12",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-3/PR-ISSUE-CORRELATION.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-24b1805b3a12"
+    },
+    {
+      "id": "SRC-25f911094df7",
+      "type": "file",
+      "title": "planning/wiki/build-data.mjs",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-25f911094df7"
+    },
+    {
+      "id": "SRC-2628994c16df",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-8/PHASE-8-PROMPT.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-2628994c16df"
+    },
+    {
+      "id": "SRC-2637f9203036",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-5/PHASE-5-REPRODUCTION-RESULTS.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-2637f9203036"
+    },
+    {
+      "id": "SRC-269f8ebcaf45",
+      "type": "file",
+      "title": "state/phase-2-remap-report.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-269f8ebcaf45"
+    },
+    {
+      "id": "SRC-274f329dab34",
+      "type": "file",
+      "title": "planning/evidence/github/index.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-274f329dab34"
+    },
+    {
+      "id": "SRC-27c8552f5ab7",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-1/ARCHITECTURE-GRAPH.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-27c8552f5ab7"
+    },
+    {
+      "id": "SRC-2a5998452c1a",
+      "type": "file",
+      "title": "CLI-HANDOFF/manifest.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-2a5998452c1a"
+    },
+    {
+      "id": "SRC-2cc12519bc12",
+      "type": "file",
+      "title": "planning/pages/public-data-allowlist.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-2cc12519bc12"
+    },
+    {
+      "id": "SRC-2df36380ae78",
+      "type": "file",
+      "title": "planning/pr-planning/ix-376.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-2df36380ae78"
+    },
+    {
+      "id": "SRC-2ebff6fb7a96",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-14/EVIDENCE-QUALITY-MATRIX.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-2ebff6fb7a96"
+    },
+    {
+      "id": "SRC-2f7e10368ab5",
+      "type": "file",
+      "title": "CLI-HANDOFF/REPOSITORIES.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-2f7e10368ab5"
+    },
+    {
+      "id": "SRC-2fe6e140c25c",
+      "type": "file",
+      "title": "planning/final/FINAL-DECISIONS.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-2fe6e140c25c"
+    },
+    {
+      "id": "SRC-2fec5b37e94c",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-2/SUGGESTION-RECONCILIATION.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-2fec5b37e94c"
+    },
+    {
+      "id": "SRC-3047ba9485ec",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-3/PHASE-3-REPORT.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-3047ba9485ec"
+    },
+    {
+      "id": "SRC-304debf92137",
+      "type": "file",
+      "title": "comparisons/camera-fit/reconstruction.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-304debf92137"
+    },
+    {
+      "id": "SRC-318f607f834d",
+      "type": "file",
+      "title": "planning/repositories/Ix.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-318f607f834d"
+    },
+    {
+      "id": "SRC-323a823295ff",
+      "type": "file",
+      "title": "artifacts/v0.3.0/compass-0.3.0/robots.txt",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-323a823295ff"
+    },
+    {
+      "id": "SRC-326cb3d80199",
+      "type": "file",
+      "title": "CLI-HANDOFF/PR-MATRIX.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-326cb3d80199"
+    },
+    {
+      "id": "SRC-335b705562cb",
+      "type": "file",
+      "title": "artifacts/v0.3.0/compass-0.3.0/assets/motion-B-0H7FSW.js",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-335b705562cb"
+    },
+    {
+      "id": "SRC-34275d4e5161",
+      "type": "file",
+      "title": "planning/suggestions/rejected.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-34275d4e5161"
+    },
+    {
+      "id": "SRC-34514c511827",
+      "type": "file",
+      "title": "planning/evidence/reproduction/index.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-34514c511827"
+    },
+    {
+      "id": "SRC-35dc43ee347b",
+      "type": "file",
+      "title": "planning/ix/security.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-35dc43ee347b"
+    },
+    {
+      "id": "SRC-361df5a808f7",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-9/PHASE-9-PROMPT.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-361df5a808f7"
+    },
+    {
+      "id": "SRC-375f5738e03e",
+      "type": "file",
+      "title": "artifacts/v0.3.0/compass-0.3.0/ix-compass-favicon.png",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-375f5738e03e"
+    },
+    {
+      "id": "SRC-37f15c228263",
+      "type": "file",
+      "title": "artifacts/v0.3.0/compass-0.3.0/assets/logo-IGRLvZ8I.png",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-37f15c228263"
+    },
+    {
+      "id": "SRC-385a224e1238",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-15/CONTRIBUTION-REVIEW-MATRIX.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-385a224e1238"
+    },
+    {
+      "id": "SRC-391626a8232c",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-6/PACK-371-EXECUTION-RESULT.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-391626a8232c"
+    },
+    {
+      "id": "SRC-3947459712fa",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-10/PHASE-10-PROMPT.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-3947459712fa"
+    },
+    {
+      "id": "SRC-398ec4e7ec26",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-6/EXTERNAL-ACTION-LOG.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-398ec4e7ec26"
+    },
+    {
+      "id": "SRC-3b85ae7123ac",
+      "type": "file",
+      "title": "planning/decisions/registry.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-3b85ae7123ac"
+    },
+    {
+      "id": "SRC-3ca253ef6eec",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-10/PHASE-10-REPORT.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-3ca253ef6eec"
+    },
+    {
+      "id": "SRC-3d711e05052e",
+      "type": "file",
+      "title": "CLI-HANDOFF/CLI-READING-PLAN.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-3d711e05052e"
+    },
+    {
+      "id": "SRC-3f1b9b23ddf5",
+      "type": "file",
+      "title": "planning/.probe",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-3f1b9b23ddf5"
+    },
+    {
+      "id": "SRC-3fbaeeca5d05",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-2/GRAPH-RECONCILIATION.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-3fbaeeca5d05"
+    },
+    {
+      "id": "SRC-40785387fd2e",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-12/CONTRIBUTION-INVENTORY.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-40785387fd2e"
+    },
+    {
+      "id": "SRC-40c0aec9830c",
+      "type": "file",
+      "title": "github/issues/349/README.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-40c0aec9830c"
+    },
+    {
+      "id": "SRC-442914659421",
+      "type": "file",
+      "title": "manifests/findings-index.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-442914659421"
+    },
+    {
+      "id": "SRC-4484bbf61d86",
+      "type": "file",
+      "title": "planning/phases/phase-12/blockers.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-4484bbf61d86"
+    },
+    {
+      "id": "SRC-454aa719a0e3",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-2/FINDING-RECONCILIATION.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-454aa719a0e3"
+    },
+    {
+      "id": "SRC-4589b1081ed4",
+      "type": "file",
+      "title": "planning/git/synchronization.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-4589b1081ed4"
+    },
+    {
+      "id": "SRC-4682beee8fdd",
+      "type": "file",
+      "title": "planning/final/MASTER-REPORT.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-4682beee8fdd"
+    },
+    {
+      "id": "SRC-46941156c642",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-15/REJECTED-CANDIDATES.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-46941156c642"
+    },
+    {
+      "id": "SRC-480ea45689d0",
+      "type": "file",
+      "title": "planning/maps/investigation-map.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-480ea45689d0"
+    },
+    {
+      "id": "SRC-4b81f705b7ec",
+      "type": "file",
+      "title": "planning/phases/phase-02/evidence.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-4b81f705b7ec"
+    },
+    {
+      "id": "SRC-4de5a4042e69",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-5/PHASE-6-IMPLEMENTATION-INPUT.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-4de5a4042e69"
+    },
+    {
+      "id": "SRC-4e2fd931ec21",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-4/DEFERRED-CANDIDATES.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-4e2fd931ec21"
+    },
+    {
+      "id": "SRC-5002aaf623b6",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-15/AUDIT-CANDIDATE-UNIVERSE.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-5002aaf623b6"
+    },
+    {
+      "id": "SRC-50e68560d39b",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-11/PHASE-11-PROMPT.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-50e68560d39b"
+    },
+    {
+      "id": "SRC-51206417564a",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-14/AI-SLOP-AUDIT.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-51206417564a"
+    },
+    {
+      "id": "SRC-53fc0195fab4",
+      "type": "file",
+      "title": "artifacts/v0.3.0/compass-0.3.0/assets/query-Du9o4BLB.js",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-53fc0195fab4"
+    },
+    {
+      "id": "SRC-5420a105c4b9",
+      "type": "file",
+      "title": "planning/phases/phase-06/README.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-5420a105c4b9"
+    },
+    {
+      "id": "SRC-564d7e8749e7",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-2/SYSTEM-COMPASS-KNOWLEDGE.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-564d7e8749e7"
+    },
+    {
+      "id": "SRC-56cda21e38a1",
+      "type": "file",
+      "title": "planning/phases/phase-09/README.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-56cda21e38a1"
+    },
+    {
+      "id": "SRC-5790517a5290",
+      "type": "file",
+      "title": "planning/overview/scope.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-5790517a5290"
+    },
+    {
+      "id": "SRC-57e1ceab6268",
+      "type": "file",
+      "title": "planning/pr-planning/ix-remap.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-57e1ceab6268"
+    },
+    {
+      "id": "SRC-57e431db34ee",
+      "type": "file",
+      "title": "github/issues/385/README.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-57e431db34ee"
+    },
+    {
+      "id": "SRC-585be56fb1fc",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-1/CONTRADICTIONS.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-585be56fb1fc"
+    },
+    {
+      "id": "SRC-5b3c4374026a",
+      "type": "file",
+      "title": "planning/compass/fit.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-5b3c4374026a"
+    },
+    {
+      "id": "SRC-5b9eee7ce60b",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-2/GITHUB-PAGES-FEASIBILITY.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-5b9eee7ce60b"
+    },
+    {
+      "id": "SRC-5badf0438b57",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-5/FORK-SYNC-RESULT.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-5badf0438b57"
+    },
+    {
+      "id": "SRC-5dd00bc5c825",
+      "type": "file",
+      "title": "artifacts/v0.3.0/compass-0.3.0/assets/EntityDetailPanel-B7DxefdP.js",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-5dd00bc5c825"
+    },
+    {
+      "id": "SRC-5dea25c84d45",
+      "type": "file",
+      "title": "planning/evidence/source/index.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-5dea25c84d45"
+    },
+    {
+      "id": "SRC-5e1af334388c",
+      "type": "file",
+      "title": "planning/overview/current-state.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-5e1af334388c"
+    },
+    {
+      "id": "SRC-5e1fc693b690",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-4/PHASE-4-IMPLEMENTATION-PLAN.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-5e1fc693b690"
+    },
+    {
+      "id": "SRC-5ebc3052904e",
+      "type": "file",
+      "title": "github/issues/379/README.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-5ebc3052904e"
+    },
+    {
+      "id": "SRC-5eeb5d435c86",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-2/PHASE-2-REPORT.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-5eeb5d435c86"
+    },
+    {
+      "id": "SRC-5f7136a58b49",
+      "type": "file",
+      "title": "planning/phases/phase-02/README.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-5f7136a58b49"
+    },
+    {
+      "id": "SRC-5ff2a1e5e9b3",
+      "type": "file",
+      "title": "planning/phases/phase-07/evidence.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-5ff2a1e5e9b3"
+    },
+    {
+      "id": "SRC-60b3abf2ff06",
+      "type": "file",
+      "title": "planning/compass/delayed-data.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-60b3abf2ff06"
+    },
+    {
+      "id": "SRC-62ef17225267",
+      "type": "file",
+      "title": "CLI-HANDOFF/repomix-bundle/output.1.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-62ef17225267"
+    },
+    {
+      "id": "SRC-63e3a3285761",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-5/REMAP-REBASE-PRESTATE.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-63e3a3285761"
+    },
+    {
+      "id": "SRC-64086523b533",
+      "type": "file",
+      "title": "pr-packets/compass-delayed-data/README.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-64086523b533"
+    },
+    {
+      "id": "SRC-652be6fbab0c",
+      "type": "file",
+      "title": "planning/security/audit.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-652be6fbab0c"
+    },
+    {
+      "id": "SRC-6567e40a6c76",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-0/STATE-BASELINE.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-6567e40a6c76"
+    },
+    {
+      "id": "SRC-66daa267af2f",
+      "type": "file",
+      "title": "planning/findings/by-repository.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-66daa267af2f"
+    },
+    {
+      "id": "SRC-68a26c64d65d",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-15/DUPLICATE-SUPERSEDED.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-68a26c64d65d"
+    },
+    {
+      "id": "SRC-6973aa936aac",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-14/FINDING-AUDIT.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-6973aa936aac"
+    },
+    {
+      "id": "SRC-6b5aa2c04b5a",
+      "type": "file",
+      "title": "planning/evidence/runtime/index.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-6b5aa2c04b5a"
+    },
+    {
+      "id": "SRC-6bee3eae2fd5",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-4/PHASE-4-REPORT.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-6bee3eae2fd5"
+    },
+    {
+      "id": "SRC-6d9a70e7c433",
+      "type": "file",
+      "title": "pr-packets/ix-371-patches-dead-code/README.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-6d9a70e7c433"
+    },
+    {
+      "id": "SRC-6fa779c2df61",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-10/PHASE-11-IMPLEMENTATION-INPUT.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-6fa779c2df61"
+    },
+    {
+      "id": "SRC-7012efaa34c7",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-5/STANDALONE-GENERATION-SPEC.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-7012efaa34c7"
+    },
+    {
+      "id": "SRC-702d506c6f3f",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-4/CHANGESET-MANIFEST.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-702d506c6f3f"
+    },
+    {
+      "id": "SRC-702f832ef02c",
+      "type": "file",
+      "title": "pr-packets/ix-remap-hardening/README.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-702f832ef02c"
+    },
+    {
+      "id": "SRC-70b793adc4d8",
+      "type": "file",
+      "title": "planning/overview/investigation-overview.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-70b793adc4d8"
+    },
+    {
+      "id": "SRC-7202848b73be",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-1/SKILL-INVENTORY.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-7202848b73be"
+    },
+    {
+      "id": "SRC-734b64520be8",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-3/MASTER-CANDIDATE-BACKLOG.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-734b64520be8"
+    },
+    {
+      "id": "SRC-758109a2fc2a",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-14/NEW-FINDINGS.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-758109a2fc2a"
+    },
+    {
+      "id": "SRC-75a427d2d2cd",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-4/CONTRIBUTION-READY-CHANGES.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-75a427d2d2cd"
+    },
+    {
+      "id": "SRC-765d1d5a204b",
+      "type": "file",
+      "title": "planning/phases/phase-02/changes.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-765d1d5a204b"
+    },
+    {
+      "id": "SRC-77790380b22c",
+      "type": "file",
+      "title": "planning/wiki/assets/wiki.css",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-77790380b22c"
+    },
+    {
+      "id": "SRC-7784f012f284",
+      "type": "file",
+      "title": "planning/phases/phase-05/findings.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-7784f012f284"
+    },
+    {
+      "id": "SRC-77fa7bf1cee2",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-1/FREEBUFF-CLI-SKILLS.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-77fa7bf1cee2"
+    },
+    {
+      "id": "SRC-789d335135cd",
+      "type": "file",
+      "title": "CLI-HANDOFF/EVIDENCE.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-789d335135cd"
+    },
+    {
+      "id": "SRC-7a28c44757a0",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-15/CONTRIBUTION-READY.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-7a28c44757a0"
+    },
+    {
+      "id": "SRC-7abaecc29a63",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-3/IMPLEMENTATION-WORK-BREAKDOWN.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-7abaecc29a63"
+    },
+    {
+      "id": "SRC-7ac1a3faf10b",
+      "type": "file",
+      "title": "CLI-HANDOFF/STALE-CLAIMS.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-7ac1a3faf10b"
+    },
+    {
+      "id": "SRC-7b1022aa5551",
+      "type": "file",
+      "title": "planning/git/branches.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-7b1022aa5551"
+    },
+    {
+      "id": "SRC-7b91a817cb84",
+      "type": "file",
+      "title": "CLI-HANDOFF/PHASE-LADDER.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-7b91a817cb84"
+    },
+    {
+      "id": "SRC-7c8cf14d5ce8",
+      "type": "file",
+      "title": "planning/phases/phase-02/tests.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-7c8cf14d5ce8"
+    },
+    {
+      "id": "SRC-7d7043f135e6",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-8/AGENT-REVIEW.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-7d7043f135e6"
+    },
+    {
+      "id": "SRC-7df3baa1ff96",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-4/BLOCKED-CANDIDATES.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-7df3baa1ff96"
+    },
+    {
+      "id": "SRC-801fa8bab9b5",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-14/MCP-INDEPENDENT-REVIEW.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-801fa8bab9b5"
+    },
+    {
+      "id": "SRC-81745a6429fb",
+      "type": "file",
+      "title": "planning/phases/phase-06/blockers.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-81745a6429fb"
+    },
+    {
+      "id": "SRC-819f3277bdff",
+      "type": "file",
+      "title": "planning/pages/README.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-819f3277bdff"
+    },
+    {
+      "id": "SRC-81b4186901aa",
+      "type": "file",
+      "title": "artifacts/v0.3.0/compass-0.3.0/assets/radix-CLCOOwfT.js",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-81b4186901aa"
+    },
+    {
+      "id": "SRC-81d226a33417",
+      "type": "file",
+      "title": "artifacts/v0.3.0/compass-0.3.0/assets/index-C9dqEzlZ.js",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-81d226a33417"
+    },
+    {
+      "id": "SRC-82ca3273f5e4",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-5/STANDALONE-GENERATION-RESULT.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-82ca3273f5e4"
+    },
+    {
+      "id": "SRC-82ee02809744",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-4/PHASE-5-IMPLEMENTATION-INPUT.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-82ee02809744"
+    },
+    {
+      "id": "SRC-838d6e0c0428",
+      "type": "file",
+      "title": "planning/maps/phases.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-838d6e0c0428"
+    },
+    {
+      "id": "SRC-83c8009bf2e3",
+      "type": "file",
+      "title": "planning/maps/evidence-map.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-83c8009bf2e3"
+    },
+    {
+      "id": "SRC-8865d7f959dd",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-3/CONTRIBUTION-READINESS.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-8865d7f959dd"
+    },
+    {
+      "id": "SRC-88778bdc6a27",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-3/PHASE-4-IMPLEMENTATION-INPUT.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-88778bdc6a27"
+    },
+    {
+      "id": "SRC-891c93ad6699",
+      "type": "file",
+      "title": "decisions/log.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-891c93ad6699"
+    },
+    {
+      "id": "SRC-8a43d1d6ed36",
+      "type": "file",
+      "title": "planning/phases/phase-07/README.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-8a43d1d6ed36"
+    },
+    {
+      "id": "SRC-8a458dae3346",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-15/PHASE-FINAL-REPORT.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-8a458dae3346"
+    },
+    {
+      "id": "SRC-8abc4c9aebd3",
+      "type": "file",
+      "title": "planning/compass/lifecycle.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-8abc4c9aebd3"
+    },
+    {
+      "id": "SRC-8bfdc08abd85",
+      "type": "file",
+      "title": "planning/findings/by-evidence-class.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-8bfdc08abd85"
+    },
+    {
+      "id": "SRC-8d80b25f1dff",
+      "type": "file",
+      "title": "planning/pr-planning/ix-compass-dist.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-8d80b25f1dff"
+    },
+    {
+      "id": "SRC-8d897ca7a10e",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-15/MAINTAINER-VALUE-MATRIX.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-8d897ca7a10e"
+    },
+    {
+      "id": "SRC-8db7e3494758",
+      "type": "file",
+      "title": "manifests/investigation-index.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-8db7e3494758"
+    },
+    {
+      "id": "SRC-8e011cd08c48",
+      "type": "file",
+      "title": "planning/github/references.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-8e011cd08c48"
+    },
+    {
+      "id": "SRC-8e5e380c4321",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-4/IMPLEMENTATION-DECISIONS.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-8e5e380c4321"
+    },
+    {
+      "id": "SRC-8e609cb252f2",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-5/REMAP-REBASE-RESULT.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-8e609cb252f2"
+    },
+    {
+      "id": "SRC-8f1401b89782",
+      "type": "file",
+      "title": "CLI-HANDOFF/POST-LADDER-AUDIT.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-8f1401b89782"
+    },
+    {
+      "id": "SRC-8f4c0c5e19e9",
+      "type": "file",
+      "title": "planning/github/pull-requests.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-8f4c0c5e19e9"
+    },
+    {
+      "id": "SRC-8f942ed130a5",
+      "type": "file",
+      "title": "planning/phases/phase-04/findings.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-8f942ed130a5"
+    },
+    {
+      "id": "SRC-905995a8868e",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-3/PRIORITY-MATRIX.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-905995a8868e"
+    },
+    {
+      "id": "SRC-909e8f77d282",
+      "type": "file",
+      "title": "planning/maps/decision-map.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-909e8f77d282"
+    },
+    {
+      "id": "SRC-90ab8426282e",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-15/FINAL-PR-WORTHINESS-AUDIT.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-90ab8426282e"
+    },
+    {
+      "id": "SRC-91bdd456e7d8",
+      "type": "file",
+      "title": "planning/maps/timeline-map.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-91bdd456e7d8"
+    },
+    {
+      "id": "SRC-91ccfd59ca41",
+      "type": "file",
+      "title": "planning/pr-planning/compass-f-key.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-91ccfd59ca41"
+    },
+    {
+      "id": "SRC-937713c96fb0",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-2/CANDIDATE-WORK.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-937713c96fb0"
+    },
+    {
+      "id": "SRC-93a8e60d6546",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-3/BUG-INVENTORY.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-93a8e60d6546"
+    },
+    {
+      "id": "SRC-93b36cff9362",
+      "type": "file",
+      "title": "artifacts/v0.3.0/compass-0.3.0/assets/icons-BbGX8vRd.js",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-93b36cff9362"
+    },
+    {
+      "id": "SRC-9426018249a5",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-3/TEST-READINESS-MATRIX.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-9426018249a5"
+    },
+    {
+      "id": "SRC-94fb61826e8a",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-2/CROSS-PROJECT-MAP.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-94fb61826e8a"
+    },
+    {
+      "id": "SRC-950b2debbc13",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-3/ENHANCEMENT-INVENTORY.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-950b2debbc13"
+    },
+    {
+      "id": "SRC-952b79f81615",
+      "type": "file",
+      "title": "planning/phases/phase-12/tests.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-952b79f81615"
+    },
+    {
+      "id": "SRC-988cd4dc2884",
+      "type": "file",
+      "title": "comparisons/releases/timeline.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-988cd4dc2884"
+    },
+    {
+      "id": "SRC-988ee816079a",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-4/KNOWLEDGE-EXPORT-MANIFEST.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-988ee816079a"
+    },
+    {
+      "id": "SRC-98b8317150c1",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-14/COMPASS-REVIEW.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-98b8317150c1"
+    },
+    {
+      "id": "SRC-991392c600a8",
+      "type": "file",
+      "title": "planning/git/forks.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-991392c600a8"
+    },
+    {
+      "id": "SRC-998b1d42216e",
+      "type": "file",
+      "title": "CLI-HANDOFF/FILE-MANIFEST.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-998b1d42216e"
+    },
+    {
+      "id": "SRC-99ca1094080f",
+      "type": "file",
+      "title": "github/issues/371/README.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-99ca1094080f"
+    },
+    {
+      "id": "SRC-9b80c9c2dade",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-14/PHASE-14-IMPLEMENTATION-RECOMMENDATIONS.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-9b80c9c2dade"
+    },
+    {
+      "id": "SRC-9bc115339629",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-7/PHASE-7-REPORT.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-9bc115339629"
+    },
+    {
+      "id": "SRC-9bedc6c7397e",
+      "type": "file",
+      "title": "planning/github/releases.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-9bedc6c7397e"
+    },
+    {
+      "id": "SRC-9cd68338cdaa",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-5/PHASE-5-LIVE-BASELINE.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-9cd68338cdaa"
+    },
+    {
+      "id": "SRC-9e05122aa7e6",
+      "type": "file",
+      "title": "github/issues/376/README.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-9e05122aa7e6"
+    },
+    {
+      "id": "SRC-9e249cefe603",
+      "type": "file",
+      "title": "CLI-HANDOFF/BRANCH-MATRIX.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-9e249cefe603"
+    },
+    {
+      "id": "SRC-9e660cbf742f",
+      "type": "file",
+      "title": "planning/wiki/data/data.js",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-9e660cbf742f"
+    },
+    {
+      "id": "SRC-9e68db392ca7",
+      "type": "file",
+      "title": "planning/overview/objectives.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-9e68db392ca7"
+    },
+    {
+      "id": "SRC-9e72330093b6",
+      "type": "file",
+      "title": "CLI-HANDOFF/FINDINGS.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-9e72330093b6"
+    },
+    {
+      "id": "SRC-9ec8bf34ba0e",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-6/POST-MUTATION-INTEGRITY.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-9ec8bf34ba0e"
+    },
+    {
+      "id": "SRC-9ed384a3feca",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-5/PHASE-5-TEST-RESULTS.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-9ed384a3feca"
+    },
+    {
+      "id": "SRC-9fc0a40c1d86",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-9/REAL-CLIENT-RUN.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-9fc0a40c1d86"
+    },
+    {
+      "id": "SRC-9ffac45b7321",
+      "type": "file",
+      "title": "planning/pages/build-public.mjs",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-9ffac45b7321"
+    },
+    {
+      "id": "SRC-a1bafe774982",
+      "type": "file",
+      "title": "artifacts/v0.3.0/compass-0.3.0/placeholder.svg",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-a1bafe774982"
+    },
+    {
+      "id": "SRC-a24821768058",
+      "type": "file",
+      "title": "planning/pages/validate-public.mjs",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-a24821768058"
+    },
+    {
+      "id": "SRC-a2553a6e9b70",
+      "type": "file",
+      "title": "planning/phases/phase-05/evidence.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-a2553a6e9b70"
+    },
+    {
+      "id": "SRC-a3118f6383ee",
+      "type": "file",
+      "title": "planning/wiki/repomix-bundle/output.1.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-a3118f6383ee"
+    },
+    {
+      "id": "SRC-a3361781c047",
+      "type": "file",
+      "title": "planning/overview/phase-overview.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-a3361781c047"
+    },
+    {
+      "id": "SRC-a3c70d32ace4",
+      "type": "file",
+      "title": "planning/phases/phase-00/findings.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-a3c70d32ace4"
+    },
+    {
+      "id": "SRC-a486d5e8cb20",
+      "type": "file",
+      "title": "planning/suggestions/accepted.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-a486d5e8cb20"
+    },
+    {
+      "id": "SRC-a74da6b4a7ee",
+      "type": "file",
+      "title": "CLI-HANDOFF/INTEGRITY-REPORT.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-a74da6b4a7ee"
+    },
+    {
+      "id": "SRC-a7be009ed564",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-5/PAGES-PUBLIC-DATA-AUDIT.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-a7be009ed564"
+    },
+    {
+      "id": "SRC-a81418cd4ea1",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-7/PHASE-7-PROMPT.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-a81418cd4ea1"
+    },
+    {
+      "id": "SRC-a86de113bf0c",
+      "type": "file",
+      "title": "planning/phases/phase-03/README.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-a86de113bf0c"
+    },
+    {
+      "id": "SRC-a86f629ba139",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-2/KNOWLEDGE-MODEL.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-a86f629ba139"
+    },
+    {
+      "id": "SRC-a911cba28600",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-3/CANDIDATE-DEPENDENCY-GRAPH.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-a911cba28600"
+    },
+    {
+      "id": "SRC-a9e1457d96e0",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-15/ALREADY-FIXED.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-a9e1457d96e0"
+    },
+    {
+      "id": "SRC-ab21363803ef",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-9/PHASE-9-HARDENING-RESULTS.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-ab21363803ef"
+    },
+    {
+      "id": "SRC-ac6da3f51931",
+      "type": "file",
+      "title": "planning/findings/by-status.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-ac6da3f51931"
+    },
+    {
+      "id": "SRC-ad4a6f3a9819",
+      "type": "file",
+      "title": "planning/compass/historical-matrix.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-ad4a6f3a9819"
+    },
+    {
+      "id": "SRC-adc3120803e5",
+      "type": "file",
+      "title": "planning/wiki/standalone-template.html",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-adc3120803e5"
+    },
+    {
+      "id": "SRC-ae3a5adf0b1c",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-8/TEST-RESULTS.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-ae3a5adf0b1c"
+    },
+    {
+      "id": "SRC-aec9fcad7db5",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-1/REPOSITORY-ARCHAEOLOGY.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-aec9fcad7db5"
+    },
+    {
+      "id": "SRC-af70c0dde2be",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-15/LEDGER-RECONCILIATION.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-af70c0dde2be"
+    },
+    {
+      "id": "SRC-af76d9ddc05c",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-12/PHASE-12-PROMPT.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-af76d9ddc05c"
+    },
+    {
+      "id": "SRC-b03e04308185",
+      "type": "file",
+      "title": "pr-packets/ix-mcp/README.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-b03e04308185"
+    },
+    {
+      "id": "SRC-b1972f8f4003",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-0/PHASE-0-REPORT.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-b1972f8f4003"
+    },
+    {
+      "id": "SRC-b2352e6b7d2f",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-8/PHASE-8-AUTHORIZATION-STATE.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-b2352e6b7d2f"
+    },
+    {
+      "id": "SRC-b4556f72d4f9",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-5/PHASE-5-EXTERNAL-ACTIONS.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-b4556f72d4f9"
+    },
+    {
+      "id": "SRC-b50473a3d022",
+      "type": "file",
+      "title": "planning/phases/phase-00/blockers.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-b50473a3d022"
+    },
+    {
+      "id": "SRC-b540d9ffd821",
+      "type": "file",
+      "title": "planning/compass/keyboard.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-b540d9ffd821"
+    },
+    {
+      "id": "SRC-b5e90849f612",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-3/REPOSITORY-OWNERSHIP-MATRIX.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-b5e90849f612"
+    },
+    {
+      "id": "SRC-b665e358721c",
+      "type": "file",
+      "title": "planning/suggestions/registry.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-b665e358721c"
+    },
+    {
+      "id": "SRC-b684fc5468bb",
+      "type": "file",
+      "title": "planning/suggestions/deferred.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-b684fc5468bb"
+    },
+    {
+      "id": "SRC-b6c4dc7d08c1",
+      "type": "file",
+      "title": "artifacts/v0.3.0/compass-0.3.0/assets/CommandBar-O5zSntkc.js",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-b6c4dc7d08c1"
+    },
+    {
+      "id": "SRC-b864930ec47f",
+      "type": "file",
+      "title": "planning/wiki/assets/sections.js",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-b864930ec47f"
+    },
+    {
+      "id": "SRC-bac895e57721",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-5/PHASE-5-EVIDENCE-MATRIX.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-bac895e57721"
+    },
+    {
+      "id": "SRC-bb8e26e581d0",
+      "type": "file",
+      "title": "reports/master-report.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-bb8e26e581d0"
+    },
+    {
+      "id": "SRC-bb9eebface92",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-3/GITHUB-PAGES-IMPLEMENTATION-SPEC.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-bb9eebface92"
+    },
+    {
+      "id": "SRC-bc7aa699fd75",
+      "type": "file",
+      "title": "planning/ix/ix-mcp.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-bc7aa699fd75"
+    },
+    {
+      "id": "SRC-bd1f8c165aa1",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-13/PHASE-13-REPORT.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-bd1f8c165aa1"
+    },
+    {
+      "id": "SRC-bf18b2cda595",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-4/VERIFICATION-MATRIX.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-bf18b2cda595"
+    },
+    {
+      "id": "SRC-bf5262a6ebc0",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-14/ISSUE-AUDIT.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-bf5262a6ebc0"
+    },
+    {
+      "id": "SRC-c063b464bd2c",
+      "type": "file",
+      "title": "CLI-HANDOFF/PUBLIC-REFERENCES.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-c063b464bd2c"
+    },
+    {
+      "id": "SRC-c37d54c58320",
+      "type": "file",
+      "title": "planning/repositories/ix-compass-dist.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-c37d54c58320"
+    },
+    {
+      "id": "SRC-c45ce60b6c7c",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-2/DECISION-RECONCILIATION.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-c45ce60b6c7c"
+    },
+    {
+      "id": "SRC-c65ee05d6e9a",
+      "type": "file",
+      "title": "planning/phases/phase-03/findings.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-c65ee05d6e9a"
+    },
+    {
+      "id": "SRC-c699fb262c5f",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-4/REPOSITORY-STATE-AFTER.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-c699fb262c5f"
+    },
+    {
+      "id": "SRC-c7ef93a86406",
+      "type": "file",
+      "title": "planning/final/EXECUTIVE-SUMMARY.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-c7ef93a86406"
+    },
+    {
+      "id": "SRC-c7f186ad4db8",
+      "type": "file",
+      "title": "planning/repositories/Ix-remap.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-c7f186ad4db8"
+    },
+    {
+      "id": "SRC-c89ae770518e",
+      "type": "file",
+      "title": "planning/phases/phase-10/README.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-c89ae770518e"
+    },
+    {
+      "id": "SRC-c8b73f9ce60a",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-12/PHASE-12-REPORT.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-c8b73f9ce60a"
+    },
+    {
+      "id": "SRC-c9742e552613",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-5/PAGES-DEPLOYMENT-PACKAGE.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-c9742e552613"
+    },
+    {
+      "id": "SRC-c9b448ca9805",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-1/IMPLEMENTATION-CANDIDATES.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-c9b448ca9805"
+    },
+    {
+      "id": "SRC-cab28416ccca",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-3/CANDIDATE-EVIDENCE-MATRIX.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-cab28416ccca"
+    },
+    {
+      "id": "SRC-cbae8e94d9d6",
+      "type": "file",
+      "title": "findings/phase-4-audit.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-cbae8e94d9d6"
+    },
+    {
+      "id": "SRC-cc0f778ab554",
+      "type": "file",
+      "title": "planning/findings/by-severity.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-cc0f778ab554"
+    },
+    {
+      "id": "SRC-cc1bb4a76b8d",
+      "type": "file",
+      "title": "CLI-HANDOFF/SYSTEM-COMPASS-CONTRIBUTION-SPEC.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-cc1bb4a76b8d"
+    },
+    {
+      "id": "SRC-cc8543919226",
+      "type": "file",
+      "title": "github/historical-prs.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-cc8543919226"
+    },
+    {
+      "id": "SRC-ce984839fb71",
+      "type": "file",
+      "title": "planning/github/comments.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-ce984839fb71"
+    },
+    {
+      "id": "SRC-cf88149934b8",
+      "type": "file",
+      "title": "pr-packets/compass-f-key/README.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-cf88149934b8"
+    },
+    {
+      "id": "SRC-cf952a4925c0",
+      "type": "file",
+      "title": "state/phase-1-sync-report.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-cf952a4925c0"
+    },
+    {
+      "id": "SRC-d06d9700265b",
+      "type": "file",
+      "title": "artifacts/v0.3.0/compass-0.3.0/assets/rolldown-runtime-B0Z9INg1.js",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-d06d9700265b"
+    },
+    {
+      "id": "SRC-d0e0b6fceed9",
+      "type": "file",
+      "title": "artifacts/v0.3.0/compass-0.3.0/assets/vendor-By_s-5m5.js",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-d0e0b6fceed9"
+    },
+    {
+      "id": "SRC-d437e14e31e5",
+      "type": "file",
+      "title": "planning/maps/repository-map.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-d437e14e31e5"
+    },
+    {
+      "id": "SRC-d487ebfc50f9",
+      "type": "file",
+      "title": "pr-packets/ix-mcp/PR-BODY.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-d487ebfc50f9"
+    },
+    {
+      "id": "SRC-d62061266e40",
+      "type": "file",
+      "title": "planning/phases/phase-04/README.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-d62061266e40"
+    },
+    {
+      "id": "SRC-d67e093efa0b",
+      "type": "file",
+      "title": "planning/github/issues.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-d67e093efa0b"
+    },
+    {
+      "id": "SRC-d7038fbc4263",
+      "type": "file",
+      "title": "planning/ix/ix-376.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-d7038fbc4263"
+    },
+    {
+      "id": "SRC-d83242cc0657",
+      "type": "file",
+      "title": "planning/phases/phase-01/README.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-d83242cc0657"
+    },
+    {
+      "id": "SRC-d9a2d3e77b99",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-13/FINAL-CLOSE-OUT.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-d9a2d3e77b99"
+    },
+    {
+      "id": "SRC-dcf7735a458a",
+      "type": "file",
+      "title": "state/phase-6-f-key-gate.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-dcf7735a458a"
+    },
+    {
+      "id": "SRC-de50e37c5f43",
+      "type": "file",
+      "title": "security/findings.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-de50e37c5f43"
+    },
+    {
+      "id": "SRC-de72880c1051",
+      "type": "file",
+      "title": "planning/phases/phase-12/README.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-de72880c1051"
+    },
+    {
+      "id": "SRC-df11822ab121",
+      "type": "file",
+      "title": "planning/final/AI-BRIEFING-PROMPT.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-df11822ab121"
+    },
+    {
+      "id": "SRC-df2c469e8ef4",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-15/TEST-EVIDENCE-MATRIX.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-df2c469e8ef4"
+    },
+    {
+      "id": "SRC-df745ce53e1b",
+      "type": "file",
+      "title": "planning/github/maintainers.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-df745ce53e1b"
+    },
+    {
+      "id": "SRC-dfcec515a62c",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-11/PHASE-12-IMPLEMENTATION-INPUT.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-dfcec515a62c"
+    },
+    {
+      "id": "SRC-e0338662f652",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-14/PR-AUDIT.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-e0338662f652"
+    },
+    {
+      "id": "SRC-e0d8093fa77b",
+      "type": "file",
+      "title": "planning/wiki/build-standalone.mjs",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-e0d8093fa77b"
+    },
+    {
+      "id": "SRC-e1466056ed64",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-8/PHASE-9-IMPLEMENTATION-INPUT.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-e1466056ed64"
+    },
+    {
+      "id": "SRC-e1af5b6823f7",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-1/PHASE-1-REPORT.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-e1af5b6823f7"
+    },
+    {
+      "id": "SRC-e29def1b2141",
+      "type": "file",
+      "title": "planning/phases/phase-13/README.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-e29def1b2141"
+    },
+    {
+      "id": "SRC-e333c0c9bf68",
+      "type": "file",
+      "title": "planning/phases/phase-05/README.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-e333c0c9bf68"
+    },
+    {
+      "id": "SRC-e45f189cc0b6",
+      "type": "file",
+      "title": "planning/final/verification.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-e45f189cc0b6"
+    },
+    {
+      "id": "SRC-e4cf570f751e",
+      "type": "file",
+      "title": "planning/phases/phase-00/evidence.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-e4cf570f751e"
+    },
+    {
+      "id": "SRC-e4f749693eed",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-8/EXTERNAL-ACTION-LOG.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-e4f749693eed"
+    },
+    {
+      "id": "SRC-e50802750741",
+      "type": "file",
+      "title": "comparisons/historical-matrix.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-e50802750741"
+    },
+    {
+      "id": "SRC-e57190740d47",
+      "type": "file",
+      "title": "github/issues/219/README.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-e57190740d47"
+    },
+    {
+      "id": "SRC-e66ec0a12188",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-15/NEEDS-REPRODUCTION.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-e66ec0a12188"
+    },
+    {
+      "id": "SRC-e6bbf12f0cfb",
+      "type": "file",
+      "title": "state/phase-7-upstream-reconciliation-2026-08-11.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-e6bbf12f0cfb"
+    },
+    {
+      "id": "SRC-e70b6d7f9d45",
+      "type": "file",
+      "title": "comparisons/camera-fit/delayed-data-investigation.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-e70b6d7f9d45"
+    },
+    {
+      "id": "SRC-e769c741ffbd",
+      "type": "file",
+      "title": "CLI-HANDOFF/WORKTREES.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-e769c741ffbd"
+    },
+    {
+      "id": "SRC-e7f9d69fda5e",
+      "type": "file",
+      "title": "planning/security/privacy.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-e7f9d69fda5e"
+    },
+    {
+      "id": "SRC-e83be4caf1c1",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-9/PHASE-9-REPORT.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-e83be4caf1c1"
+    },
+    {
+      "id": "SRC-e865abef33a7",
+      "type": "file",
+      "title": "planning/repositories/Ix-findings.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-e865abef33a7"
+    },
+    {
+      "id": "SRC-e9ac47d5c68d",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-8/TOOL-REGISTRY.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-e9ac47d5c68d"
+    },
+    {
+      "id": "SRC-ea279e9f1777",
+      "type": "file",
+      "title": "planning/compass/artifacts.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-ea279e9f1777"
+    },
+    {
+      "id": "SRC-ec1a5b07f363",
+      "type": "file",
+      "title": "planning/wiki/assets/wiki.js",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-ec1a5b07f363"
+    },
+    {
+      "id": "SRC-ec9ec7c68b9e",
+      "type": "file",
+      "title": "planning/evidence/artifacts/index.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-ec9ec7c68b9e"
+    },
+    {
+      "id": "SRC-edb857d7d477",
+      "type": "file",
+      "title": "planning/overview/methodology.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-edb857d7d477"
+    },
+    {
+      "id": "SRC-ef4419774d26",
+      "type": "file",
+      "title": "artifacts/v0.3.0/compass-0.3.0/assets/react-vendor-B1T8XXUA.js",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-ef4419774d26"
+    },
+    {
+      "id": "SRC-efe94e86a48a",
+      "type": "file",
+      "title": "pr-packets/ix-376-version-mismatch/README.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-efe94e86a48a"
+    },
+    {
+      "id": "SRC-eff36532a9f0",
+      "type": "file",
+      "title": "CLI-HANDOFF/GRAPH-AUDIT.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-eff36532a9f0"
+    },
+    {
+      "id": "SRC-f0a2c3a606fb",
+      "type": "file",
+      "title": "state/phase-12-publication-gate.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-f0a2c3a606fb"
+    },
+    {
+      "id": "SRC-f0f98ea3241a",
+      "type": "file",
+      "title": "CLI-HANDOFF/PATHS.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-f0f98ea3241a"
+    },
+    {
+      "id": "SRC-f428949b753d",
+      "type": "file",
+      "title": "CLI-HANDOFF/FREEBUFF-CLI-PROMPT.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-f428949b753d"
+    },
+    {
+      "id": "SRC-f465053b9434",
+      "type": "file",
+      "title": "reports/phase-summaries.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-f465053b9434"
+    },
+    {
+      "id": "SRC-f569bf73b619",
+      "type": "file",
+      "title": "artifacts/v0.3.0/compass-0.3.0/assets/KeyboardHelp-KnF66B2h.js",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-f569bf73b619"
+    },
+    {
+      "id": "SRC-f58e55220f49",
+      "type": "file",
+      "title": "planning/maps/finding-map.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-f58e55220f49"
+    },
+    {
+      "id": "SRC-f5fbbd40f342",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-8/PHASE-8-REPORT.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-f5fbbd40f342"
+    },
+    {
+      "id": "SRC-f712fa17ebe1",
+      "type": "file",
+      "title": "planning/phases/phase-08/README.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-f712fa17ebe1"
+    },
+    {
+      "id": "SRC-f73d60322b99",
+      "type": "file",
+      "title": "github/issues/381/README.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-f73d60322b99"
+    },
+    {
+      "id": "SRC-f8bc47358c13",
+      "type": "file",
+      "title": "planning/pr-planning/compass-delayed-data.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-f8bc47358c13"
+    },
+    {
+      "id": "SRC-f9020429a11d",
+      "type": "file",
+      "title": "CLI-HANDOFF/README.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-f9020429a11d"
+    },
+    {
+      "id": "SRC-f932c2be9504",
+      "type": "file",
+      "title": "planning/evidence/registry.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-f932c2be9504"
+    },
+    {
+      "id": "SRC-f95288b86877",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-14/PHASE-14-IMPLEMENTATION-INPUT.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-f95288b86877"
+    },
+    {
+      "id": "SRC-f9d5f47feb85",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-4/TEST-RESULTS.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-f9d5f47feb85"
+    },
+    {
+      "id": "SRC-f9f37ef344ae",
+      "type": "file",
+      "title": "planning/git/worktrees.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-f9f37ef344ae"
+    },
+    {
+      "id": "SRC-fa306d371f14",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-6/PHASE-6-LIVE-BASELINE.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-fa306d371f14"
+    },
+    {
+      "id": "SRC-fab6ee4acba2",
+      "type": "file",
+      "title": "planning/phases/phase-11/README.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-fab6ee4acba2"
+    },
+    {
+      "id": "SRC-fb6567a40e54",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-15/PR-SUBMISSION-PACKETS.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-fb6567a40e54"
+    },
+    {
+      "id": "SRC-fb67986316cc",
+      "type": "file",
+      "title": "planning/suggestions/superseded.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-fb67986316cc"
+    },
+    {
+      "id": "SRC-fc1968f9ea9f",
+      "type": "file",
+      "title": "artifacts/v0.3.0/compass-0.3.0/index.html",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-fc1968f9ea9f"
+    },
+    {
+      "id": "SRC-fd02a1972a73",
+      "type": "file",
+      "title": "planning/suggestions/registry.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-fd02a1972a73"
+    },
+    {
+      "id": "SRC-fd1dfee96688",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-5/CONTRIBUTION-EXECUTION-READINESS.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-fd1dfee96688"
+    },
+    {
+      "id": "SRC-fd1f275c7de6",
+      "type": "file",
+      "title": "planning/maps/legacy/investigation-map-v1.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-fd1f275c7de6"
+    },
+    {
+      "id": "SRC-fdd6a74bbb7c",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-14/REMAP-REVIEW.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-fdd6a74bbb7c"
+    },
+    {
+      "id": "SRC-fe02f8bd337f",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-5/PHASE-5-REPORT.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-fe02f8bd337f"
+    },
+    {
+      "id": "SRC-fe1eeb56df3e",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-6/PHASE-6-AUTHORIZATION-STATE.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-fe1eeb56df3e"
+    },
+    {
+      "id": "SRC-fedea678c555",
+      "type": "file",
+      "title": "planning/final/REMAINING-BLOCKERS.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-fedea678c555"
+    },
+    {
+      "id": "SRC-ff02074c54d7",
+      "type": "file",
+      "title": "planning/compass/reconstruction.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-ff02074c54d7"
+    },
+    {
+      "id": "SRC-aa7c804a428d",
+      "type": "file",
+      "title": "CLI-HANDOFF/phase-2/CONTRIBUTION-CORRELATION.json",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-aa7c804a428d"
+    },
+    {
+      "id": "SRC-aaa274efc387",
+      "type": "file",
+      "title": "planning/phases/phase-01/changes.md",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-aaa274efc387"
+    },
+    {
+      "id": "SRC-aaf47d3d657b",
+      "type": "file",
+      "title": "planning/pages/workflow/pages.yml.template",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-aaf47d3d657b"
+    }
+  ]
+}

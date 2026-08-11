@@ -1,0 +1,58 @@
+{
+  "id": "S-033",
+  "type": "suggestion",
+  "title": "Add drill-in/out reframe to the F-key PR",
+  "status": "SUPERSEDED",
+  "url": "https://alot1z.github.io/Ix-findings/entities/s-033",
+  "summary": {
+    "id": "S-033",
+    "type": "suggestion",
+    "title": "Add drill-in/out reframe to the F-key PR",
+    "status": "SUPERSEDED",
+    "phase": "phase-06",
+    "repository": "system-compass",
+    "disposition": "SUPERSEDED"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "RESPONDS_TO",
+      "other": "F-005",
+      "other_type": "finding",
+      "other_title": "#57 one-shot fit latch -> keyed refit (v0.2.0->v0.3.0)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-005"
+    },
+    {
+      "direction": "out",
+      "relationship": "APPLIES_TO",
+      "other": "F-005",
+      "other_type": "finding",
+      "other_title": "#57 one-shot fit latch -> keyed refit (v0.2.0->v0.3.0)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-005"
+    },
+    {
+      "direction": "out",
+      "relationship": "SUPPORTED_BY",
+      "other": "E-008",
+      "other_type": "evidence",
+      "other_title": "v0.3.0 release notes (KageBinary)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-008"
+    },
+    {
+      "direction": "in",
+      "relationship": "ACCEPTED_BY",
+      "other": "D-005",
+      "other_type": "decision",
+      "other_title": "F-key = keyboard exposure only, no new camera system",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/d-005"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-fd02a1972a73",
+      "other_type": "file",
+      "other_title": "planning/suggestions/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-fd02a1972a73"
+    }
+  ]
+}

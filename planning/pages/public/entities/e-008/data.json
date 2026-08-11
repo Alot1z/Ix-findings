@@ -1,0 +1,89 @@
+{
+  "id": "E-008",
+  "type": "evidence",
+  "title": "v0.3.0 release notes (KageBinary)",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/e-008",
+  "summary": {
+    "id": "E-008",
+    "type": "evidence",
+    "title": "v0.3.0 release notes (KageBinary)",
+    "status": "HISTORICAL",
+    "phase": "phase-05",
+    "repository": "ix-compass-dist"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "SUPPORTED_BY",
+      "other": "F-005",
+      "other_type": "finding",
+      "other_title": "#57 one-shot fit latch -> keyed refit (v0.2.0->v0.3.0)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-005"
+    },
+    {
+      "direction": "out",
+      "relationship": "SUPPORTS",
+      "other": "F-005",
+      "other_type": "finding",
+      "other_title": "#57 one-shot fit latch -> keyed refit (v0.2.0->v0.3.0)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-005"
+    },
+    {
+      "direction": "out",
+      "relationship": "SUPPORTS",
+      "other": "F-006",
+      "other_type": "finding",
+      "other_title": "Delayed-data blank persists on v0.3.0",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-006"
+    },
+    {
+      "direction": "out",
+      "relationship": "SUPPORTS",
+      "other": "F-007",
+      "other_type": "finding",
+      "other_title": "Region-rollup aggregate formation is timing-dependent",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-007"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTED_BY",
+      "other": "S-006",
+      "other_type": "suggestion",
+      "other_title": "Keep Compass changes separate from Ix changes",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-006"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTED_BY",
+      "other": "S-019",
+      "other_type": "suggestion",
+      "other_title": "Investigate system-compass #58/#59",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-019"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTED_BY",
+      "other": "S-032",
+      "other_type": "suggestion",
+      "other_title": "Add mount auto-frame to the F-key PR",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-032"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTED_BY",
+      "other": "S-033",
+      "other_type": "suggestion",
+      "other_title": "Add drill-in/out reframe to the F-key PR",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-033"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-11b62787a2c7",
+      "other_type": "file",
+      "other_title": "planning/evidence/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-11b62787a2c7"
+    }
+  ]
+}

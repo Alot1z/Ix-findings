@@ -1,0 +1,33 @@
+{
+  "id": "E-020",
+  "type": "evidence",
+  "title": "GitHub maintainer context",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/e-020",
+  "summary": {
+    "id": "E-020",
+    "type": "evidence",
+    "title": "GitHub maintainer context",
+    "status": "HISTORICAL",
+    "phase": "phase-10",
+    "repository": "ALL"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "SUPPORTED_BY",
+      "other": "S-006",
+      "other_type": "suggestion",
+      "other_title": "Keep Compass changes separate from Ix changes",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-006"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-11b62787a2c7",
+      "other_type": "file",
+      "other_title": "planning/evidence/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-11b62787a2c7"
+    }
+  ]
+}

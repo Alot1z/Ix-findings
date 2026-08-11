@@ -111,5 +111,72 @@ for (const f of files) {
 }
 if (secretClean) ok("no secret patterns in output tree (" + files.length + " files)");
 
+// 10. Machine corpus + route registry completeness.
+const readJ = (p) => JSON.parse(readFileSync(p, "utf8"));
+const routes = existsSync(join(outDir, "routes.json")) ? (readJ(join(outDir, "routes.json")).items || []) : null;
+if (routes) {
+  let missingRoutes = 0;
+  for (const r of routes) {
+    const target = r.kind === "file" ? join(outDir, ...r.path.split("/")) : join(outDir, ...r.path.split("/"), "index.html");
+    if (!existsSync(target)) { fail("route target missing: " + r.path + (r.kind === "file" ? "" : "/index.html")); missingRoutes++; }
+  }
+  if (missingRoutes === 0) ok("route registry complete (" + routes.length + " routes: pages + machine files)");
+  const sitemap = existsSync(join(outDir, "sitemap.xml")) ? readFileSync(join(outDir, "sitemap.xml"), "utf8") : "";
+  const pageRoutes = routes.filter(r => r.kind !== "file");
+  const missingFromSitemap = pageRoutes.filter(r => !sitemap.includes(r.url));
+  missingFromSitemap.length === 0 ? ok("sitemap covers all page routes (" + pageRoutes.length + ")") : fail("sitemap missing routes: " + missingFromSitemap.map(r => r.path).join(","));
+} else {
+  fail("routes.json missing or unparsable");
+}
+
+// 11. graph.json consistency: every relation endpoint must be a known entity.
+if (existsSync(join(outDir, "graph.json"))) {
+  const g = readJ(join(outDir, "graph.json"));
+  const ids = new Set((g.entities || []).map(e => e.id));
+  const dangling = (g.relations || []).filter(r => !ids.has(r.source) || !ids.has(r.target));
+  dangling.length === 0 ? ok("graph.json relations valid (" + (g.relations || []).length + ")") : fail("graph.json dangling relations: " + dangling.slice(0, 5).map(r => r.source + "->" + r.target).join(","));
+} else {
+  fail("graph.json missing");
+}
+
+// 12. LLM corpus completeness: every canonical entity appears in llms-full.txt,
+// and llms.txt lists the required indexes.
+const entities = existsSync(join(outDir, "entities.json")) ? (readJ(join(outDir, "entities.json")).items || []) : [];
+if (existsSync(join(outDir, "llms-full.txt"))) {
+  const full = readFileSync(join(outDir, "llms-full.txt"), "utf8");
+  const missingEnts = entities.filter(e => !full.includes("ID: " + e.id));
+  missingEnts.length === 0 ? ok("llms-full.txt covers every canonical entity (" + entities.length + ")") : fail("llms-full.txt missing entities: " + missingEnts.slice(0, 10).map(e => e.id).join(","));
+} else {
+  fail("llms-full.txt missing");
+}
+if (existsSync(join(outDir, "llms.txt"))) {
+  const t = readFileSync(join(outDir, "llms.txt"), "utf8");
+  for (const f of ["llms-full.txt", "graph.json", "entities.json", "routes.json", "search.json", "sitemap.xml"]) {
+    if (!t.includes(f)) fail("llms.txt missing pointer: " + f);
+  }
+  ok("llms.txt entry point lists corpus indexes");
+} else {
+  fail("llms.txt missing");
+}
+
+// 13. Entity pages: every entity whose canonical URL is /entities/<slug>/ has
+// a physical index.html + data.json; search index covers the full corpus.
+{
+  const entityPages = entities.filter(e => /\/entities\/[^/]+$/.test(new URL(e.url).pathname));
+  let missingPages = 0;
+  for (const e of entityPages) {
+    const rel = new URL(e.url).pathname.replace(/\/Ix-findings/, "").replace(/\/+$/, "");
+    if (!existsSync(join(outDir, ...rel.split("/"), "index.html")) || !existsSync(join(outDir, ...rel.split("/"), "data.json"))) { fail("entity page missing: " + rel); missingPages++; }
+  }
+  if (missingPages === 0) ok("entity pages + data.json complete (" + entityPages.length + ")");
+}
+if (existsSync(join(outDir, "search.json"))) {
+  const s = readJ(join(outDir, "search.json")).items || [];
+  const missingSearch = entities.filter(e => !s.some(x => x.id === e.id));
+  missingSearch.length === 0 ? ok("search index covers all entities (" + s.length + " entries)") : fail("search index missing entities: " + missingSearch.slice(0, 10).map(e => e.id).join(","));
+} else {
+  fail("search.json missing");
+}
+
 console.log(failures === 0 ? "\nVALIDATION PASSED — public projection safe for review." : "\nVALIDATION FAILED with " + failures + " issue(s).");
 process.exit(failures === 0 ? 0 : 1);

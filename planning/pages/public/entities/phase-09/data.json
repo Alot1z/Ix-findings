@@ -1,0 +1,98 @@
+{
+  "id": "phase-09",
+  "type": "phase",
+  "title": "Phase 9 — Ix-findings Evidence Repository",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/phase-09",
+  "summary": {
+    "id": "phase-09",
+    "type": "phase",
+    "title": "Phase 9 — Ix-findings Evidence Repository",
+    "category": "AUDIT",
+    "status": "HISTORICAL",
+    "repository": "Ix-findings",
+    "number": 9
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "ENABLES",
+      "other": "phase-08",
+      "other_type": "phase",
+      "other_title": "Phase 8 — Repository Architecture Audit",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-08"
+    },
+    {
+      "direction": "out",
+      "relationship": "DEPENDS_ON",
+      "other": "phase-08",
+      "other_type": "phase",
+      "other_title": "Phase 8 — Repository Architecture Audit",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-08"
+    },
+    {
+      "direction": "out",
+      "relationship": "ENABLES",
+      "other": "phase-10",
+      "other_type": "phase",
+      "other_title": "Phase 10 — GitHub History & Maintainer Context",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-10"
+    },
+    {
+      "direction": "out",
+      "relationship": "GENERATED_FROM",
+      "other": "SRC-442914659421",
+      "other_type": "file",
+      "other_title": "manifests/findings-index.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-442914659421"
+    },
+    {
+      "direction": "out",
+      "relationship": "GENERATED_FROM",
+      "other": "SRC-891c93ad6699",
+      "other_type": "file",
+      "other_title": "decisions/log.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-891c93ad6699"
+    },
+    {
+      "direction": "out",
+      "relationship": "GENERATED_FROM",
+      "other": "SRC-f465053b9434",
+      "other_type": "file",
+      "other_title": "reports/phase-summaries.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-f465053b9434"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-838d6e0c0428",
+      "other_type": "file",
+      "other_title": "planning/maps/phases.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-838d6e0c0428"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-442914659421",
+      "other_type": "file",
+      "other_title": "manifests/findings-index.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-442914659421"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-891c93ad6699",
+      "other_type": "file",
+      "other_title": "decisions/log.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-891c93ad6699"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-f465053b9434",
+      "other_type": "file",
+      "other_title": "reports/phase-summaries.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-f465053b9434"
+    }
+  ]
+}

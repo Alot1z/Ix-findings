@@ -1,0 +1,129 @@
+{
+  "id": "E-014",
+  "type": "evidence",
+  "title": "remap diff c021b52",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/e-014",
+  "summary": {
+    "id": "E-014",
+    "type": "evidence",
+    "title": "remap diff c021b52",
+    "status": "HISTORICAL",
+    "phase": "phase-02",
+    "repository": "ix-infrastructure/Ix"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "SUPPORTED_BY",
+      "other": "F-010",
+      "other_type": "finding",
+      "other_title": "Loopback-hardened /__ix/remap endpoint (implemented)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-010"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTED_BY",
+      "other": "F-011",
+      "other_type": "finding",
+      "other_title": "WSL bootstrap fix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-011"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTED_BY",
+      "other": "F-012",
+      "other_type": "finding",
+      "other_title": "Dead node_ok removal",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-012"
+    },
+    {
+      "direction": "out",
+      "relationship": "SUPPORTS",
+      "other": "F-010",
+      "other_type": "finding",
+      "other_title": "Loopback-hardened /__ix/remap endpoint (implemented)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-010"
+    },
+    {
+      "direction": "out",
+      "relationship": "SUPPORTS",
+      "other": "F-011",
+      "other_type": "finding",
+      "other_title": "WSL bootstrap fix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-011"
+    },
+    {
+      "direction": "out",
+      "relationship": "SUPPORTS",
+      "other": "F-012",
+      "other_type": "finding",
+      "other_title": "Dead node_ok removal",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-012"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTED_BY",
+      "other": "S-003",
+      "other_type": "suggestion",
+      "other_title": "Export serverScript() from view.ts for testing",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-003"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTED_BY",
+      "other": "S-004",
+      "other_type": "suggestion",
+      "other_title": "IX_VIEW_MAP_MAIN env seam for stub CLI in tests",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-004"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTED_BY",
+      "other": "S-012",
+      "other_type": "suggestion",
+      "other_title": "Parse Origin with new URL(), not regex (template-literal pipeline)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-012"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTED_BY",
+      "other": "S-020",
+      "other_type": "suggestion",
+      "other_title": "No-map hint chip with feature-detect on /__ix/remap",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-020"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTED_BY",
+      "other": "S-024",
+      "other_type": "suggestion",
+      "other_title": "Mix Compass UI changes into the Ix PR",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-024"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTED_BY",
+      "other": "S-030",
+      "other_type": "suggestion",
+      "other_title": "Bind the remap server to 0.0.0.0",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-030"
+    },
+    {
+      "direction": "out",
+      "relationship": "FOUND_IN",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-11b62787a2c7",
+      "other_type": "file",
+      "other_title": "planning/evidence/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-11b62787a2c7"
+    }
+  ]
+}

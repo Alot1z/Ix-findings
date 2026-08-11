@@ -1,0 +1,130 @@
+{
+  "id": "S-007",
+  "type": "suggestion",
+  "title": "F-key = keyboard exposure only; no CameraStore, no duplicate fit math",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/s-007",
+  "summary": {
+    "id": "S-007",
+    "type": "suggestion",
+    "title": "F-key = keyboard exposure only; no CameraStore, no duplicate fit math",
+    "status": "CURRENT",
+    "phase": "phase-05",
+    "repository": "system-compass",
+    "disposition": "ACCEPTED"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "RESPONDS_TO",
+      "other": "F-001",
+      "other_type": "finding",
+      "other_title": "Keyboard handler invariant across 4 releases",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-001"
+    },
+    {
+      "direction": "in",
+      "relationship": "RESPONDS_TO",
+      "other": "F-002",
+      "other_type": "finding",
+      "other_title": "F/f genuinely unbound in all releases",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-002"
+    },
+    {
+      "direction": "in",
+      "relationship": "RESPONDS_TO",
+      "other": "F-003",
+      "other_type": "finding",
+      "other_title": "KeyboardHelp byte-identical, no F entry",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-003"
+    },
+    {
+      "direction": "in",
+      "relationship": "RESPONDS_TO",
+      "other": "F-004",
+      "other_type": "finding",
+      "other_title": "Fit math + constants invariant",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-004"
+    },
+    {
+      "direction": "out",
+      "relationship": "APPLIES_TO",
+      "other": "F-001",
+      "other_type": "finding",
+      "other_title": "Keyboard handler invariant across 4 releases",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-001"
+    },
+    {
+      "direction": "out",
+      "relationship": "APPLIES_TO",
+      "other": "F-002",
+      "other_type": "finding",
+      "other_title": "F/f genuinely unbound in all releases",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-002"
+    },
+    {
+      "direction": "out",
+      "relationship": "APPLIES_TO",
+      "other": "F-003",
+      "other_type": "finding",
+      "other_title": "KeyboardHelp byte-identical, no F entry",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-003"
+    },
+    {
+      "direction": "out",
+      "relationship": "APPLIES_TO",
+      "other": "F-004",
+      "other_type": "finding",
+      "other_title": "Fit math + constants invariant",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-004"
+    },
+    {
+      "direction": "out",
+      "relationship": "SUPPORTED_BY",
+      "other": "E-005",
+      "other_type": "evidence",
+      "other_title": "keyboard switch byte-identity",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-005"
+    },
+    {
+      "direction": "out",
+      "relationship": "SUPPORTED_BY",
+      "other": "E-006",
+      "other_type": "evidence",
+      "other_title": "KeyboardHelp extraction",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-006"
+    },
+    {
+      "direction": "out",
+      "relationship": "SUPPORTED_BY",
+      "other": "E-007",
+      "other_type": "evidence",
+      "other_title": "fit-constants extraction",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-007"
+    },
+    {
+      "direction": "out",
+      "relationship": "SUPPORTED_BY",
+      "other": "E-010",
+      "other_type": "evidence",
+      "other_title": "F-key PoC (patched v0.3.0)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-010"
+    },
+    {
+      "direction": "in",
+      "relationship": "ACCEPTED_BY",
+      "other": "D-005",
+      "other_type": "decision",
+      "other_title": "F-key = keyboard exposure only, no new camera system",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/d-005"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-fd02a1972a73",
+      "other_type": "file",
+      "other_title": "planning/suggestions/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-fd02a1972a73"
+    }
+  ]
+}

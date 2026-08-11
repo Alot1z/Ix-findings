@@ -1,0 +1,89 @@
+{
+  "id": "E-010",
+  "type": "evidence",
+  "title": "F-key PoC (patched v0.3.0)",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/e-010",
+  "summary": {
+    "id": "E-010",
+    "type": "evidence",
+    "title": "F-key PoC (patched v0.3.0)",
+    "status": "HISTORICAL",
+    "phase": "phase-05",
+    "repository": "system-compass"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "SUPPORTS",
+      "other": "F-001",
+      "other_type": "finding",
+      "other_title": "Keyboard handler invariant across 4 releases",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-001"
+    },
+    {
+      "direction": "out",
+      "relationship": "SUPPORTS",
+      "other": "F-002",
+      "other_type": "finding",
+      "other_title": "F/f genuinely unbound in all releases",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-002"
+    },
+    {
+      "direction": "out",
+      "relationship": "SUPPORTS",
+      "other": "F-003",
+      "other_type": "finding",
+      "other_title": "KeyboardHelp byte-identical, no F entry",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-003"
+    },
+    {
+      "direction": "out",
+      "relationship": "SUPPORTS",
+      "other": "F-004",
+      "other_type": "finding",
+      "other_title": "Fit math + constants invariant",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-004"
+    },
+    {
+      "direction": "out",
+      "relationship": "SUPPORTS",
+      "other": "F-005",
+      "other_type": "finding",
+      "other_title": "#57 one-shot fit latch -> keyed refit (v0.2.0->v0.3.0)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-005"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTED_BY",
+      "other": "S-007",
+      "other_type": "suggestion",
+      "other_title": "F-key = keyboard exposure only; no CameraStore, no duplicate fit math",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-007"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTED_BY",
+      "other": "S-021",
+      "other_type": "suggestion",
+      "other_title": "Create a CameraStore abstraction for Compass",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-021"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTED_BY",
+      "other": "S-022",
+      "other_type": "suggestion",
+      "other_title": "DOM zoom patch (style.zoom, timers) for Compass",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-022"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-11b62787a2c7",
+      "other_type": "file",
+      "other_title": "planning/evidence/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-11b62787a2c7"
+    }
+  ]
+}

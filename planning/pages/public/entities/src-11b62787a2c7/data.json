@@ -1,0 +1,271 @@
+{
+  "id": "SRC-11b62787a2c7",
+  "type": "file",
+  "title": "planning/evidence/registry.json",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/src-11b62787a2c7",
+  "summary": {
+    "id": "SRC-11b62787a2c7",
+    "type": "file",
+    "title": "planning/evidence/registry.json",
+    "status": "CURRENT"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "PART_OF",
+      "other": "REPO-Ix-findings",
+      "other_type": "repository",
+      "other_title": "Ix-findings",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-findings"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "N-001",
+      "other_type": "finding",
+      "other_title": "Evidence registry duplicate IDs (E-014, E-015)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/n-001"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "E-001",
+      "other_type": "evidence",
+      "other_title": "compass-0.1.0.tar.gz",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-001"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "E-002",
+      "other_type": "evidence",
+      "other_title": "compass-0.1.1.tar.gz",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-002"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "E-003",
+      "other_type": "evidence",
+      "other_title": "compass-0.2.0.tar.gz",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-003"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "E-004",
+      "other_type": "evidence",
+      "other_title": "compass-0.3.0.tar.gz",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-004"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "E-005",
+      "other_type": "evidence",
+      "other_title": "keyboard switch byte-identity",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-005"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "E-006",
+      "other_type": "evidence",
+      "other_title": "KeyboardHelp extraction",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-006"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "E-007",
+      "other_type": "evidence",
+      "other_title": "fit-constants extraction",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-007"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "E-008",
+      "other_type": "evidence",
+      "other_title": "v0.3.0 release notes (KageBinary)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-008"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "E-009",
+      "other_type": "evidence",
+      "other_title": "delayed-data A/B runs",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-009"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "E-010",
+      "other_type": "evidence",
+      "other_title": "F-key PoC (patched v0.3.0)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-010"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "E-011",
+      "other_type": "evidence",
+      "other_title": "zoom-contract live checks",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-011"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "E-012",
+      "other_type": "evidence",
+      "other_title": "rollup timing A/B",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-012"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "E-013",
+      "other_type": "evidence",
+      "other_title": "view.ts pre-fix bind",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-013"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "E-014",
+      "other_type": "evidence",
+      "other_title": "remap diff c021b52",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-014"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "E-015",
+      "other_type": "evidence",
+      "other_title": "guard-matrix tests",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-015"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "E-016",
+      "other_type": "evidence",
+      "other_title": "suite runs (fresh)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-016"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "E-017",
+      "other_type": "evidence",
+      "other_title": "#376 source analysis",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-017"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "E-018",
+      "other_type": "evidence",
+      "other_title": "#371 source analysis",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-018"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "E-019",
+      "other_type": "evidence",
+      "other_title": "git divergence numbers",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-019"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "E-020",
+      "other_type": "evidence",
+      "other_title": "GitHub maintainer context",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-020"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "E-021",
+      "other_type": "evidence",
+      "other_title": "worktree map",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-021"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "E-022",
+      "other_type": "evidence",
+      "other_title": "placeholder-fit instability",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-022"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "E-023",
+      "other_type": "evidence",
+      "other_title": "source-maps scan",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-023"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "E-024",
+      "other_type": "evidence",
+      "other_title": "bootstrap.sh is_windows()/node_ok",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-024"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "E-025",
+      "other_type": "evidence",
+      "other_title": "F-key source-equivalent spec",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-025"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "E-026",
+      "other_type": "evidence",
+      "other_title": "oss.ts PRO_COMMANDS list",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-026"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "E-027",
+      "other_type": "evidence",
+      "other_title": "upgrade.ts isNewer implementation",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-027"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "E-028",
+      "other_type": "evidence",
+      "other_title": "ix-cli actual version v0.6.1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-028"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "E-029",
+      "other_type": "evidence",
+      "other_title": "#385 upgrade-breaks-wrapper fix — PR #386 + #392 merged upstream",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-029"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "E-030",
+      "other_type": "evidence",
+      "other_title": "#349 installer-space-in-path fix — PR #352 + #392 merged upstream",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-030"
+    }
+  ]
+}

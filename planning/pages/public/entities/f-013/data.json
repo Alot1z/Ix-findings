@@ -1,0 +1,64 @@
+{
+  "id": "F-013",
+  "type": "finding",
+  "title": "Zoom-in multiplier discrepancy (x1.25 observed vs x1.1 in constants)",
+  "status": "UNSUPPORTED",
+  "url": "https://alot1z.github.io/Ix-findings/entities/f-013",
+  "summary": {
+    "id": "F-013",
+    "type": "finding",
+    "title": "Zoom-in multiplier discrepancy (x1.25 observed vs x1.1 in constants)",
+    "status": "UNSUPPORTED",
+    "repository": "system-compass"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "SUPPORTED_BY",
+      "other": "E-011",
+      "other_type": "evidence",
+      "other_title": "zoom-contract live checks",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-011"
+    },
+    {
+      "direction": "out",
+      "relationship": "RESPONDS_TO",
+      "other": "S-017",
+      "other_type": "suggestion",
+      "other_title": "Re-verify zoom multiplier (x1.1 vs x1.25)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-017"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTS",
+      "other": "E-011",
+      "other_type": "evidence",
+      "other_title": "zoom-contract live checks",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-011"
+    },
+    {
+      "direction": "in",
+      "relationship": "APPLIES_TO",
+      "other": "S-017",
+      "other_type": "suggestion",
+      "other_title": "Re-verify zoom multiplier (x1.1 vs x1.25)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-017"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-125a277e8e67",
+      "other_type": "file",
+      "other_title": "planning/findings/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-125a277e8e67"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-e70b6d7f9d45",
+      "other_type": "file",
+      "other_title": "comparisons/camera-fit/delayed-data-investigation.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-e70b6d7f9d45"
+    }
+  ]
+}

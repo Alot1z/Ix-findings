@@ -1,0 +1,50 @@
+{
+  "id": "phase-13",
+  "type": "phase",
+  "title": "Phase 13 — Final Ledger Close-Out",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/phase-13",
+  "summary": {
+    "id": "phase-13",
+    "type": "phase",
+    "title": "Phase 13 — Final Ledger Close-Out",
+    "category": "AUDIT",
+    "status": "HISTORICAL",
+    "repository": "Ix-findings",
+    "number": 13
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "ENABLES",
+      "other": "phase-12",
+      "other_type": "phase",
+      "other_title": "Phase 12 — Pre-Publish Verification Gate",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-12"
+    },
+    {
+      "direction": "out",
+      "relationship": "GENERATED_FROM",
+      "other": "SRC-bd1f8c165aa1",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-13/PHASE-13-REPORT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-bd1f8c165aa1"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-838d6e0c0428",
+      "other_type": "file",
+      "other_title": "planning/maps/phases.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-838d6e0c0428"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-bd1f8c165aa1",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-13/PHASE-13-REPORT.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-bd1f8c165aa1"
+    }
+  ]
+}

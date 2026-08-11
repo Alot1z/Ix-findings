@@ -1,0 +1,184 @@
+{
+  "id": "F-005",
+  "type": "finding",
+  "title": "#57 one-shot fit latch -> keyed refit (v0.2.0->v0.3.0)",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/f-005",
+  "summary": {
+    "id": "F-005",
+    "type": "finding",
+    "title": "#57 one-shot fit latch -> keyed refit (v0.2.0->v0.3.0)",
+    "status": "CURRENT",
+    "repository": "system-compass"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "SUPPORTED_BY",
+      "other": "E-008",
+      "other_type": "evidence",
+      "other_title": "v0.3.0 release notes (KageBinary)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-008"
+    },
+    {
+      "direction": "out",
+      "relationship": "SUPPORTED_BY",
+      "other": "E-003",
+      "other_type": "evidence",
+      "other_title": "compass-0.2.0.tar.gz",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-003"
+    },
+    {
+      "direction": "out",
+      "relationship": "SUPPORTED_BY",
+      "other": "E-004",
+      "other_type": "evidence",
+      "other_title": "compass-0.3.0.tar.gz",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-004"
+    },
+    {
+      "direction": "out",
+      "relationship": "RELATED_TO_ISSUE",
+      "other": "ISSUE-57",
+      "other_type": "issue",
+      "other_title": "Ix issue #57",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/issue-57"
+    },
+    {
+      "direction": "out",
+      "relationship": "RESPONDS_TO",
+      "other": "S-032",
+      "other_type": "suggestion",
+      "other_title": "Add mount auto-frame to the F-key PR",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-032"
+    },
+    {
+      "direction": "out",
+      "relationship": "RESPONDS_TO",
+      "other": "S-033",
+      "other_type": "suggestion",
+      "other_title": "Add drill-in/out reframe to the F-key PR",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-033"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTS",
+      "other": "E-001",
+      "other_type": "evidence",
+      "other_title": "compass-0.1.0.tar.gz",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-001"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTS",
+      "other": "E-002",
+      "other_type": "evidence",
+      "other_title": "compass-0.1.1.tar.gz",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-002"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTS",
+      "other": "E-003",
+      "other_type": "evidence",
+      "other_title": "compass-0.2.0.tar.gz",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-003"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTS",
+      "other": "E-004",
+      "other_type": "evidence",
+      "other_title": "compass-0.3.0.tar.gz",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-004"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTS",
+      "other": "E-008",
+      "other_type": "evidence",
+      "other_title": "v0.3.0 release notes (KageBinary)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-008"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTS",
+      "other": "E-010",
+      "other_type": "evidence",
+      "other_title": "F-key PoC (patched v0.3.0)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-010"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTS",
+      "other": "E-025",
+      "other_type": "evidence",
+      "other_title": "F-key source-equivalent spec",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-025"
+    },
+    {
+      "direction": "in",
+      "relationship": "APPLIES_TO",
+      "other": "S-032",
+      "other_type": "suggestion",
+      "other_title": "Add mount auto-frame to the F-key PR",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-032"
+    },
+    {
+      "direction": "in",
+      "relationship": "APPLIES_TO",
+      "other": "S-033",
+      "other_type": "suggestion",
+      "other_title": "Add drill-in/out reframe to the F-key PR",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-033"
+    },
+    {
+      "direction": "in",
+      "relationship": "DECIDES_FOR",
+      "other": "D-004",
+      "other_type": "decision",
+      "other_title": "Maintainer release notes count as Class A evidence",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/d-004"
+    },
+    {
+      "direction": "in",
+      "relationship": "DECIDES_FOR",
+      "other": "D-005",
+      "other_type": "decision",
+      "other_title": "F-key = keyboard exposure only, no new camera system",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/d-005"
+    },
+    {
+      "direction": "in",
+      "relationship": "DECIDES_FOR",
+      "other": "D-011",
+      "other_type": "decision",
+      "other_title": "Compass PR scope",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/d-011"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-125a277e8e67",
+      "other_type": "file",
+      "other_title": "planning/findings/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-125a277e8e67"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-304debf92137",
+      "other_type": "file",
+      "other_title": "comparisons/camera-fit/reconstruction.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-304debf92137"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-988cd4dc2884",
+      "other_type": "file",
+      "other_title": "comparisons/releases/timeline.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-988cd4dc2884"
+    }
+  ]
+}

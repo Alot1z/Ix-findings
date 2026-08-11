@@ -1,0 +1,160 @@
+{
+  "id": "F-004",
+  "type": "finding",
+  "title": "Fit math + constants invariant",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/f-004",
+  "summary": {
+    "id": "F-004",
+    "type": "finding",
+    "title": "Fit math + constants invariant",
+    "status": "CURRENT",
+    "repository": "system-compass"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "SUPPORTED_BY",
+      "other": "E-007",
+      "other_type": "evidence",
+      "other_title": "fit-constants extraction",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-007"
+    },
+    {
+      "direction": "out",
+      "relationship": "SUPPORTED_BY",
+      "other": "E-011",
+      "other_type": "evidence",
+      "other_title": "zoom-contract live checks",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-011"
+    },
+    {
+      "direction": "out",
+      "relationship": "RESPONDS_TO",
+      "other": "S-007",
+      "other_type": "suggestion",
+      "other_title": "F-key = keyboard exposure only; no CameraStore, no duplicate fit math",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-007"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTS",
+      "other": "E-001",
+      "other_type": "evidence",
+      "other_title": "compass-0.1.0.tar.gz",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-001"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTS",
+      "other": "E-002",
+      "other_type": "evidence",
+      "other_title": "compass-0.1.1.tar.gz",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-002"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTS",
+      "other": "E-003",
+      "other_type": "evidence",
+      "other_title": "compass-0.2.0.tar.gz",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-003"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTS",
+      "other": "E-004",
+      "other_type": "evidence",
+      "other_title": "compass-0.3.0.tar.gz",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-004"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTS",
+      "other": "E-007",
+      "other_type": "evidence",
+      "other_title": "fit-constants extraction",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-007"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTS",
+      "other": "E-010",
+      "other_type": "evidence",
+      "other_title": "F-key PoC (patched v0.3.0)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-010"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTS",
+      "other": "E-011",
+      "other_type": "evidence",
+      "other_title": "zoom-contract live checks",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-011"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTS",
+      "other": "E-025",
+      "other_type": "evidence",
+      "other_title": "F-key source-equivalent spec",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-025"
+    },
+    {
+      "direction": "in",
+      "relationship": "APPLIES_TO",
+      "other": "S-007",
+      "other_type": "suggestion",
+      "other_title": "F-key = keyboard exposure only; no CameraStore, no duplicate fit math",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-007"
+    },
+    {
+      "direction": "in",
+      "relationship": "APPLIES_TO",
+      "other": "S-021",
+      "other_type": "suggestion",
+      "other_title": "Create a CameraStore abstraction for Compass",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-021"
+    },
+    {
+      "direction": "in",
+      "relationship": "APPLIES_TO",
+      "other": "S-022",
+      "other_type": "suggestion",
+      "other_title": "DOM zoom patch (style.zoom, timers) for Compass",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-022"
+    },
+    {
+      "direction": "in",
+      "relationship": "DECIDES_FOR",
+      "other": "D-005",
+      "other_type": "decision",
+      "other_title": "F-key = keyboard exposure only, no new camera system",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/d-005"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-125a277e8e67",
+      "other_type": "file",
+      "other_title": "planning/findings/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-125a277e8e67"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-304debf92137",
+      "other_type": "file",
+      "other_title": "comparisons/camera-fit/reconstruction.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-304debf92137"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-e50802750741",
+      "other_type": "file",
+      "other_title": "comparisons/historical-matrix.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-e50802750741"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "id": "S-011",
+  "type": "suggestion",
+  "title": "Keep improved compass-patch as local stopgap with documented expiry",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/s-011",
+  "summary": {
+    "id": "S-011",
+    "type": "suggestion",
+    "title": "Keep improved compass-patch as local stopgap with documented expiry",
+    "status": "CURRENT",
+    "phase": "phase-final",
+    "repository": "Ix (local)",
+    "disposition": "ACCEPTED"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "SUPPORTED_BY",
+      "other": "E-025",
+      "other_type": "evidence",
+      "other_title": "F-key source-equivalent spec",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-025"
+    },
+    {
+      "direction": "in",
+      "relationship": "ACCEPTED_BY",
+      "other": "D-013",
+      "other_type": "decision",
+      "other_title": "Stopgap compass-patch fate",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/d-013"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-fd02a1972a73",
+      "other_type": "file",
+      "other_title": "planning/suggestions/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-fd02a1972a73"
+    }
+  ]
+}

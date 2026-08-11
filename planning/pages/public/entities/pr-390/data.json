@@ -1,0 +1,57 @@
+{
+  "id": "PR-390",
+  "type": "pr",
+  "title": "Ix PR #390",
+  "status": "RESOLVED",
+  "url": "https://alot1z.github.io/Ix-findings/entities/pr-390",
+  "summary": {
+    "id": "PR-390",
+    "type": "pr",
+    "title": "Ix PR #390",
+    "status": "RESOLVED",
+    "number": 390,
+    "url": "https://github.com/ix-infrastructure/Ix/pull/390"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "RELATED_TO_PR",
+      "other": "F-009",
+      "other_type": "finding",
+      "other_title": "patches command dead/unregistered (#371)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-009"
+    },
+    {
+      "direction": "out",
+      "relationship": "RESPONDS_TO",
+      "other": "ISSUE-371",
+      "other_type": "issue",
+      "other_title": "Ix issue #371",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/issue-371"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-2a5998452c1a",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/manifest.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-2a5998452c1a"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-90ab8426282e",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-15/FINAL-PR-WORTHINESS-AUDIT.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-90ab8426282e"
+    },
+    {
+      "direction": "in",
+      "relationship": "FIXED_BY",
+      "other": "F-009",
+      "other_type": "finding",
+      "other_title": "patches command dead/unregistered (#371)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-009"
+    }
+  ]
+}

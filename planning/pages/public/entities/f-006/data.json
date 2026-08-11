@@ -1,0 +1,136 @@
+{
+  "id": "F-006",
+  "type": "finding",
+  "title": "Delayed-data blank persists on v0.3.0",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/f-006",
+  "summary": {
+    "id": "F-006",
+    "type": "finding",
+    "title": "Delayed-data blank persists on v0.3.0",
+    "status": "CURRENT",
+    "repository": "system-compass"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "SUPPORTED_BY",
+      "other": "E-009",
+      "other_type": "evidence",
+      "other_title": "delayed-data A/B runs",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-009"
+    },
+    {
+      "direction": "out",
+      "relationship": "RELATED_TO_ISSUE",
+      "other": "ISSUE-57",
+      "other_type": "issue",
+      "other_title": "Ix issue #57",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/issue-57"
+    },
+    {
+      "direction": "out",
+      "relationship": "RESPONDS_TO",
+      "other": "S-008",
+      "other_type": "suggestion",
+      "other_title": "Delayed-data is a separate concern from F-key",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-008"
+    },
+    {
+      "direction": "out",
+      "relationship": "RESPONDS_TO",
+      "other": "S-018",
+      "other_type": "suggestion",
+      "other_title": "Reproduce delayed-data via Playwright automation",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-018"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTS",
+      "other": "E-004",
+      "other_type": "evidence",
+      "other_title": "compass-0.3.0.tar.gz",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-004"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTS",
+      "other": "E-008",
+      "other_type": "evidence",
+      "other_title": "v0.3.0 release notes (KageBinary)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-008"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTS",
+      "other": "E-009",
+      "other_type": "evidence",
+      "other_title": "delayed-data A/B runs",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-009"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTS",
+      "other": "E-022",
+      "other_type": "evidence",
+      "other_title": "placeholder-fit instability",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-022"
+    },
+    {
+      "direction": "in",
+      "relationship": "APPLIES_TO",
+      "other": "S-008",
+      "other_type": "suggestion",
+      "other_title": "Delayed-data is a separate concern from F-key",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-008"
+    },
+    {
+      "direction": "in",
+      "relationship": "APPLIES_TO",
+      "other": "S-018",
+      "other_type": "suggestion",
+      "other_title": "Reproduce delayed-data via Playwright automation",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-018"
+    },
+    {
+      "direction": "in",
+      "relationship": "APPLIES_TO",
+      "other": "S-023",
+      "other_type": "suggestion",
+      "other_title": "Combine F-key + delayed-data in one PR",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-023"
+    },
+    {
+      "direction": "in",
+      "relationship": "DECIDES_FOR",
+      "other": "D-006",
+      "other_type": "decision",
+      "other_title": "Delayed-data stays separate from F-key",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/d-006"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-125a277e8e67",
+      "other_type": "file",
+      "other_title": "planning/findings/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-125a277e8e67"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-e70b6d7f9d45",
+      "other_type": "file",
+      "other_title": "comparisons/camera-fit/delayed-data-investigation.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-e70b6d7f9d45"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-64086523b533",
+      "other_type": "file",
+      "other_title": "pr-packets/compass-delayed-data/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-64086523b533"
+    }
+  ]
+}

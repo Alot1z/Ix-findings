@@ -1,0 +1,66 @@
+{
+  "id": "phase-12",
+  "type": "phase",
+  "title": "Phase 12 — Pre-Publish Verification Gate",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/phase-12",
+  "summary": {
+    "id": "phase-12",
+    "type": "phase",
+    "title": "Phase 12 — Pre-Publish Verification Gate",
+    "category": "VERIFICATION",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "number": 12
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "ENABLES",
+      "other": "phase-11",
+      "other_type": "phase",
+      "other_title": "Phase 11 — PR Packet Generation",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-11"
+    },
+    {
+      "direction": "out",
+      "relationship": "DEPENDS_ON",
+      "other": "phase-11",
+      "other_type": "phase",
+      "other_title": "Phase 11 — PR Packet Generation",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-11"
+    },
+    {
+      "direction": "out",
+      "relationship": "ENABLES",
+      "other": "phase-13",
+      "other_type": "phase",
+      "other_title": "Phase 13 — Final Ledger Close-Out",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-13"
+    },
+    {
+      "direction": "out",
+      "relationship": "GENERATED_FROM",
+      "other": "SRC-f0a2c3a606fb",
+      "other_type": "file",
+      "other_title": "state/phase-12-publication-gate.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-f0a2c3a606fb"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-838d6e0c0428",
+      "other_type": "file",
+      "other_title": "planning/maps/phases.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-838d6e0c0428"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-f0a2c3a606fb",
+      "other_type": "file",
+      "other_title": "state/phase-12-publication-gate.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-f0a2c3a606fb"
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "id": "F-008",
+  "type": "finding",
+  "title": "Version-series mismatch in ix upgrade (#376)",
+  "status": "RESOLVED",
+  "url": "https://alot1z.github.io/Ix-findings/entities/f-008",
+  "summary": {
+    "id": "F-008",
+    "type": "finding",
+    "title": "Version-series mismatch in ix upgrade (#376)",
+    "status": "RESOLVED",
+    "repository": "ix-infrastructure/Ix"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "SUPPORTED_BY",
+      "other": "E-017",
+      "other_type": "evidence",
+      "other_title": "#376 source analysis",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-017"
+    },
+    {
+      "direction": "out",
+      "relationship": "RELATED_TO_ISSUE",
+      "other": "ISSUE-376",
+      "other_type": "issue",
+      "other_title": "Ix issue #376",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/issue-376"
+    },
+    {
+      "direction": "out",
+      "relationship": "RELATED_TO_PR",
+      "other": "PR-365",
+      "other_type": "pr",
+      "other_title": "Ix PR #365",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-365"
+    },
+    {
+      "direction": "out",
+      "relationship": "RELATED_TO_PR",
+      "other": "PR-366",
+      "other_type": "pr",
+      "other_title": "Ix PR #366",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-366"
+    },
+    {
+      "direction": "out",
+      "relationship": "RELATED_TO_PR",
+      "other": "PR-391",
+      "other_type": "pr",
+      "other_title": "Ix PR #391",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-391"
+    },
+    {
+      "direction": "out",
+      "relationship": "RESPONDS_TO",
+      "other": "S-013",
+      "other_type": "suggestion",
+      "other_title": "Fix #376 (stamp dist version / identity compare)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-013"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTS",
+      "other": "E-017",
+      "other_type": "evidence",
+      "other_title": "#376 source analysis",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-017"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTS",
+      "other": "E-027",
+      "other_type": "evidence",
+      "other_title": "upgrade.ts isNewer implementation",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-027"
+    },
+    {
+      "direction": "in",
+      "relationship": "APPLIES_TO",
+      "other": "S-010",
+      "other_type": "suggestion",
+      "other_title": "PR packet for #376",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-010"
+    },
+    {
+      "direction": "in",
+      "relationship": "APPLIES_TO",
+      "other": "S-013",
+      "other_type": "suggestion",
+      "other_title": "Fix #376 (stamp dist version / identity compare)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-013"
+    },
+    {
+      "direction": "in",
+      "relationship": "DECIDES_FOR",
+      "other": "D-004",
+      "other_type": "decision",
+      "other_title": "Maintainer release notes count as Class A evidence",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/d-004"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-125a277e8e67",
+      "other_type": "file",
+      "other_title": "planning/findings/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-125a277e8e67"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-9e05122aa7e6",
+      "other_type": "file",
+      "other_title": "github/issues/376/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-9e05122aa7e6"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-efe94e86a48a",
+      "other_type": "file",
+      "other_title": "pr-packets/ix-376-version-mismatch/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-efe94e86a48a"
+    },
+    {
+      "direction": "out",
+      "relationship": "FIXED_BY",
+      "other": "PR-391",
+      "other_type": "pr",
+      "other_title": "Ix PR #391",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-391"
+    }
+  ]
+}

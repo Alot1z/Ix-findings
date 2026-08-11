@@ -1,0 +1,39 @@
+{
+  "id": "SRC-f465053b9434",
+  "type": "file",
+  "title": "reports/phase-summaries.md",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/src-f465053b9434",
+  "summary": {
+    "id": "SRC-f465053b9434",
+    "type": "file",
+    "title": "reports/phase-summaries.md",
+    "status": "CURRENT"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "GENERATED_FROM",
+      "other": "phase-09",
+      "other_type": "phase",
+      "other_title": "Phase 9 — Ix-findings Evidence Repository",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-09"
+    },
+    {
+      "direction": "out",
+      "relationship": "PART_OF",
+      "other": "REPO-Ix-findings",
+      "other_type": "repository",
+      "other_title": "Ix-findings",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-findings"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "phase-09",
+      "other_type": "phase",
+      "other_title": "Phase 9 — Ix-findings Evidence Repository",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-09"
+    }
+  ]
+}

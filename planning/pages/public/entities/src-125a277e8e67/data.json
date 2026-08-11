@@ -1,0 +1,151 @@
+{
+  "id": "SRC-125a277e8e67",
+  "type": "file",
+  "title": "planning/findings/registry.json",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/src-125a277e8e67",
+  "summary": {
+    "id": "SRC-125a277e8e67",
+    "type": "file",
+    "title": "planning/findings/registry.json",
+    "status": "CURRENT"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "PART_OF",
+      "other": "REPO-Ix-findings",
+      "other_type": "repository",
+      "other_title": "Ix-findings",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-findings"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "F-001",
+      "other_type": "finding",
+      "other_title": "Keyboard handler invariant across 4 releases",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-001"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "F-002",
+      "other_type": "finding",
+      "other_title": "F/f genuinely unbound in all releases",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-002"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "F-003",
+      "other_type": "finding",
+      "other_title": "KeyboardHelp byte-identical, no F entry",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-003"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "F-004",
+      "other_type": "finding",
+      "other_title": "Fit math + constants invariant",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-004"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "F-005",
+      "other_type": "finding",
+      "other_title": "#57 one-shot fit latch -> keyed refit (v0.2.0->v0.3.0)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-005"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "F-006",
+      "other_type": "finding",
+      "other_title": "Delayed-data blank persists on v0.3.0",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-006"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "F-007",
+      "other_type": "finding",
+      "other_title": "Region-rollup aggregate formation is timing-dependent",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-007"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "F-008",
+      "other_type": "finding",
+      "other_title": "Version-series mismatch in ix upgrade (#376)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-008"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "F-009",
+      "other_type": "finding",
+      "other_title": "patches command dead/unregistered (#371)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-009"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "F-010",
+      "other_type": "finding",
+      "other_title": "Loopback-hardened /__ix/remap endpoint (implemented)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-010"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "F-011",
+      "other_type": "finding",
+      "other_title": "WSL bootstrap fix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-011"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "F-012",
+      "other_type": "finding",
+      "other_title": "Dead node_ok removal",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-012"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "F-013",
+      "other_type": "finding",
+      "other_title": "Zoom-in multiplier discrepancy (x1.25 observed vs x1.1 in constants)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-013"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "N-001",
+      "other_type": "finding",
+      "other_title": "Evidence registry duplicate IDs (E-014, E-015)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/n-001"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "N-002",
+      "other_type": "finding",
+      "other_title": "Fork-main is 7 commits behind upstream",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/n-002"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "CONTRA-001",
+      "other_type": "artifact",
+      "other_title": "F-008/F-009 status",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/contra-001"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "id": "S-013",
+  "type": "suggestion",
+  "title": "Fix #376 (stamp dist version / identity compare)",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/s-013",
+  "summary": {
+    "id": "S-013",
+    "type": "suggestion",
+    "title": "Fix #376 (stamp dist version / identity compare)",
+    "status": "HISTORICAL",
+    "phase": "phase-03",
+    "repository": "Ix",
+    "disposition": "DEFERRED"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "RESPONDS_TO",
+      "other": "F-008",
+      "other_type": "finding",
+      "other_title": "Version-series mismatch in ix upgrade (#376)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-008"
+    },
+    {
+      "direction": "out",
+      "relationship": "APPLIES_TO",
+      "other": "F-008",
+      "other_type": "finding",
+      "other_title": "Version-series mismatch in ix upgrade (#376)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-008"
+    },
+    {
+      "direction": "out",
+      "relationship": "SUPPORTED_BY",
+      "other": "E-017",
+      "other_type": "evidence",
+      "other_title": "#376 source analysis",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-017"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-fd02a1972a73",
+      "other_type": "file",
+      "other_title": "planning/suggestions/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-fd02a1972a73"
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "id": "phase-00",
+  "type": "phase",
+  "title": "Phase 0 — Initial State Audit",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/phase-00",
+  "summary": {
+    "id": "phase-00",
+    "type": "phase",
+    "title": "Phase 0 — Initial State Audit",
+    "category": "DISCOVERY",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "number": 0
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "ENABLES",
+      "other": "phase-01",
+      "other_type": "phase",
+      "other_title": "Phase 1 — Fork Synchronization",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-01"
+    },
+    {
+      "direction": "in",
+      "relationship": "DEPENDS_ON",
+      "other": "phase-01",
+      "other_type": "phase",
+      "other_title": "Phase 1 — Fork Synchronization",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-01"
+    },
+    {
+      "direction": "in",
+      "relationship": "DEPENDS_ON",
+      "other": "phase-08",
+      "other_type": "phase",
+      "other_title": "Phase 8 — Repository Architecture Audit",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-08"
+    },
+    {
+      "direction": "out",
+      "relationship": "GENERATED_FROM",
+      "other": "SRC-0d7688160fd9",
+      "other_type": "file",
+      "other_title": "state/phase-0-audit.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-0d7688160fd9"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-838d6e0c0428",
+      "other_type": "file",
+      "other_title": "planning/maps/phases.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-838d6e0c0428"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-0d7688160fd9",
+      "other_type": "file",
+      "other_title": "state/phase-0-audit.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-0d7688160fd9"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "id": "E-009",
+  "type": "evidence",
+  "title": "delayed-data A/B runs",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/e-009",
+  "summary": {
+    "id": "E-009",
+    "type": "evidence",
+    "title": "delayed-data A/B runs",
+    "status": "HISTORICAL",
+    "phase": "phase-07",
+    "repository": "system-compass"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "SUPPORTED_BY",
+      "other": "F-006",
+      "other_type": "finding",
+      "other_title": "Delayed-data blank persists on v0.3.0",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-006"
+    },
+    {
+      "direction": "out",
+      "relationship": "SUPPORTS",
+      "other": "F-006",
+      "other_type": "finding",
+      "other_title": "Delayed-data blank persists on v0.3.0",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-006"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTED_BY",
+      "other": "S-008",
+      "other_type": "suggestion",
+      "other_title": "Delayed-data is a separate concern from F-key",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-008"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTED_BY",
+      "other": "S-018",
+      "other_type": "suggestion",
+      "other_title": "Reproduce delayed-data via Playwright automation",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-018"
+    },
+    {
+      "direction": "in",
+      "relationship": "SUPPORTED_BY",
+      "other": "S-023",
+      "other_type": "suggestion",
+      "other_title": "Combine F-key + delayed-data in one PR",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/s-023"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-11b62787a2c7",
+      "other_type": "file",
+      "other_title": "planning/evidence/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-11b62787a2c7"
+    }
+  ]
+}

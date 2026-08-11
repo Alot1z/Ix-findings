@@ -1,0 +1,98 @@
+{
+  "id": "phase-04",
+  "type": "phase",
+  "title": "Phase 4 — Full Security & Historical Audit",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/phase-04",
+  "summary": {
+    "id": "phase-04",
+    "type": "phase",
+    "title": "Phase 4 — Full Security & Historical Audit",
+    "category": "AUDIT",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "number": 4
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "ENABLES",
+      "other": "phase-03",
+      "other_type": "phase",
+      "other_title": "Phase 3 — Issue #376 Investigation",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-03"
+    },
+    {
+      "direction": "out",
+      "relationship": "DEPENDS_ON",
+      "other": "phase-03",
+      "other_type": "phase",
+      "other_title": "Phase 3 — Issue #376 Investigation",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-03"
+    },
+    {
+      "direction": "out",
+      "relationship": "ENABLES",
+      "other": "phase-05",
+      "other_type": "phase",
+      "other_title": "Phase 5 — Compass Historical Reconstruction",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-05"
+    },
+    {
+      "direction": "in",
+      "relationship": "DEPENDS_ON",
+      "other": "phase-05",
+      "other_type": "phase",
+      "other_title": "Phase 5 — Compass Historical Reconstruction",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-05"
+    },
+    {
+      "direction": "in",
+      "relationship": "DEPENDS_ON",
+      "other": "phase-10",
+      "other_type": "phase",
+      "other_title": "Phase 10 — GitHub History & Maintainer Context",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-10"
+    },
+    {
+      "direction": "out",
+      "relationship": "GENERATED_FROM",
+      "other": "SRC-cbae8e94d9d6",
+      "other_type": "file",
+      "other_title": "findings/phase-4-audit.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-cbae8e94d9d6"
+    },
+    {
+      "direction": "out",
+      "relationship": "GENERATED_FROM",
+      "other": "SRC-0581f2a0e273",
+      "other_type": "file",
+      "other_title": "github/maintainer-context.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-0581f2a0e273"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-838d6e0c0428",
+      "other_type": "file",
+      "other_title": "planning/maps/phases.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-838d6e0c0428"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-cbae8e94d9d6",
+      "other_type": "file",
+      "other_title": "findings/phase-4-audit.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-cbae8e94d9d6"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-0581f2a0e273",
+      "other_type": "file",
+      "other_title": "github/maintainer-context.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-0581f2a0e273"
+    }
+  ]
+}

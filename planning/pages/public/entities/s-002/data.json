@@ -1,0 +1,50 @@
+{
+  "id": "S-002",
+  "type": "suggestion",
+  "title": "Base remap branch on origin/main, not stale local/fork main",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/s-002",
+  "summary": {
+    "id": "S-002",
+    "type": "suggestion",
+    "title": "Base remap branch on origin/main, not stale local/fork main",
+    "status": "CURRENT",
+    "phase": "phase-01",
+    "repository": "Ix",
+    "disposition": "ACCEPTED"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "APPLIES_TO",
+      "other": "F-010",
+      "other_type": "finding",
+      "other_title": "Loopback-hardened /__ix/remap endpoint (implemented)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-010"
+    },
+    {
+      "direction": "out",
+      "relationship": "SUPPORTED_BY",
+      "other": "E-019",
+      "other_type": "evidence",
+      "other_title": "git divergence numbers",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-019"
+    },
+    {
+      "direction": "in",
+      "relationship": "ACCEPTED_BY",
+      "other": "D-001",
+      "other_type": "decision",
+      "other_title": "Base remap branch on origin/main",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/d-001"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-fd02a1972a73",
+      "other_type": "file",
+      "other_title": "planning/suggestions/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-fd02a1972a73"
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "id": "phase-06",
+  "type": "phase",
+  "title": "Phase 6 — F-Key Source-Access Gate",
+  "status": "BLOCKED",
+  "url": "https://alot1z.github.io/Ix-findings/entities/phase-06",
+  "summary": {
+    "id": "phase-06",
+    "type": "phase",
+    "title": "Phase 6 — F-Key Source-Access Gate",
+    "category": "VERIFICATION",
+    "status": "BLOCKED",
+    "repository": "ix-infrastructure/system-compass",
+    "number": 6
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "ENABLES",
+      "other": "phase-05",
+      "other_type": "phase",
+      "other_title": "Phase 5 — Compass Historical Reconstruction",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-05"
+    },
+    {
+      "direction": "out",
+      "relationship": "DEPENDS_ON",
+      "other": "phase-05",
+      "other_type": "phase",
+      "other_title": "Phase 5 — Compass Historical Reconstruction",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-05"
+    },
+    {
+      "direction": "out",
+      "relationship": "ENABLES",
+      "other": "phase-07",
+      "other_type": "phase",
+      "other_title": "Phase 7 — Delayed-Data Deep Investigation",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/phase-07"
+    },
+    {
+      "direction": "out",
+      "relationship": "GENERATED_FROM",
+      "other": "SRC-dcf7735a458a",
+      "other_type": "file",
+      "other_title": "state/phase-6-f-key-gate.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-dcf7735a458a"
+    },
+    {
+      "direction": "out",
+      "relationship": "GENERATED_FROM",
+      "other": "SRC-cf88149934b8",
+      "other_type": "file",
+      "other_title": "pr-packets/compass-f-key/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-cf88149934b8"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-838d6e0c0428",
+      "other_type": "file",
+      "other_title": "planning/maps/phases.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-838d6e0c0428"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-dcf7735a458a",
+      "other_type": "file",
+      "other_title": "state/phase-6-f-key-gate.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-dcf7735a458a"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-cf88149934b8",
+      "other_type": "file",
+      "other_title": "pr-packets/compass-f-key/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-cf88149934b8"
+    }
+  ]
+}

@@ -1,0 +1,391 @@
+{
+  "meta": {
+    "generated": "2026-08-11",
+    "sourceRevision": "1292375548fb8f4431ac5afc34c68fe2573434d1",
+    "count": 30
+  },
+  "items": [
+    {
+      "id": "E-001",
+      "title": "compass-0.1.0.tar.gz",
+      "type": "artifact",
+      "class": "B",
+      "phase": "phase-05",
+      "repository": "ix-compass-dist",
+      "detail": "SHA256 19bc427d0eca77b2...; Rolldown, 13 chunks; released 2026-03-28",
+      "supports": [
+        "F-001",
+        "F-002",
+        "F-003",
+        "F-004",
+        "F-005"
+      ]
+    },
+    {
+      "id": "E-002",
+      "title": "compass-0.1.1.tar.gz",
+      "type": "artifact",
+      "class": "B",
+      "phase": "phase-05",
+      "repository": "ix-compass-dist",
+      "detail": "SHA256 74e56488c5daf970...; hotfix; several chunks byte-identical to v0.1.0",
+      "supports": [
+        "F-001",
+        "F-002",
+        "F-003",
+        "F-004",
+        "F-005"
+      ]
+    },
+    {
+      "id": "E-003",
+      "title": "compass-0.2.0.tar.gz",
+      "type": "artifact",
+      "class": "B",
+      "phase": "phase-05",
+      "repository": "ix-compass-dist",
+      "detail": "SHA256 863583084c91719f...; released 2026-06-08; one-shot fit latch present",
+      "supports": [
+        "F-001",
+        "F-002",
+        "F-003",
+        "F-004",
+        "F-005"
+      ]
+    },
+    {
+      "id": "E-004",
+      "title": "compass-0.3.0.tar.gz",
+      "type": "artifact",
+      "class": "B",
+      "phase": "phase-05",
+      "repository": "ix-compass-dist",
+      "detail": "SHA256 7ed6cc82fe58b3ad...; built from system-compass main @ 7f98724; keyed refit effect present",
+      "supports": [
+        "F-001",
+        "F-002",
+        "F-003",
+        "F-004",
+        "F-005",
+        "F-006"
+      ]
+    },
+    {
+      "id": "E-005",
+      "title": "keyboard switch byte-identity",
+      "type": "artifact",
+      "class": "B",
+      "phase": "phase-05",
+      "repository": "system-compass",
+      "detail": "identical switch + guards across all 4 releases; F/f zero matches in every chunk",
+      "supports": [
+        "F-001",
+        "F-002"
+      ]
+    },
+    {
+      "id": "E-006",
+      "title": "KeyboardHelp extraction",
+      "type": "artifact",
+      "class": "B",
+      "phase": "phase-05",
+      "repository": "system-compass",
+      "detail": "KeyboardHelp-KnF66B2h.js (1784 B): 8 entries, no F; byte-identical across releases",
+      "supports": [
+        "F-003"
+      ]
+    },
+    {
+      "id": "E-007",
+      "title": "fit-constants extraction",
+      "type": "artifact",
+      "class": "B",
+      "phase": "phase-05",
+      "repository": "system-compass",
+      "detail": "1200,700,56,1.25,112,36,2.5,1.1,96 + contain + snap invariant",
+      "supports": [
+        "F-004"
+      ]
+    },
+    {
+      "id": "E-008",
+      "title": "v0.3.0 release notes (KageBinary)",
+      "type": "release note",
+      "class": "A",
+      "phase": "phase-05",
+      "repository": "ix-compass-dist",
+      "detail": "#57/#58/#59; exists to stop a downgrade; aggregation 1471->33; bounded layout; searchable roll-ups; breadcrumb collapse",
+      "supports": [
+        "F-005",
+        "F-006",
+        "F-007"
+      ]
+    },
+    {
+      "id": "E-009",
+      "title": "delayed-data A/B runs",
+      "type": "reproduction",
+      "class": "B",
+      "phase": "phase-07",
+      "repository": "system-compass",
+      "detail": "A v0.2.0 0.439@(39,315) 0 cards; B v0.3.0 0.441@(39,388) 0 cards; B2 repeat 0 cards; C fast 0.129@(39,254) visible; map_rev constant",
+      "supports": [
+        "F-006"
+      ]
+    },
+    {
+      "id": "E-010",
+      "title": "F-key PoC (patched v0.3.0)",
+      "type": "runtime",
+      "class": "B",
+      "phase": "phase-05",
+      "repository": "system-compass",
+      "detail": "F == 0 target byte-identical; INPUT guard holds; CmdK/Esc unchanged; zero console errors",
+      "supports": [
+        "F-001",
+        "F-002",
+        "F-003",
+        "F-004",
+        "F-005"
+      ]
+    },
+    {
+      "id": "E-011",
+      "title": "zoom-contract live checks",
+      "type": "runtime",
+      "class": "B",
+      "phase": "phase-07",
+      "repository": "system-compass",
+      "detail": "x1.1 in / x0.9 out / 2.5 cap / floor=fit; x1.25 button anomaly",
+      "supports": [
+        "F-004",
+        "F-013"
+      ]
+    },
+    {
+      "id": "E-012",
+      "title": "rollup timing A/B",
+      "type": "runtime",
+      "class": "B",
+      "phase": "phase-07",
+      "repository": "system-compass",
+      "detail": "fast 9 cards + 1 aggregate vs delayed 15 cards, no aggregate; same map_rev",
+      "supports": [
+        "F-007"
+      ]
+    },
+    {
+      "id": "E-013",
+      "title": "view.ts pre-fix bind",
+      "type": "source",
+      "class": "A",
+      "phase": "phase-00",
+      "repository": "ix-infrastructure/Ix",
+      "detail": "server.listen(PORT) no host -> binds ::/0.0.0.0 (P0)",
+      "supports": [
+        "F-010"
+      ]
+    },
+    {
+      "id": "E-014",
+      "title": "remap diff c021b52",
+      "type": "source",
+      "class": "A",
+      "phase": "phase-02",
+      "repository": "ix-infrastructure/Ix",
+      "detail": "4 files +250/-11: view.ts endpoint + guard, tests, bootstrap.sh WSL/node_ok, docs",
+      "supports": [
+        "F-010",
+        "F-011",
+        "F-012"
+      ]
+    },
+    {
+      "id": "E-015",
+      "title": "guard-matrix tests",
+      "type": "test",
+      "class": "B",
+      "phase": "phase-02",
+      "repository": "ix-infrastructure/Ix",
+      "detail": "10 scenarios, ix-cli/test/view-server.test.ts; real server + real child process",
+      "supports": [
+        "F-010"
+      ]
+    },
+    {
+      "id": "E-016",
+      "title": "suite runs (fresh)",
+      "type": "test",
+      "class": "B",
+      "phase": "phase-12",
+      "repository": "ix-infrastructure/Ix",
+      "detail": "vitest 656/2 (51 files), tsc 0 errors, eslint clean; re-run at phases 02 & 12",
+      "supports": [
+        "F-010"
+      ]
+    },
+    {
+      "id": "E-017",
+      "title": "#376 source analysis",
+      "type": "source",
+      "class": "A",
+      "phase": "phase-03",
+      "repository": "ix-infrastructure/Ix",
+      "detail": "upgrade.ts isNewer/getInstalledCompassVersion/writeCache; release.yml stamping; PR #365/#366/#344",
+      "supports": [
+        "F-008"
+      ]
+    },
+    {
+      "id": "E-018",
+      "title": "#371 source analysis",
+      "type": "source",
+      "class": "A",
+      "phase": "phase-04",
+      "repository": "ix-infrastructure/Ix",
+      "detail": "patches.ts:6 export; absent from oss.ts; listed in PRO_COMMANDS",
+      "supports": [
+        "F-009"
+      ]
+    },
+    {
+      "id": "E-019",
+      "title": "git divergence numbers",
+      "type": "git",
+      "class": "A",
+      "phase": "phase-final",
+      "repository": "ALL",
+      "detail": "main 0/0; fork 5 behind; remap 1 ahead/0 behind; refs c4f8fea/0437abf/c021b52/b038c46/396426b",
+      "supports": []
+    },
+    {
+      "id": "E-020",
+      "title": "GitHub maintainer context",
+      "type": "github",
+      "class": "A",
+      "phase": "phase-10",
+      "repository": "ALL",
+      "detail": "identities/roles via API + last-30-commit history; issue->PR->maintainer map; tagging guidance",
+      "supports": []
+    },
+    {
+      "id": "E-021",
+      "title": "worktree map",
+      "type": "git",
+      "class": "A",
+      "phase": "phase-final",
+      "repository": "ix-infrastructure/Ix",
+      "detail": "primary <IX_REPO> + linked <IX_REMAP_WORKTREE>; standalone <COMPASS_DIST_REPO>",
+      "supports": []
+    },
+    {
+      "id": "E-022",
+      "title": "placeholder-fit instability",
+      "type": "runtime",
+      "class": "B",
+      "phase": "phase-07",
+      "repository": "system-compass",
+      "detail": "0.439 vs 0.441 across runs (mount-timing dependent)",
+      "supports": [
+        "F-006"
+      ]
+    },
+    {
+      "id": "E-023",
+      "title": "source-maps scan",
+      "type": "artifact",
+      "class": "B",
+      "phase": "phase-05",
+      "repository": "ix-compass-dist",
+      "detail": "no .map files shipped in any release",
+      "supports": []
+    },
+    {
+      "id": "E-024",
+      "title": "bootstrap.sh is_windows()/node_ok",
+      "type": "source",
+      "class": "A",
+      "phase": "phase-02",
+      "repository": "ix-infrastructure/Ix",
+      "detail": "WSL misrouting + dead variable on merged main",
+      "supports": [
+        "F-011",
+        "F-012"
+      ]
+    },
+    {
+      "id": "E-025",
+      "title": "F-key source-equivalent spec",
+      "type": "document",
+      "class": "C",
+      "phase": "phase-05",
+      "repository": "system-compass",
+      "detail": "tasks/compass-f-key-source-equivalent.md: PR material from artifact + PoC + review",
+      "supports": [
+        "F-001",
+        "F-002",
+        "F-003",
+        "F-004",
+        "F-005"
+      ]
+    },
+    {
+      "id": "E-026",
+      "title": "oss.ts PRO_COMMANDS list",
+      "type": "source",
+      "class": "A",
+      "phase": "phase-04",
+      "repository": "ix-infrastructure/Ix",
+      "detail": "patches in PRO_COMMANDS, not imported in registerOssCommands (F-009 source)",
+      "supports": [
+        "F-009"
+      ]
+    },
+    {
+      "id": "E-027",
+      "title": "upgrade.ts isNewer implementation",
+      "type": "source",
+      "class": "A",
+      "phase": "phase-03",
+      "repository": "ix-infrastructure/Ix",
+      "detail": "Semver comparison at line 141 (F-008 source)",
+      "supports": [
+        "F-008"
+      ]
+    },
+    {
+      "id": "E-028",
+      "title": "ix-cli actual version v0.6.1",
+      "type": "source",
+      "class": "A",
+      "phase": "phase-fc7",
+      "repository": "ix-infrastructure/Ix",
+      "detail": "Root package.json says 0.5.0; actual CLI is 0.6.1 — dual version series (CAND-016)",
+      "supports": []
+    },
+    {
+      "id": "E-029",
+      "title": "#385 upgrade-breaks-wrapper fix — PR #386 + #392 merged upstream",
+      "type": "merged-pr",
+      "class": "A",
+      "phase": "phase-11",
+      "repository": "ix-infrastructure/Ix",
+      "detail": "PR #386 (ix.cmd launcher diagnosis, +149 test lines) merged 2026-08-10. PR #392 (upgrade under IX_HOME, +171 test lines) merged 2026-08-11. Both include regression tests. Issues #385 remains open as admin backlog, not code defect.",
+      "supports": [
+        "#385"
+      ]
+    },
+    {
+      "id": "E-030",
+      "title": "#349 installer-space-in-path fix — PR #352 + #392 merged upstream",
+      "type": "merged-pr",
+      "class": "A",
+      "phase": "phase-11",
+      "repository": "ix-infrastructure/Ix",
+      "detail": "PR #352 (install.ps1 short TEMP path, +35 test lines) merged 2026-08-10. PR #392 (IX_HOME staging) also contributes. PR #395 (space-in-path test, open) adds the final coverage. Issue #349 remains open as admin backlog.",
+      "supports": [
+        "#349"
+      ]
+    }
+  ]
+}

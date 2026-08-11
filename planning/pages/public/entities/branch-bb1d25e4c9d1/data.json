@@ -1,0 +1,63 @@
+{
+  "id": "BRANCH-bb1d25e4c9d1",
+  "type": "branch",
+  "title": "ix-infrastructure/Ix:feat/ix-remap-hardening",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/branch-bb1d25e4c9d1",
+  "summary": {
+    "id": "BRANCH-bb1d25e4c9d1",
+    "type": "branch",
+    "title": "ix-infrastructure/Ix:feat/ix-remap-hardening",
+    "status": "CURRENT"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "PART_OF",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "in",
+      "relationship": "INTRODUCED_BY",
+      "other": "COMMIT-c021b52",
+      "other_type": "commit",
+      "other_title": "c021b52",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-c021b52"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-2a5998452c1a",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/manifest.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-2a5998452c1a"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-90ab8426282e",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-15/FINAL-PR-WORTHINESS-AUDIT.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-90ab8426282e"
+    },
+    {
+      "direction": "out",
+      "relationship": "HEADS",
+      "other": "PR-393",
+      "other_type": "pr",
+      "other_title": "Ix PR #393",
+      "other_url": "https://alot1z.github.io/Ix-findings/prs/393/tests"
+    },
+    {
+      "direction": "in",
+      "relationship": "INTRODUCED_BY",
+      "other": "COMMIT-1497596",
+      "other_type": "commit",
+      "other_title": "1497596",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-1497596"
+    }
+  ]
+}

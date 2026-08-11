@@ -1,0 +1,66 @@
+{
+  "id": "S-027",
+  "type": "suggestion",
+  "title": "Manually modify ix-compass-dist artifacts",
+  "status": "DECLINED",
+  "url": "https://alot1z.github.io/Ix-findings/entities/s-027",
+  "summary": {
+    "id": "S-027",
+    "type": "suggestion",
+    "title": "Manually modify ix-compass-dist artifacts",
+    "status": "DECLINED",
+    "phase": "phase-08",
+    "repository": "ix-compass-dist",
+    "disposition": "REJECTED"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "SUPPORTED_BY",
+      "other": "E-001",
+      "other_type": "evidence",
+      "other_title": "compass-0.1.0.tar.gz",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-001"
+    },
+    {
+      "direction": "out",
+      "relationship": "SUPPORTED_BY",
+      "other": "E-002",
+      "other_type": "evidence",
+      "other_title": "compass-0.1.1.tar.gz",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-002"
+    },
+    {
+      "direction": "out",
+      "relationship": "SUPPORTED_BY",
+      "other": "E-003",
+      "other_type": "evidence",
+      "other_title": "compass-0.2.0.tar.gz",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-003"
+    },
+    {
+      "direction": "out",
+      "relationship": "SUPPORTED_BY",
+      "other": "E-004",
+      "other_type": "evidence",
+      "other_title": "compass-0.3.0.tar.gz",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/e-004"
+    },
+    {
+      "direction": "in",
+      "relationship": "ACCEPTED_BY",
+      "other": "D-007",
+      "other_type": "decision",
+      "other_title": "ix-compass-dist is a distribution channel, not source",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/d-007"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-fd02a1972a73",
+      "other_type": "file",
+      "other_title": "planning/suggestions/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-fd02a1972a73"
+    }
+  ]
+}

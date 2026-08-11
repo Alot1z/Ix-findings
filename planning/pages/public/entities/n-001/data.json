@@ -1,0 +1,32 @@
+{
+  "id": "N-001",
+  "type": "finding",
+  "title": "Evidence registry duplicate IDs (E-014, E-015)",
+  "status": "OPEN",
+  "url": "https://alot1z.github.io/Ix-findings/entities/n-001",
+  "summary": {
+    "id": "N-001",
+    "type": "finding",
+    "title": "Evidence registry duplicate IDs (E-014, E-015)",
+    "status": "OPEN",
+    "repository": "Ix-findings"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-125a277e8e67",
+      "other_type": "file",
+      "other_title": "planning/findings/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-125a277e8e67"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-11b62787a2c7",
+      "other_type": "file",
+      "other_title": "planning/evidence/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-11b62787a2c7"
+    }
+  ]
+}

@@ -1,0 +1,442 @@
+{
+  "meta": {
+    "generated": "2026-08-11",
+    "sourceRevision": "1292375548fb8f4431ac5afc34c68fe2573434d1",
+    "count": 33
+  },
+  "items": [
+    {
+      "id": "S-001",
+      "text": "Use a dedicated Git worktree for remap work",
+      "phase": "phase-00",
+      "repository": "Ix",
+      "disposition": "ACCEPTED",
+      "reason": "isolation from the 18-file overhaul (D-002)",
+      "related_findings": [
+        "F-010"
+      ],
+      "evidence_refs": [
+        "E-021"
+      ]
+    },
+    {
+      "id": "S-002",
+      "text": "Base remap branch on origin/main, not stale local/fork main",
+      "phase": "phase-01",
+      "repository": "Ix",
+      "disposition": "ACCEPTED",
+      "reason": "clean PR base (D-001)",
+      "related_findings": [
+        "F-010"
+      ],
+      "evidence_refs": [
+        "E-019"
+      ]
+    },
+    {
+      "id": "S-003",
+      "text": "Export serverScript() from view.ts for testing",
+      "phase": "phase-02",
+      "repository": "Ix",
+      "disposition": "ACCEPTED",
+      "reason": "enables generated-server tests",
+      "related_findings": [
+        "F-010"
+      ],
+      "evidence_refs": [
+        "E-014"
+      ]
+    },
+    {
+      "id": "S-004",
+      "text": "IX_VIEW_MAP_MAIN env seam for stub CLI in tests",
+      "phase": "phase-02",
+      "repository": "Ix",
+      "disposition": "ACCEPTED",
+      "reason": "integration tests without a real install",
+      "related_findings": [
+        "F-010"
+      ],
+      "evidence_refs": [
+        "E-014",
+        "E-015"
+      ]
+    },
+    {
+      "id": "S-005",
+      "text": "Four-tier evidence classification A/B/C/D",
+      "phase": "phase-02",
+      "repository": "Ix-findings",
+      "disposition": "ACCEPTED",
+      "reason": "credibility; prevents overclaiming (D-003)",
+      "related_findings": [],
+      "evidence_refs": []
+    },
+    {
+      "id": "S-006",
+      "text": "Keep Compass changes separate from Ix changes",
+      "phase": "phase-03",
+      "repository": "ALL",
+      "disposition": "ACCEPTED",
+      "reason": "different repos/owners/reviews",
+      "related_findings": [],
+      "evidence_refs": [
+        "E-008",
+        "E-020"
+      ]
+    },
+    {
+      "id": "S-007",
+      "text": "F-key = keyboard exposure only; no CameraStore, no duplicate fit math",
+      "phase": "phase-05",
+      "repository": "system-compass",
+      "disposition": "ACCEPTED",
+      "reason": "real camera state exists; 0 key already fits (D-005)",
+      "related_findings": [
+        "F-001",
+        "F-002",
+        "F-003",
+        "F-004"
+      ],
+      "evidence_refs": [
+        "E-005",
+        "E-006",
+        "E-007",
+        "E-010"
+      ]
+    },
+    {
+      "id": "S-008",
+      "text": "Delayed-data is a separate concern from F-key",
+      "phase": "phase-07",
+      "repository": "system-compass",
+      "disposition": "ACCEPTED",
+      "reason": "different root cause/review scope (D-006)",
+      "related_findings": [
+        "F-006"
+      ],
+      "evidence_refs": [
+        "E-009"
+      ]
+    },
+    {
+      "id": "S-009",
+      "text": "Ix-findings as a standalone evidence repo",
+      "phase": "phase-08",
+      "repository": "Ix-findings",
+      "disposition": "ACCEPTED",
+      "reason": "self-contained ledger (D-008)",
+      "related_findings": [],
+      "evidence_refs": []
+    },
+    {
+      "id": "S-010",
+      "text": "PR packet for #376",
+      "phase": "phase-11",
+      "repository": "Ix",
+      "disposition": "ACCEPTED",
+      "reason": "packet ready",
+      "related_findings": [
+        "F-008"
+      ],
+      "evidence_refs": [
+        "E-017"
+      ]
+    },
+    {
+      "id": "S-011",
+      "text": "Keep improved compass-patch as local stopgap with documented expiry",
+      "phase": "phase-final",
+      "repository": "Ix (local)",
+      "disposition": "ACCEPTED",
+      "reason": "local-only; expires when Compass ships F-fit (D-013)",
+      "related_findings": [],
+      "evidence_refs": [
+        "E-025"
+      ]
+    },
+    {
+      "id": "S-012",
+      "text": "Parse Origin with new URL(), not regex (template-literal pipeline)",
+      "phase": "phase-02",
+      "repository": "Ix",
+      "disposition": "ACCEPTED",
+      "reason": "regex backslashes eaten by script regeneration",
+      "related_findings": [
+        "F-010"
+      ],
+      "evidence_refs": [
+        "E-014"
+      ]
+    },
+    {
+      "id": "S-013",
+      "text": "Fix #376 (stamp dist version / identity compare)",
+      "phase": "phase-03",
+      "repository": "Ix",
+      "disposition": "DEFERRED",
+      "reason": "authorization + maintainer direction (F-008)",
+      "related_findings": [
+        "F-008"
+      ],
+      "evidence_refs": [
+        "E-017"
+      ]
+    },
+    {
+      "id": "S-014",
+      "text": "Fix #371 (register or delete patches)",
+      "phase": "phase-04",
+      "repository": "Ix",
+      "disposition": "DEFERRED",
+      "reason": "separate priority from remap (F-009)",
+      "related_findings": [
+        "F-009"
+      ],
+      "evidence_refs": [
+        "E-018"
+      ]
+    },
+    {
+      "id": "S-015",
+      "text": "Commit Ix-findings",
+      "phase": "phase-09",
+      "repository": "Ix-findings",
+      "disposition": "DEFERRED",
+      "reason": "held for final review",
+      "related_findings": [],
+      "evidence_refs": []
+    },
+    {
+      "id": "S-016",
+      "text": "Sync fork main after remap push",
+      "phase": "phase-01",
+      "repository": "Ix",
+      "disposition": "DEFERRED",
+      "reason": "depends on remap push (authorization)",
+      "related_findings": [],
+      "evidence_refs": [
+        "E-019"
+      ]
+    },
+    {
+      "id": "S-017",
+      "text": "Re-verify zoom multiplier (x1.1 vs x1.25)",
+      "phase": "phase-07",
+      "repository": "system-compass",
+      "disposition": "DEFERRED",
+      "reason": "low priority; needs source or dedicated experiment (F-013)",
+      "related_findings": [
+        "F-013"
+      ],
+      "evidence_refs": [
+        "E-011"
+      ]
+    },
+    {
+      "id": "S-018",
+      "text": "Reproduce delayed-data via Playwright automation",
+      "phase": "phase-07",
+      "repository": "system-compass",
+      "disposition": "DEFERRED",
+      "reason": "source-blocked; manual A/B deterministic",
+      "related_findings": [
+        "F-006"
+      ],
+      "evidence_refs": [
+        "E-009"
+      ]
+    },
+    {
+      "id": "S-019",
+      "text": "Investigate system-compass #58/#59",
+      "phase": "phase-05",
+      "repository": "system-compass",
+      "disposition": "DEFERRED",
+      "reason": "source-blocked; release notes only",
+      "related_findings": [],
+      "evidence_refs": [
+        "E-008"
+      ]
+    },
+    {
+      "id": "S-020",
+      "text": "No-map hint chip with feature-detect on /__ix/remap",
+      "phase": "phase-final",
+      "repository": "system-compass",
+      "disposition": "DEFERRED",
+      "reason": "after Ix endpoint PR merges; hide chip when endpoint absent (D-012)",
+      "related_findings": [],
+      "evidence_refs": [
+        "E-014"
+      ]
+    },
+    {
+      "id": "S-021",
+      "text": "Create a CameraStore abstraction for Compass",
+      "phase": "phase-05",
+      "repository": "system-compass",
+      "disposition": "REJECTED",
+      "reason": "real camera state exists; would duplicate architecture",
+      "related_findings": [
+        "F-004"
+      ],
+      "evidence_refs": [
+        "E-010"
+      ]
+    },
+    {
+      "id": "S-022",
+      "text": "DOM zoom patch (style.zoom, timers) for Compass",
+      "phase": "phase-05",
+      "repository": "system-compass",
+      "disposition": "REJECTED",
+      "reason": "fragile; fights React state; native camera exists",
+      "related_findings": [
+        "F-004"
+      ],
+      "evidence_refs": [
+        "E-010"
+      ]
+    },
+    {
+      "id": "S-023",
+      "text": "Combine F-key + delayed-data in one PR",
+      "phase": "phase-07",
+      "repository": "system-compass",
+      "disposition": "REJECTED",
+      "reason": "different causes, different reviews",
+      "related_findings": [
+        "F-006"
+      ],
+      "evidence_refs": [
+        "E-009"
+      ]
+    },
+    {
+      "id": "S-024",
+      "text": "Mix Compass UI changes into the Ix PR",
+      "phase": "phase-03",
+      "repository": "mixed",
+      "disposition": "REJECTED",
+      "reason": "separate repos, separate PRs",
+      "related_findings": [],
+      "evidence_refs": [
+        "E-014"
+      ]
+    },
+    {
+      "id": "S-025",
+      "text": "Stash the Ix overhaul to free the main worktree",
+      "phase": "phase-01",
+      "repository": "Ix",
+      "disposition": "REJECTED",
+      "reason": "unsafe; dedicated worktree used instead (D-002)",
+      "related_findings": [],
+      "evidence_refs": [
+        "E-019"
+      ]
+    },
+    {
+      "id": "S-026",
+      "text": "Base/compare remap against fork/main",
+      "phase": "phase-01",
+      "repository": "Ix",
+      "disposition": "REJECTED",
+      "reason": "fork stale (5 behind); origin/main canonical",
+      "related_findings": [],
+      "evidence_refs": [
+        "E-019"
+      ]
+    },
+    {
+      "id": "S-027",
+      "text": "Manually modify ix-compass-dist artifacts",
+      "phase": "phase-08",
+      "repository": "ix-compass-dist",
+      "disposition": "REJECTED",
+      "reason": "distribution channel; artifacts built from system-compass (D-007)",
+      "related_findings": [],
+      "evidence_refs": [
+        "E-001",
+        "E-002",
+        "E-003",
+        "E-004"
+      ]
+    },
+    {
+      "id": "S-028",
+      "text": "Push fork/main without first syncing",
+      "phase": "phase-01",
+      "repository": "Ix",
+      "disposition": "REJECTED",
+      "reason": "would publish a stale fork; defer to post-remap (S-016)",
+      "related_findings": [],
+      "evidence_refs": [
+        "E-019"
+      ]
+    },
+    {
+      "id": "S-029",
+      "text": "git reset --hard on the primary worktree",
+      "phase": "phase-04",
+      "repository": "Ix",
+      "disposition": "REJECTED",
+      "reason": "would destroy the 13-file uncommitted overhaul",
+      "related_findings": [],
+      "evidence_refs": []
+    },
+    {
+      "id": "S-030",
+      "text": "Bind the remap server to 0.0.0.0",
+      "phase": "phase-02",
+      "repository": "Ix",
+      "disposition": "REJECTED",
+      "reason": "exposes a shell-exec endpoint to the network",
+      "related_findings": [
+        "F-010"
+      ],
+      "evidence_refs": [
+        "E-014"
+      ]
+    },
+    {
+      "id": "S-031",
+      "text": "Pass the claim to the doubt-driven reviewer",
+      "phase": "phase-04",
+      "repository": "Ix",
+      "disposition": "REJECTED",
+      "reason": "biases the reviewer toward agreement",
+      "related_findings": [],
+      "evidence_refs": []
+    },
+    {
+      "id": "S-032",
+      "text": "Add mount auto-frame to the F-key PR",
+      "phase": "phase-06",
+      "repository": "system-compass",
+      "disposition": "SUPERSEDED",
+      "reason": "#57 already refits on mount (v0.3.0)",
+      "related_findings": [
+        "F-005"
+      ],
+      "evidence_refs": [
+        "E-008"
+      ]
+    },
+    {
+      "id": "S-033",
+      "text": "Add drill-in/out reframe to the F-key PR",
+      "phase": "phase-06",
+      "repository": "system-compass",
+      "disposition": "SUPERSEDED",
+      "reason": "#57 keyed refit covers drill (v0.3.0)",
+      "related_findings": [
+        "F-005"
+      ],
+      "evidence_refs": [
+        "E-008"
+      ]
+    }
+  ]
+}

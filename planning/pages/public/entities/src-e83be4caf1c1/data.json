@@ -1,0 +1,47 @@
+{
+  "id": "SRC-e83be4caf1c1",
+  "type": "file",
+  "title": "CLI-HANDOFF/phase-9/PHASE-9-REPORT.md",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/src-e83be4caf1c1",
+  "summary": {
+    "id": "SRC-e83be4caf1c1",
+    "type": "file",
+    "title": "CLI-HANDOFF/phase-9/PHASE-9-REPORT.md",
+    "status": "CURRENT"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "PART_OF",
+      "other": "REPO-Ix-findings",
+      "other_type": "repository",
+      "other_title": "Ix-findings",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-findings"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "IMPL-MCP-FORK",
+      "other_type": "artifact",
+      "other_title": "ix mcp fork implementation",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/impl-mcp-fork"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "BRANCH-fork-ix-mcp",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix:feat/ix-mcp",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-fork-ix-mcp"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "COMMIT-606f18f",
+      "other_type": "commit",
+      "other_title": "606f18f",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-606f18f"
+    }
+  ]
+}
