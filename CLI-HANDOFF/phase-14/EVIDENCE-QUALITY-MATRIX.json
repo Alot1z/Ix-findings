@@ -1,0 +1,13 @@
+{
+  "phase": 14,
+  "title": "Evidence Quality Matrix — All Findings Reclassified",
+  "evidence_quality": {
+    "T1_direct_source": ["F-008", "F-009", "F-010", "F-011", "F-012", "N-001", "N-002"],
+    "T2_artifact_runtime": ["F-001", "F-002", "F-003", "F-004"],
+    "T3_reproducible_behavioral": ["F-005", "F-006", "F-007"],
+    "T4_historical_documentary": [],
+    "T5_inference_speculation": ["F-013"]
+  },
+  "verdict": "The ledger is dominated by T1-T3 evidence. Only one finding (F-013) is T5. This is a healthy evidence distribution for a forensic investigation.",
+  "quality_gap": "E-014 and E-015 appear twice in evidence registry (duplicate IDs). Fixable by renumbering second set to E-029/E-030."
+}

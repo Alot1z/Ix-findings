@@ -1,0 +1,27 @@
+{
+  "phase": 14,
+  "title": "Remap PR #393 Independent Review",
+  "branch": "Alot1z/Ix:feat/ix-remap-hardening @ 1497596",
+  "pr_number": 393,
+  "pr_state": "open",
+  "pr_reviews": 0,
+  "pr_mergeable_state": "blocked",
+  "diff": "4 files, +251/-10",
+  "files": [
+    "ix-cli/src/cli/commands/view.ts (+160)", 
+    "skills/ix/scripts/bootstrap.sh (+9/-10)", 
+    "ix-cli/test/view-server.test.ts (+178)", 
+    "docs/api/README.md (+16)"
+  ],
+  "verdict": "SOUND_AWAITING_REVIEW",
+  "technical_assessment": {
+    "endpoint": "Express GET /__ix/remap with loopback guard. Returns ix map output. Same process as the view server — no separate binary.",
+    "loopback_guard": "Middleware rejects non-loopback requests with 403. Tested via 10-scenario guard matrix (view-server.test.ts). Curl-verified: localhost 200, external 403.",
+    "wsl_fix": "is_windows() no longer matches WSL_DISTRO_NAME — WSL correctly routed to bash installer path",
+    "dead_code_removal": "node_ok variable removed (set but never read)",
+    "rebase_validity": "Branch is 1 commit ahead of PR base ffe21f0. Clean, no conflicts."
+  },
+  "mergeable_state_blocked_analysis": "Likely CI gate requiring manual approval for fork PRs. PR #394 (codeql advanced setup) was merged to handle fork PR scanning before merge. Not a code defect.",
+  "recommendation": "No action possible. The PR is technically correct. Sole blocker: maintainer review. Do not re-push or rebase without explicit reason.",
+  "relationship_to_mcp": "Compatible but orthogonal. MCP provides read-only tools via stdio. Remap provides a REST endpoint for the view server. Both are read-only. Neither depends on the other."
+}

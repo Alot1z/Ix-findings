@@ -1,0 +1,161 @@
+{
+  "phase": 14,
+  "title": "Independent Finding Audit — All 13 Findings Reclassified",
+  "methodology": "Each finding traced from original evidence → issue → PR → commit → current upstream state. Evidence quality reclassified (T1-T5). Status independently determined.",
+  "findings": [
+    {
+      "id": "F-001",
+      "title": "Keyboard handler invariant across 4 releases",
+      "previous_status": "REPRODUCED",
+      "new_status": "VALIDATED",
+      "evidence_quality": "T2",
+      "evidence": "Byte-identical keyboard switch across v0.1.0–v0.3.0 tarballs (E-005)",
+      "upstream_verdict": "Still correct — compass source unchanged, dist v0.3.0 hash 7ed6cc82 verified",
+      "classification": "VALID_ENGINEERING_FINDING",
+      "notes": "Source-gated. Only actionable when system-compass fork access exists."
+    },
+    {
+      "id": "F-002",
+      "title": "F/f genuinely unbound in all releases",
+      "previous_status": "REPRODUCED",
+      "new_status": "VALIDATED",
+      "evidence_quality": "T2",
+      "evidence": "Zero grep matches for F/f bindings across all 4 tarballs (E-005)",
+      "upstream_verdict": "Still correct",
+      "classification": "VALID_ENGINEERING_FINDING",
+      "notes": "Source-gated."
+    },
+    {
+      "id": "F-003",
+      "title": "KeyboardHelp byte-identical, no F entry",
+      "previous_status": "VERIFIED",
+      "new_status": "VALIDATED",
+      "evidence_quality": "T2",
+      "evidence": "Extracted KeyboardHelp-KnF66B2h.js (v0.3.0): 8 entries, no F (E-006)",
+      "upstream_verdict": "Still correct",
+      "classification": "VALID_ENGINEERING_FINDING",
+      "notes": "Source-gated. Exact line to add identified."
+    },
+    {
+      "id": "F-004",
+      "title": "Fit math constants invariant",
+      "previous_status": "VERIFIED",
+      "new_status": "VALIDATED",
+      "evidence_quality": "T2",
+      "evidence": "9 constants extracted, invariant across releases (E-007, E-011)",
+      "upstream_verdict": "Still correct",
+      "classification": "VALID_ENGINEERING_FINDING",
+      "notes": "Source-gated. Supports decision D-005 (F-key = keyboard only, no new camera system)."
+    },
+    {
+      "id": "F-005",
+      "title": "#57 one-shot fit latch → keyed refit",
+      "previous_status": "CONFIRMED",
+      "new_status": "VALIDATED",
+      "evidence_quality": "T1+T2",
+      "evidence": "Release notes (Class A) + bundle comparison v0.2.0 vs v0.3.0 (E-008)",
+      "upstream_verdict": "Confirmed by authoritative source (KageBinary release notes)",
+      "classification": "VALID_ENGINEERING_FINDING",
+      "notes": "Source-gated. Key architectural constraint: F-key must NOT add auto-frame or drill reframe."
+    },
+    {
+      "id": "F-006",
+      "title": "Delayed-data blank persists on v0.3.0",
+      "previous_status": "REPRODUCED_LIVE",
+      "new_status": "VALIDATED_SEPARATE_CONCERN",
+      "evidence_quality": "T3",
+      "evidence": "3 independent reproductions (v0.2.0×1, v0.3.0×2) — 0 cards visible on slow data (E-009, E-022)",
+      "upstream_verdict": "Still present. #57 refit does not fix this — different root cause (rollup timing).",
+      "classification": "VALID_ENGINEERING_FINDING",
+      "notes": "Source-gated. Decision D-006 correctly separates this from F-key. Severity P1 — user sees nothing."
+    },
+    {
+      "id": "F-007",
+      "title": "Region rollup aggregate formation is timing-dependent",
+      "previous_status": "OBSERVED",
+      "new_status": "OBSERVED_MEDIUM_CONFIDENCE",
+      "evidence_quality": "T3",
+      "evidence": "Fast: 9 cards + 1 aggregate. Delayed: 15 cards, no aggregate. Same map_rev (E-012)",
+      "upstream_verdict": "Low-confidence inference without source access",
+      "classification": "VALID_BUT_LOW_PRIORITY",
+      "notes": "P2 severity. Medium confidence only. Could be load-order, not timing."
+    },
+    {
+      "id": "F-008",
+      "title": "Version-series mismatch in ix upgrade (#376)",
+      "previous_status": "RESOLVED_UPSTREAM",
+      "new_status": "FIXED_UPSTREAM",
+      "evidence_quality": "T1",
+      "evidence": "PR #391 (merged 2026-08-11): stamps $VERSION+release.<sha>, skips comparison for release bundles",
+      "upstream_verdict": "Fully resolved. Fix present in upstream main @ 1292375.",
+      "classification": "VALID_BUT_ALREADY_FIXED",
+      "notes": "Issue #376 closed as completed. No action needed. Retain as historical evidence."
+    },
+    {
+      "id": "F-009",
+      "title": "patches command dead/unregistered (#371)",
+      "previous_status": "RESOLVED_UPSTREAM",
+      "new_status": "FIXED_UPSTREAM",
+      "evidence_quality": "T1",
+      "evidence": "PR #390 (merged 2026-08-11): registers patches in oss.ts, drops from PRO_COMMANDS",
+      "upstream_verdict": "Fully resolved. Fix present in upstream main @ 1292375.",
+      "classification": "VALID_BUT_ALREADY_FIXED",
+      "notes": "Issue #371 closed as completed. No action needed. Retain as historical evidence."
+    },
+    {
+      "id": "F-010",
+      "title": "Loopback-hardened /__ix/remap endpoint",
+      "previous_status": "PR_OPEN",
+      "new_status": "PR_OPEN_NEEDS_REVIEW",
+      "evidence_quality": "T1",
+      "evidence": "PR #393: 4 files (+251/-10), 0 reviews, mergeable_state: blocked. Loopback guard + test matrix (E-014, E-015, E-016).",
+      "upstream_verdict": "PR open since 2026-08-11, awaiting maintainer review. mergeable_state: blocked (likely CI gate).",
+      "classification": "VALID_ENGINEERING_FINDING",
+      "notes": "PR is technically sound: real endpoint, loopback guard, 10 security tests, full suite green. Sole blocker: maintainer review."
+    },
+    {
+      "id": "F-011",
+      "title": "WSL bootstrap fix",
+      "previous_status": "IN_PR_393",
+      "new_status": "IN_PR_393",
+      "evidence_quality": "T1",
+      "evidence": "Shipped in PR #393 (E-014, E-024). is_windows() WSL misrouting fixed.",
+      "upstream_verdict": "Gated on PR #393 merge",
+      "classification": "VALID_ENGINEERING_FINDING",
+      "notes": "Cannot be submitted separately — rides on PR #393."
+    },
+    {
+      "id": "F-012",
+      "title": "Dead node_ok removal",
+      "previous_status": "IN_PR_393",
+      "new_status": "IN_PR_393",
+      "evidence_quality": "T1",
+      "evidence": "Shipped in PR #393 (E-014, E-024). Dead variable removal.",
+      "upstream_verdict": "Gated on PR #393 merge",
+      "classification": "VALID_ENGINEERING_FINDING",
+      "notes": "Cannot be submitted separately — rides on PR #393."
+    },
+    {
+      "id": "F-013",
+      "title": "Zoom-in multiplier discrepancy (x1.25 vs x1.1)",
+      "previous_status": "OPEN",
+      "new_status": "INCONCLUSIVE",
+      "evidence_quality": "T5",
+      "evidence": "Class D (inference): on-screen zoom button appeared to apply ~x1.25 (E-011). No measurement tooling.",
+      "upstream_verdict": "Cannot verify without source or dedicated instrumentation",
+      "classification": "SPECULATIVE",
+      "notes": "This is the weakest finding in the ledger. T5 evidence. Could be visual perception, CSS transform rounding, or actual discrepancy. Should not consume engineering effort without a verified reproduction. S-017 (deferred re-verification) was correct."
+    }
+  ],
+  "summary": {
+    "total": 13,
+    "validated": 6,
+    "fixed_upstream": 2,
+    "pr_open": 1,
+    "in_pr": 2,
+    "low_confidence": 1,
+    "speculative": 1,
+    "ai_slop": 0,
+    "obsolete": 0
+  }
+}

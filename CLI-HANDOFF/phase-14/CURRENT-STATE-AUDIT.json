@@ -1,0 +1,75 @@
+{
+  "phase": 14,
+  "title": "Independent Forensic Audit — Current State",
+  "observed_at": "2026-08-11T18:00:00Z",
+  "verified_at": "2026-08-11T18:00:00Z",
+  "upstream": {
+    "repository": "ix-infrastructure/Ix",
+    "default_branch": "main",
+    "head": "1292375548fb8f4431ac5afc34c68fe2573434d1",
+    "recent_commits": [
+      {"sha": "1292375", "date": "2026-08-11", "title": "fix(upgrade): stage downloads under IX_HOME, not TEMP (#392)"},
+      {"sha": "af23b55", "date": "2026-08-11", "title": "fix(upgrade): stop comparing compass versions across two unrelated series (#391)"},
+      {"sha": "9bc2305", "date": "2026-08-11", "title": "fix(cli): register the patches command instead of stubbing it (#390)"},
+      {"sha": "a56d882", "date": "2026-08-11", "title": "ci(codeql): move to advanced setup so fork PRs get scanned before merge (#394)"},
+      {"sha": "ffe21f0", "date": "2026-08-10", "title": "fix(security): close the view file-system race, screen the ingest rev, clear three CVEs (#389)"}
+    ],
+    "open_prs": [
+      {"number": 395, "title": "test(upgrade): cover an IX_HOME containing a space", "state": "open", "reviews": 0, "updated": "2026-08-11"},
+      {"number": 393, "title": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap", "state": "open", "reviews": 0, "mergeable_state": "blocked", "updated": "2026-08-11"},
+      {"number": 388, "title": "chore(brew): update formula for v0.9.2", "state": "open", "reviews": 0, "updated": "2026-08-10"}
+    ],
+    "open_issues": [
+      {"number": 385, "title": "[bug] ix upgrade breaks Windows CLI when upgrading from 0.8.1 to 0.9.1", "labels": ["bug"], "updated": "2026-08-11"},
+      {"number": 383, "title": "[bug] Codex hooks and CLI subprocess calls fail on native Windows", "labels": [], "updated": "2026-08-11"},
+      {"number": 349, "title": "[bug] Windows installer — path with spaces", "labels": ["bug"], "updated": "2026-08-11"},
+      {"number": 219, "title": "Add ix mcp subcommand: expose ix as a local MCP server", "labels": ["enhancement"], "updated": "2026-05-26"}
+    ],
+    "key_merged_prs": {
+      "#352": "fix(install): stop the Windows installer dying on an 8.3 short TEMP path — merged 2026-08-10",
+      "#368": "feat(skill): ship the ix agent skill and the HTTP API reference — merged 2026-08-10",
+      "#372": "feat(llm): implement --format llm for the five commands that faked it — merged 2026-08-10",
+      "#375": "fix(ingest): resolve JS and TS calls across parse batches — merged 2026-08-10",
+      "#378": "fix(ingest): remove stale graph entities — merged 2026-08-10",
+      "#382": "fix(ingest): resolve PHP calls through typed receivers — merged 2026-08-10",
+      "#384": "fix(cli): register a Pro stub for `goals` — merged 2026-08-10",
+      "#386": "fix(windows): make the ix.cmd launcher diagnose its own broken target — merged 2026-08-10",
+      "#387": "chore(release): 0.9.2 — merged 2026-08-10",
+      "#389": "fix(security): close the file-system race in view, and the two lockfile CVEs — merged 2026-08-10",
+      "#390": "fix(cli): register the patches command instead of stubbing it — merged 2026-08-11",
+      "#391": "fix(upgrade): stop comparing compass versions across two unrelated series — merged 2026-08-11",
+      "#392": "fix(upgrade): stage downloads under IX_HOME, not TEMP — merged 2026-08-11",
+      "#394": "ci(codeql): move to advanced setup so fork PRs get scanned before merge — merged 2026-08-11"
+    }
+  },
+  "fork": {
+    "repository": "Alot1z/Ix",
+    "main": "5488741155d69a5f03fce41416643ddceca6f8a0",
+    "behind_upstream": 7,
+    "branches": {
+      "feat/ix-mcp": "01a2f1460e3fb821b1b17ed1c855019422af0c95",
+      "feat/ix-remap-hardening": "1497596a0d5e8dcaf5403b1d8ae69c58cc96b6af"
+    },
+    "divergence": {
+      "feat/ix-mcp_from_fork_main": "ahead 4",
+      "feat/ix-remap-hardening_from_PR_base": "ahead 1 (ffe21f0)"
+    }
+  },
+  "findings_ledger": {
+    "repository": "Alot1z/Ix-findings",
+    "head": "92bfc9f",
+    "phases_complete": [0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13],
+    "phase_incomplete": [9],
+    "total_findings": 13,
+    "total_evidence": 30,
+    "total_suggestions": 33,
+    "total_decisions": 14
+  },
+  "protected_worktrees": {
+    "Ix": "b038c46 (untouched)",
+    "ix-compass-dist": "396426b (untouched)",
+    "Ix-remap": "1497596 (untouched)"
+  },
+  "external_actions": 0,
+  "note": "Zero upstream mutations, zero PRs created, zero issues opened, zero comments posted."
+}

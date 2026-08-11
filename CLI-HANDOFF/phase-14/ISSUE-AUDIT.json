@@ -1,0 +1,66 @@
+{
+  "phase": 14,
+  "title": "Independent Issue Audit",
+  "issues": [
+    {
+      "number": 385,
+      "title": "ix upgrade breaks Windows CLI when upgrading from 0.8.1 to 0.9.1",
+      "state": "open",
+      "verdict": "FIXED_UPSTREAM_ISSUE_OPEN_FOR_VERIFICATION",
+      "fixing_prs": ["#386 (ix.cmd launcher diagnosis)", "#392 (upgrade under IX_HOME)"],
+      "merged": true,
+      "residual_concern": "Maintainer requested native-Windows verification before closing. The fix code is merged and tested. Issue is administrative, not technical.",
+      "recommendation": "Retire from active planning. Retain as historical evidence."
+    },
+    {
+      "number": 383,
+      "title": "Codex hooks and CLI subprocess calls fail on native Windows",
+      "state": "open",
+      "verdict": "UNVERIFIED_NEEDS_REPRODUCTION",
+      "fixing_prs": [],
+      "merged": false,
+      "residual_concern": "No linked PRs. Could be environment-specific. Not investigated in any phase.",
+      "recommendation": "Needs independent reproduction before any action."
+    },
+    {
+      "number": 349,
+      "title": "Windows installer — path with spaces",
+      "state": "open",
+      "verdict": "FIXED_UPSTREAM_ISSUE_OPEN_FOR_VERIFICATION",
+      "fixing_prs": ["#352 (short TEMP path)", "#392 (IX_HOME staging)", "#395 (space-in-path test, open)"],
+      "merged": true,
+      "residual_concern": "Maintainer requested native-Windows verification. #395 adds final test coverage. Issue is administrative.",
+      "recommendation": "Retire from active planning. Retain as historical evidence."
+    },
+    {
+      "number": 219,
+      "title": "Add ix mcp subcommand: expose ix as a local MCP server",
+      "state": "open",
+      "verdict": "IMPLEMENTED_ON_FORK_AWAITING_SUBMISSION",
+      "fixing_prs": ["feat/ix-mcp on Alot1z/Ix fork"],
+      "merged": false,
+      "residual_concern": "Implementation exists on fork (21 files, +2472 lines, 53 tests, real-client verified). Not yet submitted as PR.",
+      "recommendation": "Submit PR to upstream."
+    },
+    {
+      "number": 376,
+      "title": "ix upgrade compares two unrelated version series",
+      "state": "closed",
+      "verdict": "FIXED_AND_CLOSED",
+      "fixing_prs": ["#391 (version stamping, merged 2026-08-11)"],
+      "merged": true,
+      "residual_concern": "None. Fix is deterministic and tested.",
+      "recommendation": "Keep as historical evidence (F-008). No action needed."
+    },
+    {
+      "number": 371,
+      "title": "ix patches is registered nowhere — registerPatchesCommand is dead code",
+      "state": "closed",
+      "verdict": "FIXED_AND_CLOSED",
+      "fixing_prs": ["#390 (register patches in oss.ts, merged 2026-08-11)"],
+      "merged": true,
+      "residual_concern": "None. Fix is in upstream main.",
+      "recommendation": "Keep as historical evidence (F-009). No action needed."
+    }
+  ]
+}

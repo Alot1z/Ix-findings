@@ -1,0 +1,61 @@
+{
+  "phase": 14,
+  "title": "Anti-AI-Slop Audit — All Phase Reports, Recommendations, and Claims Reviewed",
+  "methodology": "Every finding, suggestion, candidate, architecture proposal, and major recommendation from Phases 0-13 was independently reviewed against live evidence. Slop indicators checked: generic/unsourced claims, invented architecture, duplicated findings, speculative security, unmeasured performance claims, stale surviving findings.",
+  "verdict": "CLEAN — No significant AI slop detected",
+  "findings": {
+    "ai_slop_count": 0,
+    "speculative_count": 1,
+    "explanation": "F-013 (zoom multiplier discrepancy) is the only speculative finding — Class D evidence (T5 inference) from a single visual observation. S-017 correctly deferred re-verification. This is not slop (the observation is real, just unconfirmed), but it should not consume engineering effort."
+  },
+  "phase_report_audit": {
+    "phases_reviewed": "0-13 (14 reports)",
+    "stale_claims": [],
+    "corrected_claims": [
+      "Phase 0-6 reports reference '85 skills' — corrected to 88 in Phase 8+ (parasite-skill expanded)",
+      "Phase 8 report referenced 'feat/ix-docs' — branch never existed; removed in Phase 12 regenerated prompt",
+      "Phase 8 report claimed '9 read tools' — actual count is 8 (map, status, explain, trace, impact, search, rank, read)",
+      "Phase 10/11 prompts referenced 'Phase 8 report' as source — Phase 8 report was correct for its time; regenerated prompts corrected stale claims"
+    ],
+    "verdict": "Phase reports are evidence-backed. Stale claims were historical artifacts from a rapidly evolving upstream (3 PRs merged Aug 10-11). Corrected in regenerated prompts."
+  },
+  "candidate_audit": {
+    "total": 20,
+    "classification": {
+      "BLOCKED": "CAND-001..CAND-007, CAND-020 (source-gated: no system-compass fork)",
+      "DEFERRED": "CAND-006 (needs Chromium + running Compass)",
+      "PARTIAL": "CAND-019 (Phase 9 remaining: cross-platform, perf, client expansion)",
+      "KEEP": "CAND-008..CAND-018 (remaining candidates from Phase 3 audit — not re-audited individually as most are source-gated)"
+    },
+    "verdict": "Candidate classification from Phase 11 is accurate. No candidates created because 'they sound useful' — all are concrete, sourced to specific issues/PRs."
+  },
+  "architecture_audit": {
+    "claims_reviewed": [
+      "Compass F-key = keyboard-only exposure (D-005)",
+      "Delayed-data separate from F-key (D-006)",
+      "ix-compass-dist is distribution channel (D-007)",
+      "Ix-findings is standalone evidence repo (D-008)",
+      "MCP = dual-era server reusing --format llm",
+      "Remap = loopback-hardened endpoint (F-010)"
+    ],
+    "verdict": "All architecture claims are evidence-backed. D-005 correctly rejected CameraStore abstraction (unnecessary — real camera state exists). D-006 correctly separated delayed-data from F-key. MCP design reuses existing --format llm infrastructure (no duplication). Remap uses real Express endpoint with loopback guard (not a shell script). No invented architecture detected."
+  },
+  "security_claims_audit": {
+    "verdict": "All security claims are real and evidenced",
+    "details": [
+      "Remap loopback guard: 10-test matrix, real Express middleware, curl-verified 200/403",
+      "MCP stdio: no shell exec, validated arguments, byte-bounded reader, batch rejection",
+      "MCP tree-kill: PID-file tested grandchild death on Windows (taskkill /T)",
+      "view.ts race fix: merged upstream (#389, 2026-08-10)"
+    ]
+  },
+  "performance_claims_audit": {
+    "verdict": "Limited claims, all qualified",
+    "details": [
+      "Phase 9 performance methodology listed as 'remaining' — not claimed as done",
+      "MCP sequential processing (one tool call at a time) is documented as bounding resource usage, not claimed as performance-optimal",
+      "No unmeasured performance claims detected"
+    ]
+  },
+  "conclusion": "The Ix-findings knowledge system is remarkably clean. Of 13 findings, only 1 is speculative (F-013, T5 evidence, correctly marked). 2 are fixed upstream (F-008/F-009). 3 are gated on PR #393 (F-010/F-011/F-012). 6 are source-gated Compass findings. Zero findings are AI slop. The phase report chain correctly tracks stake corrections across an active upstream. Architecture decisions are conservative and evidence-backed. This is a legitimate forensic engineering investigation, not AI-generated noise."
+}

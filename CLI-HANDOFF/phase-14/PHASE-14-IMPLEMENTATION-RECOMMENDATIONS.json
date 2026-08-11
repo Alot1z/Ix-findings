@@ -1,0 +1,73 @@
+{
+  "phase": 14,
+  "title": "Independent Forensic Audit — Implementation Recommendations",
+  "next_phase": 15,
+  "recommended_action": "Submit the ix mcp PR to upstream",
+  "rationale": "MCP implementation is production-quality, protocol-correct, security-hardened, tested (749/2), and real-client verified. Issue #219 has been open since May 2026. No other contribution is ready for submission (remap #393 already open, Compass source-gated).",
+  "candidates": [
+    {
+      "id": "CAND-MCP-SUBMIT",
+      "problem": "ix has no MCP integration — agents cannot query the code graph via stdio tools",
+      "evidence": "feat/ix-mcp branch @ 01a2f14: 21 files, +2472 lines, 8 tools, 53 MCP tests, Codex E2E verified",
+      "current_state": "PR-ready on fork. Upstream issue #219 open since 2026-05-26.",
+      "why_it_matters": "Enables any MCP-compatible client (Codex, Cursor, Claude Code, OpenCode) to query the ix code graph directly — the highest-leverage way to expose ix to AI tooling",
+      "affected_repository": "ix-infrastructure/Ix",
+      "affected_files": "21 files in ix-cli/src/cli/mcp/, ix-cli/src/cli/commands/mcp.ts, ix-cli/src/cli/register/oss.ts, docs/, CLAUDE.md, skills/",
+      "dependencies": "None — uses existing --format llm infrastructure",
+      "tests_required": "Already done: 749/2 suite (+14 hardening tests over 735 baseline)",
+      "risk": "Low — read-only tools, no shell exec, validated arguments, byte-bounded reader",
+      "expected_benefit": "High — every MCP client gains access to ix's code graph",
+      "estimated_scope": "Submit only: 1 command (gh pr create). The PR is fully prepared.",
+      "authorization_required": "USER — PR creation to upstream requires your go-ahead",
+      "recommended_phase": 15,
+      "confidence": "HIGH",
+      "type": "EXTERNAL/AUTHORIZATION-GATED"
+    },
+    {
+      "id": "CAND-EVIDENCE-DEDUP",
+      "problem": "E-014 and E-015 appear twice in evidence registry with different meanings",
+      "evidence": "planning/evidence/registry.json has duplicate IDs",
+      "current_state": "Data integrity issue in Ix-findings ledger",
+      "why_it_matters": "Low priority — purely editorial. Improves ledger quality.",
+      "affected_repository": "Alot1z/Ix-findings",
+      "dependencies": "None",
+      "risk": "None",
+      "expected_benefit": "Very low",
+      "estimated_scope": "5 minutes",
+      "authorization_required": "LOCAL — Ix-findings is your repo",
+      "recommended_phase": 15,
+      "confidence": "HIGH",
+      "type": "LOCAL/AUTHORIZED"
+    },
+    {
+      "id": "CAND-PHASE9-CLOSEOUT",
+      "problem": "Phase 9 STATUS: PARTIAL — cross-platform matrix, performance methodology, MCP Inspector E2E remain",
+      "evidence": "PHASE-9-REPORT.md: STATUS: PARTIAL; 3 items listed as remaining",
+      "current_state": "Hardening done (line cap, tree-kill, protocol matrix). Cross-platform/perf/client-expansion pending.",
+      "why_it_matters": "Adds confidence to MCP PR without changing code. Cross-platform coverage is specifically what the maintainer flagged for #385/#349.",
+      "affected_repository": "Alot1z/Ix-findings (documentation/validation only)",
+      "dependencies": "MCP Inspector, WSL environment, native Windows environment",
+      "risk": "None",
+      "expected_benefit": "Medium — completes the evidence chain",
+      "estimated_scope": "Documentation and testing, no implementation",
+      "authorization_required": "LOCAL",
+      "recommended_phase": 15,
+      "confidence": "MEDIUM",
+      "type": "LOCAL/AUTHORIZED"
+    }
+  ],
+  "separated": {
+    "LOCAL/AUTHORIZED": ["CAND-EVIDENCE-DEDUP", "CAND-PHASE9-CLOSEOUT"],
+    "EXTERNAL/AUTHORIZATION-GATED": ["CAND-MCP-SUBMIT"],
+    "BLOCKED": [
+      "CAND-001..CAND-007 (Compass: no source access)",
+      "CAND-020 (remap write tool: gated on PR #393 merge)",
+      "CAND-006 (delayed-data repro: needs Chromium + running Compass)",
+      "FORK-MAIN-SYNC (requires user authorization + force-push)"
+    ],
+    "HUMAN-DECISION": [
+      "Submit MCP PR (requires go-ahead)",
+      "Request system-compass access (D-014)"
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "phase": 14,
+  "title": "New Findings Discovered During Audit",
+  "findings": [
+    {
+      "id": "N-001",
+      "title": "Evidence registry duplicate IDs (E-014, E-015)",
+      "evidence_quality": "T1",
+      "evidence": "planning/evidence/registry.json has duplicate E-014/E-015 with different meanings. Second set added in Phase 11 without renumbering.",
+      "severity": "P3",
+      "impact": "Data integrity — two evidence items share the same ID. Could cause confusion in traceability queries.",
+      "fix": "Renumber second set (Phase 11 additions) to E-029/E-030.",
+      "recommendation": "Editorial fix, 5 minutes, zero risk."
+    },
+    {
+      "id": "N-002",
+      "title": "Fork-main is 7 commits behind upstream",
+      "evidence_quality": "T1",
+      "evidence": "GitHub API: Alot1z/Ix:main @ 5488741 vs upstream main @ 1292375. compare/ shows behind_by: 7.",
+      "severity": "P3",
+      "impact": "Fork cannot serve as base for new work without sync. Current contribution branches diverge from fork main (5488741), not upstream, so this does not affect them — but any future work based on fork main would include stale code.",
+      "fix": "git fetch upstream && git push fork upstream/main:main (requires user authorization + force-push).",
+      "recommendation": "Sync when convenient. Not blocking anything."
+    }
+  ],
+  "note": "Only 2 new findings. The upstream source was scanned for TODOs/FIXMEs/XXX — only mktemp templates and a literal 'TODO' search example in text.ts were found. No dead code, no unreachable paths, no suspicious fallbacks. The upstream is remarkably clean."
+}

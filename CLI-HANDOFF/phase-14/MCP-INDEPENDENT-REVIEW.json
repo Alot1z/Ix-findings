@@ -1,0 +1,93 @@
+{
+  "phase": 14,
+  "title": "Independent MCP Implementation Review",
+  "branch": "Alot1z/Ix:feat/ix-mcp @ 01a2f14",
+  "diff": "21 files, +2472 lines (5 commits: 36c7c7e, 73860aa, 863b3fd, 0d99ae0, 66fa5f5)",
+  "verdict": "GOOD",
+  "verdict_detail": "Production-quality implementation. One observation noted (test ergonomics), zero security findings.",
+  "review": {
+    "protocol_correctness": {
+      "verdict": "CORRECT",
+      "detail": "Dual-era per MCP 2026-07-28 spec. Legacy initialize + modern server/discover. Protocol version and id validation per JSON-RPC 2.0. _meta.io.modelcontextprotocol/* namespace used correctly for server info. Correct error codes: ParseError -32700, InvalidRequest -32600, MethodNotFound -32601, InvalidParams -32602, UnsupportedProtocolVersion -32022."
+    },
+    "jsonrpc_framing": {
+      "verdict": "CORRECT",
+      "detail": "Newline-delimited UTF-8 stdio framing per spec. Blank lines skipped. Malformed JSON → ParseError response. serializeMessage uses JSON.stringify (never emits raw newlines)."
+    },
+    "oversized_input": {
+      "verdict": "CORRECT",
+      "detail": "Byte-bounded LineReader replaces readline. 1 MiB cap (DEFAULT_MAX_LINE_BYTES). Line exceeding cap → ParseError + resync at next newline. Session stays usable after oversize (verified in real binary). No unbounded buffering possible."
+    },
+    "batch_rejection": {
+      "verdict": "CORRECT",
+      "detail": "JSON-RPC arrays rejected wholesale with single -32600 Invalid Request. Spec-compliant: server may reject unsupported batches with a single error."
+    },
+    "id_validation": {
+      "verdict": "CORRECT",
+      "detail": "Non-scalar ids rejected with null id (correct: do not echo an invalid id). Wrong jsonrpc version → -32600."
+    },
+    "eof_behavior": {
+      "verdict": "CORRECT",
+      "detail": "stdin 'end' event → closed=true, all pending AbortControllers aborted, output flushed, promise resolved. Same discipline as view-server remap handler (F-010)."
+    },
+    "cancellation": {
+      "verdict": "CORRECT",
+      "detail": "notifications/cancelled handled outside queue (notifications fire-and-forget, must not deadlock behind tool call). AbortController kills the child process tree immediately."
+    },
+    "timeout_behavior": {
+      "verdict": "CORRECT",
+      "detail": "Per-tool wall-clock timeout: map=300s, others=120s (env-overridable). Timer unref'd so hung child can't hold server open. Timeout → killProcessTree → ToolRunResult with timedOut=true."
+    },
+    "subprocess_lifecycle": {
+      "verdict": "CORRECT",
+      "detail": "Spawn with execFile-style argv (no shell, validated arguments). windowsHide=true. execPath=process.execPath (same Node). env=process.env (inherit)."
+    },
+    "tree_termination": {
+      "verdict": "CORRECT",
+      "detail": "POSIX: detached spawn → own process group → process.kill(-pid, SIGTERM) → SIGKILL after 2s. Windows: taskkill /T /F. Clean fallbacks (child.kill). Grandchild death verified by PID-file tests (mcp-cli-executor.test.ts)."
+    },
+    "resource_cleanup": {
+      "verdict": "CORRECT",
+      "detail": "active Set tracks all live children. disposeAll() called on shutdown (stdio-main.ts → SIGINT/SIGTERM handler, and server 'end' handler). Timer unref'd. AbortController removed in finally block."
+    },
+    "command_execution_boundaries": {
+      "verdict": "CORRECT",
+      "detail": "buildArgv produces string[] passed to spawn (execFile semantics). No shell interpolation. Arguments validated against per-tool JSON schemas (additionalProperties: false). Unknown args rejected before exec."
+    },
+    "tool_registration": {
+      "verdict": "CORRECT",
+      "detail": "8 read-only tools (map, status, explain, trace, impact, search, rank, read). Registered in oss.ts with F-009 regression guard. No remap write tool (correct: /__ix/remap does not exist on this base). Tool names prefixed with ix_ (no collisions)."
+    },
+    "error_semantics": {
+      "verdict": "CORRECT",
+      "detail": "Cancelled → isError:true. TimedOut → isError:true with truncated stderr. Non-zero exit → isError:true with truncated stderr (4KB). stdout overflow → isError:true. Empty stdout → '(no output)' rather than blank."
+    }
+  },
+  "test_quality": {
+    "total_tests": "53 MCP tests (749/2 full suite)",
+    "categories": [
+      "Command registration (mcp-command.test.ts: 67 lines)",
+      "Protocol framing (mcp-protocol.test.ts: 117 lines)",
+      "Server session (mcp-server.test.ts: 310 lines)",
+      "Real-process stdio (mcp-stdio.integration.test.ts: 128 lines)",
+      "CLI executor + tree-kill (mcp-cli-executor.test.ts: 123 lines)",
+      "Protocol-abuse matrix (mcp-abuse.test.ts: 236 lines, 15 cases)"
+    ],
+    "verdict": "GOOD",
+    "detail": "Comprehensive coverage: unit (protocol), integration (real process), abuse (oversize, batch, malformed, _meta, cancel, queue, notifications, partial EOF). Fixtures: mcp-cli-fixture.mjs, mcp-grandchild-fixture.mjs, mcp-server-entry.ts, mcp-slow-fixture.mjs. Grandchild reaping verified via PID-file test."
+  },
+  "observations": [
+    {
+      "severity": "INFO",
+      "title": "Large test file (mcp-server.test.ts: 310 lines) could be split",
+      "detail": "mcp-server.test.ts covers server start, tool call, error paths, and dual-era protocol — 310 lines in one file. Consider splitting into server-lifecycle.test.ts, server-tool-calls.test.ts, server-protocol-versioning.test.ts for maintainability."
+    }
+  ],
+  "security_findings": [],
+  "compatibility": {
+    "verdict": "COMPATIBLE",
+    "detail": "No architectural conflicts with upstream. Uses existing --format llm infrastructure. Registered in oss.ts (OSS path). No Pro stub shadowing. No new dependencies beyond standard MCP SDK types (vendored as local type definitions, not runtime dependencies)."
+  },
+  "pr_readiness": "PR_READY_AFTER_REVIEW",
+  "note": "The Codebuff footer was removed from commit messages by prior cleanup. Commit bodies preserved. The hardening (01a2f14/869b64d) covers line-size cap, tree-kill, and protocol-abuse matrix — 14 additional tests beyond the base implementation. A real-client E2E was recorded (Codex 0.143.0, verified both ix_status and ix_map against live backend)."
+}

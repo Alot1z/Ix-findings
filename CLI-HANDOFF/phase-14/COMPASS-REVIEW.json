@@ -1,0 +1,36 @@
+{
+  "phase": 14,
+  "title": "Compass / Knowledge Explorer Review",
+  "dist": {
+    "version": "0.3.0",
+    "sha256": "7ed6cc82fe58b3adb1c0e0bb411485d1a36fd862a4d33a1d64eae3141a3936f1",
+    "verified": true,
+    "source": "ix-compass-dist @ 396426b"
+  },
+  "f_key_spec": {
+    "path": "pr-packets/compass-f-key/README.md",
+    "status": "COMPLETE_SOURCE_GATED",
+    "drop_in_items": 8,
+    "all_pass": true,
+    "verdict": "Any developer with system-compass source can implement the F-key from this spec."
+  },
+  "delayed_data": {
+    "path": "pr-packets/compass-delayed-data/README.md",
+    "status": "COMPLETE_SOURCE_GATED",
+    "items": 7,
+    "all_pass": true,
+    "verdict": "Investigation complete. Fix directions concrete (event-driven rollup or deferred-fit flag)."
+  },
+  "pipeline": {
+    "build_data": "planning/pages/build-data.mjs — 165 nodes, 13 findings",
+    "validate": "planning/pages/validate-public.mjs — validation passing",
+    "pages_workflow": "No .github/workflows/pages*.yml in ix-compass-dist"
+  },
+  "source_gate": {
+    "Alot1z/system-compass": "404",
+    "ix-infrastructure/system-compass": "404",
+    "verdict": "Both forks inaccessible. Compass implementation work is blocked. The readiness package (spec + test plan + packet body) is complete and waiting."
+  },
+  "contact_path": "KageBinary (Compass author) left a review on PR #368 offering communication. D-014 (open decision) recommends asking for access there.",
+  "verdict": "The Compass investigation is thorough and honest. The gate is real and cannot be bypassed. The readiness package is complete."
+}

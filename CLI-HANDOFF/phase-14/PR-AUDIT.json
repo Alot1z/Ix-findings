@@ -1,0 +1,16 @@
+{
+  "phase": 14,
+  "title": "Independent PR Audit",
+  "prs": [
+    {"number": 395, "state": "open", "title": "test(upgrade): cover an IX_HOME containing a space", "verdict": "ADDITIVE_TEST_COVERAGE", "reviews": 0, "recommendation": "Low-risk test addition. Not blocking anything."},
+    {"number": 393, "state": "open", "title": "feat(view): real /__ix/remap endpoint", "verdict": "SOUND_AWAITING_REVIEW", "reviews": 0, "mergeable_state": "blocked", "recommendation": "PR is technically correct. 4 files, +251/-10, 10 security tests. Sole blocker: maintainer review.", "note": "mergeable_state: blocked — likely CI gate requiring manual approval for fork PRs (see #394 codeql)."},
+    {"number": 388, "state": "open", "title": "chore(brew): update formula for v0.9.2", "verdict": "RELEASE_HOUSEKEEPING", "reviews": 0, "recommendation": "Auto-generated release PR. Not blocking anything."},
+    {"number": 392, "state": "merged", "title": "fix(upgrade): stage downloads under IX_HOME, not TEMP", "verdict": "GOOD_FIX", "recommendation": "Addresses #385/#349. Merged 2026-08-11."},
+    {"number": 391, "state": "merged", "title": "fix(upgrade): stop comparing compass versions across two unrelated series", "verdict": "GOOD_FIX", "recommendation": "Fixes #376 (F-008). Merged 2026-08-11."},
+    {"number": 390, "state": "merged", "title": "fix(cli): register the patches command instead of stubbing it", "verdict": "GOOD_FIX", "recommendation": "Fixes #371 (F-009). Merged 2026-08-11."},
+    {"number": 389, "state": "merged", "title": "fix(security): close the view file-system race, screen the ingest rev, clear three CVEs", "verdict": "GOOD_FIX", "recommendation": "Security hardening. F-010 remap PR rebased onto this. Merged 2026-08-10."},
+    {"number": 386, "state": "merged", "title": "fix(windows): make the ix.cmd launcher diagnose its own broken target", "verdict": "GOOD_FIX", "recommendation": "Addresses #385. Merged 2026-08-10."},
+    {"number": 368, "state": "merged", "title": "feat(skill): ship the ix agent skill and the HTTP API reference", "verdict": "GOOD_FEATURE", "note": "Merged 2026-08-10. KageBinary (Compass author) left a review offering communication — this is the contact path for D-014."}
+  ],
+  "note": "#371 and #376 are issues, not PRs. The Phase 12 regenerated prompt removed stale references to them as PRs."
+}
