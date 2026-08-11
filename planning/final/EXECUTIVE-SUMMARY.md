@@ -1,5 +1,12 @@
 # Executive Summary
 
+> **Note (2026-08-11):** This document was written during the early
+> investigation (Phase 7 era) and describes the project's *origins*. For the
+> authoritative current state — including the full 13-phase ladder, the
+> `ix mcp` build, the `ix remap` PR, contribution inventory, and submission
+> triggers — see [`MASTER-REPORT.md`](./MASTER-REPORT.md) and
+> [`../CLI-HANDOFF/phase-13/FINAL-CLOSE-OUT.md`](../CLI-HANDOFF/phase-13/FINAL-CLOSE-OUT.md).
+
 **What happened:** A prior feature thread (Ix PR #368) produced a Compass
 fit-view prototype (F-key) plus a DOM patch. The maintainer (KageBinary)
 redirected it: the feature belongs in the **system-compass** source repo, not

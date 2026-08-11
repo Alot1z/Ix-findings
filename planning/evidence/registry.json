@@ -372,6 +372,32 @@
       "repository": "ix-infrastructure/Ix",
       "detail": "Root package.json says 0.5.0; actual CLI is 0.6.1 — dual version series (CAND-016)",
       "supports": []
+    },
+    {
+      "id": "E-014",
+      "title": "#385 upgrade-breaks-wrapper fix — PR #386 + #392 merged upstream",
+      "type": "merged-pr",
+      "class": "A",
+      "phase": "phase-11",
+      "repository": "ix-infrastructure/Ix",
+      "detail": "PR #386 (ix.cmd launcher diagnosis, +149 test lines) merged 2026-08-10. PR #392 (upgrade under IX_HOME, +171 test lines) merged 2026-08-11. Both include regression tests. Issues #385 remains open as admin backlog, not code defect.",
+      "supports": [
+        "#385"
+      ],
+      "provenance": "GitHub API — repos/ix-infrastructure/Ix/pulls/386, repos/ix-infrastructure/Ix/pulls/392"
+    },
+    {
+      "id": "E-015",
+      "title": "#349 installer-space-in-path fix — PR #352 + #392 merged upstream",
+      "type": "merged-pr",
+      "class": "A",
+      "phase": "phase-11",
+      "repository": "ix-infrastructure/Ix",
+      "detail": "PR #352 (install.ps1 short TEMP path, +35 test lines) merged 2026-08-10. PR #392 (IX_HOME staging) also contributes. PR #395 (space-in-path test, open) adds the final coverage. Issue #349 remains open as admin backlog.",
+      "supports": [
+        "#349"
+      ],
+      "provenance": "GitHub API — repos/ix-infrastructure/Ix/pulls/352, repos/ix-infrastructure/Ix/pulls/392"
     }
   ]
 }
