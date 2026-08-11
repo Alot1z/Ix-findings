@@ -1,0 +1,63 @@
+{
+  "artifact": "PHASE-9-HARDENING-RESULTS.json",
+  "phase": 9,
+  "date": "2026-08-11",
+  "branch": "Alot1z/Ix:feat/ix-mcp",
+  "base_commit": "863b3fd513656253536fd398aed62b30526e7ef1",
+  "head_commit": "66fa5f5e8a61b923fb985a068f47413de288fa5f",
+  "commits": ["0d99ae0 fix(mcp): harden the stdio server — line-size cap, tree-kill, protocol-abuse matrix (#219)", "66fa5f5 docs(mcp): document the hardening contract"],
+  "files_changed": ["ix-cli/src/cli/mcp/server.ts", "ix-cli/src/cli/mcp/cli-executor.ts", "ix-cli/src/cli/mcp/stdio-main.ts", "ix-cli/src/cli/__tests__/mcp-abuse.test.ts", "ix-cli/src/cli/__tests__/mcp-cli-executor.test.ts", "ix-cli/src/cli/__tests__/fixtures/mcp-grandchild-fixture.mjs", "docs/api/README.md"],
+  "hardenings": [
+    {
+      "id": "H9-1",
+      "title": "Line-size cap (memory bound)",
+      "detail": "Byte-bounded streaming line reader replaces readline: never buffers more than 1 MiB per message line. Oversized line -> JSON-RPC -32700 'Message too large', reader resyncs at next newline, session stays usable.",
+      "evidence": "Real-binary smoke: 1,048,644-byte line -> {\"code\":-32700,\"message\":\"Message too large (1048644 bytes; limit 1048576)\"}, subsequent ping answered {}."
+    },
+    {
+      "id": "H9-2",
+      "title": "JSON-RPC batch rejection",
+      "detail": "Arrays are rejected wholesale with a single -32600 'Batch requests are not supported' (spec: single Invalid Request response for unsupported batch). No partial processing.",
+      "evidence": "mcp-abuse.test.ts: non-empty batch and empty batch both -> -32600."
+    },
+    {
+      "id": "H9-3",
+      "title": "JSON-RPC 2.0 compliance",
+      "detail": "Wrong jsonrpc version -> -32600; non-scalar id -> -32600 with null response id (never echoes an invalid id).",
+      "evidence": "mcp-abuse.test.ts: jsonrpc '1.0' -> -32600; id {nested:1} -> -32600, response id null."
+    },
+    {
+      "id": "H9-4",
+      "title": "Whole-tree kill / orphan reaping",
+      "detail": "Children spawned detached (own process group on POSIX; taskkill /T /F on Windows). Cancel, timeout, stdout/stderr overflow, EOF and SIGINT/SIGTERM all kill the tree, reaping grandchildren (the indexing backend). disposeAll() on shutdown; SIGTERM escalation to SIGKILL after 2s.",
+      "evidence": "mcp-cli-executor.test.ts: grandchild PID file proves tree death on timeout (3.2s) and on disposeAll()."
+    }
+  ],
+  "protocol_abuse_matrix": [
+    {"case": "oversized line (>1 MiB)", "expected": "-32700 + resync", "result": "pass", "evidence": "mcp-abuse.test.ts"},
+    {"case": "non-empty batch", "expected": "-32600 single", "result": "pass", "evidence": "mcp-abuse.test.ts"},
+    {"case": "empty batch []", "expected": "-32600 single", "result": "pass", "evidence": "mcp-abuse.test.ts"},
+    {"case": "unknown _meta keys", "expected": "tolerated", "result": "pass", "evidence": "mcp-abuse.test.ts"},
+    {"case": "wrong jsonrpc version", "expected": "-32600", "result": "pass", "evidence": "mcp-abuse.test.ts"},
+    {"case": "non-scalar id", "expected": "-32600, null response id", "result": "pass", "evidence": "mcp-abuse.test.ts"},
+    {"case": "missing method", "expected": "-32600", "result": "pass", "evidence": "mcp-abuse.test.ts"},
+    {"case": "tools/call non-object params", "expected": "-32602", "result": "pass", "evidence": "mcp-abuse.test.ts"},
+    {"case": "concurrent cancels (x2)", "expected": "one cancelled result, no crash", "result": "pass", "evidence": "mcp-abuse.test.ts"},
+    {"case": "ping during long call", "expected": "answered after call (sequential), no deadlock", "result": "pass", "evidence": "mcp-abuse.test.ts, maxConcurrent=1"},
+    {"case": "notification storm (100)", "expected": "no responses, no crash", "result": "pass", "evidence": "mcp-abuse.test.ts"},
+    {"case": "initialize twice", "expected": "idempotent", "result": "pass", "evidence": "mcp-abuse.test.ts"},
+    {"case": "partial frame at EOF", "expected": "prompt shutdown, no output", "result": "pass", "evidence": "mcp-abuse.test.ts"},
+    {"case": "grandchild reaping on timeout", "expected": "tree dead", "result": "pass", "evidence": "mcp-cli-executor.test.ts"},
+    {"case": "disposeAll() on shutdown", "expected": "tree dead", "result": "pass", "evidence": "mcp-cli-executor.test.ts"}
+  ],
+  "test_results": {
+    "mcp_new_tests": 14,
+    "full_suite": "749 passed / 2 skipped + parser smoke (baseline 735/2 -> +14)",
+    "tsc": "clean",
+    "eslint": "0 errors (38 warnings, pre-existing)",
+    "build": "clean",
+    "regression": "no regressions"
+  },
+  "stray_files_removed": ["ix-cli/--format (5-byte PID debris from first fixture version)", "ix-cli/status (5-byte PID debris from first fixture version)"],
+  "notes": "Real-binary smoke of the hardening executed against dist build; oversized line rejected then ping answered (resync proven outside tests too)."
+}

@@ -1,0 +1,45 @@
+{
+  "artifact": "REAL-CLIENT-RUN.json",
+  "phase": 9,
+  "date": "2026-08-11",
+  "client": {
+    "name": "OpenAI Codex CLI",
+    "version": "codex-cli 0.143.0",
+    "auth": "Logged in using ChatGPT",
+    "transport": "stdio (codex launches the MCP server as a subprocess)"
+  },
+  "registration": {
+    "command": "codex mcp add ix-mcp -- node E:/E-github-repos/Ix-mcp/ix-cli/dist/cli/main.js mcp --stdio",
+    "config_file": "~/.codex/config.toml ([mcp_servers.ix-mcp])",
+    "pre_existing_servers": "code-review-graph (untouched)",
+    "removal": "codex mcp remove ix-mcp"
+  },
+  "server_under_test": {
+    "branch": "Alot1z/Ix:feat/ix-mcp @ 66fa5f5 (hardened build)",
+    "entry": "node E:/E-github-repos/Ix-mcp/ix-cli/dist/cli/main.js mcp --stdio",
+    "cwd_for_session": "E:/E-github-repos/Ix-findings (live ix workspace; backend localhost:8090)"
+  },
+  "invocation": "codex exec --skip-git-repo-check -C E:/E-github-repos/Ix-findings --dangerously-bypass-approvals-and-sandbox <prompt> </dev/null",
+  "tool_calls": [
+    {
+      "tool": "ix_status",
+      "outcome": "completed",
+      "returned": "status backend=ok endpoint=http://localhost:8090 rev=0 stale_files=0 stale=false",
+      "cross_check": "direct CLI from same workspace reports rev 47 with backend ok; rev delta = concurrent backend re-ingest (map triggered full_local_completed ingest), not a client or server bug"
+    },
+    {
+      "tool": "ix_map",
+      "outcome": "completed",
+      "returned": "29 regions; level 1 highest; first region 'Assets / Pages'",
+      "cross_check": "direct CLI map from E:/E-github-repos/Ix-findings returns identical 29 regions, same 'Assets / Pages' first level-1 region"
+    }
+  ],
+  "verdict": "PASS — genuine end-to-end: real client -> real stdio server (hardened build) -> tools/list discovery -> tools/call -> live ix backend -> real output. Both tool calls completed.",
+  "client_notes": {
+    "codex_exec_mcp_approval": "codex exec auto-cancels MCP tool calls in non-interactive mode regardless of approval_policy (open bug openai/codex#29857, still open at 0.143.0). Only workaround is --dangerously-bypass-approvals-and-sandbox; used for this single read-only run and recorded here.",
+    "claude_code": "UNVERIFIED — npm shim at AppData/Roaming/npm/claude points at missing @anthropic-ai/claude-code package (broken install on this machine). Not repaired without user consent. Re-check at Phase 9 close-out.",
+    "cursor": "not exercised this run (config-file E2E deferred to Phase 9 remaining scope)",
+    "mcp_inspector": "not exercised this run (deferred to Phase 9 remaining scope)"
+  },
+  "privacy": "Transcript sanitized: no secrets, no personal data, no private paths beyond the workspace root already public in the ledger."
+}

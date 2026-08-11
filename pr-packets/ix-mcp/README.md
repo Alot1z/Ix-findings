@@ -49,12 +49,35 @@ It is a follow-up candidate once #393 merges (CAND-020).
 
 ## Test evidence
 
-- 39 new MCP tests, all green: protocol/validation units, in-memory dual-era
+- 53 new MCP tests, all green: protocol/validation units, in-memory dual-era
   session (initialize, discover, tools/list, tools/call, ping, malformed JSON,
   unknown method, `-32022` version gate, cancellation, EOF abort), registration
-  guard, real-process stdio integration session, real-process timeout kill.
-- Full suite: **735 passed / 2 skipped** (+ parser smoke) — no regressions.
+  guard, real-process stdio integration session, real-process timeout kill,
+  **14 Phase 9 hardening tests** (protocol-abuse matrix: oversized line,
+  batches, malformed shapes, unknown `_meta`, concurrent cancels, sequential
+  queue, notification storm, idempotent initialize, partial frame at EOF;
+  orphan reaping: grandchild dies on timeout and on `disposeAll()`).
+- Full suite: **749 passed / 2 skipped** (+ parser smoke) — no regressions.
 - `tsc --noEmit` clean, `eslint src` 0 errors, production build clean.
+
+## Hardening (Phase 9, landed on the branch)
+
+- **1 MiB line-size cap** — byte-bounded reader; oversized line → `-32700`,
+  reader resyncs, session stays usable (proven in the real binary).
+- **JSON-RPC 2.0 compliance** — batches rejected with a single `-32600`;
+  wrong `jsonrpc` version and non-scalar ids → `-32600`.
+- **Orphan reaping** — children spawn detached (own process group on POSIX,
+  `taskkill /T` on Windows); cancel/timeout/overflow/EOF/SIGINT/SIGTERM kill
+  the whole tree so a tool-spawned backend can never leak.
+
+## Real-client verification (Phase 9)
+
+- **Codex 0.143.0** (real MCP client, registered via `codex mcp add ix-mcp`)
+  drove `ix_status` and `ix_map` over real stdio against the live ix backend
+  (localhost:8090): both `completed`, output cross-checked against direct CLI
+  (29 regions, "Assets / Pages" — identical). Claude Code on this machine has
+  a broken npm install (recorded UNVERIFIED, not repaired). Full record:
+  `CLI-HANDOFF/phase-9/REAL-CLIENT-RUN.json`.
 
 ## Reviewer notes
 

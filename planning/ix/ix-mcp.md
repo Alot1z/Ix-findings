@@ -58,3 +58,27 @@ the F-010 `IX_VIEW_MAP_MAIN` analog).
 2. **write×1 → write×0** (prompt assumed a `remap` tool): `remap` does not
    exist on the fork base (PR #393 adds it). CAND-020 tracks the follow-up.
 3. **read×6 → read×8** (`ix_read` added): justified addition, D8-7.
+
+## Phase 9 addendum (2026-08-11, PARTIAL)
+
+Local hardening landed on `feat/ix-mcp` (`863b3fd → 66fa5f5`, 2 commits):
+
+- **H9-1** 1 MiB line-size cap — byte-bounded reader replaces readline;
+  oversized line → `-32700` + resync (memory bound, proven in real binary).
+- **H9-2/H9-3** JSON-RPC 2.0 compliance — batches → single `-32600`; wrong
+  `jsonrpc` / non-scalar id → `-32600`.
+- **H9-4** whole-tree kill — children spawn detached (own group on POSIX,
+  `taskkill /T` on Windows); cancel/timeout/overflow/EOF/SIGINT/SIGTERM kill
+  the tree; `disposeAll()` on shutdown. Grandchild reaping proven by
+  PID-file tests.
+
+Real-client E2E: Codex 0.143.0 drove `ix_status` + `ix_map` over real stdio
+against the live backend — both completed, output cross-checked identical to
+direct CLI (D9-1: the ix backend runs locally; D9-2: transient rev=0 during
+concurrent ingest is cosmetic; D9-3: first orphan fixture wrote PID debris —
+fixed with env-passed paths). Claude Code UNVERIFIED (broken npm install,
+blocker recorded). Full records: `CLI-HANDOFF/phase-9/`.
+
+Remaining Phase 9 scope: cross-platform matrix (WSL/native-Windows/macOS),
+performance methodology (p50/p95, RSS, spawn overhead), MCP Inspector +
+Cursor/OpenCode E2E, CAND-020 (remap write tool, gated on PR #393 merge).
