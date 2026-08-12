@@ -3,7 +3,7 @@
 // Checks: files present, data parses, no local paths, no secrets, no localhost,
 // relative asset references, snapshot label present, graph edge endpoints valid.
 import { readFileSync, readdirSync, statSync, existsSync } from "node:fs";
-import { dirname, join } from "node:path";
+import { dirname, join, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 import { runGate } from "../../knowledge/freshness-gate.mjs";
 
@@ -176,6 +176,58 @@ if (existsSync(join(outDir, "search.json"))) {
   missingSearch.length === 0 ? ok("search index covers all entities (" + s.length + " entries)") : fail("search index missing entities: " + missingSearch.slice(0, 10).map(e => e.id).join(","));
 } else {
   fail("search.json missing");
+}
+
+// 14. Dead links: every internal href/src in every generated HTML page must
+// resolve to a real file (or a directory, served as its index.html) in the
+// output tree. External schemes, hash-only links, and query-only links are
+// skipped; absolute paths are resolved against the GitHub Pages base path.
+{
+  const htmlFiles = files.filter(f => f.endsWith(".html"));
+  let dead = 0;
+  const re = /(?:href|src)="([^"]+)"/g;
+  for (const f of htmlFiles) {
+    const html = readFileSync(f, "utf8");
+    const baseDir = dirname(f);
+    let m;
+    while ((m = re.exec(html)) !== null) {
+      const raw = m[1];
+      if (/^(https?:|mailto:|tel:|data:|javascript:)/i.test(raw)) continue;
+      const rel = raw.split(/[?#]/)[0];
+      if (!rel || rel.startsWith("#")) continue;
+      let target;
+      if (rel.startsWith("/")) {
+        const p = rel.replace(/^\/Ix-findings/, "").replace(/^\/\/?/, "");
+        target = join(outDir, ...p.split("/"));
+      } else {
+        target = join(baseDir, rel);
+      }
+      const exists = existsSync(target) || existsSync(target + "/") || existsSync(target + "/index.html") || existsSync(target + ".html");
+      if (!exists) { fail("dead link in " + f.replace(outDir + sep, "") + ": " + raw); dead++; }
+    }
+  }
+  if (dead === 0) ok("no dead internal links across " + htmlFiles.length + " HTML pages");
+}
+
+// 15. Placeholders: the LLM entry point and full corpus must contain no
+// unresolved placeholder tokens (spec: no TODO/TBD/<URL>/<entity>).
+{
+  // Spec §22: llms.txt must have no TODO, TBD, <URL>, or <entity> placeholders.
+  // llms-full.txt is derived from canonical data — real commit messages and
+  // descriptions may contain the word "placeholder" legitimately, so limit to
+  // the strictly unresolvable tokens the spec calls out.
+  const phRe = /TODO|TBD|<URL>|<entity>/i;
+  for (const f of ["llms.txt", "llms-full.txt"]) {
+    if (!existsSync(join(outDir, f))) { fail("missing " + f + " (placeholder scan)"); continue; }
+    const c = readFileSync(join(outDir, f), "utf8");
+    const hits = c.match(phRe) || [];
+    hits.length === 0
+      ? ok(f + " free of placeholder tokens")
+      : fail(f + " contains placeholder tokens: " + [...new Set(hits)].slice(0, 8).join(", "));
+  }
+  const sitemap = existsSync(join(outDir, "sitemap.xml")) ? readFileSync(join(outDir, "sitemap.xml"), "utf8") : "";
+  if (sitemap && /TODO|TBD|<URL>/.test(sitemap)) fail("sitemap.xml contains placeholders");
+  else if (sitemap) ok("sitemap.xml free of placeholder tokens");
 }
 
 console.log(failures === 0 ? "\nVALIDATION PASSED — public projection safe for review." : "\nVALIDATION FAILED with " + failures + " issue(s).");

@@ -149,7 +149,7 @@ writeFileSync(join(outDir, "404.html"), deepLinkHtml, "utf8");
 // Each graph section and issue gets a physical index.html so GitHub Pages serves
 // real path URLs (/mcp/implementation, /issues/219) with no redirect. Asset
 // references are depth-relative; sections.js renders the marked section directly.
-function shellFor(path, { entityId } = {}) {
+function shellFor(path, { entityId, view } = {}) {
   const segments = path.split("/").filter(Boolean).length;
   const rel = segments > 0 ? "../".repeat(segments) : "";
   const title = "Ix / Compass Investigation — Knowledge Wiki";
@@ -182,11 +182,19 @@ function shellFor(path, { entityId } = {}) {
     <nav id="sidebar" aria-label="Views">
       <div class="nav-group-label">Explore</div>
       <a class="nav-item" href="${rel}">✳ Overview</a>
-      <a class="nav-item" href="${rel}#/map">⌗ Investigation Map</a>
-      <a class="nav-item" href="${rel}#/findings">✦ Findings</a>
-      <a class="nav-item" href="${rel}#/prs">⇄ Pull Requests</a>
-      <a class="nav-item" href="${rel}#/issues">⚠ Issues</a>
-      <a class="nav-item" href="${rel}#/contributions">⚡ Contributions</a>
+      <a class="nav-item" href="${rel}map">⌗ Investigation Map</a>
+      <a class="nav-item" href="${rel}findings">✦ Findings</a>
+      <a class="nav-item" href="${rel}evidence">◈ Evidence</a>
+      <a class="nav-item" href="${rel}repositories">▤ Repositories</a>
+      <a class="nav-item" href="${rel}commits">◉ Commits</a>
+      <a class="nav-item" href="${rel}prs">⇄ Pull Requests</a>
+      <a class="nav-item" href="${rel}issues">⚠ Issues</a>
+      <a class="nav-item" href="${rel}timeline">◷ Timeline</a>
+      <a class="nav-item" href="${rel}phases">⛁ Phases</a>
+      <a class="nav-item" href="${rel}decisions">◈ Decisions</a>
+      <a class="nav-item" href="${rel}suggestions">✎ Suggestions</a>
+      <a class="nav-item" href="${rel}files">▤ Files</a>
+      <a class="nav-item" href="${rel}contributions">⚡ Contributions</a>
       <div class="nav-group-label">Graph sections</div>
       ${(data.sections || []).map(s => `<a class="nav-item" href="${rel}${s.graph_path.slice(1)}">${s.graph_path}</a>`).join("\n      ")}
       <div class="nav-group-label">Issues</div>
@@ -213,7 +221,7 @@ function shellFor(path, { entityId } = {}) {
     <div id="drawer-body" class="drawer-body"></div>
   </aside>
 </div>
-<script>window.IX_SECTION = ${JSON.stringify(path)};</script>
+${view ? `<script>window.IX_VIEW = ${JSON.stringify(view)};</script>` : `<script>window.IX_SECTION = ${JSON.stringify(path)};</script>`}
 <script src="${rel}data/data.js"></script>
 <script src="${rel}assets/wiki.js"></script>
 <script src="${rel}assets/sections.js"></script>
@@ -256,7 +264,15 @@ const entityUrl = id => canonicalUrl.get(id) || `/entities/${slugify(id)}`;
 
 // Route registry: every physical page + every machine file.
 const routes = [];
-const addRoute = (path, kind, title) => routes.push({ path, kind, title, url: BASE_URL + path });
+const addRoute = (path, kind, title) => routes.push({
+  path,
+  kind,
+  title,
+  url: BASE_URL + path,
+  // Hierarchical parent for the route registry (spec: every route knows its
+  // parent; root has none).
+  parent: path === "/" ? null : (path.slice(0, path.lastIndexOf("/")) || "/"),
+});
 addRoute("/", "home", "Ix-findings knowledge base");
 for (const s of data.sections || []) addRoute(s.graph_path.replace(/\/+$/, ""), "section", s.title);
 for (const s of data.issueSections || []) addRoute(s.graph_path.replace(/\/+$/, ""), "issue", s.issue_title || `Issue #${s.issue}`);
@@ -317,7 +333,17 @@ for (const n of graphNodes) {
 
 // Entity index page (physical listing of every canonical entity).
 {
-  const rows = entitiesIndex.map(e => `<li><a href="${esc(e.url.replace(BASE_URL, "")).replace(/^\//, "")}/">${esc(e.title)}</a> <span class="faint">(${esc(e.type)}${e.status ? " · " + esc(e.status) : ""})</span></li>`).join("\n");
+  // Links are relative to /entities/ (this page is at entities/index.html).
+  // Entity-slug pages live at entities/<slug>/ → href = "<slug>/".
+  // Section/issue/PR pages live outside entities/ → href = "../<path>/".
+  const rows = entitiesIndex.map(e => {
+    let path = e.url.replace(BASE_URL, "").replace(/^\//, "");
+    // e.g. "issues/219" stays relative as "../issues/219/";
+    // e.g. "entities/src-xxx" becomes "src-xxx/" (relative to current dir).
+    if (path.startsWith("entities/")) path = path.slice("entities/".length);
+    else path = "../" + path;
+    return `<li><a href="${esc(path)}/">${esc(e.title)}</a> <span class="faint">(${esc(e.type)}${e.status ? " · " + esc(e.status) : ""})</span></li>`;
+  }).join("\n");
   const idxHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -343,6 +369,64 @@ for (const n of graphNodes) {
   mkdirSync(join(outDir, "entities"), { recursive: true });
   writeFileSync(join(outDir, "entities", "index.html"), idxHtml, "utf8");
 }
+
+// ── Category pages: every knowledge category gets a physical URL. ──
+// The SPA views (findings, evidence, …) previously existed only as hash routes
+// (#/findings), so production returned 404 for every category path. Each view
+// now gets a real index.html that renders the same view via window.IX_VIEW
+// (sections.js init). Data-driven: adding an entry here adds the page, route,
+// sitemap entry, and validation coverage.
+const VIEW_PAGES = [
+  { path: "/findings", view: "findings", title: "Findings" },
+  { path: "/evidence", view: "evidence", title: "Evidence" },
+  { path: "/repositories", view: "repos", title: "Repositories" },
+  { path: "/commits", view: "commits", title: "Commits" },
+  { path: "/prs", view: "prs", title: "Pull Requests" },
+  { path: "/timeline", view: "timeline", title: "Timeline" },
+  { path: "/phases", view: "phases", title: "Phases" },
+  { path: "/decisions", view: "decisions", title: "Decisions" },
+  { path: "/suggestions", view: "suggestions", title: "Suggestions" },
+  { path: "/map", view: "map", title: "Investigation Map" },
+  { path: "/contributions", view: "contributions", title: "Contributions" },
+];
+for (const vp of VIEW_PAGES) {
+  const dir = join(outDir, ...vp.path.replace(/^\//, "").split("/"));
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(join(dir, "index.html"), shellFor(vp.path, { view: vp.view }), "utf8");
+  addRoute(vp.path, "category", vp.title);
+}
+
+// Files category page: static table of every verified file reference (no SPA
+// view exists for files; the page is generated directly from filesIndex).
+{
+  const rows = filesIndex.map(f => `<tr><td class="code">${esc(f.path)}</td><td>${esc(f.repository)}</td><td class="code">${esc(f.symbol || "")}</td><td class="code">${esc(f.commit || "")}</td><td><a class="ext" href="${esc(f.url)}" target="_blank" rel="noopener">source</a></td></tr>`).join("\n");
+  const filesHtml = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Files — Ix / Compass Investigation</title>
+<meta name="description" content="Every verified file reference in the Ix / Compass investigation knowledge base.">
+<link rel="stylesheet" href="../assets/wiki.css">
+</head>
+<body>
+<div id="app">
+  <main id="view">
+    <div class="breadcrumb"><span class="crumb"><a href="../">IX Compass</a></span><span class="sep"> / </span><span class="crumb active">Files</span></div>
+    <section id="content" class="content">
+      <h1>Files</h1>
+      <p class="lede">Every verified file reference across the investigation — ${filesIndex.length} files, each linked to its source and commit.</p>
+      <table><thead><tr><th>Path</th><th>Repository</th><th>Symbol</th><th>Commit</th><th>Source</th></tr></thead><tbody>${rows}</tbody></table>
+    </section>
+  </main>
+</div>
+</body>
+</html>\n`;
+  mkdirSync(join(outDir, "files"), { recursive: true });
+  writeFileSync(join(outDir, "files", "index.html"), filesHtml, "utf8");
+  addRoute("/files", "category", "Files");
+}
+console.log("Wrote category pages: " + VIEW_PAGES.map(vp => vp.path + "/").join(", ") + " + files/");
 
 // ── JSON indexes ──
 const meta = { generated: base.meta.generated, sourceRevision: base.meta.sourceRevision, count: 0 };
@@ -411,7 +495,13 @@ writeJsonFile("graph.json", { version: "1", generated: base.meta.generated, sour
     "Entity indexes:",
   ].concat(corpusFiles.map(f => f === "llms.txt" ? null : `- ${BASE_URL}/${f}`).filter(Boolean), [
     "",
-    "Traversal: start at llms-full.txt or graph.json, resolve any entity id to its canonical URL, and follow relationships (finding → evidence → file → commit → PR → issue) as machine-readable links.",
+    "Categories (one physical page per knowledge view):",
+    ...VIEW_PAGES.map(vp => `- ${BASE_URL}${vp.path}/ — ${vp.title}`),
+    `- ${BASE_URL}/files/ — verified file references`,
+    `- ${BASE_URL}/issues/ — open issues`,
+    `- ${BASE_URL}/entities/ — full entity index`,
+    "",
+    "Traversal: start at llms-full.txt or graph.json, resolve any entity id to its canonical URL, and follow relationships (finding → evidence → file → commit → PR → issue) as machine-readable links. Category pages cross-link their entities; every page is in sitemap.xml.",
     "",
   ]);
   writeFileSync(join(outDir, "llms.txt"), lines.join("\n"), "utf8");

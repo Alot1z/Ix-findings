@@ -8,6 +8,87 @@ const BASE = window.IX_BASE || "";
 const byPath = {};
 SECTIONS.forEach(s => { byPath[s.graph_path] = s; });
 ISSUE_SECTIONS.forEach(s => { byPath[s.graph_path] = s; });
+
+/* ── hierarchy navigation: parent / siblings / children ──
+ * Derived from graph_path segments so every page — however deep — links back
+ * up, sideways, and down. Covers both section and issue-section trees. */
+const ALL_SECTIONS = SECTIONS.concat(ISSUE_SECTIONS);
+const byParent = {};
+ALL_SECTIONS.forEach(s => {
+  const segs = String(s.graph_path || "").split("/").filter(Boolean);
+  const parent = "/" + segs.slice(0, -1).join("/");
+  (byParent[parent] = byParent[parent] || []).push(s);
+});
+function parentOf(section){
+  const segs = String(section.graph_path || "").split("/").filter(Boolean);
+  if (!segs.length) return null;
+  const parent = "/" + segs.slice(0, -1).join("/");
+  if (parent === "/") return { label: "Overview", href: BASE + "/" };
+  if (parent === "/issues") return { label: "Open issues", href: BASE + "/issues" };
+  const p = byPath[parent];
+  if (p) return { label: p.title || parent, href: BASE + parent };
+  return { label: "Overview", href: BASE + "/" };
+}
+function siblingsOf(section){
+  const segs = String(section.graph_path || "").split("/").filter(Boolean);
+  const parent = "/" + segs.slice(0, -1).join("/");
+  return (byParent[parent] || []).filter(s => s !== section);
+}
+function childrenOf(section){
+  return byParent[String(section.graph_path || "")] || [];
+}
+function navChip(label, href){
+  const a = document.createElement("a"); a.className = "link"; a.href = href; a.textContent = label;
+  return a;
+}
+function navList(items){
+  const w = document.createElement("span"); w.className = "rel";
+  if (!items || !items.length) { w.append(document.createTextNode("none")); return w; }
+  items.forEach(it => w.append(navChip(it.label, it.href)));
+  return w;
+}
+function navBlock(section){
+  const w = document.createElement("div"); w.className = "card";
+  const h3 = document.createElement("h3"); h3.textContent = "Navigation";
+  w.append(h3);
+  const parent = parentOf(section);
+  const siblings = siblingsOf(section);
+  const children = childrenOf(section);
+  if (parent) w.append(kv("Parent", navChip(parent.label, parent.href)));
+  if (siblings.length) w.append(kv("Siblings", navList(siblings.map(s => ({ label: s.title || s.graph_path, href: BASE + s.graph_path })))));
+  if (children.length) w.append(kv("Children", navList(children.map(s => ({ label: s.title || s.graph_path, href: BASE + s.graph_path })))));
+  if (!parent && !siblings.length && !children.length) w.append(kv("Above", "— top-level page"));
+  return w;
+}
+function setBreadcrumb(chain){
+  // chain: [{label, href?}] — the last item is the current (active) page.
+  const b = document.getElementById("breadcrumb");
+  if (!b) return;
+  b.innerHTML = "";
+  chain.forEach((c, i) => {
+    if (i) b.append(Object.assign(document.createElement("span"), { className: "sep", textContent: " / " }));
+    const s = document.createElement("span");
+    s.className = "crumb" + (i === chain.length - 1 ? " active" : "");
+    if (c.href) { const a = document.createElement("a"); a.href = c.href; a.textContent = c.label; s.append(a); }
+    else s.textContent = c.label;
+    b.append(s);
+  });
+}
+function sectionBreadcrumb(section){
+  const segs = String(section.graph_path || "").split("/").filter(Boolean);
+  const chain = [{ label: "IX Compass", href: BASE + "/" }];
+  let acc = "";
+  segs.forEach((seg, i) => {
+    acc += "/" + seg;
+    const node = byPath[acc];
+    const linkable = (node || acc === "/issues") && i < segs.length - 1;
+    // Ancestors use their path segment (sidebar convention; titles can repeat
+    // across levels), the current page keeps its full title.
+    const label = i === segs.length - 1 ? (node ? node.title : seg) : seg;
+    chain.push({ label, href: linkable ? BASE + acc : null });
+  });
+  setBreadcrumb(chain);
+}
 function renderIssuesIndex(){
   const app = window.IX_APP;
   if (!app) return;
@@ -18,6 +99,7 @@ function renderIssuesIndex(){
   content.append(h1);
   const list = (window.IX_DATA.issuesIndex || []);
   if (!list.length) { content.append(Object.assign(document.createElement("p"), { className: "muted", textContent: "No open issues recorded." })); return; }
+  setBreadcrumb([{ label: "IX Compass", href: BASE + "/" }, { label: "Open issues", href: null }]);
   list.forEach(issue => {
     const card = document.createElement("div"); card.className = "card";
     const h3 = document.createElement("h3"); h3.textContent = "#" + issue.number + " — " + (issue.title || "");
@@ -79,6 +161,7 @@ function kv(label, valueNode){
 function sectionBody(section){
   const w = document.createElement("div");
   w.append(document.createElement("h3"), document.createTextNode(section.title));
+  w.append(navBlock(section));
   w.append(kv("Status", section.status || "unknown"));
   w.append(kv("Repository", section.repository || ""));
   w.append(kv("Graph path", section.graph_path || ""));
@@ -100,6 +183,7 @@ function sectionBody(section){
 function issueBody(section){
   const w = document.createElement("div");
   w.append(document.createElement("h3"), document.createTextNode(section.issue_title || section.title));
+  w.append(navBlock(section));
   w.append(kv("Issue", linkifyGitHubUrl(section.issue_url, "ix-infrastructure/Ix#" + section.issue)));
   w.append(kv("State", section.state || "open"));
   if (section.user) w.append(kv("Author", section.user));
@@ -141,6 +225,7 @@ function renderSection(){
   content.append(h1);
   if (section.issue !== undefined) content.append(issueBody(section));
   else content.append(sectionBody(section));
+  sectionBreadcrumb(section);
 }
 function handleHash(){
   const parts = cleanHash();
@@ -153,17 +238,26 @@ function handleHash(){
 function renderPath(path){
   const key = (path || "").replace(/^\/+/, "").replace(/\/+$/, "");
   if (!key) return false;
-  const found = SECTIONS.find(s => s.graph_path.replace(/^\//, "") === key);
+  const app = window.IX_APP;
+  if (key === "issues") { if (app) { renderIssuesIndex(); return true; } }
+  const found = SECTIONS.concat(ISSUE_SECTIONS).find(s => s.graph_path.replace(/^\//, "") === key);
   if (!found) return false;
   window.location.hash = "#" + found.graph_path;
-  const app = window.IX_APP;
   if (app) { renderSection(); return true; }
   return false;
 }
 function init(){
+  // Static generated category pages set window.IX_VIEW; render that SPA view.
+  if (window.IX_VIEW && window.IX_APP && window.IX_APP.setView) {
+    window.IX_APP.setView(window.IX_VIEW);
+    return;
+  }
   // Static generated sub-pages set window.IX_SECTION; render that section directly.
   if (window.IX_SECTION && renderPath(window.IX_SECTION)) return;
-  if (!handleHash()) return;
+  // Render any hash deep-link present at load (/#/mcp, /#/issues/219, …), and
+  // always listen for hash changes — including from the root page, which has
+  // no hash at load and previously never registered this listener.
+  handleHash();
   window.addEventListener("hashchange", () => handleHash() || window.IX_APP.render());
 }
 if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
