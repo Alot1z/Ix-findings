@@ -1,0 +1,79 @@
+{
+  "id": "COMMIT-688298fdba426594c883f7d0bafdf02da26887d6",
+  "type": "commit",
+  "title": "688298fdba426594c883f7d0bafdf02da26887d6",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-688298fdba426594c883f7d0bafdf02da26887d6",
+  "summary": {
+    "id": "COMMIT-688298fdba426594c883f7d0bafdf02da26887d6",
+    "type": "commit",
+    "title": "688298fdba426594c883f7d0bafdf02da26887d6",
+    "status": "HISTORICAL",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    }
+  },
+  "source_snapshot": {
+    "sha": "688298fdba426594c883f7d0bafdf02da26887d6",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/688298fdba426594c883f7d0bafdf02da26887d6",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/688298fdba426594c883f7d0bafdf02da26887d6",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "committer": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "message": "feat(mcp): serve Ix tools over MCP, executing commands in-process\n\nAdds `ix mcp`, a stdio MCP server exposing 23 graph tools, so any\nMCP-capable client can drive Ix. Each host still needs its own\nregistration; for Codex that is `codex mcp add ix-memory -- ix mcp`.\n\nTool calls run inside the server process rather than spawning the CLI per\ncall. Booting main.js costs ~0.58s before any query runs, which an agent\npays on every hop of a locate -> callers -> read chain; measured end to\nend over stdio, eight tool calls drop from 8502ms to 1282ms. It also lets\nresolve.ts's per-cwd scope cache survive between calls. Running commands\nin the server's own process needs three things the child process gave for\nfree:\n\n- `ix status` and `ix text` call process.exit(1) on their error paths.\n  In a child that ends one command; here it would take the whole server\n  down mid-session, so process.exit becomes a throw the runner turns into\n  a failed tool result.\n- Runs are serialized. Commands report failure via process.exitCode,\n  which is a non-configurable property on Node 22 and so cannot be made\n  context-local; isolating output per async context while the exit code\n  stayed global would attribute a call's output to the right result and\n  its success to the wrong one. This costs nothing measurable — three\n  concurrent calls as child processes took 1304/1733/1888ms competing for\n  Node boots, versus 15/250/251ms serialized in-process.\n- The transport writes JSON-RPC through its own handle on fd 1, and\n  output that cannot be attributed to a run goes to stderr, so a command\n  outliving its timeout cannot desync the protocol. AsyncLocalStorage\n  keeps such an orphan's late output out of the next call's result.\n\nThe command tree is rebuilt per run because commander does not clear\nparsed option values between parses, which would leak --path from one\nix_text call into the next one that omitted it.\n\nIX_MCP_SUBPROCESS=1 restores the isolated child-process behaviour.",
+    "parents": [
+      {
+        "sha": "fa6ad7b0ff52734685ff7425b08ec240837751fa",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/fa6ad7b0ff52734685ff7425b08ec240837751fa"
+      }
+    ],
+    "tree_sha": "3637044d4b3eece5c4f06202a4fd8663876e4d87",
+    "authored_at": "2026-08-11T23:43:47Z",
+    "committed_at": "2026-08-12T15:21:16Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@688298fdba426594c883f7d0bafdf02da26887d6",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/688298fdba426594c883f7d0bafdf02da26887d6",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/688298fdba426594c883f7d0bafdf02da26887d6",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-12T15:21:16Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-12T15:21:16Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-688298fdba426594c883f7d0bafdf02da26887d6",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#397"
+  },
+  "relationships": []
+}

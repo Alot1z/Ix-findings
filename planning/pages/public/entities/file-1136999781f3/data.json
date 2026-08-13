@@ -1,0 +1,100 @@
+{
+  "id": "FILE-1136999781f3",
+  "type": "artifact",
+  "title": "memory-layer/src/main/scala/ix/memory/ingestion/PatchValidator.scala",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/file-1136999781f3",
+  "summary": {
+    "id": "FILE-1136999781f3",
+    "type": "artifact",
+    "title": "memory-layer/src/main/scala/ix/memory/ingestion/PatchValidator.scala",
+    "status": "CURRENT",
+    "repository": "Alot1z/Ix-mcp",
+    "url": "https://github.com/Alot1z/Ix-mcp/blob/HEAD/memory-layer/src/main/scala/ix/memory/ingestion/PatchValidator.scala"
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-befde2c38786251239dd93a6adbdadcfe5e5877b",
+      "other_type": "commit",
+      "other_title": "befde2c38786251239dd93a6adbdadcfe5e5877b",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-befde2c38786251239dd93a6adbdadcfe5e5877b"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-246d46f49d892544792fd3d006c9b01dd163d2e5",
+      "other_type": "commit",
+      "other_title": "246d46f49d892544792fd3d006c9b01dd163d2e5",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-246d46f49d892544792fd3d006c9b01dd163d2e5"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-143a20d1084498dfa93f21934fe42e3087f0e0af",
+      "other_type": "commit",
+      "other_title": "143a20d1084498dfa93f21934fe42e3087f0e0af",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-143a20d1084498dfa93f21934fe42e3087f0e0af"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-270c743738990843f992d43809ef30f549f4d648",
+      "other_type": "commit",
+      "other_title": "270c743738990843f992d43809ef30f549f4d648",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-270c743738990843f992d43809ef30f549f4d648"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-c4e66e25e6575904b503efe36acd71d3c998a1d3",
+      "other_type": "commit",
+      "other_title": "c4e66e25e6575904b503efe36acd71d3c998a1d3",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-c4e66e25e6575904b503efe36acd71d3c998a1d3"
+    },
+    {
+      "direction": "in",
+      "relationship": "CO_CHANGED_WITH",
+      "other": "FILE-a6a83fc19669",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/GraphPatchBuilder.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-a6a83fc19669"
+    },
+    {
+      "direction": "in",
+      "relationship": "CO_CHANGED_WITH",
+      "other": "FILE-f2a0879cd6c6",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/IngestionService.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f2a0879cd6c6"
+    },
+    {
+      "direction": "in",
+      "relationship": "CO_CHANGED_WITH",
+      "other": "FILE-0c012423e3f3",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/ParseResult.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-0c012423e3f3"
+    },
+    {
+      "direction": "in",
+      "relationship": "CO_CHANGED_WITH",
+      "other": "FILE-f94b87ca30cb",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/ParserRouter.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f94b87ca30cb"
+    },
+    {
+      "direction": "out",
+      "relationship": "CO_CHANGED_WITH",
+      "other": "FILE-9cffad5ac9df",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/parsers/TreeSitterPythonParser.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-9cffad5ac9df"
+    }
+  ]
+}

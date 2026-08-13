@@ -1,0 +1,66 @@
+{
+  "id": "COMMIT-0bc722d25997f3e49e4529389958f1b877b926db",
+  "type": "commit",
+  "title": "0bc722d25997f3e49e4529389958f1b877b926db",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-0bc722d25997f3e49e4529389958f1b877b926db",
+  "summary": {
+    "id": "COMMIT-0bc722d25997f3e49e4529389958f1b877b926db",
+    "type": "commit",
+    "title": "0bc722d25997f3e49e4529389958f1b877b926db",
+    "status": "CURRENT"
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "POINTS_TO",
+      "other": "BRANCH-1a1d8a1aa714",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:chore/raise-node-floor-to-22",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-1a1d8a1aa714"
+    },
+    {
+      "direction": "in",
+      "relationship": "POINTS_TO",
+      "other": "BRANCH-a8834d98d4b5",
+      "other_type": "branch",
+      "other_title": "ix-infrastructure/Ix:chore/raise-node-floor-to-22",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-a8834d98d4b5"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-e805ac18500a06366b54d789223bedbfffa5074c",
+      "other_type": "commit",
+      "other_title": "e805ac18500a06366b54d789223bedbfffa5074c",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-e805ac18500a06366b54d789223bedbfffa5074c"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ca4b1bc98da8",
+      "other_type": "artifact",
+      "other_title": "scripts/install/install.ps1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ca4b1bc98da8"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-85dbebf6023a",
+      "other_type": "artifact",
+      "other_title": "scripts/install/install.ps1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-85dbebf6023a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-9558933a8e77",
+      "other_type": "artifact",
+      "other_title": "scripts/install/install.ps1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-9558933a8e77"
+    }
+  ]
+}

@@ -1,0 +1,368 @@
+{
+  "generated_at": "2026-08-12T10:42:30.430Z",
+  "source": "planning/phase-c/GITHUB-LIVE-CAPTURE.json",
+  "findings": [
+    {
+      "finding_id": "F-001",
+      "title": "Keyboard handler invariant across 4 releases",
+      "previous_status": "REPRODUCED",
+      "reconciled_status": "HISTORICAL",
+      "issue_numbers": [],
+      "issue_states": [],
+      "pr_numbers": [],
+      "pr_states": [],
+      "missing_issues": [],
+      "missing_prs": [],
+      "evidence_policy": "GitHub state changes do not rewrite the finding ledger; they create reconciliation evidence.",
+      "source_refs": [
+        "planning/findings/registry.json",
+        "planning/phase-c/GITHUB-LIVE-CAPTURE.json"
+      ]
+    },
+    {
+      "finding_id": "F-002",
+      "title": "F/f genuinely unbound in all releases",
+      "previous_status": "REPRODUCED",
+      "reconciled_status": "HISTORICAL",
+      "issue_numbers": [],
+      "issue_states": [],
+      "pr_numbers": [],
+      "pr_states": [],
+      "missing_issues": [],
+      "missing_prs": [],
+      "evidence_policy": "GitHub state changes do not rewrite the finding ledger; they create reconciliation evidence.",
+      "source_refs": [
+        "planning/findings/registry.json",
+        "planning/phase-c/GITHUB-LIVE-CAPTURE.json"
+      ]
+    },
+    {
+      "finding_id": "F-003",
+      "title": "KeyboardHelp byte-identical, no F entry",
+      "previous_status": "VERIFIED",
+      "reconciled_status": "HISTORICAL",
+      "issue_numbers": [],
+      "issue_states": [],
+      "pr_numbers": [],
+      "pr_states": [],
+      "missing_issues": [],
+      "missing_prs": [],
+      "evidence_policy": "GitHub state changes do not rewrite the finding ledger; they create reconciliation evidence.",
+      "source_refs": [
+        "planning/findings/registry.json",
+        "planning/phase-c/GITHUB-LIVE-CAPTURE.json"
+      ]
+    },
+    {
+      "finding_id": "F-004",
+      "title": "Fit math + constants invariant",
+      "previous_status": "VERIFIED",
+      "reconciled_status": "HISTORICAL",
+      "issue_numbers": [],
+      "issue_states": [],
+      "pr_numbers": [],
+      "pr_states": [],
+      "missing_issues": [],
+      "missing_prs": [],
+      "evidence_policy": "GitHub state changes do not rewrite the finding ledger; they create reconciliation evidence.",
+      "source_refs": [
+        "planning/findings/registry.json",
+        "planning/phase-c/GITHUB-LIVE-CAPTURE.json"
+      ]
+    },
+    {
+      "finding_id": "F-005",
+      "title": "#57 one-shot fit latch -> keyed refit (v0.2.0->v0.3.0)",
+      "previous_status": "CONFIRMED",
+      "reconciled_status": "UNKNOWN",
+      "issue_numbers": [
+        57
+      ],
+      "issue_states": [],
+      "pr_numbers": [],
+      "pr_states": [],
+      "missing_issues": [
+        57
+      ],
+      "missing_prs": [],
+      "evidence_policy": "GitHub state changes do not rewrite the finding ledger; they create reconciliation evidence.",
+      "source_refs": [
+        "planning/findings/registry.json",
+        "planning/phase-c/GITHUB-LIVE-CAPTURE.json"
+      ]
+    },
+    {
+      "finding_id": "F-006",
+      "title": "Delayed-data blank persists on v0.3.0",
+      "previous_status": "REPRODUCED_LIVE",
+      "reconciled_status": "UNKNOWN",
+      "issue_numbers": [
+        57
+      ],
+      "issue_states": [],
+      "pr_numbers": [],
+      "pr_states": [],
+      "missing_issues": [
+        57
+      ],
+      "missing_prs": [],
+      "evidence_policy": "GitHub state changes do not rewrite the finding ledger; they create reconciliation evidence.",
+      "source_refs": [
+        "planning/findings/registry.json",
+        "planning/phase-c/GITHUB-LIVE-CAPTURE.json"
+      ]
+    },
+    {
+      "finding_id": "F-007",
+      "title": "Region-rollup aggregate formation is timing-dependent",
+      "previous_status": "OBSERVED",
+      "reconciled_status": "HISTORICAL",
+      "issue_numbers": [],
+      "issue_states": [],
+      "pr_numbers": [],
+      "pr_states": [],
+      "missing_issues": [],
+      "missing_prs": [],
+      "evidence_policy": "GitHub state changes do not rewrite the finding ledger; they create reconciliation evidence.",
+      "source_refs": [
+        "planning/findings/registry.json",
+        "planning/phase-c/GITHUB-LIVE-CAPTURE.json"
+      ]
+    },
+    {
+      "finding_id": "F-008",
+      "title": "Version-series mismatch in ix upgrade (#376)",
+      "previous_status": "FIXED_UPSTREAM",
+      "reconciled_status": "UNKNOWN",
+      "issue_numbers": [
+        376
+      ],
+      "issue_states": [
+        {
+          "number": 376,
+          "state": "closed",
+          "url": "https://github.com/ix-infrastructure/Ix/issues/376"
+        }
+      ],
+      "pr_numbers": [
+        365,
+        366,
+        344,
+        391
+      ],
+      "pr_states": [
+        {
+          "number": 365,
+          "state": "closed",
+          "merged": true,
+          "head_sha": "83c4308b5d1c7f70fd1294350474890c3549ea04",
+          "url": "https://github.com/ix-infrastructure/Ix/pull/365"
+        },
+        {
+          "number": 366,
+          "state": "closed",
+          "merged": true,
+          "head_sha": "f434f9d0bc5027a5d3033df35caed7a8c2c84fc8",
+          "url": "https://github.com/ix-infrastructure/Ix/pull/366"
+        },
+        {
+          "number": 391,
+          "state": "closed",
+          "merged": true,
+          "head_sha": "3f70e75a7e5cc21cd50eaa01908948e7036aa9f6",
+          "url": "https://github.com/ix-infrastructure/Ix/pull/391"
+        }
+      ],
+      "missing_issues": [],
+      "missing_prs": [
+        344
+      ],
+      "evidence_policy": "GitHub state changes do not rewrite the finding ledger; they create reconciliation evidence.",
+      "source_refs": [
+        "planning/findings/registry.json",
+        "planning/phase-c/GITHUB-LIVE-CAPTURE.json"
+      ]
+    },
+    {
+      "finding_id": "F-009",
+      "title": "patches command dead/unregistered (#371)",
+      "previous_status": "FIXED_UPSTREAM",
+      "reconciled_status": "RESOLVED",
+      "issue_numbers": [
+        371
+      ],
+      "issue_states": [
+        {
+          "number": 371,
+          "state": "closed",
+          "url": "https://github.com/ix-infrastructure/Ix/issues/371"
+        }
+      ],
+      "pr_numbers": [
+        372,
+        390
+      ],
+      "pr_states": [
+        {
+          "number": 372,
+          "state": "closed",
+          "merged": true,
+          "head_sha": "86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+          "url": "https://github.com/ix-infrastructure/Ix/pull/372"
+        },
+        {
+          "number": 390,
+          "state": "closed",
+          "merged": true,
+          "head_sha": "89ca55e21672696deb7627cb3e5b1846754707fa",
+          "url": "https://github.com/ix-infrastructure/Ix/pull/390"
+        }
+      ],
+      "missing_issues": [],
+      "missing_prs": [],
+      "evidence_policy": "GitHub state changes do not rewrite the finding ledger; they create reconciliation evidence.",
+      "source_refs": [
+        "planning/findings/registry.json",
+        "planning/phase-c/GITHUB-LIVE-CAPTURE.json"
+      ]
+    },
+    {
+      "finding_id": "F-010",
+      "title": "Loopback-hardened /__ix/remap endpoint (implemented)",
+      "previous_status": "PR_OPEN",
+      "reconciled_status": "CURRENT",
+      "issue_numbers": [],
+      "issue_states": [],
+      "pr_numbers": [
+        393
+      ],
+      "pr_states": [
+        {
+          "number": 393,
+          "state": "open",
+          "merged": false,
+          "head_sha": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+          "url": "https://github.com/ix-infrastructure/Ix/pull/393"
+        }
+      ],
+      "missing_issues": [],
+      "missing_prs": [],
+      "evidence_policy": "GitHub state changes do not rewrite the finding ledger; they create reconciliation evidence.",
+      "source_refs": [
+        "planning/findings/registry.json",
+        "planning/phase-c/GITHUB-LIVE-CAPTURE.json"
+      ]
+    },
+    {
+      "finding_id": "F-011",
+      "title": "WSL bootstrap fix",
+      "previous_status": "IN_PR_393",
+      "reconciled_status": "CURRENT",
+      "issue_numbers": [],
+      "issue_states": [],
+      "pr_numbers": [
+        393
+      ],
+      "pr_states": [
+        {
+          "number": 393,
+          "state": "open",
+          "merged": false,
+          "head_sha": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+          "url": "https://github.com/ix-infrastructure/Ix/pull/393"
+        }
+      ],
+      "missing_issues": [],
+      "missing_prs": [],
+      "evidence_policy": "GitHub state changes do not rewrite the finding ledger; they create reconciliation evidence.",
+      "source_refs": [
+        "planning/findings/registry.json",
+        "planning/phase-c/GITHUB-LIVE-CAPTURE.json"
+      ]
+    },
+    {
+      "finding_id": "F-012",
+      "title": "Dead node_ok removal",
+      "previous_status": "IN_PR_393",
+      "reconciled_status": "CURRENT",
+      "issue_numbers": [],
+      "issue_states": [],
+      "pr_numbers": [
+        393
+      ],
+      "pr_states": [
+        {
+          "number": 393,
+          "state": "open",
+          "merged": false,
+          "head_sha": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+          "url": "https://github.com/ix-infrastructure/Ix/pull/393"
+        }
+      ],
+      "missing_issues": [],
+      "missing_prs": [],
+      "evidence_policy": "GitHub state changes do not rewrite the finding ledger; they create reconciliation evidence.",
+      "source_refs": [
+        "planning/findings/registry.json",
+        "planning/phase-c/GITHUB-LIVE-CAPTURE.json"
+      ]
+    },
+    {
+      "finding_id": "F-013",
+      "title": "Zoom-in multiplier discrepancy (x1.25 observed vs x1.1 in constants)",
+      "previous_status": "INCONCLUSIVE",
+      "reconciled_status": "HISTORICAL",
+      "issue_numbers": [],
+      "issue_states": [],
+      "pr_numbers": [],
+      "pr_states": [],
+      "missing_issues": [],
+      "missing_prs": [],
+      "evidence_policy": "GitHub state changes do not rewrite the finding ledger; they create reconciliation evidence.",
+      "source_refs": [
+        "planning/findings/registry.json",
+        "planning/phase-c/GITHUB-LIVE-CAPTURE.json"
+      ]
+    },
+    {
+      "finding_id": "N-001",
+      "title": "Evidence registry duplicate IDs (E-014, E-015)",
+      "previous_status": "OPEN",
+      "reconciled_status": "HISTORICAL",
+      "issue_numbers": [],
+      "issue_states": [],
+      "pr_numbers": [],
+      "pr_states": [],
+      "missing_issues": [],
+      "missing_prs": [],
+      "evidence_policy": "GitHub state changes do not rewrite the finding ledger; they create reconciliation evidence.",
+      "source_refs": [
+        "planning/findings/registry.json",
+        "planning/phase-c/GITHUB-LIVE-CAPTURE.json"
+      ]
+    },
+    {
+      "finding_id": "N-002",
+      "title": "Fork-main is 7 commits behind upstream",
+      "previous_status": "OPEN",
+      "reconciled_status": "HISTORICAL",
+      "issue_numbers": [],
+      "issue_states": [],
+      "pr_numbers": [],
+      "pr_states": [],
+      "missing_issues": [],
+      "missing_prs": [],
+      "evidence_policy": "GitHub state changes do not rewrite the finding ledger; they create reconciliation evidence.",
+      "source_refs": [
+        "planning/findings/registry.json",
+        "planning/phase-c/GITHUB-LIVE-CAPTURE.json"
+      ]
+    }
+  ],
+  "summary": {
+    "total": 15,
+    "current": 3,
+    "resolved": 1,
+    "unknown": 3
+  }
+}

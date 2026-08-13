@@ -1,0 +1,38 @@
+{
+  "schema_version": "ix-findings.execution-receipt.v1",
+  "run_id": "phase-1-plan-2026-08-12",
+  "source_plan": "user-provided plan-phase-1.md (external local input; path not published)",
+  "repository": "Alot1z/Ix-findings",
+  "branch": "master",
+  "head": "309329a3dd733694bed967655436d5d8dcc352f2",
+  "routing": {
+    "engine": "parasite-skill",
+    "selected_skills": ["ix", "writing-plans", "planning-and-task-breakdown", "forge", "browser-testing-with-devtools", "gitingest"],
+    "payload_executed": true,
+    "ix_execution": "BLOCKED_BACKEND_UNAVAILABLE",
+    "ix_evidence": "ix status and ix map attempted; Docker backend was unavailable; no graph claim was made"
+  },
+  "implemented_phases": [
+    {"phase":"F","status":"PARTIALLY_COMPLETE","artifacts":["planning/phase-f/REPOSITORY-FILE-INDEX.json","planning/phase-f/SYMBOL-INDEX.json","planning/phase-f/REPORT-INDEX.json","planning/phase-f/RETRIEVAL-INDEX.json","planning/PHASE-INDEX.json","planning/CURRENT-STATE.json"]},
+    {"phase":"G","status":"PARTIALLY_COMPLETE","artifacts":["planning/phase-g/PROJECTION-MANIFEST.json","planning/phase-g/SELECTIVE-PROJECTION-PLAN.json","planning/phase-g/SYNC-RECEIPT.json"]},
+    {"phase":"H","status":"PARTIALLY_COMPLETE","artifacts":["planning/phase-h/LAST-CONTEXT-PACK.json","planning/phase-h/PHASE-H-VALIDATION.json"]},
+    {"phase":"I","status":"PARTIALLY_COMPLETE","artifacts":["planning/phase-i/SEARCH-INDEX.json","planning/phase-i/SEARCH-SAMPLE.json","planning/phase-i/SEARCH-PR393-SAMPLE.json","planning/phase-i/PHASE-I-VALIDATION.json"]}
+  ],
+  "verifications": [
+    {"command":"node planning/pages/validate-public.mjs","status":"PASS"},
+    {"command":"node knowledge/freshness-gate.test.mjs","status":"PASS"},
+    {"command":"node --check on Phase-F through Phase-I scripts","status":"PASS"},
+    {"command":"protected-work path-presence checks","status":"PASS"}
+  ],
+  "measured_state": {"canonical_entities":3614,"canonical_relationships":13535,"public_routes":3803,"indexed_files":10381,"indexed_symbols":7384,"search_records":21575,"search_tokens":27975,"public_html_pages_checked":5012},
+  "external_github": {"read_only":true,"mutations":0},
+  "protected_work": {"baseline_paths_missing":0,"head_changed":false,"external_worktrees_mutated":false},
+  "blockers": [
+    "Ix graph backend is unavailable because Docker is not running; deterministic local indexes were used instead.",
+    "Selective projection computes affected scope and skips byte-identical writes, but entity-level selective generation is not yet integrated.",
+    "PR #393 is outside the current mirror capture scope; its authoritative current state remains UNKNOWN.",
+    "The plan names candidate future domains but does not provide bounded evidence-derived acceptance criteria for completing every remaining domain; no speculative Phase-J+ implementation was invented."
+  ],
+  "result": "PARTIALLY_COMPLETE",
+  "next_state": "planning/CURRENT-STATE.json"
+}

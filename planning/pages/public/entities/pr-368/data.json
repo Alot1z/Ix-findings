@@ -10,7 +10,681 @@
     "title": "Ix PR #368",
     "status": "RESOLVED",
     "number": 368,
-    "url": "https://github.com/ix-infrastructure/Ix/pull/368"
+    "url": "https://github.com/ix-infrastructure/Ix/pull/368",
+    "source_mirror_id": "github:pull_request:ix-infrastructure/Ix#368",
+    "source_type": "github_pull_request",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/pull/368",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/368",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "number": 368,
+    "node_id": "PR_kwDORdC75M78xMtu",
+    "title": "feat(skill): ship the ix agent skill and the HTTP API reference",
+    "body": "## What\n\nShips the self-contained **ix agent skill** that teaches an LLM agent to drive the `ix` CLI — build the graph, explain symbols, trace flows, measure impact — instead of grepping and guessing. Plus a backend HTTP API reference generated from `IxClient` and checked against the live backend.\n\nOriginally authored by @Alot1z; scoped down and fixed in `0c9087c` (see the commit message and [this comment](https://github.com/ix-infrastructure/Ix/pull/368#issuecomment-5235488710)).\n\n## Contents\n\n- **`skills/ix/`** — `SKILL.md`, `references/` (command routing, output formats, troubleshooting), `scripts/` (bootstrap for bash + PowerShell)\n- **`docs/api/`** — HTTP API reference (`README.md`) + OpenAPI 3.0 spec (`openapi.yaml`, 39 paths / 13 schemas)\n- **`scripts/install-skill.sh`** — deploy to `~/.claude/skills/ix` and `~/.agents/skills/ix`\n- **README** — skill install section; **CLAUDE.md** — project context and verified gotchas; **.gitignore** — `/dist/`, session artifacts\n\n## Not in scope any more\n\nThe Compass fit-view patch and its React port were removed in `0c9087c` — they patch compiled artifacts of this repo and of Compass, and Compass has its own repo. They belong in a `system-compass` PR, where the F key is genuinely new. The branch history preserves them.\n\n## Verification\n\n- Skill installs and re-installs cleanly; refuses to clobber a same-named skill it did not write; `--force` overrides. All four paths tested.\n- `bootstrap.sh` dry-run green with install/backend/map/compass skipped.\n- `bash -n` on both shell scripts; OpenAPI spec parses; every path base segment exists in the backend routes.\n- `ix-cli` source untouched — no build or test impact.\n\n## Findings kept from the original PR\n\n- **`ix reset` is global** — takes no workspace_id and wipes every workspace in the shared backend.\n- **`registerPatchesCommand` is defined but never registered** — now tracked as #371.",
+    "state": "closed",
+    "draft": false,
+    "merged": true,
+    "author": {
+      "login": "Alot1z",
+      "id": 16801672,
+      "type": "User",
+      "html_url": "https://github.com/Alot1z"
+    },
+    "html_url": "https://github.com/ix-infrastructure/Ix/pull/368",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/368",
+    "head": {
+      "ref": "feat/ix-agent-skill",
+      "sha": "0c9087c4292254472174b02475d094359c88c055",
+      "repo": {
+        "id": 1329286389,
+        "full_name": "Alot1z/Ix-remap",
+        "name": "Ix-remap",
+        "owner": {
+          "login": "Alot1z",
+          "id": 16801672,
+          "type": "User",
+          "html_url": "https://github.com/Alot1z"
+        },
+        "html_url": "https://github.com/Alot1z/Ix-remap",
+        "api_url": "https://api.github.com/repos/Alot1z/Ix-remap",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": true,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-08-10T00:14:10Z",
+        "updated_at": "2026-08-11T21:00:15Z",
+        "pushed_at": "2026-08-13T22:14:28Z",
+        "topics": [],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 0,
+        "stargazers_count": 0,
+        "forks_count": 0,
+        "open_issues_count": 0
+      }
+    },
+    "base": {
+      "ref": "main",
+      "sha": "0437abf5de675f16fe161df86fca9adf7eee9b93",
+      "repo": {
+        "id": 1171307492,
+        "full_name": "ix-infrastructure/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "ix-infrastructure",
+          "id": 256883681,
+          "type": "Organization",
+          "html_url": "https://github.com/ix-infrastructure"
+        },
+        "html_url": "https://github.com/ix-infrastructure/Ix",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": false,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-03-03T04:48:38Z",
+        "updated_at": "2026-08-13T21:51:31Z",
+        "pushed_at": "2026-08-13T19:18:44Z",
+        "topics": [
+          "ai",
+          "ai-memory",
+          "claude-code",
+          "cli",
+          "code-analysis",
+          "code-mapping",
+          "code-memory",
+          "codebase-understanding",
+          "codex",
+          "developer-tools",
+          "llm",
+          "openclaw",
+          "persistent-memory",
+          "program-analysis",
+          "software-architecture",
+          "system-intelligence",
+          "system-mapping"
+        ],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 701,
+        "stargazers_count": 701,
+        "forks_count": 60,
+        "open_issues_count": 6
+      }
+    },
+    "merge_commit_sha": "2157158446a74d3d2303f818dc4f3f4e3758432c",
+    "merged_at": "2026-08-10T03:58:42Z",
+    "closed_at": "2026-08-10T03:58:42Z",
+    "created_at": "2026-08-10T00:15:22Z",
+    "updated_at": "2026-08-10T03:58:43Z",
+    "labels": [],
+    "milestone": null,
+    "requested_reviewers": [
+      {
+        "login": "josephismikhail",
+        "id": 56614593,
+        "type": "User",
+        "html_url": "https://github.com/josephismikhail"
+      }
+    ],
+    "requested_teams": [],
+    "commits_count": 2,
+    "changed_files_count": 12,
+    "additions": 2482,
+    "deletions": 0,
+    "changed_files": [
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 368,
+        "filename": ".gitignore",
+        "status": "modified",
+        "additions": 9,
+        "deletions": 0,
+        "changes": 9,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/0c9087c4292254472174b02475d094359c88c055/.gitignore",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/0c9087c4292254472174b02475d094359c88c055/.gitignore",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/.gitignore?ref=0c9087c4292254472174b02475d094359c88c055",
+        "patch": "@@ -1,4 +1,13 @@\n target/\n+# Skill distribution artifact (skills/ix packaged zip).\n+# Anchored: a bare `dist/` matches at any depth, which would also swallow\n+# ix-cli/dist and core-ingestion/dist — already ignored explicitly below, and\n+# better kept that way so the intent of each is visible.\n+/dist/\n+\n+# Session/tooling artifacts (Freebuff preview state, generated knowledge graphs)\n+.freebuff/\n+.understand-anything/\n .bsp/\n .idea/\n *.class"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 368,
+        "filename": "CLAUDE.md",
+        "status": "modified",
+        "additions": 75,
+        "deletions": 0,
+        "changes": 75,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/0c9087c4292254472174b02475d094359c88c055/CLAUDE.md",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/0c9087c4292254472174b02475d094359c88c055/CLAUDE.md",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/CLAUDE.md?ref=0c9087c4292254472174b02475d094359c88c055",
+        "patch": "@@ -1,3 +1,78 @@\n+# Project: Ix (this repo)\n+\n+This checkout is **Ix itself** plus the **`ix` agent skill** that wraps it. The\n+backend is NOT in this repo — it is the released Docker image running at\n+`http://[redacted]8090`; the Compass visualizer serves the SPA + API proxy on\n+`http://[redacted]8080`. Requires Node ≥ 22, git, Docker, ripgrep.\n+\n+## Layout\n+\n+| Path | What it is |\n+|---|---|\n+| `ix-cli/` | The `@ix/cli` TypeScript package — command routing (`src/cli/`), registration hub (`src/cli/register/oss.ts`), HTTP client (`src/client/api.ts`), response types (`src/client/types.ts`) |\n+| `core-ingestion/` | Tree-sitter parser/classifier (26 languages) |\n+| `skills/ix/` | The agent skill this project ships: `SKILL.md`, `references/` (commands, output-formats, troubleshooting), `scripts/` (bootstrap.sh/ps1) |\n+| `docs/` | `api/` (HTTP API reference + OpenAPI spec), `llm-format.md`, `prerequisites.md` |\n+| `scripts/` | `bootstrap.sh` (first-run), `install-skill.sh` (deploy skill to `~/.claude/skills` + `~/.agents/skills`) |\n+\n+## Commands\n+\n+```bash\n+# CLI dev (from ix-cli/)\n+npm run build         # build-core-ingestion + tsc\n+npm run typecheck     # tsc --noEmit\n+npm test              # build + vitest + parser smoke\n+npm run dev           # tsx src/cli/main.ts\n+\n+# Skill + tooling (from repo root)\n+bash scripts/bootstrap.sh [repo-root]   # install CLI, start backend, map repo\n+bash scripts/install-skill.sh           # deploy skills/ix to ~/.claude + ~/.agents\n+# Repackage the skill zip into ./dist (gitignored). Needs the skill-creator\n+# skill installed; on Windows set PYTHONIOENCODING=utf-8 or its emoji print crashes.\n+python \"$HOME/.agents/skills/skill-creator/scripts/package_skill.py\" skills/ix ./dist\n+\n+# Visualizer / preview\n+ix view start --all --no-open --port 8080   # combined multi-workspace view\n+ix map --silent                             # refresh the graph after code changes\n+```\n+\n+## Boundaries & Gotchas (all verified this session — write these down, they cost hours)\n+\n+- **`ix reset` is GLOBAL.** `ix reset` / `ix reset --code` take no workspace_id\n+  and wipe **every** workspace's graph in the shared backend (Ix + packwise +\n+  any other). The only scoped variant is `/v1/reset/workspace`, which the CLI\n+  does not expose. After a reset, re-map each workspace.\n+- **The OSS↔Pro command boundary is derived at runtime, not declared.**\n+  `main.ts` snapshots `ossCmdNames` right after `registerOssCommands()`; the\n+  Pro probe diffs against it. Adding a command to `oss.ts` silently makes it\n+  OSS; removing one makes Pro own it. `registerProCommands` is async and MUST\n+  be awaited.\n+- **`registerPatchesCommand` is defined but never registered** in `oss.ts` —\n+  `ix patches` is an \"unknown command\" today.\n+- **`ix upgrade` wipes `~/.ix/cli/compass`.** The Compass assets ship only via\n+  `ix upgrade`, and re-running the installer re-extracts over them, so a\n+  re-install can leave `ix view` with no UI. `bootstrap.sh` re-runs `ix upgrade`\n+  when it finds the directory missing; skip that with `IX_SKIP_COMPASS=1`.\n+- **Windows path trap:** Git Bash `/tmp` ≠ Windows `[local-path] — node/python\n+  cannot read files Git Bash wrote to `/tmp`. Use project-relative paths.\n+\n+## Patterns\n+\n+- **Skill edit workflow:** edit `skills/ix/` → `bash scripts/install-skill.sh`\n+  to deploy to `~/.claude/skills/ix` and `~/.agents/skills/ix` → start a new\n+  agent session so the skill is re-read.\n+- **After modifying code:** run `ix map --silent` to re-ingest.\n+\n+## Typecheck & Test Discipline\n+\n+Run `npm run typecheck` (from `ix-cli/`) after non-trivial CLI edits and\n+`node --check` on any edited standalone script before deploying.\n+\n+---\n+\n+The section below is the auto-generated Ix CLI command reference (regenerated by\n+the Ix Memory system — do not hand-edit between the markers):\n+\n <!-- IX-MEMORY START -->\n # Ix Memory System\n "
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 368,
+        "filename": "README.md",
+        "status": "modified",
+        "additions": 40,
+        "deletions": 0,
+        "changes": 40,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/0c9087c4292254472174b02475d094359c88c055/README.md",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/0c9087c4292254472174b02475d094359c88c055/README.md",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/README.md?ref=0c9087c4292254472174b02475d094359c88c055",
+        "patch": "@@ -166,6 +166,46 @@ Windows (PowerShell):\n irm https://raw.githubusercontent.com/ix-infrastructure/ix-cursor-plugin/main/install.ps1 | iex\n ```\n \n+## Claude Code / Freebuff Skill\n+\n+[`skills/ix/`](skills/ix/SKILL.md) is a self-contained **Claude Code skill** (also\n+loaded natively by Freebuff / Codebuff) that teaches any LLM agent to drive the\n+`ix` CLI: build the graph, explain symbols, trace flows, analyze impact, and\n+detect smells — instead of grepping and guessing.\n+\n+**Install it** (deploys to `~/.claude/skills/ix` and `~/.agents/skills/ix` so it\n+works in every project):\n+\n+```bash\n+bash scripts/install-skill.sh\n+```\n+\n+Then start a new session and ask your agent to set it up:\n+\n+> Set up Ix and map this repo\n+\n+The skill's bootstrap script does the rest — installs the `ix` CLI if missing,\n+starts the local Docker backend, and maps the current repo:\n+\n+```bash\n+# Bash / Git Bash / macOS / Linux\n+bash skills/ix/scripts/bootstrap.sh .\n+\n+# Windows PowerShell\n+powershell -ExecutionPolicy Bypass -File skills/ix/scripts/bootstrap.ps1 .\n+```\n+\n+The skill follows the progressive-disclosure layout — a lean `SKILL.md` with the\n+full command reference, output-format rules, and troubleshooting split into\n+`references/`, plus `scripts/` for first-run setup — so it is portable to Claude\n+Code, Freebuff, and any other skill-compatible agent. Edit `skills/ix/` and\n+re-run `scripts/install-skill.sh` to update your installed copy. To produce a\n+distributable zip:\n+\n+```bash\n+python \"$HOME/.agents/skills/skill-creator/scripts/package_skill.py\" skills/ix dist\n+```\n+\n ## Requirements\n \n The install script sets up everything for you on macOS and Linux. It checks for and installs anything that is missing:"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 368,
+        "filename": "docs/api/README.md",
+        "status": "added",
+        "additions": 619,
+        "deletions": 0,
+        "changes": 619,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/0c9087c4292254472174b02475d094359c88c055/docs%2Fapi%2FREADME.md",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/0c9087c4292254472174b02475d094359c88c055/docs%2Fapi%2FREADME.md",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/docs%2Fapi%2FREADME.md?ref=0c9087c4292254472174b02475d094359c88c055",
+        "patch": "@@ -0,0 +1,619 @@\n+# Ix HTTP API Reference\n+\n+The Ix backend exposes a JSON-over-HTTP API on **`http://[redacted]8090`** (the\n+local Docker memory-layer). The `ix` CLI and the Compass visualizer are its two\n+primary clients. This reference is generated from the client source\n+(`ix-cli/src/client/api.ts`), the visualizer server template\n+(`ix-cli/src/cli/commands/view.js`), and the shared client types\n+(`ix-cli/src/client/types.ts`).\n+\n+## Table of Contents\n+\n+1. [Overview](#overview)\n+2. [Quick Start](#quick-start)\n+3. [Authentication & Scoping](#authentication--scoping)\n+4. [Base Endpoints](#base-endpoints)\n+5. [Endpoints by Area](#endpoints-by-area)\n+   - [Health & Capabilities](#health--capabilities)\n+   - [Context & Question Answering](#context--question-answering)\n+   - [Ingestion & Mapping](#ingestion--mapping)\n+   - [Search & Discovery](#search--discovery)\n+   - [Entities & Traversal](#entities--traversal)\n+   - [Planning Artifacts](#planning-artifacts)\n+   - [Patches & Provenance](#patches--provenance)\n+   - [Analysis (Diff, Conflicts, Smells, Subsystems)](#analysis)\n+   - [Stats & Savings](#stats--savings)\n+   - [Reset](#reset)\n+6. [Visualizer Proxy Surface](#visualizer-proxy-surface)\n+7. [Data Models](#data-models)\n+8. [Error Reference](#error-reference)\n+9. [Timeouts & Deadlines](#timeouts--deadlines)\n+10. [Versioning](#versioning)\n+\n+## Overview\n+\n+All endpoints are under `/v1` and speak JSON. Requests use `Content-Type:\n+application/json`; responses are JSON objects. There is no version prefix other\n+than `/v1`; schema compatibility is signaled by `schema_version` in\n+`/v1/health`.\n+\n+The API has two logical surfaces:\n+\n+- **Backend API (direct, port 8090)** — used by the CLI.\n+- **Visualizer proxy (port 8080)** — Compass serves the SPA and proxies every\n+  `/v1/*` request to the backend, stamping workspace/system scoping headers.\n+\n+## Quick Start\n+\n+```bash\n+# Liveness + graph schema version\n+curl -s http://[redacted]8090/v1/health\n+\n+# Ingest a repository\n+curl -s -X POST http://[redacted]8090/v1/ingest \\\n+  -H \"Content-Type: application/json\" \\\n+  -d '{\"path\": \"/absolute/path/to/repo\", \"recursive\": true}'\n+\n+# Search for a symbol\n+curl -s -X POST http://[redacted]8090/v1/search \\\n+  -H \"Content-Type: application/json\" \\\n+  -d '{\"term\": \"IngestionService\", \"limit\": 10, \"kind\": \"class\"}'\n+\n+# Get structured context for a question\n+curl -s -X POST http://[redacted]8090/v1/context \\\n+  -H \"Content-Type: application/json\" \\\n+  -d '{\"query\": \"how does ingestion flow end to end?\"}'\n+```\n+\n+## Authentication & Scoping\n+\n+- **Local backend**: no authentication. The endpoint is bound to localhost.\n+- **Scoping headers**: the visualizer proxy stamps `x-ix-workspace` (and\n+  `x-ix-system` when the launch directory is part of a stitched multi-repo\n+  system) on every proxied `/v1` request. The backend reads these as a\n+  fallback when no explicit `workspace_id` / `system_id` is on the request.\n+- **Query/body scoping**: most read endpoints accept optional `workspace_id`\n+  and `system_id` parameters to bound the result set server-side.\n+- **Pro features**: `GET /v1/capabilities` reports whether Pro features are\n+  enabled. Treat an absent field as *unknown*, not *false* (older backends).\n+\n+## Base Endpoints\n+\n+| Method | Path | Client | Purpose |\n+|---|---|---|---|\n+| GET | `/v1/health` | `health()` | Liveness, status, `schema_version` |\n+| GET | `/v1/capabilities` | `capabilities()` | Pro feature flags |\n+| POST | `/v1/context` | `query()` | Structured-context QA |\n+\n+## Endpoints by Area\n+\n+### Health & Capabilities\n+\n+#### GET `/v1/health`\n+\n+Liveness probe. Returns `{\"status\": \"ok\", \"schema_version\": 3}`. A client whose\n+expected schema version differs forces a clean re-ingest (e.g. after the\n+absolute→relative `source_uri` migration).\n+\n+**Response**\n+\n+```json\n+{ \"status\": \"ok\", \"schema_version\": 3 }\n+```\n+\n+#### GET `/v1/capabilities`\n+\n+Feature-detection probe. Returns an object whose presence/absence drives\n+client behavior.\n+\n+**Response**\n+\n+```json\n+{ \"proFeaturesEnabled\": true }\n+```\n+\n+### Context & Question Answering\n+\n+#### POST `/v1/context`\n+\n+Ask a bounded structural question; the backend returns claims, conflicts,\n+decisions, intents, and the supporting subgraph.\n+\n+**Request body**\n+\n+| Field | Type | Notes |\n+|---|---|---|\n+| `query` | string | required — the question |\n+| `asOfRev` | number | optional — read the graph as of this revision |\n+| `depth` | string | optional — traversal depth hint |\n+\n+**Response** — `StructuredContext` (see [Data Models](#data-models)).\n+\n+### Ingestion & Mapping\n+\n+#### POST `/v1/ingest`\n+\n+Ingest a path into the graph. Long-running: the client allows **30 minutes**.\n+\n+**Request body**\n+\n+| Field | Type | Notes |\n+|---|---|---|\n+| `path` | string | required — absolute path to ingest |\n+| `recursive` | boolean | optional |\n+| `force` | boolean | optional — re-ingest unchanged files |\n+\n+**Response** — `IngestResult`:\n+\n+```json\n+{\n+  \"filesProcessed\": 128,\n+  \"patchesApplied\": 142,\n+  \"filesSkipped\": 3,\n+  \"entitiesCreated\": 640,\n+  \"latestRev\": 217,\n+  \"skipReasons\": { \"unchanged\": 1, \"emptyFile\": 1, \"parseError\": 1, \"tooLarge\": 0 }\n+}\n+```\n+\n+#### POST `/v1/map`\n+\n+Return the full code map (systems → subsystems → members). The visualizer and\n+`ix map` consume this. Reads **snake_case** keys off the raw body.\n+\n+**Request body**\n+\n+| Field | Type | Notes |\n+|---|---|---|\n+| `full` | boolean | default `false` |\n+| `workspace_id` | string | optional — scope to a workspace |\n+| `system_id` | string | optional — scope to a stitched system |\n+\n+**Response**\n+\n+```json\n+{\n+  \"file_count\": 409,\n+  \"region_count\": 44,\n+  \"levels\": 3,\n+  \"map_rev\": 217,\n+  \"outcome\": \"ok\",\n+  \"regions\": [],\n+  \"edges\": [],\n+  \"hierarchy\": []\n+}\n+```\n+\n+#### POST `/v1/source-hashes`\n+\n+Workspace-scoped baseline lookup. Returns one row per `(workspace_id, uri)` so\n+each file matches against its **own** workspace's hash (avoids collisions when\n+workspaces share relative paths).\n+\n+**Request body**\n+\n+| Field | Type | Notes |\n+|---|---|---|\n+| `uris` | string[] | required — workspace-relative paths |\n+| `workspaceIds` | string[] | optional — bounds the query server-side |\n+\n+**Response** — array of `{ workspaceId: string | null, uri: string, hash: string }`.\n+\n+#### GET `/v1/source-hashes/exists`\n+\n+Returns `{ \"exists\": boolean }` — whether an ingest baseline exists for the\n+scoped workspace.\n+\n+#### POST `/v1/stitch`\n+\n+Cross-repo stitching (Ix#225 Path 2). Registers this workspace's published\n+packages (`provides`) and production-dep external imports (`consumes`); the\n+backend joins them bidirectionally against other workspaces and writes\n+cross-repo `IMPORTS` edges.\n+\n+**Request body**\n+\n+| Field | Type | Notes |\n+|---|---|---|\n+| `workspaceId` | string | required |\n+| `provides` | array | `{ name, entryNodeId, entryUri? }` |\n+| `consumes` | array | `{ name, consumerNodeId }` |\n+| `exports` | array | optional — `{ name, nodeId }` |\n+| `symbolConsumes` | array | optional — `{ symbol, callerNodeId, pkg? }` |\n+\n+**Response** — `{ stitched: number, systemId: string | null, edges: [{ src, dst, name }] }`.\n+\n+#### GET `/v1/stitch/system/{workspaceId}`\n+\n+Return the `system_id` a workspace currently belongs to (null for a singleton).\n+Older backends 404 — clients fall back to `{ systemId: null }`.\n+\n+### Search & Discovery\n+\n+#### POST `/v1/search`\n+\n+Search nodes by name/term.\n+\n+**Request body**\n+\n+| Field | Type | Notes |\n+|---|---|---|\n+| `term` | string | required |\n+| `limit` | number | optional |\n+| `kind` | string | optional — filter by entity kind |\n+| `language` | string | optional |\n+| `asOfRev` | number | optional |\n+| `nameOnly` | boolean | optional |\n+| `workspaceId` / `systemId` | string | optional — scope |\n+\n+**Response** — array of `GraphNode`.\n+\n+#### POST `/v1/search/semantic`\n+\n+Vector-similarity search. The backend embeds the term and returns nodes already\n+ordered by similarity — **do not re-rank client-side**. The request field is\n+`term` (not `query`); no `language` filter. Requires the extraction service\n+(cloud); returns **503** when not configured.\n+\n+**Response** — array of `GraphNode`.\n+\n+#### POST `/v1/list`\n+\n+List entities by kind.\n+\n+**Request body**\n+\n+| Field | Type | Notes |\n+|---|---|---|\n+| `kind` | string | required |\n+| `limit` | number | optional |\n+| `scope` | string | optional |\n+| `workspaceId` / `systemId` | string | optional |\n+\n+**Response** — array of `GraphNode`.\n+\n+### Entities & Traversal\n+\n+#### GET `/v1/entity/{id}`\n+\n+Fetch a node with its claims and edges.\n+\n+**Response** — `{ node: GraphNode, claims: unknown[], edges: unknown[] }`.\n+\n+#### GET `/v1/resolve-prefix/{prefix}`\n+\n+Resolve a shortened entity id prefix. Full UUIDs pass through untouched.\n+\n+**Response**\n+\n+```json\n+{ \"id\": \"900031a5-...\" }\n+```\n+\n+or, on ambiguity, `{ \"error\": \"ambiguous\", \"matches\": [\"…\"] }`; the client\n+throws `Ambiguous prefix …` in that case.\n+\n+#### POST `/v1/expand`\n+\n+Expand a node's neighborhood.\n+\n+**Request body**\n+\n+| Field | Type | Default |\n+|---|---|---|\n+| `nodeId` | string | required |\n+| `direction` | string | `\"both\"` |\n+| `predicates` | string[] | — |\n+| `hops` | number | `1` |\n+\n+**Response** — `{ nodes: GraphNode[], edges: GraphEdge[] }`.\n+\n+#### POST `/v1/expand-by-name`\n+\n+Same as expand, but by entity name.\n+\n+### Planning Artifacts\n+\n+Planning artifacts (goals, truth statements, decisions, bugs, tasks) persist\n+across code-graph resets.\n+\n+#### GET `/v1/truth`\n+\n+List planning artifacts. **Response** — array of `GraphNode`.\n+\n+#### POST `/v1/truth`\n+\n+Create a goal/truth statement.\n+\n+**Request body**\n+\n+| Field | Type | Notes |\n+|---|---|---|\n+| `statement` | string | required |\n+| `parentIntent` | string | optional |\n+\n+**Response** — `{ status: string, nodeId: string, rev: number }`.\n+\n+#### POST `/v1/decide`\n+\n+Record a decision.\n+\n+**Request body** — `{ title, rationale, intentId? }`.\n+\n+**Response** — `{ status, nodeId, rev }`.\n+\n+#### GET `/v1/decisions`\n+\n+List decisions. **Query**: `limit`, `topic`. **Response** — array of `GraphNode`.\n+\n+### Patches & Provenance\n+\n+#### GET `/v1/patches`\n+\n+List patches. **Query**: `limit`. **Response** — array of `PatchSummary`:\n+\n+```json\n+[{ \"patch_id\": \"…\", \"rev\": 217, \"intent\": \"…\", \"source_uri\": \"…\", \"timestamp\": \"…\" }]\n+```\n+\n+#### GET `/v1/patches/{id}`\n+\n+Fetch a single patch.\n+\n+#### POST `/v1/patch`\n+\n+Commit one patch. Client timeout **5 minutes**.\n+\n+**Request body** — `GraphPatchPayload` (see [Data Models](#data-models)).\n+\n+**Response** — `PatchCommitResult`: `{ status, rev }`.\n+\n+#### POST `/v1/patches/batch`\n+\n+Commit an array of patches directly as the body (not wrapped).\n+\n+#### POST `/v1/patches/bulk`\n+\n+Commit patches wrapped as `{ \"patches\": [...] }`. Client timeout **5 minutes**\n+(prevents hangs when a k8s ingress closes idle connections).\n+\n+#### POST `/v1/provenance/{entityId}`\n+\n+Provenance for an entity.\n+\n+### Analysis\n+\n+#### POST `/v1/diff`\n+\n+Diff between graph revisions.\n+\n+**Request body**\n+\n+| Field | Type | Notes |\n+|---|---|---|\n+| `fromRev` | number | required |\n+| `toRev` | number | required |\n+| `entityId` | string | optional |\n+| `summary` | boolean | optional |\n+| `limit` | number | optional |\n+\n+#### GET `/v1/conflicts`\n+\n+List detected conflicts. **Response** — array of `ConflictReport`.\n+\n+#### POST `/v1/smells`\n+\n+Run smell analysis. **Query params**: `orphan-max-connections`, `god-module-chunks`,\n+`god-module-fan`, `weak-max-neighbors`, `workspace_id`, `system_id`.\n+\n+#### GET `/v1/smells`\n+\n+List computed smells. **Query**: `workspace_id`, `system_id`.\n+\n+#### POST `/v1/subsystems/score`\n+\n+Score subsystems. **Query**: `workspace_id`, `system_id`.\n+\n+#### GET `/v1/subsystems`\n+\n+List subsystems. **Query**: `detailed`, `limit`, `offset`, `regions`,\n+`edge_cap`, `member_file_cap`, `workspace_id`, `system_id`.\n+\n+#### GET `/v1/subsystems/map`\n+\n+Subsystem map for the visualizer. **Query**: `target` (entity id), `pick`\n+(1-based candidate for ambiguous targets), `workspace_id`, `system_id`.\n+\n+### Stats & Savings\n+\n+#### GET `/v1/stats`\n+\n+Graph statistics. **Query**: `workspace_id`, `system_id`.\n+\n+**Response** — node/edge totals by kind:\n+\n+```json\n+{\n+  \"nodes\": { \"total\": 10144, \"byKind\": [ { \"kind\": \"function\", \"count\": 1883 } ] },\n+  \"edges\": { \"total\": 26084, \"byKind\": [ … ] }\n+}\n+```\n+\n+#### GET `/v1/savings`\n+\n+Token-savings metrics. **Query**: `detail=true` for detail.\n+\n+#### DELETE `/v1/savings`\n+\n+Reset savings metrics.\n+\n+### Reset\n+\n+> ⚠️ **`ix reset` is GLOBAL.** The reset endpoints below take **no\n+> workspace_id** and wipe every workspace's graph in the shared backend. The\n+> only scoped variant is `/v1/reset/workspace`, which the CLI does not expose.\n+\n+| Method | Path | Behavior |\n+|---|---|---|\n+| POST | `/v1/reset` | Wipe **all** nodes and edges (sync; local endpoints) |\n+| POST | `/v1/reset/async` | Begin an async wipe (remote endpoints) |\n+| POST | `/v1/reset/code` | Wipe only the code graph, preserving planning artifacts |\n+| POST | `/v1/reset/code/async` | Async variant of the code wipe |\n+| GET | `/v1/reset/status/{opId}` | Poll async op — `{ state: \"done\" \\| \"failed\", error? }` |\n+| POST | `/v1/reset/workspace` | **Scoped** wipe — `{ workspaceId }`; other workspaces untouched |\n+\n+**Async reset flow (client-side):** local endpoints use the sync path; remote\n+endpoints begin via `/async`, then poll `/v1/reset/status/{opId}` every 2s up\n+to 15 minutes. A 404 on `begin` falls back to the sync path (old backend); a\n+404 on `status` means the op was lost to a server restart — reset is idempotent,\n+so re-run to confirm.\n+\n+## Visualizer Proxy Surface\n+\n+Compass (`ix view`, default port **8080**) adds three behaviors on top of the\n+backend:\n+\n+1. **`/v1/*` proxy** — every backend request is proxied to `[redacted]8090`\n+   with `x-ix-workspace` and `x-ix-system` headers baked in at launch, so the\n+   browser app never knows about workspaces. `--all` opts out of scoping.\n+2. **SPA fallback** — any other path serves `index.html`. There is no\n+   `/__ix/remap` endpoint: a `POST` to it falls through to this handler and\n+   returns the SPA HTML with a `200`, so a caller cannot tell it did nothing.\n+   Re-map from the CLI with `ix map .` instead.\n+\n+## Data Models\n+\n+### GraphNode\n+\n+```ts\n+interface GraphNode {\n+  id: string;\n+  kind: string;            // function | class | file | module | region | …\n+  name: string;\n+  attrs: Record<string, unknown>;\n+  provenance: {\n+    sourceUri: string;     // workspace-relative path (POSIX separators)\n+    sourceHash?: string;\n+    extractor: string;\n+    sourceType: string;\n+    observedAt: string;\n+  };\n+  createdRev: number;\n+  deletedRev?: number;\n+  createdAt: string;\n+  updatedAt: string;\n+}\n+```\n+\n+### GraphEdge\n+\n+```ts\n+interface GraphEdge {\n+  id: string;\n+  src: string;\n+  dst: string;\n+  predicate: string;       // calls | imports | contains | …\n+  attrs: Record<string, unknown>;\n+  createdRev: number;\n+  deletedRev?: number;\n+}\n+```\n+\n+### StructuredContext\n+\n+```ts\n+interface StructuredContext {\n+  claims: ScoredClaim[];\n+  compactClaims?: CompactScoredClaim[];\n+  conflicts: ConflictReport[];\n+  decisions: DecisionReport[];\n+  intents: IntentReport[];\n+  nodes: GraphNode[];\n+  edges: GraphEdge[];\n+  metadata: { query: string; seedEntities: string[]; hopsExpanded: number; asOfRev: number; depth?: string };\n+}\n+```\n+\n+### IngestResult\n+\n+```ts\n+interface IngestResult {\n+  filesProcessed: number;\n+  patchesApplied: number;\n+  filesSkipped?: number;\n+  entitiesCreated: number;\n+  latestRev: number;\n+  skipReasons?: { unchanged: number; emptyFile: number; parseError: number; tooLarge: number; minifiedLikely?: number };\n+}\n+```\n+\n+### GraphPatchPayload\n+\n+```ts\n+interface GraphPatchPayload {\n+  patchId: string;\n+  actor: string;\n+  timestamp: string;\n+  source: {\n+    uri: string;           // workspace-relative, opaque key for joins/tombstones\n+    sourceHash?: string;\n+    extractor: string;\n+    sourceType: string;\n+    workspaceId?: string;  // SHA-256 of the workspace root path\n+  };\n+  baseRev: number;\n+  ops: Array<{ type: string; [k: string]: unknown }>;\n+  replaces: string[];\n+  intent?: string;\n+}\n+```\n+\n+### PatchCommitResult\n+\n+```ts\n+interface PatchCommitResult { status: string; rev: number; }\n+```\n+\n+### HealthResponse\n+\n+```ts\n+interface HealthResponse { status: string; schema_version?: number; }\n+```\n+\n+### CapabilitiesResponse\n+\n+```ts\n+interface CapabilitiesResponse { proFeaturesEnabled?: boolean; }\n+```\n+\n+## Error Reference\n+\n+| Code | Meaning |\n+|---|---|\n+| `4xx` | Client error — body is plain text (not JSON), surfaced as `\"<status>: <text>\"` |\n+| `404` | Unknown endpoint / entity / lost async op / old backend without async endpoints |\n+| `502` | Cloud proxy timeout on long sync ops — use the async variants |\n+| `503` | `/v1/search/semantic` without the extraction service configured |\n+\n+Client error convention: `IxClient` throws `Error(\"<status>: <text>\")` on any\n+non-`ok` response, so CLI errors carry both the HTTP status and the raw body.\n+\n+## Timeouts & Deadlines\n+\n+| Operation | Per-request timeout |\n+|---|---|\n+| General `get` / `post` | 2 minutes |\n+| `POST /v1/patch`, `/v1/patches/bulk` | 5 minutes |\n+| `POST /v1/ingest`, `/v1/map` | 30 minutes |\n+| Async reset begin / status poll | 30 seconds each |\n+| Sync reset (local) | 10 minutes |\n+| Shared deadline (`ix map`) | hard wall-clock budget; aborts all in-flight requests via `AbortSignal.any` |\n+\n+## Versioning\n+\n+- The graph has a schema version (`/v1/health.schema_version`, currently `v3`);\n+  a mismatch forces a clean re-ingest.\n+- Endpoints are additive under `/v1`; the `capabilities` probe is the\n+  recommended way to feature-detect rather than hard-code against versions.\n+- Older backends may 404 new endpoints (`/v1/stitch/system/*`, async reset) —\n+  clients implement fallbacks, and so should any new client code."
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 368,
+        "filename": "docs/api/openapi.yaml",
+        "status": "added",
+        "additions": 1101,
+        "deletions": 0,
+        "changes": 1101,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/0c9087c4292254472174b02475d094359c88c055/docs%2Fapi%2Fopenapi.yaml",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/0c9087c4292254472174b02475d094359c88c055/docs%2Fapi%2Fopenapi.yaml",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/docs%2Fapi%2Fopenapi.yaml?ref=0c9087c4292254472174b02475d094359c88c055",
+        "patch": "@@ -0,0 +1,1101 @@\n+openapi: 3.0.0\n+info:\n+  title: Ix Backend API\n+  description: |\n+    JSON-over-HTTP API for the Ix persistent codebase graph. Served by the\n+    local backend at http://[redacted]8090 (Docker memory-layer). The `ix` CLI\n+    and Compass visualizer are the primary clients. Local deployments have no\n+    authentication; remote deployments may gate Pro features (see\n+    /v1/capabilities). Scoping is via `workspace_id` / `system_id` query/body\n+    params, or the `x-ix-workspace` / `x-ix-system` headers stamped by the\n+    visualizer proxy.\n+  version: \"1.0.0\"\n+  contact:\n+    name: Ix\n+    url: https://github.com/ix-infrastructure/Ix\n+servers:\n+  - url: http://[redacted]8090\n+    description: Local backend (Docker memory-layer)\n+  - url: http://[redacted]8080\n+    description: Compass visualizer (proxies /v1 to the backend)\n+tags:\n+  - name: health\n+  - name: context\n+  - name: ingestion\n+  - name: search\n+  - name: entities\n+  - name: planning\n+  - name: patches\n+  - name: analysis\n+  - name: stats\n+  - name: reset\n+\n+paths:\n+  /v1/health:\n+    get:\n+      tags: [health]\n+      summary: Liveness probe and graph schema version\n+      operationId: getHealth\n+      responses:\n+        \"200\":\n+          description: Healthy\n+          content:\n+            application/json:\n+              schema:\n+                $ref: \"#/components/schemas/HealthResponse\"\n+\n+  /v1/capabilities:\n+    get:\n+      tags: [health]\n+      summary: Feature detection (Pro flags)\n+      operationId: getCapabilities\n+      responses:\n+        \"200\":\n+          description: Capability flags\n+          content:\n+            application/json:\n+              schema:\n+                $ref: \"#/components/schemas/CapabilitiesResponse\"\n+\n+  /v1/context:\n+    post:\n+      tags: [context]\n+      summary: Structured-context question answering\n+      operationId: queryContext\n+      requestBody:\n+        required: true\n+        content:\n+          application/json:\n+            schema:\n+              type: object\n+              required: [query]\n+              properties:\n+                query: { type: string }\n+                asOfRev: { type: integer, description: Read the graph as of this revision }\n+                depth: { type: string, description: Traversal depth hint }\n+      responses:\n+        \"200\":\n+          description: Structured context\n+          content:\n+            application/json:\n+              schema:\n+                $ref: \"#/components/schemas/StructuredContext\"\n+\n+  /v1/ingest:\n+    post:\n+      tags: [ingestion]\n+      summary: Ingest a path into the graph (long-running, up to 30 min)\n+      operationId: ingest\n+      requestBody:\n+        required: true\n+        content:\n+          application/json:\n+            schema:\n+              type: object\n+              required: [path]\n+              properties:\n+                path: { type: string, description: Absolute path to ingest }\n+                recursive: { type: boolean }\n+                force: { type: boolean, description: Re-ingest unchanged files }\n+      responses:\n+        \"200\":\n+          description: Ingestion result\n+          content:\n+            application/json:\n+              schema:\n+                $ref: \"#/components/schemas/IngestResult\"\n+\n+  /v1/map:\n+    post:\n+      tags: [ingestion]\n+      summary: Full code map (systems → subsystems → members)\n+      operationId: getMap\n+      requestBody:\n+        required: true\n+        content:\n+          application/json:\n+            schema:\n+              type: object\n+              properties:\n+                full: { type: boolean, default: false }\n+                workspace_id: { type: string }\n+                system_id: { type: string }\n+      responses:\n+        \"200\":\n+          description: Code map\n+          content:\n+            application/json:\n+              schema:\n+                type: object\n+                properties:\n+                  file_count: { type: integer }\n+                  region_count: { type: integer }\n+                  levels: { type: integer }\n+                  map_rev: { type: integer }\n+                  outcome: { type: string }\n+                  regions: { type: array, items: { type: object } }\n+                  edges: { type: array, items: { type: object } }\n+                  hierarchy: { type: array, items: { type: object } }\n+\n+  /v1/source-hashes:\n+    post:\n+      tags: [ingestion]\n+      summary: Workspace-scoped source-hash baseline lookup\n+      operationId: getSourceHashes\n+      requestBody:\n+        required: true\n+        content:\n+          application/json:\n+            schema:\n+              type: object\n+              required: [uris]\n+              properties:\n+                uris: { type: array, items: { type: string }, description: Workspace-relative paths }\n+                workspaceIds: { type: array, items: { type: string } }\n+      responses:\n+        \"200\":\n+          description: One row per (workspace_id, uri)\n+          content:\n+            application/json:\n+              schema:\n+                type: array\n+                items:\n+                  type: object\n+                  properties:\n+                    workspaceId:\n+                      type: string\n+                      nullable: true\n+                    uri: { type: string }\n+                    hash: { type: string }\n+\n+  /v1/source-hashes/exists:\n+    get:\n+      tags: [ingestion]\n+      summary: Whether an ingest baseline exists\n+      operationId: hasIngestBaseline\n+      responses:\n+        \"200\":\n+          description: Baseline existence\n+          content:\n+            application/json:\n+              schema:\n+                type: object\n+                properties:\n+                  exists: { type: boolean }\n+\n+  /v1/stitch:\n+    post:\n+      tags: [ingestion]\n+      summary: Cross-repo stitching (register provides/consumes, join edges)\n+      operationId: stitch\n+      requestBody:\n+        required: true\n+        content:\n+          application/json:\n+            schema:\n+              type: object\n+              required: [workspaceId, provides, consumes]\n+              properties:\n+                workspaceId: { type: string }\n+                provides:\n+                  type: array\n+                  items:\n+                    type: object\n+                    required: [name, entryNodeId]\n+                    properties:\n+                      name: { type: string }\n+                      entryNodeId: { type: string }\n+                      entryUri: { type: string }\n+                consumes:\n+                  type: array\n+                  items:\n+                    type: object\n+                    required: [name, consumerNodeId]\n+                    properties:\n+                      name: { type: string }\n+                      consumerNodeId: { type: string }\n+                exports:\n+                  type: array\n+                  items:\n+                    type: object\n+                    properties:\n+                      name: { type: string }\n+                      nodeId: { type: string }\n+                symbolConsumes:\n+                  type: array\n+                  items:\n+                    type: object\n+                    properties:\n+                      symbol: { type: string }\n+                      callerNodeId: { type: string }\n+                      pkg: { type: string }\n+      responses:\n+        \"200\":\n+          description: Stitch result\n+          content:\n+            application/json:\n+              schema:\n+                type: object\n+                properties:\n+                  stitched: { type: integer }\n+                  systemId:\n+                    type: string\n+                    nullable: true\n+                  edges:\n+                    type: array\n+                    items:\n+                      type: object\n+                      properties:\n+                        src: { type: string }\n+                        dst: { type: string }\n+                        name: { type: string }\n+\n+  /v1/stitch/system/{workspaceId}:\n+    get:\n+      tags: [ingestion]\n+      summary: System id a workspace belongs to (null for singleton)\n+      operationId: workspaceSystem\n+      parameters:\n+        - name: workspaceId\n+          in: path\n+          required: true\n+          schema: { type: string }\n+      responses:\n+        \"200\":\n+          description: System membership\n+          content:\n+            application/json:\n+              schema:\n+                type: object\n+                properties:\n+                  systemId:\n+                    type: string\n+                    nullable: true\n+\n+  /v1/search:\n+    post:\n+      tags: [search]\n+      summary: Search nodes by term\n+      operationId: search\n+      requestBody:\n+        required: true\n+        content:\n+          application/json:\n+            schema:\n+              type: object\n+              required: [term]\n+              properties:\n+                term: { type: string }\n+                limit: { type: integer }\n+                kind: { type: string }\n+                language: { type: string }\n+                asOfRev: { type: integer }\n+                nameOnly: { type: boolean }\n+                workspaceId: { type: string }\n+                systemId: { type: string }\n+      responses:\n+        \"200\":\n+          description: Matching nodes\n+          content:\n+            application/json:\n+              schema:\n+                type: array\n+                items:\n+                  $ref: \"#/components/schemas/GraphNode\"\n+\n+  /v1/search/semantic:\n+    post:\n+      tags: [search]\n+      summary: Vector-similarity search (ordered by similarity; do not re-rank)\n+      operationId: semanticSearch\n+      requestBody:\n+        required: true\n+        content:\n+          application/json:\n+            schema:\n+              type: object\n+              required: [term]\n+              properties:\n+                term: { type: string }\n+                limit: { type: integer }\n+                kind: { type: string }\n+                workspaceId: { type: string }\n+                systemId: { type: string }\n+      responses:\n+        \"200\":\n+          description: Nodes ordered by similarity\n+          content:\n+            application/json:\n+              schema:\n+                type: array\n+                items:\n+                  $ref: \"#/components/schemas/GraphNode\"\n+        \"503\":\n+          description: Extraction service not configured\n+\n+  /v1/list:\n+    post:\n+      tags: [search]\n+      summary: List entities by kind\n+      operationId: listByKind\n+      requestBody:\n+        required: true\n+        content:\n+          application/json:\n+            schema:\n+              type: object\n+              required: [kind]\n+              properties:\n+                kind: { type: string }\n+                limit: { type: integer }\n+                scope: { type: string }\n+                workspaceId: { type: string }\n+                systemId: { type: string }\n+      responses:\n+        \"200\":\n+          description: Entities\n+          content:\n+            application/json:\n+              schema:\n+                type: array\n+                items:\n+                  $ref: \"#/components/schemas/GraphNode\"\n+\n+  /v1/entity/{id}:\n+    get:\n+      tags: [entities]\n+      summary: Fetch a node with claims and edges\n+      operationId: getEntity\n+      parameters:\n+        - name: id\n+          in: path\n+          required: true\n+          schema: { type: string }\n+      responses:\n+        \"200\":\n+          description: Node bundle\n+          content:\n+            application/json:\n+              schema:\n+                type: object\n+                properties:\n+                  node: { $ref: \"#/components/schemas/GraphNode\" }\n+                  claims: { type: array, items: { type: object } }\n+                  edges: { type: array, items: { $ref: \"#/components/schemas/GraphEdge\" } }\n+\n+  /v1/resolve-prefix/{prefix}:\n+    get:\n+      tags: [entities]\n+      summary: Resolve a shortened id prefix\n+      operationId: resolvePrefix\n+      parameters:\n+        - name: prefix\n+          in: path\n+          required: true\n+          schema: { type: string }\n+      responses:\n+        \"200\":\n+          description: Resolved id or ambiguity error\n+          content:\n+            application/json:\n+              schema:\n+                type: object\n+                properties:\n+                  id: { type: string }\n+                  error: { type: string, enum: [ambiguous] }\n+                  matches: { type: array, items: { type: string } }\n+\n+  /v1/expand:\n+    post:\n+      tags: [entities]\n+      summary: Expand a node's neighborhood\n+      operationId: expand\n+      requestBody:\n+        required: true\n+        content:\n+          application/json:\n+            schema:\n+              type: object\n+              required: [nodeId]\n+              properties:\n+                nodeId: { type: string }\n+                direction: { type: string, default: both }\n+                predicates: { type: array, items: { type: string } }\n+                hops: { type: integer, default: 1 }\n+      responses:\n+        \"200\":\n+          description: Neighborhood\n+          content:\n+            application/json:\n+              schema:\n+                type: object\n+                properties:\n+                  nodes: { type: array, items: { $ref: \"#/components/schemas/GraphNode\" } }\n+                  edges: { type: array, items: { $ref: \"#/components/schemas/GraphEdge\" } }\n+\n+  /v1/expand-by-name:\n+    post:\n+      tags: [entities]\n+      summary: Expand by entity name\n+      operationId: expandByName\n+      requestBody:\n+        required: true\n+        content:\n+          application/json:\n+            schema:\n+              type: object\n+              required: [name]\n+              properties:\n+                name: { type: string }\n+                direction: { type: string, default: both }\n+                predicates: { type: array, items: { type: string } }\n+                kinds: { type: array, items: { type: string } }\n+      responses:\n+        \"200\":\n+          description: Neighborhood\n+          content:\n+            application/json:\n+              schema:\n+                type: object\n+                properties:\n+                  nodes: { type: array, items: { $ref: \"#/components/schemas/GraphNode\" } }\n+                  edges: { type: array, items: { $ref: \"#/components/schemas/GraphEdge\" } }\n+\n+  /v1/truth:\n+    get:\n+      tags: [planning]\n+      summary: List planning artifacts (goals, truth statements)\n+      operationId: listTruth\n+      responses:\n+        \"200\":\n+          description: Artifacts\n+          content:\n+            application/json:\n+              schema:\n+                type: array\n+                items:\n+                  $ref: \"#/components/schemas/GraphNode\"\n+    post:\n+      tags: [planning]\n+      summary: Create a goal/truth statement\n+      operationId: createTruth\n+      requestBody:\n+        required: true\n+        content:\n+          application/json:\n+            schema:\n+              type: object\n+              required: [statement]\n+              properties:\n+                statement: { type: string }\n+                parentIntent: { type: string }\n+      responses:\n+        \"200\":\n+          description: Created artifact\n+          content:\n+            application/json:\n+              schema:\n+                $ref: \"#/components/schemas/NodeCreationResult\"\n+\n+  /v1/decide:\n+    post:\n+      tags: [planning]\n+      summary: Record a decision\n+      operationId: decide\n+      requestBody:\n+        required: true\n+        content:\n+          application/json:\n+            schema:\n+              type: object\n+              required: [title, rationale]\n+              properties:\n+                title: { type: string }\n+                rationale: { type: string }\n+                intentId: { type: string }\n+      responses:\n+        \"200\":\n+          description: Created decision\n+          content:\n+            application/json:\n+              schema:\n+                $ref: \"#/components/schemas/NodeCreationResult\"\n+\n+  /v1/decisions:\n+    get:\n+      tags: [planning]\n+      summary: List decisions\n+      operationId: listDecisions\n+      parameters:\n+        - name: limit\n+          in: query\n+          schema: { type: integer }\n+        - name: topic\n+          in: query\n+          schema: { type: string }\n+      responses:\n+        \"200\":\n+          description: Decisions\n+          content:\n+            application/json:\n+              schema:\n+                type: array\n+                items:\n+                  $ref: \"#/components/schemas/GraphNode\"\n+\n+  /v1/patches:\n+    get:\n+      tags: [patches]\n+      summary: List patches\n+      operationId: listPatches\n+      parameters:\n+        - name: limit\n+          in: query\n+          schema: { type: integer }\n+      responses:\n+        \"200\":\n+          description: Patch summaries\n+          content:\n+            application/json:\n+              schema:\n+                type: array\n+                items:\n+                  $ref: \"#/components/schemas/PatchSummary\"\n+\n+  /v1/patches/{id}:\n+    get:\n+      tags: [patches]\n+      summary: Fetch a single patch\n+      operationId: getPatch\n+      parameters:\n+        - name: id\n+          in: path\n+          required: true\n+          schema: { type: string }\n+      responses:\n+        \"200\":\n+          description: Patch\n+\n+  /v1/patch:\n+    post:\n+      tags: [patches]\n+      summary: Commit a single patch (5 min client timeout)\n+      operationId: commitPatch\n+      requestBody:\n+        required: true\n+        content:\n+          application/json:\n+            schema:\n+              $ref: \"#/components/schemas/GraphPatchPayload\"\n+      responses:\n+        \"200\":\n+          description: Commit result\n+          content:\n+            application/json:\n+              schema:\n+                $ref: \"#/components/schemas/PatchCommitResult\"\n+\n+  /v1/patches/batch:\n+    post:\n+      tags: [patches]\n+      summary: Commit an array of patches (unwrapped body)\n+      operationId: commitPatchBatch\n+      requestBody:\n+        required: true\n+        content:\n+          application/json:\n+            schema:\n+              type: array\n+              items:\n+                $ref: \"#/components/schemas/GraphPatchPayload\"\n+      responses:\n+        \"200\":\n+          description: Commit results\n+          content:\n+            application/json:\n+              schema:\n+                type: array\n+                items:\n+                  $ref: \"#/components/schemas/PatchCommitResult\"\n+\n+  /v1/patches/bulk:\n+    post:\n+      tags: [patches]\n+      summary: \"Commit patches wrapped as { patches: [...] } (5 min client timeout)\"\n+      operationId: commitPatchBulk\n+      requestBody:\n+        required: true\n+        content:\n+          application/json:\n+            schema:\n+              type: object\n+              required: [patches]\n+              properties:\n+                patches:\n+                  type: array\n+                  items:\n+                    $ref: \"#/components/schemas/GraphPatchPayload\"\n+      responses:\n+        \"200\":\n+          description: Commit results\n+          content:\n+            application/json:\n+              schema:\n+                type: array\n+                items:\n+                  $ref: \"#/components/schemas/PatchCommitResult\"\n+\n+  /v1/provenance/{entityId}:\n+    post:\n+      tags: [patches]\n+      summary: Provenance for an entity\n+      operationId: provenance\n+      parameters:\n+        - name: entityId\n+          in: path\n+          required: true\n+          schema: { type: string }\n+      responses:\n+        \"200\":\n+          description: Provenance\n+\n+  /v1/diff:\n+    post:\n+      tags: [analysis]\n+      summary: Diff between graph revisions\n+      operationId: diff\n+      requestBody:\n+        required: true\n+        content:\n+          application/json:\n+            schema:\n+              type: object\n+              required: [fromRev, toRev]\n+              properties:\n+                fromRev: { type: integer }\n+                toRev: { type: integer }\n+                entityId: { type: string }\n+                summary: { type: boolean }\n+                limit: { type: integer }\n+      responses:\n+        \"200\":\n+          description: Diff\n+\n+  /v1/conflicts:\n+    get:\n+      tags: [analysis]\n+      summary: List detected conflicts\n+      operationId: conflicts\n+      responses:\n+        \"200\":\n+          description: Conflicts\n+          content:\n+            application/json:\n+              schema:\n+                type: array\n+                items:\n+                  type: object\n+\n+  /v1/smells:\n+    get:\n+      tags: [analysis]\n+      summary: List computed smells\n+      operationId: listSmells\n+      parameters:\n+        - name: workspace_id\n+          in: query\n+          schema: { type: string }\n+        - name: system_id\n+          in: query\n+          schema: { type: string }\n+      responses:\n+        \"200\":\n+          description: Smells\n+    post:\n+      tags: [analysis]\n+      summary: Run smell analysis\n+      operationId: runSmells\n+      parameters:\n+        - name: orphan-max-connections\n+          in: query\n+          schema: { type: integer }\n+        - name: god-module-chunks\n+          in: query\n+          schema: { type: integer }\n+        - name: god-module-fan\n+          in: query\n+          schema: { type: integer }\n+        - name: weak-max-neighbors\n+          in: query\n+          schema: { type: integer }\n+        - name: workspace_id\n+          in: query\n+          schema: { type: string }\n+        - name: system_id\n+          in: query\n+          schema: { type: string }\n+      responses:\n+        \"200\":\n+          description: Smell analysis result\n+\n+  /v1/subsystems:\n+    get:\n+      tags: [analysis]\n+      summary: List subsystems\n+      operationId: listSubsystems\n+      parameters:\n+        - name: detailed\n+          in: query\n+          schema: { type: boolean }\n+        - name: limit\n+          in: query\n+          schema: { type: integer }\n+        - name: offset\n+          in: query\n+          schema: { type: integer }\n+        - name: regions\n+          in: query\n+          schema: { type: string }\n+        - name: edge_cap\n+          in: query\n+          schema: { type: integer }\n+        - name: member_file_cap\n+          in: query\n+          schema: { type: integer }\n+        - name: workspace_id\n+          in: query\n+          schema: { type: string }\n+        - name: system_id\n+          in: query\n+          schema: { type: string }\n+      responses:\n+        \"200\":\n+          description: Subsystems\n+\n+  /v1/subsystems/score:\n+    post:\n+      tags: [analysis]\n+      summary: Score subsystems\n+      operationId: scoreSubsystems\n+      parameters:\n+        - name: workspace_id\n+          in: query\n+          schema: { type: string }\n+        - name: system_id\n+          in: query\n+          schema: { type: string }\n+      responses:\n+        \"200\":\n+          description: Scores\n+\n+  /v1/subsystems/map:\n+    get:\n+      tags: [analysis]\n+      summary: Subsystem map for the visualizer\n+      operationId: getSubsystemMap\n+      parameters:\n+        - name: target\n+          in: query\n+          schema: { type: string }\n+        - name: pick\n+          in: query\n+          schema: { type: integer, description: 1-based candidate for ambiguous targets }\n+        - name: workspace_id\n+          in: query\n+          schema: { type: string }\n+        - name: system_id\n+          in: query\n+          schema: { type: string }\n+      responses:\n+        \"200\":\n+          description: Subsystem map\n+\n+  /v1/stats:\n+    get:\n+      tags: [stats]\n+      summary: Graph statistics\n+      operationId: stats\n+      parameters:\n+        - name: workspace_id\n+          in: query\n+          schema: { type: string }\n+        - name: system_id\n+          in: query\n+          schema: { type: string }\n+      responses:\n+        \"200\":\n+          description: Node/edge totals by kind\n+          content:\n+            application/json:\n+              schema:\n+                type: object\n+                properties:\n+                  nodes:\n+                    type: object\n+                    properties:\n+                      total: { type: integer }\n+                      byKind:\n+                        type: array\n+                        items:\n+                          type: object\n+                          properties:\n+                            kind: { type: string }\n+                            count: { type: integer }\n+                  edges:\n+                    type: object\n+                    properties:\n+                      total: { type: integer }\n+                      byKind:\n+                        type: array\n+                        items:\n+                          type: object\n+                          properties:\n+                            kind: { type: string }\n+                            count: { type: integer }\n+\n+  /v1/savings:\n+    get:\n+      tags: [stats]\n+      summary: Token-savings metrics\n+      operationId: savings\n+      parameters:\n+        - name: detail\n+          in: query\n+          schema: { type: boolean }\n+      responses:\n+        \"200\":\n+          description: Savings metrics\n+    delete:\n+      tags: [stats]\n+      summary: Reset savings metrics\n+      operationId: savingsReset\n+      responses:\n+        \"200\":\n+          description: Reset confirmation\n+\n+  /v1/reset:\n+    post:\n+      tags: [reset]\n+      summary: Wipe ALL nodes and edges (global — no workspace scoping)\n+      operationId: reset\n+      responses:\n+        \"200\":\n+          description: Reset confirmation\n+          content:\n+            application/json:\n+              schema:\n+                $ref: \"#/components/schemas/ResetResult\"\n+\n+  /v1/reset/async:\n+    post:\n+      tags: [reset]\n+      summary: Begin an async wipe (remote deployments)\n+      operationId: resetAsync\n+      responses:\n+        \"200\":\n+          description: Operation handle\n+          content:\n+            application/json:\n+              schema:\n+                type: object\n+                properties:\n+                  opId: { type: string }\n+\n+  /v1/reset/status/{opId}:\n+    get:\n+      tags: [reset]\n+      summary: Poll an async reset operation\n+      operationId: resetStatus\n+      parameters:\n+        - name: opId\n+          in: path\n+          required: true\n+          schema: { type: string }\n+      responses:\n+        \"200\":\n+          description: Operation state\n+          content:\n+            application/json:\n+              schema:\n+                type: object\n+                properties:\n+                  state: { type: string, enum: [done, failed, running] }\n+                  error:\n+                    type: string\n+                    nullable: true\n+\n+  /v1/reset/code:\n+    post:\n+      tags: [reset]\n+      summary: Wipe only the code graph (preserves planning artifacts)\n+      operationId: resetCode\n+      responses:\n+        \"200\":\n+          description: Reset confirmation\n+          content:\n+            application/json:\n+              schema:\n+                $ref: \"#/components/schemas/ResetResult\"\n+\n+  /v1/reset/code/async:\n+    post:\n+      tags: [reset]\n+      summary: Begin an async code-graph wipe\n+      operationId: resetCodeAsync\n+      responses:\n+        \"200\":\n+          description: Operation handle\n+          content:\n+            application/json:\n+              schema:\n+                type: object\n+                properties:\n+                  opId: { type: string }\n+\n+  /v1/reset/workspace:\n+    post:\n+      tags: [reset]\n+      summary: Wipe exactly one workspace (other workspaces untouched)\n+      operationId: deleteWorkspace\n+      requestBody:\n+        required: true\n+        content:\n+          application/json:\n+            schema:\n+              type: object\n+              required: [workspaceId]\n+              properties:\n+                workspaceId: { type: string }\n+      responses:\n+        \"200\":\n+          description: Workspace wiped\n+\n+components:\n+  schemas:\n+    HealthResponse:\n+      type: object\n+      properties:\n+        status: { type: string }\n+        schema_version: { type: integer, description: On-disk graph format version }\n+    CapabilitiesResponse:\n+      type: object\n+      properties:\n+        proFeaturesEnabled:\n+          type: boolean\n+          description: Absent = unknown (older backends), not false\n+    GraphNode:\n+      type: object\n+      required: [id, kind, name, attrs, provenance, createdRev, createdAt, updatedAt]\n+      properties:\n+        id: { type: string }\n+        kind: { type: string }\n+        name: { type: string }\n+        attrs: { type: object, additionalProperties: true }\n+        provenance:\n+          type: object\n+          properties:\n+            sourceUri: { type: string, description: Workspace-relative path }\n+            sourceHash: { type: string }\n+            extractor: { type: string }\n+            sourceType: { type: string }\n+            observedAt: { type: string, format: date-time }\n+        createdRev: { type: integer }\n+        deletedRev: { type: integer }\n+        createdAt: { type: string, format: date-time }\n+        updatedAt: { type: string, format: date-time }\n+    GraphEdge:\n+      type: object\n+      required: [id, src, dst, predicate, attrs, createdRev]\n+      properties:\n+        id: { type: string }\n+        src: { type: string }\n+        dst: { type: string }\n+        predicate: { type: string, description: calls | imports | contains | … }\n+        attrs: { type: object, additionalProperties: true }\n+        createdRev: { type: integer }\n+        deletedRev: { type: integer }\n+    StructuredContext:\n+      type: object\n+      properties:\n+        claims: { type: array, items: { type: object } }\n+        compactClaims: { type: array, items: { type: object } }\n+        conflicts: { type: array, items: { type: object } }\n+        decisions: { type: array, items: { type: object } }\n+        intents: { type: array, items: { type: object } }\n+        nodes: { type: array, items: { $ref: \"#/components/schemas/GraphNode\" } }\n+        edges: { type: array, items: { $ref: \"#/components/schemas/GraphEdge\" } }\n+        metadata:\n+          type: object\n+          properties:\n+            query: { type: string }\n+            seedEntities: { type: array, items: { type: string } }\n+            hopsExpanded: { type: integer }\n+            asOfRev: { type: integer }\n+            depth: { type: string }\n+    IngestResult:\n+      type: object\n+      properties:\n+        filesProcessed: { type: integer }\n+        patchesApplied: { type: integer }\n+        filesSkipped: { type: integer }\n+        entitiesCreated: { type: integer }\n+        latestRev: { type: integer }\n+        skipReasons:\n+          type: object\n+          properties:\n+            unchanged: { type: integer }\n+            emptyFile: { type: integer }\n+            parseError: { type: integer }\n+            tooLarge: { type: integer }\n+            minifiedLikely: { type: integer }\n+    NodeCreationResult:\n+      type: object\n+      properties:\n+        status: { type: string }\n+        nodeId: { type: string }\n+        rev: { type: integer }\n+    PatchSummary:\n+      type: object\n+      properties:\n+        patch_id: { type: string }\n+        rev: { type: integer }\n+        intent: { type: string }\n+        source_uri: { type: string }\n+        timestamp: { type: string }\n+    PatchSource:\n+      type: object\n+      required: [uri, extractor, sourceType]\n+      properties:\n+        uri: { type: string, description: Workspace-relative path; opaque join key }\n+        sourceHash: { type: string }\n+        extractor: { type: string }\n+        sourceType: { type: string }\n+        workspaceId: { type: string, description: SHA-256 of the workspace root path }\n+    PatchOp:\n+      type: object\n+      required: [type]\n+      properties:\n+        type: { type: string }\n+      additionalProperties: true\n+    GraphPatchPayload:\n+      type: object\n+      required: [patchId, actor, timestamp, source, baseRev, ops, replaces]\n+      properties:\n+        patchId: { type: string }\n+        actor: { type: string }\n+        timestamp: { type: string, format: date-time }\n+        source: { $ref: \"#/components/schemas/PatchSource\" }\n+        baseRev: { type: integer }\n+        ops: { type: array, items: { $ref: \"#/components/schemas/PatchOp\" } }\n+        replaces: { type: array, items: { type: string } }\n+        intent: { type: string }\n+    PatchCommitResult:\n+      type: object\n+      properties:\n+        status: { type: string }\n+        rev: { type: integer }\n+    ResetResult:\n+      type: object\n+      properties:\n+        ok: { type: boolean }\n+        message: { type: string }"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 368,
+        "filename": "scripts/install-skill.sh",
+        "status": "added",
+        "additions": 49,
+        "deletions": 0,
+        "changes": 49,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/0c9087c4292254472174b02475d094359c88c055/scripts%2Finstall-skill.sh",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/0c9087c4292254472174b02475d094359c88c055/scripts%2Finstall-skill.sh",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/scripts%2Finstall-skill.sh?ref=0c9087c4292254472174b02475d094359c88c055",
+        "patch": "@@ -0,0 +1,49 @@\n+#!/usr/bin/env bash\n+#\n+# Install the Ix skill so Claude Code and Freebuff can use it.\n+#\n+# Deploys skills/ix to:\n+#   ~/.claude/skills/ix   — Claude Code (global)\n+#   ~/.agents/skills/ix   — Freebuff / Codebuff (global)\n+#\n+# Freebuff's skill loader searches ~/.claude/skills, ~/.agents/skills, and the\n+# project's .claude/skills and .agents/skills, so a global install makes the\n+# skill available in every project. Re-run after editing skills/ix.\n+#\n+# Usage: bash scripts/install-skill.sh\n+\n+set -euo pipefail\n+\n+ROOT=\"$(cd \"$(dirname \"${BASH_SOURCE[0]}\")/..\" && pwd)\"\n+SRC=\"$ROOT/skills/ix\"\n+[ -f \"$SRC/SKILL.md\" ] || { echo \"error: $SRC/SKILL.md not found\" >&2; exit 1; }\n+\n+FORCE=0\n+[ \"${1:-}\" = \"--force\" ] && FORCE=1\n+\n+installed=0\n+for dest in \"$HOME/.claude/skills/ix\" \"$HOME/.agents/skills/ix\"; do\n+  mkdir -p \"$(dirname \"$dest\")\"\n+  if [ -e \"$dest\" ]; then\n+    # Refuse to delete something that is not a previous install of this skill.\n+    # `ix` is a short name, and the unconditional `rm -rf` this replaces would\n+    # silently destroy a hand-written skill that happened to share it — with no\n+    # prompt, no backup, and nothing in the output to say it had happened.\n+    if [ \"$FORCE\" != \"1\" ] && ! grep -qs '^name: ix$' \"$dest/SKILL.md\"; then\n+      echo \"error: $dest exists and is not an Ix skill install.\" >&2\n+      echo \"       Move it aside, or re-run with --force to overwrite it.\" >&2\n+      exit 1\n+    fi\n+    rm -rf \"$dest\"\n+  fi\n+  cp -R \"$SRC\" \"$dest\"\n+  echo \"Installed: $dest\"\n+  installed=1\n+done\n+\n+if [ \"$installed\" = \"1\" ]; then\n+  echo\n+  echo \"Ix skill installed for Claude Code and Freebuff.\"\n+  echo \"Start a new session so the agent picks it up, then ask it to use Ix:\"\n+  echo \"  \\\"Set up Ix and map this repo\\\"\"\n+fi"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 368,
+        "filename": "skills/ix/SKILL.md",
+        "status": "added",
+        "additions": 82,
+        "deletions": 0,
+        "changes": 82,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/0c9087c4292254472174b02475d094359c88c055/skills%2Fix%2FSKILL.md",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/0c9087c4292254472174b02475d094359c88c055/skills%2Fix%2FSKILL.md",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/skills%2Fix%2FSKILL.md?ref=0c9087c4292254472174b02475d094359c88c055",
+        "patch": "@@ -0,0 +1,82 @@\n+---\n+name: ix\n+description: \"This skill should be used when answering structural questions about a codebase: understanding what a symbol is, tracing flows, measuring change impact, finding callers/callees/imports, or detecting code smells. It drives the Ix CLI (ix map/explain/trace/impact/search/rank/smells) against a persistent code graph stored in a local backend, instead of grepping or guessing. Run scripts/bootstrap.sh once to install the CLI and start the backend, then ix map on the repo root.\"\n+license: Apache-2.0\n+metadata:\n+  version: 1.0.0\n+  source: https://github.com/ix-infrastructure/Ix\n+---\n+\n+# Ix — Persistent Codebase Map\n+\n+## Overview\n+\n+Ix parses a repository with tree-sitter (26 languages), builds a graph of its symbols, calls, and imports, and stores it in a local backend (ArangoDB via Docker). Query that graph with `ix` commands to answer bounded, structural questions instead of reading files blindly. The graph persists between sessions.\n+\n+Use this skill whenever the question is about structure, relationships, or impact: what a symbol is, what calls it, what it calls, how data flows, what breaks if a change lands, which files are most depended-on, or where the smells are.\n+\n+## When to Use\n+\n+- Answering \"what is this / what does it touch\" questions about a symbol, class, or module.\n+- Tracing how a flow moves through the system.\n+- Estimating blast radius before a change.\n+- Finding callers, callees, imports, and dependents.\n+- Detecting smells, ranking hotspots, and scoring subsystems.\n+- Onboarding to an unfamiliar codebase.\n+\n+Do not use this skill for prose-style or history questions — use it for structural, graph-backed answers.\n+\n+## Quick Start (first run)\n+\n+Map the target repo with the bootstrap script:\n+\n+```bash\n+bash scripts/bootstrap.sh [repo-root] [--no-map]                                            # Bash / Git Bash / macOS / Linux\n+powershell -ExecutionPolicy Bypass -File scripts/bootstrap.ps1 [repo-root] [-NoMap]         # Windows PowerShell\n+```\n+\n+The bootstrap checks Node >= 22, git, Docker, and ripgrep; installs the `ix` CLI if missing; starts the local Docker backend; and maps the repo by default. Re-run `scripts/bootstrap.sh` on each new repo to register and map it.\n+\n+Refresh the graph after code changes:\n+\n+```bash\n+ix map --silent\n+```\n+\n+## Core Workflow\n+\n+Map → Explain → Trace → Impact\n+\n+| Step | Command | Example |\n+|---|---|---|\n+| Build/refresh the graph | `ix map` | `ix map .` |\n+| Understand a component | `ix explain` | `ix explain IngestionService` |\n+| Trace a flow | `ix trace` | `ix trace user_login_flow` |\n+| Analyze impact | `ix impact` | `ix impact verify_token --format llm` |\n+\n+## Using the Skill\n+\n+1. Start with high-level commands for one-shot answers: `ix overview`, `ix impact`, `ix rank`.\n+2. Drill down with primitives — `ix search`, `ix callers`, `ix callees`, `ix contains`, `ix imports`, `ix imported-by`, `ix depends` — reusing exact entity IDs from prior JSON output.\n+3. Prefer `--format llm` when reading output yourself (token-minimal); use `--format json` when chaining commands or extracting a field. See references/output-formats.md.\n+4. For the full command surface, decomposition recipes, and best practices, load references/commands.md.\n+5. If the backend is unreachable or a command fails, load references/troubleshooting.md.\n+\n+## Rules\n+\n+1. Before answering codebase questions, run targeted `ix` commands. Do not answer from training data alone.\n+2. After noticing contradictory information, run `ix conflicts` and present the results.\n+3. Never guess codebase facts — if Ix has structured data, use it.\n+4. Immediately after modifying code, run `ix map --silent` to re-ingest.\n+5. When Ix reports low confidence, mention the uncertainty to the user, suggest re-running `ix map`, and never present low-confidence data as established fact.\n+\n+## References\n+\n+- **references/commands.md** — full command routing tables, decomposition recipes, best practices, and the do-not-use list. Load before running any command beyond the core four above.\n+- **references/output-formats.md** — `--format llm|json|text` rules, commands that do not implement `llm`, and Pro-gated commands. Load when formatting output or when a \"requires Ix Pro\" error appears.\n+- **references/troubleshooting.md** — prerequisites, backend health checks, `ix doctor`, and environment flags. Load when a command fails or the backend is unreachable.\n+\n+## Scripts\n+\n+- **scripts/bootstrap.sh** — cross-platform first-run setup (bash; works on macOS, Linux, and Windows under Git Bash / MSYS2 / WSL).\n+- **scripts/bootstrap.ps1** — native Windows PowerShell first-run setup."
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 368,
+        "filename": "skills/ix/references/commands.md",
+        "status": "added",
+        "additions": 135,
+        "deletions": 0,
+        "changes": 135,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/0c9087c4292254472174b02475d094359c88c055/skills%2Fix%2Freferences%2Fcommands.md",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/0c9087c4292254472174b02475d094359c88c055/skills%2Fix%2Freferences%2Fcommands.md",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/skills%2Fix%2Freferences%2Fcommands.md?ref=0c9087c4292254472174b02475d094359c88c055",
+        "patch": "@@ -0,0 +1,135 @@\n+# Ix Command Reference\n+\n+Use bounded, composable CLI commands — never broad queries. Run every command\n+with the `ix` prefix from the repo root of the mapped workspace.\n+\n+## High-Level Workflow Commands (prefer first)\n+\n+These aggregate multiple graph operations into single bounded responses.\n+\n+| Goal | Command | Example |\n+|---|---|---|\n+| Blast radius / impact | `ix impact` | `ix impact UserService --format llm` |\n+| Hotspot discovery | `ix rank` | `ix rank --by dependents --kind class --top 10 --format llm` |\n+| One-shot summary | `ix overview` | `ix overview IngestionService --format llm` |\n+| Scoped entity listing | `ix inventory` | `ix inventory --kind function --path auth.py --format llm` |\n+\n+## Finding & Understanding Code\n+\n+| Goal | Command | Example |\n+|---|---|---|\n+| Find entity by name | `ix search` | `ix search IngestionService --kind class --limit 10` |\n+| Understand a symbol | `ix explain` | `ix explain IngestionService` |\n+| Read source code | `ix read` | `ix read src/auth.py:10-50` or `ix read verify_token` |\n+| Full entity details | `ix entity` | `ix entity <id> --format json` |\n+| Fast text search | `ix text` | `ix text \"verify_token\" --language python --limit 20` |\n+| Find symbol (graph+text) | `ix locate` | `ix locate AuthProvider --kind class` |\n+\n+## Navigating Relationships\n+\n+| Goal | Command | Example |\n+|---|---|---|\n+| What calls a function | `ix callers` | `ix callers verify_token --format json` |\n+| What a function calls | `ix callees` | `ix callees processPayment` |\n+| Members of a class | `ix contains` | `ix contains IngestionService` |\n+| What an entity imports | `ix imports` | `ix imports auth_provider.py` |\n+| What imports an entity | `ix imported-by` | `ix imported-by AuthProvider` |\n+| Dependency impact | `ix depends` | `ix depends verify_token --depth 2` |\n+\n+## History, Diffs & Contradictions\n+\n+| Goal | Command | Example |\n+|---|---|---|\n+| Entity history | `ix history` | `ix history <entityId> --format llm` |\n+| Changes between revisions | `ix diff` | `ix diff 1 5 --summary --format llm` |\n+| Detect contradictions | `ix conflicts` | `ix conflicts --format llm` |\n+\n+## Architecture Analysis\n+\n+| Goal | Command | Example |\n+|---|---|---|\n+| Detect code smells | `ix smells` | `ix smells --format json` |\n+| Score subsystems | `ix subsystems` | `ix subsystems --level 2 --format json` |\n+| List smell claims | `ix smells --list` | `ix smells --list --format json` |\n+| List subsystem scores | `ix subsystems --list` | `ix subsystems --list --format json` |\n+\n+## Ingestion & Health\n+\n+| Goal | Command | Example |\n+|---|---|---|\n+| Update graph + map | `ix map --silent` | `ix map --silent` |\n+| Ingest GitHub data | `ix ingest` | `ix ingest --github owner/repo --limit 50` |\n+| Backend health | `ix status` | `ix status` |\n+| System doctor | `ix doctor` | `ix doctor` |\n+| Start backend | `ix docker start` | `ix docker start` |\n+| Graph statistics | `ix stats` | `ix stats --format json` |\n+\n+## Decomposition Recipes\n+\n+**\"How does ingestion work?\"**\n+```bash\n+ix overview IngestionService --format json    # start here\n+ix contains IngestionService --format json    # more detail if needed\n+ix callees parseFile --format json\n+```\n+\n+**\"What depends on verify_token?\"**\n+```bash\n+ix impact verify_token --format json          # one-shot answer\n+ix callers verify_token --format json         # or manually\n+ix imported-by verify_token --format json\n+```\n+\n+**\"What are the most important classes?\"**\n+```bash\n+ix rank --by dependents --kind class --top 10 --format json\n+```\n+\n+**\"List all functions in a file\"**\n+```bash\n+ix inventory --kind function --path auth.py --format llm\n+```\n+\n+## Best Practices\n+\n+- Always use `--kind` with `ix search` to get bounded results.\n+- Use `ix inventory` instead of `ix search \"\"` for listing entities by kind.\n+- Use `ix diff --summary` for broad revision comparisons; `--full` only when\n+  every individual change is needed.\n+- Always use `--limit` to cap result sets.\n+- Use `--path` or `--language` to restrict text searches.\n+- Reuse exact entity IDs from previous JSON results when chaining commands.\n+- Decompose large questions into multiple targeted calls.\n+\n+## Gotchas (surprises that already bit us)\n+\n+- **`ix reset` is GLOBAL, not workspace-scoped.** `ix reset` → `POST\n+  /v1/reset`, and `ix reset --code` → `POST /v1/reset/code`; neither sends a\n+  workspace_id, so both wipe EVERY workspace's graph in the shared backend —\n+  the cwd only decides which mtime cache gets cleared. Running\n+  `ix reset -y --code` in one repo also destroys the graphs of every other\n+  mapped workspace (e.g. packwise) and empties the `--all` combined view;\n+  re-run `ix map` per workspace to rebuild. A workspace-scoped endpoint\n+  (`/v1/reset/workspace`, via `deleteWorkspace`) exists server-side, but the\n+  CLI does not expose it.\n+\n+- **The OSS↔Pro command boundary is derived at runtime, not declared.**\n+  `main.ts` snapshots `ossCmdNames` immediately after `registerOssCommands()`;\n+  the Pro probe (`tryLoadProCommands`) then diffs whatever commands exist\n+  against that set to decide which count as \"Pro\". Consequences:\n+  - Adding a `register*Command` call in `oss.ts` silently reclassifies that\n+    command as OSS — it vanishes from the Pro help diff.\n+  - Removing one from `oss.ts` makes Pro own it, or — without the license — a\n+    Pro stub replaces it (stubs skip any name already registered, so an OSS\n+    command left in place blocks its stub).\n+  - `registerProCommands` is async (each Pro command is dynamically imported)\n+    and MUST be awaited; skipping the await makes every `ix <pro-cmd>` fail\n+    with \"unknown command\".\n+  - Real example: `registerPatchesCommand` is defined but never called in\n+    `oss.ts`, so `ix patches` errors as an unknown command today; wiring it in\n+    would flip it to OSS.\n+\n+## Do NOT Use\n+\n+- `ix query` — deprecated, produces oversized low-signal responses.\n+- NLP-style free-text QA in a single command — decompose into targeted calls."
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 368,
+        "filename": "skills/ix/references/output-formats.md",
+        "status": "added",
+        "additions": 50,
+        "deletions": 0,
+        "changes": 50,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/0c9087c4292254472174b02475d094359c88c055/skills%2Fix%2Freferences%2Foutput-formats.md",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/0c9087c4292254472174b02475d094359c88c055/skills%2Fix%2Freferences%2Foutput-formats.md",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/skills%2Fix%2Freferences%2Foutput-formats.md?ref=0c9087c4292254472174b02475d094359c88c055",
+        "patch": "@@ -0,0 +1,50 @@\n+# Output Formats & Pro Features\n+\n+## Output formats\n+\n+Query commands accept `--format text|json|llm`:\n+\n+- **`--format llm`** — use when reading the result yourself. Token-minimal,\n+  newline-delimited (`key=value`, one record per line). Smallest output.\n+- **`--format json`** — use when chaining results between commands or pulling a\n+  specific field out of a response.\n+- **`--format text`** — human-oriented tables and trees.\n+\n+### Commands that accept `--format` but route `llm` to `text`\n+\n+`explain`, `read`, `status`, and the deprecated `query` do not implement `llm`\n+and fall back to human-oriented text without an error. Use `--format json` on\n+those if the output needs to be parsed. Everywhere else, `llm` behaves as\n+documented.\n+\n+### Commands with no `--format` at all\n+\n+`config`, `init`, `reset`, `upgrade`, `view`, `watch`. (`ingest` does accept\n+`--format`, despite being an action command.)\n+\n+## Pro features\n+\n+Commands marked **[Pro]** require Ix Pro (server-side). The **Planning** and\n+**Workflows** sections of the CLI are entirely Pro-only — including `plan`,\n+`plans`, `task`, `tasks`, and `workflow`.\n+\n+If any Pro command prints `The '<name>' command requires Ix Pro.`, this install\n+does not have them — skip that step, do not retry it, and do not mention it\n+again for the rest of the session. Nothing outside those marks is Pro-gated.\n+\n+Pro-only surface: `plan`, `plans`, `task`, `tasks`, `workflow`, `decide`,\n+`decisions`, `goal`, `truth`, `bug`, `bugs`, `briefing`, `patches`.\n+\n+### Semantic boundaries (Pro record types)\n+\n+- **decision** — a choice between alternatives, with rationale. Use `ix decide`.\n+- **bug** — something broken, missing, or incorrect. Use `ix bug create`.\n+- **task/plan** — intended work and sequencing. Use `ix plan` / `ix plan task`.\n+\n+## Confidence scores\n+\n+Ix returns confidence scores with results. When data has low confidence:\n+\n+- Mention the uncertainty to the user.\n+- Suggest re-running `ix map` to refresh the graph.\n+- Never present low-confidence data as established fact."
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 368,
+        "filename": "skills/ix/references/troubleshooting.md",
+        "status": "added",
+        "additions": 53,
+        "deletions": 0,
+        "changes": 53,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/0c9087c4292254472174b02475d094359c88c055/skills%2Fix%2Freferences%2Ftroubleshooting.md",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/0c9087c4292254472174b02475d094359c88c055/skills%2Fix%2Freferences%2Ftroubleshooting.md",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/skills%2Fix%2Freferences%2Ftroubleshooting.md?ref=0c9087c4292254472174b02475d094359c88c055",
+        "patch": "@@ -0,0 +1,53 @@\n+# Troubleshooting & Prerequisites\n+\n+## Prerequisites\n+\n+- **Node.js >= 22** — required by the `ix` CLI.\n+- **git** — used for workspace detection.\n+- **Docker + Docker Compose** — runs the local backend (ArangoDB on\n+  [redacted]8529 and the Ix Memory Layer on [redacted]8090). Docker Desktop\n+  must be running on macOS/Windows.\n+- **ripgrep** — powers `ix text`; optional but recommended (non-fatal if\n+  missing).\n+\n+The bootstrap script (`scripts/bootstrap.sh` / `bootstrap.ps1`) checks and\n+installs these, then installs the `ix` CLI if missing.\n+\n+## Backend not reachable\n+\n+Most first-run problems are the backend not being up yet. Diagnose in order:\n+\n+```bash\n+ix status          # is the backend reachable?\n+ix docker start    # start the backend (ArangoDB + memory layer)\n+ix doctor          # check system health — server, database, graph integrity\n+```\n+\n+If a command reports `Ix backend not reachable`, run `ix docker start` and try\n+again.\n+\n+## Common failure modes\n+\n+| Symptom | Fix |\n+|---|---|\n+| `Ix backend not reachable` | `ix docker start`, wait, then `ix doctor` |\n+| Docker daemon not running | Start Docker Desktop / the Docker service, then re-run bootstrap |\n+| `ix: command not found` | Re-run bootstrap (installs the CLI), or restart the shell so PATH picks up the wrapper |\n+| `The '<name>' command requires Ix Pro.` | Not installed — skip the step, do not retry or mention it again this session |\n+| `ix text` errors | Install ripgrep (brew/apt/dnf/choco) |\n+| `Compass UI not found` on `ix view` | Run `ix upgrade` to fetch Compass. Re-running the installer wipes the Compass assets, so bootstrap auto-restores them with `ix upgrade`; skip with `IX_SKIP_COMPASS=1` |\n+| Compass shows \"Compass not connected to a codebase\" | The scoped workspace has no graph — run `ix map .` from the repo root, then reload the tab |\n+| Slow or stale results | Re-run `ix map --silent` to refresh the graph |\n+\n+## Environment flags\n+\n+- `IX_DEBUG=1` — full stack traces on any error.\n+- `IX_SKIP_INSTALL=1` — skip the CLI install step in bootstrap.\n+- `IX_SKIP_BACKEND=1` — skip starting/waiting for the backend in bootstrap.\n+- `IX_SKIP_MAP=1` — skip `ix map` in bootstrap.\n+\n+## Re-mapping\n+\n+The graph persists between sessions but goes stale as code changes. Re-run\n+`ix map --silent` from the repo root after every meaningful code change so\n+answers stay current."
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 368,
+        "filename": "skills/ix/scripts/bootstrap.ps1",
+        "status": "added",
+        "additions": 114,
+        "deletions": 0,
+        "changes": 114,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/0c9087c4292254472174b02475d094359c88c055/skills%2Fix%2Fscripts%2Fbootstrap.ps1",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/0c9087c4292254472174b02475d094359c88c055/skills%2Fix%2Fscripts%2Fbootstrap.ps1",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/skills%2Fix%2Fscripts%2Fbootstrap.ps1?ref=0c9087c4292254472174b02475d094359c88c055",
+        "patch": "@@ -0,0 +1,114 @@\n+# Ix skill bootstrap (Windows PowerShell) - install the ix CLI, start the local\n+# backend, and map a repo.\n+#\n+# Usage:\n+#   powershell -ExecutionPolicy Bypass -File scripts/bootstrap.ps1 [repo-root] [-NoMap] [-NoBackend]\n+#\n+# Requires: Node.js >= 22, git, Docker Desktop (running), ripgrep (for `ix text`, optional).\n+#\n+# NOTE: keep this file pure ASCII. Windows PowerShell 5.1 reads .ps1 files\n+# without a BOM as ANSI, so non-ASCII bytes (e.g. an em dash) get misparsed as\n+# smart quotes and break the script.\n+\n+param(\n+  [string]$Repo = \"\",\n+  [switch]$NoMap,\n+  [switch]$NoBackend\n+)\n+\n+$ErrorActionPreference = \"Stop\"\n+function Info  { Write-Host \"[ix-skill] $args\" -ForegroundColor Cyan }\n+function Warn  { Write-Host \"[ix-skill] $args\" -ForegroundColor Yellow }\n+function Fail  { Write-Host \"[ix-skill] $args\" -ForegroundColor Red; exit 1 }\n+\n+if (-not $Repo) { $Repo = (Get-Location).Path }\n+Info \"Ix skill bootstrap - repo: $Repo\"\n+\n+# --- Prerequisites ------------------------------------------------------------\n+$nodeVer = \"\"\n+try { $nodeVer = (node --version).TrimStart(\"v\") } catch {}\n+if ($nodeVer) {\n+  if ([version]$nodeVer -ge [version]\"22.0.0\") { Info \"Node $nodeVer OK.\" }\n+  else { Warn \"Node $nodeVer detected; Ix requires Node >= 22 (https://nodejs.org).\" }\n+} else {\n+  Warn \"Node.js not found; Ix requires Node >= 22 (https://nodejs.org).\"\n+}\n+\n+try { git --version | Out-Null; Info \"git OK.\" } catch { Warn \"git not found; Ix uses it for workspace detection.\" }\n+try { rg --version | Out-Null; Info \"ripgrep OK (powers 'ix text').\" } catch { Warn \"ripgrep not found - 'ix text' will not work. Install: choco install ripgrep\" }\n+\n+$dockerUp = $false\n+try {\n+  docker info *> $null\n+  if ($LASTEXITCODE -eq 0) { $dockerUp = $true; Info \"Docker daemon is running.\" }\n+} catch {}\n+if (-not $dockerUp) {\n+  Warn \"Docker daemon is NOT running. Start Docker Desktop first, then re-run this script.\"\n+  $NoBackend = $true\n+}\n+\n+# --- Resolve the ix CLI ---------------------------------------------------------\n+# The installer registers ~/.ix\\bin in the user PATH, but long-lived shells and\n+# agents spawned before the install may not see it. Resolve it before deciding\n+# whether to install.\n+$ixBin = Join-Path $env:USERPROFILE \".ix\\bin\"\n+if (-not (Get-Command ix -ErrorAction SilentlyContinue)) {\n+  if (Test-Path (Join-Path $ixBin \"ix.cmd\")) { $env:Path = \"$ixBin;$env:Path\"; Info \"Found ix at ~/.ix\\bin - added to PATH for this session.\" }\n+}\n+\n+# --- Install the ix CLI (only if still missing) ---------------------------------\n+if (Get-Command ix -ErrorAction SilentlyContinue) {\n+  Info \"ix CLI already installed.\"\n+} elseif ($env:IX_SKIP_INSTALL -eq \"1\") {\n+  Warn \"IX_SKIP_INSTALL=1 - skipping ix CLI install. 'ix' is not on PATH.\"\n+} else {\n+  Info \"Installing the ix CLI (official installer)...\"\n+  Invoke-RestMethod https://ix-infra.com/install.ps1 | Invoke-Expression\n+  if (-not (Get-Command ix -ErrorAction SilentlyContinue)) {\n+    $ixBin2 = Join-Path $env:USERPROFILE \".ix\\bin\"\n+    if (Test-Path (Join-Path $ixBin2 \"ix.cmd\")) { $env:Path = \"$ixBin2;$env:Path\" }\n+  }\n+  if (-not (Get-Command ix -ErrorAction SilentlyContinue)) {\n+    Fail \"ix CLI install finished but 'ix' is still not on PATH. Restart your shell, then re-run this script.\"\n+  }\n+  Info \"ix CLI installed.\"\n+}\n+if (-not (Get-Command ix -ErrorAction SilentlyContinue)) {\n+  Fail \"The ix CLI is not on PATH. Run the official installer, restart your shell, then re-run this bootstrap.\"\n+}\n+\n+# --- Compass (visualizer UI) ----------------------------------------------------\n+# The installer re-extracts the CLI tarball over the ix home and wipes the\n+# Compass assets, which ship only via `ix upgrade`. Ensure they exist so\n+# `ix view` never silently breaks after an installer re-run.\n+if ($env:IX_SKIP_COMPASS -ne \"1\") {\n+  $ixHome = Join-Path $env:USERPROFILE \".ix\"\n+  if ($env:IX_HOME) { $ixHome = $env:IX_HOME }\n+  $compassIndex = Join-Path $ixHome \"cli\\compass\\index.html\"\n+  if (Test-Path $compassIndex) {\n+    Info \"Compass UI present.\"\n+  } else {\n+    Warn \"Compass UI missing at $ixHome\\cli\\compass (a re-install likely wiped it) - running 'ix upgrade' to restore it.\"\n+    try { ix upgrade } catch { Warn \"'ix upgrade' failed - 'ix view' will be unavailable until it is re-run.\" }\n+  }\n+}\n+\n+# --- Backend -------------------------------------------------------------------\n+if (-not $NoBackend) {\n+  Info \"Starting the Ix backend (ArangoDB + memory layer)...\"\n+  try { ix docker start } catch { Warn \"`ix docker start` reported a problem - run `ix doctor` and `ix status`.\" }\n+  for ($i = 0; $i -lt 15; $i++) {\n+    if (ix status *> $null) { break }\n+    Start-Sleep -Seconds 2\n+  }\n+  try { ix status } catch { Warn \"Backend still not reachable. Run: ix docker start; ix doctor\" }\n+}\n+\n+# --- Map the repo ---------------------------------------------------------------\n+if (-not $NoMap) {\n+  Info \"Mapping $Repo - this builds the persistent graph (can take a while on large repos)...\"\n+  Push-Location $Repo\n+  try { ix map . } finally { Pop-Location }\n+}\n+\n+Info \"Done. Try: ix explain <symbol>, ix trace <flow>, ix impact <symbol> --format llm\""
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 368,
+        "filename": "skills/ix/scripts/bootstrap.sh",
+        "status": "added",
+        "additions": 155,
+        "deletions": 0,
+        "changes": 155,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/0c9087c4292254472174b02475d094359c88c055/skills%2Fix%2Fscripts%2Fbootstrap.sh",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/0c9087c4292254472174b02475d094359c88c055/skills%2Fix%2Fscripts%2Fbootstrap.sh",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/skills%2Fix%2Fscripts%2Fbootstrap.sh?ref=0c9087c4292254472174b02475d094359c88c055",
+        "patch": "@@ -0,0 +1,155 @@\n+#!/usr/bin/env bash\n+#\n+# Ix skill bootstrap — install the ix CLI, start the local backend, and map a repo.\n+#\n+# Usage:\n+#   bash scripts/bootstrap.sh [repo-root] [--no-map]\n+#\n+# Flags:\n+#   --no-map       setup only (CLI + backend); do not run `ix map`\n+#   --no-backend   do not start/wait for the Docker backend (CLI install only)\n+#\n+# Env overrides:\n+#   IX_SKIP_INSTALL=1   skip the ix CLI install step\n+#   IX_SKIP_BACKEND=1   same as --no-backend\n+#   IX_SKIP_MAP=1       same as --no-map\n+#\n+# Requires: Node.js >= 22, git, Docker (backend), ripgrep (for `ix text`, optional).\n+# Works on macOS, Linux, and Windows under Git Bash / MSYS2 / WSL.\n+\n+set -euo pipefail\n+\n+REPO=\"${1:-$PWD}\"\n+if [ \"${REPO}\" = \"--no-map\" ] || [ \"${REPO}\" = \"--no-backend\" ]; then\n+  REPO=\"$PWD\"\n+fi\n+DO_MAP=1\n+DO_BACKEND=1\n+for arg in \"$@\"; do\n+  case \"$arg\" in\n+    --no-map) DO_MAP=0 ;;\n+    --no-backend) DO_BACKEND=0 ;;\n+    --*) ;;\n+  esac\n+done\n+[ \"${IX_SKIP_MAP:-0}\" = \"1\" ] && DO_MAP=0\n+[ \"${IX_SKIP_BACKEND:-0}\" = \"1\" ] && DO_BACKEND=0\n+\n+info() { printf '\\033[1;36m[ix-skill]\\033[0m %s\\n' \"$*\"; }\n+warn() { printf '\\033[1;33m[ix-skill]\\033[0m %s\\n' \"$*\"; }\n+fail() { printf '\\033[1;31m[ix-skill]\\033[0m %s\\n' \"$*\" >&2; exit 1; }\n+\n+# Detect Windows (Git Bash / MSYS2 / Cygwin).\n+is_windows() { [ -n \"${MSYSTEM:-}\" ] || [ -n \"${WSL_DISTRO_NAME:-}\" ] || case \"$(uname -s)\" in MINGW*|MSYS*|CYGWIN*) return 0 ;; *) return 1 ;; esac; }\n+\n+version_ge() { # version_ge <got> <want>\n+  # `sort -C` succeeds when its input is already in order, so feeding it\n+  # want-then-got asks \"is want <= got\" — which is the question. The `-r` this\n+  # used to carry asked the reverse and inverted the whole check: Node 22.22.2\n+  # against a floor of 22 warned, and Node 18 passed silently.\n+  printf '%s\\n%s\\n' \"$2\" \"$1\" | sort -V -C 2>/dev/null\n+}\n+\n+command_exists() { command -v \"$1\" >/dev/null 2>&1; }\n+\n+info \"Ix skill bootstrap — repo: $REPO\"\n+\n+# --- Prerequisites -----------------------------------------------------------\n+node_ok=0\n+if command_exists node; then\n+  node_ver=\"$(node --version | tr -d 'v')\"\n+  if version_ge \"$node_ver\" \"22\"; then node_ok=1; else warn \"Node $node_ver detected; Ix requires Node >= 22.\"; fi\n+else\n+  warn \"Node.js not found; Ix requires Node >= 22 (https://nodejs.org).\"\n+fi\n+\n+command_exists git || warn \"git not found; Ix uses it for workspace detection.\"\n+\n+if command_exists rg; then\n+  info \"ripgrep found (powers 'ix text').\"\n+else\n+  warn \"ripgrep not found — 'ix text' will not work. Install it (macOS: brew install ripgrep; Linux: apt/dnf install ripgrep; Windows: choco install ripgrep).\"\n+fi\n+\n+if command_exists docker; then\n+  if docker info >/dev/null 2>&1; then\n+    info \"Docker daemon is running.\"\n+  else\n+    warn \"Docker is installed but the daemon is NOT running. Start Docker Desktop / the Docker service first, then re-run this script.\"\n+    [ \"$DO_BACKEND\" = \"1\" ] && DO_BACKEND=0 && warn \"Skipping backend start for now (daemon not up).\"\n+  fi\n+else\n+  warn \"Docker not found — the Ix backend needs Docker. Install Docker Desktop / Docker Engine, then re-run this script.\"\n+  DO_BACKEND=0\n+fi\n+\n+# --- Resolve the ix CLI -------------------------------------------------------\n+# The Windows installer ships ix.cmd and registers ~/.ix/bin in the user PATH,\n+# but long-lived shells and agents spawned before the install may not see it.\n+# Resolve the standard install location before deciding whether to install.\n+if ! command_exists ix && [ -x \"$HOME/.ix/bin/ix\" ]; then\n+  export PATH=\"$HOME/.ix/bin:$PATH\"\n+  info \"Found ix at $HOME/.ix/bin — added to PATH for this session.\"\n+fi\n+\n+# --- Install the ix CLI (only if still missing) --------------------------------\n+if command_exists ix; then\n+  info \"ix CLI already installed: $(ix --version 2>/dev/null || echo present).\"\n+elif [ \"${IX_SKIP_INSTALL:-0}\" = \"1\" ]; then\n+  warn \"IX_SKIP_INSTALL=1 — skipping ix CLI install. 'ix' is not on PATH.\"\n+else\n+  info \"Installing the ix CLI (official installer)…\"\n+  if is_windows; then\n+    if command_exists powershell; then\n+      powershell -NoProfile -ExecutionPolicy Bypass -Command \"irm https://ix-infra.com/install.ps1 | iex\"\n+    else\n+      fail \"Windows detected but powershell not found. Run in PowerShell: irm https://ix-infra.com/install.ps1 | iex\"\n+    fi\n+  else\n+    curl -fsSL https://ix-infra.com/install.sh | sh\n+  fi\n+  # A fresh install only updates the user PATH, which new processes pick up but\n+  # the current shell does not. Resolve the standard location explicitly.\n+  if ! command_exists ix && [ -x \"$HOME/.ix/bin/ix\" ]; then\n+    export PATH=\"$HOME/.ix/bin:$PATH\"\n+  fi\n+  command_exists ix || fail \"ix CLI install finished but 'ix' is still not on PATH. Restart your shell, or check ~/.ix/cli and PATH, then re-run this script.\"\n+  info \"ix CLI installed.\"\n+fi\n+command_exists ix || fail \"The ix CLI is not on PATH. Run the official installer, restart your shell, then re-run this bootstrap.\"\n+\n+# --- Compass (visualizer UI) --------------------------------------------------\n+# The official installer re-extracts the CLI tarball over the ix home and wipes\n+# the Compass assets, which ship only via `ix upgrade`. Ensure they exist so\n+# `ix view` never silently breaks after an installer re-run.\n+ensure_compass() {\n+  local ix_home=\"${IX_HOME:-$HOME/.ix}\"\n+  if [ -f \"$ix_home/cli/compass/index.html\" ]; then\n+    info \"Compass UI present.\"\n+    return 0\n+  fi\n+  warn \"Compass UI missing at $ix_home/cli/compass (a re-install likely wiped it) — running 'ix upgrade' to restore it.\"\n+  ix upgrade || warn \"'ix upgrade' failed — 'ix view' will be unavailable until it is re-run.\"\n+}\n+if [ \"${IX_SKIP_COMPASS:-0}\" != \"1\" ]; then\n+  ensure_compass\n+fi\n+\n+# --- Backend ------------------------------------------------------------------\n+if [ \"$DO_BACKEND\" = \"1\" ]; then\n+  info \"Starting the Ix backend (ArangoDB + memory layer)…\"\n+  ix docker start || warn \"`ix docker start` reported a problem — run `ix doctor` and `ix status` for details.\"\n+  for _ in $(seq 1 15); do\n+    if ix status >/dev/null 2>&1; then break; fi\n+    sleep 2\n+  done\n+  ix status || warn \"Backend still not reachable. Run: ix docker start && ix doctor\"\n+fi\n+\n+# --- Map the repo -------------------------------------------------------------\n+if [ \"$DO_MAP\" = \"1\" ]; then\n+  info \"Mapping $REPO — this builds the persistent graph (can take a while on large repos)…\"\n+  ( cd \"$REPO\" && ix map . )\n+fi\n+\n+info \"Done. Try: ix explain <symbol>, ix trace <flow>, ix impact <symbol> --format llm\""
+      }
+    ],
+    "commits": [
+      {
+        "sha": "b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+        "author": {
+          "login": "bertolikimberly",
+          "id": 134340724,
+          "type": "User",
+          "html_url": "https://github.com/bertolikimberly"
+        },
+        "committer": {
+          "login": "bertolikimberly",
+          "id": 134340724,
+          "type": "User",
+          "html_url": "https://github.com/bertolikimberly"
+        },
+        "message": "feat(skill): ship the ix agent skill with Compass patch, API docs, and upstream port\n\nAdds the self-contained ix agent skill (SKILL.md, references, bootstrap\nscripts, and the Compass fit-view patch) that teaches any LLM agent to drive\nthe ix CLI, plus the supporting artifacts produced while building it:\n\n- skills/ix: the skill itself — command routing, output-format rules,\n  troubleshooting, first-run bootstrap for bash and PowerShell, and the\n  compass-patch (F fit-view, hint/no-map chips with live theme re-sampling,\n  and a real /__ix/remap endpoint)\n- upstream/compass-fit-view: React port of the fit-view feature destined for\n  the real Compass codebase\n- docs/api: backend HTTP API reference and an OpenAPI 3.0 spec\n- scripts/install-skill.sh: one-shot deploy to ~/.claude/skills and\n  ~/.agents/skills\n- README: skill section; CLAUDE.md: project context and verified gotchas\n- .gitignore: dist/, .freebuff/, .understand-anything/\n\nGenerated with Codebuff 🤖\nCo-Authored-By: Codebuff <noreply@codebuff.com>",
+        "parents": [
+          {
+            "sha": "01308e6c4a64231e7fcf6f545af1d350a52c68c0",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/01308e6c4a64231e7fcf6f545af1d350a52c68c0"
+          }
+        ],
+        "tree_sha": "8703efc5b6441bf156485e1b652d7e839836230b",
+        "authored_at": "2026-08-10T00:14:59Z",
+        "committed_at": "2026-08-10T00:14:59Z"
+      },
+      {
+        "sha": "0c9087c4292254472174b02475d094359c88c055",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/0c9087c4292254472174b02475d094359c88c055",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/0c9087c4292254472174b02475d094359c88c055",
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "committer": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "message": "fix(skill): scope the PR to the skill and docs; drop the Compass monkey-patch\n\nNarrows this to the two pieces that belong in this repo — the `ix` agent skill\nand the HTTP API reference — and fixes the defects in what remains.\n\nRemoved, because the layer is wrong rather than the code:\n\n- `skills/ix/scripts/compass-patch/` — `apply.sh` string-injected a\n  `/__ix/remap` handler into the *compiled* `~/.ix/cli/cli/dist/cli/commands/\n  view.js` and regex-patched Compass's minified `KeyboardHelp-*.js`. This repo\n  owns `ix-cli/src/cli/commands/view.ts`, so that handler belongs in\n  `serverScript()` where it is typechecked, tested, and survives `ix upgrade`\n  instead of being overwritten by it. The handler also spawned `ix map` on an\n  unauthenticated POST, and `serverScript` calls `server.listen(PORT)` with no\n  host — binding 0.0.0.0, so it was reachable from the LAN and from any page in\n  the user's browser. `fit-view.js` wrote `canvas.style.zoom` and\n  `wrap.style.transform`, the two inline styles Compass drives from\n  `snappedZoom`/`snappedPan` state, so React restored its own values on the next\n  render; the 60ms re-apply timer was a race, not a fix. Its auto-frame also\n  duplicated Compass #57, which fixed the empty-first-paint upstream and ships\n  in v0.9.1.\n- `upstream/compass-fit-view/` — 723 lines of React that nothing in this repo\n  builds, typechecks or tests. It is a patch for another repo.\n\nBoth are preserved in this branch's history and are worth landing in\nsystem-compass, where the F-key fit view is genuinely new — Compass binds `0`\ntoday and nothing binds `F`.\n\nFixed in what stays:\n\n- `bootstrap.sh`'s `version_ge` was inverted. `sort -C` succeeds on ordered\n  input, so want-then-got asks \"want <= got\"; the `-r` asked the reverse. Node\n  22.22.2 against a floor of 22 warned \"requires Node >= 22\", and Node 18\n  passed silently. Verified across 22.22.2 / 24 / 22.0.0 / 20.11.1 / 18.4.0.\n- `install-skill.sh` unconditionally `rm -rf`'d `~/.claude/skills/ix` and\n  `~/.agents/skills/ix`. `ix` is a short name; a hand-written skill that\n  happened to share it was destroyed with no prompt, no backup and nothing in\n  the output. It now refuses unless the destination carries `name: ix`, with\n  `--force` to override.\n- `CLAUDE.md` carried `[redacted]/jacob/...`, a path from the author's machine, in\n  the file every agent in this repo loads. It also documented `dist/ix.zip` and\n  `.freebuff/run.md` as repo contents while gitignoring both.\n- `.gitignore`'s `dist/` was unanchored, matching at any depth; `/dist/`.\n- `docs/api/README.md` documented `POST /__ix/remap` as a real endpoint. It is\n  not one — a POST falls through to the SPA handler and returns index.html with\n  a 200, which the section now says.\n- `troubleshooting.md` had three rows whose remedies were the removed patch.\n\nThe `ix reset` is global and `registerPatchesCommand` is never registered\nfindings are kept — both verified, the second now tracked as #371.",
+        "parents": [
+          {
+            "sha": "b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/b038c46117c26e17ff7f3dc8edd4c4f5083f79f6"
+          }
+        ],
+        "tree_sha": "64669f07ae2bfbe8821de1906eaab98fb515e22e",
+        "authored_at": "2026-08-10T03:16:52Z",
+        "committed_at": "2026-08-10T03:16:52Z"
+      }
+    ],
+    "comments": [
+      {
+        "id": 5235488710,
+        "node_id": "IC_kwDORdC75M8AAAABOA83xg",
+        "repository": "ix-infrastructure/Ix",
+        "parent_type": "PULL_REQUEST",
+        "parent_number": 368,
+        "kind": "PR_COMMENT",
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "body": "Pushed the fixes to this branch rather than sending you round another loop — everything below is on `0c9087c`, and the original commit is untouched underneath it so nothing you wrote is lost.\n\n**Scoped it to the two pieces that belong in this repo:** the `ix` skill and the API reference. The API docs I would have taken as-is; they hold up (39 paths, 13 schemas, every path grounded in the backend routes).\n\n**Moved out**, because the layer was wrong rather than the code:\n\n- `skills/ix/scripts/compass-patch/` — the reasons are in the commit message, but the short version is that this repo owns `view.ts`, so patching its *compiled* output is fighting the build, and `fit-view.js` was writing the exact two inline styles React drives from `snappedZoom`/`snappedPan`.\n- `upstream/compass-fit-view/` — nothing here builds React.\n\n**Both are worth landing in `system-compass`, and I would review that PR.** The F-key fit view is genuinely new there — Compass binds `0` for reset-zoom and nothing binds `F`. Your `upstream/` port is most of the work already. What I would drop is the auto-frame-on-load: Compass #57 fixed the empty-first-paint upstream and it ships in v0.9.1, so that part is solved. The F key is not.\n\n**Two bugs found while testing your scripts, both fixed here:**\n\n- `version_ge` in `bootstrap.sh` was inverted. `sort -C` succeeds when input is *already ordered*, so want-then-got asks \"is want <= got\" — the `-r` asked the reverse. Node 22.22.2 against a floor of 22 printed \"Ix requires Node >= 22\", and Node 18 passed silently. I hit it dry-running your bootstrap on this machine. Checked across 22.22.2 / 24 / 22.0.0 / 20.11.1 / 18.4.0.\n- `install-skill.sh` `rm -rf`d the destination unconditionally. `ix` is a short name, and a hand-written skill that happened to share it went without a prompt or a backup. It now refuses unless the destination carries `name: ix`, with `--force` to override. Tested all four paths: clean install, re-install, squatted name, and `--force`.\n\nAlso: `[redacted]/jacob/...` out of CLAUDE.md, the two gitignored paths out of its layout table, `/dist/` anchored, and the `POST /__ix/remap` section in the API docs now says what actually happens (falls through to the SPA handler, returns index.html with a 200) rather than describing the patched behaviour.\n\n**Kept, with credit:** the global-`ix reset` warning and `registerPatchesCommand` never being registered. The second is now #371 — a good catch, it had been sitting there unnoticed because `patches` is in `PRO_COMMANDS`, so OSS users get \"requires Ix Pro\" instead of an unknown-command error.\n\nRe-reviewing now. Thanks for a genuinely careful first contribution — the fact that everything in your description checked out when I ran it is not the norm.",
+        "html_url": "https://github.com/ix-infrastructure/Ix/pull/368#issuecomment-5235488710",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5235488710",
+        "created_at": "2026-08-10T03:17:29Z",
+        "updated_at": "2026-08-10T03:17:29Z",
+        "commit_id": null,
+        "path": null,
+        "line": null,
+        "start_line": null,
+        "side": null,
+        "in_reply_to_id": null,
+        "diff_hunk": null,
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      }
+    ],
+    "reviews": [
+      {
+        "id": 4893362491,
+        "node_id": "PRR_kwDORdC75M8AAAABI6rJOw",
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 368,
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "state": "CHANGES_REQUESTED",
+        "body": "Thanks for this — and welcome. This is a lot of careful work, and unusually, everything you claimed in the PR description checks out when I ran it myself rather than just reading it. That is rarer than it should be, so I want to be specific about what I verified before getting to the changes I'm asking for.\n\n## What I verified as working\n\n- Your stated checks all pass: `node --check fit-view.js`, `bash -n` on all three shell scripts, and the OpenAPI spec parses cleanly (39 paths, 13 schemas). Every path's base segment exists in the backend's Scala routes, so the API reference is grounded, not invented.\n- `apply.sh` is genuinely idempotent. I ran it three times against a fixture; the third pass printed \"already patched\" for all three steps and the `<script>` tag count in `index.html` stayed at 1.\n- It works against the **real shipped Compass**. I copied `~/.ix/cli/compass` (v0.2.0) to a scratch dir and ran the patch: the minified marker `` {keys:[`0`],label:`Reset zoom & center`} `` really is present in `KeyboardHelp-CLjfSVTU.js`, the F entry inserted correctly, and `node --check` confirms the patched chunk still parses. Same for the injected `view.js`.\n- `registerPatchesCommand is defined but never registered` — **correct**, and a real find. `patches.ts:6` exports it and nothing imports it, so `ix patches` is an unknown command today. That deserves its own issue; I'll open one.\n\nSo the mechanism works. My concerns are about layer and packaging, not craft.\n\n## Blocking\n\n**1. It patches the same two inline styles React owns.** `SystemMapCanvas.tsx:858-871` in the Compass source renders:\n\n```jsx\n<div style={{ transform: `translate(${snappedPan.x}px, ${snappedPan.y}px)`, transformOrigin: \"0 0\" }}>\n  <div className=\"relative ix-crisp-canvas\" style={{ zoom: snappedZoom, ... }}>\n```\n\n`fit-view.js` writes `wrap.style.transform` and `canvas.style.zoom` from outside React — the exact two properties driven by `snappedPan` / `snappedZoom` state. Every subsequent render restores React's values. The 60 ms \"verify the target stuck and re-apply\" timer is a band-aid on that race rather than a fix. Related: the background grid at `:855` uses `backgroundPosition: snappedPan`, which the patch doesn't update, so after pressing F the grid stays put while the nodes move.\n\nWorth checking too whether the auto-frame is still needed: Compass #57 (`fix/bounded-layout-and-viewport-refit`, merged and bundled in v0.9.1) fixed the empty-first-paint case directly — the comment at `SystemMapCanvas.tsx:450` describes the same symptom you're solving.\n\n**2. Two of three patch steps silently no-op on stock Linux.** This box has `python3` and no `python` (standard on Debian/Ubuntu/Fedora). Running `apply.sh`:\n\n```\nindex.html: added fit-view.js script tag\napply.sh: line 40: python: command not found\nkeyboard help: skipped (python unavailable)\napply.sh: line 68: python: command not found\nview.js server: skipped (python unavailable)\nCompass fit-view patch applied. Restart the visualizer ... picks up the real /__ix/remap endpoint\n--- exit code: 0 ---\n```\n\nIt exits 0 and tells you to restart for an endpoint it never installed. `bootstrap.sh:137` compounds it by redirecting to `/dev/null` and reporting success. Swapping in a `python` → `python3` shim made all three steps apply perfectly, so this is purely the interpreter name plus the `|| { echo \"skipped\"; }` swallowing a real failure.\n\n**3. `sed -i` with no suffix is GNU-only** (`apply.sh:33`) and fails on macOS, which the README section and `SKILL.md` both claim to support. The repo already has both portable forms: `scripts/disconnect.sh` uses `sed -i.bak`, `scripts/release.sh` uses `sed -i ''`.\n\n**4. The `/__ix/remap` endpoint should be source, not a patched artifact.** This repo owns `ix-cli/src/cli/commands/view.ts`; step 4 string-injects the handler into the *compiled* `~/.ix/cli/cli/dist/cli/commands/view.js`, which every `ix upgrade` overwrites. In `serverScript()` it would be typechecked, tested, and permanent. Two things to fix on the way in: `serverScript` ends in `server.listen(PORT)` with no host, so it binds `0.0.0.0` — the handler would be reachable from the whole LAN, and from any web page in the user's browser, since a simple-content-type POST isn't preflighted. It should bind `127.0.0.1` and check `Sec-Fetch-Site` / `Origin` before spawning a 30-minute `ix map`.\n\n**5. `CLAUDE.md` ships an absolute path from your machine:** `python \"[redacted]/jacob/.agents/skills/skill-creator/scripts/package_skill.py\"`. This is the file every agent working in the repo loads. The README's copy of the same command already uses `$HOME`, so the two disagree.\n\n**6. `CLAUDE.md` documents two paths that can't exist** — `dist/ix.zip` and `.freebuff/run.md` are both gitignored by this same PR, but the layout table presents them as repo contents.\n\n## Smaller\n\n- `.gitignore`: `dist/` is unanchored so it matches at any depth, and `core-ingestion/dist/` + `ix-cli/dist/` were already covered. `/dist/` is what you want. (Nothing tracked is affected today — I checked.)\n- `upstream/compass-fit-view/` is 723 lines of React that nothing here builds, typechecks, or tests. It belongs in the Compass repo as a PR.\n- `install-skill.sh` `rm -rf`s `~/.claude/skills/ix` and `~/.agents/skills/ix` with no prompt, which silently destroys local edits to a same-named skill.\n\n## Suggested split\n\nThis is five unrelated changes in one commit, and they're ready at very different times:\n\n1. **`docs/api/`** — closest to mergeable as-is. I'd take this on its own today.\n2. **`skills/ix/` + `install-skill.sh` + README** — mergeable once (2), (3) and (5) are fixed.\n3. **`/__ix/remap`** — a small PR against `view.ts` with the bind + origin fix.\n4. **fit-view** — to the Compass repo, after checking what #57 already covers.\n5. The `registerPatchesCommand` and global-`ix reset` findings — issues, and thank you for both.\n\nHappy to review each of those as they come. If you'd like to start with just #1, I think that lands quickly.\n",
+        "html_url": "https://github.com/ix-infrastructure/Ix/pull/368#pullrequestreview-4893362491",
+        "submitted_at": "2026-08-10T02:45:30Z",
+        "commit_id": "b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      },
+      {
+        "id": 4893476799,
+        "node_id": "PRR_kwDORdC75M8AAAABI6yHvw",
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 368,
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "state": "APPROVED",
+        "body": "Re-reviewed after `0c9087c`. Every blocking item is resolved — the two that were architectural by removal, the rest by fix — and the full matrix is green now that the held workflow runs are approved (`CI Passed`, E2E, Linux/macOS/Windows on Node 22 and 24).\n\nWhat lands: the skill, the API reference, and two real findings about this codebase. That is a good first contribution.\n\n@Alot1z — the fit-view work is not rejected, just addressed to the wrong repo. If you open it against `system-compass` I will review it there. Your `upstream/compass-fit-view/` port is most of the way; drop the auto-frame (Compass #57 covers it) and keep the F key, which nothing binds today.\n\nApproving. Merging per the queue.",
+        "html_url": "https://github.com/ix-infrastructure/Ix/pull/368#pullrequestreview-4893476799",
+        "submitted_at": "2026-08-10T03:19:34Z",
+        "commit_id": "0c9087c4292254472174b02475d094359c88c055",
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      }
+    ],
+    "review_comments": [],
+    "timeline": [
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/b038c46117c26e17ff7f3dc8edd4c4f5083f79f6"
+      },
+      {
+        "id": 29196000932,
+        "event": "review_requested",
+        "actor": {
+          "login": "Alot1z",
+          "id": 16801672,
+          "type": "User",
+          "html_url": "https://github.com/Alot1z"
+        },
+        "created_at": "2026-08-10T00:15:23Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29196000932"
+      },
+      {
+        "id": 4893362491,
+        "event": "reviewed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": "b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T02:46:10Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/0c9087c4292254472174b02475d094359c88c055"
+      },
+      {
+        "id": 5235488710,
+        "event": "commented",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T03:17:29Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5235488710"
+      },
+      {
+        "id": 29200447110,
+        "event": "renamed",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T03:17:49Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29200447110"
+      },
+      {
+        "id": 29200456714,
+        "event": "mentioned",
+        "actor": {
+          "login": "Alot1z",
+          "id": 16801672,
+          "type": "User",
+          "html_url": "https://github.com/Alot1z"
+        },
+        "created_at": "2026-08-10T03:18:10Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29200456714"
+      },
+      {
+        "id": 29200456747,
+        "event": "subscribed",
+        "actor": {
+          "login": "Alot1z",
+          "id": 16801672,
+          "type": "User",
+          "html_url": "https://github.com/Alot1z"
+        },
+        "created_at": "2026-08-10T03:18:10Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29200456747"
+      },
+      {
+        "id": 4893476799,
+        "event": "reviewed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": "0c9087c4292254472174b02475d094359c88c055",
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": 29201413573,
+        "event": "merged",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T03:58:42Z",
+        "commit_id": "2157158446a74d3d2303f818dc4f3f4e3758432c",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29201413573"
+      },
+      {
+        "id": 29201413610,
+        "event": "closed",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T03:58:43Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29201413610"
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-11T00:07:16Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": 29253447420,
+        "event": "referenced",
+        "actor": {
+          "login": "Alot1z",
+          "id": 16801672,
+          "type": "User",
+          "html_url": "https://github.com/Alot1z"
+        },
+        "created_at": "2026-08-11T00:31:16Z",
+        "commit_id": "1497596a03bbf916f26d34dfd18f986844175d43",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29253447420"
+      },
+      {
+        "id": 29299092177,
+        "event": "referenced",
+        "actor": {
+          "login": "Alot1z",
+          "id": 16801672,
+          "type": "User",
+          "html_url": "https://github.com/Alot1z"
+        },
+        "created_at": "2026-08-11T18:56:59Z",
+        "commit_id": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29299092177"
+      },
+      {
+        "id": 29352052370,
+        "event": "referenced",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-12T16:27:01Z",
+        "commit_id": "41be07b47cdf9d4c18c805193c7bf5f633316a07",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29352052370"
+      }
+    ],
+    "source": "OFFICIAL_GITHUB_FACT",
+    "review_threads": [],
+    "review_thread_capture": {
+      "status": "VERIFIED",
+      "source": "GitHub GraphQL API"
+    }
+  },
+  "source_context": {
+    "id": "github:pull_request:ix-infrastructure/Ix#368",
+    "source": {
+      "type": "github_pull_request",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/368",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/368",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T00:15:22Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T03:58:43Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "PR-368",
+    "entity_type": "PULL_REQUEST",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "mirror_scope": "source PR, commits, files, comments, reviews, review comments, and review threads",
+    "related_analysis_types": [
+      "FINDING",
+      "DECISION",
+      "IMPLEMENTATION"
+    ],
+    "review_thread_state": "VERIFIED_GRAPHQL"
   },
   "relationships": [
     {
@@ -44,6 +718,86 @@
       "other_type": "file",
       "other_title": "CLI-HANDOFF/phase-15/FINAL-PR-WORTHINESS-AUDIT.json",
       "other_url": "https://alot1z.github.io/Ix-findings/entities/src-90ab8426282e"
+    },
+    {
+      "direction": "out",
+      "relationship": "FOUND_IN",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "in",
+      "relationship": "AUTHORED",
+      "other": "PERSON-Alot1z",
+      "other_type": "artifact",
+      "other_title": "Alot1z",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-alot1z"
+    },
+    {
+      "direction": "out",
+      "relationship": "HEADS_AT",
+      "other": "COMMIT-0c9087c4292254472174b02475d094359c88c055",
+      "other_type": "commit",
+      "other_title": "0c9087c4292254472174b02475d094359c88c055",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-0c9087c4292254472174b02475d094359c88c055"
+    },
+    {
+      "direction": "out",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "COMMIT-b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+      "other_type": "commit",
+      "other_title": "b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b038c46117c26e17ff7f3dc8edd4c4f5083f79f6"
+    },
+    {
+      "direction": "out",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "COMMIT-0c9087c4292254472174b02475d094359c88c055",
+      "other_type": "commit",
+      "other_title": "0c9087c4292254472174b02475d094359c88c055",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-0c9087c4292254472174b02475d094359c88c055"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMENTED_ON",
+      "other": "COMMENT-ix-infrastructure-Ix-pr-368-5235488710",
+      "other_type": "artifact",
+      "other_title": "PR #368 comment 5235488710",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/comment-ix-infrastructure-ix-pr-368-5235488710"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_REVIEW",
+      "other": "REVIEW-ix-infrastructure-Ix-pr-368-4893362491",
+      "other_type": "artifact",
+      "other_title": "Review 4893362491 on PR #368",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/review-ix-infrastructure-ix-pr-368-4893362491"
+    },
+    {
+      "direction": "in",
+      "relationship": "REVIEWED_BY",
+      "other": "PERSON-KageBinary",
+      "other_type": "artifact",
+      "other_title": "KageBinary",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-kagebinary"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_REVIEW",
+      "other": "REVIEW-ix-infrastructure-Ix-pr-368-4893476799",
+      "other_type": "artifact",
+      "other_title": "Review 4893476799 on PR #368",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/review-ix-infrastructure-ix-pr-368-4893476799"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGED_BY",
+      "other": "COMMIT-0c9087c4292254472174b02475d094359c88c055",
+      "other_type": "commit",
+      "other_title": "0c9087c4292254472174b02475d094359c88c055",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-0c9087c4292254472174b02475d094359c88c055"
     }
   ]
 }

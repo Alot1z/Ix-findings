@@ -1,0 +1,160 @@
+{
+  "id": "COMMIT-c11a5a89de889b986044f6ac40a1d03d12a698c0",
+  "type": "commit",
+  "title": "c11a5a89de889b986044f6ac40a1d03d12a698c0",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-c11a5a89de889b986044f6ac40a1d03d12a698c0",
+  "summary": {
+    "id": "COMMIT-c11a5a89de889b986044f6ac40a1d03d12a698c0",
+    "type": "commit",
+    "title": "c11a5a89de889b986044f6ac40a1d03d12a698c0",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/c11a5a89de889b986044f6ac40a1d03d12a698c0",
+    "author": {
+      "name": "riley0227",
+      "email": "riley0227@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-372be244a17ea7b1ceeaf5d882e2e12fc6da6dde",
+      "other_type": "commit",
+      "other_title": "372be244a17ea7b1ceeaf5d882e2e12fc6da6dde",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-372be244a17ea7b1ceeaf5d882e2e12fc6da6dde"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-95b3b88cafe13fd15b869586e912ff54caff4cba",
+      "other_type": "commit",
+      "other_title": "95b3b88cafe13fd15b869586e912ff54caff4cba",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-95b3b88cafe13fd15b869586e912ff54caff4cba"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-7d118a3c47ed",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/context/ConflictDetector.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-7d118a3c47ed"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-b65c702fbc12",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/ArangoGraphQueryApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b65c702fbc12"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-a38b46412476",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/ArangoGraphWriteApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-a38b46412476"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-aa4586f48e7f",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/ArangoSchema.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-aa4586f48e7f"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-bc1952f84425",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/ClaimLifecycleSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-bc1952f84425"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-6e5c357ab99d",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/context/ConflictDetector.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-6e5c357ab99d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c8947973d6aa",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/ArangoGraphQueryApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c8947973d6aa"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-a7b1555e2594",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/ArangoGraphWriteApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-a7b1555e2594"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5c0d8309e53e",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/ArangoSchema.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5c0d8309e53e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-627096be9a54",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/ClaimLifecycleSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-627096be9a54"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-262a2a2071e2",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/context/ConflictDetector.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-262a2a2071e2"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-4de3a54ff174",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/ArangoGraphQueryApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-4de3a54ff174"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-aea01a9e1722",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/ArangoGraphWriteApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-aea01a9e1722"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ed935eeaae0e",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/ArangoSchema.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ed935eeaae0e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-a02d2fb2da07",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/ClaimLifecycleSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-a02d2fb2da07"
+    }
+  ]
+}

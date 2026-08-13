@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-1e5dc27fc428c3f69869b7db4539f9652ebd9a2a",
+  "type": "commit",
+  "title": "1e5dc27fc428c3f69869b7db4539f9652ebd9a2a",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-1e5dc27fc428c3f69869b7db4539f9652ebd9a2a",
+  "summary": {
+    "id": "COMMIT-1e5dc27fc428c3f69869b7db4539f9652ebd9a2a",
+    "type": "commit",
+    "title": "1e5dc27fc428c3f69869b7db4539f9652ebd9a2a",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/1e5dc27fc428c3f69869b7db4539f9652ebd9a2a",
+    "author": {
+      "name": "riley0227",
+      "email": "riley0227@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-8f6d9b5b4d8a0dc30751ba58593844c4e336cafe",
+      "other_type": "commit",
+      "other_title": "8f6d9b5b4d8a0dc30751ba58593844c4e336cafe",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-8f6d9b5b4d8a0dc30751ba58593844c4e336cafe"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-c12bb6ee2d384d5abe884a57e388679eea06bdf6",
+      "other_type": "commit",
+      "other_title": "c12bb6ee2d384d5abe884a57e388679eea06bdf6",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-c12bb6ee2d384d5abe884a57e388679eea06bdf6"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-017842939af6",
+      "other_type": "artifact",
+      "other_title": "release-please-config.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-017842939af6"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-242a08ab24f9",
+      "other_type": "artifact",
+      "other_title": "release-please-config.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-242a08ab24f9"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-9c543fda4b33",
+      "other_type": "artifact",
+      "other_title": "release-please-config.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-9c543fda4b33"
+    }
+  ]
+}

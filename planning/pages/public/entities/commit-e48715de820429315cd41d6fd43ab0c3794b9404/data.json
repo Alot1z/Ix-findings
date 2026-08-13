@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-e48715de820429315cd41d6fd43ab0c3794b9404",
+  "type": "commit",
+  "title": "e48715de820429315cd41d6fd43ab0c3794b9404",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-e48715de820429315cd41d6fd43ab0c3794b9404",
+  "summary": {
+    "id": "COMMIT-e48715de820429315cd41d6fd43ab0c3794b9404",
+    "type": "commit",
+    "title": "e48715de820429315cd41d6fd43ab0c3794b9404",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/e48715de820429315cd41d6fd43ab0c3794b9404",
+    "author": {
+      "name": "riley0227",
+      "email": "riley0227@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-b5e60d36cf9b9bf001af9efd673b1ce88ee929df",
+      "other_type": "commit",
+      "other_title": "b5e60d36cf9b9bf001af9efd673b1ce88ee929df",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b5e60d36cf9b9bf001af9efd673b1ce88ee929df"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-174026b298bc688047f37a2b53ebd8e38e91a989",
+      "other_type": "commit",
+      "other_title": "174026b298bc688047f37a2b53ebd8e38e91a989",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-174026b298bc688047f37a2b53ebd8e38e91a989"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5a277ec7eb68",
+      "other_type": "artifact",
+      "other_title": ".github/workflows/release-please.yml",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5a277ec7eb68"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-7e1a01e1e49f",
+      "other_type": "artifact",
+      "other_title": ".github/workflows/release-please.yml",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-7e1a01e1e49f"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e3c203269c2f",
+      "other_type": "artifact",
+      "other_title": ".github/workflows/release-please.yml",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e3c203269c2f"
+    }
+  ]
+}

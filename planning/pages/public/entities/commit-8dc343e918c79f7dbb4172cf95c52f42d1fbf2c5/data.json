@@ -1,0 +1,88 @@
+{
+  "id": "COMMIT-8dc343e918c79f7dbb4172cf95c52f42d1fbf2c5",
+  "type": "commit",
+  "title": "8dc343e918c79f7dbb4172cf95c52f42d1fbf2c5",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-8dc343e918c79f7dbb4172cf95c52f42d1fbf2c5",
+  "summary": {
+    "id": "COMMIT-8dc343e918c79f7dbb4172cf95c52f42d1fbf2c5",
+    "type": "commit",
+    "title": "8dc343e918c79f7dbb4172cf95c52f42d1fbf2c5",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/8dc343e918c79f7dbb4172cf95c52f42d1fbf2c5",
+    "author": {
+      "name": "Tanner Kocher",
+      "email": "tannertorrey3@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-a8f33fdd17bf001c6f915c2f5fd2151e51c01782",
+      "other_type": "commit",
+      "other_title": "a8f33fdd17bf001c6f915c2f5fd2151e51c01782",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-a8f33fdd17bf001c6f915c2f5fd2151e51c01782"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-8cf43ce24b7ce99226b01dc2ed9ced3b3892609a",
+      "other_type": "commit",
+      "other_title": "8cf43ce24b7ce99226b01dc2ed9ced3b3892609a",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-8cf43ce24b7ce99226b01dc2ed9ced3b3892609a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e6f2ba20b90b",
+      "other_type": "artifact",
+      "other_title": ".github/workflows/release.yml",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e6f2ba20b90b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e559b6bc2060",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/upgrade.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e559b6bc2060"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-d2f38a57606b",
+      "other_type": "artifact",
+      "other_title": ".github/workflows/release.yml",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-d2f38a57606b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5335f7460d14",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/upgrade.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5335f7460d14"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c0bc8e5fa2fa",
+      "other_type": "artifact",
+      "other_title": ".github/workflows/release.yml",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c0bc8e5fa2fa"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3d4b7b10ad9e",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/upgrade.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3d4b7b10ad9e"
+    }
+  ]
+}

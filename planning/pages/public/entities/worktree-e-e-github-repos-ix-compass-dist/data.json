@@ -1,0 +1,42 @@
+{
+  "id": "WORKTREE-E-E-github-repos-ix-compass-dist",
+  "type": "artifact",
+  "title": "WORKTREE-E-E-github-repos-ix-compass-dist",
+  "status": "IN_PROGRESS",
+  "url": "https://alot1z.github.io/Ix-findings/entities/worktree-e-e-github-repos-ix-compass-dist",
+  "summary": {
+    "id": "WORKTREE-E-E-github-repos-ix-compass-dist",
+    "type": "artifact",
+    "title": "WORKTREE-E-E-github-repos-ix-compass-dist",
+    "status": "IN_PROGRESS"
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "WORKTREE_OF",
+      "other": "CLONE-E-E-github-repos-ix-compass-dist",
+      "other_type": "artifact",
+      "other_title": "CLONE-E-E-github-repos-ix-compass-dist",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/clone-e-e-github-repos-ix-compass-dist"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHECKS_OUT",
+      "other": "BRANCH-98369d67f623",
+      "other_type": "branch",
+      "other_title": "ix-infrastructure/ix-compass-dist:main",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-98369d67f623"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHECKS_OUT",
+      "other": "BRANCH-4e79eb8dc644",
+      "other_type": "branch",
+      "other_title": "ix-infrastructure/ix-compass-dist:main",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-4e79eb8dc644"
+    }
+  ]
+}

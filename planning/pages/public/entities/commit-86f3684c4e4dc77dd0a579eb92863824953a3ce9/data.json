@@ -1,0 +1,209 @@
+{
+  "id": "COMMIT-86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+  "type": "commit",
+  "title": "86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+  "summary": {
+    "id": "COMMIT-86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+    "type": "commit",
+    "title": "86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "source_mirror_id": "github:commit:ix-infrastructure/Ix@86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+    "source_type": "github_commit",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/commit/86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "sha": "86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "committer": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "message": "fix(llm): stop printLlmLines dropping the blank lines read counts\n\nReview follow-up. `read --format llm` frames its payload with\n`content lines=<n>` and then prints the raw source, but printLlmLines skipped\nfalsy entries -- and a blank source line is `\"\"`. So the header counted lines\nthat never reached stdout, and a consumer honouring the count read the\nfollowing records as source.\n\nWrong on almost every real input, not an edge case: `ix read src/cli/llm.ts\n--format llm` declared 91 and emitted 81. Correct only for a file with no\nblank lines and no trailing newline.\n\n`!= null` rather than truthiness. printLlmLines had no callers on main before\nthis branch, so nothing else is affected: every renderer builds lines with a\nrecord kind, and llmLine returns `\"\"` only for a null kind with no surviving\nfields, which no caller passes.\n\nThe existing test asserted renderReadLlm's return value, which is correct in\nisolation -- the defect was in render composed with print. So outputResult is\nexported and the new tests drive the real print path across blank lines, an\nempty file, CRLF, no trailing newline, and blank-lines-only.\n\nAlso pins doctor's status precedence for {ok:true, warn:true} -- the one shape\nthe ternary ordering decides, and previously uncovered. It renders `ok`, which\nis what the glyph line renders for the same record.\n\nBug restored on both: 6 targeted failures, then byte-exact restore (sha256\nverified). tsc/eslint/knip clean, 667 tests pass.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01PZhcNcCtFQ6Bz2XMDpJPJS",
+    "parents": [
+      {
+        "sha": "b7e04e73b7174b87831f4c5d981b5e198f363a75",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/b7e04e73b7174b87831f4c5d981b5e198f363a75"
+      }
+    ],
+    "tree_sha": "4dcd7533b136426e64c070178a82d8ebbdb61fc2",
+    "authored_at": "2026-08-10T04:49:14Z",
+    "committed_at": "2026-08-10T04:49:14Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T04:49:14Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T04:49:14Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#372"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-b7e04e73b7174b87831f4c5d981b5e198f363a75",
+      "other_type": "commit",
+      "other_title": "b7e04e73b7174b87831f4c5d981b5e198f363a75",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b7e04e73b7174b87831f4c5d981b5e198f363a75"
+    },
+    {
+      "direction": "in",
+      "relationship": "HEADS_AT",
+      "other": "PR-372",
+      "other_type": "pr",
+      "other_title": "Ix PR #372",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-372"
+    },
+    {
+      "direction": "in",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "PR-372",
+      "other_type": "pr",
+      "other_title": "Ix PR #372",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-372"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3a5de4be99c9",
+      "other_type": "artifact",
+      "other_title": "CLAUDE.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3a5de4be99c9"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-53b1c914b232",
+      "other_type": "artifact",
+      "other_title": "docs/llm-format.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-53b1c914b232"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e2fb6dc45efb",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/llm-tier5.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e2fb6dc45efb"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-b33a6fbad5d4",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/doctor.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b33a6fbad5d4"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ddbc07b0440d",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/explain.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ddbc07b0440d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c04093d564c8",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/read.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c04093d564c8"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-95af80e81bec",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/savings.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-95af80e81bec"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-490cd3533a0f",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/status.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-490cd3533a0f"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5e64dedc869c",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/explain/llm.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5e64dedc869c"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-27a225acc037",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/llm.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-27a225acc037"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGED_BY",
+      "other": "PR-372",
+      "other_type": "pr",
+      "other_title": "Ix PR #372",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-372"
+    }
+  ]
+}

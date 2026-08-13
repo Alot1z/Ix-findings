@@ -1,0 +1,42 @@
+{
+  "id": "WORKTREE-E-E-github-repos-Ix-mcp",
+  "type": "artifact",
+  "title": "WORKTREE-E-E-github-repos-Ix-mcp",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/worktree-e-e-github-repos-ix-mcp",
+  "summary": {
+    "id": "WORKTREE-E-E-github-repos-Ix-mcp",
+    "type": "artifact",
+    "title": "WORKTREE-E-E-github-repos-Ix-mcp",
+    "status": "CURRENT"
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "WORKTREE_OF",
+      "other": "CLONE-E-E-github-repos-Ix-remap",
+      "other_type": "artifact",
+      "other_title": "CLONE-E-E-github-repos-Ix-remap",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/clone-e-e-github-repos-ix-remap"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHECKS_OUT",
+      "other": "BRANCH-7e70f9cc3273",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:feat/ix-mcp",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-7e70f9cc3273"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHECKS_OUT",
+      "other": "BRANCH-7ddcbabbe202",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:feat/ix-mcp",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-7ddcbabbe202"
+    }
+  ]
+}

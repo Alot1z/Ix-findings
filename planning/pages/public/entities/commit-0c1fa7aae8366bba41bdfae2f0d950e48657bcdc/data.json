@@ -1,0 +1,139 @@
+{
+  "id": "COMMIT-0c1fa7aae8366bba41bdfae2f0d950e48657bcdc",
+  "type": "commit",
+  "title": "0c1fa7aae8366bba41bdfae2f0d950e48657bcdc",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-0c1fa7aae8366bba41bdfae2f0d950e48657bcdc",
+  "summary": {
+    "id": "COMMIT-0c1fa7aae8366bba41bdfae2f0d950e48657bcdc",
+    "type": "commit",
+    "title": "0c1fa7aae8366bba41bdfae2f0d950e48657bcdc",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/0c1fa7aae8366bba41bdfae2f0d950e48657bcdc",
+    "source_mirror_id": "github:commit:ix-infrastructure/Ix@0c1fa7aae8366bba41bdfae2f0d950e48657bcdc",
+    "source_type": "github_commit",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/commit/0c1fa7aae8366bba41bdfae2f0d950e48657bcdc",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/0c1fa7aae8366bba41bdfae2f0d950e48657bcdc",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "sha": "0c1fa7aae8366bba41bdfae2f0d950e48657bcdc",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/0c1fa7aae8366bba41bdfae2f0d950e48657bcdc",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/0c1fa7aae8366bba41bdfae2f0d950e48657bcdc",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "committer": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "message": "fix(release): stamp the bundled compass with the release it ships in\n\nThe compass in the release tarball carries no version marker, so\ngetInstalledCompassVersion() reads 0.0.0 and `ix upgrade` treats a\ncompass it just shipped as \"not installed\" — then replaces it with\nwhatever ix-compass-dist has, which is older than a bundle built from\ncompass main at release time.\n\nv0.9.0 shipped exactly that. On Windows an unrelated tar failure masked\nit; everywhere else the swap succeeds and silently reverts the map to the\n2026-06-08 build, undoing the release. install.sh already writes this\nfile after extracting, so a fresh install was fine and only the upgrade\npath lost the stamp.\n\nThe Ix version rather than a compass version: the bundle is built from\ncompass main at release time, so it is always at least as new as any\nix-compass-dist release cut before it, which makes the Ix version a\nmonotonic stand-in. A genuine dist release published later at a higher\nnumber is still offered.\n\nBoth archive branches then verify the stamp is really inside the artifact\nrather than trusting tar and 7z to carry a dot-named file. Losing it\nproduces no error at all — every upgrade just quietly reverts the\ncompass — so it has to fail at the point of packaging or not at all.",
+    "parents": [
+      {
+        "sha": "3c49cc243654aae428cfc4b8802f0b3a99de56a4",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/3c49cc243654aae428cfc4b8802f0b3a99de56a4"
+      }
+    ],
+    "tree_sha": "0e656f083b8d30745d7e014daa44bfd5b2ce5ec6",
+    "authored_at": "2026-08-09T22:26:06Z",
+    "committed_at": "2026-08-09T22:26:06Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@0c1fa7aae8366bba41bdfae2f0d950e48657bcdc",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/0c1fa7aae8366bba41bdfae2f0d950e48657bcdc",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/0c1fa7aae8366bba41bdfae2f0d950e48657bcdc",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-09T22:26:06Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-09T22:26:06Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-0c1fa7aae8366bba41bdfae2f0d950e48657bcdc",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#365"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-83c4308b5d1c7f70fd1294350474890c3549ea04",
+      "other_type": "commit",
+      "other_title": "83c4308b5d1c7f70fd1294350474890c3549ea04",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-83c4308b5d1c7f70fd1294350474890c3549ea04"
+    },
+    {
+      "direction": "out",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-3c49cc243654aae428cfc4b8802f0b3a99de56a4",
+      "other_type": "commit",
+      "other_title": "3c49cc243654aae428cfc4b8802f0b3a99de56a4",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-3c49cc243654aae428cfc4b8802f0b3a99de56a4"
+    },
+    {
+      "direction": "in",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "PR-365",
+      "other_type": "pr",
+      "other_title": "Ix PR #365",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-365"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e6f2ba20b90b",
+      "other_type": "artifact",
+      "other_title": ".github/workflows/release.yml",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e6f2ba20b90b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-d2f38a57606b",
+      "other_type": "artifact",
+      "other_title": ".github/workflows/release.yml",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-d2f38a57606b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c0bc8e5fa2fa",
+      "other_type": "artifact",
+      "other_title": ".github/workflows/release.yml",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c0bc8e5fa2fa"
+    }
+  ]
+}

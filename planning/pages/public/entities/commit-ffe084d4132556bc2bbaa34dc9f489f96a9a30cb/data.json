@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-ffe084d4132556bc2bbaa34dc9f489f96a9a30cb",
+  "type": "commit",
+  "title": "ffe084d4132556bc2bbaa34dc9f489f96a9a30cb",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-ffe084d4132556bc2bbaa34dc9f489f96a9a30cb",
+  "summary": {
+    "id": "COMMIT-ffe084d4132556bc2bbaa34dc9f489f96a9a30cb",
+    "type": "commit",
+    "title": "ffe084d4132556bc2bbaa34dc9f489f96a9a30cb",
+    "status": "HISTORICAL",
+    "repository": "Alot1z/Ix-findings",
+    "url": "https://github.com/Alot1z/Ix-findings/commit/ffe084d4132556bc2bbaa34dc9f489f96a9a30cb",
+    "author": {
+      "name": "Alot1z",
+      "email": "your-github-email@example.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-92ac71e5e8a366a208159955426d7e259187ebc7",
+      "other_type": "commit",
+      "other_title": "92ac71e5e8a366a208159955426d7e259187ebc7",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-92ac71e5e8a366a208159955426d7e259187ebc7"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-47c354173de8d3ec188e7c6275353451dc76b49f",
+      "other_type": "commit",
+      "other_title": "47c354173de8d3ec188e7c6275353451dc76b49f",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-47c354173de8d3ec188e7c6275353451dc76b49f"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-67b9b5f64453",
+      "other_type": "artifact",
+      "other_title": ".github/workflows/pages.yml",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-67b9b5f64453"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-55a2245f0689",
+      "other_type": "artifact",
+      "other_title": "CLI-HANDOFF/phase-6/PHASE-6-AUTHORIZATION-STATE.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-55a2245f0689"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2ada99e3eae5",
+      "other_type": "artifact",
+      "other_title": "CLI-HANDOFF/phase-6/PHASE-6-LIVE-BASELINE.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2ada99e3eae5"
+    }
+  ]
+}

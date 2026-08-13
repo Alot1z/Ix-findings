@@ -1,0 +1,434 @@
+{
+  "id": "PR-423",
+  "type": "pr",
+  "title": "Ix PR #423",
+  "status": "OPEN",
+  "url": "https://alot1z.github.io/Ix-findings/entities/pr-423",
+  "summary": {
+    "id": "PR-423",
+    "type": "pr",
+    "title": "Ix PR #423",
+    "status": "OPEN",
+    "number": 423,
+    "url": "https://github.com/ix-infrastructure/Ix/pull/423",
+    "source_mirror_id": "github:pull_request:ix-infrastructure/Ix#423",
+    "source_type": "github_pull_request",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/pull/423",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/423",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "number": 423,
+    "node_id": "PR_kwDORdC75M7-1Dye",
+    "title": "feat(agent): unify Ix context, provenance, and investigation workflows for agents",
+    "body": "## Summary\n\nAgents investigating a target currently stitch together many disconnected\ngraph/evidence results by hand. This PR adds a bounded, deterministic context\nbundle — `ix context <target>` — that composes Ix's existing intelligence into\none coherent, provenance-aware answer, and exposes it over CLI and MCP\n(`ix_context`).\n\n## Existing Ix context/provenance infrastructure\n\nIx already ships a rich graph surface that this PR composes rather than\nreplaces: entity/claims/edges (`ix entity`), conflicts (`ix conflicts`),\nhistory, impact, trace, rank, stale detection, decisions, and the `/v1/context`\nservice that returns claims/conflicts/decisions/intents for a seed.\n`--format llm` gives a token-minimal wire format. The new command is genuine\ncompositional work on top of those services — it does not create a second\ncontext engine, a second graph model, or a parallel ranking engine.\n\n## Problem\n\n- Agents get fragments: one call for claims, another for edges, another for\n  history, another for staleness — each with its own ordering and shape.\n- No bounded output: nothing stops a wide target from flooding the context.\n- No explicit truncation: silent trimming hides what was dropped.\n\n## New context composition\n\n`ix context <target>` produces an `ix-context-bundle/1` schema object with:\n\n- `target` — resolved id/name/kind and resolution mode.\n- `entities` — target plus referenced nodes, deduped and ordered\n  deterministically (kind, name, id).\n- `relationships` — graph edges, ordered deterministically (src, dst,\n  predicate).\n- `claims`, `decisions`, `conflicts`, `intents` — straight from the existing\n  context service, preserving their shapes.\n- `provenance` — source URI/hash, extractor, source type, observedAt,\n  introduced rev, history length, staleness.\n- `freshness` — `current` / `stale` / `unverified`, never silently presenting\n  historical evidence as current.\n- `evidence` — ranked items with `score`, `kind`, `reason`, `refs`.\n\n## Determinism\n\nFor identical repository state, scope, target, options and budgets, the bundle\nis byte-stable apart from the single declared time-dependent field\n(`generatedAt`). Ordering is fixed at every level: entities by kind/name/id,\nrelationships by src/dst/predicate, evidence by a deterministic relevance tier\nthen a stable id tiebreaker. Nothing depends on hash order, insertion order,\nor iteration order.\n\n## Context bounds\n\nEvery budget is explicit and clamped:\n\n- `--max-entities` (default 50, max 500)\n- `--max-relationships` (default 100, max 1000)\n- `--max-evidence` (default 25, max 200)\n- `--max-chars` (default 12000, max 1_000_000)\n\nWhen reduction occurs the bundle reports `truncation` — entitiesTruncated,\nrelationshipsTruncated, evidenceTruncated, charactersTruncated — so the caller\nalways knows what was dropped and can rerun with larger budgets.\n\n## Evidence ranking\n\nRanking is deterministic-tier based: target (0), direct structural facts from\nthe shared explain collector (10+), context claims (20), decisions (21),\nconflicts (22), intents (23), graph relationships (30+), provenance (40), with\na stable id tiebreaker. It reuses the existing facts collector and context\nservice — no second ranking engine.\n\n## Provenance\n\nProvenance comes from the existing `/v1/provenance` service and the explain\nfacts collector. Nothing is fabricated; unverified fields stay absent.\n\n## Freshness\n\nStaleness comes from the shared facts collector (`facts.stale`), which is the\nsame signal `ix explain` uses. A stale bundle is flagged in `freshness` and\nwarned on in text output; classification is `stale` when the source changed\nsince last ingest, `current` otherwise.\n\n## Investigation state, resume, deltas\n\nResumable investigation state and deltas are the explicit next tranche of this\nbranch. The context bundle already gives every resumed run a stable, comparable\nstarting point: schema-versioned, deterministic, budgeted, with explicit\ntruncation — so a state file keyed by a stable investigation id can store\nexplored entities, evidence, claims, unresolved questions and the last context\ngeneration, and a resumed run replays only the delta. The schema is stable\nprecisely so that delta comparison is meaningful.\n\n## MCP / CLI\n\n- CLI: `ix context <target>` with `--kind`, `--path`, `--pick`, `--depth`,\n  `--as-of-rev`, `--max-*`, `--format text|json|llm`.\n- MCP: `ix_context` tool with `target`, `as_of_rev`, `max_entities`,\n  `max_relationships`, `max_evidence` arguments, returning the JSON bundle.\n- Both share one implementation and one schema.\n\n## Export\n\nThe JSON bundle is the portable representation: stable IDs, provenance,\nrevisions, evidence kinds, relationships, freshness, verification. It has no\ndependency on Ix-findings paths, generated HTML, or findings-specific imports.\n\n## Testing\n\n- Determinism: identical input twice ⇒ identical static output (only\n  `generatedAt` differs).\n- Budgets: `maxEntities: 1` ⇒ exactly one entity + positive\n  `entitiesTruncated`; `maxRelationships: 0` ⇒ zero relationships + positive\n  truncation; evidence capped by count.\n- Freshness: `stale: true` facts ⇒ `{ stale: true, classification: \"stale\" }`.\n- Evidence ordering: scores ascending, target first, structural above claims.\n- MCP: `ix_context` registered and served; context tests 4/4, MCP suite 15/15,\n  typecheck clean.\n\n## Historical links\n\nEarlier MCP implementation and hardening work in the `Alot1z/Ix-remap`\ndevelopment fork:\n\n- https://github.com/Alot1z/Ix-remap/commit/36c7c7eccd8068d48df4f61394b42a3ffa62483c — `feat(mcp): add ix mcp subcommand exposing the code graph as MCP tools (#219)`\n- https://github.com/Alot1z/Ix-remap/commit/66111917a2a58437c91372616f98928876121395 — `fix(mcp): abort in-flight calls on EOF, add ix_read tool, executor timeout coverage`\n- https://github.com/Alot1z/Ix-remap/commit/1a5b0b93c9e8871610370c0f36212be8f6cf6980 — `fix(mcp): harden the stdio server — line-size cap, tree-kill, protocol-abuse matrix (#219)`\n\n## Ix-findings evidence\n\n- MCP overview: https://alot1z.github.io/Ix-findings/mcp/\n- MCP architecture: https://alot1z.github.io/Ix-findings/mcp/implementation/\n- MCP security: https://alot1z.github.io/Ix-findings/mcp/security/\n- Original issue #219: https://alot1z.github.io/Ix-findings/issues/219/\n\n## Relationship to PR1\n\nPR1 (#422, `feat(mcp): enrich Ix MCP tools with structured outputs, semantic\nannotations, and stronger agent interoperability`) gives the shared MCP surface\ntyped structured results and truthful annotations. PR2 builds the bounded\ncontext layer on the same surface. PR1's annotations tell agents which calls\nare safe to repeat; PR2's bundles give agents the answer in one bounded call.\nThey are independent branches against `main`.\n",
+    "state": "open",
+    "draft": false,
+    "merged": false,
+    "author": {
+      "login": "Alot1z",
+      "id": 16801672,
+      "type": "User",
+      "html_url": "https://github.com/Alot1z"
+    },
+    "html_url": "https://github.com/ix-infrastructure/Ix/pull/423",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/423",
+    "head": {
+      "ref": "feat/ix-agent-context",
+      "sha": "815afeac0b1fcdff7d140c74a093e52375da1bab",
+      "repo": {
+        "id": 1329286389,
+        "full_name": "Alot1z/Ix-remap",
+        "name": "Ix-remap",
+        "owner": {
+          "login": "Alot1z",
+          "id": 16801672,
+          "type": "User",
+          "html_url": "https://github.com/Alot1z"
+        },
+        "html_url": "https://github.com/Alot1z/Ix-remap",
+        "api_url": "https://api.github.com/repos/Alot1z/Ix-remap",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": true,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-08-10T00:14:10Z",
+        "updated_at": "2026-08-11T21:00:15Z",
+        "pushed_at": "2026-08-13T22:14:28Z",
+        "topics": [],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 0,
+        "stargazers_count": 0,
+        "forks_count": 0,
+        "open_issues_count": 0
+      }
+    },
+    "base": {
+      "ref": "main",
+      "sha": "ab823e34b9ec8679dcf0df4b4ec5725207e2a88d",
+      "repo": {
+        "id": 1171307492,
+        "full_name": "ix-infrastructure/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "ix-infrastructure",
+          "id": 256883681,
+          "type": "Organization",
+          "html_url": "https://github.com/ix-infrastructure"
+        },
+        "html_url": "https://github.com/ix-infrastructure/Ix",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": false,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-03-03T04:48:38Z",
+        "updated_at": "2026-08-13T21:51:31Z",
+        "pushed_at": "2026-08-13T19:18:44Z",
+        "topics": [
+          "ai",
+          "ai-memory",
+          "claude-code",
+          "cli",
+          "code-analysis",
+          "code-mapping",
+          "code-memory",
+          "codebase-understanding",
+          "codex",
+          "developer-tools",
+          "llm",
+          "openclaw",
+          "persistent-memory",
+          "program-analysis",
+          "software-architecture",
+          "system-intelligence",
+          "system-mapping"
+        ],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 701,
+        "stargazers_count": 701,
+        "forks_count": 60,
+        "open_issues_count": 6
+      }
+    },
+    "merge_commit_sha": "00af9832c7c1798a677ba7aefdb6d07625cc672f",
+    "merged_at": null,
+    "closed_at": null,
+    "created_at": "2026-08-13T22:14:55Z",
+    "updated_at": "2026-08-13T22:16:13Z",
+    "labels": [],
+    "milestone": null,
+    "requested_reviewers": [
+      {
+        "login": "josephismikhail",
+        "id": 56614593,
+        "type": "User",
+        "html_url": "https://github.com/josephismikhail"
+      }
+    ],
+    "requested_teams": [],
+    "commits_count": 2,
+    "changed_files_count": 5,
+    "additions": 696,
+    "deletions": 0,
+    "changed_files": [
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 423,
+        "filename": "ix-cli/src/cli/__tests__/context.test.ts",
+        "status": "added",
+        "additions": 148,
+        "deletions": 0,
+        "changes": 148,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/815afeac0b1fcdff7d140c74a093e52375da1bab/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fcontext.test.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/815afeac0b1fcdff7d140c74a093e52375da1bab/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fcontext.test.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fcontext.test.ts?ref=815afeac0b1fcdff7d140c74a093e52375da1bab",
+        "patch": "@@ -0,0 +1,148 @@\n+import { describe, expect, it } from \"vitest\";\n+\n+import type {\n+  ConflictReport,\n+  DecisionReport,\n+  GraphEdge,\n+  GraphNode,\n+  IntentReport,\n+  ScoredClaim,\n+} from \"../../client/types.js\";\n+import type { EntityFacts } from \"../explain/facts.js\";\n+import { buildBundle } from \"../commands/context.js\";\n+\n+function makeFacts(overrides: Partial<EntityFacts> = {}): EntityFacts {\n+  return {\n+    id: \"entity-1\",\n+    name: \"Widget\",\n+    kind: \"class\",\n+    members: [\"render\", \"mount\"],\n+    memberCount: 2,\n+    callerCount: 3,\n+    calleeCount: 2,\n+    dependentCount: 4,\n+    importerCount: 1,\n+    downstreamDependents: 6,\n+    downstreamDepth: 2,\n+    topCallers: [\"App\", \"Panel\", \"Shell\"],\n+    topDependents: [\"App\", \"Panel\", \"Shell\", \"Frame\"],\n+    historyLength: 5,\n+    introducedRev: 3,\n+    stale: false,\n+    diagnostics: [],\n+    ...overrides,\n+  };\n+}\n+\n+function makeClaim(statement: string, relevance: number): ScoredClaim {\n+  return {\n+    claim: { id: `claim-${statement}`, entityId: \"entity-1\", statement, status: \"active\" },\n+    relevance,\n+    finalScore: relevance,\n+    confidence: {\n+      baseAuthority: { value: 0.5, reason: \"base\" },\n+      verification: { value: 0.5, reason: \"verify\" },\n+      recency: { value: 0.5, reason: \"recent\" },\n+      corroboration: { value: 0.5, reason: \"corroborate\" },\n+      conflictPenalty: { value: 0.5, reason: \"penalty\" },\n+      intentAlignment: { value: 0.5, reason: \"intent\" },\n+      score: 0.5,\n+    },\n+  };\n+}\n+\n+function makeContext(overrides: Partial<{\n+  claims: ScoredClaim[];\n+  conflicts: ConflictReport[];\n+  decisions: DecisionReport[];\n+  intents: IntentReport[];\n+  nodes: GraphNode[];\n+  edges: GraphEdge[];\n+}> = {}) {\n+  return {\n+    claims: overrides.claims ?? [makeClaim(\"renders to DOM\", 0.9)],\n+    conflicts: overrides.conflicts ?? [],\n+    decisions: overrides.decisions ?? [],\n+    intents: overrides.intents ?? [],\n+    nodes:\n+      overrides.nodes ??\n+      ([\n+        {\n+          id: \"entity-2\",\n+          kind: \"method\",\n+          name: \"render\",\n+          attrs: {},\n+          provenance: { sourceUri: \"src/widget.ts\", extractor: \"tree-sitter\", sourceType: \"source\", observedAt: \"2026-01-01T00:00:00Z\" },\n+          createdRev: 3,\n+          createdAt: \"2026-01-01T00:00:00Z\",\n+          updatedAt: \"2026-01-01T00:00:00Z\",\n+        },\n+      ] as GraphNode[]),\n+    edges:\n+      overrides.edges ??\n+      ([\n+        { id: \"edge-1\", src: \"entity-1\", dst: \"entity-2\", predicate: \"calls\", attrs: {}, createdRev: 3 },\n+      ] as GraphEdge[]),\n+    metadata: { query: \"Widget\", seedEntities: [\"entity-1\"], hopsExpanded: 1, asOfRev: 3 },\n+  };\n+}\n+\n+function input() {\n+  return {\n+    resolved: { id: \"entity-1\", name: \"Widget\", kind: \"class\", resolutionMode: \"exact\" },\n+    facts: makeFacts(),\n+    context: makeContext(),\n+    provenance: { sourceType: \"source\", extractor: \"tree-sitter\", observedAt: \"2026-01-01T00:00:00Z\" },\n+    asOfRev: undefined,\n+    depth: undefined,\n+    budgets: { maxEntities: 50, maxRelationships: 100, maxEvidence: 25, maxChars: 12000 },\n+  };\n+}\n+\n+describe(\"ix context bundle\", () => {\n+  it(\"is deterministic for identical input apart from the declared timestamp\", () => {\n+    const first = buildBundle(input());\n+    const second = buildBundle(input());\n+\n+    // The only permitted time-dependent field.\n+    expect(first.generatedAt).toBeTypeOf(\"string\");\n+    const { generatedAt: _g1, ...firstStatic } = first;\n+    const { generatedAt: _g2, ...secondStatic } = second;\n+    expect(firstStatic).toEqual(secondStatic);\n+  });\n+\n+  it(\"orders evidence by the deterministic tier and a stable id tiebreaker\", () => {\n+    const bundle = buildBundle(input());\n+    const scores = bundle.evidence.map((item) => item.score);\n+\n+    expect(scores).toEqual([...scores].sort((a, b) => a - b));\n+    // The resolved target is the most relevant item.\n+    expect(bundle.evidence[0]?.kind).toBe(\"target\");\n+    // Direct structural facts rank above context claims.\n+    expect(bundle.evidence[1]?.kind).toBe(\"structural\");\n+    const claimItem = bundle.evidence.find((item) => item.kind === \"claim\");\n+    expect(claimItem?.source).toBe(\"context.claims\");\n+  });\n+\n+  it(\"enforces budgets and reports explicit truncation\", () => {\n+    const bundle = buildBundle({\n+      ...input(),\n+      budgets: { maxEntities: 1, maxRelationships: 0, maxEvidence: 2, maxChars: 12000 },\n+    });\n+\n+    expect(bundle.entities).toHaveLength(1);\n+    expect(bundle.truncation.entitiesTruncated).toBeGreaterThan(0);\n+    expect(bundle.relationships).toHaveLength(0);\n+    expect(bundle.truncation.relationshipsTruncated).toBe(1);\n+    expect(bundle.evidence.length).toBeLessThanOrEqual(2);\n+    expect(bundle.truncation.evidenceTruncated).toBeGreaterThanOrEqual(0);\n+  });\n+\n+  it(\"classifies staleness from the collected facts\", () => {\n+    const stale = buildBundle({ ...input(), facts: makeFacts({ stale: true }) });\n+    expect(stale.freshness).toEqual({ stale: true, classification: \"stale\" });\n+\n+    const current = buildBundle({ ...input(), facts: makeFacts({ stale: false }) });\n+    expect(current.freshness).toEqual({ stale: false, classification: \"current\" });\n+  });\n+});"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 423,
+        "filename": "ix-cli/src/cli/__tests__/mcp.test.ts",
+        "status": "modified",
+        "additions": 29,
+        "deletions": 0,
+        "changes": 29,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/815afeac0b1fcdff7d140c74a093e52375da1bab/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fmcp.test.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/815afeac0b1fcdff7d140c74a093e52375da1bab/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fmcp.test.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fmcp.test.ts?ref=815afeac0b1fcdff7d140c74a093e52375da1bab",
+        "patch": "@@ -79,6 +79,35 @@ describe(\"ix mcp\", () => {\n     expect(result.content).toEqual([{ type: \"text\", text: \"match name=Widget\" }]);\n   });\n \n+  it(\"forwards ix_context target and bounded budgets as the CLI contract\", async () => {\n+    const calls: string[][] = [];\n+    const client = await connect(async (args) => {\n+      calls.push(args);\n+      return { ok: true, stdout: JSON.stringify({ schema: \"ix-context-bundle/1\" }), stderr: \"\" };\n+    });\n+\n+    await client.callTool({\n+      name: \"ix_context\",\n+      arguments: { target: \"Widget\", max_entities: 20, max_evidence: 5 },\n+    });\n+\n+    expect(calls).toEqual([\n+      [\"context\", \"--max-entities=20\", \"--max-evidence=5\", \"--format=json\", \"--\", \"Widget\"],\n+    ]);\n+  });\n+\n+  it(\"omits unset context budgets rather than sending empty flags\", async () => {\n+    const calls: string[][] = [];\n+    const client = await connect(async (args) => {\n+      calls.push(args);\n+      return { ok: true, stdout: \"{}\", stderr: \"\" };\n+    });\n+\n+    await client.callTool({ name: \"ix_context\", arguments: { target: \"src/main.ts\" } });\n+\n+    expect(calls).toEqual([[\"context\", \"--format=json\", \"--\", \"src/main.ts\"]]);\n+  });\n+\n   it(\"marks Ix command failures as MCP errors\", async () => {\n     const client = await connect(async () => ({\n       ok: false,"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 423,
+        "filename": "ix-cli/src/cli/commands/context.ts",
+        "status": "added",
+        "additions": 495,
+        "deletions": 0,
+        "changes": 495,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/815afeac0b1fcdff7d140c74a093e52375da1bab/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fcontext.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/815afeac0b1fcdff7d140c74a093e52375da1bab/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fcontext.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fcontext.ts?ref=815afeac0b1fcdff7d140c74a093e52375da1bab",
+        "patch": "@@ -0,0 +1,495 @@\n+import type { Command } from \"commander\";\n+\n+import { IxClient } from \"../../client/api.js\";\n+import type {\n+  ConflictReport,\n+  DecisionReport,\n+  GraphNode,\n+  IntentReport,\n+  StructuredContext,\n+} from \"../../client/types.js\";\n+import { getEndpoint } from \"../config.js\";\n+import { collectFacts, type EntityFacts } from \"../explain/facts.js\";\n+import { printLlmLines } from \"../llm.js\";\n+import { resolveFileOrEntity } from \"../resolve.js\";\n+import { renderNote, renderSection, renderWarning } from \"../ui.js\";\n+\n+/**\n+ * Schema version for the deterministic bundle shape. Bump only on a breaking\n+ * shape change, never per run.\n+ */\n+const BUNDLE_SCHEMA = \"ix-context-bundle/1\";\n+\n+interface ContextOptions {\n+  kind?: string;\n+  path?: string;\n+  pick?: string;\n+  depth?: string;\n+  asOfRev?: string;\n+  maxEntities?: string;\n+  maxRelationships?: string;\n+  maxEvidence?: string;\n+  maxChars?: string;\n+  out?: string;\n+  format: string;\n+}\n+\n+/** Stable evidence kinds, ordered by relevance tier (lower is more relevant). */\n+type EvidenceKind =\n+  | \"target\"\n+  | \"structural\"\n+  | \"claim\"\n+  | \"decision\"\n+  | \"conflict\"\n+  | \"intent\"\n+  | \"relationship\"\n+  | \"provenance\";\n+\n+interface EvidenceItem {\n+  id: string;\n+  kind: EvidenceKind;\n+  source: string;\n+  title: string;\n+  /** Deterministic relevance score: tier plus a stable tiebreaker. */\n+  score: number;\n+  reason: string;\n+  refs: string[];\n+}\n+\n+interface ContextBundle {\n+  schema: typeof BUNDLE_SCHEMA;\n+  /** The one explicitly declared time-dependent field. */\n+  generatedAt: string;\n+  target: { id: string; name: string; kind: string; resolutionMode: string };\n+  entities: Array<{ id: string; name: string; kind: string; path?: string; stale: boolean }>;\n+  relationships: Array<{ src: string; dst: string; predicate: string }>;\n+  claims: Array<{ id: string; entityId: string; statement: string; status: string }>;\n+  decisions: DecisionReport[];\n+  conflicts: ConflictReport[];\n+  intents: IntentReport[];\n+  provenance: {\n+    sourceUri?: string;\n+    sourceHash?: string;\n+    extractor?: string;\n+    sourceType?: string;\n+    observedAt?: string;\n+    introducedRev?: number;\n+    historyLength: number;\n+    stale: boolean;\n+  };\n+  freshness: { stale: boolean; classification: \"current\" | \"stale\" | \"unverified\" };\n+  evidence: EvidenceItem[];\n+  budgets: { maxEntities: number; maxRelationships: number; maxEvidence: number; maxChars: number };\n+  truncation: {\n+    entitiesTruncated: number;\n+    relationshipsTruncated: number;\n+    evidenceTruncated: number;\n+    charactersTruncated: number;\n+  };\n+  metadata: {\n+    asOfRev?: number;\n+    depth?: string;\n+    rankingRule: \"deterministic-tier\";\n+  };\n+}\n+\n+/**\n+ * Build a bounded, deterministic context bundle for one target.\n+ *\n+ * This composes Ix's existing intelligence rather than re-deriving it: the\n+ * target is resolved through the same resolver as `ix explain`, structural\n+ * facts come from the same collector, and claims/conflicts/decisions/intents\n+ * come from the same `/v1/context` service. The only new thing here is the\n+ * bundling, budgeting, and deterministic ranking.\n+ */\n+export function registerContextCommand(program: Command): void {\n+  program\n+    .command(\"context <target>\")\n+    .description(\"Build a bounded, deterministic context bundle for a symbol, file, or entity\")\n+    .option(\"--kind <kind>\", \"Filter target entity by kind\")\n+    .option(\"--path <path>\", \"Prefer symbols from files matching this path substring\")\n+    .option(\"--pick <n>\", \"Pick Nth candidate from ambiguous results (1-based)\")\n+    .option(\"--depth <depth>\", \"Context-graph expansion depth\")\n+    .option(\"--as-of-rev <n>\", \"Historical context as of a graph revision\")\n+    .option(\"--max-entities <n>\", \"Maximum entities in the bundle\", \"50\")\n+    .option(\"--max-relationships <n>\", \"Maximum relationships in the bundle\", \"100\")\n+    .option(\"--max-evidence <n>\", \"Maximum evidence items in the bundle\", \"25\")\n+    .option(\"--max-chars <n>\", \"Maximum characters of evidence output\", \"12000\")\n+    .option(\"--format <fmt>\", \"Output format (text|json|llm)\", \"text\")\n+    .option(\"--out <path>\", \"Write the JSON bundle to this file instead of stdout\")\n+    .addHelpText(\n+      \"after\",\n+      \"\\nExample[local-path]  ix context IngestionService\\n  ix context src/main.ts --format json\\n  ix context Widget --max-entities 20 --max-evidence 10\",\n+    )\n+    .action(async (target: string, opts: ContextOptions) => {\n+      const client = new IxClient(getEndpoint());\n+\n+      const resolved = await resolveFileOrEntity(client, target, {\n+        kind: opts.kind,\n+        path: opts.path,\n+        pick: opts.pick ? parseInt(opts.pick, 10) : undefined,\n+      });\n+      if (!resolved) return;\n+\n+      const asOfRev = opts.asOfRev ? parseInt(opts.asOfRev, 10) : undefined;\n+      const maxEntities = clampInt(opts.maxEntities, 1, 500, 50);\n+      const maxRelationships = clampInt(opts.maxRelationships, 1, 1000, 100);\n+      const maxEvidence = clampInt(opts.maxEvidence, 1, 200, 25);\n+      const maxChars = clampInt(opts.maxChars, 1000, 1_000_000, 12_000);\n+\n+      const [facts, context, provenance] = await Promise.all([\n+        collectFacts(client, resolved.id, resolved.name, resolved.kind),\n+        client.query(resolved.name, {\n+          asOfRev,\n+          depth: opts.depth,\n+        }),\n+        client.provenance(resolved.id),\n+      ]);\n+\n+      const bundle = buildBundle({\n+        resolved,\n+        facts,\n+        context,\n+        provenance,\n+        asOfRev,\n+        depth: opts.depth,\n+        budgets: { maxEntities, maxRelationships, maxEvidence, maxChars },\n+      });\n+\n+      if (opts.out && opts.format !== \"json\") {\n+        renderWarning(\"--out writes JSON; ignoring --format and forcing json.\");\n+      }\n+      const out = opts.out;\n+      if (out) {\n+        const fs = await import(\"node:fs\");\n+        fs.writeFileSync(out, JSON.stringify(bundle, null, 2) + \"\\n\");\n+        renderNote(`Wrote ${bundle.entities.length} entities, ${bundle.relationships.length} relationships, ${bundle.evidence.length} evidence items to ${out}`);\n+        return;\n+      }\n+      renderBundle(bundle, opts.format);\n+    });\n+}\n+\n+interface BuildInput {\n+  resolved: { id: string; name: string; kind: string; resolutionMode: string };\n+  facts: EntityFacts;\n+  context: StructuredContext;\n+  provenance: unknown;\n+  asOfRev?: number;\n+  depth?: string;\n+  budgets: { maxEntities: number; maxRelationships: number; maxEvidence: number; maxChars: number };\n+}\n+\n+export function buildBundle(input: BuildInput): ContextBundle {\n+  const { resolved, facts, context, provenance, asOfRev, depth, budgets } = input;\n+\n+  const stale = facts.stale;\n+  const classification = stale ? \"stale\" : \"current\";\n+  const prov = asRecord(provenance);\n+\n+  // Entities: the target itself plus every referenced node, deduped by id and\n+  // ordered deterministically (kind, name, id) before budgeting.\n+  const seen = new Set<string>([resolved.id]);\n+  const entities: ContextBundle[\"entities\"] = [\n+    {\n+      id: resolved.id,\n+      name: resolved.name,\n+      kind: resolved.kind,\n+      path: facts.path,\n+      stale,\n+    },\n+  ];\n+  for (const node of orderedNodes(context.nodes)) {\n+    if (seen.has(node.id)) continue;\n+    seen.add(node.id);\n+    entities.push({\n+      id: node.id,\n+      name: node.name,\n+      kind: node.kind,\n+      path: node.provenance?.sourceUri,\n+      stale,\n+    });\n+  }\n+\n+  // Relationships: graph edges, ordered deterministically.\n+  const relationships = [...context.edges]\n+    .sort((a, b) => cmp(a.src, b.src) || cmp(a.dst, b.dst) || cmp(a.predicate, b.predicate))\n+    .map((edge) => ({ src: edge.src, dst: edge.dst, predicate: edge.predicate }));\n+\n+  const evidence = rankEvidence({ resolved, facts, context, relationships, prov });\n+\n+  const bundle: ContextBundle = {\n+    schema: BUNDLE_SCHEMA,\n+    generatedAt: new Date().toISOString(),\n+    target: {\n+      id: resolved.id,\n+      name: resolved.name,\n+      kind: resolved.kind,\n+      resolutionMode: resolved.resolutionMode,\n+    },\n+    entities: [],\n+    relationships: [],\n+    claims: context.claims.map((scored) => ({\n+      id: scored.claim.id,\n+      entityId: scored.claim.entityId,\n+      statement: scored.claim.statement,\n+      status: scored.claim.status,\n+    })),\n+    decisions: context.decisions,\n+    conflicts: context.conflicts,\n+    intents: context.intents,\n+    provenance: {\n+      sourceUri: asString(prov.sourceUri) ?? facts.path,\n+      sourceHash: asString(prov.sourceHash),\n+      extractor: asString(prov.extractor),\n+      sourceType: asString(prov.sourceType),\n+      observedAt: asString(prov.observedAt),\n+      introducedRev: facts.introducedRev,\n+      historyLength: facts.historyLength,\n+      stale,\n+    },\n+    freshness: { stale, classification },\n+    evidence: [],\n+    budgets,\n+    truncation: {\n+      entitiesTruncated: 0,\n+      relationshipsTruncated: 0,\n+      evidenceTruncated: 0,\n+      charactersTruncated: 0,\n+    },\n+    metadata: {\n+      asOfRev,\n+      depth,\n+      rankingRule: \"deterministic-tier\",\n+    },\n+  };\n+\n+  // Apply budgets with explicit truncation metadata. Ordering is already\n+  // deterministic, so cutting from the tail is stable across runs.\n+  const entityLimit = Math.min(entities.length, budgets.maxEntities);\n+  bundle.entities = entities.slice(0, entityLimit);\n+  bundle.truncation.entitiesTruncated = entities.length - entityLimit;\n+\n+  const relLimit = Math.min(relationships.length, budgets.maxRelationships);\n+  bundle.relationships = relationships.slice(0, relLimit);\n+  bundle.truncation.relationshipsTruncated = relationships.length - relLimit;\n+\n+  // Evidence is ordered by relevance, so keep the highest-priority prefix and\n+  // drop the tail when either the count or the character budget is exceeded.\n+  let chars = 0;\n+  let kept = 0;\n+  for (const item of evidence) {\n+    const size = item.title.length + item.reason.length + 64;\n+    if (kept >= budgets.maxEvidence || chars + size > budgets.maxChars) break;\n+    chars += size;\n+    kept += 1;\n+  }\n+  bundle.evidence = evidence.slice(0, kept);\n+  bundle.truncation.evidenceTruncated = evidence.length - kept;\n+  const fullChars = evidence.reduce((sum, item) => sum + item.title.length + item.reason.length, 0);\n+  bundle.truncation.charactersTruncated = Math.max(0, fullChars - chars);\n+\n+  return bundle;\n+}\n+\n+/** Deterministic evidence ranking: tier, then a stable id tiebreaker. */\n+function rankEvidence(input: {\n+  resolved: { id: string; name: string; kind: string };\n+  facts: EntityFacts;\n+  context: StructuredContext;\n+  relationships: Array<{ src: string; dst: string; predicate: string }>;\n+  prov: Record<string, unknown>;\n+}): EvidenceItem[] {\n+  const items: EvidenceItem[] = [];\n+\n+  const target = input.resolved;\n+  items.push({\n+    id: `target:${target.id}`,\n+    kind: \"target\",\n+    source: \"resolution\",\n+    title: `${target.name} (${target.kind})`,\n+    score: 0,\n+    reason: \"resolved target — the bundle is centered on this entity\",\n+    refs: [target.id],\n+  });\n+\n+  const structural: Array<{ id: string; source: string; title: string; refs: string[] }> = [];\n+  if (input.facts.container) {\n+    structural.push({\n+      id: `container:${input.facts.container.name}`,\n+      source: \"facts.container\",\n+      title: `container ${input.facts.container.name} (${input.facts.container.kind})`,\n+      refs: [],\n+    });\n+  }\n+  for (const name of input.facts.topCallers) {\n+    structural.push({ id: `caller:${name}`, source: \"facts.callers\", title: `caller ${name}`, refs: [] });\n+  }\n+  for (const name of input.facts.topDependents) {\n+    structural.push({\n+      id: `dependent:${name}`,\n+      source: \"facts.dependents\",\n+      title: `dependent ${name}`,\n+      refs: [],\n+    });\n+  }\n+  for (const name of input.facts.members.slice(0, 10)) {\n+    structural.push({ id: `member:${name}`, source: \"facts.members\", title: `member ${name}`, refs: [] });\n+  }\n+  structural.forEach((item, index) => {\n+    items.push({ ...item, kind: \"structural\", score: 10 + index, reason: \"direct structural relationship\" });\n+  });\n+\n+  for (const scored of input.context.claims) {\n+    items.push({\n+      id: `claim:${scored.claim.id}`,\n+      kind: \"claim\",\n+      source: \"context.claims\",\n+      title: scored.claim.statement,\n+      score: 20,\n+      reason: `context claim (relevance ${scored.relevance}, confidence ${scored.confidence?.score ?? \"n/a\"})`,\n+      refs: [scored.claim.entityId],\n+    });\n+  }\n+  for (const decision of input.context.decisions) {\n+    items.push({\n+      id: `decision:${decision.title}`,\n+      kind: \"decision\",\n+      source: \"context.decisions\",\n+      title: decision.title,\n+      score: 21,\n+      reason: decision.rationale,\n+      refs: decision.entityId ? [decision.entityId] : [],\n+    });\n+  }\n+  for (const conflict of input.context.conflicts) {\n+    items.push({\n+      id: `conflict:${conflict.id}`,\n+      kind: \"conflict\",\n+      source: \"context.conflicts\",\n+      title: `${conflict.claimA} vs ${conflict.claimB}`,\n+      score: 22,\n+      reason: conflict.reason,\n+      refs: [],\n+    });\n+  }\n+  for (const intent of input.context.intents) {\n+    items.push({\n+      id: `intent:${intent.id}`,\n+      kind: \"intent\",\n+      source: \"context.intents\",\n+      title: intent.statement,\n+      score: 23,\n+      reason: `intent status ${intent.status}`,\n+      refs: [],\n+    });\n+  }\n+\n+  input.relationships.slice(0, 50).forEach((edge, index) => {\n+    items.push({\n+      id: `relationship:${edge.src}:${edge.dst}:${edge.predicate}`,\n+      kind: \"relationship\",\n+      source: \"context.edges\",\n+      title: `${edge.src} --${edge.predicate}--> ${edge.dst}`,\n+      score: 30 + Math.min(index, 10),\n+      reason: \"graph relationship from the context service\",\n+      refs: [edge.src, edge.dst],\n+    });\n+  });\n+\n+  items.push({\n+    id: `provenance:${target.id}`,\n+    kind: \"provenance\",\n+    source: \"provenance + facts.history\",\n+    title: `history length ${input.facts.historyLength}, introduced rev ${input.facts.introducedRev ?? \"unknown\"}`,\n+    score: 40,\n+    reason: `provenance ${input.prov.sourceType ?? \"unknown\"}, extractor ${input.prov.extractor ?? \"unknown\"}`,\n+    refs: [target.id],\n+  });\n+\n+  // Stable full ordering: score, then id.\n+  return items.sort((a, b) => a.score - b.score || cmp(a.id, b.id));\n+}\n+\n+function renderBundle(bundle: ContextBundle, format: string): void {\n+  if (format === \"json\") {\n+    console.log(JSON.stringify(bundle, null, 2));\n+    return;\n+  }\n+  if (format === \"llm\") {\n+    printLlmLines([\n+      `target=${bundle.target.name}`,\n+      `target_kind=${bundle.target.kind}`,\n+      `stale=${bundle.freshness.stale}`,\n+      `classification=${bundle.freshness.classification}`,\n+      `entities=${bundle.entities.length}`,\n+      `relationships=${bundle.relationships.length}`,\n+      `claims=${bundle.claims.length}`,\n+      `decisions=${bundle.decisions.length}`,\n+      `conflicts=${bundle.conflicts.length}`,\n+      `intents=${bundle.intents.length}`,\n+      `evidence=${bundle.evidence.length}`,\n+      `truncated_entities=${bundle.truncation.entitiesTruncated}`,\n+      `truncated_relationships=${bundle.truncation.relationshipsTruncated}`,\n+      `truncated_evidence=${bundle.truncation.evidenceTruncated}`,\n+      `truncated_chars=${bundle.truncation.charactersTruncated}`,\n+      ...bundle.evidence.map(\n+        (item) => `evidence ${item.score} ${item.kind} ${item.title.replaceAll(\"\\n\", \" \")}`,\n+      ),\n+    ]);\n+    return;\n+  }\n+\n+  renderSection(`Context: ${bundle.target.name}`);\n+  console.log(`  kind:          ${bundle.target.kind}`);\n+  console.log(`  classification:${bundle.freshness.classification}`);\n+  console.log(`  entities:      ${bundle.entities.length}`);\n+  console.log(`  relationships: ${bundle.relationships.length}`);\n+  console.log(`  claims:        ${bundle.claims.length}`);\n+  console.log(`  decisions:     ${bundle.decisions.length}`);\n+  console.log(`  conflicts:     ${bundle.conflicts.length}`);\n+  console.log(`  intents:       ${bundle.intents.length}`);\n+  if (bundle.freshness.stale) {\n+    renderWarning(\"Source has changed since last ingest. Run ix map to update.\");\n+  }\n+\n+  if (bundle.evidence.length > 0) {\n+    renderSection(\"Evidence (highest relevance first)\");\n+    for (const item of bundle.evidence) {\n+      console.log(`  [${item.score}] ${item.kind} — ${item.title}`);\n+      console.log(`         ${item.reason}`);\n+    }\n+  }\n+\n+  const trunc = bundle.truncation;\n+  if (trunc.entitiesTruncated + trunc.relationshipsTruncated + trunc.evidenceTruncated > 0) {\n+    renderNote(\n+      `Truncated: ${trunc.entitiesTruncated} entities, ${trunc.relationshipsTruncated} relationships, ${trunc.evidenceTruncated} evidence items. Rerun with larger --max-* budgets for more.`,\n+    );\n+  }\n+  console.log();\n+}\n+\n+function orderedNodes(nodes: GraphNode[]): GraphNode[] {\n+  return [...nodes].sort((a, b) => cmp(a.kind, b.kind) || cmp(a.name, b.name) || cmp(a.id, b.id));\n+}\n+\n+function asRecord(value: unknown): Record<string, unknown> {\n+  return value !== null && typeof value === \"object\" && !Array.isArray(value)\n+    ? (value as Record<string, unknown>)\n+    : {};\n+}\n+\n+function asString(value: unknown): string | undefined {\n+  return typeof value === \"string\" ? value : undefined;\n+}\n+\n+function clampInt(raw: string | undefined, min: number, max: number, fallback: number): number {\n+  const parsed = raw ? parseInt(raw, 10) : NaN;\n+  if (Number.isNaN(parsed)) return fallback;\n+  return Math.min(max, Math.max(min, parsed));\n+}\n+\n+function cmp(a: string, b: string): number {\n+  return a < b ? -1 : a > b ? 1 : 0;\n+}"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 423,
+        "filename": "ix-cli/src/cli/register/oss.ts",
+        "status": "modified",
+        "additions": 2,
+        "deletions": 0,
+        "changes": 2,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/815afeac0b1fcdff7d140c74a093e52375da1bab/ix-cli%2Fsrc%2Fcli%2Fregister%2Foss.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/815afeac0b1fcdff7d140c74a093e52375da1bab/ix-cli%2Fsrc%2Fcli%2Fregister%2Foss.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fregister%2Foss.ts?ref=815afeac0b1fcdff7d140c74a093e52375da1bab",
+        "patch": "@@ -36,6 +36,7 @@ import { registerViewCommand } from \"../commands/view.js\";\n import { registerSavingsCommand } from \"../commands/savings.js\";\n import { registerPatchesCommand } from \"../commands/patches.js\";\n import { registerMcpCommand } from \"../commands/mcp.js\";\n+import { registerContextCommand } from \"../commands/context.js\";\n \n const PRO_COMMANDS: { name: string; desc: string }[] = [\n   { name: \"briefing\", desc: \"Session-resume briefing\" },\n@@ -102,6 +103,7 @@ export function registerOssCommands(program: Command): void {\n   registerSavingsCommand(program);\n   registerPatchesCommand(program);\n   registerMcpCommand(program);\n+  registerContextCommand(program);\n \n   // Hide advanced commands from default help\n   const advancedSet = new Set(ADVANCED_COMMANDS);"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 423,
+        "filename": "ix-cli/src/mcp/server.ts",
+        "status": "modified",
+        "additions": 22,
+        "deletions": 0,
+        "changes": 22,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/815afeac0b1fcdff7d140c74a093e52375da1bab/ix-cli%2Fsrc%2Fmcp%2Fserver.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/815afeac0b1fcdff7d140c74a093e52375da1bab/ix-cli%2Fsrc%2Fmcp%2Fserver.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fmcp%2Fserver.ts?ref=815afeac0b1fcdff7d140c74a093e52375da1bab",
+        "patch": "@@ -45,6 +45,7 @@ export const IX_MCP_OSS_TOOL_NAMES = [\n   \"ix_stats\",\n   \"ix_subsystems\",\n   \"ix_history\",\n+  \"ix_context\",\n   \"ix_ingest\",\n ] as const;\n \n@@ -285,6 +286,27 @@ export function createIxMcpServer(options: CreateServerOptions = {}): McpServer\n     { target: z.string().min(1) },\n     async (input) => runFormatted(runIx, \"ix_history\", ix(\"history\", [stringArg(input, \"target\")])),\n   );\n+  registerTool(\n+    server,\n+    \"ix_context\",\n+    \"Build a bounded, deterministic context bundle for a symbol, file, or entity\",\n+    {\n+      target: z.string().min(1),\n+      as_of_rev: z.number().int().nonnegative().optional().describe(\"graph revision for historical context\"),\n+      max_entities: z.number().int().min(1).max(500).optional(),\n+      max_relationships: z.number().int().min(1).max(1000).optional(),\n+      max_evidence: z.number().int().min(1).max(200).optional(),\n+    },\n+    async (input) => {\n+      const options: string[] = [];\n+      if (typeof input.as_of_rev === \"number\") options.push(`--as-of-rev=${numberArg(input, \"as_of_rev\")}`);\n+      if (typeof input.max_entities === \"number\") options.push(`--max-entities=${numberArg(input, \"max_entities\")}`);\n+      if (typeof input.max_relationships === \"number\")\n+        options.push(`--max-relationships=${numberArg(input, \"max_relationships\")}`);\n+      if (typeof input.max_evidence === \"number\") options.push(`--max-evidence=${numberArg(input, \"max_evidence\")}`);\n+      return runJson(runIx, \"ix_context\", ix(\"context\", [stringArg(input, \"target\")], options));\n+    },\n+  );\n   registerTool(\n     server,\n     \"ix_ingest\","
+      }
+    ],
+    "commits": [
+      {
+        "sha": "99b8940b2d70cfa10ce99854bc52e5c8f54c3cb8",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/99b8940b2d70cfa10ce99854bc52e5c8f54c3cb8",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/99b8940b2d70cfa10ce99854bc52e5c8f54c3cb8",
+        "author": {
+          "login": "Alot1z",
+          "id": 16801672,
+          "type": "User",
+          "html_url": "https://github.com/Alot1z"
+        },
+        "committer": {
+          "login": "Alot1z",
+          "id": 16801672,
+          "type": "User",
+          "html_url": "https://github.com/Alot1z"
+        },
+        "message": "feat(context): deterministic bounded context bundles via `ix context`\n\nCompose the existing resolver, fact collector, and /v1/context service\ninto a single deterministic, budgeted context bundle with explicit\ntruncation metadata and provenance. Evidence is ranked by a stable\ntier order (target, structural, claim, decision, conflict, intent,\nrelationship, provenance) with an id tiebreaker, so identical input\nproduces identical output apart from the declared generatedAt field.\n\nAdds the `ix context <target>` command with text/json/llm formats,\n--max-* budgets, --as-of-rev historical context, and staleness\nclassification from collected facts.",
+        "parents": [
+          {
+            "sha": "ab823e34b9ec8679dcf0df4b4ec5725207e2a88d",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/ab823e34b9ec8679dcf0df4b4ec5725207e2a88d"
+          }
+        ],
+        "tree_sha": "513764ca16908c28e498f025ae495aada655ee7d",
+        "authored_at": "2026-08-13T22:06:16Z",
+        "committed_at": "2026-08-13T22:06:16Z"
+      },
+      {
+        "sha": "815afeac0b1fcdff7d140c74a093e52375da1bab",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/815afeac0b1fcdff7d140c74a093e52375da1bab",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/815afeac0b1fcdff7d140c74a093e52375da1bab",
+        "author": {
+          "login": "Alot1z",
+          "id": 16801672,
+          "type": "User",
+          "html_url": "https://github.com/Alot1z"
+        },
+        "committer": {
+          "login": "Alot1z",
+          "id": 16801672,
+          "type": "User",
+          "html_url": "https://github.com/Alot1z"
+        },
+        "message": "feat(context): expose ix_context over MCP and support JSON export\n\nAdd the ix_context MCP tool with bounded budget parameters\n(--max-entities/--max-relationships/--max-evidence) and optional\nhistorical --as-of-rev, wired through the same argv isolation and\njson formatting as the other JSON-backed tools. The context command\nalso gains --out <path> to write the bundle to a file, so evidence\nbundles can be exported for review or storage.\n\nThe MCP catalog now lists ix_context for OSS installs; Pro-only\ntool gating is unchanged.",
+        "parents": [
+          {
+            "sha": "99b8940b2d70cfa10ce99854bc52e5c8f54c3cb8",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/99b8940b2d70cfa10ce99854bc52e5c8f54c3cb8"
+          }
+        ],
+        "tree_sha": "7a6bd2ef561372cc732c6869be88bdecb3fc965c",
+        "authored_at": "2026-08-13T22:13:11Z",
+        "committed_at": "2026-08-13T22:13:11Z"
+      }
+    ],
+    "comments": [],
+    "reviews": [
+      {
+        "id": 4932091186,
+        "node_id": "PRR_kwDORdC75M8AAAABJfm9Mg",
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 423,
+        "author": {
+          "login": "github-advanced-security[bot]",
+          "id": 62310815,
+          "type": "Bot",
+          "html_url": "https://github.com/apps/github-advanced-security"
+        },
+        "state": "COMMENTED",
+        "body": "",
+        "html_url": "https://github.com/ix-infrastructure/Ix/pull/423#pullrequestreview-4932091186",
+        "submitted_at": "2026-08-13T22:16:13Z",
+        "commit_id": "815afeac0b1fcdff7d140c74a093e52375da1bab",
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      }
+    ],
+    "review_comments": [
+      {
+        "id": 3779528504,
+        "node_id": "PRRC_kwDORdC75M7hRwc4",
+        "repository": "ix-infrastructure/Ix",
+        "parent_type": "PULL_REQUEST",
+        "parent_number": 423,
+        "kind": "REVIEW_COMMENT",
+        "author": {
+          "login": "github-advanced-security[bot]",
+          "id": 62310815,
+          "type": "Bot",
+          "html_url": "https://github.com/apps/github-advanced-security"
+        },
+        "body": "## CodeQL / Network data written to file\n\nWrite to file system depends on [Untrusted data](1).\nWrite to file system depends on [Untrusted data](2).\n\n[Show more details](https://github.com/ix-infrastructure/Ix/security/code-scanning/53)",
+        "html_url": "https://github.com/ix-infrastructure/Ix/pull/423#discussion_r3779528504",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/comments/3779528504",
+        "created_at": "2026-08-13T22:16:13Z",
+        "updated_at": "2026-08-13T22:16:13Z",
+        "commit_id": "815afeac0b1fcdff7d140c74a093e52375da1bab",
+        "path": "ix-cli/src/cli/commands/context.ts",
+        "line": 165,
+        "start_line": null,
+        "side": "RIGHT",
+        "in_reply_to_id": null,
+        "diff_hunk": "@@ -0,0 +1,495 @@\n+import type { Command } from \"commander\";\n+\n+import { IxClient } from \"../../client/api.js\";\n+import type {\n+  ConflictReport,\n+  DecisionReport,\n+  GraphNode,\n+  IntentReport,\n+  StructuredContext,\n+} from \"../../client/types.js\";\n+import { getEndpoint } from \"../config.js\";\n+import { collectFacts, type EntityFacts } from \"../explain/facts.js\";\n+import { printLlmLines } from \"../llm.js\";\n+import { resolveFileOrEntity } from \"../resolve.js\";\n+import { renderNote, renderSection, renderWarning } from \"../ui.js\";\n+\n+/**\n+ * Schema version for the deterministic bundle shape. Bump only on a breaking\n+ * shape change, never per run.\n+ */\n+const BUNDLE_SCHEMA = \"ix-context-bundle/1\";\n+\n+interface ContextOptions {\n+  kind?: string;\n+  path?: string;\n+  pick?: string;\n+  depth?: string;\n+  asOfRev?: string;\n+  maxEntities?: string;\n+  maxRelationships?: string;\n+  maxEvidence?: string;\n+  maxChars?: string;\n+  out?: string;\n+  format: string;\n+}\n+\n+/** Stable evidence kinds, ordered by relevance tier (lower is more relevant). */\n+type EvidenceKind =\n+  | \"target\"\n+  | \"structural\"\n+  | \"claim\"\n+  | \"decision\"\n+  | \"conflict\"\n+  | \"intent\"\n+  | \"relationship\"\n+  | \"provenance\";\n+\n+interface EvidenceItem {\n+  id: string;\n+  kind: EvidenceKind;\n+  source: string;\n+  title: string;\n+  /** Deterministic relevance score: tier plus a stable tiebreaker. */\n+  score: number;\n+  reason: string;\n+  refs: string[];\n+}\n+\n+interface ContextBundle {\n+  schema: typeof BUNDLE_SCHEMA;\n+  /** The one explicitly declared time-dependent field. */\n+  generatedAt: string;\n+  target: { id: string; name: string; kind: string; resolutionMode: string };\n+  entities: Array<{ id: string; name: string; kind: string; path?: string; stale: boolean }>;\n+  relationships: Array<{ src: string; dst: string; predicate: string }>;\n+  claims: Array<{ id: string; entityId: string; statement: string; status: string }>;\n+  decisions: DecisionReport[];\n+  conflicts: ConflictReport[];\n+  intents: IntentReport[];\n+  provenance: {\n+    sourceUri?: string;\n+    sourceHash?: string;\n+    extractor?: string;\n+    sourceType?: string;\n+    observedAt?: string;\n+    introducedRev?: number;\n+    historyLength: number;\n+    stale: boolean;\n+  };\n+  freshness: { stale: boolean; classification: \"current\" | \"stale\" | \"unverified\" };\n+  evidence: EvidenceItem[];\n+  budgets: { maxEntities: number; maxRelationships: number; maxEvidence: number; maxChars: number };\n+  truncation: {\n+    entitiesTruncated: number;\n+    relationshipsTruncated: number;\n+    evidenceTruncated: number;\n+    charactersTruncated: number;\n+  };\n+  metadata: {\n+    asOfRev?: number;\n+    depth?: string;\n+    rankingRule: \"deterministic-tier\";\n+  };\n+}\n+\n+/**\n+ * Build a bounded, deterministic context bundle for one target.\n+ *\n+ * This composes Ix's existing intelligence rather than re-deriving it: the\n+ * target is resolved through the same resolver as `ix explain`, structural\n+ * facts come from the same collector, and claims/conflicts/decisions/intents\n+ * come from the same `/v1/context` service. The only new thing here is the\n+ * bundling, budgeting, and deterministic ranking.\n+ */\n+export function registerContextCommand(program: Command): void {\n+  program\n+    .command(\"context <target>\")\n+    .description(\"Build a bounded, deterministic context bundle for a symbol, file, or entity\")\n+    .option(\"--kind <kind>\", \"Filter target entity by kind\")\n+    .option(\"--path <path>\", \"Prefer symbols from files matching this path substring\")\n+    .option(\"--pick <n>\", \"Pick Nth candidate from ambiguous results (1-based)\")\n+    .option(\"--depth <depth>\", \"Context-graph expansion depth\")\n+    .option(\"--as-of-rev <n>\", \"Historical context as of a graph revision\")\n+    .option(\"--max-entities <n>\", \"Maximum entities in the bundle\", \"50\")\n+    .option(\"--max-relationships <n>\", \"Maximum relationships in the bundle\", \"100\")\n+    .option(\"--max-evidence <n>\", \"Maximum evidence items in the bundle\", \"25\")\n+    .option(\"--max-chars <n>\", \"Maximum characters of evidence output\", \"12000\")\n+    .option(\"--format <fmt>\", \"Output format (text|json|llm)\", \"text\")\n+    .option(\"--out <path>\", \"Write the JSON bundle to this file instead of stdout\")\n+    .addHelpText(\n+      \"after\",\n+      \"\\nExample[local-path]  ix context IngestionService\\n  ix context src/main.ts --format json\\n  ix context Widget --max-entities 20 --max-evidence 10\",\n+    )\n+    .action(async (target: string, opts: ContextOptions) => {\n+      const client = new IxClient(getEndpoint());\n+\n+      const resolved = await resolveFileOrEntity(client, target, {\n+        kind: opts.kind,\n+        path: opts.path,\n+        pick: opts.pick ? parseInt(opts.pick, 10) : undefined,\n+      });\n+      if (!resolved) return;\n+\n+      const asOfRev = opts.asOfRev ? parseInt(opts.asOfRev, 10) : undefined;\n+      const maxEntities = clampInt(opts.maxEntities, 1, 500, 50);\n+      const maxRelationships = clampInt(opts.maxRelationships, 1, 1000, 100);\n+      const maxEvidence = clampInt(opts.maxEvidence, 1, 200, 25);\n+      const maxChars = clampInt(opts.maxChars, 1000, 1_000_000, 12_000);\n+\n+      const [facts, context, provenance] = await Promise.all([\n+        collectFacts(client, resolved.id, resolved.name, resolved.kind),\n+        client.query(resolved.name, {\n+          asOfRev,\n+          depth: opts.depth,\n+        }),\n+        client.provenance(resolved.id),\n+      ]);\n+\n+      const bundle = buildBundle({\n+        resolved,\n+        facts,\n+        context,\n+        provenance,\n+        asOfRev,\n+        depth: opts.depth,\n+        budgets: { maxEntities, maxRelationships, maxEvidence, maxChars },\n+      });\n+\n+      if (opts.out && opts.format !== \"json\") {\n+        renderWarning(\"--out writes JSON; ignoring --format and forcing json.\");\n+      }\n+      const out = opts.out;\n+      if (out) {\n+        const fs = await import(\"node:fs\");\n+        fs.writeFileSync(out, JSON.stringify(bundle, null, 2) + \"\\n\");",
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      }
+    ],
+    "timeline": [
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/99b8940b2d70cfa10ce99854bc52e5c8f54c3cb8"
+      },
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/815afeac0b1fcdff7d140c74a093e52375da1bab"
+      },
+      {
+        "id": 29427847589,
+        "event": "review_requested",
+        "actor": {
+          "login": "Alot1z",
+          "id": 16801672,
+          "type": "User",
+          "html_url": "https://github.com/Alot1z"
+        },
+        "created_at": "2026-08-13T22:14:56Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29427847589"
+      },
+      {
+        "id": 4932091186,
+        "event": "reviewed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": "815afeac0b1fcdff7d140c74a093e52375da1bab",
+        "issue": null,
+        "source_url": null
+      }
+    ],
+    "source": "OFFICIAL_GITHUB_FACT",
+    "review_threads": [],
+    "review_thread_capture": {
+      "status": "UNKNOWN",
+      "source": "GitHub GraphQL API"
+    }
+  },
+  "source_context": {
+    "id": "github:pull_request:ix-infrastructure/Ix#423",
+    "source": {
+      "type": "github_pull_request",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/423",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/423",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-13T22:14:55Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-13T22:16:13Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "PR-423",
+    "entity_type": "PULL_REQUEST",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "mirror_scope": "source PR, commits, files, comments, reviews, review comments, and review threads",
+    "related_analysis_types": [
+      "FINDING",
+      "DECISION",
+      "IMPLEMENTATION"
+    ],
+    "review_thread_state": "UNKNOWN"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "CHANGED_BY",
+      "other": "COMMIT-815afeac0b1fcdff7d140c74a093e52375da1bab",
+      "other_type": "commit",
+      "other_title": "815afeac0b1fcdff7d140c74a093e52375da1bab",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-815afeac0b1fcdff7d140c74a093e52375da1bab"
+    },
+    {
+      "direction": "out",
+      "relationship": "FOUND_IN",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    }
+  ]
+}

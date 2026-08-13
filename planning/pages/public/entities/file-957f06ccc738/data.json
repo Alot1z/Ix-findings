@@ -1,0 +1,50 @@
+{
+  "id": "FILE-957f06ccc738",
+  "type": "artifact",
+  "title": "ix-cli/test/view-server.test.ts",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/file-957f06ccc738",
+  "summary": {
+    "id": "FILE-957f06ccc738",
+    "type": "artifact",
+    "title": "ix-cli/test/view-server.test.ts",
+    "status": "CURRENT"
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "PART_OF",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "out",
+      "relationship": "PART_OF",
+      "other": "DIRECTORY-3fa45aa2524c",
+      "other_type": "artifact",
+      "other_title": "ix-cli",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/directory-3fa45aa2524c"
+    },
+    {
+      "direction": "out",
+      "relationship": "PART_OF",
+      "other": "DIRECTORY-1c06737ed5df",
+      "other_type": "artifact",
+      "other_title": "ix-cli/test",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/directory-1c06737ed5df"
+    },
+    {
+      "direction": "in",
+      "relationship": "DEFINED_IN",
+      "other": "SYMBOL-8b8ebb766983",
+      "other_type": "artifact",
+      "other_title": "remap guard-matrix tests",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/symbol-8b8ebb766983"
+    }
+  ]
+}

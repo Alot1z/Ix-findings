@@ -1,0 +1,150 @@
+{
+  "id": "FILE-b33a6fbad5d4",
+  "type": "artifact",
+  "title": "ix-cli/src/cli/commands/doctor.ts",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/file-b33a6fbad5d4",
+  "summary": {
+    "id": "FILE-b33a6fbad5d4",
+    "type": "artifact",
+    "title": "ix-cli/src/cli/commands/doctor.ts",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "source_mirror_id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/commands/doctor.ts",
+    "source_type": "github_file",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/blob/86f3684c4e4dc77dd0a579eb92863824953a3ce9/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fdoctor.ts",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 372,
+    "filename": "ix-cli/src/cli/commands/doctor.ts",
+    "status": "modified",
+    "additions": 41,
+    "deletions": 0,
+    "changes": 41,
+    "blob_url": "https://github.com/ix-infrastructure/Ix/blob/86f3684c4e4dc77dd0a579eb92863824953a3ce9/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fdoctor.ts",
+    "raw_url": "https://github.com/ix-infrastructure/Ix/raw/86f3684c4e4dc77dd0a579eb92863824953a3ce9/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fdoctor.ts",
+    "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fdoctor.ts?ref=86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+    "patch": "@@ -3,6 +3,7 @@ import chalk from \"chalk\";\n import { renderSection, renderSuccess, renderError } from \"../ui.js\";\n import { IxClient } from \"../../client/api.js\";\n import { getEndpoint } from \"../config.js\";\n+import { llmLine, printLlmLines } from \"../llm.js\";\n import {\n   BACKEND_IMAGE,\n   checkBackendImage,\n@@ -18,6 +19,41 @@ interface CheckResult {\n   warn?: boolean;\n }\n \n+/**\n+ * `ix doctor --format llm`.\n+ *\n+ * `text` renders a ✓/!/✗ glyph per check and then, on failure, the singularly\n+ * unhelpful \"Run with --format json for details\" — the details were already in\n+ * hand, they were just not printed. Every check's status and detail is emitted\n+ * here, so an agent never has to make a second call to find out what broke.\n+ *\n+ * Status is a word rather than a symbol because `ok`/`warn`/`fail` survives\n+ * being read back by something that is not a terminal.\n+ */\n+export function renderDoctorLlm(\n+  results: Array<{ name: string } & CheckResult>,\n+  hasFailure: boolean,\n+  hasWarning: boolean,\n+): string[] {\n+  const lines = [llmLine(\"doctor\", [\n+    [\"healthy\", hasFailure ? \"false\" : \"true\"],\n+    [\"warnings\", hasWarning ? \"true\" : \"false\"],\n+    [\"checks\", String(results.length)],\n+  ])];\n+  for (const r of results) {\n+    lines.push(llmLine(\"check\", [\n+      [\"name\", r.name],\n+      // Same precedence as the glyphs and as `hasFailure` below: a warning is\n+      // `{ ok: false, warn: true }`, so `warn` has to be checked on the\n+      // not-ok branch. Testing it on the ok branch reports every warning as a\n+      // hard failure, which is the opposite of what `hasFailure` concludes.\n+      [\"status\", r.ok ? \"ok\" : r.warn ? \"warn\" : \"fail\"],\n+      [\"detail\", r.detail],\n+    ]));\n+  }\n+  return lines;\n+}\n+\n interface Check {\n   name: string;\n   run: () => Promise<CheckResult>;\n@@ -142,6 +178,11 @@ export function registerDoctorCommand(program: Command): void {\n       const hasFailure = results.some((r) => !r.ok && !r.warn);\n       const hasWarning = results.some((r) => r.warn);\n \n+      if (opts.format === \"llm\") {\n+        printLlmLines(renderDoctorLlm(results, hasFailure, hasWarning));\n+        return;\n+      }\n+\n       if (opts.format === \"json\") {\n         console.log(JSON.stringify({ healthy: !hasFailure, hasWarnings: hasWarning, checks: results }, null, 2));\n         return;",
+    "parent_pr": 372
+  },
+  "source_context": {
+    "id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/commands/doctor.ts",
+    "source": {
+      "type": "github_file",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/blob/86f3684c4e4dc77dd0a579eb92863824953a3ce9/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fdoctor.ts",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T02:54:48Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T16:27:44Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "FILE-b33a6fbad5d4",
+    "entity_type": "FILE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#372",
+    "line_precision": "FILE_LEVEL"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-b7e04e73b7174b87831f4c5d981b5e198f363a75",
+      "other_type": "commit",
+      "other_title": "b7e04e73b7174b87831f4c5d981b5e198f363a75",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b7e04e73b7174b87831f4c5d981b5e198f363a75"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+      "other_type": "commit",
+      "other_title": "86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-86f3684c4e4dc77dd0a579eb92863824953a3ce9"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8",
+      "other_type": "commit",
+      "other_title": "cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-83a534f6a8d116e17e68799d27c1010340def163",
+      "other_type": "commit",
+      "other_title": "83a534f6a8d116e17e68799d27c1010340def163",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-83a534f6a8d116e17e68799d27c1010340def163"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-ed361190094b2d31c6a51e8df1e23f4cd8daa884",
+      "other_type": "commit",
+      "other_title": "ed361190094b2d31c6a51e8df1e23f4cd8daa884",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-ed361190094b2d31c6a51e8df1e23f4cd8daa884"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-e807c556b1c3b943ee44d4a8d6fb47d48d001ea3",
+      "other_type": "commit",
+      "other_title": "e807c556b1c3b943ee44d4a8d6fb47d48d001ea3",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-e807c556b1c3b943ee44d4a8d6fb47d48d001ea3"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-fe27c9d2432db883c02cc5bda0018111045815fe",
+      "other_type": "commit",
+      "other_title": "fe27c9d2432db883c02cc5bda0018111045815fe",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-fe27c9d2432db883c02cc5bda0018111045815fe"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-480915b643a705bb7ac8be6fe353ed34b007e7f2",
+      "other_type": "commit",
+      "other_title": "480915b643a705bb7ac8be6fe353ed34b007e7f2",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-480915b643a705bb7ac8be6fe353ed34b007e7f2"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-402301a456c3c75cbe98f2500e830e717ac4d24d",
+      "other_type": "commit",
+      "other_title": "402301a456c3c75cbe98f2500e830e717ac4d24d",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-402301a456c3c75cbe98f2500e830e717ac4d24d"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-07b92ebe517e63c63e107d3953451bd4485df341",
+      "other_type": "commit",
+      "other_title": "07b92ebe517e63c63e107d3953451bd4485df341",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-07b92ebe517e63c63e107d3953451bd4485df341"
+    }
+  ]
+}

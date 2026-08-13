@@ -1,0 +1,88 @@
+{
+  "id": "COMMIT-b60230812a184b1bdf54ea1ca7175da4e1963e0d",
+  "type": "commit",
+  "title": "b60230812a184b1bdf54ea1ca7175da4e1963e0d",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-b60230812a184b1bdf54ea1ca7175da4e1963e0d",
+  "summary": {
+    "id": "COMMIT-b60230812a184b1bdf54ea1ca7175da4e1963e0d",
+    "type": "commit",
+    "title": "b60230812a184b1bdf54ea1ca7175da4e1963e0d",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/b60230812a184b1bdf54ea1ca7175da4e1963e0d",
+    "author": {
+      "name": "Joseph Mikhail",
+      "email": "jsmikhai@ucsd.edu"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-7935037cc58fd8f3fe70f8b670890191a717b97e",
+      "other_type": "commit",
+      "other_title": "7935037cc58fd8f3fe70f8b670890191a717b97e",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-7935037cc58fd8f3fe70f8b670890191a717b97e"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-f09ff608758d9f130c7c8ec437f5f8095d9ec057",
+      "other_type": "commit",
+      "other_title": "f09ff608758d9f130c7c8ec437f5f8095d9ec057",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-f09ff608758d9f130c7c8ec437f5f8095d9ec057"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-1eb9393a4540",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/BulkWriteApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-1eb9393a4540"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c540ea78fa25",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/map/MapService.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c540ea78fa25"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-cc30c10b2f7a",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/BulkWriteApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-cc30c10b2f7a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-f782e49f771e",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/map/MapService.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f782e49f771e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-8fe8197934db",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/BulkWriteApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-8fe8197934db"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-474226c201ee",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/map/MapService.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-474226c201ee"
+    }
+  ]
+}

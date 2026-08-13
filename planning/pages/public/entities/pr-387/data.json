@@ -10,7 +10,349 @@
     "title": "Ix PR #387",
     "status": "RESOLVED",
     "number": 387,
-    "url": "https://github.com/ix-infrastructure/Ix/pull/387"
+    "url": "https://github.com/ix-infrastructure/Ix/pull/387",
+    "source_mirror_id": "github:pull_request:ix-infrastructure/Ix#387",
+    "source_type": "github_pull_request",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/pull/387",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/387",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "number": 387,
+    "node_id": "PR_kwDORdC75M79NXUi",
+    "title": "chore(release): 0.9.2",
+    "body": "## Summary\n\nVersion bump for the v0.9.2 tag.\n\n`ix-cli/package.json` had drifted to **0.6.1** while releases ran to 0.9.1. That never reached users — the release workflow derives the version from the git tag and runs `npm version \"$VERSION\" --no-git-tag-version --allow-same-version` at build time — which is how it went unnoticed for three minors.\n\nIt does still feed `getCurrentVersion()`, so a source checkout reported `0.6.1` and told contributors they were several versions behind. This realigns it.\n\n## Type\n- [x] CI\n\n## Validation\nVersion-only change; the release workflow rewrites this file from the tag regardless.\n\n## Release checklist (if merging to main)\n- [x] `ix-cli/package.json` version bumped\n- [ ] After merge: tag pushed (`git tag v0.9.2 && git push origin v0.9.2`)\n- [ ] If backend changes: `ix-memory-layer` tagged and released first — n/a\n- [ ] If `docker-compose.standalone.yml` changed: verified `curl | sh` install works — n/a",
+    "state": "closed",
+    "draft": false,
+    "merged": true,
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "html_url": "https://github.com/ix-infrastructure/Ix/pull/387",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/387",
+    "head": {
+      "ref": "chore/release-0.9.2",
+      "sha": "94328d82bc6738f4900d5aff51b406bf6c934e73",
+      "repo": {
+        "id": 1171307492,
+        "full_name": "ix-infrastructure/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "ix-infrastructure",
+          "id": 256883681,
+          "type": "Organization",
+          "html_url": "https://github.com/ix-infrastructure"
+        },
+        "html_url": "https://github.com/ix-infrastructure/Ix",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": false,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-03-03T04:48:38Z",
+        "updated_at": "2026-08-13T21:51:31Z",
+        "pushed_at": "2026-08-13T19:18:44Z",
+        "topics": [
+          "ai",
+          "ai-memory",
+          "claude-code",
+          "cli",
+          "code-analysis",
+          "code-mapping",
+          "code-memory",
+          "codebase-understanding",
+          "codex",
+          "developer-tools",
+          "llm",
+          "openclaw",
+          "persistent-memory",
+          "program-analysis",
+          "software-architecture",
+          "system-intelligence",
+          "system-mapping"
+        ],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 701,
+        "stargazers_count": 701,
+        "forks_count": 60,
+        "open_issues_count": 6
+      }
+    },
+    "base": {
+      "ref": "main",
+      "sha": "83a534f6a8d116e17e68799d27c1010340def163",
+      "repo": {
+        "id": 1171307492,
+        "full_name": "ix-infrastructure/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "ix-infrastructure",
+          "id": 256883681,
+          "type": "Organization",
+          "html_url": "https://github.com/ix-infrastructure"
+        },
+        "html_url": "https://github.com/ix-infrastructure/Ix",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": false,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-03-03T04:48:38Z",
+        "updated_at": "2026-08-13T21:51:31Z",
+        "pushed_at": "2026-08-13T19:18:44Z",
+        "topics": [
+          "ai",
+          "ai-memory",
+          "claude-code",
+          "cli",
+          "code-analysis",
+          "code-mapping",
+          "code-memory",
+          "codebase-understanding",
+          "codex",
+          "developer-tools",
+          "llm",
+          "openclaw",
+          "persistent-memory",
+          "program-analysis",
+          "software-architecture",
+          "system-intelligence",
+          "system-mapping"
+        ],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 701,
+        "stargazers_count": 701,
+        "forks_count": 60,
+        "open_issues_count": 6
+      }
+    },
+    "merge_commit_sha": "5488741155d69a5f03fce41416643ddceca6f8a0",
+    "merged_at": "2026-08-10T20:46:14Z",
+    "closed_at": "2026-08-10T20:46:15Z",
+    "created_at": "2026-08-10T20:44:19Z",
+    "updated_at": "2026-08-10T20:46:17Z",
+    "labels": [],
+    "milestone": null,
+    "requested_reviewers": [
+      {
+        "login": "josephismikhail",
+        "id": 56614593,
+        "type": "User",
+        "html_url": "https://github.com/josephismikhail"
+      }
+    ],
+    "requested_teams": [],
+    "commits_count": 1,
+    "changed_files_count": 2,
+    "additions": 3,
+    "deletions": 3,
+    "changed_files": [
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 387,
+        "filename": "ix-cli/package-lock.json",
+        "status": "modified",
+        "additions": 2,
+        "deletions": 2,
+        "changes": 4,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/94328d82bc6738f4900d5aff51b406bf6c934e73/ix-cli%2Fpackage-lock.json",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/94328d82bc6738f4900d5aff51b406bf6c934e73/ix-cli%2Fpackage-lock.json",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fpackage-lock.json?ref=94328d82bc6738f4900d5aff51b406bf6c934e73",
+        "patch": "@@ -1,12 +1,12 @@\n {\n   \"name\": \"@ix/cli\",\n-  \"version\": \"0.6.1\",\n+  \"version\": \"0.9.2\",\n   \"lockfileVersion\": 3,\n   \"requires\": true,\n   \"packages\": {\n     \"\": {\n       \"name\": \"@ix/cli\",\n-      \"version\": \"0.6.1\",\n+      \"version\": \"0.9.2\",\n       \"dependencies\": {\n         \"chalk\": \"^6.0.0\",\n         \"commander\": \"^15.0.0\","
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 387,
+        "filename": "ix-cli/package.json",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 1,
+        "changes": 2,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/94328d82bc6738f4900d5aff51b406bf6c934e73/ix-cli%2Fpackage.json",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/94328d82bc6738f4900d5aff51b406bf6c934e73/ix-cli%2Fpackage.json",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fpackage.json?ref=94328d82bc6738f4900d5aff51b406bf6c934e73",
+        "patch": "@@ -1,6 +1,6 @@\n {\n   \"name\": \"@ix/cli\",\n-  \"version\": \"0.6.1\",\n+  \"version\": \"0.9.2\",\n   \"type\": \"module\",\n   \"description\": \"Ix Memory — Persistent Memory for LLM Systems\",\n   \"main\": \"dist/index.js\","
+      }
+    ],
+    "commits": [
+      {
+        "sha": "94328d82bc6738f4900d5aff51b406bf6c934e73",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/94328d82bc6738f4900d5aff51b406bf6c934e73",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/94328d82bc6738f4900d5aff51b406bf6c934e73",
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "committer": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "message": "chore(release): 0.9.2\n\nThe repo copy had drifted to 0.6.1 while releases ran to 0.9.1 — the\nrelease workflow derives the version from the git tag and rewrites this\nfile at build time, so users never saw it. It still feeds\ngetCurrentVersion(), so a source checkout reported 0.6.1 and told\ncontributors they were several versions behind.",
+        "parents": [
+          {
+            "sha": "83a534f6a8d116e17e68799d27c1010340def163",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/83a534f6a8d116e17e68799d27c1010340def163"
+          }
+        ],
+        "tree_sha": "590472397531f1a7c6ea138115827cdb6a19525a",
+        "authored_at": "2026-08-10T20:43:57Z",
+        "committed_at": "2026-08-10T20:43:57Z"
+      }
+    ],
+    "comments": [],
+    "reviews": [],
+    "review_comments": [],
+    "timeline": [
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/94328d82bc6738f4900d5aff51b406bf6c934e73"
+      },
+      {
+        "id": 29245943900,
+        "event": "review_requested",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T20:44:20Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29245943900"
+      },
+      {
+        "id": 29246027259,
+        "event": "merged",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T20:46:14Z",
+        "commit_id": "5488741155d69a5f03fce41416643ddceca6f8a0",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29246027259"
+      },
+      {
+        "id": 29246027362,
+        "event": "closed",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T20:46:15Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29246027362"
+      },
+      {
+        "id": 29246028886,
+        "event": "head_ref_deleted",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T20:46:17Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29246028886"
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T21:04:21Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      }
+    ],
+    "source": "OFFICIAL_GITHUB_FACT",
+    "review_threads": [],
+    "review_thread_capture": {
+      "status": "VERIFIED",
+      "source": "GitHub GraphQL API"
+    }
+  },
+  "source_context": {
+    "id": "github:pull_request:ix-infrastructure/Ix#387",
+    "source": {
+      "type": "github_pull_request",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/387",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/387",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T20:44:19Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T20:46:17Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "PR-387",
+    "entity_type": "PULL_REQUEST",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "mirror_scope": "source PR, commits, files, comments, reviews, review comments, and review threads",
+    "related_analysis_types": [
+      "FINDING",
+      "DECISION",
+      "IMPLEMENTATION"
+    ],
+    "review_thread_state": "VERIFIED_GRAPHQL"
   },
   "relationships": [
     {
@@ -28,6 +370,46 @@
       "other_type": "file",
       "other_title": "CLI-HANDOFF/phase-15/FINAL-PR-WORTHINESS-AUDIT.json",
       "other_url": "https://alot1z.github.io/Ix-findings/entities/src-90ab8426282e"
+    },
+    {
+      "direction": "out",
+      "relationship": "FOUND_IN",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "in",
+      "relationship": "AUTHORED",
+      "other": "PERSON-KageBinary",
+      "other_type": "artifact",
+      "other_title": "KageBinary",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-kagebinary"
+    },
+    {
+      "direction": "out",
+      "relationship": "HEADS_AT",
+      "other": "COMMIT-94328d82bc6738f4900d5aff51b406bf6c934e73",
+      "other_type": "commit",
+      "other_title": "94328d82bc6738f4900d5aff51b406bf6c934e73",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-94328d82bc6738f4900d5aff51b406bf6c934e73"
+    },
+    {
+      "direction": "out",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "COMMIT-94328d82bc6738f4900d5aff51b406bf6c934e73",
+      "other_type": "commit",
+      "other_title": "94328d82bc6738f4900d5aff51b406bf6c934e73",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-94328d82bc6738f4900d5aff51b406bf6c934e73"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGED_BY",
+      "other": "COMMIT-94328d82bc6738f4900d5aff51b406bf6c934e73",
+      "other_type": "commit",
+      "other_title": "94328d82bc6738f4900d5aff51b406bf6c934e73",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-94328d82bc6738f4900d5aff51b406bf6c934e73"
     }
   ]
 }

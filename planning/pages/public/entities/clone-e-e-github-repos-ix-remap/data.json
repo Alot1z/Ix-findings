@@ -1,0 +1,58 @@
+{
+  "id": "CLONE-E-E-github-repos-Ix-remap",
+  "type": "artifact",
+  "title": "CLONE-E-E-github-repos-Ix-remap",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/clone-e-e-github-repos-ix-remap",
+  "summary": {
+    "id": "CLONE-E-E-github-repos-Ix-remap",
+    "type": "artifact",
+    "title": "CLONE-E-E-github-repos-Ix-remap",
+    "status": "CURRENT"
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "CLONES",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "in",
+      "relationship": "WORKTREE_OF",
+      "other": "WORKTREE-E-E-github-repos-Ix",
+      "other_type": "artifact",
+      "other_title": "WORKTREE-E-E-github-repos-Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/worktree-e-e-github-repos-ix"
+    },
+    {
+      "direction": "in",
+      "relationship": "WORKTREE_OF",
+      "other": "WORKTREE-E-E-github-repos-Ix-mcp",
+      "other_type": "artifact",
+      "other_title": "WORKTREE-E-E-github-repos-Ix-mcp",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/worktree-e-e-github-repos-ix-mcp"
+    },
+    {
+      "direction": "in",
+      "relationship": "WORKTREE_OF",
+      "other": "WORKTREE-E-E-github-repos-Ix-remap",
+      "other_type": "artifact",
+      "other_title": "WORKTREE-E-E-github-repos-Ix-remap",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/worktree-e-e-github-repos-ix-remap"
+    },
+    {
+      "direction": "in",
+      "relationship": "WORKTREE_OF",
+      "other": "WORKTREE-E-E-github-repos-Ix-test",
+      "other_type": "artifact",
+      "other_title": "WORKTREE-E-E-github-repos-Ix-test",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/worktree-e-e-github-repos-ix-test"
+    }
+  ]
+}

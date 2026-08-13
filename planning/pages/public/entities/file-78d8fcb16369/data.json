@@ -1,0 +1,126 @@
+{
+  "id": "FILE-78d8fcb16369",
+  "type": "artifact",
+  "title": "ix-cli/src/cli/__tests__/search-ranking.test.ts",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/file-78d8fcb16369",
+  "summary": {
+    "id": "FILE-78d8fcb16369",
+    "type": "artifact",
+    "title": "ix-cli/src/cli/__tests__/search-ranking.test.ts",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "source_mirror_id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/__tests__/search-ranking.test.ts",
+    "source_type": "github_file",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/blob/b89046144f0a8cd960a7bbee22b3a12145c6c82e/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fsearch-ranking.test.ts",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 380,
+    "filename": "ix-cli/src/cli/__tests__/search-ranking.test.ts",
+    "status": "modified",
+    "additions": 60,
+    "deletions": 0,
+    "changes": 60,
+    "blob_url": "https://github.com/ix-infrastructure/Ix/blob/b89046144f0a8cd960a7bbee22b3a12145c6c82e/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fsearch-ranking.test.ts",
+    "raw_url": "https://github.com/ix-infrastructure/Ix/raw/b89046144f0a8cd960a7bbee22b3a12145c6c82e/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fsearch-ranking.test.ts",
+    "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fsearch-ranking.test.ts?ref=b89046144f0a8cd960a7bbee22b3a12145c6c82e",
+    "patch": "@@ -193,6 +193,66 @@ describe(\"resolveEntityFull: method preferred over chunk for PascalCase names\",\n   });\n });\n \n+describe(\"resolveEntityFull: same-kind ambiguity\", () => {\n+  const duplicateClasses = [\n+    {\n+      id: \"alpha-service-id\",\n+      name: \"DuplicateService\",\n+      kind: \"class\",\n+      provenance: { sourceUri: \"src/alpha/DuplicateService.ts\" },\n+    },\n+    {\n+      id: \"beta-service-id\",\n+      name: \"DuplicateService\",\n+      kind: \"class\",\n+      provenance: { sourceUri: \"src/beta/DuplicateService.ts\" },\n+    },\n+  ];\n+\n+  it(\"stays ambiguous when --kind matches multiple exact-name candidates\", async () => {\n+    const mockClient = {\n+      search: vi.fn().mockResolvedValue(duplicateClasses),\n+    } as any;\n+\n+    const result = await resolveEntityFull(\n+      mockClient,\n+      \"DuplicateService\",\n+      [\"class\"],\n+      { kind: \"class\" },\n+    );\n+\n+    expect(result.resolved).toBe(false);\n+    if (!result.resolved) {\n+      expect(result.ambiguous).toBe(true);\n+      if (result.ambiguous) {\n+        expect(result.result.candidates.map(candidate => candidate.id)).toEqual([\n+          \"alpha-service-id\",\n+          \"beta-service-id\",\n+        ]);\n+      }\n+    }\n+  });\n+\n+  it(\"honors --pick after --kind leaves multiple candidates\", async () => {\n+    const mockClient = {\n+      search: vi.fn().mockResolvedValue(duplicateClasses),\n+    } as any;\n+\n+    const result = await resolveEntityFull(\n+      mockClient,\n+      \"DuplicateService\",\n+      [\"class\"],\n+      { kind: \"class\", pick: 2 },\n+    );\n+\n+    expect(result.resolved).toBe(true);\n+    if (result.resolved) {\n+      expect(result.entity.id).toBe(\"beta-service-id\");\n+      expect(result.entity.path).toBe(\"src/beta/DuplicateService.ts\");\n+    }\n+  });\n+});\n+\n describe(\"resolveEntityFull --path hard exclusion\", () => {\n   it(\"excludes out-of-scope candidates even on exact name match\", async () => {\n     // Simulates Bug 1: etcd has 'Notifier' but prometheus does not.",
+    "parent_pr": 380
+  },
+  "source_context": {
+    "id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/__tests__/search-ranking.test.ts",
+    "source": {
+      "type": "github_file",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/blob/b89046144f0a8cd960a7bbee22b3a12145c6c82e/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fsearch-ranking.test.ts",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T04:48:45Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T19:49:16Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "FILE-78d8fcb16369",
+    "entity_type": "FILE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#380",
+    "line_precision": "FILE_LEVEL"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-b89046144f0a8cd960a7bbee22b3a12145c6c82e",
+      "other_type": "commit",
+      "other_title": "b89046144f0a8cd960a7bbee22b3a12145c6c82e",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b89046144f0a8cd960a7bbee22b3a12145c6c82e"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-fa1004586b8057c410de826dd3c6da1b0d735853",
+      "other_type": "commit",
+      "other_title": "fa1004586b8057c410de826dd3c6da1b0d735853",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-fa1004586b8057c410de826dd3c6da1b0d735853"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-befde2c38786251239dd93a6adbdadcfe5e5877b",
+      "other_type": "commit",
+      "other_title": "befde2c38786251239dd93a6adbdadcfe5e5877b",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-befde2c38786251239dd93a6adbdadcfe5e5877b"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-7258e0d9cd2c2baf81bb9ff2fa7387be972cbf70",
+      "other_type": "commit",
+      "other_title": "7258e0d9cd2c2baf81bb9ff2fa7387be972cbf70",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-7258e0d9cd2c2baf81bb9ff2fa7387be972cbf70"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-f09ff608758d9f130c7c8ec437f5f8095d9ec057",
+      "other_type": "commit",
+      "other_title": "f09ff608758d9f130c7c8ec437f5f8095d9ec057",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-f09ff608758d9f130c7c8ec437f5f8095d9ec057"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-d00b5fc17635bb019620598c2f2bcf6bc85228be",
+      "other_type": "commit",
+      "other_title": "d00b5fc17635bb019620598c2f2bcf6bc85228be",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-d00b5fc17635bb019620598c2f2bcf6bc85228be"
+    },
+    {
+      "direction": "out",
+      "relationship": "CO_CHANGED_WITH",
+      "other": "FILE-b8d9b549899d",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/resolve.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b8d9b549899d"
+    }
+  ]
+}

@@ -1,0 +1,243 @@
+{
+  "id": "ISSUE-349",
+  "type": "issue",
+  "title": "Issue #349 — [bug] Windows installer — path with spaces",
+  "status": "RESOLVED",
+  "url": "https://alot1z.github.io/Ix-findings/entities/issue-349",
+  "summary": {
+    "id": "ISSUE-349",
+    "type": "issue",
+    "title": "Issue #349 — [bug] Windows installer — path with spaces",
+    "status": "RESOLVED",
+    "repository": "ix-infrastructure/Ix",
+    "number": 349,
+    "url": "https://github.com/ix-infrastructure/Ix/issues/349",
+    "source_mirror_id": "github:issue:ix-infrastructure/Ix#349",
+    "source_type": "github_issue",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/issues/349",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/349",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "number": 349,
+    "node_id": "I_kwDORdC75M8AAAABMA13kQ",
+    "title": "[bug] Windows installer — path with spaces",
+    "body": "## Description\n\nThe Windows installer fails during CLI installation when the Windows user profile/TEMP path contains a space.\n\nIn my case, the user profile is `[local-path] 10`. The CLI archive downloads and extracts successfully, but the installer then resolves part of the path as `[local-path] and fails because that path does not exist.\n\nUsing a TEMP directory without spaces allows the installation to complete successfully.\n\n## Steps to reproduce\n\n1. Use a Windows account with a profile path containing a space, such as `[local-path] 10`.\n2. Run:\n\n   ```powershell\n   irm https://ix-infra.com/install.ps1 | iex\n   ```\n3. Wait for the CLI installation stage after the archive has been downloaded and extracted.\n\n## Expected behavior\n\nThe installer should correctly handle Windows user profile and temporary paths containing spaces and complete the CLI installation.\n\n## Actual behavior\n\nThe archive downloads and extracts successfully, but the installer fails while resolving the temporary path.\n\nChanging `TEMP` and `TMP` to a path without spaces, such as `[local-path] allows the installation to succeed.\n\n## CLI output\n\n```text\n[ok] Downloaded to [local-path]\nExtracting CLI...\n[ok] Extraction complete\n\nIx installer failed.\nError:\nAn object at the specified path [local-path] does not exist.\n```\n\n## Environment\n\n* OS: Windows\n* Node: v24.18.0\n* Ix version: 0.8.1\n",
+    "state": "closed",
+    "state_reason": "completed",
+    "author": {
+      "login": "RMA1313",
+      "id": 75065599,
+      "type": "User",
+      "html_url": "https://github.com/RMA1313"
+    },
+    "html_url": "https://github.com/ix-infrastructure/Ix/issues/349",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/349",
+    "labels": [
+      "bug"
+    ],
+    "milestone": null,
+    "created_at": "2026-08-09T06:07:14Z",
+    "updated_at": "2026-08-13T14:39:29Z",
+    "closed_at": "2026-08-13T14:39:29Z",
+    "comments_count": 4,
+    "locked": false,
+    "comments": [
+      {
+        "id": 5243330761,
+        "node_id": "IC_kwDORdC75M8AAAABOIbgyQ",
+        "repository": "ix-infrastructure/Ix",
+        "parent_type": "ISSUE",
+        "parent_number": 349,
+        "kind": "ISSUE_COMMENT",
+        "author": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "body": "Reopening: closed automatically by the #352 merge, but the fix is not yet confirmed to resolve this.\n\n#352 **has** shipped and is worth trying — it routes the installer's two scratch files (the CLI zip and the compose pull log) out of `TEMP` and into `IX_HOME`, which comes from `USERPROFILE` in its long form. Since you confirmed that pointing `TEMP`/`TMP` at a path without a space lets the install finish, moving off `TEMP` should fix it. `install.ps1` is served from `main`, so it is live now — no release needed.\n\nBut the mechanism the PR described did not hold up, and nobody has reproduced this on a machine with the failing profile, so the issue should stay open until you can confirm. Specifically:\n\n- PowerShell's FileSystem provider **does** resolve 8.3 short segments on both Windows PowerShell 5.1 and 7 — `Test-Path [local-path] returns `True`, and `Get-Item`, `Expand-Archive` and `Remove-Item` all work on a real `WIN10~1` path.\n- Your transcript shows the installer reaching `[ok] Extraction complete`. The two provider calls on the zip (`Test-Path -LiteralPath`, `Get-Item -LiteralPath`) run *before* extraction, so they succeeded on that short path.\n- `An object at the specified path ... does not exist.` could not be reproduced from any of ~30 path-taking cmdlets, including every one the installer calls on those paths — they report `Cannot find path` instead.\n\nThe most likely remaining explanation is that 8.3 alias *creation* is disabled on that volume while `TEMP` still holds a stale short path, so nothing resolves it. #352 fixes that reading too, which is why it shipped.\n\n**If you are able to help confirm**, two things would settle it:\n\n1. Re-run `irm https://ix-infra.com/install.ps1 | iex` on the affected account with `TEMP`/`TMP` back at their original values, and say whether it completes.\n2. If it still fails, the full error would pin it:\n   ```powershell\n   $env:TEMP\n   fsutil 8dot3name query C:\n   Test-Path $env:TEMP\n   $Error[0] | Format-List * -Force\n   ```\n\nOne small thing worth checking either way: the output above quotes the path as `[local-path] with a backslash before `~1`. We assumed that is a copy/paste artifact and the real path is `[local-path] (the 8.3 alias of `[local-path] 10`), since a literal `~1` directory would be unusual — but if your console really did print it with the backslash, that changes the diagnosis and is worth knowing.\n\nThanks for the detailed report — the `TEMP`-without-spaces datapoint is what made the fix actionable.",
+        "html_url": "https://github.com/ix-infrastructure/Ix/issues/349#issuecomment-5243330761",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5243330761",
+        "created_at": "2026-08-10T16:54:44Z",
+        "updated_at": "2026-08-10T16:54:44Z",
+        "commit_id": null,
+        "path": null,
+        "line": null,
+        "start_line": null,
+        "side": null,
+        "in_reply_to_id": null,
+        "diff_hunk": null,
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      },
+      {
+        "id": 5245023559,
+        "node_id": "IC_kwDORdC75M8AAAABOKC1Rw",
+        "repository": "ix-infrastructure/Ix",
+        "parent_type": "ISSUE",
+        "parent_number": 349,
+        "kind": "ISSUE_COMMENT",
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "body": "Thank you for the issue — the detail that a space-free TEMP directory worked was the clue that made this diagnosable, and `[local-path] 10` → `[local-path] is the whole bug in one line.\n\nThe fix is **merged** in #352: the installer was mixing 8.3 short paths with long-path APIs, so it resolved a path it was never asked to write.\n\n**Deliberately keeping this open** rather than auto-closing it. #352 was filed with `Refs #349` instead of `Fixes #349` precisely so merging would not close this before someone confirms it on a real Windows profile with a space in the path — the fix was verified by other means, not on the machine that hit it.\n\nIf you get the chance to re-run the installer on that account after the next release, a confirmation here would be very welcome and I will close it out. No obligation — I will get it verified either way.\n",
+        "html_url": "https://github.com/ix-infrastructure/Ix/issues/349#issuecomment-5245023559",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5245023559",
+        "created_at": "2026-08-10T19:33:32Z",
+        "updated_at": "2026-08-10T19:33:32Z",
+        "commit_id": null,
+        "path": null,
+        "line": null,
+        "start_line": null,
+        "side": null,
+        "in_reply_to_id": null,
+        "diff_hunk": null,
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      },
+      {
+        "id": 5247526086,
+        "node_id": "IC_kwDORdC75M8AAAABOMbkxg",
+        "repository": "ix-infrastructure/Ix",
+        "parent_type": "ISSUE",
+        "parent_number": 349,
+        "kind": "ISSUE_COMMENT",
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "body": "The fix shipped in #352 and is on `main`: the installer's scratch files (`.cli-staging-<pid>.zip` and its pull log) now live under `$IX_HOME`, which comes from `USERPROFILE` in long form, instead of under `TEMP` — taking the script off the 8.3-shortened path the failure was traced to.\n\nDeliberately merged as `Refs #349` rather than `Fixes`, so this stayed open pending a real run. Worth restating what is *not* established, because it affects how the verification should be read: the mechanism was never reproduced. The provider cmdlets this script calls resolve 8.3 segments fine on both 5.1 and 7, and no cmdlet the installer invokes produces the reported error string. The likeliest remaining explanation is that 8.3 alias creation is disabled on that volume while `TEMP` still carries a stale short path — moving off `TEMP` fixes that reading too, which is why it was worth shipping ahead of the diagnosis.\n\n@RMA1313 — if you still have that machine, a plain `irm https://ix-infra.com/install.ps1 | iex` with `TEMP`/`TMP` left at their defaults would settle it.\n\nOne thing this did **not** cover: `ix upgrade` still stages through `os.tmpdir()`, which on Windows is `TEMP` verbatim. If this class of failure is real, it is unfixed there — and would show up as a broken upgrade rather than a broken install.",
+        "html_url": "https://github.com/ix-infrastructure/Ix/issues/349#issuecomment-5247526086",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5247526086",
+        "created_at": "2026-08-11T00:15:59Z",
+        "updated_at": "2026-08-11T00:15:59Z",
+        "commit_id": null,
+        "path": null,
+        "line": null,
+        "start_line": null,
+        "side": null,
+        "in_reply_to_id": null,
+        "diff_hunk": null,
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      },
+      {
+        "id": 5281889925,
+        "node_id": "IC_kwDORdC75M8AAAABOtM-hQ",
+        "repository": "ix-infrastructure/Ix",
+        "parent_type": "ISSUE",
+        "parent_number": 349,
+        "kind": "ISSUE_COMMENT",
+        "author": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "body": "Verified end to end on a real Windows machine on 2026-08-13. Closing as fixed.\n\nEnvironment:\n- Windows 11 Home 10.0.26200 (build 26200)\n- Windows PowerShell 5.1.26100.9168\n- Node v26.7.0\n- live `irm https://ix-infra.com/install.ps1 | iex`\n- installer selected Ix v0.9.3\n\nI ran two fresh, isolated installs:\n\n1. `USERPROFILE=[local-path] 349 Test`, with `TEMP`/`TMP=[local-path] 349 Test\\AppData\\Local\\Temp`.\n2. `USERPROFILE=[local-path] 349 Stale`, with `TEMP`/`TMP=[local-path] that short-style path deliberately did not exist (`Test-Path` was false before and after the run), matching the likeliest stale-8.3-path explanation discussed above.\n\nBoth runs completed the real CLI path successfully:\n\n- the archive downloaded under the long-form profile path in `$IX_HOME`, not under `TEMP`\n- extraction completed\n- the CLI installed\n- the generated launcher independently returned `0.9.3`\n- no `.cli-staging-*` artifacts remained\n\nDocker Compose was stubbed for test isolation so this did not touch the machine's real containers; the live installer download, release ZIP download, PowerShell extraction, directory swap, launcher creation, and CLI execution were all real. The original failure is in that tested CLI path.\n\nThis confirms #352 fixes the installer even when `TEMP` is unusable, not merely when it contains a space. #392 also moved `ix upgrade` downloads off `TEMP`, covering the related upgrade path.",
+        "html_url": "https://github.com/ix-infrastructure/Ix/issues/349#issuecomment-5281889925",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5281889925",
+        "created_at": "2026-08-13T14:39:26Z",
+        "updated_at": "2026-08-13T14:39:26Z",
+        "commit_id": null,
+        "path": null,
+        "line": null,
+        "start_line": null,
+        "side": null,
+        "in_reply_to_id": null,
+        "diff_hunk": null,
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      }
+    ],
+    "source": "OFFICIAL_GITHUB_FACT"
+  },
+  "source_context": {
+    "id": "github:issue:ix-infrastructure/Ix#349",
+    "source": {
+      "type": "github_issue",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/issues/349",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/349",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-09T06:07:14Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-13T14:39:29Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "ISSUE-349",
+    "entity_type": "ISSUE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "mirror_scope": "source issue plus captured comments",
+    "related_analysis_types": [
+      "FINDING",
+      "DECISION",
+      "IMPLEMENTATION"
+    ]
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "FOUND_IN",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "in",
+      "relationship": "AUTHORED",
+      "other": "PERSON-RMA1313",
+      "other_type": "artifact",
+      "other_title": "RMA1313",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-rma1313"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMENTED_ON",
+      "other": "COMMENT-ix-infrastructure-Ix-issue-349-5243330761",
+      "other_type": "artifact",
+      "other_title": "Issue #349 comment 5243330761",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/comment-ix-infrastructure-ix-issue-349-5243330761"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMENTED_ON",
+      "other": "COMMENT-ix-infrastructure-Ix-issue-349-5245023559",
+      "other_type": "artifact",
+      "other_title": "Issue #349 comment 5245023559",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/comment-ix-infrastructure-ix-issue-349-5245023559"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMENTED_ON",
+      "other": "COMMENT-ix-infrastructure-Ix-issue-349-5247526086",
+      "other_type": "artifact",
+      "other_title": "Issue #349 comment 5247526086",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/comment-ix-infrastructure-ix-issue-349-5247526086"
+    }
+  ]
+}

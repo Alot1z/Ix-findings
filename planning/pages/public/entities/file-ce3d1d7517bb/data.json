@@ -1,0 +1,94 @@
+{
+  "id": "FILE-ce3d1d7517bb",
+  "type": "artifact",
+  "title": "ix-cli/src/cli/__tests__/ingest-baseline-rev.test.ts",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/file-ce3d1d7517bb",
+  "summary": {
+    "id": "FILE-ce3d1d7517bb",
+    "type": "artifact",
+    "title": "ix-cli/src/cli/__tests__/ingest-baseline-rev.test.ts",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "source_mirror_id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/__tests__/ingest-baseline-rev.test.ts",
+    "source_type": "github_file",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/blob/0d8032910c45408d8684a0e6f95198ee223b647c/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fingest-baseline-rev.test.ts",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 389,
+    "filename": "ix-cli/src/cli/__tests__/ingest-baseline-rev.test.ts",
+    "status": "added",
+    "additions": 106,
+    "deletions": 0,
+    "changes": 106,
+    "blob_url": "https://github.com/ix-infrastructure/Ix/blob/0d8032910c45408d8684a0e6f95198ee223b647c/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fingest-baseline-rev.test.ts",
+    "raw_url": "https://github.com/ix-infrastructure/Ix/raw/0d8032910c45408d8684a0e6f95198ee223b647c/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fingest-baseline-rev.test.ts",
+    "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fingest-baseline-rev.test.ts?ref=0d8032910c45408d8684a0e6f95198ee223b647c",
+    "patch": "@@ -0,0 +1,106 @@\n+import { afterEach, beforeEach, describe, expect, it } from \"vitest\";\n+import * as fs from \"node:fs\";\n+import * as os from \"node:os\";\n+import * as path from \"node:path\";\n+\n+import { ingestMtimeCachePath } from \"../config.js\";\n+import { loadIngestBaseline, saveIngestBaseline } from \"../ingest-baseline.js\";\n+import { advanceRev } from \"../commands/ingest.js\";\n+\n+let home: string;\n+let savedHome: string | undefined;\n+let savedProfile: string | undefined;\n+\n+/** The rev exactly as it sits on disk — loadIngestBaseline would launder it. */\n+function rawRev(root: string): unknown {\n+  return JSON.parse(fs.readFileSync(ingestMtimeCachePath(root), \"utf-8\")).currentRev;\n+}\n+\n+beforeEach(() => {\n+  home = fs.mkdtempSync(path.join(os.tmpdir(), \"ix-baseline-rev-\"));\n+  savedHome = process[redacted].HOME;\n+  savedProfile = process[redacted].USERPROFILE;\n+  process[redacted].HOME = home;\n+  process[redacted].USERPROFILE = home;\n+});\n+\n+afterEach(() => {\n+  process[redacted].HOME = savedHome;\n+  process[redacted].USERPROFILE = savedProfile;\n+  fs.rmSync(home, { recursive: true, force: true });\n+});\n+\n+// The rev comes off the backend's commit response. loadIngestBaseline has always\n+// insisted on a non-negative integer; saveIngestBaseline used to accept whatever\n+// arrived, so anything that cleared a bare `> 0` without being an integer got\n+// written and was then rejected on the next read. `ix status` is the only reader\n+// — incremental skipping runs off the mtime map — so the cost is a wrong\n+// Revision line, not a re-ingest.\n+describe(\"ingest baseline rev normalization\", () => {\n+  const files = new Map<string, number>([[\"a.ts\", 1_000]]);\n+\n+  it(\"persists a real rev unchanged\", () => {\n+    const root = path.join(home, \"p\");\n+    saveIngestBaseline(root, files, 7);\n+\n+    expect(rawRev(root)).toBe(7);\n+    expect(loadIngestBaseline(root)?.currentRev).toBe(7);\n+  });\n+\n+  it(\"keeps the previous rev when the backend answers with a numeric string\", () => {\n+    const root = path.join(home, \"p\");\n+    saveIngestBaseline(root, files, 5);\n+    saveIngestBaseline(root, files, \"9\" as unknown as number);\n+\n+    // \"9\" > 0 is true, so the old code wrote the string through. Round-tripping\n+    // it is what mattered: the read side drops a non-number and hands back 0.\n+    expect(rawRev(root)).toBe(5);\n+    expect(loadIngestBaseline(root)?.currentRev).toBe(5);\n+  });\n+\n+  it(\"keeps the previous rev when the backend answers with a fraction\", () => {\n+    const root = path.join(home, \"p\");\n+    saveIngestBaseline(root, files, 5);\n+    saveIngestBaseline(root, files, 6.5);\n+\n+    expect(rawRev(root)).toBe(5);\n+    expect(loadIngestBaseline(root)?.currentRev).toBe(5);\n+  });\n+\n+  it(\"still records the mtimes when the rev is rejected\", () => {\n+    const root = path.join(home, \"p\");\n+    saveIngestBaseline(root, files, \"9\" as unknown as number);\n+\n+    // A bad rev must not cost the mtime cache — that is the part that makes the\n+    // next map fast, and it never came from the backend at all.\n+    expect(loadIngestBaseline(root)?.files.get(\"a.ts\")).toBe(1_000);\n+  });\n+});\n+\n+// The save side is the last stop, not the first. The same malformed value enters\n+// at the accumulator, where a bare `>` compares it as a string: \"9\" becomes the\n+// max, then \"10\" > \"9\" is false and the max walks backwards. It also ships to\n+// the user as the `latestRev` field of `ix ingest --format json`.\n+describe(\"advanceRev\", () => {\n+  it(\"takes a larger real rev\", () => {\n+    expect(advanceRev(3, 9)).toBe(9);\n+  });\n+\n+  it(\"keeps the current max when the incoming rev is smaller\", () => {\n+    expect(advanceRev(9, 3)).toBe(9);\n+  });\n+\n+  it(\"ignores a numeric string instead of letting it become the max\", () => {\n+    // The bug this pins: \"9\" > 0 coerces true, so the string won and the next\n+    // comparison silently became lexicographic.\n+    expect(advanceRev(0, \"9\")).toBe(0);\n+    expect(advanceRev(9, \"10\")).toBe(9);\n+  });\n+\n+  it(\"ignores fractions, NaN, null and undefined\", () => {\n+    expect(advanceRev(3, 6.5)).toBe(3);\n+    expect(advanceRev(3, Number.NaN)).toBe(3);\n+    expect(advanceRev(3, null)).toBe(3);\n+    expect(advanceRev(3, undefined)).toBe(3);\n+  });\n+});",
+    "parent_pr": 389
+  },
+  "source_context": {
+    "id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/__tests__/ingest-baseline-rev.test.ts",
+    "source": {
+      "type": "github_file",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/blob/0d8032910c45408d8684a0e6f95198ee223b647c/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fingest-baseline-rev.test.ts",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T21:16:50Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T22:21:09Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "FILE-ce3d1d7517bb",
+    "entity_type": "FILE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#389",
+    "line_precision": "FILE_LEVEL"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-7a815573e4388e77b8b7af4c1ba0376a8bd36e25",
+      "other_type": "commit",
+      "other_title": "7a815573e4388e77b8b7af4c1ba0376a8bd36e25",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-7a815573e4388e77b8b7af4c1ba0376a8bd36e25"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-0d8032910c45408d8684a0e6f95198ee223b647c",
+      "other_type": "commit",
+      "other_title": "0d8032910c45408d8684a0e6f95198ee223b647c",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-0d8032910c45408d8684a0e6f95198ee223b647c"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-ffe21f01268caf6567916da697cd6826358443e2",
+      "other_type": "commit",
+      "other_title": "ffe21f01268caf6567916da697cd6826358443e2",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-ffe21f01268caf6567916da697cd6826358443e2"
+    }
+  ]
+}

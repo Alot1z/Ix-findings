@@ -1,0 +1,194 @@
+{
+  "gate": "PASS",
+  "checked_at": "2026-08-12T11:21:09.303Z",
+  "repository": "ix-infrastructure/Ix",
+  "live": {
+    "repository": "ix-infrastructure/Ix",
+    "defaultBranch": "main",
+    "head": "fa6ad7b0ff52734685ff7425b08ec240837751fa",
+    "openPRs": [
+      388,
+      393,
+      395
+    ],
+    "openIssues": [
+      219,
+      349,
+      383,
+      385
+    ],
+    "fetchedAt": "2026-08-12T11:21:09.303Z",
+    "source": "GitHub API via gh api (read-only)"
+  },
+  "canonical": {
+    "head": "fa6ad7b0ff52734685ff7425b08ec240837751fa",
+    "baseline_head": "fa6ad7b0ff52734685ff7425b08ec240837751fa",
+    "open_prs": [
+      388,
+      393,
+      395
+    ],
+    "open_issues": [
+      219,
+      349,
+      383,
+      385
+    ]
+  },
+  "snapshots": [
+    {
+      "dataset": "planning/wiki/data/data.js",
+      "generated_at": "2026-08-12",
+      "source_revision": "fa6ad7b0ff52734685ff7425b08ec240837751fa",
+      "parse_error": null
+    },
+    {
+      "dataset": "planning/pages/public/data/data.js",
+      "generated_at": "2026-08-12",
+      "source_revision": "fa6ad7b0ff52734685ff7425b08ec240837751fa",
+      "parse_error": null
+    }
+  ],
+  "checks": [
+    {
+      "id": "repository",
+      "ok": true,
+      "severity": "INFO",
+      "details": "expected ix-infrastructure/Ix, observed ix-infrastructure/Ix"
+    },
+    {
+      "id": "default-branch",
+      "ok": true,
+      "severity": "INFO",
+      "details": "expected main, observed main"
+    },
+    {
+      "id": "canonical-head",
+      "ok": true,
+      "severity": "INFO",
+      "details": "canonical fa6ad7b0ff52734685ff7425b08ec240837751fa, live fa6ad7b0ff52734685ff7425b08ec240837751fa"
+    },
+    {
+      "id": "manifest-head",
+      "ok": true,
+      "severity": "INFO",
+      "details": "manifest fa6ad7b0ff52734685ff7425b08ec240837751fa, live fa6ad7b0ff52734685ff7425b08ec240837751fa"
+    },
+    {
+      "id": "manifest-open-prs",
+      "ok": true,
+      "severity": "INFO",
+      "details": "missing none; unexpected none"
+    },
+    {
+      "id": "manifest-open-issues",
+      "ok": true,
+      "severity": "INFO",
+      "details": "missing none; unexpected none"
+    },
+    {
+      "id": "graph-open-prs",
+      "ok": true,
+      "severity": "INFO",
+      "details": "missing none; unexpected none"
+    },
+    {
+      "id": "graph-open-issues",
+      "ok": true,
+      "severity": "INFO",
+      "details": "missing none; unexpected none"
+    },
+    {
+      "id": "graph-pr-coverage",
+      "ok": true,
+      "severity": "INFO",
+      "details": "live open PRs absent from canonical graph: none"
+    },
+    {
+      "id": "graph-issue-coverage",
+      "ok": true,
+      "severity": "INFO",
+      "details": "live open issues absent from canonical graph: none"
+    },
+    {
+      "id": "superseded-commit:1497596",
+      "ok": true,
+      "severity": "INFO",
+      "details": "commit 1497596 entity status is HISTORICAL; live capture records a6a47267 as head of feat/ix-remap-hardening (fork, pushed) — superseded manifest-era commits must be HISTORICAL, not CURRENT"
+    },
+    {
+      "id": "superseded-commit:c4f8fea",
+      "ok": true,
+      "severity": "INFO",
+      "details": "commit c4f8fea entity status is HISTORICAL; live capture records 7e28e05e as head of fork/main + Ix-test — superseded manifest-era commits must be HISTORICAL, not CURRENT"
+    },
+    {
+      "id": "superseded-commit:c021b52",
+      "ok": true,
+      "severity": "INFO",
+      "details": "commit c021b52 entity status is HISTORICAL; live capture records a6a47267 as head of feat/ix-remap-hardening — superseded manifest-era commits must be HISTORICAL, not CURRENT"
+    },
+    {
+      "id": "superseded-commit:b038c46",
+      "ok": true,
+      "severity": "INFO",
+      "details": "commit b038c46 entity status is HISTORICAL; live capture records 30f28b3c as head of feat/ix-agent-skill — superseded manifest-era commits must be HISTORICAL, not CURRENT"
+    },
+    {
+      "id": "superseded-commit:0437abf",
+      "ok": true,
+      "severity": "INFO",
+      "details": "commit 0437abf entity status is HISTORICAL; live capture records 7e28e05e as head of fork/main — superseded manifest-era commits must be HISTORICAL, not CURRENT"
+    },
+    {
+      "id": "superseded-commit:0c9087c",
+      "ok": true,
+      "severity": "INFO",
+      "details": "commit 0c9087c entity status is HISTORICAL; live capture records 30f28b3c as head of fork/feat/ix-agent-skill — superseded manifest-era commits must be HISTORICAL, not CURRENT"
+    },
+    {
+      "id": "snapshot-parse:planning/wiki/data/data.js",
+      "ok": true,
+      "severity": "INFO",
+      "details": "parsed"
+    },
+    {
+      "id": "snapshot-head:planning/wiki/data/data.js",
+      "ok": true,
+      "severity": "INFO",
+      "details": "snapshot fa6ad7b0ff52734685ff7425b08ec240837751fa, live fa6ad7b0ff52734685ff7425b08ec240837751fa"
+    },
+    {
+      "id": "snapshot-parse:planning/pages/public/data/data.js",
+      "ok": true,
+      "severity": "INFO",
+      "details": "parsed"
+    },
+    {
+      "id": "snapshot-head:planning/pages/public/data/data.js",
+      "ok": true,
+      "severity": "INFO",
+      "details": "snapshot fa6ad7b0ff52734685ff7425b08ec240837751fa, live fa6ad7b0ff52734685ff7425b08ec240837751fa"
+    },
+    {
+      "id": "snapshot-record:planning/wiki/data/data.js",
+      "ok": true,
+      "severity": "INFO",
+      "details": "record fa6ad7b0ff52734685ff7425b08ec240837751fa, live fa6ad7b0ff52734685ff7425b08ec240837751fa"
+    },
+    {
+      "id": "snapshot-record:planning/pages/public/data/data.js",
+      "ok": true,
+      "severity": "INFO",
+      "details": "record fa6ad7b0ff52734685ff7425b08ec240837751fa, live fa6ad7b0ff52734685ff7425b08ec240837751fa"
+    }
+  ],
+  "stale_count": 0,
+  "policy": {
+    "publication_must_stop_on_stale": true,
+    "network": "read-only GitHub API lookup",
+    "external_mutations": 0
+  },
+  "mode": "live",
+  "live_check_error": null
+}

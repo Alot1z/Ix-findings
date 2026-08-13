@@ -1,0 +1,22 @@
+{
+  "schema_version": "phase-e.source-analysis-audit.v1",
+  "source_layer": {
+    "authority": "GITHUB",
+    "records": 166,
+    "snapshot_version": "2026-08-12T13:07:16.090Z",
+    "historical_snapshot": "planning/phase-e/source-snapshots/2026-08-12T10_42_30.430Z.json"
+  },
+  "analysis_layer": {
+    "marker": "IX-FINDINGS_ANALYSIS",
+    "canonical_entities": 3614,
+    "relationships": 13535,
+    "source_is_not_overwritten": true
+  },
+  "separation": "PASS",
+  "policy": {
+    "github_wins_for_external_state": true,
+    "ix_findings_owns_findings_and_analysis_only": true,
+    "discussion_is_untrusted_evidence": true,
+    "no_external_mutation": true
+  }
+}

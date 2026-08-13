@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-87ffa2801508ebb381f00b8eaaadf605bf304d34",
+  "type": "commit",
+  "title": "87ffa2801508ebb381f00b8eaaadf605bf304d34",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-87ffa2801508ebb381f00b8eaaadf605bf304d34",
+  "summary": {
+    "id": "COMMIT-87ffa2801508ebb381f00b8eaaadf605bf304d34",
+    "type": "commit",
+    "title": "87ffa2801508ebb381f00b8eaaadf605bf304d34",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/87ffa2801508ebb381f00b8eaaadf605bf304d34",
+    "author": {
+      "name": "riley0227",
+      "email": "riley0227@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-0498ca3b2f76574f0f02e26fb19202a21b7e4b7e",
+      "other_type": "commit",
+      "other_title": "0498ca3b2f76574f0f02e26fb19202a21b7e4b7e",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-0498ca3b2f76574f0f02e26fb19202a21b7e4b7e"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-0bf1c27bae4d07ead7301110c37a5bc77ff21ce2",
+      "other_type": "commit",
+      "other_title": "0bf1c27bae4d07ead7301110c37a5bc77ff21ce2",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-0bf1c27bae4d07ead7301110c37a5bc77ff21ce2"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-de8573b5ce6b",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/BulkIngestionService.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-de8573b5ce6b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-156a51521351",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/BulkIngestionService.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-156a51521351"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-19817d0fef70",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/BulkIngestionService.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-19817d0fef70"
+    }
+  ]
+}

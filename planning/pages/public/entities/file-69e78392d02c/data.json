@@ -1,0 +1,150 @@
+{
+  "id": "FILE-69e78392d02c",
+  "type": "artifact",
+  "title": "ix-cli/src/cli/__tests__/view-running-port.test.ts",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/file-69e78392d02c",
+  "summary": {
+    "id": "FILE-69e78392d02c",
+    "type": "artifact",
+    "title": "ix-cli/src/cli/__tests__/view-running-port.test.ts",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "source_mirror_id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/__tests__/view-running-port.test.ts",
+    "source_type": "github_file",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/blob/1b9a761fc2db7087b5bad37f07119f8f6a3467aa/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fview-running-port.test.ts",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 358,
+    "filename": "ix-cli/src/cli/__tests__/view-running-port.test.ts",
+    "status": "added",
+    "additions": 153,
+    "deletions": 0,
+    "changes": 153,
+    "blob_url": "https://github.com/ix-infrastructure/Ix/blob/1b9a761fc2db7087b5bad37f07119f8f6a3467aa/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fview-running-port.test.ts",
+    "raw_url": "https://github.com/ix-infrastructure/Ix/raw/1b9a761fc2db7087b5bad37f07119f8f6a3467aa/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fview-running-port.test.ts",
+    "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fview-running-port.test.ts?ref=1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+    "patch": "@@ -0,0 +1,153 @@\n+import { EventEmitter } from \"node:events\";\n+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from \"node:fs\";\n+import { tmpdir } from \"node:os\";\n+import { join } from \"node:path\";\n+import { Command } from \"commander\";\n+import { afterEach, beforeEach, describe, expect, it, vi } from \"vitest\";\n+\n+const mocks = vi.hoisted(() => ({\n+  execSync: vi.fn(),\n+  spawn: vi.fn(),\n+  createConnection: vi.fn(),\n+}));\n+\n+vi.mock(\"child_process\", () => ({\n+  execSync: mocks.execSync,\n+  spawn: mocks.spawn,\n+}));\n+\n+vi.mock(\"net\", () => ({\n+  createConnection: mocks.createConnection,\n+}));\n+\n+let ixHome: string;\n+let originalIxHome: string | undefined;\n+\n+const pidFile = () => join(ixHome, \"compass.pid\");\n+const scopeFile = () => join(ixHome, \"compass.scope\");\n+const portFile = () => join(ixHome, \"compass.port\");\n+const serverScriptFile = () => join(ixHome, \"tmp\", \"compass-server.js\");\n+\n+beforeEach(() => {\n+  vi.resetModules();\n+  vi.clearAllMocks();\n+\n+  originalIxHome = process[redacted].IX_HOME;\n+  ixHome = mkdtempSync(join(tmpdir(), \"ix-view-port-test-\"));\n+  process[redacted].IX_HOME = ixHome;\n+\n+  const compassDir = join(ixHome, \"cli\", \"compass\");\n+  mkdirSync(compassDir, { recursive: true });\n+  writeFileSync(join(compassDir, \"index.html\"), \"<!doctype html>\");\n+\n+  mocks.spawn.mockReturnValue({ pid: 4242, unref: vi.fn() });\n+  mocks.createConnection.mockImplementation(() => {\n+    const connection = new EventEmitter();\n+    queueMicrotask(() => connection.emit(\"error\", new Error(\"not listening\")));\n+    return connection;\n+  });\n+});\n+\n+afterEach(() => {\n+  vi.restoreAllMocks();\n+  rmSync(ixHome, { recursive: true, force: true });\n+  if (originalIxHome === undefined) {\n+    delete process[redacted].IX_HOME;\n+  } else {\n+    process[redacted].IX_HOME = originalIxHome;\n+  }\n+});\n+\n+async function runView(args: string[]): Promise<string> {\n+  const { registerViewCommand } = await import(\"../commands/view.js\");\n+  const program = new Command();\n+  program.name(\"ix\").exitOverride();\n+  registerViewCommand(program);\n+\n+  const output: string[] = [];\n+  const log = vi.spyOn(console, \"log\").mockImplementation((...values: unknown[]) => {\n+    output.push(values.join(\" \"));\n+  });\n+  try {\n+    await program.parseAsync([\"node\", \"ix\", \"view\", ...args]);\n+  } finally {\n+    log.mockRestore();\n+  }\n+  return output.join(\"\\n\");\n+}\n+\n+function seedRunningState(port?: number): void {\n+  writeFileSync(pidFile(), \"4242\");\n+  writeFileSync(scopeFile(), \"*all*\");\n+  if (port !== undefined) writeFileSync(portFile(), String(port));\n+}\n+\n+describe(\"view running port state\", () => {\n+  it(\"persists the port used to launch the visualizer\", async () => {\n+    const output = await runView([\"-p\", \"19123\", \"start\", \"--no-open\", \"--all\"]);\n+\n+    expect(readFileSync(portFile(), \"utf-8\")).toBe(\"19123\");\n+    expect(output).toContain(\"http://[redacted]19123\");\n+  });\n+\n+  it(\"reports the persisted port instead of a new requested port\", async () => {\n+    seedRunningState(19123);\n+    vi.spyOn(process, \"kill\").mockReturnValue(true);\n+\n+    const output = await runView([\"-p\", \"19124\", \"start\", \"--no-open\", \"--all\"]);\n+\n+    expect(output).toContain(\"Visualizer is already running (PID 4242)\");\n+    expect(output).toContain(\"http://[redacted]19123\");\n+    expect(output).not.toContain(\"http://[redacted]19124\");\n+    expect(mocks.spawn).not.toHaveBeenCalled();\n+  });\n+\n+  it(\"recovers the running port from a pre-port-file server script\", async () => {\n+    seedRunningState();\n+    mkdirSync(join(ixHome, \"tmp\"), { recursive: true });\n+    writeFileSync(serverScriptFile(), \"const PORT = 19123;\\n\");\n+    vi.spyOn(process, \"kill\").mockReturnValue(true);\n+\n+    const output = await runView([\"-p\", \"19124\", \"start\", \"--no-open\", \"--all\"]);\n+\n+    expect(output).toContain(\"http://[redacted]19123\");\n+    expect(readFileSync(portFile(), \"utf-8\")).toBe(\"19123\");\n+  });\n+\n+  it(\"does not print a requested port when legacy state cannot reveal the real one\", async () => {\n+    seedRunningState();\n+    vi.spyOn(process, \"kill\").mockReturnValue(true);\n+\n+    const output = await runView([\"-p\", \"19124\", \"start\", \"--no-open\", \"--all\"]);\n+\n+    expect(output).toContain(\"The running visualizer's port is unknown.\");\n+    expect(output).not.toContain(\"http://[redacted]19124\");\n+  });\n+\n+  it(\"removes port and scope state with a stale PID\", async () => {\n+    seedRunningState(19123);\n+    vi.spyOn(process, \"kill\").mockImplementation(() => {\n+      throw Object.assign(new Error(\"no such process\"), { code: \"ESRCH\" });\n+    });\n+\n+    const output = await runView([\"status\"]);\n+\n+    expect(output).toContain(\"Visualizer is not running.\");\n+    expect(existsSync(pidFile())).toBe(false);\n+    expect(existsSync(scopeFile())).toBe(false);\n+    expect(existsSync(portFile())).toBe(false);\n+  });\n+\n+  it(\"removes persisted state when the visualizer stops\", async () => {\n+    seedRunningState(19123);\n+    const kill = vi.spyOn(process, \"kill\").mockReturnValue(true);\n+\n+    const output = await runView([\"stop\"]);\n+\n+    expect(output).toContain(\"Visualizer stopped (PID 4242)\");\n+    expect(kill).toHaveBeenCalledWith(4242, \"SIGTERM\");\n+    expect(existsSync(pidFile())).toBe(false);\n+    expect(existsSync(scopeFile())).toBe(false);\n+    expect(existsSync(portFile())).toBe(false);\n+  });\n+});",
+    "parent_pr": 358
+  },
+  "source_context": {
+    "id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/__tests__/view-running-port.test.ts",
+    "source": {
+      "type": "github_file",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/blob/1b9a761fc2db7087b5bad37f07119f8f6a3467aa/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fview-running-port.test.ts",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-09T19:12:46Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-09T21:18:51Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "FILE-69e78392d02c",
+    "entity_type": "FILE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#358",
+    "line_precision": "FILE_LEVEL"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+      "other_type": "commit",
+      "other_title": "1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-1b9a761fc2db7087b5bad37f07119f8f6a3467aa"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-72c0b850681618a7a12a3d1ce1b8c90f0c26a7d3",
+      "other_type": "commit",
+      "other_title": "72c0b850681618a7a12a3d1ce1b8c90f0c26a7d3",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-72c0b850681618a7a12a3d1ce1b8c90f0c26a7d3"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449",
+      "other_type": "commit",
+      "other_title": "95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-7a815573e4388e77b8b7af4c1ba0376a8bd36e25",
+      "other_type": "commit",
+      "other_title": "7a815573e4388e77b8b7af4c1ba0376a8bd36e25",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-7a815573e4388e77b8b7af4c1ba0376a8bd36e25"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-0d8032910c45408d8684a0e6f95198ee223b647c",
+      "other_type": "commit",
+      "other_title": "0d8032910c45408d8684a0e6f95198ee223b647c",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-0d8032910c45408d8684a0e6f95198ee223b647c"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-ffe21f01268caf6567916da697cd6826358443e2",
+      "other_type": "commit",
+      "other_title": "ffe21f01268caf6567916da697cd6826358443e2",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-ffe21f01268caf6567916da697cd6826358443e2"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-e117b6d29d9b3929d4442d7a336f8425a6dedede",
+      "other_type": "commit",
+      "other_title": "e117b6d29d9b3929d4442d7a336f8425a6dedede",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-e117b6d29d9b3929d4442d7a336f8425a6dedede"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-87cd9c0a8e0c64e267b5d71dc83a87c36d2de767",
+      "other_type": "commit",
+      "other_title": "87cd9c0a8e0c64e267b5d71dc83a87c36d2de767",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-87cd9c0a8e0c64e267b5d71dc83a87c36d2de767"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-c5357aa6965aa0a88706c49005a4d70b58aec41a",
+      "other_type": "commit",
+      "other_title": "c5357aa6965aa0a88706c49005a4d70b58aec41a",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-c5357aa6965aa0a88706c49005a4d70b58aec41a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CO_CHANGED_WITH",
+      "other": "FILE-201d35c8a82e",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/view.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-201d35c8a82e"
+    }
+  ]
+}

@@ -7,18 +7,19 @@ import { fileURLToPath } from "node:url";
 const here = dirname(fileURLToPath(import.meta.url));
 const root = join(here, "..");
 const out = here;
-const generatedAt = "2026-08-11";
+const generatedAt = "2026-08-12";
 const UNKNOWN = "UNKNOWN";
 const readText = p => { try { return readFileSync(p, "utf8"); } catch { return ""; } };
 const readJson = p => { try { return JSON.parse(readText(p)); } catch { return null; } };
 const safe = s => String(s ?? "").replace(/\s+/g, " ").trim();
 const idHash = s => createHash("sha1").update(s).digest("hex").slice(0, 12);
 const files = [];
-const skip = new Set([".git", "node_modules", "knowledge", "public"]);
+const skip = new Set([".git", "node_modules", "knowledge", "public", "phase-d", "phase-e", "phase-f", "phase-g", "phase-h", "phase-i", "phase-j"]);
 function walk(dir) {
   if (!existsSync(dir)) return;
   for (const name of readdirSync(dir)) {
-    if (skip.has(name)) continue;
+    const isPhaseCVisual = dir === join(root, "planning", "phase-c");
+    if (skip.has(name) || (isPhaseCVisual && /\.(png|jpe?g|gif|webp)$/i.test(name))) continue;
     const p = join(dir, name); const st = statSync(p);
     if (st.isDirectory()) walk(p); else files.push(p);
   }
@@ -47,10 +48,18 @@ const relationships = [];
 const edgeKeys = new Set();
 function entity(type, id, name, data = {}) {
   const e = { canonical_id: id, entity_type: type, canonical_name: name, aliases: [], status: data.status || "UNKNOWN", confidence: data.confidence || "UNKNOWN", human_summary: data.human_summary || name, deep_summary: data.deep_summary || data.human_summary || name, evidence_ids: data.evidence_ids || [], source_refs: data.source_refs || [], temporal: data.temporal || { valid_from: UNKNOWN, valid_until: UNKNOWN, observed_at: UNKNOWN, verified_at: UNKNOWN, introduced_by: UNKNOWN, fixed_by: UNKNOWN }, llm: data.llm || { llm_summary: data.human_summary || name, llm_context: "", llm_facts: [], llm_uncertainties: [], llm_questions: [], llm_evidence_chain: data.evidence_ids || [], llm_relationships: [], llm_search_terms: [id, name] }, ...data }; add(entities, e); return e; }
+const relationshipDerivation = type => {
+  if (type === "CO_CHANGED_WITH") return "STATISTICAL";
+  if (["PARENT", "CHANGES", "CHANGED_BY", "HEADS_AT", "CURRENT_STATE_OF", "HEAD_MOVED_TO"].includes(type)) return "VERIFIED_GIT";
+  if (["AUTHORED", "COMMENTED_ON", "HAS_REVIEW", "REVIEWED_BY", "RESPONDS_TO", "FOUND_IN", "REFERENCES", "INCLUDES_COMMIT"].includes(type)) return "VERIFIED_GITHUB";
+  if (["HAS_SOURCE", "GENERATED_FROM", "PART_OF", "BELONGS_TO", "POINTS_TO", "CLONES", "WORKTREE_OF", "FORK_OF"].includes(type)) return "VERIFIED_REGISTRY";
+  return "EVIDENCE_LINKED";
+};
 function edge(from, to, type, data = {}) {
   if (!entities.has(from) || !entities.has(to)) return;
   const key = `${from}|${type}|${to}`; if (edgeKeys.has(key)) return; edgeKeys.add(key);
-  relationships.push({ relationship_id: `REL-${idHash(key)}`, from, to, type, confidence: data.confidence || "MEDIUM", status: data.status || "CURRENT", source_refs: data.source_refs || [], evidence_ids: data.evidence_ids || [], summary: data.summary || `${from} ${type} ${to}`, temporal_scope: data.temporal_scope || { valid_from: UNKNOWN, valid_until: UNKNOWN } });
+  const sourceRefs = data.source_refs || [];
+  relationships.push({ relationship_id: `REL-${idHash(key)}`, from, to, type, confidence: data.confidence || "MEDIUM", status: data.status || "CURRENT", derivation_class: data.derivation_class || relationshipDerivation(type), extraction_method: data.extraction_method || "knowledge/build-knowledge.mjs", provenance_status: sourceRefs.length || (data.evidence_ids || []).length ? "PARTIAL" : "UNKNOWN", source_refs: sourceRefs, evidence_ids: data.evidence_ids || [], summary: data.summary || `${from} ${type} ${to}`, temporal_scope: data.temporal_scope || { valid_from: UNKNOWN, valid_until: UNKNOWN } });
 }
 function linkRefs(owner, ids, type, source_refs = []) { for (const id of ids || []) { if (entities.has(id)) edge(owner, id, type, { source_refs }); } }
 
@@ -65,11 +74,35 @@ const graphReg = readJson(join(root, "planning/maps/investigation-map.json")) ||
 const auditCandidates = readJson(join(root, "CLI-HANDOFF/phase-15/AUDIT-CANDIDATE-UNIVERSE.json")) || { candidates: [] };
 const finalAudit = readJson(join(root, "CLI-HANDOFF/phase-15/FINAL-PR-WORTHINESS-AUDIT.json")) || {};
 const liveGitHub = readJson(join(root, "knowledge/live-github-state.json")) || { open_issues: [], open_pull_requests: [], implementations: [], fork_branches: {} };
-const liveHead = finalAudit.live_baseline?.upstream_head || "1292375548fb";
-const liveOpenPRs = new Set(finalAudit.live_baseline?.open_prs || [395, 393, 388]);
-const liveOpenIssues = new Set(finalAudit.live_baseline?.open_issues || [385, 383, 349, 219]);
-const liveMergedPRs = new Set([352, 368, 372, 375, 378, 380, 382, 384, 386, 387, 389, 390, 391, 392, 394]);
-const liveClosedIssues = new Set([371, 376, 377, 379]);
+const phaseBIdentity = readJson(join(root, "knowledge/identity-registry.json")) || { entities: [], relationships: [] };
+const phaseCCollaboration = readJson(join(root, "knowledge/github-collaboration.json")) || { entities: [], relationships: [] };
+const phaseCGit = readJson(join(root, "planning/phase-c/GIT-INTELLIGENCE.json")) || { commits: [], files: [], branches: [], relationships: [] };
+const externalMirror = readJson(join(root, "knowledge/external-github-mirror.json")) || { records: [] };
+const liveHead = liveGitHub.upstream?.head_sha || finalAudit.live_baseline?.upstream_head || "1292375548fb";
+// Live open/merged state is authoritative when the refreshed read-only capture
+// (knowledge/live-github-state.json) records it. The Phase-15 audit baseline is
+// retained only as a fallback for numbers absent from the capture, so a
+// merged/closed PR can never stay OPEN merely because an older manifest listed
+// it (RULE 12: GitHub wins for external state).
+const capturedOpenPRs = new Set((liveGitHub.open_pull_requests || []).map(pr => pr.number));
+const capturedOpenIssues = new Set((liveGitHub.open_issues || []).map(issue => issue.number));
+const auditOpenPRs = new Set(finalAudit.live_baseline?.open_prs || [395, 393, 388]);
+const auditOpenIssues = new Set(finalAudit.live_baseline?.open_issues || [385, 383, 349, 219]);
+const capturedMergedPRs = new Set((externalMirror.records || []).filter(record => record.source?.type === "github_pull_request" && record.snapshot?.merged === true && record.snapshot?.state === "closed").map(record => record.snapshot?.number));
+// Closed-but-unmerged PRs are also not OPEN; the mirror proves their terminal state.
+const capturedClosedPRs = new Set((externalMirror.records || []).filter(record => record.source?.type === "github_pull_request" && record.snapshot?.state === "closed").map(record => record.snapshot?.number));
+const capturedClosedIssues = new Set((externalMirror.records || []).filter(record => record.source?.type === "github_issue" && record.snapshot?.state === "closed").map(record => record.snapshot?.number));
+const auditMergedPRs = new Set([352, 368, 372, 375, 378, 380, 382, 384, 386, 387, 389, 390, 391, 392, 394]);
+const auditClosedIssues = new Set([371, 376, 377, 379]);
+// A number is OPEN only when the live capture records it open. Merged/closed
+// state recorded by the mirror overrides the audit baseline, and the audit
+// baseline is kept only for numbers the capture does not know at all.
+const liveOpenPRs = new Set([...auditOpenPRs].filter(number => !capturedMergedPRs.has(number) && !capturedClosedPRs.has(number)));
+const liveOpenIssues = new Set([...auditOpenIssues].filter(number => !capturedClosedIssues.has(number)));
+for (const number of capturedOpenPRs) liveOpenPRs.add(number);
+for (const number of capturedOpenIssues) liveOpenIssues.add(number);
+const liveMergedPRs = new Set([...auditMergedPRs, ...capturedMergedPRs].filter(number => !capturedOpenPRs.has(number)));
+const liveClosedIssues = new Set([...auditClosedIssues, ...capturedClosedIssues].filter(number => !capturedOpenIssues.has(number)));
 // Live-verified head for a manifest branch/commit: open-PR heads first, then
 // the captured fork branch heads (repo-guarded so unrelated repos and upstream
 // main snapshots are never matched to the fork's branches).
@@ -96,7 +129,12 @@ for (const r of manifest.branches || []) { const lh = r.repo === "ix-infrastruct
 for (const c of manifest.commits || []) entity("COMMIT", `COMMIT-${c.sha}`, c.sha, { status: c.historical ? "HISTORICAL" : "CURRENT", confidence: "HIGH", human_summary: c.msg || c.sha, deep_summary: `${c.repo || UNKNOWN} ${c.branch || c.pr || ""} — ${c.msg || UNKNOWN}.`, source_refs: sourceRefs("CLI-HANDOFF/manifest.json"), metadata: c });
 for (const p of manifest.pull_requests || []) { const status = liveOpenPRs.has(p.number) ? "OPEN" : liveMergedPRs.has(p.number) || p.state === "MERGED" ? "RESOLVED" : "HISTORICAL"; entity("PULL_REQUEST", `PR-${p.number}`, `Ix PR #${p.number}`, { status, confidence: "HIGH", aliases: [p.url].filter(Boolean), human_summary: `Ix pull request #${p.number}: ${status}.`, source_refs: sourceRefs("CLI-HANDOFF/manifest.json", "CLI-HANDOFF/phase-15/FINAL-PR-WORTHINESS-AUDIT.json"), metadata: { ...p, historical_manifest_state: p.state, live_state: status } }); }
 for (const i of manifest.issues || []) { const status = liveOpenIssues.has(i.number) ? "OPEN" : liveClosedIssues.has(i.number) || i.state === "CLOSED" ? "RESOLVED" : "HISTORICAL"; entity("ISSUE", `ISSUE-${i.number}`, `Ix issue #${i.number}`, { status, confidence: "HIGH", aliases: [i.url].filter(Boolean), human_summary: `Ix issue #${i.number}; current recorded state: ${status}.`, source_refs: sourceRefs("CLI-HANDOFF/manifest.json", "CLI-HANDOFF/phase-15/FINAL-PR-WORTHINESS-AUDIT.json"), metadata: { ...i, historical_manifest_state: i.state, live_state: status } }); }
-entity("ISSUE", "ISSUE-219", "Ix issue #219", { status:"OPEN", confidence:"HIGH", aliases:["https://github.com/ix-infrastructure/Ix/issues/219"], source_refs:sourceRefs("CLI-HANDOFF/phase-15/ISSUE-RECONCILIATION.json","CLI-HANDOFF/phase-15/FINAL-PR-WORTHINESS-AUDIT.json","knowledge/live-github-state.json"), human_summary:"Ix issue #219 is open: add an ix mcp subcommand.", deep_summary:"Current Phase 15 audit treats #219 as a real, valuable request, but the fork implementation needs protocol-conformance rework and scope clarification before contribution.", metadata:{ number:219, live_state:"OPEN", title:"Add ix mcp subcommand: expose ix as a local MCP server", user:"josephismikhail" } });
+// #219 status follows the refreshed live capture (GitHub wins); the Phase-15
+// audit analysis is retained as deep_summary, not as the live state.
+{
+  const issue219State = liveOpenIssues.has(219) ? "OPEN" : liveClosedIssues.has(219) ? "RESOLVED" : "HISTORICAL";
+  entity("ISSUE", "ISSUE-219", "Ix issue #219", { status: issue219State, confidence: "HIGH", aliases:["https://github.com/ix-infrastructure/Ix/issues/219"], source_refs:sourceRefs("CLI-HANDOFF/phase-15/ISSUE-RECONCILIATION.json","CLI-HANDOFF/phase-15/FINAL-PR-WORTHINESS-AUDIT.json","knowledge/live-github-state.json"), human_summary:`Ix issue #219: ${issue219State}.`, deep_summary:"Phase 15 audit treated #219 as a real, valuable request (add ix mcp subcommand); the fork implementation needed protocol-conformance rework. Live GitHub now records #219 closed; the audit remains historical analysis, not current state.", metadata:{ number:219, live_state: issue219State, title:"Add ix mcp subcommand: expose ix as a local MCP server", user:"josephismikhail" } });
+}
 
 // Live-verified open PRs/issues not present in the historical manifest become first-class entities.
 for (const p of liveGitHub.open_pull_requests || []) {
@@ -285,6 +323,101 @@ const contradictions = [
 for (const c of contradictions) entity("CONTRADICTION", c.id, c.subject, { status:c.status, confidence:"HIGH", source_refs:sourceRefs(...c.sources), human_summary:`${c.subject}: ${c.resolution}`, deep_summary:`Claim A: ${c.claim_a} Claim B: ${c.claim_b} Resolution: ${c.resolution}`, metadata:c });
 for (const e of entities.values()) for (const sid of e.source_refs || []) if (entities.has(sid) && sid !== e.canonical_id) edge(e.canonical_id, sid, "HAS_SOURCE", { confidence: "HIGH" });
 
+// Phase B identity records are additive canonical records. They are imported only
+// from the verified local identity registry; unsupported types have no fabricated
+// nodes. This keeps the generated entities/relationships files authoritative while
+// preserving the Phase B registry as an auditable input artifact.
+for (const record of phaseBIdentity.entities || []) {
+  if (entities.has(record.id)) continue;
+  entity(record.entity_type, record.id, record.canonical_name, {
+    status: record.status || "UNKNOWN",
+    confidence: record.confidence || "UNKNOWN",
+    aliases: record.aliases || [],
+    evidence_ids: record.evidence_ids || [],
+    source_refs: record.source_refs || [],
+    human_summary: record.metadata?.summary || record.canonical_name,
+    deep_summary: record.metadata?.description || record.canonical_name,
+    temporal: record.temporal || { valid_from: UNKNOWN, valid_until: UNKNOWN, observed_at: UNKNOWN, verified_at: UNKNOWN, introduced_by: UNKNOWN, fixed_by: UNKNOWN },
+    metadata: { ...(record.metadata || {}), identity_registry: "knowledge/identity-registry.json", privacy: record.metadata?.privacy || "PUBLIC_SAFE" },
+    ...(record.llm ? { llm: record.llm } : {}),
+  });
+}
+for (const record of phaseBIdentity.relationships || []) {
+  if (entities.has(record.from) && entities.has(record.to)) {
+    edge(record.from, record.to, record.type, { confidence: record.confidence || "UNKNOWN", status: record.status || "CURRENT", source_refs: record.source_refs || [], evidence_ids: record.evidence_ids || [], summary: record.summary });
+  }
+}
+
+// Phase C collaboration is an auditable canonical input generated from public
+// GitHub records. Discussion bodies are evidence, never executable instructions.
+for (const record of phaseCCollaboration.entities || []) {
+  entity(record.entity_type, record.canonical_id, record.canonical_name, {
+    status: record.status || "UNKNOWN",
+    confidence: record.confidence || "UNKNOWN",
+    aliases: record.aliases || [],
+    evidence_ids: record.evidence_ids || [],
+    source_refs: [...new Set([...(record.source_refs || []), "knowledge/github-collaboration.json"])],
+    human_summary: record.human_summary || record.canonical_name,
+    deep_summary: record.deep_summary || record.human_summary || record.canonical_name,
+    temporal: record.temporal || { valid_from: UNKNOWN, valid_until: UNKNOWN, observed_at: UNKNOWN, verified_at: UNKNOWN, introduced_by: UNKNOWN, fixed_by: UNKNOWN },
+    metadata: { ...(record.metadata || {}), collaboration_source: "knowledge/github-collaboration.json", discussion_evidence: true },
+    ...(record.llm ? { llm: record.llm } : {}),
+  });
+}
+for (const record of phaseCCollaboration.relationships || []) {
+  if (entities.has(record.from) && entities.has(record.to)) {
+    edge(record.from, record.to, record.type, { confidence: record.confidence || "UNKNOWN", status: record.status || "CURRENT", source_refs: [...new Set([...(record.source_refs || []), "knowledge/github-collaboration.json"])], evidence_ids: record.evidence_ids || [], summary: record.summary, temporal_scope: record.temporal_scope });
+  }
+}
+
+// Import the relevant slice of full local Git intelligence into the canonical
+// layer: all Ix-findings commits, live PR/head commits, and one parent closure.
+// The complete statistical history remains in the Phase-C derived artifact;
+// only bounded, source-linked records become graph nodes.
+const collaborationCommitShas = new Set((phaseCCollaboration.entities || []).filter(record => record.entity_type === "COMMIT").map(record => record.canonical_id.replace(/^COMMIT-/, "")));
+const liveHeadShas = new Set([
+  liveHead,
+  ...(Object.values(liveGitHub.fork_branches || {}).flatMap(branches => Object.values(branches || {}))),
+  ...(liveGitHub.open_pull_requests || []).map(pr => pr.head_sha),
+].filter(Boolean));
+const selectedGitCommits = new Set([...collaborationCommitShas, ...liveHeadShas, ...phaseCGit.commits.filter(commit => commit.repository === "Alot1z/Ix-findings").map(commit => commit.sha)]);
+for (const commit of phaseCGit.commits) if (selectedGitCommits.has(commit.sha)) for (const parent of commit.parents || []) if (phaseCGit.commits.some(candidate => candidate.sha === parent)) selectedGitCommits.add(parent);
+for (const commit of phaseCGit.commits.filter(commit => selectedGitCommits.has(commit.sha))) {
+  const status = liveHeadShas.has(commit.sha) ? "CURRENT" : "HISTORICAL";
+  entity("COMMIT", `COMMIT-${commit.sha}`, commit.sha, {
+    status, confidence: "HIGH", aliases: [commit.url].filter(Boolean), source_refs: ["planning/phase-c/GIT-INTELLIGENCE.json"],
+    human_summary: commit.subject || commit.sha,
+    deep_summary: `${commit.repository} commit ${commit.sha}; ${commit.files.length} changed files; local Git history fact.`,
+    metadata: { repository: commit.repository, sha: commit.sha, url: commit.url, author: commit.author, committer: commit.committer, authored_at: commit.authored_at, committed_at: commit.committed_at, git_intelligence: true, current_head: liveHeadShas.has(commit.sha) },
+  });
+}
+const selectedFileIds = new Set();
+for (const file of phaseCGit.files) if (file.source_commits?.some(sha => selectedGitCommits.has(sha))) {
+  const fileId = `FILE-${idHash(`${file.repository}:${file.path}`)}`;
+  selectedFileIds.add(fileId);
+  entity("FILE", fileId, file.path, {
+    status: "CURRENT", confidence: "HIGH", aliases: [file.url].filter(Boolean), source_refs: ["planning/phase-c/GIT-INTELLIGENCE.json"],
+    human_summary: `${file.path} — ${file.commit_count} historical changes.`,
+    deep_summary: `Derived Git history metrics for ${file.repository}/${file.path}; hotspot is a change-concentration signal, not a defect claim.`,
+    metadata: { repository: file.repository, path: file.path, url: file.url, commit_count: file.commit_count, additions: file.additions, deletions: file.deletions, churn: file.additions + file.deletions, contributors: file.contributors, source_commits: file.source_commits, hotspot_signal: true },
+  });
+}
+for (const relation of phaseCGit.relationships || []) {
+  const normalizeGitNode = node => {
+    if (node?.startsWith("COMMIT-")) return `COMMIT-${node.replace(/^COMMIT-/, "")}`;
+    if (node?.startsWith("FILE-")) {
+      const file = phaseCGit.files.find(candidate => candidate.entity_id === node);
+      return file ? `FILE-${idHash(`${file.repository}:${file.path}`)}` : node;
+    }
+    return node;
+  };
+  const fromId = normalizeGitNode(relation.from);
+  const toId = normalizeGitNode(relation.to);
+  if (!entities.has(fromId) || !entities.has(toId)) continue;
+  if (relation.type === "CO_CHANGED_WITH" && (relation.count || 0) < 5) continue;
+  edge(fromId, toId, relation.type, { confidence: relation.confidence || "MEDIUM", status: relation.status || "HISTORICAL", source_refs: ["planning/phase-c/GIT-INTELLIGENCE.json"], summary: relation.derivation || `${relation.type} derived from local Git history`, temporal_scope: { valid_from: UNKNOWN, valid_until: UNKNOWN } });
+}
+
 // Edges touching a superseded (HISTORICAL) commit entity are provenance
 // records, not live claims; downgrade them so no CURRENT edge resolves against
 // a commit that was rewritten or purged.
@@ -295,6 +428,92 @@ for (const rel of relationships) {
   if ((fromE?.entity_type === "COMMIT" && fromE.status === "HISTORICAL") || (toE?.entity_type === "COMMIT" && toE.status === "HISTORICAL")) rel.status = "HISTORICAL";
 }
 
+const mirrorRecordsByCanonicalId = new Map();
+for (const record of externalMirror.records || []) {
+  const canonicalId = record.analysis?.canonical_entity_id;
+  if (!canonicalId || mirrorRecordsByCanonicalId.has(canonicalId)) continue;
+  mirrorRecordsByCanonicalId.set(canonicalId, record);
+}
+for (const [canonicalId, record] of mirrorRecordsByCanonicalId) {
+  const entityRecord = entities.get(canonicalId);
+  if (!entityRecord) continue;
+  const source = record.source || {};
+  entityRecord.source_snapshot_ref = record.id;
+  entityRecord.external_source = { mirror_record_id: record.id, ...source, freshness: record.freshness, source_is_authoritative: true };
+  entityRecord.analysis = { layer: "IX-FINDINGS_ANALYSIS", canonical_entity_id: canonicalId, status: entityRecord.status, source_authority: "GITHUB", source_is_authoritative: false, mirror_status: "READ_ONLY_EXTERNAL_OBJECT" };
+  entityRecord.metadata = { ...(entityRecord.metadata || {}), source_mirror_id: record.id, source_type: source.type, source_repository: source.repository, source_url: source.url, source_api_url: source.api_url, source_is_authoritative: true, analysis_layer: "IX-FINDINGS_ANALYSIS" };
+  entityRecord.source_refs = [...new Set([...(entityRecord.source_refs || []), "knowledge/external-github-mirror.json"])]
+}
+// Mirror-derived entities: PRs and explicitly captured commits that have no
+// canonical record yet (e.g. upstream PRs 397/400 and the five historical fork
+// MCP commits) enter the graph from the authoritative read-only mirror so both
+// upstream PR bodies can deep-link to exact evidence pages.
+for (const record of externalMirror.records || []) {
+  const source = record.source || {};
+  if (source.type === "github_pull_request") {
+    const number = record.snapshot?.number;
+    if (!number || entities.has(`PR-${number}`)) continue;
+    entity("PULL_REQUEST", `PR-${number}`, `Ix PR #${number}`, {
+      status: record.snapshot?.merged ? "RESOLVED" : record.snapshot?.state === "open" ? "OPEN" : "HISTORICAL",
+      confidence: "HIGH",
+      aliases: [record.snapshot?.html_url || record.source?.url].filter(Boolean),
+      human_summary: `Ix pull request #${number}: ${record.snapshot?.title || "see mirror"}.`,
+      deep_summary: `Mirror-authoritative PR #${number} (state ${record.snapshot?.state || "unknown"}, merged ${Boolean(record.snapshot?.merged)}); captured read-only from GitHub.`,
+      source_refs: sourceRefs("knowledge/external-github-mirror.json"),
+      metadata: { ...(record.snapshot || {}), mirror_derived: true, reconciliation: "MIRROR_AUTHORITATIVE_GITHUB_WINS" },
+    });
+  } else if (source.type === "github_commit") {
+    const sha = record.snapshot?.sha;
+    if (!sha || entities.has(`COMMIT-${sha}`)) continue;
+    entity("COMMIT", `COMMIT-${sha}`, sha, {
+      status: record.analysis?.status || "HISTORICAL",
+      confidence: "HIGH",
+      human_summary: `${sha.slice(0, 8)} - ${String(record.snapshot?.commit?.message || record.snapshot?.message || "").split("\n")[0] || "mirror-captured commit"}.`,
+      deep_summary: `Mirror-authoritative commit ${sha} in ${source.repository}; captured read-only from GitHub.`,
+      source_refs: sourceRefs("knowledge/external-github-mirror.json"),
+      metadata: { ...(record.snapshot || {}), repo: source.repository, mirror_derived: true, reconciliation: "MIRROR_AUTHORITATIVE_GITHUB_WINS" },
+    });
+  }
+}
+// Link mirror-derived PRs to their head commit and closed issues, and commit
+// entities to their parent PR, when both ends exist.
+for (const record of externalMirror.records || []) {
+  const source = record.source || {};
+  if (source.type === "github_pull_request") {
+    const number = record.snapshot?.number;
+    if (!number) continue;
+    if (record.snapshot?.head?.sha && entities.has(`COMMIT-${record.snapshot.head.sha}`)) {
+      edge(`PR-${number}`, `COMMIT-${record.snapshot.head.sha}`, "CHANGED_BY", { confidence: "HIGH", source_refs: sourceRefs("knowledge/external-github-mirror.json") });
+    }
+    if (record.snapshot?.body && entities.has(`ISSUE-${number}`)) {
+      edge(`PR-${number}`, `ISSUE-${number}`, "RESPONDS_TO", { confidence: "MEDIUM", source_refs: sourceRefs("knowledge/external-github-mirror.json") });
+    }
+  } else if (source.type === "github_commit") {
+    const sha = record.snapshot?.sha;
+    if (!sha || !entities.has(`COMMIT-${sha}`)) continue;
+    const prMatch = String(record.snapshot?.commit?.message || "").match(/\(#(\d+)\)/);
+    if (prMatch && entities.has(`PR-${prMatch[1]}`)) {
+      edge(`COMMIT-${sha}`, `PR-${prMatch[1]}`, "RELATED_TO_PR", { confidence: "MEDIUM", source_refs: sourceRefs("knowledge/external-github-mirror.json") });
+    }
+  }
+}
+// RULE 12 - GitHub wins for external PR/issue state. The refreshed mirror is
+// RULE 12 — GitHub wins for external PR/issue state. The refreshed mirror is
+// authoritative over any historical manifest/collaboration status; only the
+// live-captured OPEN set may remain OPEN.
+for (const [canonicalId, entityRecord] of entities) {
+  if (entityRecord.entity_type === "PULL_REQUEST") {
+    const number = Number(entityRecord.metadata?.number ?? String(canonicalId).replace(/^PR-/, ""));
+    entityRecord.status = liveOpenPRs.has(number) ? "OPEN" : liveMergedPRs.has(number) ? "RESOLVED" : "HISTORICAL";
+    entityRecord.metadata = { ...(entityRecord.metadata || {}), live_state: entityRecord.status, reconciliation: "MIRROR_AUTHORITATIVE_GITHUB_WINS" };
+    entityRecord.analysis = { ...(entityRecord.analysis || {}), status: entityRecord.status };
+  } else if (entityRecord.entity_type === "ISSUE") {
+    const number = Number(entityRecord.metadata?.number ?? String(canonicalId).replace(/^ISSUE-/, ""));
+    entityRecord.status = liveOpenIssues.has(number) ? "OPEN" : liveClosedIssues.has(number) ? "RESOLVED" : "HISTORICAL";
+    entityRecord.metadata = { ...(entityRecord.metadata || {}), live_state: entityRecord.status, reconciliation: "MIRROR_AUTHORITATIVE_GITHUB_WINS" };
+    entityRecord.analysis = { ...(entityRecord.analysis || {}), status: entityRecord.status };
+  }
+}
 const entitiesArray = [...entities.values()].map(e => { const neighbors = relationships.filter(r => r.from === e.canonical_id || r.to === e.canonical_id).map(r => r.from === e.canonical_id ? r.to : r.from); e.related_entities = [...new Set(neighbors)]; e.llm.llm_relationships = e.related_entities; e.aliases = [...new Set([...(e.aliases || []), e.canonical_id])]; return e; });
 const relationshipArray = relationships;
 const evidenceArray = entitiesArray.filter(e => e.entity_type === "EVIDENCE").map(e => ({ evidence_id:e.canonical_id, title:e.canonical_name, class:e.metadata?.evidence_class || "UNKNOWN", what:e.deep_summary, where:e.metadata?.repository || UNKNOWN, when:e.metadata?.phase || UNKNOWN, source_refs:e.source_refs, observation:e.deep_summary, method:e.metadata?.kind || UNKNOWN, result:e.human_summary, confidence:e.confidence, limitations:e.metadata?.evidence_class === "D" ? "Inference; not contribution-grade." : UNKNOWN }));
@@ -312,6 +531,6 @@ const metrics = { generated_at:generatedAt, raw_source_files:sources.length, can
 
 function outJson(name, value) { writeFileSync(join(out, name), JSON.stringify(value, null, 2) + "\n", "utf8"); }
 mkdirSync(join(out, "llm"), { recursive:true }); mkdirSync(join(out, "derived"), { recursive:true });
-outJson("sources.json", sources); outJson("entities.json", entitiesArray); outJson("relationships.json", relationshipArray); outJson("evidence.json", evidenceArray); outJson("live-github-state.json", liveGitHub); outJson("sections.json", { captured_at: liveGitHub.captured_at, source: liveGitHub.source, commit_messages: commitMessages, sections: sectionRegistry, issue_sections: issueSectionRegistry, issues: (liveGitHub.open_issues || []).map(issue => ({ number: issue.number, title: issue.title, state: issue.state, user: issue.user, url: issue.url, labels: issue.labels || [] })) }); outJson("timelines.json", timeline); outJson("decisions.json", decisionsReg.decisions || []); outJson("suggestions.json", suggestionsReg.suggestions || []); outJson("tests.json", tests); outJson("security.json", security); outJson("agents.json", agents); outJson("phases.json", phaseRecords); outJson("contradictions.json", contradictions); outJson("aliases.json", aliases); outJson("indexes.json", indexes); outJson("snapshots.json", snapshots); outJson("data-quality.json", metrics); outJson("llm/entity-index.json", Object.fromEntries(entitiesArray.map(e => [e.canonical_id, { type:e.entity_type, name:e.canonical_name, status:e.status, summary:e.llm.llm_summary, evidence:e.evidence_ids, neighbors:e.related_entities }]))); outJson("llm/traversal-index.json", traversal); outJson("derived/ui-data.json", { meta:{ generated_at:generatedAt, source:"knowledge/entities.json + knowledge/relationships.json", live_or_snapshot:"DERIVED", ui_unchanged:true }, nodes:entitiesArray.map(e=>({ id:e.canonical_id, type:e.entity_type.toLowerCase(), title:e.canonical_name, status:e.status })), edges:relationshipArray.map(r=>({ source:r.from, target:r.to, relationship:r.type, confidence:r.confidence })) });
+outJson("sources.json", sources); outJson("entities.json", entitiesArray); outJson("relationships.json", relationshipArray); outJson("evidence.json", evidenceArray); outJson("external-github-mirror.json", externalMirror); outJson("live-github-state.json", liveGitHub); outJson("sections.json", { captured_at: liveGitHub.captured_at, source: liveGitHub.source, commit_messages: commitMessages, sections: sectionRegistry, issue_sections: issueSectionRegistry, issues: (liveGitHub.open_issues || []).map(issue => ({ number: issue.number, title: issue.title, state: issue.state, user: issue.user, url: issue.url, labels: issue.labels || [] })) }); outJson("timelines.json", timeline); outJson("decisions.json", decisionsReg.decisions || []); outJson("suggestions.json", suggestionsReg.suggestions || []); outJson("tests.json", tests); outJson("security.json", security); outJson("agents.json", agents); outJson("phases.json", phaseRecords); outJson("contradictions.json", contradictions); outJson("aliases.json", aliases); outJson("indexes.json", indexes); outJson("snapshots.json", snapshots); outJson("data-quality.json", metrics); outJson("llm/entity-index.json", Object.fromEntries(entitiesArray.map(e => [e.canonical_id, { type:e.entity_type, name:e.canonical_name, status:e.status, summary:e.llm.llm_summary, evidence:e.evidence_ids, neighbors:e.related_entities }]))); outJson("llm/traversal-index.json", traversal); outJson("derived/ui-data.json", { meta:{ generated_at:generatedAt, source:"knowledge/entities.json + knowledge/relationships.json", live_or_snapshot:"DERIVED", ui_unchanged:true }, nodes:entitiesArray.map(e=>({ id:e.canonical_id, type:e.entity_type.toLowerCase(), title:e.canonical_name, status:e.status })), edges:relationshipArray.map(r=>({ source:r.from, target:r.to, relationship:r.type, confidence:r.confidence })) });
 writeFileSync(join(out, "DATA-QUALITY-REPORT.md"), `# Knowledge Graph Data Quality\n\nGenerated: ${generatedAt}\n\n- Raw source files ingested: ${metrics.raw_source_files}\n- Canonical entities: ${metrics.canonical_entities}\n- Typed relationships: ${metrics.canonical_relationships}\n- Orphan entities: ${metrics.orphan_entities.length}\n- Historical duplicate-ID claims requiring recheck: ${metrics.duplicate_entity_ids.length}\n- Explicit contradictions: ${metrics.contradiction_count}\n- Finding evidence coverage: ${(metrics.evidence_coverage * 100).toFixed(1)}%\n- Provenance coverage: ${(metrics.provenance_coverage * 100).toFixed(1)}%\n- Human-summary coverage: ${(metrics.human_summary_coverage * 100).toFixed(1)}%\n- LLM metadata coverage: ${(metrics.llm_metadata_coverage * 100).toFixed(1)}%\n- Precise typed-edge coverage: ${(metrics.typed_edge_coverage * 100).toFixed(1)}%\n\n## Interpretation\n\nThese metrics describe data quality, not engineering correctness. Orphans are reported for review; the generator does not invent edges merely to reduce the count. Historical contradictions remain explicit. The existing UI remains unchanged and its Pages output remains a snapshot.\n\n## Blockers\n\n- Private system-compass source remains inaccessible in the audited baseline.\n- Live GitHub state must be refreshed before treating the dataset as current for publication.\n- The generator and JSON integrity checks passed in this reconstruction run.\n`, "utf8");
 console.log(`Knowledge graph built: ${entitiesArray.length} entities, ${relationshipArray.length} relationships, ${sources.length} sources`);

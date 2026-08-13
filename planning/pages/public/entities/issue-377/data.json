@@ -10,7 +10,106 @@
     "title": "Ix issue #377",
     "status": "RESOLVED",
     "number": 377,
-    "url": "https://github.com/ix-infrastructure/Ix/issues/377"
+    "url": "https://github.com/ix-infrastructure/Ix/issues/377",
+    "source_mirror_id": "github:issue:ix-infrastructure/Ix#377",
+    "source_type": "github_issue",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/issues/377",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/377",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "number": 377,
+    "node_id": "I_kwDORdC75M8AAAABMGF3zQ",
+    "title": "[bug] Remapping keeps deleted and renamed symbols in the graph",
+    "body": "## Description\n\nAfter a successful incremental `ix map`, symbols removed by a rename or file deletion remain queryable in the graph. A deleted file can report a clean workspace even though its old nodes and incident edges are still present.\n\n## Steps to reproduce\n1. Create a small TypeScript project with `src/provider.ts` exporting `removedTarget` and `src/caller.ts` importing and calling it.\n2. Run `ix map . --silent` and confirm `ix callers removedTarget --format json` returns the caller.\n3. Either rename `removedTarget` in both files or delete `src/provider.ts`.\n4. Run `ix map . --silent` again.\n5. Run `ix locate removedTarget --format json`.\n\n## Expected behavior\n\nEntities no longer emitted by the current source should be removed with their incident edges. If a deleted provider file is later recreated, surviving callers should be re-ingested so their dependency edges are restored.\n\n## Actual behavior\n\nThe old symbol remains resolvable after a rename, so repeated renames accumulate stale graph entities. Deleting the provider also leaves its old symbol and caller edge behind even though the map finishes successfully.\n\n## CLI output\n\nAfter deleting the provider and remapping with Ix 0.9.1:\n\n```text\n$ ix map . --silent\nmap: 3 files ...\n\n$ ix locate removedTarget --format json\n\"resolvedTarget\": { \"kind\": \"function\", \"name\": \"removedTarget\", \"path\": \"src/provider.ts\" }\n```\n\n## Environment\n- OS: macOS 26.6.1\n- Node: 26.7.0\n- Ix version: 0.9.1\n",
+    "state": "closed",
+    "state_reason": "completed",
+    "author": {
+      "login": "Hiro-Chiba",
+      "id": 203865699,
+      "type": "User",
+      "html_url": "https://github.com/Hiro-Chiba"
+    },
+    "html_url": "https://github.com/ix-infrastructure/Ix/issues/377",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/377",
+    "labels": [],
+    "milestone": null,
+    "created_at": "2026-08-10T04:36:49Z",
+    "updated_at": "2026-08-10T21:14:22Z",
+    "closed_at": "2026-08-10T21:14:22Z",
+    "comments_count": 1,
+    "locked": false,
+    "comments": [
+      {
+        "id": 5245018777,
+        "node_id": "IC_kwDORdC75M8AAAABOKCimQ",
+        "repository": "ix-infrastructure/Ix",
+        "parent_type": "ISSUE",
+        "parent_number": 377,
+        "kind": "ISSUE_COMMENT",
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "body": "Thank you for the issue — this is a real gap, and one that quietly corrupts the graph rather than failing loudly, which makes it worth more than its size suggests.\n\nTracked by **#378**, which is open with review comments and currently conflicting with `main`. It carries `Fixes #377`, so this will close automatically when that lands.\n\nThe approach is right (compare the previous patch manifest, emit explicit deletions, track dependents so a recreated file heals its callers). The blocking item on the PR is that `reconcileRemovedEntities` runs before `stripMapModeOps`, which means `ix map` after `ix ingest` deletes chunk nodes it never recreates — reproduced on the branch. Detail on the PR.\n",
+        "html_url": "https://github.com/ix-infrastructure/Ix/issues/377#issuecomment-5245018777",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5245018777",
+        "created_at": "2026-08-10T19:33:03Z",
+        "updated_at": "2026-08-10T19:33:03Z",
+        "commit_id": null,
+        "path": null,
+        "line": null,
+        "start_line": null,
+        "side": null,
+        "in_reply_to_id": null,
+        "diff_hunk": null,
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      }
+    ],
+    "source": "OFFICIAL_GITHUB_FACT"
+  },
+  "source_context": {
+    "id": "github:issue:ix-infrastructure/Ix#377",
+    "source": {
+      "type": "github_issue",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/issues/377",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/377",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T04:36:49Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T21:14:22Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "ISSUE-377",
+    "entity_type": "ISSUE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "mirror_scope": "source issue plus captured comments",
+    "related_analysis_types": [
+      "FINDING",
+      "DECISION",
+      "IMPLEMENTATION"
+    ]
   },
   "relationships": [
     {
@@ -44,6 +143,30 @@
       "other_type": "file",
       "other_title": "CLI-HANDOFF/phase-15/FINAL-PR-WORTHINESS-AUDIT.json",
       "other_url": "https://alot1z.github.io/Ix-findings/entities/src-90ab8426282e"
+    },
+    {
+      "direction": "out",
+      "relationship": "FOUND_IN",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "in",
+      "relationship": "AUTHORED",
+      "other": "PERSON-Hiro-Chiba",
+      "other_type": "artifact",
+      "other_title": "Hiro-Chiba",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-hiro-chiba"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMENTED_ON",
+      "other": "COMMENT-ix-infrastructure-Ix-issue-377-5245018777",
+      "other_type": "artifact",
+      "other_title": "Issue #377 comment 5245018777",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/comment-ix-infrastructure-ix-issue-377-5245018777"
     }
   ]
 }

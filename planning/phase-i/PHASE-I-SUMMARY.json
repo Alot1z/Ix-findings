@@ -1,0 +1,22 @@
+{
+  "phase": "I",
+  "status": "PARTIALLY_COMPLETE",
+  "summary": "Deterministic indexed retrieval now covers files, symbols, reports, canonical entities, and captured GitHub source records.",
+  "implemented": [
+    "token index",
+    "typed search records",
+    "GitHub source authority metadata",
+    "posting-list integrity validation"
+  ],
+  "verified": [
+    "record IDs",
+    "postings",
+    "source/analysis separation",
+    "privacy",
+    "external mutations"
+  ],
+  "blocked": [
+    "Semantic ranking and fuzzy resolution remain out of scope for this deterministic foundation."
+  ],
+  "next_phase": "J_OR_I_REMEDIATION"
+}

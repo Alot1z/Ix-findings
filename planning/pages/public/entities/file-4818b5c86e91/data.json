@@ -1,0 +1,118 @@
+{
+  "id": "FILE-4818b5c86e91",
+  "type": "artifact",
+  "title": "skills/ix/scripts/bootstrap.sh",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/file-4818b5c86e91",
+  "summary": {
+    "id": "FILE-4818b5c86e91",
+    "type": "artifact",
+    "title": "skills/ix/scripts/bootstrap.sh",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "source_mirror_id": "github:file:ix-infrastructure/Ix:skills/ix/scripts/bootstrap.sh",
+    "source_type": "github_file",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/blob/0c9087c4292254472174b02475d094359c88c055/skills%2Fix%2Fscripts%2Fbootstrap.sh",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 368,
+    "filename": "skills/ix/scripts/bootstrap.sh",
+    "status": "added",
+    "additions": 155,
+    "deletions": 0,
+    "changes": 155,
+    "blob_url": "https://github.com/ix-infrastructure/Ix/blob/0c9087c4292254472174b02475d094359c88c055/skills%2Fix%2Fscripts%2Fbootstrap.sh",
+    "raw_url": "https://github.com/ix-infrastructure/Ix/raw/0c9087c4292254472174b02475d094359c88c055/skills%2Fix%2Fscripts%2Fbootstrap.sh",
+    "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/skills%2Fix%2Fscripts%2Fbootstrap.sh?ref=0c9087c4292254472174b02475d094359c88c055",
+    "patch": "@@ -0,0 +1,155 @@\n+#!/usr/bin/env bash\n+#\n+# Ix skill bootstrap — install the ix CLI, start the local backend, and map a repo.\n+#\n+# Usage:\n+#   bash scripts/bootstrap.sh [repo-root] [--no-map]\n+#\n+# Flags:\n+#   --no-map       setup only (CLI + backend); do not run `ix map`\n+#   --no-backend   do not start/wait for the Docker backend (CLI install only)\n+#\n+# Env overrides:\n+#   IX_SKIP_INSTALL=1   skip the ix CLI install step\n+#   IX_SKIP_BACKEND=1   same as --no-backend\n+#   IX_SKIP_MAP=1       same as --no-map\n+#\n+# Requires: Node.js >= 22, git, Docker (backend), ripgrep (for `ix text`, optional).\n+# Works on macOS, Linux, and Windows under Git Bash / MSYS2 / WSL.\n+\n+set -euo pipefail\n+\n+REPO=\"${1:-$PWD}\"\n+if [ \"${REPO}\" = \"--no-map\" ] || [ \"${REPO}\" = \"--no-backend\" ]; then\n+  REPO=\"$PWD\"\n+fi\n+DO_MAP=1\n+DO_BACKEND=1\n+for arg in \"$@\"; do\n+  case \"$arg\" in\n+    --no-map) DO_MAP=0 ;;\n+    --no-backend) DO_BACKEND=0 ;;\n+    --*) ;;\n+  esac\n+done\n+[ \"${IX_SKIP_MAP:-0}\" = \"1\" ] && DO_MAP=0\n+[ \"${IX_SKIP_BACKEND:-0}\" = \"1\" ] && DO_BACKEND=0\n+\n+info() { printf '\\033[1;36m[ix-skill]\\033[0m %s\\n' \"$*\"; }\n+warn() { printf '\\033[1;33m[ix-skill]\\033[0m %s\\n' \"$*\"; }\n+fail() { printf '\\033[1;31m[ix-skill]\\033[0m %s\\n' \"$*\" >&2; exit 1; }\n+\n+# Detect Windows (Git Bash / MSYS2 / Cygwin).\n+is_windows() { [ -n \"${MSYSTEM:-}\" ] || [ -n \"${WSL_DISTRO_NAME:-}\" ] || case \"$(uname -s)\" in MINGW*|MSYS*|CYGWIN*) return 0 ;; *) return 1 ;; esac; }\n+\n+version_ge() { # version_ge <got> <want>\n+  # `sort -C` succeeds when its input is already in order, so feeding it\n+  # want-then-got asks \"is want <= got\" — which is the question. The `-r` this\n+  # used to carry asked the reverse and inverted the whole check: Node 22.22.2\n+  # against a floor of 22 warned, and Node 18 passed silently.\n+  printf '%s\\n%s\\n' \"$2\" \"$1\" | sort -V -C 2>/dev/null\n+}\n+\n+command_exists() { command -v \"$1\" >/dev/null 2>&1; }\n+\n+info \"Ix skill bootstrap — repo: $REPO\"\n+\n+# --- Prerequisites -----------------------------------------------------------\n+node_ok=0\n+if command_exists node; then\n+  node_ver=\"$(node --version | tr -d 'v')\"\n+  if version_ge \"$node_ver\" \"22\"; then node_ok=1; else warn \"Node $node_ver detected; Ix requires Node >= 22.\"; fi\n+else\n+  warn \"Node.js not found; Ix requires Node >= 22 (https://nodejs.org).\"\n+fi\n+\n+command_exists git || warn \"git not found; Ix uses it for workspace detection.\"\n+\n+if command_exists rg; then\n+  info \"ripgrep found (powers 'ix text').\"\n+else\n+  warn \"ripgrep not found — 'ix text' will not work. Install it (macOS: brew install ripgrep; Linux: apt/dnf install ripgrep; Windows: choco install ripgrep).\"\n+fi\n+\n+if command_exists docker; then\n+  if docker info >/dev/null 2>&1; then\n+    info \"Docker daemon is running.\"\n+  else\n+    warn \"Docker is installed but the daemon is NOT running. Start Docker Desktop / the Docker service first, then re-run this script.\"\n+    [ \"$DO_BACKEND\" = \"1\" ] && DO_BACKEND=0 && warn \"Skipping backend start for now (daemon not up).\"\n+  fi\n+else\n+  warn \"Docker not found — the Ix backend needs Docker. Install Docker Desktop / Docker Engine, then re-run this script.\"\n+  DO_BACKEND=0\n+fi\n+\n+# --- Resolve the ix CLI -------------------------------------------------------\n+# The Windows installer ships ix.cmd and registers ~/.ix/bin in the user PATH,\n+# but long-lived shells and agents spawned before the install may not see it.\n+# Resolve the standard install location before deciding whether to install.\n+if ! command_exists ix && [ -x \"$HOME/.ix/bin/ix\" ]; then\n+  export PATH=\"$HOME/.ix/bin:$PATH\"\n+  info \"Found ix at $HOME/.ix/bin — added to PATH for this session.\"\n+fi\n+\n+# --- Install the ix CLI (only if still missing) --------------------------------\n+if command_exists ix; then\n+  info \"ix CLI already installed: $(ix --version 2>/dev/null || echo present).\"\n+elif [ \"${IX_SKIP_INSTALL:-0}\" = \"1\" ]; then\n+  warn \"IX_SKIP_INSTALL=1 — skipping ix CLI install. 'ix' is not on PATH.\"\n+else\n+  info \"Installing the ix CLI (official installer)…\"\n+  if is_windows; then\n+    if command_exists powershell; then\n+      powershell -NoProfile -ExecutionPolicy Bypass -Command \"irm https://ix-infra.com/install.ps1 | iex\"\n+    else\n+      fail \"Windows detected but powershell not found. Run in PowerShell: irm https://ix-infra.com/install.ps1 | iex\"\n+    fi\n+  else\n+    curl -fsSL https://ix-infra.com/install.sh | sh\n+  fi\n+  # A fresh install only updates the user PATH, which new processes pick up but\n+  # the current shell does not. Resolve the standard location explicitly.\n+  if ! command_exists ix && [ -x \"$HOME/.ix/bin/ix\" ]; then\n+    export PATH=\"$HOME/.ix/bin:$PATH\"\n+  fi\n+  command_exists ix || fail \"ix CLI install finished but 'ix' is still not on PATH. Restart your shell, or check ~/.ix/cli and PATH, then re-run this script.\"\n+  info \"ix CLI installed.\"\n+fi\n+command_exists ix || fail \"The ix CLI is not on PATH. Run the official installer, restart your shell, then re-run this bootstrap.\"\n+\n+# --- Compass (visualizer UI) --------------------------------------------------\n+# The official installer re-extracts the CLI tarball over the ix home and wipes\n+# the Compass assets, which ship only via `ix upgrade`. Ensure they exist so\n+# `ix view` never silently breaks after an installer re-run.\n+ensure_compass() {\n+  local ix_home=\"${IX_HOME:-$HOME/.ix}\"\n+  if [ -f \"$ix_home/cli/compass/index.html\" ]; then\n+    info \"Compass UI present.\"\n+    return 0\n+  fi\n+  warn \"Compass UI missing at $ix_home/cli/compass (a re-install likely wiped it) — running 'ix upgrade' to restore it.\"\n+  ix upgrade || warn \"'ix upgrade' failed — 'ix view' will be unavailable until it is re-run.\"\n+}\n+if [ \"${IX_SKIP_COMPASS:-0}\" != \"1\" ]; then\n+  ensure_compass\n+fi\n+\n+# --- Backend ------------------------------------------------------------------\n+if [ \"$DO_BACKEND\" = \"1\" ]; then\n+  info \"Starting the Ix backend (ArangoDB + memory layer)…\"\n+  ix docker start || warn \"`ix docker start` reported a problem — run `ix doctor` and `ix status` for details.\"\n+  for _ in $(seq 1 15); do\n+    if ix status >/dev/null 2>&1; then break; fi\n+    sleep 2\n+  done\n+  ix status || warn \"Backend still not reachable. Run: ix docker start && ix doctor\"\n+fi\n+\n+# --- Map the repo -------------------------------------------------------------\n+if [ \"$DO_MAP\" = \"1\" ]; then\n+  info \"Mapping $REPO — this builds the persistent graph (can take a while on large repos)…\"\n+  ( cd \"$REPO\" && ix map . )\n+fi\n+\n+info \"Done. Try: ix explain <symbol>, ix trace <flow>, ix impact <symbol> --format llm\"",
+    "parent_pr": 368
+  },
+  "source_context": {
+    "id": "github:file:ix-infrastructure/Ix:skills/ix/scripts/bootstrap.sh",
+    "source": {
+      "type": "github_file",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/blob/0c9087c4292254472174b02475d094359c88c055/skills%2Fix%2Fscripts%2Fbootstrap.sh",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T00:15:22Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T03:58:43Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "FILE-4818b5c86e91",
+    "entity_type": "FILE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#368",
+    "line_precision": "FILE_LEVEL"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+      "other_type": "commit",
+      "other_title": "b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b038c46117c26e17ff7f3dc8edd4c4f5083f79f6"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-0c9087c4292254472174b02475d094359c88c055",
+      "other_type": "commit",
+      "other_title": "0c9087c4292254472174b02475d094359c88c055",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-0c9087c4292254472174b02475d094359c88c055"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+      "other_type": "commit",
+      "other_title": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-a6a47267af21a49d6942ee6e07e18d1d0a82517b"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-ffee9dfca2cbbb9ae08f4f7e864d0d0dcb5ac681",
+      "other_type": "commit",
+      "other_title": "ffee9dfca2cbbb9ae08f4f7e864d0d0dcb5ac681",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-ffee9dfca2cbbb9ae08f4f7e864d0d0dcb5ac681"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-6a1e7e178b905745c12f9faebe0a56f91c8ffb0c",
+      "other_type": "commit",
+      "other_title": "6a1e7e178b905745c12f9faebe0a56f91c8ffb0c",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-6a1e7e178b905745c12f9faebe0a56f91c8ffb0c"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-2157158446a74d3d2303f818dc4f3f4e3758432c",
+      "other_type": "commit",
+      "other_title": "2157158446a74d3d2303f818dc4f3f4e3758432c",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-2157158446a74d3d2303f818dc4f3f4e3758432c"
+    }
+  ]
+}

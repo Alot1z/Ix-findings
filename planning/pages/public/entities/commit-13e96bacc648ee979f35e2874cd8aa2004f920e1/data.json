@@ -8,15 +8,145 @@
     "id": "COMMIT-13e96bacc648ee979f35e2874cd8aa2004f920e1",
     "type": "commit",
     "title": "13e96bacc648ee979f35e2874cd8aa2004f920e1",
-    "status": "CURRENT"
+    "status": "CURRENT",
+    "source_mirror_id": "github:commit:ix-infrastructure/Ix@13e96bacc648ee979f35e2874cd8aa2004f920e1",
+    "source_type": "github_commit",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/commit/13e96bacc648ee979f35e2874cd8aa2004f920e1",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/13e96bacc648ee979f35e2874cd8aa2004f920e1",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "sha": "13e96bacc648ee979f35e2874cd8aa2004f920e1",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/13e96bacc648ee979f35e2874cd8aa2004f920e1",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/13e96bacc648ee979f35e2874cd8aa2004f920e1",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "committer": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "message": "test(upgrade): cover an IX_HOME containing a space\n\nThe one question from the #391/#392 review that the merged fixes did not\nanswer. #349's reporter is on `[local-path] 10` and their confirmed workaround\nwas pointing TEMP at a space-free path — and #392 moved the upgrade scratch from\n`[local-path] an 8.3 alias which never contains a\nspace, to `[local-path] 10\\.ix\\...`, which does. If that failure is space-driven\nrather than short-path-driven, the move put a space onto the upgrade path where\nthere previously was none.\n\nThis cannot settle the mechanism: it runs on whatever platform CI is on, and the\nsuspected fault is a Windows path provider. What it does is prove our own code\ncarries no space-free assumption, so when the reporter tries again the remaining\nsuspects are outside this repo. Nothing else in the suite passed a path with a\nspace.\n\nFour cases: preparing a download directory inside a spaced IX_HOME, creating one\nthat a manual install never made, sweeping orphans out of it, and restoring an\ninterrupted install into it.\n\nFound while writing them: the first version used `.cli-download-1-abc` and\nfailed, because pid 1 is init and always alive — the sweep correctly skipped it\nas an in-flight download owned by another process. That is `isLiveScratch`\nworking exactly as intended, and the test now uses a pid that is not running.\n\n759 green, tsc clean, lint unchanged (0 errors).",
+    "parents": [
+      {
+        "sha": "1292375548fb8f4431ac5afc34c68fe2573434d1",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/1292375548fb8f4431ac5afc34c68fe2573434d1"
+      }
+    ],
+    "tree_sha": "2aec62c80297b31c7f8e6e598443bd646f8649b8",
+    "authored_at": "2026-08-11T04:50:45Z",
+    "committed_at": "2026-08-11T04:50:45Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@13e96bacc648ee979f35e2874cd8aa2004f920e1",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/13e96bacc648ee979f35e2874cd8aa2004f920e1",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/13e96bacc648ee979f35e2874cd8aa2004f920e1",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-11T04:50:45Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-11T04:50:45Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-13e96bacc648ee979f35e2874cd8aa2004f920e1",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#395"
   },
   "relationships": [
+    {
+      "direction": "in",
+      "relationship": "POINTS_TO",
+      "other": "BRANCH-aaca3ffaf188",
+      "other_type": "branch",
+      "other_title": "ix-infrastructure/Ix:test/ix-home-with-space",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-aaca3ffaf188"
+    },
+    {
+      "direction": "out",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-1292375548fb8f4431ac5afc34c68fe2573434d1",
+      "other_type": "commit",
+      "other_title": "1292375548fb8f4431ac5afc34c68fe2573434d1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-1292375548fb8f4431ac5afc34c68fe2573434d1"
+    },
+    {
+      "direction": "in",
+      "relationship": "HEADS_AT",
+      "other": "PR-395",
+      "other_type": "pr",
+      "other_title": "PR #395 — test(upgrade): cover an IX_HOME containing a space",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-395"
+    },
+    {
+      "direction": "in",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "PR-395",
+      "other_type": "pr",
+      "other_title": "PR #395 — test(upgrade): cover an IX_HOME containing a space",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-395"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-8fd3c7d3cd9b",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/upgrade-archive-shape.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-8fd3c7d3cd9b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-0bd9434f2b1d",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/upgrade-archive-shape.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-0bd9434f2b1d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-8e90deead14d",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/upgrade-archive-shape.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-8e90deead14d"
+    },
     {
       "direction": "in",
       "relationship": "CHANGED_BY",
       "other": "PR-395",
       "other_type": "pr",
-      "other_title": "Ix PR #395",
+      "other_title": "PR #395 — test(upgrade): cover an IX_HOME containing a space",
       "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-395"
     }
   ]

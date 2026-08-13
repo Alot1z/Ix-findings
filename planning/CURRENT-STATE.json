@@ -1,0 +1,27 @@
+{
+  "schema_version": "ix-findings.current-state.v1",
+  "generated_at": "2026-08-12T22:11:59.806Z",
+  "current_phase": "F",
+  "current_status": "PARTIALLY_COMPLETE",
+  "current_commit": "309329a3dd733694bed967655436d5d8dcc352f2",
+  "current_branch": "master",
+  "current_graph_entity_count": 3624,
+  "current_graph_relationship_count": 13541,
+  "current_route_count": 3832,
+  "current_mirror_version": "2026-08-12T21:38:25.697Z",
+  "current_sync_watermark": "2026-08-12T13:07:16.090Z",
+  "current_validation_status": "PARTIALLY_COMPLETE",
+  "current_blockers": [
+    "The optional Ix graph backend is unavailable because Docker is not running; the deterministic repository index is local and independent of that backend."
+  ],
+  "current_unknowns": [
+    "End-line ranges are UNKNOWN for regex-discovered symbols; no AST parser was assumed.",
+    "Last-modified commit is UNKNOWN for untracked files and files absent from reachable Git history."
+  ],
+  "next_phase": "F_REMEDIATION",
+  "source_authority": {
+    "external_github": "GITHUB",
+    "local_analysis": "IX-FINDINGS",
+    "external_mutations": 0
+  }
+}

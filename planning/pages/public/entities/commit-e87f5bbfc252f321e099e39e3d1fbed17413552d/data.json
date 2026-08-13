@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-e87f5bbfc252f321e099e39e3d1fbed17413552d",
+  "type": "commit",
+  "title": "e87f5bbfc252f321e099e39e3d1fbed17413552d",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-e87f5bbfc252f321e099e39e3d1fbed17413552d",
+  "summary": {
+    "id": "COMMIT-e87f5bbfc252f321e099e39e3d1fbed17413552d",
+    "type": "commit",
+    "title": "e87f5bbfc252f321e099e39e3d1fbed17413552d",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/e87f5bbfc252f321e099e39e3d1fbed17413552d",
+    "author": {
+      "name": "riley0227",
+      "email": "riley0227@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-69bc7c0f40ed81974f5f24f779f984d4eb27d3b0",
+      "other_type": "commit",
+      "other_title": "69bc7c0f40ed81974f5f24f779f984d4eb27d3b0",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-69bc7c0f40ed81974f5f24f779f984d4eb27d3b0"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-f58f24a7204376fdf86a78cc313885a7ca43cdf8",
+      "other_type": "commit",
+      "other_title": "f58f24a7204376fdf86a78cc313885a7ca43cdf8",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-f58f24a7204376fdf86a78cc313885a7ca43cdf8"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-51f40f925f42",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/parsers/TypeScriptParser.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-51f40f925f42"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-7679f65734b9",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/parsers/TypeScriptParser.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-7679f65734b9"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-09fdf3d37a59",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/parsers/TypeScriptParser.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-09fdf3d37a59"
+    }
+  ]
+}

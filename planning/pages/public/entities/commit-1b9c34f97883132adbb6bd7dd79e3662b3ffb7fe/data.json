@@ -1,0 +1,232 @@
+{
+  "id": "COMMIT-1b9c34f97883132adbb6bd7dd79e3662b3ffb7fe",
+  "type": "commit",
+  "title": "1b9c34f97883132adbb6bd7dd79e3662b3ffb7fe",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-1b9c34f97883132adbb6bd7dd79e3662b3ffb7fe",
+  "summary": {
+    "id": "COMMIT-1b9c34f97883132adbb6bd7dd79e3662b3ffb7fe",
+    "type": "commit",
+    "title": "1b9c34f97883132adbb6bd7dd79e3662b3ffb7fe",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/1b9c34f97883132adbb6bd7dd79e3662b3ffb7fe",
+    "author": {
+      "name": "riley0227",
+      "email": "riley0227@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-f7255ebdd97f57ad7a5c072aa4550f058f4fd533",
+      "other_type": "commit",
+      "other_title": "f7255ebdd97f57ad7a5c072aa4550f058f4fd533",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-f7255ebdd97f57ad7a5c072aa4550f058f4fd533"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-131e330c3616bff872dee65916f0d17b84a919e9",
+      "other_type": "commit",
+      "other_title": "131e330c3616bff872dee65916f0d17b84a919e9",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-131e330c3616bff872dee65916f0d17b84a919e9"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-0c075c18bc1a",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/context/ConfidenceScorer.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-0c075c18bc1a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-f967cda140ef",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/context/ContextRanker.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f967cda140ef"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-0b8f970353f0",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/context/ContextService.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-0b8f970353f0"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e1c959b1c62a",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/context/GraphExpander.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e1c959b1c62a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-825ef93d2cdd",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/context/RelevanceScorer.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-825ef93d2cdd"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-95c59dd2658e",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/model/StructuredContext.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-95c59dd2658e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-06a5f9c3374c",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/context/ContextServiceSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-06a5f9c3374c"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-45be58483331",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/context/RelevanceScorerSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-45be58483331"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-a9ca73b79656",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/context/ConfidenceScorer.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-a9ca73b79656"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-7ea3a528b32e",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/context/ContextRanker.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-7ea3a528b32e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-d1b8d4b91afe",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/context/ContextService.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-d1b8d4b91afe"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-44d1fccb707d",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/context/GraphExpander.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-44d1fccb707d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-34680357944d",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/context/RelevanceScorer.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-34680357944d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2db69f1aadc9",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/model/StructuredContext.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2db69f1aadc9"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-09059c1143fc",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/context/ContextServiceSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-09059c1143fc"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-f95ccc39b514",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/context/RelevanceScorerSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f95ccc39b514"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-96c42821dd3d",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/context/ConfidenceScorer.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-96c42821dd3d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-9ef178fafe5c",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/context/ContextRanker.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-9ef178fafe5c"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-7bc4b6f462d3",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/context/ContextService.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-7bc4b6f462d3"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-dceb1d0054e0",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/context/GraphExpander.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-dceb1d0054e0"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-22d7c7f79506",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/context/RelevanceScorer.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-22d7c7f79506"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-f9a898eb7f08",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/model/StructuredContext.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f9a898eb7f08"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-b7727058d34d",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/context/ContextServiceSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b7727058d34d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5e7f26bf2a12",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/context/RelevanceScorerSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5e7f26bf2a12"
+    }
+  ]
+}

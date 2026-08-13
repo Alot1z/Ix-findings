@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-01a2ee236949ca5fb8ce8f57dfaee01270e6bc83",
+  "type": "commit",
+  "title": "01a2ee236949ca5fb8ce8f57dfaee01270e6bc83",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-01a2ee236949ca5fb8ce8f57dfaee01270e6bc83",
+  "summary": {
+    "id": "COMMIT-01a2ee236949ca5fb8ce8f57dfaee01270e6bc83",
+    "type": "commit",
+    "title": "01a2ee236949ca5fb8ce8f57dfaee01270e6bc83",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/01a2ee236949ca5fb8ce8f57dfaee01270e6bc83",
+    "author": {
+      "name": "riley0227",
+      "email": "riley0227@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-c49b89d7c9395d3069fd9f040e34bb8026a6a464",
+      "other_type": "commit",
+      "other_title": "c49b89d7c9395d3069fd9f040e34bb8026a6a464",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-c49b89d7c9395d3069fd9f040e34bb8026a6a464"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-28ef2fde6f7f6f7fb06988019773b629c02104b5",
+      "other_type": "commit",
+      "other_title": "28ef2fde6f7f6f7fb06988019773b629c02104b5",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-28ef2fde6f7f6f7fb06988019773b629c02104b5"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-0b8f970353f0",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/context/ContextService.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-0b8f970353f0"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-d1b8d4b91afe",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/context/ContextService.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-d1b8d4b91afe"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-7bc4b6f462d3",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/context/ContextService.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-7bc4b6f462d3"
+    }
+  ]
+}

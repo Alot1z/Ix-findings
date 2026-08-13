@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-47a49fed8a9f04ce3542b9b5ccfc68e247157689",
+  "type": "commit",
+  "title": "47a49fed8a9f04ce3542b9b5ccfc68e247157689",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-47a49fed8a9f04ce3542b9b5ccfc68e247157689",
+  "summary": {
+    "id": "COMMIT-47a49fed8a9f04ce3542b9b5ccfc68e247157689",
+    "type": "commit",
+    "title": "47a49fed8a9f04ce3542b9b5ccfc68e247157689",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/47a49fed8a9f04ce3542b9b5ccfc68e247157689",
+    "author": {
+      "name": "riley0227",
+      "email": "riley0227@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-b76b6cbc6a133281454d54e8b8e7a51bd05899fe",
+      "other_type": "commit",
+      "other_title": "b76b6cbc6a133281454d54e8b8e7a51bd05899fe",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b76b6cbc6a133281454d54e8b8e7a51bd05899fe"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-c883bfcc2c34cafa4da3217d4e82b35b94969a05",
+      "other_type": "commit",
+      "other_title": "c883bfcc2c34cafa4da3217d4e82b35b94969a05",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-c883bfcc2c34cafa4da3217d4e82b35b94969a05"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-6a4889f87a0a",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/impact.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-6a4889f87a0a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2e4debf65e33",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/impact.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2e4debf65e33"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-697d31e150c3",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/impact.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-697d31e150c3"
+    }
+  ]
+}

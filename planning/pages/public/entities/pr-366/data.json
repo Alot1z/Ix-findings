@@ -10,7 +10,391 @@
     "title": "Ix PR #366",
     "status": "RESOLVED",
     "number": 366,
-    "url": "https://github.com/ix-infrastructure/Ix/pull/366"
+    "url": "https://github.com/ix-infrastructure/Ix/pull/366",
+    "source_mirror_id": "github:pull_request:ix-infrastructure/Ix#366",
+    "source_type": "github_pull_request",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/pull/366",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/366",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "number": 366,
+    "node_id": "PR_kwDORdC75M78wEgG",
+    "title": "fix(upgrade): pair the tar binary with the path form it understands",
+    "body": "The failure seen on the v0.9.0 upgrade path on Windows:\n\n```\n[!!] Compass extract failed: Command failed: tar -xzf /cygdrive/c/Users/ianja/AppData/Local/Temp/ix-compass-XOEabx/compass-0.2.0.tar.gz -C /cygdrive/c/Users/ianja/.ix/.compass-staging-55528 --strip-components=1\ntar: Error opening archive: Failed to open '/cygdrive/c/Users/ianja/AppData/Local/Temp/ix-compass-XOEabx/compass-0.2.0.tar.gz'\n```\n\n## Cause\n\n`installCompassBundle` rewrote its paths to Cygwin form whenever `cygpath` was on the box, then ran whatever `tar` PATH resolved to:\n\n```js\nif (process.platform === \"win32\") {\n  try {\n    tarFile = execFileSync(\"cygpath\", [\"-u\", tarPath], …).trim();   // → /cygdrive/c/...\n    tarDest = execFileSync(\"cygpath\", [\"-u\", stagingDir], …).trim();\n  } catch { /* use as-is */ }\n}\nexecFileSync(\"tar\", [\"-xzf\", tarFile, \"-C\", tarDest, …]);           // ← may be bsdtar\n```\n\nTwo independent decisions, and the code assumed they agreed: *cygpath exists* ⟹ *tar is a Cygwin tar*.\n\nGit for Windows supplies `cygpath`. Windows 10 1803+ supplies `System32\\tar.exe`. On a machine with both — which is an ordinary Windows dev box — the rewrite happens and bsdtar, which has never heard of `/cygdrive/c`, is handed the result. The CLI extract sidesteps all of this by using `extractZipOnWindows`; this was the only remaining `tar` shell-out.\n\n## Fix\n\nChoose the binary and the path form as matched pairs, best first:\n\n1. **System tar with native paths** — `System32\\tar.exe` is unambiguous and isn't reached through any MSYS argument rewriting.\n2. **PATH tar with native paths.**\n3. **PATH tar with converted paths** — a genuine MSYS-only environment.\n\nTrying rather than detecting, because \"which tar is this\" has no reliable answer and being wrong costs one failed extract into a scratch directory — which is now wiped between attempts, so the `index.html` check can't end up answering about the wreckage of an earlier try.\n\n## Tests\n\nThe converter is injectable, because off Windows `cygpath` doesn't exist and every attempt would collapse to the native form — hiding the very inversion the test exists to catch. With a stub converter the ordering is provable anywhere.\n\nVerified it fails against the old logic:\n\n```\nAssertionError: expected '/cygdrive/c/Temp/c.tar.gz' to be '[local-path]'\n```\n\nSeven new cases covering ordering, the no-cygpath path, never pairing a converted path with the system tar, and `systemTarPath` resolution via `SystemRoot`/`windir`. Full suite green — 648 tests, `tsc` and `eslint` clean.\n\n## Related\n\nThis failure was masking a worse one: the bundled compass ships unversioned, so `ix upgrade` replaces it with an older `ix-compass-dist` build. #365 fixes that; here the extract merely failed, which is why Windows kept the correct compass and other platforms didn't.",
+    "state": "closed",
+    "draft": false,
+    "merged": true,
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "html_url": "https://github.com/ix-infrastructure/Ix/pull/366",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/366",
+    "head": {
+      "ref": "fix/windows-tar-cygpath-pairing",
+      "sha": "f434f9d0bc5027a5d3033df35caed7a8c2c84fc8",
+      "repo": {
+        "id": 1171307492,
+        "full_name": "ix-infrastructure/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "ix-infrastructure",
+          "id": 256883681,
+          "type": "Organization",
+          "html_url": "https://github.com/ix-infrastructure"
+        },
+        "html_url": "https://github.com/ix-infrastructure/Ix",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": false,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-03-03T04:48:38Z",
+        "updated_at": "2026-08-13T21:51:31Z",
+        "pushed_at": "2026-08-13T19:18:44Z",
+        "topics": [
+          "ai",
+          "ai-memory",
+          "claude-code",
+          "cli",
+          "code-analysis",
+          "code-mapping",
+          "code-memory",
+          "codebase-understanding",
+          "codex",
+          "developer-tools",
+          "llm",
+          "openclaw",
+          "persistent-memory",
+          "program-analysis",
+          "software-architecture",
+          "system-intelligence",
+          "system-mapping"
+        ],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 701,
+        "stargazers_count": 701,
+        "forks_count": 60,
+        "open_issues_count": 6
+      }
+    },
+    "base": {
+      "ref": "main",
+      "sha": "3c49cc243654aae428cfc4b8802f0b3a99de56a4",
+      "repo": {
+        "id": 1171307492,
+        "full_name": "ix-infrastructure/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "ix-infrastructure",
+          "id": 256883681,
+          "type": "Organization",
+          "html_url": "https://github.com/ix-infrastructure"
+        },
+        "html_url": "https://github.com/ix-infrastructure/Ix",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": false,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-03-03T04:48:38Z",
+        "updated_at": "2026-08-13T21:51:31Z",
+        "pushed_at": "2026-08-13T19:18:44Z",
+        "topics": [
+          "ai",
+          "ai-memory",
+          "claude-code",
+          "cli",
+          "code-analysis",
+          "code-mapping",
+          "code-memory",
+          "codebase-understanding",
+          "codex",
+          "developer-tools",
+          "llm",
+          "openclaw",
+          "persistent-memory",
+          "program-analysis",
+          "software-architecture",
+          "system-intelligence",
+          "system-mapping"
+        ],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 701,
+        "stargazers_count": 701,
+        "forks_count": 60,
+        "open_issues_count": 6
+      }
+    },
+    "merge_commit_sha": "0437abf5de675f16fe161df86fca9adf7eee9b93",
+    "merged_at": "2026-08-09T23:10:05Z",
+    "closed_at": "2026-08-09T23:10:05Z",
+    "created_at": "2026-08-09T22:30:51Z",
+    "updated_at": "2026-08-09T23:10:05Z",
+    "labels": [],
+    "milestone": null,
+    "requested_reviewers": [
+      {
+        "login": "josephismikhail",
+        "id": 56614593,
+        "type": "User",
+        "html_url": "https://github.com/josephismikhail"
+      }
+    ],
+    "requested_teams": [],
+    "commits_count": 1,
+    "changed_files_count": 2,
+    "additions": 180,
+    "deletions": 16,
+    "changed_files": [
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 366,
+        "filename": "ix-cli/src/cli/__tests__/upgrade-compass-bundle.test.ts",
+        "status": "modified",
+        "additions": 84,
+        "deletions": 0,
+        "changes": 84,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/f434f9d0bc5027a5d3033df35caed7a8c2c84fc8/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fupgrade-compass-bundle.test.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/f434f9d0bc5027a5d3033df35caed7a8c2c84fc8/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fupgrade-compass-bundle.test.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fupgrade-compass-bundle.test.ts?ref=f434f9d0bc5027a5d3033df35caed7a8c2c84fc8",
+        "patch": "@@ -16,6 +16,8 @@ import {\n   cleanupCompassSwap,\n   installCompassBundle,\n   sweepUpgradeOrphans,\n+  systemTarPath,\n+  tarAttempts,\n } from \"../commands/upgrade.js\";\n \n // The compass repair used to empty COMPASS_DIR and extract into the hole, so\n@@ -210,3 +212,85 @@ describe(\"installCompassBundle\", () => {\n     expect(existsSync(backup())).toBe(false);\n   });\n });\n+\n+// The Windows compass extract converted its paths to Cygwin form whenever\n+// `cygpath` was on the box, and then ran whatever `tar` PATH resolved to. Git\n+// for Windows supplies cygpath; Windows 10 1803+ supplies System32\\tar.exe. On\n+// a machine with both — an ordinary Windows dev box — the rewrite happened and\n+// bsdtar was handed the result:\n+//\n+//   tar: Error opening archive: Failed to open '/cygdrive/c/Users/...'\n+//\n+// The binary and the path form have to be chosen as a pair.\n+describe(\"tarAttempts\", () => {\n+  const realPlatform = process.platform;\n+  const setPlatform = (value: string) =>\n+    Object.defineProperty(process, \"platform\", { value, configurable: true });\n+\n+  afterEach(() => setPlatform(realPlatform));\n+\n+  it(\"is a single native invocation off Windows\", () => {\n+    setPlatform(\"linux\");\n+    expect(tarAttempts(\"/tmp/c.tar.gz\", \"/tmp/dest\")).toEqual([\n+      { bin: \"tar\", file: \"/tmp/c.tar.gz\", dest: \"/tmp/dest\" },\n+    ]);\n+  });\n+\n+  // A box that has cygpath, which is what made the old code convert.\n+  const cygpath = (p: string) =>\n+    \"/cygdrive/\" + p[0].toLowerCase() + p.slice(2).replace(/\\\\/g, \"/\");\n+\n+  it(\"tries native Windows paths before any converted form\", () => {\n+    setPlatform(\"win32\");\n+    const attempts = tarAttempts(\"[local-path]\", \"[local-path]\", cygpath);\n+\n+    // The whole bug: the only invocation used a converted path, so a tar taking\n+    // native paths could never succeed. Native must come first.\n+    expect(attempts[0].file).toBe(\"[local-path]\");\n+    expect(attempts[0].dest).toBe(\"[local-path]\");\n+\n+    // ...and the converted form must still be offered, for a real MSYS-only box.\n+    expect(attempts.some(a => a.file.startsWith(\"/cygdrive/\"))).toBe(true);\n+\n+    const firstConverted = attempts.findIndex(a => a.file.startsWith(\"/cygdrive/\"));\n+    const lastNative = attempts.map(a => a.file.startsWith(\"/cygdrive/\")).lastIndexOf(false);\n+    expect(firstConverted).toBeGreaterThan(lastNative);\n+  });\n+\n+  it(\"offers only native paths when there is no cygpath\", () => {\n+    setPlatform(\"win32\");\n+    const attempts = tarAttempts(\"[local-path]\", \"[local-path]\", () => null);\n+    expect(attempts.every(a => a.file === \"[local-path]\")).toBe(true);\n+  });\n+\n+  it(\"never pairs a converted path with the system tar\", () => {\n+    setPlatform(\"win32\");\n+    for (const attempt of tarAttempts(\"[local-path]\", \"[local-path]\", cygpath)) {\n+      // bsdtar cannot open a cygdrive path; pairing the two is the failure.\n+      if (attempt.bin.toLowerCase().includes(\"system32\")) {\n+        expect(attempt.file.startsWith(\"/cygdrive/\")).toBe(false);\n+      }\n+    }\n+  });\n+});\n+\n+describe(\"systemTarPath\", () => {\n+  it(\"finds bsdtar under SystemRoot\", () => {\n+    expect(systemTarPath({ SystemRoot: \"[local-path]\" }, () => true))\n+      .toBe(join(\"[local-path]\", \"System32\", \"tar.exe\"));\n+  });\n+\n+  it(\"falls back to windir when SystemRoot is unset\", () => {\n+    expect(systemTarPath({ windir: \"[local-path]\" }, () => true))\n+      .toBe(join(\"[local-path]\", \"System32\", \"tar.exe\"));\n+  });\n+\n+  it(\"is null when the binary is not there\", () => {\n+    // Windows before 1803. The PATH fallbacks are the only option.\n+    expect(systemTarPath({ SystemRoot: \"[local-path]\" }, () => false)).toBeNull();\n+  });\n+\n+  it(\"is null with no Windows root in the environment\", () => {\n+    expect(systemTarPath({}, () => true)).toBeNull();\n+  });\n+});"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 366,
+        "filename": "ix-cli/src/cli/commands/upgrade.ts",
+        "status": "modified",
+        "additions": 96,
+        "deletions": 16,
+        "changes": 112,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/f434f9d0bc5027a5d3033df35caed7a8c2c84fc8/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fupgrade.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/f434f9d0bc5027a5d3033df35caed7a8c2c84fc8/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fupgrade.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fupgrade.ts?ref=f434f9d0bc5027a5d3033df35caed7a8c2c84fc8",
+        "patch": "@@ -431,30 +431,110 @@ export function installStagedTree(\n  *\n  * Throws with the working compass still in place.\n  */\n+export interface TarAttempt {\n+  bin: string;\n+  file: string;\n+  dest: string;\n+}\n+\n+/**\n+ * Windows' own bsdtar, or null if this box predates it.\n+ *\n+ * Present since Windows 10 1803. It takes native paths and is not reached\n+ * through any MSYS argument rewriting, so it is the one combination on Windows\n+ * that cannot be mismatched.\n+ */\n+export function systemTarPath(\n+  env: NodeJS.ProcessEnv = process[redacted],\n+  exists: (p: string) => boolean = existsSync\n+): string | null {\n+  const root = env.SystemRoot || env.windir;\n+  if (!root) return null;\n+  const candidate = join(root, \"System32\", \"tar.exe\");\n+  return exists(candidate) ? candidate : null;\n+}\n+\n+/**\n+ * The ways to invoke tar, best first, as matched (binary, path-form) pairs.\n+ *\n+ * The binary and the shape of the paths handed to it have to be chosen\n+ * together, and they used to be decided independently: the paths were rewritten\n+ * to Cygwin form whenever `cygpath` existed, while the binary was left to\n+ * whatever PATH resolved. Git for Windows supplies `cygpath`, and Windows 10\n+ * 1803+ supplies System32\\tar.exe, so on an ordinary Windows dev box the\n+ * rewrite happened and then bsdtar — which has never heard of `/cygdrive/c` —\n+ * was asked to open the result:\n+ *\n+ *     tar: Error opening archive: Failed to open '/cygdrive/c/Users/...'\n+ *\n+ * So: prefer the system tar with native paths, which is unambiguous. Fall back\n+ * to PATH tar with native paths, then to PATH tar with converted paths for a\n+ * genuine MSYS-only environment. Trying rather than detecting, because \"which\n+ * tar is this\" has no reliable answer and the cost of being wrong is one failed\n+ * extract into a scratch directory.\n+ */\n+export function cygpathToUnix(windowsPath: string): string | null {\n+  try {\n+    const converted = execFileSync(\"cygpath\", [\"-u\", windowsPath], { encoding: \"utf-8\" }).trim();\n+    return converted || null;\n+  } catch {\n+    // No cygpath: there is no MSYS tar to need the converted form either.\n+    return null;\n+  }\n+}\n+\n+export function tarAttempts(\n+  tarPath: string,\n+  destDir: string,\n+  // Injectable so the ordering can be tested off Windows, where cygpath does\n+  // not exist and every attempt would otherwise collapse to the native form —\n+  // hiding the very inversion this exists to prevent.\n+  convert: (p: string) => string | null = cygpathToUnix\n+): TarAttempt[] {\n+  if (process.platform !== \"win32\") {\n+    return [{ bin: \"tar\", file: tarPath, dest: destDir }];\n+  }\n+\n+  const attempts: TarAttempt[] = [];\n+  const systemTar = systemTarPath();\n+  if (systemTar) attempts.push({ bin: systemTar, file: tarPath, dest: destDir });\n+  attempts.push({ bin: \"tar\", file: tarPath, dest: destDir });\n+\n+  const file = convert(tarPath);\n+  const dest = convert(destDir);\n+  if (file && dest) attempts.push({ bin: \"tar\", file, dest });\n+\n+  return attempts;\n+}\n+\n export function installCompassBundle(\n   tarPath: string,\n   compassDir: string,\n   stagingDir: string,\n   backupDir: string\n ): void {\n-  rmQuiet(stagingDir);\n-  mkdirSync(stagingDir, { recursive: true });\n-\n-  let tarFile = tarPath;\n-  let tarDest = stagingDir;\n-  if (process.platform === \"win32\") {\n+  let lastError: unknown = null;\n+  for (const attempt of tarAttempts(tarPath, stagingDir)) {\n+    // Each attempt gets a clean directory: a tar that fails partway still\n+    // leaves files behind, and the index.html check below would then be\n+    // answering about the wreckage of an earlier try.\n+    rmQuiet(stagingDir);\n+    mkdirSync(stagingDir, { recursive: true });\n     try {\n-      tarFile = execFileSync(\"cygpath\", [\"-u\", tarPath], { encoding: \"utf-8\" }).trim();\n-      tarDest = execFileSync(\"cygpath\", [\"-u\", stagingDir], { encoding: \"utf-8\" }).trim();\n-    } catch { /* use as-is */ }\n+      execFileSync(\n+        attempt.bin,\n+        [\"-xzf\", attempt.file, \"-C\", attempt.dest, \"--strip-components=1\"],\n+        // Capture stderr rather than discarding it: this is the step that failed\n+        // on Windows and it left nothing behind to diagnose.\n+        { stdio: [\"ignore\", \"ignore\", \"pipe\"] }\n+      );\n+      lastError = null;\n+      break;\n+    } catch (err) {\n+      lastError = err;\n+    }\n   }\n-  execFileSync(\n-    \"tar\",\n-    [\"-xzf\", tarFile, \"-C\", tarDest, \"--strip-components=1\"],\n-    // Capture stderr rather than discarding it: this is the step that failed on\n-    // Windows and it left nothing behind to diagnose.\n-    { stdio: [\"ignore\", \"ignore\", \"pipe\"] }\n-  );\n+  if (lastError) throw lastError;\n \n   // An extract that \"succeeded\" without producing index.html is not a compass.\n   // Swapping it in would replace a working bundle with one findCompassDist"
+      }
+    ],
+    "commits": [
+      {
+        "sha": "f434f9d0bc5027a5d3033df35caed7a8c2c84fc8",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/f434f9d0bc5027a5d3033df35caed7a8c2c84fc8",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/f434f9d0bc5027a5d3033df35caed7a8c2c84fc8",
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "committer": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "message": "fix(upgrade): pair the tar binary with the path form it understands\n\nThe Windows compass extract rewrote its paths to Cygwin form whenever\n`cygpath` was on the box, then ran whatever `tar` PATH resolved to. Those\nare two independent decisions and the code assumed they agreed.\n\nGit for Windows supplies cygpath. Windows 10 1803+ supplies\nSystem32\\tar.exe. On a machine with both — an ordinary Windows dev box —\nthe rewrite happened and bsdtar, which has never heard of /cygdrive/c,\nwas handed the result:\n\n  tar: Error opening archive: Failed to open '/cygdrive/c/Users/...'\n\nNow the binary and the path form are chosen together, best first: the\nsystem tar with native paths, which cannot be mismatched; then PATH tar\nwith native paths; then PATH tar with converted paths for a genuine\nMSYS-only environment. Trying rather than detecting, because \"which tar\nis this\" has no reliable answer and being wrong costs one failed extract\ninto a scratch directory that is wiped between attempts.\n\nThe converter is injectable so the ordering is testable off Windows,\nwhere cygpath does not exist and every attempt would otherwise collapse\nto the native form — hiding the inversion the test exists to catch. It\nfails against the old logic with 'expected /cygdrive/c/Temp/c.tar.gz to\nbe [local-path]'.",
+        "parents": [
+          {
+            "sha": "3c49cc243654aae428cfc4b8802f0b3a99de56a4",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/3c49cc243654aae428cfc4b8802f0b3a99de56a4"
+          }
+        ],
+        "tree_sha": "99e8b427c1095a42bf198f1b38782455cee175ba",
+        "authored_at": "2026-08-09T22:30:32Z",
+        "committed_at": "2026-08-09T22:30:32Z"
+      }
+    ],
+    "comments": [],
+    "reviews": [],
+    "review_comments": [],
+    "timeline": [
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/f434f9d0bc5027a5d3033df35caed7a8c2c84fc8"
+      },
+      {
+        "id": 29194157762,
+        "event": "review_requested",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-09T22:30:52Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29194157762"
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-09T22:31:00Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": 29194829554,
+        "event": "merged",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-09T23:10:05Z",
+        "commit_id": "0437abf5de675f16fe161df86fca9adf7eee9b93",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29194829554"
+      },
+      {
+        "id": 29194829567,
+        "event": "closed",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-09T23:10:05Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29194829567"
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T04:04:02Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-11T00:07:37Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": 29257653627,
+        "event": "referenced",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-11T03:13:43Z",
+        "commit_id": "c4154613a2fdd434c5271f2babc10bcd88ab46b1",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29257653627"
+      },
+      {
+        "id": 29259819517,
+        "event": "referenced",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-11T04:36:51Z",
+        "commit_id": "af23b558efea953869d03ea655cbb0b3c82123b2",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29259819517"
+      }
+    ],
+    "source": "OFFICIAL_GITHUB_FACT",
+    "review_threads": [],
+    "review_thread_capture": {
+      "status": "VERIFIED",
+      "source": "GitHub GraphQL API"
+    }
+  },
+  "source_context": {
+    "id": "github:pull_request:ix-infrastructure/Ix#366",
+    "source": {
+      "type": "github_pull_request",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/366",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/366",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-09T22:30:51Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-09T23:10:05Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "PR-366",
+    "entity_type": "PULL_REQUEST",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "mirror_scope": "source PR, commits, files, comments, reviews, review comments, and review threads",
+    "related_analysis_types": [
+      "FINDING",
+      "DECISION",
+      "IMPLEMENTATION"
+    ],
+    "review_thread_state": "VERIFIED_GRAPHQL"
   },
   "relationships": [
     {
@@ -36,6 +420,46 @@
       "other_type": "file",
       "other_title": "CLI-HANDOFF/phase-15/FINAL-PR-WORTHINESS-AUDIT.json",
       "other_url": "https://alot1z.github.io/Ix-findings/entities/src-90ab8426282e"
+    },
+    {
+      "direction": "out",
+      "relationship": "FOUND_IN",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "in",
+      "relationship": "AUTHORED",
+      "other": "PERSON-KageBinary",
+      "other_type": "artifact",
+      "other_title": "KageBinary",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-kagebinary"
+    },
+    {
+      "direction": "out",
+      "relationship": "HEADS_AT",
+      "other": "COMMIT-f434f9d0bc5027a5d3033df35caed7a8c2c84fc8",
+      "other_type": "commit",
+      "other_title": "f434f9d0bc5027a5d3033df35caed7a8c2c84fc8",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-f434f9d0bc5027a5d3033df35caed7a8c2c84fc8"
+    },
+    {
+      "direction": "out",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "COMMIT-f434f9d0bc5027a5d3033df35caed7a8c2c84fc8",
+      "other_type": "commit",
+      "other_title": "f434f9d0bc5027a5d3033df35caed7a8c2c84fc8",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-f434f9d0bc5027a5d3033df35caed7a8c2c84fc8"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGED_BY",
+      "other": "COMMIT-f434f9d0bc5027a5d3033df35caed7a8c2c84fc8",
+      "other_type": "commit",
+      "other_title": "f434f9d0bc5027a5d3033df35caed7a8c2c84fc8",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-f434f9d0bc5027a5d3033df35caed7a8c2c84fc8"
     }
   ]
 }

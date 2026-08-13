@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-f90610f2599c0c71e800916268277fe45b2060a9",
+  "type": "commit",
+  "title": "f90610f2599c0c71e800916268277fe45b2060a9",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-f90610f2599c0c71e800916268277fe45b2060a9",
+  "summary": {
+    "id": "COMMIT-f90610f2599c0c71e800916268277fe45b2060a9",
+    "type": "commit",
+    "title": "f90610f2599c0c71e800916268277fe45b2060a9",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/f90610f2599c0c71e800916268277fe45b2060a9",
+    "author": {
+      "name": "riley0227",
+      "email": "riley0227@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-b219786c8ee61230908bc7cade1737b11a5ca76a",
+      "other_type": "commit",
+      "other_title": "b219786c8ee61230908bc7cade1737b11a5ca76a",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b219786c8ee61230908bc7cade1737b11a5ca76a"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-ae304943beb6b474dcd452e5b2235d26ce4faa8b",
+      "other_type": "commit",
+      "other_title": "ae304943beb6b474dcd452e5b2235d26ce4faa8b",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-ae304943beb6b474dcd452e5b2235d26ce4faa8b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-443b1b7431a6",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/parsers/TreeSitterPythonParser.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-443b1b7431a6"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-70274d5b3bfd",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/parsers/TreeSitterPythonParser.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-70274d5b3bfd"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-9cffad5ac9df",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/parsers/TreeSitterPythonParser.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-9cffad5ac9df"
+    }
+  ]
+}

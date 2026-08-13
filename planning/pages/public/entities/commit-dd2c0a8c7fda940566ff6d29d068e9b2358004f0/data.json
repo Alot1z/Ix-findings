@@ -1,0 +1,88 @@
+{
+  "id": "COMMIT-dd2c0a8c7fda940566ff6d29d068e9b2358004f0",
+  "type": "commit",
+  "title": "dd2c0a8c7fda940566ff6d29d068e9b2358004f0",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-dd2c0a8c7fda940566ff6d29d068e9b2358004f0",
+  "summary": {
+    "id": "COMMIT-dd2c0a8c7fda940566ff6d29d068e9b2358004f0",
+    "type": "commit",
+    "title": "dd2c0a8c7fda940566ff6d29d068e9b2358004f0",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/dd2c0a8c7fda940566ff6d29d068e9b2358004f0",
+    "author": {
+      "name": "Tanner Kocher",
+      "email": "tannertorrey3@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-51ac48abbeb4813d00c5a0d74023d0ed01e8aa15",
+      "other_type": "commit",
+      "other_title": "51ac48abbeb4813d00c5a0d74023d0ed01e8aa15",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-51ac48abbeb4813d00c5a0d74023d0ed01e8aa15"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-336e09d85f32e3a4f58a20b22fcb1a3e7e14c716",
+      "other_type": "commit",
+      "other_title": "336e09d85f32e3a4f58a20b22fcb1a3e7e14c716",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-336e09d85f32e3a4f58a20b22fcb1a3e7e14c716"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-07f14ce9998a",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/ingest.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-07f14ce9998a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-1eb9393a4540",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/BulkWriteApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-1eb9393a4540"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-6d783a082e75",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/ingest.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-6d783a082e75"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-cc30c10b2f7a",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/BulkWriteApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-cc30c10b2f7a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-52e473712974",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/ingest.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-52e473712974"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-8fe8197934db",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/BulkWriteApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-8fe8197934db"
+    }
+  ]
+}

@@ -1,0 +1,145 @@
+{
+  "id": "COMMIT-d785e1ad2740e56ef712b432c7b328125c5f4599",
+  "type": "commit",
+  "title": "d785e1ad2740e56ef712b432c7b328125c5f4599",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-d785e1ad2740e56ef712b432c7b328125c5f4599",
+  "summary": {
+    "id": "COMMIT-d785e1ad2740e56ef712b432c7b328125c5f4599",
+    "type": "commit",
+    "title": "d785e1ad2740e56ef712b432c7b328125c5f4599",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/d785e1ad2740e56ef712b432c7b328125c5f4599",
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "source_mirror_id": "github:commit:ix-infrastructure/Ix@d785e1ad2740e56ef712b432c7b328125c5f4599",
+    "source_type": "github_commit",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/commit/d785e1ad2740e56ef712b432c7b328125c5f4599",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/d785e1ad2740e56ef712b432c7b328125c5f4599",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "sha": "d785e1ad2740e56ef712b432c7b328125c5f4599",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/d785e1ad2740e56ef712b432c7b328125c5f4599",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/d785e1ad2740e56ef712b432c7b328125c5f4599",
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "committer": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "message": "docs(release): correct the brew-title comment to what actually happened\n\nReview follow-up -- the fix is right, the rationale beside it was not, and it\nlands as permanent in-repo documentation.\n\nThree corrections:\n\n- Not \"every release\". pr-title.yml arrived in #282 on 2026-06-08; nine of the\n  eleven formula PRs (#38 through #268, latest 2026-06-05) predate the check\n  entirely. Only #364 and #367 were ever in scope.\n- Not \"failed on arrival\". The PR is opened by github-actions[bot], so its\n  pull_request runs land in `action_required` and wait for manual approval. On\n  #364 the title check never ran at all -- there was no red X to notice.\n- Not \"written off as noise each time\". n=1: on #367 it was renamed by hand\n  within six minutes and the check went green. That manual rename is the toil\n  this change removes, and it is the better argument.\n\nAlso records the approval hold, since it is the thing that actually blocks the\nformula PR and this change does not fix it.\n\nComment-only: `bash -n` on the extracted run block is clean and the two title\nstrings are byte-identical to before.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01PZhcNcCtFQ6Bz2XMDpJPJS",
+    "parents": [
+      {
+        "sha": "3bcaeecb8439e7079eb848560aaed8f60f2d583f",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/3bcaeecb8439e7079eb848560aaed8f60f2d583f"
+      }
+    ],
+    "tree_sha": "911a6267b35c0c7df029161906f5b43c542f6567",
+    "authored_at": "2026-08-10T04:38:44Z",
+    "committed_at": "2026-08-10T04:38:44Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@d785e1ad2740e56ef712b432c7b328125c5f4599",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/d785e1ad2740e56ef712b432c7b328125c5f4599",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/d785e1ad2740e56ef712b432c7b328125c5f4599",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T04:38:44Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T04:38:44Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-d785e1ad2740e56ef712b432c7b328125c5f4599",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#373"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-3bcaeecb8439e7079eb848560aaed8f60f2d583f",
+      "other_type": "commit",
+      "other_title": "3bcaeecb8439e7079eb848560aaed8f60f2d583f",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-3bcaeecb8439e7079eb848560aaed8f60f2d583f"
+    },
+    {
+      "direction": "in",
+      "relationship": "HEADS_AT",
+      "other": "PR-373",
+      "other_type": "pr",
+      "other_title": "Ix PR #373",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-373"
+    },
+    {
+      "direction": "in",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "PR-373",
+      "other_type": "pr",
+      "other_title": "Ix PR #373",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-373"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e6f2ba20b90b",
+      "other_type": "artifact",
+      "other_title": ".github/workflows/release.yml",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e6f2ba20b90b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-1c0a8365170e",
+      "other_type": "artifact",
+      "other_title": "scripts/release.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-1c0a8365170e"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGED_BY",
+      "other": "PR-373",
+      "other_type": "pr",
+      "other_title": "Ix PR #373",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-373"
+    }
+  ]
+}

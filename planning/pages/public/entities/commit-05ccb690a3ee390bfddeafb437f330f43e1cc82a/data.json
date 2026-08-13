@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-05ccb690a3ee390bfddeafb437f330f43e1cc82a",
+  "type": "commit",
+  "title": "05ccb690a3ee390bfddeafb437f330f43e1cc82a",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-05ccb690a3ee390bfddeafb437f330f43e1cc82a",
+  "summary": {
+    "id": "COMMIT-05ccb690a3ee390bfddeafb437f330f43e1cc82a",
+    "type": "commit",
+    "title": "05ccb690a3ee390bfddeafb437f330f43e1cc82a",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/05ccb690a3ee390bfddeafb437f330f43e1cc82a",
+    "author": {
+      "name": "Joseph Mikhail",
+      "email": "jsmikhai@ucsd.edu"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-fc8b30a858c86a8d5e11e23757493977ff674a7a",
+      "other_type": "commit",
+      "other_title": "fc8b30a858c86a8d5e11e23757493977ff674a7a",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-fc8b30a858c86a8d5e11e23757493977ff674a7a"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-460adf04a8eb339cb9bfeaa388bf1bcadf381410",
+      "other_type": "commit",
+      "other_title": "460adf04a8eb339cb9bfeaa388bf1bcadf381410",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-460adf04a8eb339cb9bfeaa388bf1bcadf381410"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2c087a62904a",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/config.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2c087a62904a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-703ed3bd9f1b",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/config.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-703ed3bd9f1b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2383dc44e0e7",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/config.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2383dc44e0e7"
+    }
+  ]
+}

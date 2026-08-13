@@ -1,0 +1,448 @@
+{
+  "id": "COMMIT-590730349c65bbe453e695d03eb250eddd9a003e",
+  "type": "commit",
+  "title": "590730349c65bbe453e695d03eb250eddd9a003e",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-590730349c65bbe453e695d03eb250eddd9a003e",
+  "summary": {
+    "id": "COMMIT-590730349c65bbe453e695d03eb250eddd9a003e",
+    "type": "commit",
+    "title": "590730349c65bbe453e695d03eb250eddd9a003e",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/590730349c65bbe453e695d03eb250eddd9a003e",
+    "author": {
+      "name": "riley0227",
+      "email": "riley0227@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-443d6bdb536a789467bedacdca78e38c02de0bb7",
+      "other_type": "commit",
+      "other_title": "443d6bdb536a789467bedacdca78e38c02de0bb7",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-443d6bdb536a789467bedacdca78e38c02de0bb7"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-372be244a17ea7b1ceeaf5d882e2e12fc6da6dde",
+      "other_type": "commit",
+      "other_title": "372be244a17ea7b1ceeaf5d882e2e12fc6da6dde",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-372be244a17ea7b1ceeaf5d882e2e12fc6da6dde"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-edb5a61135ab",
+      "other_type": "artifact",
+      "other_title": ".claude/settings.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-edb5a61135ab"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-fd66fe761424",
+      "other_type": "artifact",
+      "other_title": ".mcp.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-fd66fe761424"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3a5de4be99c9",
+      "other_type": "artifact",
+      "other_title": "CLAUDE.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3a5de4be99c9"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-47351231d22b",
+      "other_type": "artifact",
+      "other_title": "docker-compose.yml",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-47351231d22b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-03791a61df3b",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/init.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-03791a61df3b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-d7778b9567ee",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/init.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-d7778b9567ee"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-7ee65b9dd6f6",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/mcp-install.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-7ee65b9dd6f6"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-130258cb51fd",
+      "other_type": "artifact",
+      "other_title": "package-lock.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-130258cb51fd"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-f99ec033d239",
+      "other_type": "artifact",
+      "other_title": "scripts/backend.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f99ec033d239"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-30ccf7216f24",
+      "other_type": "artifact",
+      "other_title": "scripts/build-cli.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-30ccf7216f24"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5a8cbdd23d1f",
+      "other_type": "artifact",
+      "other_title": "scripts/connect.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5a8cbdd23d1f"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-bc681048543c",
+      "other_type": "artifact",
+      "other_title": "scripts/disconnect.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-bc681048543c"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-685e096efcf3",
+      "other_type": "artifact",
+      "other_title": "scripts/ingest.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-685e096efcf3"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-637a97ac013b",
+      "other_type": "artifact",
+      "other_title": "scripts/init-project.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-637a97ac013b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-558fc11506b2",
+      "other_type": "artifact",
+      "other_title": "scripts/install-mcp.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-558fc11506b2"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-dedb31b8e087",
+      "other_type": "artifact",
+      "other_title": "setup.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-dedb31b8e087"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-dc9e2a63053c",
+      "other_type": "artifact",
+      "other_title": "shutdown.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-dc9e2a63053c"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ea0f73fc5e58",
+      "other_type": "artifact",
+      "other_title": ".claude/settings.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ea0f73fc5e58"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-96122933af61",
+      "other_type": "artifact",
+      "other_title": ".mcp.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-96122933af61"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-fff4841506bd",
+      "other_type": "artifact",
+      "other_title": "CLAUDE.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-fff4841506bd"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-0b001b020eb6",
+      "other_type": "artifact",
+      "other_title": "docker-compose.yml",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-0b001b020eb6"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-61e34ea61133",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/init.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-61e34ea61133"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-fac2c636b850",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/init.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-fac2c636b850"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e5cdba664cf6",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/mcp-install.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e5cdba664cf6"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-07e740e76e51",
+      "other_type": "artifact",
+      "other_title": "package-lock.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-07e740e76e51"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-7cb6d2b29ac5",
+      "other_type": "artifact",
+      "other_title": "scripts/backend.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-7cb6d2b29ac5"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-fc3cbe56001a",
+      "other_type": "artifact",
+      "other_title": "scripts/build-cli.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-fc3cbe56001a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-6a418631fc3f",
+      "other_type": "artifact",
+      "other_title": "scripts/connect.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-6a418631fc3f"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-de5a0d60f9bc",
+      "other_type": "artifact",
+      "other_title": "scripts/disconnect.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-de5a0d60f9bc"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-10038e6a68eb",
+      "other_type": "artifact",
+      "other_title": "scripts/ingest.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-10038e6a68eb"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-96c5b0cf8b01",
+      "other_type": "artifact",
+      "other_title": "scripts/init-project.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-96c5b0cf8b01"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-d0a848b268e7",
+      "other_type": "artifact",
+      "other_title": "scripts/install-mcp.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-d0a848b268e7"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-32c932a52300",
+      "other_type": "artifact",
+      "other_title": "setup.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-32c932a52300"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-a3fab7e424dd",
+      "other_type": "artifact",
+      "other_title": "shutdown.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-a3fab7e424dd"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e582b3a1f0d4",
+      "other_type": "artifact",
+      "other_title": ".claude/settings.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e582b3a1f0d4"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c4f9ccdea86e",
+      "other_type": "artifact",
+      "other_title": ".mcp.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c4f9ccdea86e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2835a38f417b",
+      "other_type": "artifact",
+      "other_title": "CLAUDE.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2835a38f417b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-a52b4f24e2fd",
+      "other_type": "artifact",
+      "other_title": "docker-compose.yml",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-a52b4f24e2fd"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-7a5171c0e35b",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/init.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-7a5171c0e35b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-25ac18b0db9c",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/init.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-25ac18b0db9c"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ad3e1f9c079b",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/mcp-install.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ad3e1f9c079b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-b1fabc394232",
+      "other_type": "artifact",
+      "other_title": "package-lock.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b1fabc394232"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-8181d51fa076",
+      "other_type": "artifact",
+      "other_title": "scripts/backend.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-8181d51fa076"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3d558af97e80",
+      "other_type": "artifact",
+      "other_title": "scripts/build-cli.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3d558af97e80"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-be53c01ce9f7",
+      "other_type": "artifact",
+      "other_title": "scripts/connect.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-be53c01ce9f7"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ad0b8eee0a65",
+      "other_type": "artifact",
+      "other_title": "scripts/disconnect.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ad0b8eee0a65"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c92835a8e0e9",
+      "other_type": "artifact",
+      "other_title": "scripts/ingest.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c92835a8e0e9"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3f04b1fec045",
+      "other_type": "artifact",
+      "other_title": "scripts/init-project.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3f04b1fec045"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e169984949bf",
+      "other_type": "artifact",
+      "other_title": "scripts/install-mcp.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e169984949bf"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-7dd81430908f",
+      "other_type": "artifact",
+      "other_title": "setup.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-7dd81430908f"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-92cdde260698",
+      "other_type": "artifact",
+      "other_title": "shutdown.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-92cdde260698"
+    }
+  ]
+}

@@ -1,0 +1,232 @@
+{
+  "id": "COMMIT-b6e84790a7c853bdaa20ba8ace092d127b0761fe",
+  "type": "commit",
+  "title": "b6e84790a7c853bdaa20ba8ace092d127b0761fe",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-b6e84790a7c853bdaa20ba8ace092d127b0761fe",
+  "summary": {
+    "id": "COMMIT-b6e84790a7c853bdaa20ba8ace092d127b0761fe",
+    "type": "commit",
+    "title": "b6e84790a7c853bdaa20ba8ace092d127b0761fe",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/b6e84790a7c853bdaa20ba8ace092d127b0761fe",
+    "author": {
+      "name": "kagebinary",
+      "email": "ianjakobhock@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-c843e197280805bff471f700f4a6de39e80af8e6",
+      "other_type": "commit",
+      "other_title": "c843e197280805bff471f700f4a6de39e80af8e6",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-c843e197280805bff471f700f4a6de39e80af8e6"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-0598992770171614a04d4d0f823fed984317d6c3",
+      "other_type": "commit",
+      "other_title": "0598992770171614a04d4d0f823fed984317d6c3",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-0598992770171614a04d4d0f823fed984317d6c3"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-6a4889f87a0a",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/impact.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-6a4889f87a0a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-312d2e6a4ee4",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/hooks/ix-intercept.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-312d2e6a4ee4"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-854f9ffac451",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/install.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-854f9ffac451"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-7d213fdca6eb",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/uninstall.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-7d213fdca6eb"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-edc3787d1204",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/context/ClaimCollector.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-edc3787d1204"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-b65c702fbc12",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/ArangoGraphQueryApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b65c702fbc12"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3f8d83f0d485",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/GraphQueryApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3f8d83f0d485"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-dedb31b8e087",
+      "other_type": "artifact",
+      "other_title": "setup.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-dedb31b8e087"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2e4debf65e33",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/impact.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2e4debf65e33"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-fa73b7ab9d2b",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/hooks/ix-intercept.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-fa73b7ab9d2b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-f9d9b5cc7121",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/install.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f9d9b5cc7121"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-b7bdd5056f2e",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/uninstall.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b7bdd5056f2e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-b9e68caed543",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/context/ClaimCollector.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b9e68caed543"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c8947973d6aa",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/ArangoGraphQueryApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c8947973d6aa"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2186ed233b1f",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/GraphQueryApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2186ed233b1f"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-32c932a52300",
+      "other_type": "artifact",
+      "other_title": "setup.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-32c932a52300"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-697d31e150c3",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/impact.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-697d31e150c3"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2f0049ab5fdf",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/hooks/ix-intercept.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2f0049ab5fdf"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-41a58703a2df",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/install.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-41a58703a2df"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e6d2b95d16b2",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/uninstall.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e6d2b95d16b2"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-1b222277961e",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/context/ClaimCollector.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-1b222277961e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-4de3a54ff174",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/ArangoGraphQueryApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-4de3a54ff174"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-6f1940d00172",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/GraphQueryApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-6f1940d00172"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-7dd81430908f",
+      "other_type": "artifact",
+      "other_title": "setup.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-7dd81430908f"
+    }
+  ]
+}

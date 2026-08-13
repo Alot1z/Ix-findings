@@ -1,0 +1,94 @@
+{
+  "id": "FILE-5e64dedc869c",
+  "type": "artifact",
+  "title": "ix-cli/src/cli/explain/llm.ts",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/file-5e64dedc869c",
+  "summary": {
+    "id": "FILE-5e64dedc869c",
+    "type": "artifact",
+    "title": "ix-cli/src/cli/explain/llm.ts",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "source_mirror_id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/explain/llm.ts",
+    "source_type": "github_file",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/blob/86f3684c4e4dc77dd0a579eb92863824953a3ce9/ix-cli%2Fsrc%2Fcli%2Fexplain%2Fllm.ts",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 372,
+    "filename": "ix-cli/src/cli/explain/llm.ts",
+    "status": "added",
+    "additions": 181,
+    "deletions": 0,
+    "changes": 181,
+    "blob_url": "https://github.com/ix-infrastructure/Ix/blob/86f3684c4e4dc77dd0a579eb92863824953a3ce9/ix-cli%2Fsrc%2Fcli%2Fexplain%2Fllm.ts",
+    "raw_url": "https://github.com/ix-infrastructure/Ix/raw/86f3684c4e4dc77dd0a579eb92863824953a3ce9/ix-cli%2Fsrc%2Fcli%2Fexplain%2Fllm.ts",
+    "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fexplain%2Fllm.ts?ref=86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+    "patch": "@@ -0,0 +1,181 @@\n+import { llmLine } from \"../llm.js\";\n+import { relativePath } from \"../format.js\";\n+import type { EntityFacts } from \"./facts.js\";\n+import type { RoleInference } from \"./role-inference.js\";\n+import type { ImportanceInference } from \"./importance.js\";\n+import type { ExplanationOutput } from \"./render.js\";\n+\n+/**\n+ * `ix explain --format llm`.\n+ *\n+ * `explain` advertised `llm` and rendered `text` — the prose pipeline\n+ * (explanation / context / why-it-matters) with section headers and indents.\n+ * That is the single most expensive thing an agent reads, and it is the\n+ * command a plugin calls first on almost every question, so the fallback was\n+ * costing the most tokens on the hottest path.\n+ *\n+ * The prose is a *rendering* of `facts` + `role` + `importance`, so an agent\n+ * does not need it: emit the inputs as records and let the model do its own\n+ * summarising. `whyItMatters` and `explanation` are dropped entirely for that\n+ * reason — every claim in them is derivable from the `role`, `importance` and\n+ * `edges` lines below.\n+ *\n+ * Counts are emitted even at zero on the `edges` line: \"this has no callers\"\n+ * is a real answer to \"who calls this\", and dropping the field would make it\n+ * indistinguishable from a field the renderer forgot.\n+ */\n+export function renderExplainLlm(\n+  facts: EntityFacts,\n+  role: RoleInference,\n+  importance: ImportanceInference,\n+  rendered: ExplanationOutput,\n+): string[] {\n+  const lines: string[] = [];\n+\n+  lines.push(llmLine(\"entity\", [\n+    [\"id\", facts.id],\n+    [\"name\", facts.name],\n+    [\"kind\", facts.kind],\n+    [\"path\", facts.path],\n+    [\"rev\", facts.introducedRev],\n+    [\"stale\", facts.stale ? \"true\" : null],\n+  ]));\n+\n+  lines.push(llmLine(\"role\", [\n+    [\"role\", role.role],\n+    [\"confidence\", role.confidence],\n+  ]));\n+\n+  lines.push(llmLine(\"importance\", [\n+    [\"level\", importance.level],\n+    [\"category\", importance.category],\n+  ]));\n+\n+  // Zeroes are meaningful here, so they are stringified rather than passed as\n+  // numbers — llmField drops \"\" but keeps \"0\".\n+  lines.push(llmLine(\"edges\", [\n+    [\"callers\", String(facts.callerCount)],\n+    [\"callees\", String(facts.calleeCount)],\n+    [\"dependents\", String(facts.dependentCount)],\n+    [\"importers\", String(facts.importerCount)],\n+    [\"members\", String(facts.memberCount)],\n+    [\"downstream\", String(facts.downstreamDependents)],\n+    [\"depth\", String(facts.downstreamDepth)],\n+    [\"history\", String(facts.historyLength)],\n+  ]));\n+\n+  if (facts.container) {\n+    lines.push(llmLine(\"container\", [\n+      [\"kind\", facts.container.kind],\n+      [\"name\", facts.container.name],\n+    ]));\n+  }\n+\n+  if (facts.subsystemName || facts.moduleName) {\n+    lines.push(llmLine(\"location\", [\n+      [\"subsystem\", facts.subsystemName],\n+      [\"module\", facts.moduleName],\n+    ]));\n+  }\n+\n+  if (facts.signature) lines.push(llmLine(\"signature\", [[\"text\", facts.signature]]));\n+\n+  for (const caller of facts.topCallers) {\n+    lines.push(llmLine(\"caller\", [[\"name\", caller]]));\n+  }\n+  for (const dependent of facts.topDependents) {\n+    lines.push(llmLine(\"dependent\", [[\"name\", dependent]]));\n+  }\n+  for (const member of facts.members) {\n+    lines.push(llmLine(\"member\", [[\"name\", member]]));\n+  }\n+\n+  // Kept from the prose because it is the one part that is not derivable from\n+  // the records above: `usedBy` names call sites the counts only total up.\n+  if (rendered.usedBy) lines.push(llmLine(\"used_by\", [[\"text\", rendered.usedBy]]));\n+\n+  for (const note of rendered.notes) {\n+    lines.push(llmLine(\"note\", [[\"text\", note]]));\n+  }\n+\n+  for (const diagnostic of facts.diagnostics) {\n+    lines.push(llmLine(\"diagnostic\", [\n+      [\"code\", diagnostic.code],\n+      [\"message\", diagnostic.message],\n+    ]));\n+  }\n+\n+  return lines;\n+}\n+\n+/**\n+ * `ix explain --raw --format llm`.\n+ *\n+ * The legacy metadata dump. Same treatment, driven off the assembled\n+ * `ExplainResult` rather than the fact pipeline.\n+ */\n+export function renderExplainRawLlm(result: {\n+  kind?: string;\n+  name?: string;\n+  id?: string;\n+  file?: string;\n+  chunkKind?: string;\n+  container?: { kind: string; name: string };\n+  introducedRev?: number;\n+  calledBy?: number;\n+  calls?: number;\n+  contains?: number;\n+  historyLength?: number;\n+  signature?: string;\n+  docstring?: string;\n+  callList?: Array<{ name: string; kind?: string; path?: string; resolved: boolean }>;\n+  diagnostics?: Array<{ code: string; message: string }>;\n+  stale?: boolean;\n+}): string[] {\n+  const lines: string[] = [];\n+\n+  lines.push(llmLine(\"entity\", [\n+    [\"id\", result.id],\n+    [\"name\", result.name],\n+    [\"kind\", result.kind],\n+    [\"path\", result.file],\n+    [\"chunk_kind\", result.chunkKind],\n+    [\"rev\", result.introducedRev],\n+    [\"stale\", result.stale ? \"true\" : null],\n+  ]));\n+\n+  lines.push(llmLine(\"edges\", [\n+    [\"called_by\", String(result.calledBy ?? 0)],\n+    [\"calls\", String(result.calls ?? 0)],\n+    [\"contains\", String(result.contains ?? 0)],\n+    [\"history\", String(result.historyLength ?? 0)],\n+  ]));\n+\n+  if (result.container) {\n+    lines.push(llmLine(\"container\", [\n+      [\"kind\", result.container.kind],\n+      [\"name\", result.container.name],\n+    ]));\n+  }\n+\n+  if (result.signature) lines.push(llmLine(\"signature\", [[\"text\", result.signature]]));\n+  if (result.docstring) lines.push(llmLine(\"docstring\", [[\"text\", result.docstring]]));\n+\n+  for (const call of result.callList ?? []) {\n+    lines.push(llmLine(\"call\", [\n+      [\"name\", call.name],\n+      [\"kind\", call.kind],\n+      [\"path\", relativePath(call.path)],\n+      [\"resolved\", call.resolved ? null : \"false\"],\n+    ]));\n+  }\n+\n+  for (const diagnostic of result.diagnostics ?? []) {\n+    lines.push(llmLine(\"diagnostic\", [\n+      [\"code\", diagnostic.code],\n+      [\"message\", diagnostic.message],\n+    ]));\n+  }\n+\n+  return lines;\n+}",
+    "parent_pr": 372
+  },
+  "source_context": {
+    "id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/explain/llm.ts",
+    "source": {
+      "type": "github_file",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/blob/86f3684c4e4dc77dd0a579eb92863824953a3ce9/ix-cli%2Fsrc%2Fcli%2Fexplain%2Fllm.ts",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T02:54:48Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T16:27:44Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "FILE-5e64dedc869c",
+    "entity_type": "FILE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#372",
+    "line_precision": "FILE_LEVEL"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-b7e04e73b7174b87831f4c5d981b5e198f363a75",
+      "other_type": "commit",
+      "other_title": "b7e04e73b7174b87831f4c5d981b5e198f363a75",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b7e04e73b7174b87831f4c5d981b5e198f363a75"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+      "other_type": "commit",
+      "other_title": "86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-86f3684c4e4dc77dd0a579eb92863824953a3ce9"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-ed361190094b2d31c6a51e8df1e23f4cd8daa884",
+      "other_type": "commit",
+      "other_title": "ed361190094b2d31c6a51e8df1e23f4cd8daa884",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-ed361190094b2d31c6a51e8df1e23f4cd8daa884"
+    }
+  ]
+}

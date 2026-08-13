@@ -1,0 +1,102 @@
+{
+  "id": "COMMENT-ix-infrastructure-Ix-issue-349-5245023559",
+  "type": "artifact",
+  "title": "Issue #349 comment 5245023559",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/comment-ix-infrastructure-ix-issue-349-5245023559",
+  "summary": {
+    "id": "COMMENT-ix-infrastructure-Ix-issue-349-5245023559",
+    "type": "artifact",
+    "title": "Issue #349 comment 5245023559",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/issues/349#issuecomment-5245023559",
+    "source_mirror_id": "github:comment:ix-infrastructure/Ix#issue-349-5245023559",
+    "source_type": "github_issue_comment",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/issues/349#issuecomment-5245023559",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5245023559",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "id": 5245023559,
+    "node_id": "IC_kwDORdC75M8AAAABOKC1Rw",
+    "repository": "ix-infrastructure/Ix",
+    "parent_type": "ISSUE",
+    "parent_number": 349,
+    "kind": "ISSUE_COMMENT",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "body": "Thank you for the issue — the detail that a space-free TEMP directory worked was the clue that made this diagnosable, and `[local-path] 10` → `[local-path] is the whole bug in one line.\n\nThe fix is **merged** in #352: the installer was mixing 8.3 short paths with long-path APIs, so it resolved a path it was never asked to write.\n\n**Deliberately keeping this open** rather than auto-closing it. #352 was filed with `Refs #349` instead of `Fixes #349` precisely so merging would not close this before someone confirms it on a real Windows profile with a space in the path — the fix was verified by other means, not on the machine that hit it.\n\nIf you get the chance to re-run the installer on that account after the next release, a confirmation here would be very welcome and I will close it out. No obligation — I will get it verified either way.\n",
+    "html_url": "https://github.com/ix-infrastructure/Ix/issues/349#issuecomment-5245023559",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5245023559",
+    "created_at": "2026-08-10T19:33:32Z",
+    "updated_at": "2026-08-10T19:33:32Z",
+    "commit_id": null,
+    "path": null,
+    "line": null,
+    "start_line": null,
+    "side": null,
+    "in_reply_to_id": null,
+    "diff_hunk": null,
+    "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+    "source": "OFFICIAL_GITHUB_FACT",
+    "parent_issue": 349
+  },
+  "source_context": {
+    "id": "github:comment:ix-infrastructure/Ix#issue-349-5245023559",
+    "source": {
+      "type": "github_issue_comment",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/issues/349#issuecomment-5245023559",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5245023559",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T19:33:32Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T19:33:32Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMENT-ix-infrastructure-Ix-issue-349-5245023559",
+    "entity_type": "ISSUE_COMMENT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:issue:ix-infrastructure/Ix#349",
+    "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "COMMENTED_ON",
+      "other": "ISSUE-349",
+      "other_type": "issue",
+      "other_title": "Issue #349 — [bug] Windows installer — path with spaces",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/issue-349"
+    },
+    {
+      "direction": "in",
+      "relationship": "AUTHORED",
+      "other": "PERSON-KageBinary",
+      "other_type": "artifact",
+      "other_title": "KageBinary",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-kagebinary"
+    }
+  ]
+}

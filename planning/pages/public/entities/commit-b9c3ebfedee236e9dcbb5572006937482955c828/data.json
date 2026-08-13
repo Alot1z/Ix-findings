@@ -1,0 +1,79 @@
+{
+  "id": "COMMIT-b9c3ebfedee236e9dcbb5572006937482955c828",
+  "type": "commit",
+  "title": "b9c3ebfedee236e9dcbb5572006937482955c828",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-b9c3ebfedee236e9dcbb5572006937482955c828",
+  "summary": {
+    "id": "COMMIT-b9c3ebfedee236e9dcbb5572006937482955c828",
+    "type": "commit",
+    "title": "b9c3ebfedee236e9dcbb5572006937482955c828",
+    "status": "HISTORICAL",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    }
+  },
+  "source_snapshot": {
+    "sha": "b9c3ebfedee236e9dcbb5572006937482955c828",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/b9c3ebfedee236e9dcbb5572006937482955c828",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/b9c3ebfedee236e9dcbb5572006937482955c828",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "committer": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "message": "feat(mcp): add `ix mcp install` and `ix mcp doctor`\n\nRegisters `ix mcp` with the AI clients present on the machine, and reports\nwhat each one currently points at. Covers Claude Code, Codex, Cursor,\nVS Code, Gemini CLI, OpenClaw and opencode.\n\nWrites go through each client's own MCP command wherever one exists\n(claude/codex/gemini `mcp add`, `openclaw mcp set`, `code --add-mcp`), so\nthe client owns its config format and an upstream format change cannot\ncorrupt a file here. Only Cursor (no MCP CLI) and opencode (`opencode mcp\nadd` is interactive and takes no arguments) are written directly; both are\nJSON, merged in place with every existing key preserved and a `.bak` kept.\nA config that does not parse is refused rather than replaced.\n\ninstall never overwrites. Ix already ships six per-host plugins that\nregister their own server under the same name — `ix-memory` currently\nresolves to `python3 .../server.py` on Codex and a Gemini extension's\n`node dist/server.js` on this machine — so a name held by anything that is\nnot `ix mcp` is reported and left alone. --force replaces it, --host\nnarrows the run, --dry-run writes nothing. A registration that cannot be\nread is treated as occupied, not free: guessing \"free\" is the one wrong\nguess that destroys someone's config.\n\nTwo things detection has to get right, both found against real installs:\n\n- Gemini prints its listing to stderr behind ~28 extension-loader errors,\n  several naming the extension, which is itself called ix-memory. Matching\n  the first line containing the name reports a diagnostic as the\n  registration, so obvious log lines are skipped.\n- `openclaw mcp list` prints names only, and `openclaw mcp show`\n  pretty-prints JSON across lines, putting \"ix\" and \"mcp\" on different\n  ones. Line-at-a-time matching read our own entry as a stranger's and\n  raised a false conflict on every re-run; definitions are now classified\n  whole.\n\ndoctor additionally checks that the bare command `ix` resolves on PATH,\nsince that is what every registration launches.",
+    "parents": [
+      {
+        "sha": "688298fdba426594c883f7d0bafdf02da26887d6",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/688298fdba426594c883f7d0bafdf02da26887d6"
+      }
+    ],
+    "tree_sha": "a371c2818625afa0b4e36d786c8875d1c9f5b3b5",
+    "authored_at": "2026-08-11T23:58:56Z",
+    "committed_at": "2026-08-12T15:21:16Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@b9c3ebfedee236e9dcbb5572006937482955c828",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/b9c3ebfedee236e9dcbb5572006937482955c828",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/b9c3ebfedee236e9dcbb5572006937482955c828",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-12T15:21:16Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-12T15:21:16Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-b9c3ebfedee236e9dcbb5572006937482955c828",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#397"
+  },
+  "relationships": []
+}

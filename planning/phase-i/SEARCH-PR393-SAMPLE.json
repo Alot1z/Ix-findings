@@ -1,0 +1,62 @@
+{
+  "schema_version": "ix-findings.search-result.v1",
+  "query": "PR 393",
+  "tokens": [
+    "pr",
+    "393"
+  ],
+  "results": [
+    {
+      "score": 1,
+      "record_id": "CAND-012",
+      "record_type": "CANDIDATE",
+      "title": "rebase remap branch",
+      "search_text": "CAND-012 rebase remap branch DUPLICATE rebase remap branch: F_DUPLICATE. Do not create a second contribution; only rework the existing PR branch if authorized and required. CAND-012 SRC-5002aaf623b6",
+      "status": "DUPLICATE",
+      "confidence": "MEDIUM",
+      "source_refs": [
+        "SRC-5002aaf623b6"
+      ],
+      "related_entities": [
+        "SRC-5002aaf623b6",
+        "PR-393"
+      ]
+    },
+    {
+      "score": 1,
+      "record_id": "CAND-016",
+      "record_type": "CANDIDATE",
+      "title": "document Ix dual version series",
+      "search_text": "CAND-016 document Ix dual version series DECLINED document Ix dual version series: H_NOT_WORTH_CONTRIBUTING. Historical context is already encoded by #391; no standalone PR justified. CAND-016 SRC-5002aaf623b6",
+      "status": "DECLINED",
+      "confidence": "MEDIUM",
+      "source_refs": [
+        "SRC-5002aaf623b6"
+      ],
+      "related_entities": [
+        "SRC-5002aaf623b6"
+      ]
+    },
+    {
+      "score": 1,
+      "record_id": "COMMENT-ix-infrastructure-Ix-issue-349-5243330761",
+      "record_type": "ISSUE_COMMENT",
+      "title": "Issue #349 comment 5243330761",
+      "search_text": "COMMENT-ix-infrastructure-Ix-issue-349-5243330761 Issue #349 comment 5243330761 HISTORICAL Discussion comment on issue #349. Reopening: closed automatically by the #352 merge, but the fix is not yet confirmed to resolve this.\n\n#352 **has** shipped and is worth trying — it routes the installer's two scratch files (the CLI zip and the compose pull log) out of `TEMP` and into `IX_HOME`, which comes from `USERPROFILE` in its long form. Since you confirmed that pointing `TEMP`/`TMP` at a path without a space lets the install finish, moving off `TEMP` should fix it. `install.ps1` is served from `main`, so it is live now — no release needed.\n\nBut the mechanism the PR described did not hold up, and nobody has reproduced this on a machine with the failing profile, so the issue should stay open until you can confirm. Specifically:\n\n- PowerShell's FileSystem provider **does** resolve 8.3 short segments on both Windows PowerShell 5.1 and 7 — `Test-Path [local-path] returns `True`, and `Get-Item`, `Expand-Archive` and `Remove-Item` all work on a real `WIN10~1` path.\n- Your transcript shows the installer reaching `[ok] Extraction complete`. The two provider calls on the zip (`Test-Path -LiteralP",
+      "status": "HISTORICAL",
+      "confidence": "HIGH",
+      "source_refs": [
+        "planning/phase-c/GITHUB-LIVE-CAPTURE.json",
+        "knowledge/github-collaboration.json",
+        "knowledge/external-github-mirror.json"
+      ],
+      "related_entities": [
+        "ISSUE-349",
+        "PERSON-josephismikhail"
+      ]
+    }
+  ],
+  "source": "planning/phase-i/SEARCH-INDEX.json",
+  "retrieval": "TOKEN_POSTINGS_ONLY",
+  "external_mutations": 0
+}

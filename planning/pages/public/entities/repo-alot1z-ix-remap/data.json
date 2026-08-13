@@ -1,0 +1,826 @@
+{
+  "id": "REPO-Alot1z-Ix-remap",
+  "type": "repository",
+  "title": "Alot1z/Ix-remap",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/repo-alot1z-ix-remap",
+  "summary": {
+    "id": "REPO-Alot1z-Ix-remap",
+    "type": "repository",
+    "title": "Alot1z/Ix-remap",
+    "status": "CURRENT",
+    "url": "https://github.com/Alot1z/Ix-remap",
+    "source_mirror_id": "github:repository:Alot1z/Ix-remap",
+    "source_type": "github_repository",
+    "source_repository": "Alot1z/Ix-remap",
+    "source_url": "https://github.com/Alot1z/Ix-remap",
+    "source_api_url": "https://api.github.com/repos/Alot1z/Ix-remap",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "id": 1329286389,
+    "full_name": "Alot1z/Ix-remap",
+    "name": "Ix-remap",
+    "owner": {
+      "login": "Alot1z",
+      "id": 16801672,
+      "type": "User",
+      "html_url": "https://github.com/Alot1z"
+    },
+    "html_url": "https://github.com/Alot1z/Ix-remap",
+    "api_url": "https://api.github.com/repos/Alot1z/Ix-remap",
+    "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+    "visibility": "public",
+    "default_branch": "main",
+    "private": false,
+    "fork": true,
+    "parent": "ix-infrastructure/Ix",
+    "source": "ix-infrastructure/Ix",
+    "created_at": "2026-08-10T00:14:10Z",
+    "updated_at": "2026-08-11T21:00:15Z",
+    "pushed_at": "2026-08-13T22:14:28Z",
+    "topics": [],
+    "language": "TypeScript",
+    "license": {
+      "key": "apache-2.0",
+      "name": "Apache License 2.0",
+      "url": "https://api.github.com/licenses/apache-2.0"
+    },
+    "watchers_count": 0,
+    "stargazers_count": 0,
+    "forks_count": 0,
+    "open_issues_count": 0,
+    "head": {
+      "sha": "7e28e05e36e8f890e8f8a9a6ba7a7ff8c6ea18b8",
+      "html_url": "https://github.com/Alot1z/Ix-remap/commit/7e28e05e36e8f890e8f8a9a6ba7a7ff8c6ea18b8",
+      "api_url": "https://api.github.com/repos/Alot1z/Ix-remap/commits/7e28e05e36e8f890e8f8a9a6ba7a7ff8c6ea18b8",
+      "author": {
+        "login": "bertolikimberly",
+        "id": 134340724,
+        "type": "User",
+        "html_url": "https://github.com/bertolikimberly"
+      },
+      "committer": {
+        "login": "bertolikimberly",
+        "id": 134340724,
+        "type": "User",
+        "html_url": "https://github.com/bertolikimberly"
+      },
+      "message": "docs: ban attribution footers in this repo (AGENTS.md)",
+      "parents": [
+        {
+          "sha": "1292375548fb8f4431ac5afc34c68fe2573434d1",
+          "html_url": "https://github.com/Alot1z/Ix-remap/commit/1292375548fb8f4431ac5afc34c68fe2573434d1"
+        }
+      ],
+      "tree_sha": "4fdb01246556bb97a6c33128b7b85db8db4af84c",
+      "authored_at": "2026-08-11T19:08:07Z",
+      "committed_at": "2026-08-11T19:11:27Z"
+    },
+    "branches": [
+      {
+        "name": "chore/brew-update-v0.9.1",
+        "protected": false,
+        "sha": "23fdc9ab76fa2fd3fb487ed1e12cf0e36cfeb800",
+        "url": null
+      },
+      {
+        "name": "chore/raise-node-floor-to-22",
+        "protected": false,
+        "sha": "0bc722d25997f3e49e4529389958f1b877b926db",
+        "url": null
+      },
+      {
+        "name": "copilot/research-open-source-contribution",
+        "protected": false,
+        "sha": "ff7df414e165779f72e9dd121b3f48c2f55b9350",
+        "url": null
+      },
+      {
+        "name": "feat/ix-agent-context",
+        "protected": false,
+        "sha": "815afeac0b1fcdff7d140c74a093e52375da1bab",
+        "url": null
+      },
+      {
+        "name": "feat/ix-agent-skill",
+        "protected": false,
+        "sha": "30f28b3c7f2771a7003af83b5be618a7913d447a",
+        "url": null
+      },
+      {
+        "name": "feat/ix-mcp",
+        "protected": false,
+        "sha": "603e51f7f877bb59677516be08ee83ef30e562a8",
+        "url": null
+      },
+      {
+        "name": "feat/ix-mcp-enrichment",
+        "protected": false,
+        "sha": "8e348d8f081cccdd2fb6b75941c5e9a777b459ad",
+        "url": null
+      },
+      {
+        "name": "feat/ix-remap-hardening",
+        "protected": false,
+        "sha": "b4060d4b59d177e0feed253f977292986158d99d",
+        "url": null
+      },
+      {
+        "name": "feat/remote-runner-and-create-client",
+        "protected": false,
+        "sha": "f4259b7d1ede45e8ae62e42407ac2e184c92ca0f",
+        "url": null
+      },
+      {
+        "name": "fix/installer-docker-autoinstall-noop",
+        "protected": false,
+        "sha": "4475d240b3a9bae0618626c9b1f5d73c8883c167",
+        "url": null
+      },
+      {
+        "name": "fix/installer-ghcr-denied-diagnostics",
+        "protected": false,
+        "sha": "14eb3506160bf7aabba9ea6261a714dff02e39f6",
+        "url": null
+      },
+      {
+        "name": "fix/prerequisites-not-a-pip-manifest",
+        "protected": false,
+        "sha": "7054d5fc3fb98a987b0cba4e78efad1db4bff1af",
+        "url": null
+      },
+      {
+        "name": "fix/progress-frames-non-tty",
+        "protected": false,
+        "sha": "decd85e25d922f13b049f08d5875e162e8d7a62f",
+        "url": null
+      },
+      {
+        "name": "fix/release-prerelease-handling",
+        "protected": false,
+        "sha": "77e8a5ecd079c12b6921ac2a0273153f580cd92b",
+        "url": null
+      },
+      {
+        "name": "fix/stamp-bundled-compass-version",
+        "protected": false,
+        "sha": "83c4308b5d1c7f70fd1294350474890c3549ea04",
+        "url": null
+      },
+      {
+        "name": "fix/status-workspace-scoped-patch",
+        "protected": false,
+        "sha": "1e590250a4ab70da9c4016b3faa52bf2be5749c6",
+        "url": null
+      },
+      {
+        "name": "fix/view-port-mismatch-warning",
+        "protected": false,
+        "sha": "72c0b850681618a7a12a3d1ce1b8c90f0c26a7d3",
+        "url": null
+      },
+      {
+        "name": "fix/view-reports-running-port",
+        "protected": false,
+        "sha": "c5357aa6965aa0a88706c49005a4d70b58aec41a",
+        "url": null
+      },
+      {
+        "name": "fix/windows-short-temp-path",
+        "protected": false,
+        "sha": "e3b591c3b0507b0440d6891dab2f1bcd1457f970",
+        "url": null
+      },
+      {
+        "name": "fix/windows-tar-cygpath-pairing",
+        "protected": false,
+        "sha": "f434f9d0bc5027a5d3033df35caed7a8c2c84fc8",
+        "url": null
+      },
+      {
+        "name": "fix/workspace-id-yaml-numeric-coercion",
+        "protected": false,
+        "sha": "80b429f2ce398eb3bf9e842cdf7b4d35dc34286d",
+        "url": null
+      },
+      {
+        "name": "main",
+        "protected": false,
+        "sha": "7e28e05e36e8f890e8f8a9a6ba7a7ff8c6ea18b8",
+        "url": null
+      },
+      {
+        "name": "old-dev",
+        "protected": false,
+        "sha": "f771abffab3d7104550a593746a2d7cdffd7d088",
+        "url": null
+      },
+      {
+        "name": "refactor/core-ingestion-cloud-architecture",
+        "protected": false,
+        "sha": "480915b643a705bb7ac8be6fe353ed34b007e7f2",
+        "url": null
+      },
+      {
+        "name": "refactor/stale-drop-dead-client",
+        "protected": false,
+        "sha": "2f68cccb28440f2679e838decc40866cd5d98f34",
+        "url": null
+      }
+    ],
+    "tags": [
+      {
+        "name": "v0.9.1",
+        "sha": "0437abf5de675f16fe161df86fca9adf7eee9b93",
+        "url": "https://api.github.com/repos/Alot1z/Ix-remap/commits/0437abf5de675f16fe161df86fca9adf7eee9b93"
+      },
+      {
+        "name": "v0.9.0",
+        "sha": "3c49cc243654aae428cfc4b8802f0b3a99de56a4",
+        "url": "https://api.github.com/repos/Alot1z/Ix-remap/commits/3c49cc243654aae428cfc4b8802f0b3a99de56a4"
+      },
+      {
+        "name": "v0.9.0-rc.2",
+        "sha": "0b4caf9fc2811977e333e22486799bf7d923a6cc",
+        "url": "https://api.github.com/repos/Alot1z/Ix-remap/commits/0b4caf9fc2811977e333e22486799bf7d923a6cc"
+      },
+      {
+        "name": "v0.9.0-rc.1",
+        "sha": "47b11f706a5d6b5490db7476e8dec3c097298f0c",
+        "url": "https://api.github.com/repos/Alot1z/Ix-remap/commits/47b11f706a5d6b5490db7476e8dec3c097298f0c"
+      },
+      {
+        "name": "v0.8.1",
+        "sha": "bc02305046bf34e606b21862139cc3422d101a34",
+        "url": "https://api.github.com/repos/Alot1z/Ix-remap/commits/bc02305046bf34e606b21862139cc3422d101a34"
+      },
+      {
+        "name": "v0.8.0",
+        "sha": "86805883597151afe073d91dc46872b6a639ef8e",
+        "url": "https://api.github.com/repos/Alot1z/Ix-remap/commits/86805883597151afe073d91dc46872b6a639ef8e"
+      },
+      {
+        "name": "v0.7.0",
+        "sha": "e84beb64931ca7e49bf4868c96880a826ec24532",
+        "url": "https://api.github.com/repos/Alot1z/Ix-remap/commits/e84beb64931ca7e49bf4868c96880a826ec24532"
+      },
+      {
+        "name": "v0.6.0",
+        "sha": "9d1472a31df132463bb3aabb0568abb2268974ce",
+        "url": "https://api.github.com/repos/Alot1z/Ix-remap/commits/9d1472a31df132463bb3aabb0568abb2268974ce"
+      },
+      {
+        "name": "v0.5.1",
+        "sha": "cdb1ec2b1dfb98a6aac67fd00bd49d41c810fbdd",
+        "url": "https://api.github.com/repos/Alot1z/Ix-remap/commits/cdb1ec2b1dfb98a6aac67fd00bd49d41c810fbdd"
+      },
+      {
+        "name": "v0.5.0",
+        "sha": "d3c62090c1bcbb654445521670332c4c5a224bd5",
+        "url": "https://api.github.com/repos/Alot1z/Ix-remap/commits/d3c62090c1bcbb654445521670332c4c5a224bd5"
+      },
+      {
+        "name": "v0.4.9",
+        "sha": "0676dc91e883e6fd096a5091d73fd67c816b7954",
+        "url": "https://api.github.com/repos/Alot1z/Ix-remap/commits/0676dc91e883e6fd096a5091d73fd67c816b7954"
+      },
+      {
+        "name": "v0.4.7",
+        "sha": "089e2fa561435ad213e7e910ea12b1e312ce3fc9",
+        "url": "https://api.github.com/repos/Alot1z/Ix-remap/commits/089e2fa561435ad213e7e910ea12b1e312ce3fc9"
+      },
+      {
+        "name": "v0.4.6",
+        "sha": "244d6a0b52caab4cc731f7f95425319ea6cc058b",
+        "url": "https://api.github.com/repos/Alot1z/Ix-remap/commits/244d6a0b52caab4cc731f7f95425319ea6cc058b"
+      },
+      {
+        "name": "v0.4.5",
+        "sha": "43966484140dbb19da68e21f10b7f726eb038a18",
+        "url": "https://api.github.com/repos/Alot1z/Ix-remap/commits/43966484140dbb19da68e21f10b7f726eb038a18"
+      },
+      {
+        "name": "v0.4.4",
+        "sha": "a176d590e8ab4101f2e1a753146779607c1923af",
+        "url": "https://api.github.com/repos/Alot1z/Ix-remap/commits/a176d590e8ab4101f2e1a753146779607c1923af"
+      },
+      {
+        "name": "v0.4.3",
+        "sha": "470817696df573685b94a20a419f94cc8b29b802",
+        "url": "https://api.github.com/repos/Alot1z/Ix-remap/commits/470817696df573685b94a20a419f94cc8b29b802"
+      },
+      {
+        "name": "v0.4.2",
+        "sha": "1116272a7ea67c09f92aa98f1050425c3b08c7d4",
+        "url": "https://api.github.com/repos/Alot1z/Ix-remap/commits/1116272a7ea67c09f92aa98f1050425c3b08c7d4"
+      },
+      {
+        "name": "v0.4.1",
+        "sha": "90d587445db43359c426b11c619c8e4b3f930f8c",
+        "url": "https://api.github.com/repos/Alot1z/Ix-remap/commits/90d587445db43359c426b11c619c8e4b3f930f8c"
+      },
+      {
+        "name": "v0.4.0",
+        "sha": "4baa10fa7220ced5805596d2a80004face33b178",
+        "url": "https://api.github.com/repos/Alot1z/Ix-remap/commits/4baa10fa7220ced5805596d2a80004face33b178"
+      },
+      {
+        "name": "v0.3.4",
+        "sha": "fd7a76396976addbad25f6d85bc1fdbdaca82aff",
+        "url": "https://api.github.com/repos/Alot1z/Ix-remap/commits/fd7a76396976addbad25f6d85bc1fdbdaca82aff"
+      },
+      {
+        "name": "v0.3.3",
+        "sha": "1f62005346a67b2d58022a11ad5ad4b354e6d298",
+        "url": "https://api.github.com/repos/Alot1z/Ix-remap/commits/1f62005346a67b2d58022a11ad5ad4b354e6d298"
+      },
+      {
+        "name": "v0.3.2",
+        "sha": "f5cc02d0e239f1dde99d9080254ece0a5dc279e1",
+        "url": "https://api.github.com/repos/Alot1z/Ix-remap/commits/f5cc02d0e239f1dde99d9080254ece0a5dc279e1"
+      },
+      {
+        "name": "v0.3.1",
+        "sha": "82a6e95fd3da3c8f1ed19aae5f60e2393c97bd03",
+        "url": "https://api.github.com/repos/Alot1z/Ix-remap/commits/82a6e95fd3da3c8f1ed19aae5f60e2393c97bd03"
+      },
+      {
+        "name": "v0.3.0",
+        "sha": "0d3af662cd2b3b04fcfcbdd64be3a4cab57e972c",
+        "url": "https://api.github.com/repos/Alot1z/Ix-remap/commits/0d3af662cd2b3b04fcfcbdd64be3a4cab57e972c"
+      },
+      {
+        "name": "v0.2.0",
+        "sha": "c12bb6ee2d384d5abe884a57e388679eea06bdf6",
+        "url": "https://api.github.com/repos/Alot1z/Ix-remap/commits/c12bb6ee2d384d5abe884a57e388679eea06bdf6"
+      },
+      {
+        "name": "ix-v0.2.0",
+        "sha": "c12bb6ee2d384d5abe884a57e388679eea06bdf6",
+        "url": "https://api.github.com/repos/Alot1z/Ix-remap/commits/c12bb6ee2d384d5abe884a57e388679eea06bdf6"
+      }
+    ],
+    "releases": []
+  },
+  "source_context": {
+    "id": "github:repository:Alot1z/Ix-remap",
+    "source": {
+      "type": "github_repository",
+      "authority": "GITHUB",
+      "repository": "Alot1z/Ix-remap",
+      "owner": "Alot1z",
+      "url": "https://github.com/Alot1z/Ix-remap",
+      "api_url": "https://api.github.com/repos/Alot1z/Ix-remap",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-13T22:23:39.068Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-11T21:00:15Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "REPO-Alot1z-Ix-remap",
+    "entity_type": "REPOSITORY",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "mirror_scope": "repository metadata, refs, releases",
+    "source_capture": "REST"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "POINTS_TO",
+      "other": "REMOTE-ba98361ddecd",
+      "other_type": "artifact",
+      "other_title": "[redacted]E-github-repos/Ix-remap:fork",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/remote-ba98361ddecd"
+    },
+    {
+      "direction": "in",
+      "relationship": "POINTS_TO",
+      "other": "REMOTE-12b949bb7043",
+      "other_type": "artifact",
+      "other_title": "[redacted]E-github-repos/Ix:fork",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/remote-12b949bb7043"
+    },
+    {
+      "direction": "in",
+      "relationship": "POINTS_TO",
+      "other": "REMOTE-346f3d75ca25",
+      "other_type": "artifact",
+      "other_title": "[redacted]E-github-repos/Ix-mcp:fork",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/remote-346f3d75ca25"
+    },
+    {
+      "direction": "in",
+      "relationship": "POINTS_TO",
+      "other": "REMOTE-ab2997ebda2a",
+      "other_type": "artifact",
+      "other_title": "[redacted]E-github-repos/Ix-test:fork",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/remote-ab2997ebda2a"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-b1f456263292",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:feat/ix-agent-skill",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-b1f456263292"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-7e70f9cc3273",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:feat/ix-mcp",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-7e70f9cc3273"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-49d4a74be2b8",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:feat/ix-remap-hardening",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-49d4a74be2b8"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-beb31ab90bfd",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:freebuff/first-i-have-clone-this-repo-till-https-github-com-216fcb07-946c-4935-a58e-d922499ba85d",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-beb31ab90bfd"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-964a289aeccc",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:freebuff/first-i-have-clone-this-repo-till-https-github-com-3167fb4d-7780-475f-8401-5c169d6fec1c",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-964a289aeccc"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-4a50874d2373",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:main",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-4a50874d2373"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-816d71de5181",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:HEAD",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-816d71de5181"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-da76bc8f3dc5",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:chore/brew-update-v0.9.1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-da76bc8f3dc5"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-1a1d8a1aa714",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:chore/raise-node-floor-to-22",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-1a1d8a1aa714"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-e1bb7614d328",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:copilot/research-open-source-contribution",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-e1bb7614d328"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-60c0494d9642",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:feat/ix-agent-skill",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-60c0494d9642"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-7ddcbabbe202",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:feat/ix-mcp",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-7ddcbabbe202"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-ee20ecfc893b",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:feat/ix-remap-hardening",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-ee20ecfc893b"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-a971f16eaa56",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:feat/remote-runner-and-create-client",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-a971f16eaa56"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-d87026bbb07d",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:fix/installer-docker-autoinstall-noop",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-d87026bbb07d"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-99d75ec2efeb",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:fix/installer-ghcr-denied-diagnostics",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-99d75ec2efeb"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-677c24596db9",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:fix/prerequisites-not-a-pip-manifest",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-677c24596db9"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-200e59bdf0c1",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:fix/progress-frames-non-tty",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-200e59bdf0c1"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-a41fe78c2d12",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:fix/release-prerelease-handling",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-a41fe78c2d12"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-51224d6901f0",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:fix/stamp-bundled-compass-version",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-51224d6901f0"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-7e46de30501b",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:fix/status-workspace-scoped-patch",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-7e46de30501b"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-7631c59c2c05",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:fix/view-port-mismatch-warning",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-7631c59c2c05"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-6d749f5d9b2e",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:fix/view-reports-running-port",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-6d749f5d9b2e"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-f572b0079d75",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:fix/windows-short-temp-path",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-f572b0079d75"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-71584d3c6b92",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:fix/windows-tar-cygpath-pairing",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-71584d3c6b92"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-688de5792855",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:fix/workspace-id-yaml-numeric-coercion",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-688de5792855"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-694cfb2782cf",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:main",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-694cfb2782cf"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-f527b6ef758c",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:old-dev",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-f527b6ef758c"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-82207db601f4",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:refactor/core-ingestion-cloud-architecture",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-82207db601f4"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-1c2f4d9db73f",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:refactor/stale-drop-dead-client",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-1c2f4d9db73f"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "FILE-6f50afdabc7c",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/mcp.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-6f50afdabc7c"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "DIRECTORY-4f5ce22d40f6",
+      "other_type": "artifact",
+      "other_title": "ix-cli",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/directory-4f5ce22d40f6"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "DIRECTORY-cf91a2071cc3",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/directory-cf91a2071cc3"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "DIRECTORY-9ee94d571c1c",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/directory-9ee94d571c1c"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "DIRECTORY-74533bd5f619",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/directory-74533bd5f619"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "FILE-bde2f2fa2210",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/mcp/server.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-bde2f2fa2210"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "DIRECTORY-88076690cfd7",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/mcp",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/directory-88076690cfd7"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "FILE-f902d0bd7d79",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/mcp/protocol.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f902d0bd7d79"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "FILE-63e24301d4e2",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/mcp/tools.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-63e24301d4e2"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "FILE-79fb8af4d3ea",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/mcp/stdio-main.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-79fb8af4d3ea"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "FILE-1ce7aad92e07",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/mcp/cli-executor.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-1ce7aad92e07"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "FILE-4d5f65181991",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/mcp/types.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-4d5f65181991"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "FILE-0c2771dd53b7",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/mcp-abuse.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-0c2771dd53b7"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "DIRECTORY-6fd1b3951175",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/directory-6fd1b3951175"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "FILE-fdcbe8373815",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/mcp-stdio.integration.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-fdcbe8373815"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "FILE-3020117dc02d",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/mcp-protocol.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3020117dc02d"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "FILE-da220b7b9013",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/mcp-server.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-da220b7b9013"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "FILE-538ae47ee3c6",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/mcp-cli-executor.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-538ae47ee3c6"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "FILE-0a16fac37d72",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/mcp-command.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-0a16fac37d72"
+    }
+  ]
+}

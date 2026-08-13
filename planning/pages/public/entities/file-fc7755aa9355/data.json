@@ -1,0 +1,94 @@
+{
+  "id": "FILE-fc7755aa9355",
+  "type": "artifact",
+  "title": "core-ingestion/src/__tests__/queries.php.test.ts",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/file-fc7755aa9355",
+  "summary": {
+    "id": "FILE-fc7755aa9355",
+    "type": "artifact",
+    "title": "core-ingestion/src/__tests__/queries.php.test.ts",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "source_mirror_id": "github:file:ix-infrastructure/Ix:core-ingestion/src/__tests__/queries.php.test.ts",
+    "source_type": "github_file",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/blob/9c74d47d1cd0faa86ef381a8888c450872675f7a/core-ingestion%2Fsrc%2F__tests__%2Fqueries.php.test.ts",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 382,
+    "filename": "core-ingestion/src/__tests__/queries.php.test.ts",
+    "status": "added",
+    "additions": 181,
+    "deletions": 0,
+    "changes": 181,
+    "blob_url": "https://github.com/ix-infrastructure/Ix/blob/9c74d47d1cd0faa86ef381a8888c450872675f7a/core-ingestion%2Fsrc%2F__tests__%2Fqueries.php.test.ts",
+    "raw_url": "https://github.com/ix-infrastructure/Ix/raw/9c74d47d1cd0faa86ef381a8888c450872675f7a/core-ingestion%2Fsrc%2F__tests__%2Fqueries.php.test.ts",
+    "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/core-ingestion%2Fsrc%2F__tests__%2Fqueries.php.test.ts?ref=9c74d47d1cd0faa86ef381a8888c450872675f7a",
+    "patch": "@@ -0,0 +1,181 @@\n+import { describe, expect, it } from 'vitest';\n+\n+import { parseFile } from '../index.js';\n+\n+describe('PHP queries', () => {\n+  it('normalizes namespace imports to the imported class name', () => {\n+    const result = parseFile(\n+      '/repo/UseCase.php',\n+      `<?php\n+namespace App;\n+\n+use Vendor[local-path]\\DomainService;\n+      `,\n+    );\n+\n+    expect(result).not.toBeNull();\n+    expect(result!.relationships).toContainEqual({\n+      srcName: 'UseCase.php',\n+      dstName: 'DomainService',\n+      predicate: 'IMPORTS',\n+      importRaw: 'Vendor[local-path]\\DomainService',\n+    });\n+  });\n+\n+  it('resolves calls through typed properties and method parameters', () => {\n+    const result = parseFile(\n+      '/repo/UseCase.php',\n+      `<?php\n+interface DomainService\n+{\n+    public function create(): void;\n+}\n+\n+interface Repository\n+{\n+    public function create(): void;\n+}\n+\n+final class UseCase\n+{\n+    private AuditLogger $auditLogger;\n+\n+    public function __construct(\n+        private DomainService $domainService,\n+        private Repository $repository,\n+    ) {}\n+\n+    public function create(Logger $logger): void\n+    {\n+        $this->domainService->create();\n+        $this->repository?->create();\n+        $this->auditLogger->write();\n+        $logger->write();\n+        $this->finish();\n+    }\n+\n+    private function finish(): void {}\n+}\n+      `,\n+    );\n+\n+    expect(result).not.toBeNull();\n+    expect(result!.relationships).toEqual(\n+      expect.arrayContaining([\n+        { srcName: 'UseCase.create', dstName: 'DomainService.create', predicate: 'CALLS' },\n+        { srcName: 'UseCase.create', dstName: 'Repository.create', predicate: 'CALLS' },\n+        { srcName: 'UseCase.create', dstName: 'AuditLogger.write', predicate: 'CALLS' },\n+        { srcName: 'UseCase.create', dstName: 'Logger.write', predicate: 'CALLS' },\n+        { srcName: 'UseCase.create', dstName: 'UseCase.finish', predicate: 'CALLS' },\n+      ]),\n+    );\n+    expect(result!.relationships).not.toContainEqual({\n+      srcName: 'UseCase.create',\n+      dstName: 'create',\n+      predicate: 'CALLS',\n+    });\n+    expect(result!.relationships).not.toContainEqual({\n+      srcName: 'UseCase.create',\n+      dstName: 'UseCase.create',\n+      predicate: 'CALLS',\n+    });\n+  });\n+\n+  it('preserves bare-name fallback when the receiver type is unknown', () => {\n+    const result = parseFile(\n+      '/repo/Runner.php',\n+      `<?php\n+function run($service): void\n+{\n+    $service->create();\n+}\n+      `,\n+    );\n+\n+    expect(result).not.toBeNull();\n+    expect(result!.relationships).toContainEqual({\n+      srcName: 'run',\n+      dstName: 'create',\n+      predicate: 'CALLS',\n+    });\n+  });\n+\n+  it('resolves nullable declared types', () => {\n+    // `?Service` parses as (optional_type (named_type (name))), not named_type.\n+    // Matching only the latter dropped every nullable dependency to a bare name.\n+    const result = parseFile(\n+      '/repo/Nullable.php',\n+      `<?php\n+final class Nullable\n+{\n+    private ?Service $service;\n+\n+    public function __construct(private ?Repository $repository) {}\n+\n+    public function run(?Logger $logger): void\n+    {\n+        $this->service->create();\n+        $this->repository->find();\n+        $logger->write();\n+    }\n+}\n+      `,\n+    );\n+\n+    expect(result).not.toBeNull();\n+    expect(result!.relationships).toEqual(\n+      expect.arrayContaining([\n+        { srcName: 'Nullable.run', dstName: 'Service.create', predicate: 'CALLS' },\n+        { srcName: 'Nullable.run', dstName: 'Repository.find', predicate: 'CALLS' },\n+        { srcName: 'Nullable.run', dstName: 'Logger.write', predicate: 'CALLS' },\n+      ]),\n+    );\n+  });\n+\n+  it('resolves typed parameters on plain functions, not just methods', () => {\n+    // function_definition is a separate node from method_declaration; rooting the\n+    // parameter query at the latter alone left top-level functions untyped.\n+    const result = parseFile(\n+      '/repo/Standalone.php',\n+      `<?php\n+function run(Service $service, ?Logger $logger): void\n+{\n+    $service->create();\n+    $logger->write();\n+}\n+      `,\n+    );\n+\n+    expect(result).not.toBeNull();\n+    expect(result!.relationships).toEqual(\n+      expect.arrayContaining([\n+        { srcName: 'run', dstName: 'Service.create', predicate: 'CALLS' },\n+        { srcName: 'run', dstName: 'Logger.write', predicate: 'CALLS' },\n+      ]),\n+    );\n+  });\n+\n+  it('leaves union-typed receivers as bare names', () => {\n+    // A union has no single receiver type to attribute the call to, so the bare\n+    // name is the honest answer rather than an arbitrary pick of one member.\n+    const result = parseFile(\n+      '/repo/Union.php',\n+      `<?php\n+final class Union\n+{\n+    public function run(Service|Repository $either): void\n+    {\n+        $either->create();\n+    }\n+}\n+      `,\n+    );\n+\n+    expect(result).not.toBeNull();\n+    expect(result!.relationships).toContainEqual({\n+      srcName: 'Union.run',\n+      dstName: 'create',\n+      predicate: 'CALLS',\n+    });\n+  });\n+});",
+    "parent_pr": 382
+  },
+  "source_context": {
+    "id": "github:file:ix-infrastructure/Ix:core-ingestion/src/__tests__/queries.php.test.ts",
+    "source": {
+      "type": "github_file",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/blob/9c74d47d1cd0faa86ef381a8888c450872675f7a/core-ingestion%2Fsrc%2F__tests__%2Fqueries.php.test.ts",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T05:24:50Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T20:15:01Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "FILE-fc7755aa9355",
+    "entity_type": "FILE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#382",
+    "line_precision": "FILE_LEVEL"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-03f94113384b597939d4b444581069df85b8354a",
+      "other_type": "commit",
+      "other_title": "03f94113384b597939d4b444581069df85b8354a",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-03f94113384b597939d4b444581069df85b8354a"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-9c74d47d1cd0faa86ef381a8888c450872675f7a",
+      "other_type": "commit",
+      "other_title": "9c74d47d1cd0faa86ef381a8888c450872675f7a",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-9c74d47d1cd0faa86ef381a8888c450872675f7a"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-b19008335a93347abd40252b5e6cbfc4a6325a7e",
+      "other_type": "commit",
+      "other_title": "b19008335a93347abd40252b5e6cbfc4a6325a7e",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b19008335a93347abd40252b5e6cbfc4a6325a7e"
+    }
+  ]
+}

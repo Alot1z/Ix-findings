@@ -10,7 +10,567 @@
     "title": "Ix PR #390",
     "status": "RESOLVED",
     "number": 390,
-    "url": "https://github.com/ix-infrastructure/Ix/pull/390"
+    "url": "https://github.com/ix-infrastructure/Ix/pull/390",
+    "source_mirror_id": "github:pull_request:ix-infrastructure/Ix#390",
+    "source_type": "github_pull_request",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/pull/390",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/390",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "number": 390,
+    "node_id": "PR_kwDORdC75M79RPa4",
+    "title": "fix(cli): register the patches command instead of stubbing it",
+    "body": "## The bug\n\n`ix-cli` has always contained a complete `ix patches` — client call, `--limit`, `--format text|json|llm`, and `formatPatches` already has a working `llm` branch (`format.ts:242`).\n\nIt was never imported by `register/oss.ts`. Meanwhile `patches` sat in `PRO_COMMANDS`, so `registerProStubs` installed the \"requires Ix Pro\" sentinel over the top of it.\n\nSo OSS users got a paywall message for a command this repo ships. Nobody noticed because the stub is a *plausible* answer — had it fallen through to commander's `unknown command` the way `goals` did (#384), it would have been reported long ago.\n\nFound by @Alot1z while writing the agent skill (#368).\n\n## The fix\n\nRegister it, and drop it from `PRO_COMMANDS`.\n\n## The part worth reviewing\n\n`@ix/pro` registers a `patches` too. Commander **throws** on a duplicate command name, and Pro's `tryRegister` wraps registration in a `try`/`catch` that swallows it — so on a Kartr install the OSS registration (which runs first, from `registerOssCommands`) is the one that survives, and Pro's is silently skipped.\n\nThat is the outcome we want: this version also supports `--format llm`, which Pro's does not. But it means the two implementations' behaviour now matters, so this one uses the same `createClient()` factory Pro's does instead of constructing `IxClient` directly. They are identical today (`createClient` is literally `new IxClient(getEndpoint())`) — the point is that its docstring says Pro commands should prefer it \"so auth and endpoint resolution can evolve in one spot\", and `patches` is now a command both editions route through.\n\nVerified the swallow rather than assuming it: commander 12.1.0 raises `cannot add command 'patches' as already have command 'patches'` from `_registerCommand`, and `tryRegister`'s `catch` covers the `fn(program)` call, not just the `import`.\n\n## Tests\n\nThe stub test asserting `patches` reports Pro is replaced by one asserting it is **not** stubbed. A stub for a command that exists in OSS shadows the real implementation, and because `registerOssCommands` runs first the symptom is silence, not a crash — worth pinning so it cannot come back.\n\n722 tests green. `ix patches --help` verified against a real build.\n\n## Docs\n\nCLAUDE.md said the wrong thing in three places: the gotcha claiming `ix patches` is an unknown command, the `[Pro]` marker on its routing row, and the \"only the first three work without Pro\" line above that table.\n\nFixes #371",
+    "state": "closed",
+    "draft": false,
+    "merged": true,
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "html_url": "https://github.com/ix-infrastructure/Ix/pull/390",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/390",
+    "head": {
+      "ref": "fix/patches-registration",
+      "sha": "89ca55e21672696deb7627cb3e5b1846754707fa",
+      "repo": {
+        "id": 1171307492,
+        "full_name": "ix-infrastructure/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "ix-infrastructure",
+          "id": 256883681,
+          "type": "Organization",
+          "html_url": "https://github.com/ix-infrastructure"
+        },
+        "html_url": "https://github.com/ix-infrastructure/Ix",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": false,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-03-03T04:48:38Z",
+        "updated_at": "2026-08-13T21:51:31Z",
+        "pushed_at": "2026-08-13T19:18:44Z",
+        "topics": [
+          "ai",
+          "ai-memory",
+          "claude-code",
+          "cli",
+          "code-analysis",
+          "code-mapping",
+          "code-memory",
+          "codebase-understanding",
+          "codex",
+          "developer-tools",
+          "llm",
+          "openclaw",
+          "persistent-memory",
+          "program-analysis",
+          "software-architecture",
+          "system-intelligence",
+          "system-mapping"
+        ],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 701,
+        "stargazers_count": 701,
+        "forks_count": 60,
+        "open_issues_count": 6
+      }
+    },
+    "base": {
+      "ref": "main",
+      "sha": "ffe21f01268caf6567916da697cd6826358443e2",
+      "repo": {
+        "id": 1171307492,
+        "full_name": "ix-infrastructure/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "ix-infrastructure",
+          "id": 256883681,
+          "type": "Organization",
+          "html_url": "https://github.com/ix-infrastructure"
+        },
+        "html_url": "https://github.com/ix-infrastructure/Ix",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": false,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-03-03T04:48:38Z",
+        "updated_at": "2026-08-13T21:51:31Z",
+        "pushed_at": "2026-08-13T19:18:44Z",
+        "topics": [
+          "ai",
+          "ai-memory",
+          "claude-code",
+          "cli",
+          "code-analysis",
+          "code-mapping",
+          "code-memory",
+          "codebase-understanding",
+          "codex",
+          "developer-tools",
+          "llm",
+          "openclaw",
+          "persistent-memory",
+          "program-analysis",
+          "software-architecture",
+          "system-intelligence",
+          "system-mapping"
+        ],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 701,
+        "stargazers_count": 701,
+        "forks_count": 60,
+        "open_issues_count": 6
+      }
+    },
+    "merge_commit_sha": "9bc2305cfd929ff34f5547a6230cb20bb7d61079",
+    "merged_at": "2026-08-11T03:17:24Z",
+    "closed_at": "2026-08-11T03:17:25Z",
+    "created_at": "2026-08-11T00:07:15Z",
+    "updated_at": "2026-08-11T03:18:03Z",
+    "labels": [],
+    "milestone": null,
+    "requested_reviewers": [],
+    "requested_teams": [],
+    "commits_count": 3,
+    "changed_files_count": 4,
+    "additions": 63,
+    "deletions": 10,
+    "changed_files": [
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 390,
+        "filename": "CLAUDE.md",
+        "status": "modified",
+        "additions": 8,
+        "deletions": 4,
+        "changes": 12,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/89ca55e21672696deb7627cb3e5b1846754707fa/CLAUDE.md",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/89ca55e21672696deb7627cb3e5b1846754707fa/CLAUDE.md",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/CLAUDE.md?ref=89ca55e21672696deb7627cb3e5b1846754707fa",
+        "patch": "@@ -47,8 +47,12 @@ ix map --silent                             # refresh the graph after code chang\n   Pro probe diffs against it. Adding a command to `oss.ts` silently makes it\n   OSS; removing one makes Pro own it. `registerProCommands` is async and MUST\n   be awaited.\n-- **`registerPatchesCommand` is defined but never registered** in `oss.ts` —\n-  `ix patches` is an \"unknown command\" today.\n+- **`ix patches` is OSS, not Pro** (#371). It is implemented here and registered\n+  in `oss.ts`. `@ix/pro` also registers a `patches`; commander throws on the\n+  duplicate and Pro's `tryRegister` swallows the throw, so the OSS one — which\n+  registers first — wins on a Kartr install too. Do not re-add it to\n+  `PRO_COMMANDS`: a stub for a command that exists in OSS shadows the real\n+  implementation, and the failure is silent rather than a crash.\n - **`ix upgrade` wipes `~/.ix/cli/compass`.** The Compass assets ship only via\n   `ix upgrade`, and re-running the installer re-extracts over them, so a\n   re-install can leave `ix view` with no UI. `bootstrap.sh` re-runs `ix upgrade`\n@@ -162,14 +166,14 @@ Underlying structural commands — useful for debugging or fine-grained inspecti\n \n ### History & Decisions\n \n-Only the first three work without Pro.\n+Only the first four work without Pro.\n \n | Goal | Command | Example |\n |---|---|---|\n | Entity history | `ix history` | `ix history <entityId> --format llm` |\n | Changes between revisions | `ix diff` | `ix diff 1 5 --summary --format llm` |\n | Detect contradictions | `ix conflicts` | `ix conflicts --format llm` |\n-| **[Pro]** List recent patches | `ix patches` | `ix patches --limit 20 --format json` |\n+| List recent patches | `ix patches` | `ix patches --limit 20 --format llm` |\n | **[Pro]** Design decisions | `ix decisions` | `ix decisions --topic ingestion --limit 10` |\n | **[Pro]** Record a decision | `ix decide` | `ix decide \"Use CONTAINS\" --rationale \"Normalize edges\" --responds-to <bugId>` |\n | **[Pro]** Record a goal | `ix truth add` | `ix truth add \"Support 100k file repos\"` |"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 390,
+        "filename": "ix-cli/src/cli/__tests__/pro-stub-message.test.ts",
+        "status": "modified",
+        "additions": 31,
+        "deletions": 2,
+        "changes": 33,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/89ca55e21672696deb7627cb3e5b1846754707fa/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fpro-stub-message.test.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/89ca55e21672696deb7627cb3e5b1846754707fa/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fpro-stub-message.test.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fpro-stub-message.test.ts?ref=89ca55e21672696deb7627cb3e5b1846754707fa",
+        "patch": "@@ -1,7 +1,7 @@\n import { describe, expect, it } from \"vitest\";\n import { Command } from \"commander\";\n \n-import { registerProStubs } from \"../register/oss.js\";\n+import { registerOssCommands, registerProStubs } from \"../register/oss.js\";\n \n /**\n  * CLAUDE.md tells agents to detect a Pro-gated install by the exact string\n@@ -61,7 +61,6 @@ describe(\"Pro stubs\", () => {\n     [\"decide\", [\"decide\", \"Use X\", \"--rationale\", \"because\", \"--affects\", \"Entity\"]],\n     [\"briefing\", [\"briefing\", \"--format\", \"json\"]],\n     [\"decisions\", [\"decisions\", \"--topic\", \"ingestion\", \"--limit\", \"10\"]],\n-    [\"patches\", [\"patches\", \"--limit\", \"20\", \"--format\", \"json\"]],\n     [\"plan\", [\"plan\", \"task\", \"title\", \"--plan\", \"p1\", \"--resolves\", \"b1\"]],\n     [\"task\", [\"task\", \"show\", \"t1\"]],\n     [\"workflow\", [\"workflow\", \"attach\", \"w1\"]],\n@@ -72,6 +71,36 @@ describe(\"Pro stubs\", () => {\n     expect(exitCode).toBe(1);\n   });\n \n+  // `patches` is NOT Pro. ix-cli implements it (commands/patches.ts), but it\n+  // sat in PRO_COMMANDS while never being registered, so the stub answered\n+  // \"requires Ix Pro\" for a command this repo ships — #371. Pinning its absence\n+  // here is what stops it being re-added to the list: a stub for a command that\n+  // exists in OSS shadows the real implementation, and because\n+  // registerOssCommands runs first the symptom is silent rather than a crash.\n+  it(\"does not stub patches — ix-cli owns it\", () => {\n+    const program = new Command();\n+    program.name(\"ix\").exitOverride();\n+    registerProStubs(program);\n+    expect(program.commands.map(c => c.name())).not.toContain(\"patches\");\n+  });\n+\n+  // The other half, and the one that actually delivers #371. Absence from the\n+  // stub list only helps if `oss.ts` registers the real command — drop the\n+  // registerPatchesCommand(program) call and the test above still passes while\n+  // `ix patches` becomes commander's \"unknown command\", which is where #371\n+  // started. Both halves have to be pinned or either can silently regress.\n+  it(\"registers patches as an OSS command\", () => {\n+    const program = new Command();\n+    program.name(\"ix\").exitOverride();\n+    registerOssCommands(program);\n+\n+    const patches = program.commands.find(c => c.name() === \"patches\");\n+    expect(patches).toBeDefined();\n+    // --format llm is why the OSS implementation is the one worth keeping when\n+    // commander drops @ix/pro's duplicate registration on a Kartr install.\n+    expect(patches?.options.map(o => o.long)).toContain(\"--format\");\n+  });\n+\n   // @ix/pro registers a plural list command alongside each singular manager\n   // (`bug`/`bugs`, `plan`/`plans`, `task`/`tasks`, `goal`/`goals`). Stubbing only\n   // the singular is the failure this pins: `ix goals` fell through to commander's"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 390,
+        "filename": "ix-cli/src/cli/commands/patches.ts",
+        "status": "modified",
+        "additions": 18,
+        "deletions": 3,
+        "changes": 21,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/89ca55e21672696deb7627cb3e5b1846754707fa/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fpatches.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/89ca55e21672696deb7627cb3e5b1846754707fa/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fpatches.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fpatches.ts?ref=89ca55e21672696deb7627cb3e5b1846754707fa",
+        "patch": "@@ -1,16 +1,31 @@\n import type { Command } from \"commander\";\n-import { IxClient } from \"../../client/api.js\";\n-import { getEndpoint } from \"../config.js\";\n+import { createClient } from \"../config.js\";\n import { formatPatches } from \"../format.js\";\n \n+/**\n+ * `ix patches`.\n+ *\n+ * This is the real implementation and has been all along — it was simply never\n+ * imported by `register/oss.ts`, while `patches` sat in `PRO_COMMANDS` so\n+ * `registerProStubs` installed the \"requires Ix Pro\" sentinel over the top of\n+ * it. OSS users got a paywall message for a command this repo implements (#371).\n+ *\n+ * `@ix/pro` also registers a `patches`. Commander throws on a duplicate command\n+ * name and Pro's `tryRegister` swallows the throw, so on a Kartr install the\n+ * OSS registration (which runs first, from `registerOssCommands`) is the one\n+ * that survives. That is the intended outcome — this version additionally\n+ * supports `--format llm` — but it makes the two implementations' behaviour\n+ * matter, so this one uses the same `createClient()` factory Pro's does rather\n+ * than constructing `IxClient` directly.\n+ */\n export function registerPatchesCommand(program: Command): void {\n   program\n     .command(\"patches\")\n     .description(\"List recent patches\")\n     .option(\"--limit <n>\", \"Maximum patches to return\", \"50\")\n     .option(\"--format <fmt>\", \"Output format (text|json|llm)\", \"text\")\n     .action(async (opts: { limit: string; format: string }) => {\n-      const client = new IxClient(getEndpoint());\n+      const client = await createClient();\n       const patches = await client.listPatches({ limit: parseInt(opts.limit, 10) });\n       formatPatches(patches, opts.format);\n     });"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 390,
+        "filename": "ix-cli/src/cli/register/oss.ts",
+        "status": "modified",
+        "additions": 6,
+        "deletions": 1,
+        "changes": 7,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/89ca55e21672696deb7627cb3e5b1846754707fa/ix-cli%2Fsrc%2Fcli%2Fregister%2Foss.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/89ca55e21672696deb7627cb3e5b1846754707fa/ix-cli%2Fsrc%2Fcli%2Fregister%2Foss.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fregister%2Foss.ts?ref=89ca55e21672696deb7627cb3e5b1846754707fa",
+        "patch": "@@ -34,6 +34,7 @@ import { registerSubsystemsCommand } from \"../commands/subsystems.js\";\n import { registerUpgradeCommand } from \"../commands/upgrade.js\";\n import { registerViewCommand } from \"../commands/view.js\";\n import { registerSavingsCommand } from \"../commands/savings.js\";\n+import { registerPatchesCommand } from \"../commands/patches.js\";\n \n const PRO_COMMANDS: { name: string; desc: string }[] = [\n   { name: \"briefing\", desc: \"Session-resume briefing\" },\n@@ -43,7 +44,10 @@ const PRO_COMMANDS: { name: string; desc: string }[] = [\n   { name: \"decisions\", desc: \"List recorded design decisions\" },\n   { name: \"goal\", desc: \"Manage project goals\" },\n   { name: \"goals\", desc: \"List all goals\" },\n-  { name: \"patches\", desc: \"List recent patches\" },\n+  // `patches` is deliberately absent: ix-cli owns the real implementation\n+  // (commands/patches.ts, registered above). It sat in this list while never\n+  // being registered, so `ix patches` answered \"requires Ix Pro\" on OSS and\n+  // shadowed a working command — see #371.\n   { name: \"plan\", desc: \"Manage plans and plan tasks\" },\n   { name: \"task\", desc: \"Manage tasks\" },\n   { name: \"plans\", desc: \"List all plans\" },\n@@ -96,6 +100,7 @@ export function registerOssCommands(program: Command): void {\n   registerUpgradeCommand(program);\n   registerViewCommand(program);\n   registerSavingsCommand(program);\n+  registerPatchesCommand(program);\n \n   // Hide advanced commands from default help\n   const advancedSet = new Set(ADVANCED_COMMANDS);"
+      }
+    ],
+    "commits": [
+      {
+        "sha": "4d35378ea737825bd591df94ee29db92e1596d30",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/4d35378ea737825bd591df94ee29db92e1596d30",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/4d35378ea737825bd591df94ee29db92e1596d30",
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "committer": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "message": "fix(cli): register the patches command instead of stubbing it\n\n`ix-cli` has always contained a complete `ix patches` — client call, `--limit`,\n`--format text|json|llm` with a working `llm` branch in `formatPatches`. It was\nnever imported by `register/oss.ts`, while `patches` sat in `PRO_COMMANDS` so\n`registerProStubs` installed the \"requires Ix Pro\" sentinel over the top of it.\n\nOSS users got a paywall message for a command this repo ships. Nobody noticed\nbecause the stub is a plausible answer: had it fallen through to commander's\n`unknown command` the way `goals` did (#384), it would have been reported years\nago.\n\nRegister it, and drop it from `PRO_COMMANDS`.\n\n`@ix/pro` registers a `patches` too. Commander throws on a duplicate command\nname and Pro's `tryRegister` swallows the throw, so on a Kartr install the OSS\nregistration — which runs first, from `registerOssCommands` — is the one that\nsurvives. That is the outcome we want, since this version also supports\n`--format llm`, but it makes the two implementations' behaviour matter: this one\nnow uses the same `createClient()` factory Pro's does rather than constructing\n`IxClient` directly, so the two cannot drift and a future change to endpoint or\nauth resolution reaches both.\n\nThe stub test that asserted `patches` reports Pro is replaced by one asserting\nit is *not* stubbed. A stub for a command that exists in OSS shadows the real\nimplementation, and because `registerOssCommands` runs first the symptom is\nsilence rather than a crash — worth pinning.\n\nFixes #371",
+        "parents": [
+          {
+            "sha": "ffe21f01268caf6567916da697cd6826358443e2",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/ffe21f01268caf6567916da697cd6826358443e2"
+          }
+        ],
+        "tree_sha": "f9fab30faf76e9d39c461745a83e99bf1da495b8",
+        "authored_at": "2026-08-11T00:05:53Z",
+        "committed_at": "2026-08-11T00:05:53Z"
+      },
+      {
+        "sha": "91269efc54f905ce00fae27d80798271b35ef951",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/91269efc54f905ce00fae27d80798271b35ef951",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/91269efc54f905ce00fae27d80798271b35ef951",
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "committer": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "message": "docs: patches is an OSS command, not a Pro one\n\nThree places said otherwise: the gotcha claiming `ix patches` is an unknown\ncommand, the `[Pro]` marker on its routing-table row, and the \"only the first\nthree work without Pro\" line above that table.\n\nThe gotcha is replaced with the constraint that matters going forward — do not\nput `patches` back in `PRO_COMMANDS`, because a stub for a command that exists\nin OSS shadows the real implementation and does it silently.\n\nThe routing row now shows `--format llm`, which this command has supported all\nalong and which the format guidance immediately above the table tells agents to\nprefer when they are reading the output themselves.",
+        "parents": [
+          {
+            "sha": "4d35378ea737825bd591df94ee29db92e1596d30",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/4d35378ea737825bd591df94ee29db92e1596d30"
+          }
+        ],
+        "tree_sha": "3bbd3202f39c2dc54f3654d799430e1b687df4db",
+        "authored_at": "2026-08-11T00:06:56Z",
+        "committed_at": "2026-08-11T00:06:56Z"
+      },
+      {
+        "sha": "89ca55e21672696deb7627cb3e5b1846754707fa",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/89ca55e21672696deb7627cb3e5b1846754707fa",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/89ca55e21672696deb7627cb3e5b1846754707fa",
+        "author": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "committer": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "message": "test(cli): pin that oss.ts registers patches, not just that it is unstubbed\n\nThe new stub test asserts `patches` is absent from PRO_COMMANDS. That is half\nthe fix: delete the `registerPatchesCommand(program)` call from `oss.ts` and\nthat test still passes while `ix patches` becomes commander's \"unknown\ncommand\" — which is where #371 started.\n\nVerified by removing the registration: the suite stayed green before this\ncommit, and fails on it after.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>",
+        "parents": [
+          {
+            "sha": "91269efc54f905ce00fae27d80798271b35ef951",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/91269efc54f905ce00fae27d80798271b35ef951"
+          }
+        ],
+        "tree_sha": "ca7133aab8c60dfeefd749e0e01e238fa60903b0",
+        "authored_at": "2026-08-11T03:13:10Z",
+        "committed_at": "2026-08-11T03:13:10Z"
+      }
+    ],
+    "comments": [],
+    "reviews": [
+      {
+        "id": 4902664702,
+        "node_id": "PRR_kwDORdC75M8AAAABJDi5_g",
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 390,
+        "author": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "state": "APPROVED",
+        "body": "Verified the two claims this turns on, both hold.\n\n**Pro shadowing.** `tryRegister`'s `try` covers the `fn(program)` call, not just the `import` (`Ix-pro/src/cli/register.ts:17-23`), so commander's duplicate-name throw is swallowed. `main.ts:69` runs `registerOssCommands` synchronously before the Pro probe at :74, so the OSS registration is the survivor. And `Ix-pro/src/cli/commands/patches.ts` is now identical to this one bar the `llm` in its `--format` description — it already imports `createClient` and `formatPatches` from `@ix/cli`, so switching to `createClient()` here makes them the same call, not merely a similar one.\n\n**One gap, fixed in 89ca55e.** The new test pins that `patches` is absent from the stub list. That is the half that can't silently regress — the other half can. I deleted the `registerPatchesCommand(program)` line from `oss.ts` and the whole suite stayed green (722 passed) while `ix patches` went back to being commander's `unknown command`, i.e. the state #371 was filed about.\n\nAdded `registers patches as an OSS command` alongside it, asserting the command exists on the program after `registerOssCommands` and carries `--format`. It fails with `expected undefined to be defined` against that mutation.\n\nBoth halves are now pinned. 723 green.",
+        "html_url": "https://github.com/ix-infrastructure/Ix/pull/390#pullrequestreview-4902664702",
+        "submitted_at": "2026-08-11T03:14:11Z",
+        "commit_id": "89ca55e21672696deb7627cb3e5b1846754707fa",
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      }
+    ],
+    "review_comments": [],
+    "timeline": [
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/4d35378ea737825bd591df94ee29db92e1596d30"
+      },
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/91269efc54f905ce00fae27d80798271b35ef951"
+      },
+      {
+        "id": 29252787800,
+        "event": "review_requested",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-11T00:07:16Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29252787800"
+      },
+      {
+        "id": 29252788200,
+        "event": "mentioned",
+        "actor": {
+          "login": "Alot1z",
+          "id": 16801672,
+          "type": "User",
+          "html_url": "https://github.com/Alot1z"
+        },
+        "created_at": "2026-08-11T00:07:17Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29252788200"
+      },
+      {
+        "id": 29252788219,
+        "event": "subscribed",
+        "actor": {
+          "login": "Alot1z",
+          "id": 16801672,
+          "type": "User",
+          "html_url": "https://github.com/Alot1z"
+        },
+        "created_at": "2026-08-11T00:07:17Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29252788219"
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "Alot1z",
+          "id": 16801672,
+          "type": "User",
+          "html_url": "https://github.com/Alot1z"
+        },
+        "created_at": "2026-08-11T00:31:53Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/89ca55e21672696deb7627cb3e5b1846754707fa"
+      },
+      {
+        "id": 4902664702,
+        "event": "reviewed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": "89ca55e21672696deb7627cb3e5b1846754707fa",
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": 29257760986,
+        "event": "merged",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-11T03:17:25Z",
+        "commit_id": "9bc2305cfd929ff34f5547a6230cb20bb7d61079",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29257760986"
+      },
+      {
+        "id": 29257761007,
+        "event": "closed",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-11T03:17:25Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29257761007"
+      },
+      {
+        "id": 29257777545,
+        "event": "head_ref_deleted",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-11T03:18:03Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29257777545"
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-11T22:37:09Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": 29309159150,
+        "event": "referenced",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-11T22:58:47Z",
+        "commit_id": "aef3b37e2e14db9cde273bc1576a018da386b69f",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29309159150"
+      },
+      {
+        "id": 29309713517,
+        "event": "referenced",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-11T23:15:21Z",
+        "commit_id": "4e71e7a4f16f5273e5aaf87ee0617b4f8ebc2e3f",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29309713517"
+      },
+      {
+        "id": 29309782078,
+        "event": "referenced",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-11T23:17:27Z",
+        "commit_id": "fa6ad7b0ff52734685ff7425b08ec240837751fa",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29309782078"
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-12T16:30:46Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      }
+    ],
+    "source": "OFFICIAL_GITHUB_FACT",
+    "review_threads": [],
+    "review_thread_capture": {
+      "status": "VERIFIED",
+      "source": "GitHub GraphQL API"
+    }
+  },
+  "source_context": {
+    "id": "github:pull_request:ix-infrastructure/Ix#390",
+    "source": {
+      "type": "github_pull_request",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/390",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/390",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-11T00:07:15Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-11T03:18:03Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "PR-390",
+    "entity_type": "PULL_REQUEST",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "mirror_scope": "source PR, commits, files, comments, reviews, review comments, and review threads",
+    "related_analysis_types": [
+      "FINDING",
+      "DECISION",
+      "IMPLEMENTATION"
+    ],
+    "review_thread_state": "VERIFIED_GRAPHQL"
   },
   "relationships": [
     {
@@ -52,6 +612,78 @@
       "other_type": "finding",
       "other_title": "patches command dead/unregistered (#371)",
       "other_url": "https://alot1z.github.io/Ix-findings/entities/f-009"
+    },
+    {
+      "direction": "out",
+      "relationship": "FOUND_IN",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "in",
+      "relationship": "AUTHORED",
+      "other": "PERSON-KageBinary",
+      "other_type": "artifact",
+      "other_title": "KageBinary",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-kagebinary"
+    },
+    {
+      "direction": "out",
+      "relationship": "HEADS_AT",
+      "other": "COMMIT-89ca55e21672696deb7627cb3e5b1846754707fa",
+      "other_type": "commit",
+      "other_title": "89ca55e21672696deb7627cb3e5b1846754707fa",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-89ca55e21672696deb7627cb3e5b1846754707fa"
+    },
+    {
+      "direction": "out",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "COMMIT-4d35378ea737825bd591df94ee29db92e1596d30",
+      "other_type": "commit",
+      "other_title": "4d35378ea737825bd591df94ee29db92e1596d30",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-4d35378ea737825bd591df94ee29db92e1596d30"
+    },
+    {
+      "direction": "out",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "COMMIT-91269efc54f905ce00fae27d80798271b35ef951",
+      "other_type": "commit",
+      "other_title": "91269efc54f905ce00fae27d80798271b35ef951",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-91269efc54f905ce00fae27d80798271b35ef951"
+    },
+    {
+      "direction": "out",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "COMMIT-89ca55e21672696deb7627cb3e5b1846754707fa",
+      "other_type": "commit",
+      "other_title": "89ca55e21672696deb7627cb3e5b1846754707fa",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-89ca55e21672696deb7627cb3e5b1846754707fa"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_REVIEW",
+      "other": "REVIEW-ix-infrastructure-Ix-pr-390-4902664702",
+      "other_type": "artifact",
+      "other_title": "Review 4902664702 on PR #390",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/review-ix-infrastructure-ix-pr-390-4902664702"
+    },
+    {
+      "direction": "in",
+      "relationship": "REVIEWED_BY",
+      "other": "PERSON-josephismikhail",
+      "other_type": "artifact",
+      "other_title": "josephismikhail",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-josephismikhail"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGED_BY",
+      "other": "COMMIT-89ca55e21672696deb7627cb3e5b1846754707fa",
+      "other_type": "commit",
+      "other_title": "89ca55e21672696deb7627cb3e5b1846754707fa",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-89ca55e21672696deb7627cb3e5b1846754707fa"
     }
   ]
 }

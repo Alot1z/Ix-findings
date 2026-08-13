@@ -1,0 +1,210 @@
+{
+  "id": "COMMIT-f771abffab3d7104550a593746a2d7cdffd7d088",
+  "type": "commit",
+  "title": "f771abffab3d7104550a593746a2d7cdffd7d088",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-f771abffab3d7104550a593746a2d7cdffd7d088",
+  "summary": {
+    "id": "COMMIT-f771abffab3d7104550a593746a2d7cdffd7d088",
+    "type": "commit",
+    "title": "f771abffab3d7104550a593746a2d7cdffd7d088",
+    "status": "CURRENT"
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "POINTS_TO",
+      "other": "BRANCH-f527b6ef758c",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:old-dev",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-f527b6ef758c"
+    },
+    {
+      "direction": "in",
+      "relationship": "POINTS_TO",
+      "other": "BRANCH-fa2e9f761a07",
+      "other_type": "branch",
+      "other_title": "ix-infrastructure/Ix:old-dev",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-fa2e9f761a07"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-ee9dc140a2859d3a7c23f80812c9b4fcda20be93",
+      "other_type": "commit",
+      "other_title": "ee9dc140a2859d3a7c23f80812c9b4fcda20be93",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-ee9dc140a2859d3a7c23f80812c9b4fcda20be93"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-809da0d53df5",
+      "other_type": "artifact",
+      "other_title": ".gitignore",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-809da0d53df5"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5f9beee23892",
+      "other_type": "artifact",
+      "other_title": "docker-compose.standalone.yml",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5f9beee23892"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-501e868bd44a",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/load.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-501e868bd44a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-4e3bf710c74e",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/register/oss.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-4e3bf710c74e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e7401a885e2a",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/sources/detect.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e7401a885e2a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5ef3f5b87e6d",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/sources/fetch.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5ef3f5b87e6d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3f05df7612a2",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/client/api.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3f05df7612a2"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-65696ebc3adb",
+      "other_type": "artifact",
+      "other_title": ".gitignore",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-65696ebc3adb"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-b77a34f5340e",
+      "other_type": "artifact",
+      "other_title": "docker-compose.standalone.yml",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b77a34f5340e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5ca22a1d7c26",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/load.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5ca22a1d7c26"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-6a1dda5bceab",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/register/oss.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-6a1dda5bceab"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-dc1870be0c84",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/sources/detect.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-dc1870be0c84"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-25d790605806",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/sources/fetch.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-25d790605806"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-20aa33a5aad3",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/client/api.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-20aa33a5aad3"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-6c73324ffc0a",
+      "other_type": "artifact",
+      "other_title": ".gitignore",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-6c73324ffc0a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3a8e790cb2fa",
+      "other_type": "artifact",
+      "other_title": "docker-compose.standalone.yml",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3a8e790cb2fa"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2aa6ee2e5b0c",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/load.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2aa6ee2e5b0c"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-d1361ec2e4a1",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/register/oss.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-d1361ec2e4a1"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-247e001a3093",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/sources/detect.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-247e001a3093"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-65980bbb4167",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/sources/fetch.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-65980bbb4167"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-f5363913e866",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/client/api.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f5363913e866"
+    }
+  ]
+}

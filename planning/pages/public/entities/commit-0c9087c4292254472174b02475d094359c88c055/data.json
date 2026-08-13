@@ -1,0 +1,225 @@
+{
+  "id": "COMMIT-0c9087c4292254472174b02475d094359c88c055",
+  "type": "commit",
+  "title": "0c9087c4292254472174b02475d094359c88c055",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-0c9087c4292254472174b02475d094359c88c055",
+  "summary": {
+    "id": "COMMIT-0c9087c4292254472174b02475d094359c88c055",
+    "type": "commit",
+    "title": "0c9087c4292254472174b02475d094359c88c055",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/0c9087c4292254472174b02475d094359c88c055",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "source_mirror_id": "github:commit:ix-infrastructure/Ix@0c9087c4292254472174b02475d094359c88c055",
+    "source_type": "github_commit",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/commit/0c9087c4292254472174b02475d094359c88c055",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/0c9087c4292254472174b02475d094359c88c055",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "sha": "0c9087c4292254472174b02475d094359c88c055",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/0c9087c4292254472174b02475d094359c88c055",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/0c9087c4292254472174b02475d094359c88c055",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "committer": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "message": "fix(skill): scope the PR to the skill and docs; drop the Compass monkey-patch\n\nNarrows this to the two pieces that belong in this repo — the `ix` agent skill\nand the HTTP API reference — and fixes the defects in what remains.\n\nRemoved, because the layer is wrong rather than the code:\n\n- `skills/ix/scripts/compass-patch/` — `apply.sh` string-injected a\n  `/__ix/remap` handler into the *compiled* `~/.ix/cli/cli/dist/cli/commands/\n  view.js` and regex-patched Compass's minified `KeyboardHelp-*.js`. This repo\n  owns `ix-cli/src/cli/commands/view.ts`, so that handler belongs in\n  `serverScript()` where it is typechecked, tested, and survives `ix upgrade`\n  instead of being overwritten by it. The handler also spawned `ix map` on an\n  unauthenticated POST, and `serverScript` calls `server.listen(PORT)` with no\n  host — binding 0.0.0.0, so it was reachable from the LAN and from any page in\n  the user's browser. `fit-view.js` wrote `canvas.style.zoom` and\n  `wrap.style.transform`, the two inline styles Compass drives from\n  `snappedZoom`/`snappedPan` state, so React restored its own values on the next\n  render; the 60ms re-apply timer was a race, not a fix. Its auto-frame also\n  duplicated Compass #57, which fixed the empty-first-paint upstream and ships\n  in v0.9.1.\n- `upstream/compass-fit-view/` — 723 lines of React that nothing in this repo\n  builds, typechecks or tests. It is a patch for another repo.\n\nBoth are preserved in this branch's history and are worth landing in\nsystem-compass, where the F-key fit view is genuinely new — Compass binds `0`\ntoday and nothing binds `F`.\n\nFixed in what stays:\n\n- `bootstrap.sh`'s `version_ge` was inverted. `sort -C` succeeds on ordered\n  input, so want-then-got asks \"want <= got\"; the `-r` asked the reverse. Node\n  22.22.2 against a floor of 22 warned \"requires Node >= 22\", and Node 18\n  passed silently. Verified across 22.22.2 / 24 / 22.0.0 / 20.11.1 / 18.4.0.\n- `install-skill.sh` unconditionally `rm -rf`'d `~/.claude/skills/ix` and\n  `~/.agents/skills/ix`. `ix` is a short name; a hand-written skill that\n  happened to share it was destroyed with no prompt, no backup and nothing in\n  the output. It now refuses unless the destination carries `name: ix`, with\n  `--force` to override.\n- `CLAUDE.md` carried `[redacted]/jacob/...`, a path from the author's machine, in\n  the file every agent in this repo loads. It also documented `dist/ix.zip` and\n  `.freebuff/run.md` as repo contents while gitignoring both.\n- `.gitignore`'s `dist/` was unanchored, matching at any depth; `/dist/`.\n- `docs/api/README.md` documented `POST /__ix/remap` as a real endpoint. It is\n  not one — a POST falls through to the SPA handler and returns index.html with\n  a 200, which the section now says.\n- `troubleshooting.md` had three rows whose remedies were the removed patch.\n\nThe `ix reset` is global and `registerPatchesCommand` is never registered\nfindings are kept — both verified, the second now tracked as #371.",
+    "parents": [
+      {
+        "sha": "b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/b038c46117c26e17ff7f3dc8edd4c4f5083f79f6"
+      }
+    ],
+    "tree_sha": "64669f07ae2bfbe8821de1906eaab98fb515e22e",
+    "authored_at": "2026-08-10T03:16:52Z",
+    "committed_at": "2026-08-10T03:16:52Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@0c9087c4292254472174b02475d094359c88c055",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/0c9087c4292254472174b02475d094359c88c055",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/0c9087c4292254472174b02475d094359c88c055",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T03:16:52Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T03:16:52Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-0c9087c4292254472174b02475d094359c88c055",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#368"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+      "other_type": "commit",
+      "other_title": "b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b038c46117c26e17ff7f3dc8edd4c4f5083f79f6"
+    },
+    {
+      "direction": "in",
+      "relationship": "HEADS_AT",
+      "other": "PR-368",
+      "other_type": "pr",
+      "other_title": "Ix PR #368",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-368"
+    },
+    {
+      "direction": "in",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "PR-368",
+      "other_type": "pr",
+      "other_title": "Ix PR #368",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-368"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-809da0d53df5",
+      "other_type": "artifact",
+      "other_title": ".gitignore",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-809da0d53df5"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3a5de4be99c9",
+      "other_type": "artifact",
+      "other_title": "CLAUDE.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3a5de4be99c9"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-bbbba2af7455",
+      "other_type": "artifact",
+      "other_title": "README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-bbbba2af7455"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5b1b927b6a8e",
+      "other_type": "artifact",
+      "other_title": "docs/api/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5b1b927b6a8e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-4f46bd8b8bc8",
+      "other_type": "artifact",
+      "other_title": "docs/api/openapi.yaml",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-4f46bd8b8bc8"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-61bf75a401a3",
+      "other_type": "artifact",
+      "other_title": "scripts/install-skill.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-61bf75a401a3"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-83c45e74eb69",
+      "other_type": "artifact",
+      "other_title": "skills/ix/SKILL.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-83c45e74eb69"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-f1ae4df1b803",
+      "other_type": "artifact",
+      "other_title": "skills/ix/references/commands.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f1ae4df1b803"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-04ef1773eadf",
+      "other_type": "artifact",
+      "other_title": "skills/ix/references/output-formats.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-04ef1773eadf"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e6083dcd375e",
+      "other_type": "artifact",
+      "other_title": "skills/ix/references/troubleshooting.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e6083dcd375e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-36c1657074c2",
+      "other_type": "artifact",
+      "other_title": "skills/ix/scripts/bootstrap.ps1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-36c1657074c2"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-4818b5c86e91",
+      "other_type": "artifact",
+      "other_title": "skills/ix/scripts/bootstrap.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-4818b5c86e91"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGED_BY",
+      "other": "PR-368",
+      "other_type": "pr",
+      "other_title": "Ix PR #368",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-368"
+    }
+  ]
+}

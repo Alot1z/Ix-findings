@@ -1,0 +1,87 @@
+{
+  "id": "FILE-fbba088ad251",
+  "type": "artifact",
+  "title": "ix-cli/src/cli/__tests__/config-file-mode.test.ts",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/file-fbba088ad251",
+  "summary": {
+    "id": "FILE-fbba088ad251",
+    "type": "artifact",
+    "title": "ix-cli/src/cli/__tests__/config-file-mode.test.ts",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/blob/HEAD/ix-cli/src/cli/__tests__/config-file-mode.test.ts",
+    "source_mirror_id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/__tests__/config-file-mode.test.ts",
+    "source_type": "github_file",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/blob/43bf9ead431a8c5afc43345de886074382df2d51/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fconfig-file-mode.test.ts",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 414,
+    "filename": "ix-cli/src/cli/__tests__/config-file-mode.test.ts",
+    "status": "modified",
+    "additions": 55,
+    "deletions": 2,
+    "changes": 57,
+    "blob_url": "https://github.com/ix-infrastructure/Ix/blob/43bf9ead431a8c5afc43345de886074382df2d51/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fconfig-file-mode.test.ts",
+    "raw_url": "https://github.com/ix-infrastructure/Ix/raw/43bf9ead431a8c5afc43345de886074382df2d51/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fconfig-file-mode.test.ts",
+    "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fconfig-file-mode.test.ts?ref=43bf9ead431a8c5afc43345de886074382df2d51",
+    "patch": "@@ -2,6 +2,7 @@ import { afterEach, beforeEach, describe, expect, it } from \"vitest\";\n import * as fs from \"node:fs\";\n import * as os from \"node:os\";\n import * as nodePath from \"node:path\";\n+import { parse } from \"yaml\";\n \n import { saveConfig } from \"../config.js\";\n \n@@ -16,7 +17,6 @@ beforeEach(() => {\n   savedProfile = process[redacted].USERPROFILE;\n   process[redacted].HOME = home;\n   process[redacted].USERPROFILE = home;\n-  fs.mkdirSync(nodePath.join(home, \".ix\"), { recursive: true });\n });\n \n afterEach(() => {\n@@ -26,23 +26,76 @@ afterEach(() => {\n });\n \n const cfgPath = () => nodePath.join(home, \".ix\", \"config.yaml\");\n+const cfgDir = () => nodePath.dirname(cfgPath());\n+const readConfig = () => parse(fs.readFileSync(cfgPath(), \"utf8\")) as Record<string, unknown>;\n \n // POSIX permission bits are meaningless on Windows (chmod only toggles the\n // read-only bit), so statSync reports modes like 0o666 and these assertions\n // can't hold. The 0600 guard protects unix-like systems; skip the checks there.\n const posix = process.platform !== \"win32\";\n \n-describe(\"saveConfig file mode (credentials live in this file)\", () => {\n+describe(\"saveConfig persistence\", () => {\n+  it(\"creates a config from a fresh home without leaving the staging file\", () => {\n+    expect(fs.existsSync(cfgDir())).toBe(false);\n+\n+    saveConfig({ endpoint: \"http://[redacted]8090\", format: \"json\" });\n+\n+    expect(readConfig()).toMatchObject({ endpoint: \"http://[redacted]8090\", format: \"json\" });\n+    expect(fs.readdirSync(cfgDir())).toEqual([\"config.yaml\"]);\n+  });\n+\n   it.skipIf(!posix)(\"creates the config 0600\", () => {\n     saveConfig({ endpoint: \"http://[redacted]8090\", format: \"text\" });\n     expect(fs.statSync(cfgPath()).mode & 0o777).toBe(0o600);\n   });\n \n   it.skipIf(!posix)(\"tightens a pre-existing group/world-readable config to 0600\", () => {\n+    fs.mkdirSync(cfgDir(), { recursive: true });\n     fs.writeFileSync(cfgPath(), \"endpoint: http://[redacted]8090\\nformat: text\\n\", { mode: 0o644 });\n     fs.chmodSync(cfgPath(), 0o644); // force 0644 regardless of umask\n     saveConfig({ endpoint: \"http://[redacted]8090\", format: \"text\" });\n     // No group/world bits remain.\n     expect(fs.statSync(cfgPath()).mode & 0o077).toBe(0);\n   });\n+\n+  it.skipIf(!posix)(\"atomically replaces an existing config and removes the staging file\", () => {\n+    fs.mkdirSync(cfgDir(), { recursive: true });\n+    fs.writeFileSync(cfgPath(), \"endpoint: http://old.example\\nformat: text\\n\");\n+    const previousInode = fs.statSync(cfgPath()).ino;\n+\n+    saveConfig({ endpoint: \"http://new.example\", format: \"json\" });\n+\n+    const currentInode = fs.statSync(cfgPath()).ino;\n+    if (previousInode !== 0 && currentInode !== 0) expect(currentInode).not.toBe(previousInode);\n+    expect(fs.readdirSync(cfgDir())).toEqual([\"config.yaml\"]);\n+    expect(readConfig()).toMatchObject({ endpoint: \"http://new.example\", format: \"json\" });\n+  });\n+\n+  it(\"preserves extension and user-owned fields in an existing config\", () => {\n+    fs.mkdirSync(cfgDir(), { recursive: true });\n+    fs.writeFileSync(\n+      cfgPath(),\n+      [\n+        \"endpoint: http://old.example\",\n+        \"format: text\",\n+        \"active: private-cloud\",\n+        \"instances:\",\n+        \"  private-cloud:\",\n+        \"    refresh_token: secret\",\n+        \"user:\",\n+        \"  name: Alice\",\n+        \"\",\n+      ].join(\"\\n\"),\n+    );\n+\n+    saveConfig({ endpoint: \"http://new.example\", format: \"json\" });\n+\n+    expect(readConfig()).toEqual({\n+      active: \"private-cloud\",\n+      instances: { \"private-cloud\": { refresh_token: \"secret\" } },\n+      user: { name: \"Alice\" },\n+      endpoint: \"http://new.example\",\n+      format: \"json\",\n+    });\n+  });\n });",
+    "parent_pr": 414
+  },
+  "source_context": {
+    "id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/__tests__/config-file-mode.test.ts",
+    "source": {
+      "type": "github_file",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/blob/43bf9ead431a8c5afc43345de886074382df2d51/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fconfig-file-mode.test.ts",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-13T18:57:15Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-13T18:57:16Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "FILE-fbba088ad251",
+    "entity_type": "FILE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#414",
+    "line_precision": "FILE_LEVEL"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-8c2c7f5556a54fe10827647c083961d73649fee2",
+      "other_type": "commit",
+      "other_title": "8c2c7f5556a54fe10827647c083961d73649fee2",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-8c2c7f5556a54fe10827647c083961d73649fee2"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-19cbd836bf4e505e1352d85f56a97368a4baae93",
+      "other_type": "commit",
+      "other_title": "19cbd836bf4e505e1352d85f56a97368a4baae93",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-19cbd836bf4e505e1352d85f56a97368a4baae93"
+    }
+  ]
+}

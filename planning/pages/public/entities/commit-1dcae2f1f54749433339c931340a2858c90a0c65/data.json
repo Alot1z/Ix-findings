@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-1dcae2f1f54749433339c931340a2858c90a0c65",
+  "type": "commit",
+  "title": "1dcae2f1f54749433339c931340a2858c90a0c65",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-1dcae2f1f54749433339c931340a2858c90a0c65",
+  "summary": {
+    "id": "COMMIT-1dcae2f1f54749433339c931340a2858c90a0c65",
+    "type": "commit",
+    "title": "1dcae2f1f54749433339c931340a2858c90a0c65",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/1dcae2f1f54749433339c931340a2858c90a0c65",
+    "author": {
+      "name": "riley0227",
+      "email": "riley0227@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-08b3ab947c27342991571ba77310f4ee0f3ca5ae",
+      "other_type": "commit",
+      "other_title": "08b3ab947c27342991571ba77310f4ee0f3ca5ae",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-08b3ab947c27342991571ba77310f4ee0f3ca5ae"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-3bcbfe9026fcfef627be3fbb84bb8251dc0587c3",
+      "other_type": "commit",
+      "other_title": "3bcbfe9026fcfef627be3fbb84bb8251dc0587c3",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-3bcbfe9026fcfef627be3fbb84bb8251dc0587c3"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-89789e1c91cf",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/GraphPatchBuilder.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-89789e1c91cf"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-1a288a79afc9",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/GraphPatchBuilder.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-1a288a79afc9"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-a6a83fc19669",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/GraphPatchBuilder.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-a6a83fc19669"
+    }
+  ]
+}

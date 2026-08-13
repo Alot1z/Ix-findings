@@ -1,0 +1,110 @@
+{
+  "id": "FILE-e6083dcd375e",
+  "type": "artifact",
+  "title": "skills/ix/references/troubleshooting.md",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/file-e6083dcd375e",
+  "summary": {
+    "id": "FILE-e6083dcd375e",
+    "type": "artifact",
+    "title": "skills/ix/references/troubleshooting.md",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "source_mirror_id": "github:file:ix-infrastructure/Ix:skills/ix/references/troubleshooting.md",
+    "source_type": "github_file",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/blob/0c9087c4292254472174b02475d094359c88c055/skills%2Fix%2Freferences%2Ftroubleshooting.md",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 368,
+    "filename": "skills/ix/references/troubleshooting.md",
+    "status": "added",
+    "additions": 53,
+    "deletions": 0,
+    "changes": 53,
+    "blob_url": "https://github.com/ix-infrastructure/Ix/blob/0c9087c4292254472174b02475d094359c88c055/skills%2Fix%2Freferences%2Ftroubleshooting.md",
+    "raw_url": "https://github.com/ix-infrastructure/Ix/raw/0c9087c4292254472174b02475d094359c88c055/skills%2Fix%2Freferences%2Ftroubleshooting.md",
+    "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/skills%2Fix%2Freferences%2Ftroubleshooting.md?ref=0c9087c4292254472174b02475d094359c88c055",
+    "patch": "@@ -0,0 +1,53 @@\n+# Troubleshooting & Prerequisites\n+\n+## Prerequisites\n+\n+- **Node.js >= 22** — required by the `ix` CLI.\n+- **git** — used for workspace detection.\n+- **Docker + Docker Compose** — runs the local backend (ArangoDB on\n+  [redacted]8529 and the Ix Memory Layer on [redacted]8090). Docker Desktop\n+  must be running on macOS/Windows.\n+- **ripgrep** — powers `ix text`; optional but recommended (non-fatal if\n+  missing).\n+\n+The bootstrap script (`scripts/bootstrap.sh` / `bootstrap.ps1`) checks and\n+installs these, then installs the `ix` CLI if missing.\n+\n+## Backend not reachable\n+\n+Most first-run problems are the backend not being up yet. Diagnose in order:\n+\n+```bash\n+ix status          # is the backend reachable?\n+ix docker start    # start the backend (ArangoDB + memory layer)\n+ix doctor          # check system health — server, database, graph integrity\n+```\n+\n+If a command reports `Ix backend not reachable`, run `ix docker start` and try\n+again.\n+\n+## Common failure modes\n+\n+| Symptom | Fix |\n+|---|---|\n+| `Ix backend not reachable` | `ix docker start`, wait, then `ix doctor` |\n+| Docker daemon not running | Start Docker Desktop / the Docker service, then re-run bootstrap |\n+| `ix: command not found` | Re-run bootstrap (installs the CLI), or restart the shell so PATH picks up the wrapper |\n+| `The '<name>' command requires Ix Pro.` | Not installed — skip the step, do not retry or mention it again this session |\n+| `ix text` errors | Install ripgrep (brew/apt/dnf/choco) |\n+| `Compass UI not found` on `ix view` | Run `ix upgrade` to fetch Compass. Re-running the installer wipes the Compass assets, so bootstrap auto-restores them with `ix upgrade`; skip with `IX_SKIP_COMPASS=1` |\n+| Compass shows \"Compass not connected to a codebase\" | The scoped workspace has no graph — run `ix map .` from the repo root, then reload the tab |\n+| Slow or stale results | Re-run `ix map --silent` to refresh the graph |\n+\n+## Environment flags\n+\n+- `IX_DEBUG=1` — full stack traces on any error.\n+- `IX_SKIP_INSTALL=1` — skip the CLI install step in bootstrap.\n+- `IX_SKIP_BACKEND=1` — skip starting/waiting for the backend in bootstrap.\n+- `IX_SKIP_MAP=1` — skip `ix map` in bootstrap.\n+\n+## Re-mapping\n+\n+The graph persists between sessions but goes stale as code changes. Re-run\n+`ix map --silent` from the repo root after every meaningful code change so\n+answers stay current.",
+    "parent_pr": 368
+  },
+  "source_context": {
+    "id": "github:file:ix-infrastructure/Ix:skills/ix/references/troubleshooting.md",
+    "source": {
+      "type": "github_file",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/blob/0c9087c4292254472174b02475d094359c88c055/skills%2Fix%2Freferences%2Ftroubleshooting.md",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T00:15:22Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T03:58:43Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "FILE-e6083dcd375e",
+    "entity_type": "FILE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#368",
+    "line_precision": "FILE_LEVEL"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+      "other_type": "commit",
+      "other_title": "b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b038c46117c26e17ff7f3dc8edd4c4f5083f79f6"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-0c9087c4292254472174b02475d094359c88c055",
+      "other_type": "commit",
+      "other_title": "0c9087c4292254472174b02475d094359c88c055",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-0c9087c4292254472174b02475d094359c88c055"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-ffee9dfca2cbbb9ae08f4f7e864d0d0dcb5ac681",
+      "other_type": "commit",
+      "other_title": "ffee9dfca2cbbb9ae08f4f7e864d0d0dcb5ac681",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-ffee9dfca2cbbb9ae08f4f7e864d0d0dcb5ac681"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-6a1e7e178b905745c12f9faebe0a56f91c8ffb0c",
+      "other_type": "commit",
+      "other_title": "6a1e7e178b905745c12f9faebe0a56f91c8ffb0c",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-6a1e7e178b905745c12f9faebe0a56f91c8ffb0c"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-2157158446a74d3d2303f818dc4f3f4e3758432c",
+      "other_type": "commit",
+      "other_title": "2157158446a74d3d2303f818dc4f3f4e3758432c",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-2157158446a74d3d2303f818dc4f3f4e3758432c"
+    }
+  ]
+}

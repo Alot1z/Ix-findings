@@ -1,0 +1,79 @@
+{
+  "id": "COMMIT-ce651134107f248683db254bd9c4aee605afd88b",
+  "type": "commit",
+  "title": "ce651134107f248683db254bd9c4aee605afd88b",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-ce651134107f248683db254bd9c4aee605afd88b",
+  "summary": {
+    "id": "COMMIT-ce651134107f248683db254bd9c4aee605afd88b",
+    "type": "commit",
+    "title": "ce651134107f248683db254bd9c4aee605afd88b",
+    "status": "HISTORICAL",
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    }
+  },
+  "source_snapshot": {
+    "sha": "ce651134107f248683db254bd9c4aee605afd88b",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/ce651134107f248683db254bd9c4aee605afd88b",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/ce651134107f248683db254bd9c4aee605afd88b",
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "committer": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "message": "fix(mcp): repair the orphan bookkeeping and the Windows quoting from #400\n\nAn independent review of #400 found that three of its own fixes were wrong,\nand that two of its tests were written so they could not fail against the\ndefect they claimed to cover.\n\n**An orphan settling mid-run released the running command's lock.**\n`releaseHeldLocks` drops every lock the process holds, not the finishing\ncommand's, and the guard only asked whether an orphan was in flight — never\nwhether something was running right now. A command abandoned at its timeout\nsettling part-way through an unrelated `ix map` deleted that map's lock,\nreopening the exact window single-flight exists to close. It now also requires\n`activeRun === null`, which the lock-holding command's own finally always\nsatisfies.\n\n**A command that never settled was an immortal orphan.** Nothing else removed\nit, so `process.exitCode` stayed distrusted for the life of the server — making\n*every* later failure report success, the precise inverse of the bug #400 set\nout to fix — and no lock was ever released again. Membership is now bounded by\na grace timer as well as by the command settling.\n\n**Staleness by regex both missed and misfired.** It could not cross a space, so\n`[local-path] Doe\\...\\ix.cmd` — the common Windows shape, not the edge one —\nwent on reading as healthy; and letting a match start at an interior `/` made\nit latch onto the `/npm/ix.cmd` suffix of a live path, report it stale, and\nsilently rewrite a working registration with no `--force`. The launcher is now\nread from the parsed entry, so there is nothing to guess. An unreachable path\nis still not \"gone\": only ENOENT counts.\n\n**`quoteForCmd` passed metacharacters through bare.** Its fast path asked only\nabout whitespace, so `[local-path] was emitted unquoted; verified by\nround-trip that it then arrives as `[local-path] with cmd running `D\\npm\\ix.cmd`\nas a second command, and that `[local-path] arrives silently as `[local-path]\n— a wrong launcher written into every host config and reported as success. The\npredicate is now a whitelist, and `%` joins `\"` as unencodable rather than\nbeing expanded by cmd behind the quoting's back.\n\nAlso: `MISSING_ENTRY` is tied to our own server name, so an unrelated \"not\nfound\" in a host's output can no longer read as a free name and overwrite the\nuser's server; OpenClaw's Windows write is paired with a matching Windows read,\nso the platform that writes the file also reads it; the README no longer claims\na write path Windows does not take; and the tests that reached `acquireMapLock`\nno longer write into the developer's real `~/.ix/locks`.\n\nThe two tests that could not fail — a `quoteForCmd` fixture whose space sent it\ndown the quoting branch either way, and a stale-launcher fixture that avoided\nspaces — are replaced with cases that exercise the defect. All five fixes were\nvalidated by restoring the defect and confirming the intended test goes red.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>",
+    "parents": [
+      {
+        "sha": "7f6f1ceb60e08cffbddd37d032fdbf7e74df8b70",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/7f6f1ceb60e08cffbddd37d032fdbf7e74df8b70"
+      }
+    ],
+    "tree_sha": "306a2e040fc328765b21aadc49566e6a198de9fd",
+    "authored_at": "2026-08-12T18:09:36Z",
+    "committed_at": "2026-08-12T18:09:36Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@ce651134107f248683db254bd9c4aee605afd88b",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/ce651134107f248683db254bd9c4aee605afd88b",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/ce651134107f248683db254bd9c4aee605afd88b",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-12T18:09:36Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-12T18:09:36Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-ce651134107f248683db254bd9c4aee605afd88b",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#401"
+  },
+  "relationships": []
+}

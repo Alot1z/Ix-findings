@@ -1,0 +1,102 @@
+{
+  "id": "COMMENT-ix-infrastructure-Ix-issue-385-5245654535",
+  "type": "artifact",
+  "title": "Issue #385 comment 5245654535",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/comment-ix-infrastructure-ix-issue-385-5245654535",
+  "summary": {
+    "id": "COMMENT-ix-infrastructure-Ix-issue-385-5245654535",
+    "type": "artifact",
+    "title": "Issue #385 comment 5245654535",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/issues/385#issuecomment-5245654535",
+    "source_mirror_id": "github:comment:ix-infrastructure/Ix#issue-385-5245654535",
+    "source_type": "github_issue_comment",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/issues/385#issuecomment-5245654535",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5245654535",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "id": 5245654535,
+    "node_id": "IC_kwDORdC75M8AAAABOKpWBw",
+    "repository": "ix-infrastructure/Ix",
+    "parent_type": "ISSUE",
+    "parent_number": 385,
+    "kind": "ISSUE_COMMENT",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "body": "Thank you for the issue — this is an unusually good report. Naming the exact path the wrapper tried to execute is what made it diagnosable in one pass, and noting that reinstalling restored it confirmed the cause before anyone had to reproduce it.\n\n## Unblocking you now\n\n```powershell\nirm https://ix-infra.com/install.ps1 | iex\n```\n\nThat rewrites the launcher and restores the CLI, which matches what you already found. You should not need to uninstall first, and your graph and config are untouched — the breakage is only in `~\\.ix\\bin\\ix.cmd`.\n\n## What happened\n\nYou were on the wrong side of a one-way door.\n\n`ix upgrade` before 0.9.0 refreshed only the **bash** shim (the one Git Bash uses) and never touched `~\\.ix\\bin\\ix.cmd`, which is the launcher native PowerShell actually runs. Meanwhile the upgrade extracted the new CLI into a **version-nested** directory, so `~\\.ix\\cli\\ix.cmd` — the path your launcher points at — stopped existing. Your wrapper was left aimed at a file the upgrade had just moved.\n\nThe layout half of this was fixed in #346 and shipped in v0.9.0. The catch is that `ix upgrade` is run by the version you are upgrading *from*, so 0.8.1 executed 0.8.1's code and the fix could not participate. **Anyone going from ≤0.8.1 to 0.9.x on Windows hits this**, and no change we ship can prevent it retroactively — which is precisely why it deserved its own fix rather than a \"already fixed, please upgrade\" reply.\n\nOnce you are on 0.9.1, future upgrades go through `refreshLaunchers()`, which rewrites the launcher for either layout. This is a one-time cost.\n\n## What is changing\n\n#386 makes the launcher diagnose itself. It checks its target before invoking it and, when it is missing, prints the cause and the reinstall command instead of cmd.exe's message naming the wrapper. That has to live in the batch file: at that point `ix doctor` is exactly as unreachable as `ix`, so nothing inside the CLI can reach you.\n\nYour report also turned up a second bug in the same three lines: the old launcher never propagated the exit code, so **every** non-zero `ix` exit was reported to callers as success. That has been fixed alongside it.\n\nI am leaving this issue open until someone confirms the new launcher on real Windows — I do not have a machine to run cmd.exe on, and I would rather not close it on tests alone.\n\nOne question, if you have a moment: does `ix --version` report `0.9.1` after reinstalling? That tells us whether the upgrade had already staged the new CLI correctly and only the launcher was wrong, or whether the payload needed replacing too.\n",
+    "html_url": "https://github.com/ix-infrastructure/Ix/issues/385#issuecomment-5245654535",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5245654535",
+    "created_at": "2026-08-10T20:34:20Z",
+    "updated_at": "2026-08-10T20:34:20Z",
+    "commit_id": null,
+    "path": null,
+    "line": null,
+    "start_line": null,
+    "side": null,
+    "in_reply_to_id": null,
+    "diff_hunk": null,
+    "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+    "source": "OFFICIAL_GITHUB_FACT",
+    "parent_issue": 385
+  },
+  "source_context": {
+    "id": "github:comment:ix-infrastructure/Ix#issue-385-5245654535",
+    "source": {
+      "type": "github_issue_comment",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/issues/385#issuecomment-5245654535",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5245654535",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T20:34:20Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T20:34:20Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMENT-ix-infrastructure-Ix-issue-385-5245654535",
+    "entity_type": "ISSUE_COMMENT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:issue:ix-infrastructure/Ix#385",
+    "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "COMMENTED_ON",
+      "other": "ISSUE-385",
+      "other_type": "issue",
+      "other_title": "Ix issue #385",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/issue-385"
+    },
+    {
+      "direction": "in",
+      "relationship": "AUTHORED",
+      "other": "PERSON-KageBinary",
+      "other_type": "artifact",
+      "other_title": "KageBinary",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-kagebinary"
+    }
+  ]
+}

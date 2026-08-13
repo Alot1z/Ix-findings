@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-7dff1e4500e61bad116b9ddfc82a21d1e1172d5d",
+  "type": "commit",
+  "title": "7dff1e4500e61bad116b9ddfc82a21d1e1172d5d",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-7dff1e4500e61bad116b9ddfc82a21d1e1172d5d",
+  "summary": {
+    "id": "COMMIT-7dff1e4500e61bad116b9ddfc82a21d1e1172d5d",
+    "type": "commit",
+    "title": "7dff1e4500e61bad116b9ddfc82a21d1e1172d5d",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/7dff1e4500e61bad116b9ddfc82a21d1e1172d5d",
+    "author": {
+      "name": "Tanner Kocher",
+      "email": "tannertorrey3@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-3bfa17166a1fc5e6dc4402aa339f457cd573e1b1",
+      "other_type": "commit",
+      "other_title": "3bfa17166a1fc5e6dc4402aa339f457cd573e1b1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-3bfa17166a1fc5e6dc4402aa339f457cd573e1b1"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-b2fe9adc8c1f23f6ee981da0e4bb4ea90dd62c12",
+      "other_type": "commit",
+      "other_title": "b2fe9adc8c1f23f6ee981da0e4bb4ea90dd62c12",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b2fe9adc8c1f23f6ee981da0e4bb4ea90dd62c12"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c41d5ac36e24",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/help-coverage.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c41d5ac36e24"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-d358b74acdfb",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/help-coverage.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-d358b74acdfb"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-7fd9b1cf2616",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/help-coverage.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-7fd9b1cf2616"
+    }
+  ]
+}

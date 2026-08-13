@@ -14,7 +14,7 @@
     "phases": { "allowedFields": ["id", "title", "summary", "status"] },
     "timeline": { "allowedFields": ["id", "date", "title", "type"] },
     "graph": {
-      "nodes": { "allowedFields": ["id", "type", "title", "category", "status", "phase", "repository", "number", "url", "author", "commit", "merged_at", "disposition", "evidence_refs"] },
+      "nodes": { "allowedFields": ["id", "type", "title", "category", "status", "phase", "repository", "number", "url", "author", "commit", "merged_at", "disposition", "evidence_refs", "source_mirror_id", "source_type", "source_repository", "source_url", "source_api_url", "source_is_authoritative", "analysis_layer"] },
       "edges": { "allowedFields": ["source", "target", "relationship"] },
       "note": "node 'note'/'file' fields EXCLUDED by default (may contain local paths). url allowed only for public github.com URLs (system-compass private URLs stripped by build step)."
     },
@@ -27,6 +27,7 @@
     "testResults": { "allowedFields": ["date", "repository", "sha", "vitest", "tests", "smoke", "tsc", "eslint"] },
     "contributions": { "allowedFields": ["id", "repo", "branch", "sha", "status", "stateDetail", "title", "files", "tests", "packet", "blocker", "nextAction", "findings"] },
     "staleClaims": { "allowedFields": ["id", "description"] },
+    "externalMirror": { "allowed": true, "note": "Public GitHub source snapshots and separate Ix-findings analysis; GitHub remains authoritative. Recursively sanitized for secrets and local paths." },
     "sysCompass": { "allowed": false, "note": "contains access/blocker narrative; publish only meta-level status instead." },
     "manifest": { "allowed": false, "note": "raw manifest embeds local_paths + execution constraints — NEVER publish the raw object. Only meta counters are used." }
   },

@@ -1,0 +1,172 @@
+{
+  "schema_version": "phase-j.context-pack-benchmark.v1",
+  "generated_at": "2026-08-12T21:48:42.150Z",
+  "retrieval_method": "deterministic index -> targeted record -> excerpt",
+  "index_version": "phase-i.search-index.v1 + phase-f.report-index.v1",
+  "benchmark_queries": 15,
+  "results": [
+    {
+      "query": "What is the current project state?",
+      "pack_type": "CURRENT_STATE",
+      "source_files": 2,
+      "bytes": 664,
+      "token_estimate": 166,
+      "latency_ms": 22,
+      "source_records": 0,
+      "external_mutations": 0
+    },
+    {
+      "query": "What changed in Phase E?",
+      "pack_type": "PHASE",
+      "source_files": 3,
+      "bytes": 994,
+      "token_estimate": 249,
+      "latency_ms": 3,
+      "source_records": 0,
+      "external_mutations": 0
+    },
+    {
+      "query": "What changed in Phase F?",
+      "pack_type": "PHASE",
+      "source_files": 3,
+      "bytes": 852,
+      "token_estimate": 213,
+      "latency_ms": 3,
+      "source_records": 0,
+      "external_mutations": 0
+    },
+    {
+      "query": "What changed in Phase I?",
+      "pack_type": "PHASE",
+      "source_files": 3,
+      "bytes": 717,
+      "token_estimate": 180,
+      "latency_ms": 3,
+      "source_records": 0,
+      "external_mutations": 0
+    },
+    {
+      "query": "What is PR #393?",
+      "pack_type": "PULL_REQUEST",
+      "source_files": 3,
+      "bytes": 2054,
+      "token_estimate": 514,
+      "latency_ms": 4,
+      "source_records": 0,
+      "external_mutations": 0
+    },
+    {
+      "query": "What implements finding F-009?",
+      "pack_type": "FINDING",
+      "source_files": 2,
+      "bytes": 662,
+      "token_estimate": 166,
+      "latency_ms": 5,
+      "source_records": 0,
+      "external_mutations": 0
+    },
+    {
+      "query": "What files changed in the latest phase?",
+      "pack_type": "LATEST_PHASE_FILES",
+      "source_files": 1,
+      "bytes": 415,
+      "token_estimate": 104,
+      "latency_ms": 23,
+      "source_records": 0,
+      "external_mutations": 0
+    },
+    {
+      "query": "What is currently unknown?",
+      "pack_type": "UNKNOWNS",
+      "source_files": 2,
+      "bytes": 529,
+      "token_estimate": 133,
+      "latency_ms": 4,
+      "source_records": 0,
+      "external_mutations": 0
+    },
+    {
+      "query": "What is historical?",
+      "pack_type": "HISTORICAL",
+      "source_files": 1,
+      "bytes": 4999,
+      "token_estimate": 1250,
+      "latency_ms": 4,
+      "source_records": 0,
+      "external_mutations": 0
+    },
+    {
+      "query": "What external GitHub objects changed?",
+      "pack_type": "GITHUB_CHANGES",
+      "source_files": 1,
+      "bytes": 5794,
+      "token_estimate": 1449,
+      "latency_ms": 19,
+      "source_records": 0,
+      "external_mutations": 0
+    },
+    {
+      "query": "What route represents entity IMPL-REMAP-PR393?",
+      "pack_type": "ENTITY_ROUTE",
+      "source_files": 2,
+      "bytes": 135,
+      "token_estimate": 34,
+      "latency_ms": 13,
+      "source_records": 0,
+      "external_mutations": 0
+    },
+    {
+      "query": "What report documents finding F-009?",
+      "pack_type": "REPORT_FOR_OBJECT",
+      "source_files": 1,
+      "bytes": 294,
+      "token_estimate": 74,
+      "latency_ms": 4,
+      "source_records": 0,
+      "external_mutations": 0
+    },
+    {
+      "query": "Which commit changed file knowledge/build-github-mirror.mjs?",
+      "pack_type": "FILE_COMMIT",
+      "source_files": 2,
+      "bytes": 208,
+      "token_estimate": 52,
+      "latency_ms": 6,
+      "source_records": 0,
+      "external_mutations": 0
+    },
+    {
+      "query": "What is the current upstream head?",
+      "pack_type": "UPSTREAM_HEAD",
+      "source_files": 2,
+      "bytes": 340,
+      "token_estimate": 85,
+      "latency_ms": 6,
+      "source_records": 0,
+      "external_mutations": 0
+    },
+    {
+      "query": "Which phase introduced artifact SEARCH-INDEX.json?",
+      "pack_type": "ARTIFACT_PHASE",
+      "source_files": 1,
+      "bytes": 135,
+      "token_estimate": 34,
+      "latency_ms": 4,
+      "source_records": 0,
+      "external_mutations": 0
+    }
+  ],
+  "totals": {
+    "bytes": 18792,
+    "tokens": 4703,
+    "latency_ms": 123,
+    "source_files_opened": 3,
+    "external_mutations": 0
+  },
+  "summary": {
+    "mean_bytes": 1253,
+    "mean_latency_ms": 8,
+    "target": "minimum necessary context while preserving correctness",
+    "full_repository_scan": false
+  }
+}

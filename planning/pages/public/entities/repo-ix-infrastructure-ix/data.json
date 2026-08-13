@@ -9,64 +9,919 @@
     "type": "repository",
     "title": "ix-infrastructure/Ix",
     "status": "CURRENT",
-    "url": "https://github.com/ix-infrastructure/Ix"
+    "url": "https://github.com/ix-infrastructure/Ix",
+    "source_mirror_id": "github:repository:ix-infrastructure/Ix",
+    "source_type": "github_repository",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "id": 1171307492,
+    "full_name": "ix-infrastructure/Ix",
+    "name": "Ix",
+    "owner": {
+      "login": "ix-infrastructure",
+      "id": 256883681,
+      "type": "Organization",
+      "html_url": "https://github.com/ix-infrastructure"
+    },
+    "html_url": "https://github.com/ix-infrastructure/Ix",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+    "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+    "visibility": "public",
+    "default_branch": "main",
+    "private": false,
+    "fork": false,
+    "parent": null,
+    "source": null,
+    "created_at": "2026-03-03T04:48:38Z",
+    "updated_at": "2026-08-13T21:51:31Z",
+    "pushed_at": "2026-08-13T19:18:44Z",
+    "topics": [
+      "ai",
+      "ai-memory",
+      "claude-code",
+      "cli",
+      "code-analysis",
+      "code-mapping",
+      "code-memory",
+      "codebase-understanding",
+      "codex",
+      "developer-tools",
+      "llm",
+      "openclaw",
+      "persistent-memory",
+      "program-analysis",
+      "software-architecture",
+      "system-intelligence",
+      "system-mapping"
+    ],
+    "language": "TypeScript",
+    "license": {
+      "key": "apache-2.0",
+      "name": "Apache License 2.0",
+      "url": "https://api.github.com/licenses/apache-2.0"
+    },
+    "watchers_count": 701,
+    "stargazers_count": 701,
+    "forks_count": 60,
+    "open_issues_count": 6,
+    "head": {
+      "sha": "ab823e34b9ec8679dcf0df4b4ec5725207e2a88d",
+      "html_url": "https://github.com/ix-infrastructure/Ix/commit/ab823e34b9ec8679dcf0df4b4ec5725207e2a88d",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/ab823e34b9ec8679dcf0df4b4ec5725207e2a88d",
+      "author": {
+        "login": "josephismikhail",
+        "id": 56614593,
+        "type": "User",
+        "html_url": "https://github.com/josephismikhail"
+      },
+      "committer": {
+        "login": "web-flow",
+        "id": 19864447,
+        "type": "User",
+        "html_url": "https://github.com/web-flow"
+      },
+      "message": "fix(view): keep backend scope out of generated script (#412)\n\n* fix(view): keep backend scope out of generated script\n\n* fix(view): don't report success for a server that never came up\n\nThe generated script now throws if its argv contract is not met, and it runs\ndetached with `stdio: \"ignore\"` — so that throw goes nowhere. The CLI checked\nonly that spawn returned a pid, then printed \"[ok] Visualizer started\", wrote a\nPID file for a dead process and opened a browser on a closed port.\n\n`view-server.test.ts` already had `waitForPort` for exactly this reason (\"a\nserver that dies on startup would otherwise surface as a timeout ... invisibly,\nbecause stdio is ignored\"). This gives the command the same check.\n\nReported rather than fatal, and the process is left alone: 8s is a heuristic,\nand on a machine slow enough to exceed it, killing the server or failing the\ncommand would be worse than the mis-report. The PID/scope/port files are written\neither way, so `ix view status` and `ix view stop` still work.\n\n`view-running-port.test.ts` mocked `createConnection` to always refuse, which\nanswered the pre-spawn \"is this port taken?\" check but hangs a post-spawn\nreadiness probe for its whole budget. The mock now models the transition.\n\n* test(view): cover runtime server arguments\n\n---------\n\nCo-authored-by: KageBinary <ianjakobhock@gmail.com>",
+      "parents": [
+        {
+          "sha": "8d1bc85be21d34815a23c9bddd2ae1abbf6237b5",
+          "html_url": "https://github.com/ix-infrastructure/Ix/commit/8d1bc85be21d34815a23c9bddd2ae1abbf6237b5"
+        }
+      ],
+      "tree_sha": "fa35652169026eaee16aae7d425f2fea0ca2355a",
+      "authored_at": "2026-08-13T18:34:34Z",
+      "committed_at": "2026-08-13T18:34:34Z"
+    },
+    "branches": [
+      {
+        "name": "chore/brew-update-v0.9.1",
+        "protected": false,
+        "sha": "23fdc9ab76fa2fd3fb487ed1e12cf0e36cfeb800",
+        "url": null
+      },
+      {
+        "name": "chore/brew-update-v0.9.2",
+        "protected": false,
+        "sha": "71b8986e1c3164e78275604b76399860fb3313e3",
+        "url": null
+      },
+      {
+        "name": "chore/brew-update-v0.9.3",
+        "protected": false,
+        "sha": "2aef96e936c4c8650c6ef8c1d84a5f3042c24a66",
+        "url": null
+      },
+      {
+        "name": "chore/drop-plans-goals-stubs",
+        "protected": false,
+        "sha": "16160aa70718a93c090a3fe0555c5622c8c09357",
+        "url": null
+      },
+      {
+        "name": "chore/raise-node-floor-to-22",
+        "protected": false,
+        "sha": "0bc722d25997f3e49e4529389958f1b877b926db",
+        "url": null
+      },
+      {
+        "name": "chore/release-0.9.3",
+        "protected": false,
+        "sha": "ca44152a95d93a4a5bd22f0c88bfd093d37a44ae",
+        "url": null
+      },
+      {
+        "name": "codex/ix-mcp-command",
+        "protected": false,
+        "sha": "2be2c25f63dca94116bfb299e5037e293b840aa9",
+        "url": null
+      },
+      {
+        "name": "copilot/research-open-source-contribution",
+        "protected": false,
+        "sha": "ff7df414e165779f72e9dd121b3f48c2f55b9350",
+        "url": null
+      },
+      {
+        "name": "feat/remote-runner-and-create-client",
+        "protected": false,
+        "sha": "f4259b7d1ede45e8ae62e42407ac2e184c92ca0f",
+        "url": null
+      },
+      {
+        "name": "fix/deduplicate-patch-edges",
+        "protected": false,
+        "sha": "21476998f2e70d0dd2415b05a07724fa57f55397",
+        "url": null
+      },
+      {
+        "name": "fix/installer-docker-autoinstall-noop",
+        "protected": false,
+        "sha": "4475d240b3a9bae0618626c9b1f5d73c8883c167",
+        "url": null
+      },
+      {
+        "name": "fix/installer-ghcr-denied-diagnostics",
+        "protected": false,
+        "sha": "14eb3506160bf7aabba9ea6261a714dff02e39f6",
+        "url": null
+      },
+      {
+        "name": "fix/prerequisites-not-a-pip-manifest",
+        "protected": false,
+        "sha": "7054d5fc3fb98a987b0cba4e78efad1db4bff1af",
+        "url": null
+      },
+      {
+        "name": "fix/progress-frames-non-tty",
+        "protected": false,
+        "sha": "decd85e25d922f13b049f08d5875e162e8d7a62f",
+        "url": null
+      },
+      {
+        "name": "fix/release-prerelease-handling",
+        "protected": false,
+        "sha": "77e8a5ecd079c12b6921ac2a0273153f580cd92b",
+        "url": null
+      },
+      {
+        "name": "fix/stamp-bundled-compass-version",
+        "protected": false,
+        "sha": "83c4308b5d1c7f70fd1294350474890c3549ea04",
+        "url": null
+      },
+      {
+        "name": "fix/status-workspace-scoped-patch",
+        "protected": false,
+        "sha": "1e590250a4ab70da9c4016b3faa52bf2be5749c6",
+        "url": null
+      },
+      {
+        "name": "fix/view-reports-running-port",
+        "protected": false,
+        "sha": "c5357aa6965aa0a88706c49005a4d70b58aec41a",
+        "url": null
+      },
+      {
+        "name": "fix/view-runtime-config-security",
+        "protected": false,
+        "sha": "55f4816b019c655609115807eaae459c7cea945f",
+        "url": null
+      },
+      {
+        "name": "fix/windows-tar-cygpath-pairing",
+        "protected": false,
+        "sha": "f434f9d0bc5027a5d3033df35caed7a8c2c84fc8",
+        "url": null
+      },
+      {
+        "name": "fix/workspace-id-yaml-numeric-coercion",
+        "protected": false,
+        "sha": "80b429f2ce398eb3bf9e842cdf7b4d35dc34286d",
+        "url": null
+      },
+      {
+        "name": "main",
+        "protected": true,
+        "sha": "ab823e34b9ec8679dcf0df4b4ec5725207e2a88d",
+        "url": null
+      },
+      {
+        "name": "old-dev",
+        "protected": false,
+        "sha": "f771abffab3d7104550a593746a2d7cdffd7d088",
+        "url": null
+      },
+      {
+        "name": "refactor/core-ingestion-cloud-architecture",
+        "protected": false,
+        "sha": "480915b643a705bb7ac8be6fe353ed34b007e7f2",
+        "url": null
+      },
+      {
+        "name": "test/ix-home-with-space",
+        "protected": false,
+        "sha": "13e96bacc648ee979f35e2874cd8aa2004f920e1",
+        "url": null
+      }
+    ],
+    "tags": [
+      {
+        "name": "v0.9.3",
+        "sha": "1a6a9b3656d62413a33b62088993549606779e81",
+        "url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/1a6a9b3656d62413a33b62088993549606779e81"
+      },
+      {
+        "name": "v0.9.2",
+        "sha": "5488741155d69a5f03fce41416643ddceca6f8a0",
+        "url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/5488741155d69a5f03fce41416643ddceca6f8a0"
+      },
+      {
+        "name": "v0.9.1",
+        "sha": "0437abf5de675f16fe161df86fca9adf7eee9b93",
+        "url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/0437abf5de675f16fe161df86fca9adf7eee9b93"
+      },
+      {
+        "name": "v0.9.0",
+        "sha": "3c49cc243654aae428cfc4b8802f0b3a99de56a4",
+        "url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/3c49cc243654aae428cfc4b8802f0b3a99de56a4"
+      },
+      {
+        "name": "v0.9.0-rc.2",
+        "sha": "0b4caf9fc2811977e333e22486799bf7d923a6cc",
+        "url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/0b4caf9fc2811977e333e22486799bf7d923a6cc"
+      },
+      {
+        "name": "v0.9.0-rc.1",
+        "sha": "47b11f706a5d6b5490db7476e8dec3c097298f0c",
+        "url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/47b11f706a5d6b5490db7476e8dec3c097298f0c"
+      },
+      {
+        "name": "v0.8.1",
+        "sha": "bc02305046bf34e606b21862139cc3422d101a34",
+        "url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/bc02305046bf34e606b21862139cc3422d101a34"
+      },
+      {
+        "name": "v0.8.0",
+        "sha": "86805883597151afe073d91dc46872b6a639ef8e",
+        "url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/86805883597151afe073d91dc46872b6a639ef8e"
+      },
+      {
+        "name": "v0.7.0",
+        "sha": "e84beb64931ca7e49bf4868c96880a826ec24532",
+        "url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/e84beb64931ca7e49bf4868c96880a826ec24532"
+      },
+      {
+        "name": "v0.6.0",
+        "sha": "9d1472a31df132463bb3aabb0568abb2268974ce",
+        "url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/9d1472a31df132463bb3aabb0568abb2268974ce"
+      },
+      {
+        "name": "v0.5.1",
+        "sha": "cdb1ec2b1dfb98a6aac67fd00bd49d41c810fbdd",
+        "url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/cdb1ec2b1dfb98a6aac67fd00bd49d41c810fbdd"
+      },
+      {
+        "name": "v0.5.0",
+        "sha": "d3c62090c1bcbb654445521670332c4c5a224bd5",
+        "url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/d3c62090c1bcbb654445521670332c4c5a224bd5"
+      },
+      {
+        "name": "v0.4.9",
+        "sha": "0676dc91e883e6fd096a5091d73fd67c816b7954",
+        "url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/0676dc91e883e6fd096a5091d73fd67c816b7954"
+      },
+      {
+        "name": "v0.4.7",
+        "sha": "089e2fa561435ad213e7e910ea12b1e312ce3fc9",
+        "url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/089e2fa561435ad213e7e910ea12b1e312ce3fc9"
+      },
+      {
+        "name": "v0.4.6",
+        "sha": "244d6a0b52caab4cc731f7f95425319ea6cc058b",
+        "url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/244d6a0b52caab4cc731f7f95425319ea6cc058b"
+      },
+      {
+        "name": "v0.4.5",
+        "sha": "43966484140dbb19da68e21f10b7f726eb038a18",
+        "url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/43966484140dbb19da68e21f10b7f726eb038a18"
+      },
+      {
+        "name": "v0.4.4",
+        "sha": "a176d590e8ab4101f2e1a753146779607c1923af",
+        "url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/a176d590e8ab4101f2e1a753146779607c1923af"
+      },
+      {
+        "name": "v0.4.3",
+        "sha": "470817696df573685b94a20a419f94cc8b29b802",
+        "url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/470817696df573685b94a20a419f94cc8b29b802"
+      },
+      {
+        "name": "v0.4.2",
+        "sha": "1116272a7ea67c09f92aa98f1050425c3b08c7d4",
+        "url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/1116272a7ea67c09f92aa98f1050425c3b08c7d4"
+      },
+      {
+        "name": "v0.4.1",
+        "sha": "90d587445db43359c426b11c619c8e4b3f930f8c",
+        "url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/90d587445db43359c426b11c619c8e4b3f930f8c"
+      },
+      {
+        "name": "v0.4.0",
+        "sha": "4baa10fa7220ced5805596d2a80004face33b178",
+        "url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/4baa10fa7220ced5805596d2a80004face33b178"
+      },
+      {
+        "name": "v0.3.4",
+        "sha": "fd7a76396976addbad25f6d85bc1fdbdaca82aff",
+        "url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/fd7a76396976addbad25f6d85bc1fdbdaca82aff"
+      },
+      {
+        "name": "v0.3.3",
+        "sha": "1f62005346a67b2d58022a11ad5ad4b354e6d298",
+        "url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/1f62005346a67b2d58022a11ad5ad4b354e6d298"
+      },
+      {
+        "name": "v0.3.2",
+        "sha": "f5cc02d0e239f1dde99d9080254ece0a5dc279e1",
+        "url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/f5cc02d0e239f1dde99d9080254ece0a5dc279e1"
+      },
+      {
+        "name": "v0.3.1",
+        "sha": "82a6e95fd3da3c8f1ed19aae5f60e2393c97bd03",
+        "url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/82a6e95fd3da3c8f1ed19aae5f60e2393c97bd03"
+      },
+      {
+        "name": "v0.3.0",
+        "sha": "0d3af662cd2b3b04fcfcbdd64be3a4cab57e972c",
+        "url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/0d3af662cd2b3b04fcfcbdd64be3a4cab57e972c"
+      },
+      {
+        "name": "v0.2.0",
+        "sha": "c12bb6ee2d384d5abe884a57e388679eea06bdf6",
+        "url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/c12bb6ee2d384d5abe884a57e388679eea06bdf6"
+      },
+      {
+        "name": "ix-v0.2.0",
+        "sha": "c12bb6ee2d384d5abe884a57e388679eea06bdf6",
+        "url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/c12bb6ee2d384d5abe884a57e388679eea06bdf6"
+      }
+    ],
+    "releases": [
+      {
+        "id": 369387050,
+        "tag_name": "v0.9.3",
+        "name": "v0.9.3",
+        "draft": false,
+        "prerelease": false,
+        "created_at": "2026-08-12T16:35:35Z",
+        "published_at": "2026-08-12T16:39:51Z",
+        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.9.3",
+        "author": {
+          "login": "github-actions[bot]",
+          "id": 41898282,
+          "type": "Bot",
+          "html_url": "https://github.com/apps/github-actions"
+        }
+      },
+      {
+        "id": 368189646,
+        "tag_name": "v0.9.2",
+        "name": "v0.9.2",
+        "draft": false,
+        "prerelease": false,
+        "created_at": "2026-08-10T20:46:39Z",
+        "published_at": "2026-08-10T20:50:27Z",
+        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.9.2",
+        "author": {
+          "login": "github-actions[bot]",
+          "id": 41898282,
+          "type": "Bot",
+          "html_url": "https://github.com/apps/github-actions"
+        }
+      },
+      {
+        "id": 367609790,
+        "tag_name": "v0.9.1",
+        "name": "v0.9.1",
+        "draft": false,
+        "prerelease": false,
+        "created_at": "2026-08-09T23:12:11Z",
+        "published_at": "2026-08-09T23:16:00Z",
+        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.9.1",
+        "author": {
+          "login": "github-actions[bot]",
+          "id": 41898282,
+          "type": "Bot",
+          "html_url": "https://github.com/apps/github-actions"
+        }
+      },
+      {
+        "id": 367591619,
+        "tag_name": "v0.9.0",
+        "name": "v0.9.0",
+        "draft": false,
+        "prerelease": false,
+        "created_at": "2026-08-09T21:32:13Z",
+        "published_at": "2026-08-09T21:37:38Z",
+        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.9.0",
+        "author": {
+          "login": "github-actions[bot]",
+          "id": 41898282,
+          "type": "Bot",
+          "html_url": "https://github.com/apps/github-actions"
+        }
+      },
+      {
+        "id": 367379687,
+        "tag_name": "v0.9.0-rc.2",
+        "name": "v0.9.0-rc.2",
+        "draft": false,
+        "prerelease": true,
+        "created_at": "2026-08-09T04:39:34Z",
+        "published_at": "2026-08-09T04:43:06Z",
+        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.9.0-rc.2",
+        "author": {
+          "login": "github-actions[bot]",
+          "id": 41898282,
+          "type": "Bot",
+          "html_url": "https://github.com/apps/github-actions"
+        }
+      },
+      {
+        "id": 367352693,
+        "tag_name": "v0.9.0-rc.1",
+        "name": "v0.9.0-rc.1",
+        "draft": false,
+        "prerelease": true,
+        "created_at": "2026-08-09T01:47:57Z",
+        "published_at": "2026-08-09T01:52:00Z",
+        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.9.0-rc.1",
+        "author": {
+          "login": "github-actions[bot]",
+          "id": 41898282,
+          "type": "Bot",
+          "html_url": "https://github.com/apps/github-actions"
+        }
+      },
+      {
+        "id": 335029998,
+        "tag_name": "v0.8.1",
+        "name": "v0.8.1",
+        "draft": false,
+        "prerelease": false,
+        "created_at": "2026-06-05T15:55:13Z",
+        "published_at": "2026-06-05T16:14:36Z",
+        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.8.1",
+        "author": {
+          "login": "github-actions[bot]",
+          "id": 41898282,
+          "type": "Bot",
+          "html_url": "https://github.com/apps/github-actions"
+        }
+      },
+      {
+        "id": 334794576,
+        "tag_name": "v0.8.0",
+        "name": "v0.8.0",
+        "draft": false,
+        "prerelease": false,
+        "created_at": "2026-06-05T07:34:19Z",
+        "published_at": "2026-06-05T07:41:35Z",
+        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.8.0",
+        "author": {
+          "login": "github-actions[bot]",
+          "id": 41898282,
+          "type": "Bot",
+          "html_url": "https://github.com/apps/github-actions"
+        }
+      },
+      {
+        "id": 333515575,
+        "tag_name": "v0.7.0",
+        "name": "v0.7.0",
+        "draft": false,
+        "prerelease": false,
+        "created_at": "2026-06-03T05:54:03Z",
+        "published_at": "2026-06-03T06:09:21Z",
+        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.7.0",
+        "author": {
+          "login": "github-actions[bot]",
+          "id": 41898282,
+          "type": "Bot",
+          "html_url": "https://github.com/apps/github-actions"
+        }
+      },
+      {
+        "id": 308069925,
+        "tag_name": "v0.6.0",
+        "name": "v0.6.0",
+        "draft": false,
+        "prerelease": false,
+        "created_at": "2026-04-12T19:11:24Z",
+        "published_at": "2026-04-12T19:17:18Z",
+        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.6.0",
+        "author": {
+          "login": "github-actions[bot]",
+          "id": 41898282,
+          "type": "Bot",
+          "html_url": "https://github.com/apps/github-actions"
+        }
+      },
+      {
+        "id": 304915487,
+        "tag_name": "v0.5.1",
+        "name": "v0.5.1",
+        "draft": false,
+        "prerelease": false,
+        "created_at": "2026-04-03T01:20:17Z",
+        "published_at": "2026-04-03T01:24:13Z",
+        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.5.1",
+        "author": {
+          "login": "github-actions[bot]",
+          "id": 41898282,
+          "type": "Bot",
+          "html_url": "https://github.com/apps/github-actions"
+        }
+      },
+      {
+        "id": 304439842,
+        "tag_name": "v0.5.0",
+        "name": "v0.5.0",
+        "draft": false,
+        "prerelease": false,
+        "created_at": "2026-04-01T21:16:18Z",
+        "published_at": "2026-04-01T22:33:18Z",
+        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.5.0",
+        "author": {
+          "login": "TannerTorrey3",
+          "id": 70401747,
+          "type": "User",
+          "html_url": "https://github.com/TannerTorrey3"
+        }
+      },
+      {
+        "id": 302782392,
+        "tag_name": "v0.4.9",
+        "name": "v0.4.9",
+        "draft": false,
+        "prerelease": false,
+        "created_at": "2026-03-29T02:33:56Z",
+        "published_at": "2026-03-29T02:40:22Z",
+        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.4.9",
+        "author": {
+          "login": "github-actions[bot]",
+          "id": 41898282,
+          "type": "Bot",
+          "html_url": "https://github.com/apps/github-actions"
+        }
+      },
+      {
+        "id": 301446911,
+        "tag_name": "v0.4.7",
+        "name": "v0.4.7",
+        "draft": false,
+        "prerelease": false,
+        "created_at": "2026-03-25T21:06:07Z",
+        "published_at": "2026-03-25T21:12:52Z",
+        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.4.7",
+        "author": {
+          "login": "github-actions[bot]",
+          "id": 41898282,
+          "type": "Bot",
+          "html_url": "https://github.com/apps/github-actions"
+        }
+      },
+      {
+        "id": 301440099,
+        "tag_name": "v0.4.6",
+        "name": "v0.4.6",
+        "draft": false,
+        "prerelease": false,
+        "created_at": "2026-03-25T20:50:04Z",
+        "published_at": "2026-03-25T20:54:55Z",
+        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.4.6",
+        "author": {
+          "login": "github-actions[bot]",
+          "id": 41898282,
+          "type": "Bot",
+          "html_url": "https://github.com/apps/github-actions"
+        }
+      },
+      {
+        "id": 301411730,
+        "tag_name": "v0.4.5",
+        "name": "v0.4.5",
+        "draft": false,
+        "prerelease": false,
+        "created_at": "2026-03-25T19:49:55Z",
+        "published_at": "2026-03-25T19:53:26Z",
+        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.4.5",
+        "author": {
+          "login": "github-actions[bot]",
+          "id": 41898282,
+          "type": "Bot",
+          "html_url": "https://github.com/apps/github-actions"
+        }
+      },
+      {
+        "id": 300856000,
+        "tag_name": "v0.4.4",
+        "name": "v0.4.4",
+        "draft": false,
+        "prerelease": false,
+        "created_at": "2026-03-24T19:27:24Z",
+        "published_at": "2026-03-24T19:32:16Z",
+        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.4.4",
+        "author": {
+          "login": "github-actions[bot]",
+          "id": 41898282,
+          "type": "Bot",
+          "html_url": "https://github.com/apps/github-actions"
+        }
+      },
+      {
+        "id": 300831646,
+        "tag_name": "v0.4.3",
+        "name": "v0.4.3",
+        "draft": false,
+        "prerelease": false,
+        "created_at": "2026-03-24T18:26:51Z",
+        "published_at": "2026-03-24T18:29:34Z",
+        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.4.3",
+        "author": {
+          "login": "github-actions[bot]",
+          "id": 41898282,
+          "type": "Bot",
+          "html_url": "https://github.com/apps/github-actions"
+        }
+      },
+      {
+        "id": 300821935,
+        "tag_name": "v0.4.2",
+        "name": "v0.4.2",
+        "draft": false,
+        "prerelease": false,
+        "created_at": "2026-03-24T17:55:25Z",
+        "published_at": "2026-03-24T18:05:21Z",
+        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.4.2",
+        "author": {
+          "login": "github-actions[bot]",
+          "id": 41898282,
+          "type": "Bot",
+          "html_url": "https://github.com/apps/github-actions"
+        }
+      },
+      {
+        "id": 300805091,
+        "tag_name": "v0.4.1",
+        "name": "v0.4.1",
+        "draft": false,
+        "prerelease": false,
+        "created_at": "2026-03-24T17:18:24Z",
+        "published_at": "2026-03-24T17:25:43Z",
+        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.4.1",
+        "author": {
+          "login": "github-actions[bot]",
+          "id": 41898282,
+          "type": "Bot",
+          "html_url": "https://github.com/apps/github-actions"
+        }
+      },
+      {
+        "id": 299958155,
+        "tag_name": "v0.4.0",
+        "name": "v0.4.0",
+        "draft": false,
+        "prerelease": false,
+        "created_at": "2026-03-22T20:15:06Z",
+        "published_at": "2026-03-22T20:15:14Z",
+        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.4.0",
+        "author": {
+          "login": "github-actions[bot]",
+          "id": 41898282,
+          "type": "Bot",
+          "html_url": "https://github.com/apps/github-actions"
+        }
+      },
+      {
+        "id": 299950043,
+        "tag_name": "v0.3.4",
+        "name": "v0.3.4",
+        "draft": false,
+        "prerelease": false,
+        "created_at": "2026-03-22T19:20:51Z",
+        "published_at": "2026-03-22T19:21:00Z",
+        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.3.4",
+        "author": {
+          "login": "github-actions[bot]",
+          "id": 41898282,
+          "type": "Bot",
+          "html_url": "https://github.com/apps/github-actions"
+        }
+      },
+      {
+        "id": 299947206,
+        "tag_name": "v0.3.3",
+        "name": "v0.3.3",
+        "draft": false,
+        "prerelease": false,
+        "created_at": "2026-03-22T18:59:40Z",
+        "published_at": "2026-03-22T18:59:48Z",
+        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.3.3",
+        "author": {
+          "login": "github-actions[bot]",
+          "id": 41898282,
+          "type": "Bot",
+          "html_url": "https://github.com/apps/github-actions"
+        }
+      },
+      {
+        "id": 299942846,
+        "tag_name": "v0.3.2",
+        "name": "v0.3.2",
+        "draft": false,
+        "prerelease": false,
+        "created_at": "2026-03-22T18:32:53Z",
+        "published_at": "2026-03-22T18:33:04Z",
+        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.3.2",
+        "author": {
+          "login": "github-actions[bot]",
+          "id": 41898282,
+          "type": "Bot",
+          "html_url": "https://github.com/apps/github-actions"
+        }
+      },
+      {
+        "id": 299935987,
+        "tag_name": "v0.3.1",
+        "name": "v0.3.1",
+        "draft": false,
+        "prerelease": false,
+        "created_at": "2026-03-22T17:50:43Z",
+        "published_at": "2026-03-22T17:50:52Z",
+        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.3.1",
+        "author": {
+          "login": "github-actions[bot]",
+          "id": 41898282,
+          "type": "Bot",
+          "html_url": "https://github.com/apps/github-actions"
+        }
+      },
+      {
+        "id": 299685606,
+        "tag_name": "v0.3.0",
+        "name": "v0.3.0",
+        "draft": false,
+        "prerelease": false,
+        "created_at": "2026-03-21T05:21:08Z",
+        "published_at": "2026-03-21T05:21:18Z",
+        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.3.0",
+        "author": {
+          "login": "github-actions[bot]",
+          "id": 41898282,
+          "type": "Bot",
+          "html_url": "https://github.com/apps/github-actions"
+        }
+      },
+      {
+        "id": 297331597,
+        "tag_name": "v0.2.0",
+        "name": "v0.2.0",
+        "draft": false,
+        "prerelease": false,
+        "created_at": "2026-03-16T06:57:01Z",
+        "published_at": "2026-03-16T07:00:21Z",
+        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.2.0",
+        "author": {
+          "login": "github-actions[bot]",
+          "id": 41898282,
+          "type": "Bot",
+          "html_url": "https://github.com/apps/github-actions"
+        }
+      },
+      {
+        "id": 297329397,
+        "tag_name": "ix-v0.2.0",
+        "name": "ix: v0.2.0",
+        "draft": false,
+        "prerelease": false,
+        "created_at": "2026-03-16T06:57:01Z",
+        "published_at": "2026-03-16T06:57:10Z",
+        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/ix-v0.2.0",
+        "author": {
+          "login": "github-actions[bot]",
+          "id": 41898282,
+          "type": "Bot",
+          "html_url": "https://github.com/apps/github-actions"
+        }
+      }
+    ]
+  },
+  "source_context": {
+    "id": "github:repository:ix-infrastructure/Ix",
+    "source": {
+      "type": "github_repository",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-13T22:23:39.068Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-13T21:51:31Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "REPO-ix-infrastructure-Ix",
+    "entity_type": "REPOSITORY",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "mirror_scope": "repository metadata, refs, releases",
+    "source_capture": "REST"
   },
   "relationships": [
     {
       "direction": "in",
       "relationship": "FOUND_IN",
-      "other": "ISSUE-219",
+      "other": "ISSUE-420",
       "other_type": "issue",
-      "other_title": "Ix issue #219",
-      "other_url": "https://alot1z.github.io/Ix-findings/issues/219"
+      "other_title": "Ix issue #420",
+      "other_url": "https://alot1z.github.io/Ix-findings/issues/420"
     },
     {
       "direction": "in",
       "relationship": "FOUND_IN",
-      "other": "ISSUE-349",
+      "other": "ISSUE-413",
       "other_type": "issue",
-      "other_title": "Ix issue #349",
-      "other_url": "https://alot1z.github.io/Ix-findings/issues/349"
+      "other_title": "Ix issue #413",
+      "other_url": "https://alot1z.github.io/Ix-findings/issues/413"
     },
     {
       "direction": "in",
       "relationship": "FOUND_IN",
-      "other": "ISSUE-383",
-      "other_type": "issue",
-      "other_title": "Ix issue #383",
-      "other_url": "https://alot1z.github.io/Ix-findings/issues/383"
-    },
-    {
-      "direction": "in",
-      "relationship": "FOUND_IN",
-      "other": "ISSUE-385",
-      "other_type": "issue",
-      "other_title": "Ix issue #385",
-      "other_url": "https://alot1z.github.io/Ix-findings/issues/385"
-    },
-    {
-      "direction": "in",
-      "relationship": "FOUND_IN",
-      "other": "PR-388",
+      "other": "PR-423",
       "other_type": "pr",
-      "other_title": "Ix PR #388",
-      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-388"
+      "other_title": "Ix PR #423",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-423"
     },
     {
       "direction": "in",
       "relationship": "FOUND_IN",
-      "other": "PR-393",
+      "other": "PR-422",
       "other_type": "pr",
-      "other_title": "Ix PR #393",
-      "other_url": "https://alot1z.github.io/Ix-findings/prs/393/tests"
+      "other_title": "Ix PR #422",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-422"
     },
     {
       "direction": "in",
       "relationship": "FOUND_IN",
-      "other": "PR-395",
+      "other": "PR-421",
       "other_type": "pr",
-      "other_title": "Ix PR #395",
-      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-395"
+      "other_title": "Ix PR #421",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-421"
+    },
+    {
+      "direction": "in",
+      "relationship": "FOUND_IN",
+      "other": "PR-414",
+      "other_type": "pr",
+      "other_title": "Ix PR #414",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-414"
     },
     {
       "direction": "in",
@@ -203,6 +1058,886 @@
       "other_type": "file",
       "other_title": "CLI-HANDOFF/manifest.json",
       "other_url": "https://alot1z.github.io/Ix-findings/entities/src-2a5998452c1a"
+    },
+    {
+      "direction": "in",
+      "relationship": "FORK_OF",
+      "other": "FORK-Alot1z-Ix-remap",
+      "other_type": "artifact",
+      "other_title": "Alot1z/Ix-remap",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/fork-alot1z-ix-remap"
+    },
+    {
+      "direction": "in",
+      "relationship": "CLONES",
+      "other": "CLONE-E-E-github-repos-Ix-remap",
+      "other_type": "artifact",
+      "other_title": "CLONE-E-E-github-repos-Ix-remap",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/clone-e-e-github-repos-ix-remap"
+    },
+    {
+      "direction": "in",
+      "relationship": "CLONES",
+      "other": "CLONE-E-E-github-repos-Ix",
+      "other_type": "artifact",
+      "other_title": "CLONE-E-E-github-repos-Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/clone-e-e-github-repos-ix"
+    },
+    {
+      "direction": "in",
+      "relationship": "CLONES",
+      "other": "CLONE-E-E-github-repos-Ix-mcp",
+      "other_type": "artifact",
+      "other_title": "CLONE-E-E-github-repos-Ix-mcp",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/clone-e-e-github-repos-ix-mcp"
+    },
+    {
+      "direction": "in",
+      "relationship": "CLONES",
+      "other": "CLONE-E-E-github-repos-Ix-test",
+      "other_type": "artifact",
+      "other_title": "CLONE-E-E-github-repos-Ix-test",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/clone-e-e-github-repos-ix-test"
+    },
+    {
+      "direction": "in",
+      "relationship": "POINTS_TO",
+      "other": "REMOTE-1a9a28881592",
+      "other_type": "artifact",
+      "other_title": "[redacted]E-github-repos/Ix-remap:origin",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/remote-1a9a28881592"
+    },
+    {
+      "direction": "in",
+      "relationship": "POINTS_TO",
+      "other": "REMOTE-cc22bda04e85",
+      "other_type": "artifact",
+      "other_title": "[redacted]E-github-repos/Ix:origin",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/remote-cc22bda04e85"
+    },
+    {
+      "direction": "in",
+      "relationship": "POINTS_TO",
+      "other": "REMOTE-d3a42a0e3c13",
+      "other_type": "artifact",
+      "other_title": "[redacted]E-github-repos/Ix-mcp:origin",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/remote-d3a42a0e3c13"
+    },
+    {
+      "direction": "in",
+      "relationship": "POINTS_TO",
+      "other": "REMOTE-b2e8c26f598e",
+      "other_type": "artifact",
+      "other_title": "[redacted]E-github-repos/Ix-test:origin",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/remote-b2e8c26f598e"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-f4db1f1bb8b1",
+      "other_type": "branch",
+      "other_title": "ix-infrastructure/Ix:HEAD",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-f4db1f1bb8b1"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-a4cda2fd84ac",
+      "other_type": "branch",
+      "other_title": "ix-infrastructure/Ix:chore/brew-update-v0.9.1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-a4cda2fd84ac"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-1ada2e1190e7",
+      "other_type": "branch",
+      "other_title": "ix-infrastructure/Ix:chore/brew-update-v0.9.2",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-1ada2e1190e7"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-a8834d98d4b5",
+      "other_type": "branch",
+      "other_title": "ix-infrastructure/Ix:chore/raise-node-floor-to-22",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-a8834d98d4b5"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-015a411fd6f3",
+      "other_type": "branch",
+      "other_title": "ix-infrastructure/Ix:copilot/research-open-source-contribution",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-015a411fd6f3"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-a7dfb6dfc707",
+      "other_type": "branch",
+      "other_title": "ix-infrastructure/Ix:feat/remote-runner-and-create-client",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-a7dfb6dfc707"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-6a65bfbe793b",
+      "other_type": "branch",
+      "other_title": "ix-infrastructure/Ix:fix/installer-docker-autoinstall-noop",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-6a65bfbe793b"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-e7864f53946e",
+      "other_type": "branch",
+      "other_title": "ix-infrastructure/Ix:fix/installer-ghcr-denied-diagnostics",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-e7864f53946e"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-a8d6fa6a264d",
+      "other_type": "branch",
+      "other_title": "ix-infrastructure/Ix:fix/prerequisites-not-a-pip-manifest",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-a8d6fa6a264d"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-13b10674e695",
+      "other_type": "branch",
+      "other_title": "ix-infrastructure/Ix:fix/progress-frames-non-tty",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-13b10674e695"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-57b5787a189c",
+      "other_type": "branch",
+      "other_title": "ix-infrastructure/Ix:fix/release-prerelease-handling",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-57b5787a189c"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-40de7733f605",
+      "other_type": "branch",
+      "other_title": "ix-infrastructure/Ix:fix/stamp-bundled-compass-version",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-40de7733f605"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-aedc7d952c95",
+      "other_type": "branch",
+      "other_title": "ix-infrastructure/Ix:fix/status-workspace-scoped-patch",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-aedc7d952c95"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-fe63539a35fb",
+      "other_type": "branch",
+      "other_title": "ix-infrastructure/Ix:fix/view-reports-running-port",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-fe63539a35fb"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-3fb7582da978",
+      "other_type": "branch",
+      "other_title": "ix-infrastructure/Ix:fix/windows-tar-cygpath-pairing",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-3fb7582da978"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-04cfd856a785",
+      "other_type": "branch",
+      "other_title": "ix-infrastructure/Ix:fix/workspace-id-yaml-numeric-coercion",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-04cfd856a785"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-a456acb6ef82",
+      "other_type": "branch",
+      "other_title": "ix-infrastructure/Ix:main",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-a456acb6ef82"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-fa2e9f761a07",
+      "other_type": "branch",
+      "other_title": "ix-infrastructure/Ix:old-dev",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-fa2e9f761a07"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-14f498fd61ed",
+      "other_type": "branch",
+      "other_title": "ix-infrastructure/Ix:refactor/core-ingestion-cloud-architecture",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-14f498fd61ed"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-aaca3ffaf188",
+      "other_type": "branch",
+      "other_title": "ix-infrastructure/Ix:test/ix-home-with-space",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-aaca3ffaf188"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "FILE-c352e2bf972d",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/view.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c352e2bf972d"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "DIRECTORY-3fa45aa2524c",
+      "other_type": "artifact",
+      "other_title": "ix-cli",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/directory-3fa45aa2524c"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "DIRECTORY-79a4cbf8acdf",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/directory-79a4cbf8acdf"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "DIRECTORY-4a96c5aa4e99",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/directory-4a96c5aa4e99"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "DIRECTORY-e8ac210dfa8a",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/directory-e8ac210dfa8a"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "FILE-957f06ccc738",
+      "other_type": "artifact",
+      "other_title": "ix-cli/test/view-server.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-957f06ccc738"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "DIRECTORY-1c06737ed5df",
+      "other_type": "artifact",
+      "other_title": "ix-cli/test",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/directory-1c06737ed5df"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "FILE-c19f1ae041e7",
+      "other_type": "artifact",
+      "other_title": "skills/ix/scripts/bootstrap.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c19f1ae041e7"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "DIRECTORY-515ebe1785a7",
+      "other_type": "artifact",
+      "other_title": "skills",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/directory-515ebe1785a7"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "DIRECTORY-2353287b1c40",
+      "other_type": "artifact",
+      "other_title": "skills/ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/directory-2353287b1c40"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "DIRECTORY-da486f53d1c3",
+      "other_type": "artifact",
+      "other_title": "skills/ix/scripts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/directory-da486f53d1c3"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "FILE-e5e85417572e",
+      "other_type": "artifact",
+      "other_title": "docs/api/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e5e85417572e"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "DIRECTORY-b67452fc096a",
+      "other_type": "artifact",
+      "other_title": "docs",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/directory-b67452fc096a"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "DIRECTORY-c7412753a88d",
+      "other_type": "artifact",
+      "other_title": "docs/api",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/directory-c7412753a88d"
+    },
+    {
+      "direction": "in",
+      "relationship": "FOUND_IN",
+      "other": "ISSUE-219",
+      "other_type": "issue",
+      "other_title": "Ix issue #219",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/issue-219"
+    },
+    {
+      "direction": "in",
+      "relationship": "FOUND_IN",
+      "other": "ISSUE-349",
+      "other_type": "issue",
+      "other_title": "Issue #349 — [bug] Windows installer — path with spaces",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/issue-349"
+    },
+    {
+      "direction": "in",
+      "relationship": "FOUND_IN",
+      "other": "ISSUE-371",
+      "other_type": "issue",
+      "other_title": "Ix issue #371",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/issue-371"
+    },
+    {
+      "direction": "in",
+      "relationship": "FOUND_IN",
+      "other": "ISSUE-374",
+      "other_type": "issue",
+      "other_title": "Ix issue #374",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/issue-374"
+    },
+    {
+      "direction": "in",
+      "relationship": "FOUND_IN",
+      "other": "ISSUE-376",
+      "other_type": "issue",
+      "other_title": "Ix issue #376",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/issue-376"
+    },
+    {
+      "direction": "in",
+      "relationship": "FOUND_IN",
+      "other": "ISSUE-377",
+      "other_type": "issue",
+      "other_title": "Ix issue #377",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/issue-377"
+    },
+    {
+      "direction": "in",
+      "relationship": "FOUND_IN",
+      "other": "ISSUE-379",
+      "other_type": "issue",
+      "other_title": "Ix issue #379",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/issue-379"
+    },
+    {
+      "direction": "in",
+      "relationship": "FOUND_IN",
+      "other": "ISSUE-383",
+      "other_type": "issue",
+      "other_title": "Ix issue #383",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/issue-383"
+    },
+    {
+      "direction": "in",
+      "relationship": "FOUND_IN",
+      "other": "ISSUE-385",
+      "other_type": "issue",
+      "other_title": "Ix issue #385",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/issue-385"
+    },
+    {
+      "direction": "in",
+      "relationship": "FOUND_IN",
+      "other": "PR-358",
+      "other_type": "pr",
+      "other_title": "Ix PR #358",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-358"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "COMMIT-1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+      "other_type": "commit",
+      "other_title": "1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-1b9a761fc2db7087b5bad37f07119f8f6a3467aa"
+    },
+    {
+      "direction": "in",
+      "relationship": "FOUND_IN",
+      "other": "PR-362",
+      "other_type": "pr",
+      "other_title": "Ix PR #362",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-362"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "COMMIT-95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449",
+      "other_type": "commit",
+      "other_title": "95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "COMMIT-72c0b850681618a7a12a3d1ce1b8c90f0c26a7d3",
+      "other_type": "commit",
+      "other_title": "72c0b850681618a7a12a3d1ce1b8c90f0c26a7d3",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-72c0b850681618a7a12a3d1ce1b8c90f0c26a7d3"
+    },
+    {
+      "direction": "in",
+      "relationship": "FOUND_IN",
+      "other": "PR-365",
+      "other_type": "pr",
+      "other_title": "Ix PR #365",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-365"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "COMMIT-83c4308b5d1c7f70fd1294350474890c3549ea04",
+      "other_type": "commit",
+      "other_title": "83c4308b5d1c7f70fd1294350474890c3549ea04",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-83c4308b5d1c7f70fd1294350474890c3549ea04"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "COMMIT-0c1fa7aae8366bba41bdfae2f0d950e48657bcdc",
+      "other_type": "commit",
+      "other_title": "0c1fa7aae8366bba41bdfae2f0d950e48657bcdc",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-0c1fa7aae8366bba41bdfae2f0d950e48657bcdc"
+    },
+    {
+      "direction": "in",
+      "relationship": "FOUND_IN",
+      "other": "PR-366",
+      "other_type": "pr",
+      "other_title": "Ix PR #366",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-366"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "COMMIT-f434f9d0bc5027a5d3033df35caed7a8c2c84fc8",
+      "other_type": "commit",
+      "other_title": "f434f9d0bc5027a5d3033df35caed7a8c2c84fc8",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-f434f9d0bc5027a5d3033df35caed7a8c2c84fc8"
+    },
+    {
+      "direction": "in",
+      "relationship": "FOUND_IN",
+      "other": "PR-368",
+      "other_type": "pr",
+      "other_title": "Ix PR #368",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-368"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "COMMIT-0c9087c4292254472174b02475d094359c88c055",
+      "other_type": "commit",
+      "other_title": "0c9087c4292254472174b02475d094359c88c055",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-0c9087c4292254472174b02475d094359c88c055"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "COMMIT-b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+      "other_type": "commit",
+      "other_title": "b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b038c46117c26e17ff7f3dc8edd4c4f5083f79f6"
+    },
+    {
+      "direction": "in",
+      "relationship": "FOUND_IN",
+      "other": "PR-372",
+      "other_type": "pr",
+      "other_title": "Ix PR #372",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-372"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "COMMIT-86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+      "other_type": "commit",
+      "other_title": "86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-86f3684c4e4dc77dd0a579eb92863824953a3ce9"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "COMMIT-b7e04e73b7174b87831f4c5d981b5e198f363a75",
+      "other_type": "commit",
+      "other_title": "b7e04e73b7174b87831f4c5d981b5e198f363a75",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b7e04e73b7174b87831f4c5d981b5e198f363a75"
+    },
+    {
+      "direction": "in",
+      "relationship": "FOUND_IN",
+      "other": "PR-373",
+      "other_type": "pr",
+      "other_title": "Ix PR #373",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-373"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "COMMIT-d785e1ad2740e56ef712b432c7b328125c5f4599",
+      "other_type": "commit",
+      "other_title": "d785e1ad2740e56ef712b432c7b328125c5f4599",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-d785e1ad2740e56ef712b432c7b328125c5f4599"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "COMMIT-3bcaeecb8439e7079eb848560aaed8f60f2d583f",
+      "other_type": "commit",
+      "other_title": "3bcaeecb8439e7079eb848560aaed8f60f2d583f",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-3bcaeecb8439e7079eb848560aaed8f60f2d583f"
+    },
+    {
+      "direction": "in",
+      "relationship": "FOUND_IN",
+      "other": "PR-375",
+      "other_type": "pr",
+      "other_title": "Ix PR #375",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-375"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "COMMIT-304e7e490d5537e7f86f71c297e04656360f1bf1",
+      "other_type": "commit",
+      "other_title": "304e7e490d5537e7f86f71c297e04656360f1bf1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-304e7e490d5537e7f86f71c297e04656360f1bf1"
+    },
+    {
+      "direction": "in",
+      "relationship": "FOUND_IN",
+      "other": "PR-378",
+      "other_type": "pr",
+      "other_title": "Ix PR #378",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-378"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "COMMIT-d827cc9fa63a203b138d35621057af7c9a21bad0",
+      "other_type": "commit",
+      "other_title": "d827cc9fa63a203b138d35621057af7c9a21bad0",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-d827cc9fa63a203b138d35621057af7c9a21bad0"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "COMMIT-1b2e760d5dfd2cf31f6cf4ba818ed2cd200edcda",
+      "other_type": "commit",
+      "other_title": "1b2e760d5dfd2cf31f6cf4ba818ed2cd200edcda",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-1b2e760d5dfd2cf31f6cf4ba818ed2cd200edcda"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "COMMIT-16b0d663bab744f9ea5c02341919fff5636756ea",
+      "other_type": "commit",
+      "other_title": "16b0d663bab744f9ea5c02341919fff5636756ea",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-16b0d663bab744f9ea5c02341919fff5636756ea"
+    },
+    {
+      "direction": "in",
+      "relationship": "FOUND_IN",
+      "other": "PR-380",
+      "other_type": "pr",
+      "other_title": "Ix PR #380",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-380"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "COMMIT-b89046144f0a8cd960a7bbee22b3a12145c6c82e",
+      "other_type": "commit",
+      "other_title": "b89046144f0a8cd960a7bbee22b3a12145c6c82e",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b89046144f0a8cd960a7bbee22b3a12145c6c82e"
+    },
+    {
+      "direction": "in",
+      "relationship": "FOUND_IN",
+      "other": "PR-382",
+      "other_type": "pr",
+      "other_title": "Ix PR #382",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-382"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "COMMIT-9c74d47d1cd0faa86ef381a8888c450872675f7a",
+      "other_type": "commit",
+      "other_title": "9c74d47d1cd0faa86ef381a8888c450872675f7a",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-9c74d47d1cd0faa86ef381a8888c450872675f7a"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "COMMIT-03f94113384b597939d4b444581069df85b8354a",
+      "other_type": "commit",
+      "other_title": "03f94113384b597939d4b444581069df85b8354a",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-03f94113384b597939d4b444581069df85b8354a"
+    },
+    {
+      "direction": "in",
+      "relationship": "FOUND_IN",
+      "other": "PR-384",
+      "other_type": "pr",
+      "other_title": "Ix PR #384",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-384"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "COMMIT-4eb8d4e04c141e4cf49aaae297b0e89b08f74f43",
+      "other_type": "commit",
+      "other_title": "4eb8d4e04c141e4cf49aaae297b0e89b08f74f43",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-4eb8d4e04c141e4cf49aaae297b0e89b08f74f43"
+    },
+    {
+      "direction": "in",
+      "relationship": "FOUND_IN",
+      "other": "PR-386",
+      "other_type": "pr",
+      "other_title": "Ix PR #386",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-386"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "COMMIT-cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8",
+      "other_type": "commit",
+      "other_title": "cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8"
+    },
+    {
+      "direction": "in",
+      "relationship": "FOUND_IN",
+      "other": "PR-387",
+      "other_type": "pr",
+      "other_title": "Ix PR #387",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-387"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "COMMIT-94328d82bc6738f4900d5aff51b406bf6c934e73",
+      "other_type": "commit",
+      "other_title": "94328d82bc6738f4900d5aff51b406bf6c934e73",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-94328d82bc6738f4900d5aff51b406bf6c934e73"
+    },
+    {
+      "direction": "in",
+      "relationship": "FOUND_IN",
+      "other": "PR-388",
+      "other_type": "pr",
+      "other_title": "Ix PR #388",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-388"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "COMMIT-71b8986e1c3164e78275604b76399860fb3313e3",
+      "other_type": "commit",
+      "other_title": "71b8986e1c3164e78275604b76399860fb3313e3",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-71b8986e1c3164e78275604b76399860fb3313e3"
+    },
+    {
+      "direction": "in",
+      "relationship": "FOUND_IN",
+      "other": "PR-389",
+      "other_type": "pr",
+      "other_title": "Ix PR #389",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-389"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "COMMIT-0d8032910c45408d8684a0e6f95198ee223b647c",
+      "other_type": "commit",
+      "other_title": "0d8032910c45408d8684a0e6f95198ee223b647c",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-0d8032910c45408d8684a0e6f95198ee223b647c"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "COMMIT-7a815573e4388e77b8b7af4c1ba0376a8bd36e25",
+      "other_type": "commit",
+      "other_title": "7a815573e4388e77b8b7af4c1ba0376a8bd36e25",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-7a815573e4388e77b8b7af4c1ba0376a8bd36e25"
+    },
+    {
+      "direction": "in",
+      "relationship": "FOUND_IN",
+      "other": "PR-390",
+      "other_type": "pr",
+      "other_title": "Ix PR #390",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-390"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "COMMIT-89ca55e21672696deb7627cb3e5b1846754707fa",
+      "other_type": "commit",
+      "other_title": "89ca55e21672696deb7627cb3e5b1846754707fa",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-89ca55e21672696deb7627cb3e5b1846754707fa"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "COMMIT-4d35378ea737825bd591df94ee29db92e1596d30",
+      "other_type": "commit",
+      "other_title": "4d35378ea737825bd591df94ee29db92e1596d30",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-4d35378ea737825bd591df94ee29db92e1596d30"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "COMMIT-91269efc54f905ce00fae27d80798271b35ef951",
+      "other_type": "commit",
+      "other_title": "91269efc54f905ce00fae27d80798271b35ef951",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-91269efc54f905ce00fae27d80798271b35ef951"
+    },
+    {
+      "direction": "in",
+      "relationship": "FOUND_IN",
+      "other": "PR-391",
+      "other_type": "pr",
+      "other_title": "Ix PR #391",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-391"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "COMMIT-3f70e75a7e5cc21cd50eaa01908948e7036aa9f6",
+      "other_type": "commit",
+      "other_title": "3f70e75a7e5cc21cd50eaa01908948e7036aa9f6",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-3f70e75a7e5cc21cd50eaa01908948e7036aa9f6"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "COMMIT-3353000f9b6666f929f52b1d5b5e5248a4e68678",
+      "other_type": "commit",
+      "other_title": "3353000f9b6666f929f52b1d5b5e5248a4e68678",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-3353000f9b6666f929f52b1d5b5e5248a4e68678"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "COMMIT-c4154613a2fdd434c5271f2babc10bcd88ab46b1",
+      "other_type": "commit",
+      "other_title": "c4154613a2fdd434c5271f2babc10bcd88ab46b1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-c4154613a2fdd434c5271f2babc10bcd88ab46b1"
+    },
+    {
+      "direction": "in",
+      "relationship": "FOUND_IN",
+      "other": "PR-392",
+      "other_type": "pr",
+      "other_title": "Ix PR #392",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-392"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "COMMIT-b4d9c0038b4595b0562f9dc2e8ef457511112d29",
+      "other_type": "commit",
+      "other_title": "b4d9c0038b4595b0562f9dc2e8ef457511112d29",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b4d9c0038b4595b0562f9dc2e8ef457511112d29"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "COMMIT-e0064cf8c88eb91bda5888f7a825c45e503a899f",
+      "other_type": "commit",
+      "other_title": "e0064cf8c88eb91bda5888f7a825c45e503a899f",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-e0064cf8c88eb91bda5888f7a825c45e503a899f"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "COMMIT-a4b1da988ea8e3bacb9457da67ff4fa4c3a1117d",
+      "other_type": "commit",
+      "other_title": "a4b1da988ea8e3bacb9457da67ff4fa4c3a1117d",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-a4b1da988ea8e3bacb9457da67ff4fa4c3a1117d"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "COMMIT-5432c49354ab01325a535294343e516355fcaa69",
+      "other_type": "commit",
+      "other_title": "5432c49354ab01325a535294343e516355fcaa69",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-5432c49354ab01325a535294343e516355fcaa69"
+    },
+    {
+      "direction": "in",
+      "relationship": "FOUND_IN",
+      "other": "PR-393",
+      "other_type": "pr",
+      "other_title": "Ix PR #393",
+      "other_url": "https://alot1z.github.io/Ix-findings/prs/393/tests"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+      "other_type": "commit",
+      "other_title": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-a6a47267af21a49d6942ee6e07e18d1d0a82517b"
+    },
+    {
+      "direction": "in",
+      "relationship": "FOUND_IN",
+      "other": "PR-395",
+      "other_type": "pr",
+      "other_title": "PR #395 — test(upgrade): cover an IX_HOME containing a space",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-395"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "COMMIT-13e96bacc648ee979f35e2874cd8aa2004f920e1",
+      "other_type": "commit",
+      "other_title": "13e96bacc648ee979f35e2874cd8aa2004f920e1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-13e96bacc648ee979f35e2874cd8aa2004f920e1"
     }
   ]
 }

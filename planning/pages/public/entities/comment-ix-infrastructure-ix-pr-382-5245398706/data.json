@@ -1,0 +1,102 @@
+{
+  "id": "COMMENT-ix-infrastructure-Ix-pr-382-5245398706",
+  "type": "artifact",
+  "title": "PR #382 comment 5245398706",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/comment-ix-infrastructure-ix-pr-382-5245398706",
+  "summary": {
+    "id": "COMMENT-ix-infrastructure-Ix-pr-382-5245398706",
+    "type": "artifact",
+    "title": "PR #382 comment 5245398706",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/pull/382#issuecomment-5245398706",
+    "source_mirror_id": "github:comment:ix-infrastructure/Ix#pr-382-5245398706",
+    "source_type": "github_pr_comment",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/pull/382#issuecomment-5245398706",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5245398706",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "id": 5245398706,
+    "node_id": "IC_kwDORdC75M8AAAABOKZusg",
+    "repository": "ix-infrastructure/Ix",
+    "parent_type": "PULL_REQUEST",
+    "parent_number": 382,
+    "kind": "PR_COMMENT",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "body": "Pushed the fix from my review as `9c74d47`, since it was the only thing blocking this and it was already written and tested.\n\n**What changed** — only `core-ingestion/src/queries.ts` and `queries.php.test.ts`. Your commit is untouched.\n\n- `property_declaration`, `property_promotion_parameter` and the parameter query now accept `optional_type` alongside `named_type`, so `?Service` resolves.\n- The parameter pattern alternates over `[(method_declaration) (function_definition)]`, so top-level functions get typed parameters too.\n\nNo handler change was needed, exactly as expected: `childForFieldName('name')` works on `function_definition`, and with no enclosing class the scope falls back to the bare function name — which is what `findEnclosingFunction` already returns for a top-level function.\n\n**Union types stay bare deliberately.** `Service|Repo` has no single receiver type to attribute the call to, so picking one member arbitrarily would be worse than the fallback. I added a test pinning that so it reads as a decision rather than an oversight.\n\n**Verified**\n- 3 new tests; the two covering the fixed gaps fail without the query change (`× resolves nullable declared types`, `× resolves typed parameters on plain functions`)\n- `queries.php.test.ts` + `resolveEdges.test.ts`: 39 passed (was 36)\n- full `ix-cli` suite: 686 passed / 51 files; `npm run typecheck` clean\n- `core-ingestion`: 6 failures, the same six you documented as pre-existing on `origin/main` — no new ones\n\nOne thing worth flagging for anyone editing this file later: `PHP_QUERIES` is a template literal, so backticks inside those query comments terminate the string. I used them in a first draft and got `Expected ':' but found ';'` from a completely unrelated-looking line. The comments now use plain text.\n\nThis clears the blocking review item. The remaining note is the minor one about `.php` joining the prescan set, which is the same incremental-map cost I raised on #375 and is better dealt with there.\n",
+    "html_url": "https://github.com/ix-infrastructure/Ix/pull/382#issuecomment-5245398706",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5245398706",
+    "created_at": "2026-08-10T20:09:44Z",
+    "updated_at": "2026-08-10T20:09:44Z",
+    "commit_id": null,
+    "path": null,
+    "line": null,
+    "start_line": null,
+    "side": null,
+    "in_reply_to_id": null,
+    "diff_hunk": null,
+    "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+    "source": "OFFICIAL_GITHUB_FACT",
+    "parent_pr": 382
+  },
+  "source_context": {
+    "id": "github:comment:ix-infrastructure/Ix#pr-382-5245398706",
+    "source": {
+      "type": "github_pr_comment",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/382#issuecomment-5245398706",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5245398706",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T20:09:44Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T20:09:44Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMENT-ix-infrastructure-Ix-pr-382-5245398706",
+    "entity_type": "PR_COMMENT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#382",
+    "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "COMMENTED_ON",
+      "other": "PR-382",
+      "other_type": "pr",
+      "other_title": "Ix PR #382",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-382"
+    },
+    {
+      "direction": "in",
+      "relationship": "AUTHORED",
+      "other": "PERSON-KageBinary",
+      "other_type": "artifact",
+      "other_title": "KageBinary",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-kagebinary"
+    }
+  ]
+}

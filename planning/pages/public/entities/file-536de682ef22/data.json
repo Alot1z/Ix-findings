@@ -1,0 +1,199 @@
+{
+  "id": "FILE-536de682ef22",
+  "type": "artifact",
+  "title": "ix-cli/src/cli/commands/watch.ts",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/file-536de682ef22",
+  "summary": {
+    "id": "FILE-536de682ef22",
+    "type": "artifact",
+    "title": "ix-cli/src/cli/commands/watch.ts",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/blob/HEAD/ix-cli/src/cli/commands/watch.ts",
+    "source_mirror_id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/commands/watch.ts",
+    "source_type": "github_file",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/blob/8d6be713600302ca22da3981059e7319c050b64b/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fwatch.ts",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 421,
+    "filename": "ix-cli/src/cli/commands/watch.ts",
+    "status": "modified",
+    "additions": 256,
+    "deletions": 160,
+    "changes": 416,
+    "blob_url": "https://github.com/ix-infrastructure/Ix/blob/8d6be713600302ca22da3981059e7319c050b64b/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fwatch.ts",
+    "raw_url": "https://github.com/ix-infrastructure/Ix/raw/8d6be713600302ca22da3981059e7319c050b64b/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fwatch.ts",
+    "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fwatch.ts?ref=8d6be713600302ca22da3981059e7319c050b64b",
+    "patch": "@@ -1,14 +1,11 @@\n import * as fs from \"node:fs\";\n import * as path from \"node:path\";\n-import * as crypto from \"node:crypto\";\n+import { spawn } from \"node:child_process\";\n+import type { SpawnOptions } from \"node:child_process\";\n import type { Command } from \"commander\";\n import chalk from \"chalk\";\n-import { spawnSync } from \"node:child_process\";\n-import { IxClient } from \"../../client/api.js\";\n-import { getEndpoint, resolveWorkspaceRoot, clearIngestMtimeCache } from \"../config.js\";\n-import { bootstrap, ensureWorkspaceId, ensureWorkspaceIdState } from \"../bootstrap.js\";\n-import { loadWatchIngestionModules } from \"./ingestion-loader.js\";\n-import { readFileContent } from \"./watch-utils.js\";\n+import { resolveWorkspaceRoot, clearIngestMtimeCache } from \"../config.js\";\n+import { bootstrap, ensureWorkspaceIdState } from \"../bootstrap.js\";\n import { SUPPORTED_EXTENSIONS } from \"../supported-extensions.js\";\n \n const SUPPORTED_NAMES = new Set([\n@@ -24,21 +21,233 @@ const IGNORE_DIRS = new Set([\n ]);\n \n const DEBOUNCE_MS = 300;\n+const MAP_COALESCED_EXIT_CODE = 75;\n+const MAP_RETRY_MS = 1000;\n \n-/** Compute SHA-256 hash of file content for dedup. */\n-function hashContent(content: string): string {\n-  return crypto.createHash(\"sha256\").update(content).digest(\"hex\");\n+interface MapChild {\n+  once(event: \"error\", listener: (err: Error) => void): unknown;\n+  once(event: \"exit\", listener: (code: number | null, signal: NodeJS.Signals | null) => void): unknown;\n }\n \n-/**\n- * Convert an absolute path to a workspace-relative POSIX path. This is the\n- * canonical source_uri and the basis for every deterministic node/edge/chunk\n- * id, so it must match what `ix ingest` emits (see toWorkspaceRelative in\n- * ingest.ts). Forcing POSIX separators keeps ids stable across operating\n- * systems and never embeds an absolute host path.\n- */\n-function toWorkspaceRelative(root: string, absPath: string): string {\n-  return path.relative(root, absPath).split(path.sep).join(\"/\");\n+type MapLauncher = (command: string, args: string[], options: SpawnOptions) => MapChild;\n+\n+const RUNTIME_LOADER_FLAGS = new Set([\n+  \"--import\", \"--loader\", \"--experimental-loader\", \"--require\", \"-r\",\n+]);\n+\n+/** Preserve source loaders for a TypeScript CLI entry without cloning debugger flags. */\n+export function childCliArgs(\n+  entry: string,\n+  cliArgs: string[],\n+  execArgv: string[] = process.execArgv,\n+): string[] {\n+  if (!/\\.[cm]?tsx?$/.test(entry)) return [entry, ...cliArgs];\n+\n+  const loaders: string[] = [];\n+  for (let index = 0; index < execArgv.length; index++) {\n+    const arg = execArgv[index]!;\n+    if (RUNTIME_LOADER_FLAGS.has(arg)) {\n+      const value = execArgv[index + 1];\n+      if (value !== undefined) {\n+        loaders.push(arg, value);\n+        index++;\n+      }\n+      continue;\n+    }\n+    if (\n+      [...RUNTIME_LOADER_FLAGS].some(flag => arg.startsWith(`${flag}=`)) ||\n+      (arg.startsWith(\"-r\") && !arg.startsWith(\"--\") && arg.length > 2)\n+    ) {\n+      loaders.push(arg);\n+    }\n+  }\n+\n+  return [...loaders, entry, ...cliArgs];\n+}\n+\n+export function canonicalMapInvocation(\n+  root: string,\n+  entry = process.argv[1],\n+  execArgv = process.execArgv,\n+): { command: string; args: string[]; env: NodeJS.ProcessEnv } {\n+  if (!entry) throw new Error(\"Could not locate the Ix CLI entry point.\");\n+  return {\n+    command: process.execPath,\n+    args: childCliArgs(entry, [\"map\", root, \"--silent\"], execArgv),\n+    env: {\n+      ...process[redacted],\n+      IX_AUTO_MAP: \"1\",\n+      IX_MAP_FULL_INGEST: \"1\",\n+      IX_MAP_COALESCE_EXIT_CODE: String(MAP_COALESCED_EXIT_CODE),\n+    },\n+  };\n+}\n+\n+function runChild(\n+  invocation: ReturnType<typeof canonicalMapInvocation>,\n+  launch: MapLauncher,\n+): Promise<{ code: number | null; signal: NodeJS.Signals | null }> {\n+  return new Promise((resolve, reject) => {\n+    const child = launch(invocation.command, invocation.args, {\n+      env: invocation[redacted],\n+      stdio: \"inherit\",\n+    });\n+    child.once(\"error\", reject);\n+    child.once(\"exit\", (code, signal) => {\n+      if (code === 0 || code === MAP_COALESCED_EXIT_CODE) {\n+        resolve({ code, signal });\n+      } else {\n+        reject(new Error(`ix map failed${signal ? ` (${signal})` : ` (exit ${code ?? 1})`}`));\n+      }\n+    });\n+  });\n+}\n+\n+export async function runCanonicalMap(\n+  root: string,\n+  launch: MapLauncher = spawn as MapLauncher,\n+  wait: (ms: number) => Promise<void> = ms => new Promise(resolve => setTimeout(resolve, ms)),\n+): Promise<void> {\n+  const invocation = canonicalMapInvocation(root);\n+  for (;;) {\n+    const { code } = await runChild(invocation, launch);\n+    if (code === 0) return;\n+    await wait(MAP_RETRY_MS);\n+  }\n+}\n+\n+/** Serialize refreshes and coalesce changes during a run into one trailing refresh. */\n+export class WatchRefreshScheduler {\n+  private running = false;\n+  private queued = false;\n+  private idleWaiters: Array<() => void> = [];\n+\n+  constructor(\n+    private readonly refresh: () => Promise<void>,\n+    private readonly onError: (err: unknown) => void,\n+  ) {}\n+\n+  request(): void {\n+    this.queued = true;\n+    if (!this.running) void this.drain();\n+  }\n+\n+  waitForIdle(): Promise<void> {\n+    if (!this.running && !this.queued) return Promise.resolve();\n+    return new Promise(resolve => this.idleWaiters.push(resolve));\n+  }\n+\n+  private async drain(): Promise<void> {\n+    this.running = true;\n+    try {\n+      while (this.queued) {\n+        this.queued = false;\n+        try {\n+          await this.refresh();\n+        } catch (err) {\n+          this.onError(err);\n+        }\n+      }\n+    } finally {\n+      this.running = false;\n+      for (const resolve of this.idleWaiters.splice(0)) resolve();\n+    }\n+  }\n+}\n+\n+/** Detect new, changed, and deleted files while advancing the polling snapshot. */\n+export function updatePollingSnapshot(\n+  currentFiles: string[],\n+  mtimes: Map<string, number>,\n+  statMtime: (filePath: string) => number = filePath => fs.statSync(filePath).mtimeMs,\n+): string[] {\n+  const next = new Map<string, number>();\n+  const changed: string[] = [];\n+\n+  for (const filePath of currentFiles) {\n+    try {\n+      const mtime = statMtime(filePath);\n+      next.set(filePath, mtime);\n+      if (mtimes.get(filePath) !== mtime) changed.push(filePath);\n+    } catch {\n+      // A racy delete is handled by the missing-file pass below.\n+    }\n+  }\n+\n+  const current = new Set(next.keys());\n+  for (const filePath of mtimes.keys()) {\n+    if (!current.has(filePath)) changed.push(filePath);\n+  }\n+\n+  mtimes.clear();\n+  for (const [filePath, mtime] of next) mtimes.set(filePath, mtime);\n+  return changed;\n+}\n+\n+function isSupportedPath(filePath: string): boolean {\n+  const ext = path.extname(filePath).toLowerCase();\n+  return SUPPORTED_EXTENSIONS.has(ext) || SUPPORTED_NAMES.has(path.basename(filePath));\n+}\n+\n+export function shouldWatch(root: string, filePath: string): boolean {\n+  if (!isSupportedPath(filePath)) return false;\n+  const segments = path.relative(root, filePath).split(path.sep);\n+  return !segments.some(segment => IGNORE_DIRS.has(segment));\n+}\n+\n+export function prepareMigratedWorkspaceRefresh(\n+  root: string,\n+  clear: (workspaceRoot: string) => void = clearIngestMtimeCache,\n+): void {\n+  clear(root);\n+}\n+\n+function collectFiles(dir: string): string[] {\n+  const results: string[] = [];\n+  const stack = [dir];\n+  while (stack.length > 0) {\n+    const current = stack.pop()!;\n+    let entries: fs.Dirent[];\n+    try { entries = fs.readdirSync(current, { withFileTypes: true }); }\n+    catch { continue; }\n+    for (const entry of entries) {\n+      if (IGNORE_DIRS.has(entry.name)) continue;\n+      if (entry.name.startsWith(\".\") && entry.isDirectory()) continue;\n+      const fullPath = path.join(current, entry.name);\n+      if (entry.isDirectory()) stack.push(fullPath);\n+      else if (entry.isFile() && isSupportedPath(fullPath)) results.push(fullPath);\n+    }\n+  }\n+  return results;\n+}\n+\n+function createBatchNotifier(root: string, scheduler: WatchRefreshScheduler): {\n+  notify(filePath: string): void;\n+  cancel(): void;\n+} {\n+  const pending = new Set<string>();\n+  let timer: NodeJS.Timeout | undefined;\n+\n+  const flush = () => {\n+    timer = undefined;\n+    for (const filePath of [...pending].sort()) {\n+      console.log(`${chalk.dim(\"[watch]\")} changed: ${path.relative(root, filePath)}`);\n+    }\n+    pending.clear();\n+    scheduler.request();\n+  };\n+\n+  return {\n+    notify(filePath: string) {\n+      pending.add(filePath);\n+      if (timer) clearTimeout(timer);\n+      timer = setTimeout(flush, DEBOUNCE_MS);\n+    },\n+    cancel() {\n+      if (timer) clearTimeout(timer);\n+      pending.clear();\n+    },\n+  };\n }\n \n export function registerWatchCommand(program: Command): void {\n@@ -48,24 +257,15 @@ export function registerWatchCommand(program: Command): void {\n     .option(\"--path <path>\", \"Restrict watching to a subdirectory\")\n     .option(\"--root <dir>\", \"Workspace root directory\")\n     .action(async (opts: { path?: string; root?: string }) => {\n+      const root = path.resolve(resolveWorkspaceRoot(opts.root));\n       try {\n-        await bootstrap();\n+        await bootstrap(root);\n       } catch (err: any) {\n         console.error(chalk.red(\"Error:\"), err.message);\n         process.exit(1);\n       }\n \n-      const root = resolveWorkspaceRoot(opts.root);\n-      const { workspaceId, migrated } = ensureWorkspaceIdState(root);\n-      // If the workspace_id was just migrated to the path-based id (Ix#225 gap 2), the\n-      // new id has no nodes yet and watch only ingests files as they change — so do a\n-      // one-time full re-ingest under the new id first (clear the mtime cache so the\n-      // spawned map re-ingests everything, then run it synchronously before watching).\n-      if (migrated) {\n-        console.error(chalk.dim(\"[watch] Workspace migrated to a stable id; re-ingesting once before watching...\"));\n-        clearIngestMtimeCache(root);\n-        spawnSync(process.argv[0], [process.argv[1], \"map\", root, \"--silent\"], { stdio: \"inherit\" });\n-      }\n+      const { migrated } = ensureWorkspaceIdState(root);\n       const watchPath = opts.path\n         ? path.resolve(root, opts.path)\n         : root;\n@@ -75,96 +275,44 @@ export function registerWatchCommand(program: Command): void {\n         process.exit(1);\n       }\n \n-      const client = new IxClient(getEndpoint());\n+      const refresh = () => runCanonicalMap(root);\n+      const scheduler = new WatchRefreshScheduler(refresh, err =>\n+        console.error(`${chalk.red(\"[watch]\")} refresh error: ${(err as Error).message}`)\n+      );\n+\n+      if (migrated) {\n+        console.error(chalk.dim(\"[watch] Workspace migrated to a stable id; re-ingesting once before watching...\"));\n+        prepareMigratedWorkspaceRefresh(root);\n+        await refresh();\n+      }\n \n       const relative = path.relative(root, watchPath) || \".\";\n       console.log(chalk.cyan(`[watch] Watching ${relative}`));\n       console.log(chalk.dim(`[watch] Debounce: ${DEBOUNCE_MS}ms`));\n       console.log(chalk.dim(\"[watch] Press Ctrl+C to stop.\\n\"));\n \n-      // Track pending changes with debounce + content hash dedup\n-      const pending = new Map<string, NodeJS.Timeout>();\n-      const lastHash = new Map<string, string>();\n-\n-      function shouldWatch(filePath: string): boolean {\n-        const ext = path.extname(filePath).toLowerCase();\n-        const basename = path.basename(filePath);\n-        if (!SUPPORTED_EXTENSIONS.has(ext) && !SUPPORTED_NAMES.has(basename)) return false;\n-        // Check no segment is an ignored dir\n-        const segments = path.relative(root, filePath).split(path.sep);\n-        return !segments.some(s => IGNORE_DIRS.has(s));\n-      }\n-\n-      async function ingestFile(filePath: string): Promise<void> {\n-        const [{ parseFile }, { buildPatch }] = await loadWatchIngestionModules();\n-        // Workspace-relative POSIX path drives source_uri and node identity; it\n-        // must match `ix ingest` or the same file ingested via watch vs ingest\n-        // would mint divergent node ids and reintroduce absolute-path coupling.\n-        const relPath = toWorkspaceRelative(root, filePath);\n-\n-        // Re-read content at actual ingest time (not at event time)\n-        const content = readFileContent(filePath);\n-        if (content === null) return;\n-\n-        // Skip if content hash is unchanged since last ingest\n-        const hash = hashContent(content);\n-        if (lastHash.get(filePath) === hash) {\n-          console.log(`${chalk.dim(\"[watch]\")} unchanged (hash): ${relPath}`);\n-          return;\n-        }\n-\n-        try {\n-          const parsed = parseFile(relPath, content);\n-          if (!parsed) {\n-            console.log(`${chalk.dim(\"[watch]\")} skipped (unsupported): ${relPath}`);\n-            return;\n-          }\n-          const patch = buildPatch(parsed, hash, workspaceId);\n-          const result = await client.commitPatch(patch);\n-          lastHash.set(filePath, hash);\n-          console.log(`${chalk.cyan(\"[watch]\")} ingested: ${chalk.bold(relPath)} → rev ${result.rev}`);\n-        } catch (err: any) {\n-          console.error(`${chalk.red(\"[watch]\")} error ingesting ${relPath}: ${err.message}`);\n-        }\n-      }\n+      const batch = createBatchNotifier(root, scheduler);\n \n       // Use fs.watch recursively\n       try {\n         const watcher = fs.watch(watchPath, { recursive: true }, (_event, filename) => {\n           if (!filename) return;\n           const fullPath = path.resolve(watchPath, filename);\n-          if (!shouldWatch(fullPath)) return;\n-\n-          // Check file still exists (might be a delete event)\n-          if (!fs.existsSync(fullPath)) return;\n-\n-          const rel = path.relative(root, fullPath);\n-\n-          // Cancel any existing debounce for this file\n-          const existing = pending.get(fullPath);\n-          if (existing) clearTimeout(existing);\n-\n-          // Set new debounce — content is re-read at ingest time, not here\n-          pending.set(fullPath, setTimeout(async () => {\n-            pending.delete(fullPath);\n-            console.log(`${chalk.dim(\"[watch]\")} changed: ${rel}`);\n-            await ingestFile(fullPath);\n-          }, DEBOUNCE_MS));\n+          if (shouldWatch(root, fullPath)) batch.notify(fullPath);\n         });\n \n         // Keep process alive\n         process.on(\"SIGINT\", () => {\n           watcher.close();\n-          // Clear pending timers\n-          for (const timer of pending.values()) clearTimeout(timer);\n+          batch.cancel();\n           console.log(chalk.dim(\"\\n[watch] Stopped.\"));\n           process.exit(0);\n         });\n       } catch (err: any) {\n         // Fallback to polling if fs.watch with recursive isn't supported\n         if (err.code === \"ERR_FEATURE_UNAVAILABLE_ON_PLATFORM\") {\n           console.log(chalk.dim(\"[watch] Falling back to polling mode (2s interval)...\"));\n-          await pollMode(watchPath, root, client);\n+          pollMode(watchPath, root, scheduler);\n         } else {\n           throw err;\n         }\n@@ -175,81 +323,29 @@ export function registerWatchCommand(program: Command): void {\n /**\n  * Fallback polling mode for platforms where recursive fs.watch isn't available.\n  */\n-async function pollMode(\n+function pollMode(\n   watchPath: string,\n   root: string,\n-  client: IxClient\n-): Promise<void> {\n-  const [{ parseFile }, { buildPatch }] = await loadWatchIngestionModules();\n-  const workspaceId = ensureWorkspaceId(root);\n+  scheduler: WatchRefreshScheduler,\n+): void {\n   const mtimes = new Map<string, number>();\n \n-  function collectFiles(dir: string): string[] {\n-    const results: string[] = [];\n-    const stack = [dir];\n-    while (stack.length > 0) {\n-      const current = stack.pop()!;\n-      let entries: fs.Dirent[];\n-      try { entries = fs.readdirSync(current, { withFileTypes: true }); }\n-      catch { continue; }\n-      for (const entry of entries) {\n-        if (IGNORE_DIRS.has(entry.name)) continue;\n-        if (entry.name.startsWith(\".\") && entry.isDirectory()) continue;\n-        const fullPath = path.join(current, entry.name);\n-        if (entry.isDirectory()) {\n-          stack.push(fullPath);\n-        } else if (entry.isFile()) {\n-          const ext = path.extname(entry.name).toLowerCase();\n-          if (SUPPORTED_EXTENSIONS.has(ext) || SUPPORTED_NAMES.has(entry.name)) {\n-            results.push(fullPath);\n-          }\n-        }\n-      }\n-    }\n-    return results;\n-  }\n-\n   // Initial scan\n   for (const f of collectFiles(watchPath)) {\n     try { mtimes.set(f, fs.statSync(f).mtimeMs); } catch {}\n   }\n \n-  const poll = async () => {\n-    const currentFiles = collectFiles(watchPath);\n-    const changed: string[] = [];\n-\n-    for (const f of currentFiles) {\n-      try {\n-        const mtime = fs.statSync(f).mtimeMs;\n-        const prev = mtimes.get(f);\n-        if (prev === undefined || mtime > prev) {\n-          changed.push(f);\n-          mtimes.set(f, mtime);\n-        }\n-      } catch {}\n-    }\n-\n-    for (const f of changed) {\n-      const relPath = toWorkspaceRelative(root, f);\n-      console.log(`${chalk.dim(\"[watch]\")} changed: ${relPath}`);\n-      try {\n-        const content = readFileContent(f);\n-        if (!content) continue;\n-        const parsed = parseFile(relPath, content);\n-        if (!parsed) continue;\n-        const hash = hashContent(content);\n-        const patch = buildPatch(parsed, hash, workspaceId);\n-        const result = await client.commitPatch(patch);\n-        console.log(`${chalk.cyan(\"[watch]\")} ingested: ${chalk.bold(relPath)} → rev ${result.rev}`);\n-      } catch (err: any) {\n-        console.error(`${chalk.red(\"[watch]\")} error: ${err.message}`);\n-      }\n+  const interval = setInterval(() => {\n+    const changed = updatePollingSnapshot(collectFiles(watchPath), mtimes);\n+    if (changed.length === 0) return;\n+    for (const filePath of changed.sort()) {\n+      console.log(`${chalk.dim(\"[watch]\")} changed: ${path.relative(root, filePath)}`);\n     }\n-  };\n-\n-  setInterval(poll, 2000);\n+    scheduler.request();\n+  }, 2000);\n \n   process.on(\"SIGINT\", () => {\n+    clearInterval(interval);\n     console.log(chalk.dim(\"\\n[watch] Stopped.\"));\n     process.exit(0);\n   });",
+    "parent_pr": 421
+  },
+  "source_context": {
+    "id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/commands/watch.ts",
+    "source": {
+      "type": "github_file",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/blob/8d6be713600302ca22da3981059e7319c050b64b/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fwatch.ts",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-13T19:15:39Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-13T19:15:40Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "FILE-536de682ef22",
+    "entity_type": "FILE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#421",
+    "line_precision": "FILE_LEVEL"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-dbb517b0680bdd3a3a36f5f69268fb725b7729c1",
+      "other_type": "commit",
+      "other_title": "dbb517b0680bdd3a3a36f5f69268fb725b7729c1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-dbb517b0680bdd3a3a36f5f69268fb725b7729c1"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-28921ca36915f147cc48c2a17cd31199dea7a51c",
+      "other_type": "commit",
+      "other_title": "28921ca36915f147cc48c2a17cd31199dea7a51c",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-28921ca36915f147cc48c2a17cd31199dea7a51c"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-89e8127456e24cbecaf6886a312d56a1514ae0c5",
+      "other_type": "commit",
+      "other_title": "89e8127456e24cbecaf6886a312d56a1514ae0c5",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-89e8127456e24cbecaf6886a312d56a1514ae0c5"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-01b8aaa10559a6920d1d5180d6d1434422b74fd7",
+      "other_type": "commit",
+      "other_title": "01b8aaa10559a6920d1d5180d6d1434422b74fd7",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-01b8aaa10559a6920d1d5180d6d1434422b74fd7"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-480915b643a705bb7ac8be6fe353ed34b007e7f2",
+      "other_type": "commit",
+      "other_title": "480915b643a705bb7ac8be6fe353ed34b007e7f2",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-480915b643a705bb7ac8be6fe353ed34b007e7f2"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-ee9dc140a2859d3a7c23f80812c9b4fcda20be93",
+      "other_type": "commit",
+      "other_title": "ee9dc140a2859d3a7c23f80812c9b4fcda20be93",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-ee9dc140a2859d3a7c23f80812c9b4fcda20be93"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-286a6926f213c7b26cf6cc43e367b44ead869545",
+      "other_type": "commit",
+      "other_title": "286a6926f213c7b26cf6cc43e367b44ead869545",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-286a6926f213c7b26cf6cc43e367b44ead869545"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-d3c62090c1bcbb654445521670332c4c5a224bd5",
+      "other_type": "commit",
+      "other_title": "d3c62090c1bcbb654445521670332c4c5a224bd5",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-d3c62090c1bcbb654445521670332c4c5a224bd5"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-3fa9b6020c008085f367847e846db850b39383eb",
+      "other_type": "commit",
+      "other_title": "3fa9b6020c008085f367847e846db850b39383eb",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-3fa9b6020c008085f367847e846db850b39383eb"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-c4dfc53e303d72422f35a16b268a891dd3708a73",
+      "other_type": "commit",
+      "other_title": "c4dfc53e303d72422f35a16b268a891dd3708a73",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-c4dfc53e303d72422f35a16b268a891dd3708a73"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-270c743738990843f992d43809ef30f549f4d648",
+      "other_type": "commit",
+      "other_title": "270c743738990843f992d43809ef30f549f4d648",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-270c743738990843f992d43809ef30f549f4d648"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-6e2078a0e4f039b35f7bedab4ef9e8782594f567",
+      "other_type": "commit",
+      "other_title": "6e2078a0e4f039b35f7bedab4ef9e8782594f567",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-6e2078a0e4f039b35f7bedab4ef9e8782594f567"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-b88a7836ad82763341dcb9f66b8e6fa8fef962c7",
+      "other_type": "commit",
+      "other_title": "b88a7836ad82763341dcb9f66b8e6fa8fef962c7",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b88a7836ad82763341dcb9f66b8e6fa8fef962c7"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-af815ce4ba0a6f8e1d33603c8c28ba20986b41ca",
+      "other_type": "commit",
+      "other_title": "af815ce4ba0a6f8e1d33603c8c28ba20986b41ca",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-af815ce4ba0a6f8e1d33603c8c28ba20986b41ca"
+    },
+    {
+      "direction": "in",
+      "relationship": "CO_CHANGED_WITH",
+      "other": "FILE-07f14ce9998a",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/ingest.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-07f14ce9998a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CO_CHANGED_WITH",
+      "other": "FILE-3f05df7612a2",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/client/api.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3f05df7612a2"
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "id": "COMMENT-ix-infrastructure-Ix-pr-375-5245897429",
+  "type": "artifact",
+  "title": "PR #375 comment 5245897429",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/comment-ix-infrastructure-ix-pr-375-5245897429",
+  "summary": {
+    "id": "COMMENT-ix-infrastructure-Ix-pr-375-5245897429",
+    "type": "artifact",
+    "title": "PR #375 comment 5245897429",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/pull/375#issuecomment-5245897429",
+    "source_mirror_id": "github:comment:ix-infrastructure/Ix#pr-375-5245897429",
+    "source_type": "github_pr_comment",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/pull/375#issuecomment-5245897429",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5245897429",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "id": 5245897429,
+    "node_id": "IC_kwDORdC75M8AAAABOK4K1Q",
+    "repository": "ix-infrastructure/Ix",
+    "parent_type": "PULL_REQUEST",
+    "parent_number": 375,
+    "kind": "PR_COMMENT",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "body": "Rebased onto `main` and pushed the fix for the blocking item, so this is unblocked from my side.\n\n**Note the conflict**: #382 landed while this was open and touched the same three places — `INDEX_PRESCAN_EXTENSIONS`, the parser-derived block in `buildGlobalResolutionIndex`, and `resolveEdges.test.ts`. I merged both rather than picking a side: the prescan set is now `.go .php .r .sas` + the six JS/TS extensions, and both cross-batch tests are kept.\n\n## The perf fix\n\nYour design decision — derive the index from real parse results rather than a regex, so it cannot drift from what the in-batch path extracts — is right, and I did not want to trade it away. The problem was only *where* the parsing happened: a synchronous main-thread loop inside `buildGlobalResolutionIndex`.\n\n`buildGlobalResolutionIndex` now takes an optional `preParsed` map, and the CLI parses prescan sources on **the worker pool it is already running** for the streaming loop, handing the results in. Absent an entry, each language block falls back to parsing in-index, so tests and library callers behave exactly as before.\n\nMeasured on this repo, 180 JS/TS files:\n\n```\nindex WITHOUT preParsed (main-thread parse): 1.24 s\nindex WITH preParsed (pool did the work):    0.001 s\n```\n\nThe parse work still happens — it moved to the pool and spreads across cores instead of blocking. Applied to PHP, R and SAS too, since all four blocks had the same shape.\n\nAdded a test that supplies a parse result whose entity does not appear in the source text: it can only resolve if `preParsed` is genuinely used rather than re-parsed.\n\n## Verification\n\n- `core-ingestion`: **35 passed** in `resolveEdges.test.ts`; full suite 280 passed with the same 6 pre-existing failures you documented, no new ones\n- `ix-cli`: **698 passed** across 52 files, `npm run typecheck` clean, lint 0 errors / 38 pre-existing warnings\n\n## Still open, and worth its own issue rather than this PR\n\nAn incremental map still parses every prescanned file, not just the changed ones — it is parallel now instead of serial, but a one-file edit in a 5,000-file TypeScript repo still does 5,000 parses. The real fix is caching the per-file index keyed on mtime so unchanged files are never re-parsed, which needs cache invalidation and is a bigger change than belongs here. I'd rather land this and file that separately than hold a correct fix behind an optimisation.\n\nI amended your commit rather than stacking, since the fix is threaded through the same lines; you are still the author and I added myself as co-author. Shout if you would rather it were split.\n",
+    "html_url": "https://github.com/ix-infrastructure/Ix/pull/375#issuecomment-5245897429",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5245897429",
+    "created_at": "2026-08-10T20:59:17Z",
+    "updated_at": "2026-08-10T20:59:17Z",
+    "commit_id": null,
+    "path": null,
+    "line": null,
+    "start_line": null,
+    "side": null,
+    "in_reply_to_id": null,
+    "diff_hunk": null,
+    "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+    "source": "OFFICIAL_GITHUB_FACT",
+    "parent_pr": 375
+  },
+  "source_context": {
+    "id": "github:comment:ix-infrastructure/Ix#pr-375-5245897429",
+    "source": {
+      "type": "github_pr_comment",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/375#issuecomment-5245897429",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5245897429",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T20:59:17Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T20:59:17Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMENT-ix-infrastructure-Ix-pr-375-5245897429",
+    "entity_type": "PR_COMMENT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#375",
+    "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "COMMENTED_ON",
+      "other": "PR-375",
+      "other_type": "pr",
+      "other_title": "Ix PR #375",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-375"
+    },
+    {
+      "direction": "in",
+      "relationship": "AUTHORED",
+      "other": "PERSON-KageBinary",
+      "other_type": "artifact",
+      "other_title": "KageBinary",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-kagebinary"
+    }
+  ]
+}

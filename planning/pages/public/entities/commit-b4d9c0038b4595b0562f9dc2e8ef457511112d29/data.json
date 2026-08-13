@@ -1,0 +1,145 @@
+{
+  "id": "COMMIT-b4d9c0038b4595b0562f9dc2e8ef457511112d29",
+  "type": "commit",
+  "title": "b4d9c0038b4595b0562f9dc2e8ef457511112d29",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-b4d9c0038b4595b0562f9dc2e8ef457511112d29",
+  "summary": {
+    "id": "COMMIT-b4d9c0038b4595b0562f9dc2e8ef457511112d29",
+    "type": "commit",
+    "title": "b4d9c0038b4595b0562f9dc2e8ef457511112d29",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/b4d9c0038b4595b0562f9dc2e8ef457511112d29",
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "source_mirror_id": "github:commit:ix-infrastructure/Ix@b4d9c0038b4595b0562f9dc2e8ef457511112d29",
+    "source_type": "github_commit",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/commit/b4d9c0038b4595b0562f9dc2e8ef457511112d29",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/b4d9c0038b4595b0562f9dc2e8ef457511112d29",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "sha": "b4d9c0038b4595b0562f9dc2e8ef457511112d29",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/b4d9c0038b4595b0562f9dc2e8ef457511112d29",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/b4d9c0038b4595b0562f9dc2e8ef457511112d29",
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "committer": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "message": "fix(upgrade): sweep orphans on every upgrade, not only when one is available\n\nBoth sweep calls sit behind \"something needs updating\" — one inside the CLI\nbranch, one inside the compass branch, the latter existing precisely as the\nfallback for the former. #376 then tightened the compass gate to skip\nrelease-bundled compasses, which is every install from v0.9.3 on. So a user on\nthe latest CLI with a release compass now runs `ix upgrade` and reclaims\nnothing, and an interrupted swap is never restored.\n\nThat matters most for this PR: the archives it teaches the sweep about are\nmulti-MB, and the stated reason for sweeping them is that leaving os.tmpdir()\nalso left the OS's own cleanup. A sweep that only runs when an update happens\nto be available does not deliver that.\n\nOne readdir of ~/.ix when there is nothing to do. The calls inside\nprepareDownloadDir stay — that is where the sweep-before-scratch ordering is\nenforced — and simply find nothing.\n\n753 green, lint clean.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>",
+    "parents": [
+      {
+        "sha": "5432c49354ab01325a535294343e516355fcaa69",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/5432c49354ab01325a535294343e516355fcaa69"
+      }
+    ],
+    "tree_sha": "a32fc7a37f2b35a68ddbeb9612ebf0420f818612",
+    "authored_at": "2026-08-11T04:38:16Z",
+    "committed_at": "2026-08-11T04:38:16Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@b4d9c0038b4595b0562f9dc2e8ef457511112d29",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/b4d9c0038b4595b0562f9dc2e8ef457511112d29",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/b4d9c0038b4595b0562f9dc2e8ef457511112d29",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-11T04:38:16Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-11T04:38:16Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-b4d9c0038b4595b0562f9dc2e8ef457511112d29",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#392"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-5432c49354ab01325a535294343e516355fcaa69",
+      "other_type": "commit",
+      "other_title": "5432c49354ab01325a535294343e516355fcaa69",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-5432c49354ab01325a535294343e516355fcaa69"
+    },
+    {
+      "direction": "in",
+      "relationship": "HEADS_AT",
+      "other": "PR-392",
+      "other_type": "pr",
+      "other_title": "Ix PR #392",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-392"
+    },
+    {
+      "direction": "in",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "PR-392",
+      "other_type": "pr",
+      "other_title": "Ix PR #392",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-392"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-8fd3c7d3cd9b",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/upgrade-archive-shape.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-8fd3c7d3cd9b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e559b6bc2060",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/upgrade.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e559b6bc2060"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGED_BY",
+      "other": "PR-392",
+      "other_type": "pr",
+      "other_title": "Ix PR #392",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-392"
+    }
+  ]
+}

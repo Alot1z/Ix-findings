@@ -1,0 +1,79 @@
+{
+  "id": "COMMIT-b80c6455c4947d88b2d4d3449787a779bcbcbbb8",
+  "type": "commit",
+  "title": "b80c6455c4947d88b2d4d3449787a779bcbcbbb8",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-b80c6455c4947d88b2d4d3449787a779bcbcbbb8",
+  "summary": {
+    "id": "COMMIT-b80c6455c4947d88b2d4d3449787a779bcbcbbb8",
+    "type": "commit",
+    "title": "b80c6455c4947d88b2d4d3449787a779bcbcbbb8",
+    "status": "HISTORICAL",
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    }
+  },
+  "source_snapshot": {
+    "sha": "b80c6455c4947d88b2d4d3449787a779bcbcbbb8",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/b80c6455c4947d88b2d4d3449787a779bcbcbbb8",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/b80c6455c4947d88b2d4d3449787a779bcbcbbb8",
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "committer": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "message": "fix(mcp): drop launcher staleness for the CLI-listed hosts, and make --force work\n\nA fifth review found the containment check regressed the case it was meant to\nprotect, and that the repair it feeds could not land on the flagship host\nanyway. Both were demonstrated against the real `claude` and `codex` binaries.\n\n**The regression.** `run()` decodes host output as UTF-8, but a Windows console\nemits the OEM code page, so `where ix` returns a non-ASCII npm prefix mangled.\nThe row holds the real path and `expected` holds the mangled one, so a working\nregistration read as stale — and `install` then overwrote a config the user had\nrepaired by hand with a launcher that cannot start, no `--force` required. That\nis the failure the previous commit said it existed to remove, reached by a\ndifferent road.\n\n**The repair could not land.** `claude mcp add` refuses a name that already\nexists and has no force flag. Seeding an isolated Claude config and running the\nreal `runInstall` gave `outcome: failed`, note `\"MCP server ix-memory already\nexists in user config\"`, config unchanged — for a stale entry *and* for a\nforeign one under `--force`. So `--force` was inert for Claude Code, which the\nREADME advertises.\n\nStaleness from a rendered listing row is therefore gone rather than fixed\nagain. Five attempts, five variants of the same failure: a working registration\ncalled stale, which re-registers without `--force`. A moved npm prefix on\nClaude Code, Codex and Gemini is now a manual `ix mcp install --force`. That is\na real gap, and a smaller one than silently rewriting configs that were fine.\nHosts whose config we read directly keep it: there the recorded command is\nexact, and the repair is a file write that works.\n\n`--force` is fixed independently, since it was broken for conflicts too:\n`register` now takes whether it is replacing something, and hosts whose `add`\nwill not overwrite clear the name first. Verified against the real `claude`\nbinary — a foreign registration under `--force` now yields `registered` with\nthe entry replaced, where before it was `failed` with the entry untouched.\n\nThe launcher-shape test matrix goes with the feature it covered; the removal\nargv is pinned instead, because the wiring is only observable against a host\nbinary CI does not have.\n\nSix mutations caught by the intended test, 10/10 shuffle seeds clean.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>",
+    "parents": [
+      {
+        "sha": "8031cf1c000b4f1dae0b8cc3f891facb6f3b771d",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/8031cf1c000b4f1dae0b8cc3f891facb6f3b771d"
+      }
+    ],
+    "tree_sha": "65c220db9028b8bc678dfd6d80888d23aa8e6ac0",
+    "authored_at": "2026-08-12T21:07:52Z",
+    "committed_at": "2026-08-12T21:07:52Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@b80c6455c4947d88b2d4d3449787a779bcbcbbb8",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/b80c6455c4947d88b2d4d3449787a779bcbcbbb8",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/b80c6455c4947d88b2d4d3449787a779bcbcbbb8",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-12T21:07:52Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-12T21:07:52Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-b80c6455c4947d88b2d4d3449787a779bcbcbbb8",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#401"
+  },
+  "relationships": []
+}

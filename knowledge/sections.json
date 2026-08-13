@@ -1,6 +1,6 @@
 {
-  "captured_at": "2026-08-11T21:11:00Z",
-  "source": "read-only GitHub API via gh api",
+  "captured_at": "2026-08-13T22:23:39.068Z",
+  "source": "read-only GitHub REST API via supplied token",
   "commit_messages": {
     "36c7c7eccd8068d48df4f61394b42a3ffa62483c": "feat(mcp): add ix mcp subcommand exposing the code graph as MCP tools (#219)",
     "a5350b6d6dc67958fa4abef63559affcd74aff56": "docs(mcp): document the ix mcp subcommand in the API reference, CLAUDE.md, and agent skill",
@@ -1469,208 +1469,14 @@
   ],
   "issue_sections": [
     {
-      "id": "ISSUESEC-219",
-      "issue": 219,
-      "title": "Issue #219 — Add ix mcp subcommand: expose ix as a local MCP server",
-      "graph_path": "/issues/219",
-      "issue_url": "https://github.com/ix-infrastructure/Ix/issues/219",
-      "issue_title": "Add ix mcp subcommand: expose ix as a local MCP server",
+      "id": "ISSUESEC-420",
+      "issue": 420,
+      "title": "Issue #420 — [bug] ix watch bypasses canonical ingestion and leaves stale graph data",
+      "graph_path": "/issues/420",
+      "issue_url": "https://github.com/ix-infrastructure/Ix/issues/420",
+      "issue_title": "[bug] ix watch bypasses canonical ingestion and leaves stale graph data",
       "state": "open",
-      "user": "josephismikhail",
-      "labels": [
-        "enhancement"
-      ],
-      "implementation_ids": [
-        "ix-mcp"
-      ],
-      "pr_refs": [],
-      "commit_refs": [
-        "36c7c7eccd8068d48df4f61394b42a3ffa62483c",
-        "a5350b6d6dc67958fa4abef63559affcd74aff56",
-        "66111917a2a58437c91372616f98928876121395",
-        "1a5b0b93c9e8871610370c0f36212be8f6cf6980",
-        "606f18f7ca1a69f4b8ede7c27c1079b024297856"
-      ],
-      "file_refs": [
-        {
-          "path": "ix-cli/src/cli/commands/mcp.ts",
-          "symbol": "mcp command registration",
-          "start_line": 1,
-          "end_line": 63,
-          "commit": "36c7c7eccd8068d48df4f61394b42a3ffa62483c",
-          "repository": "Alot1z/Ix",
-          "url": "https://github.com/Alot1z/Ix/blob/36c7c7eccd8068d48df4f61394b42a3ffa62483c/ix-cli/src/cli/commands/mcp.ts#L1-L63"
-        },
-        {
-          "path": "ix-cli/src/cli/mcp/server.ts",
-          "symbol": "McpServer (stdio transport)",
-          "start_line": 1,
-          "end_line": 440,
-          "commit": "66111917a2a58437c91372616f98928876121395",
-          "repository": "Alot1z/Ix",
-          "url": "https://github.com/Alot1z/Ix/blob/66111917a2a58437c91372616f98928876121395/ix-cli/src/cli/mcp/server.ts#L1-L440"
-        },
-        {
-          "path": "ix-cli/src/cli/mcp/protocol.ts",
-          "symbol": "protocol framing, line cap, batch rejection",
-          "start_line": 1,
-          "end_line": 120,
-          "commit": "1a5b0b93c9e8871610370c0f36212be8f6cf6980",
-          "repository": "Alot1z/Ix",
-          "url": "https://github.com/Alot1z/Ix/blob/1a5b0b93c9e8871610370c0f36212be8f6cf6980/ix-cli/src/cli/mcp/protocol.ts#L1-L120"
-        },
-        {
-          "path": "ix-cli/src/cli/mcp/tools.ts",
-          "symbol": "MCP tool registry (ix graph tools)",
-          "start_line": 1,
-          "end_line": 355,
-          "commit": "36c7c7eccd8068d48df4f61394b42a3ffa62483c",
-          "repository": "Alot1z/Ix",
-          "url": "https://github.com/Alot1z/Ix/blob/36c7c7eccd8068d48df4f61394b42a3ffa62483c/ix-cli/src/cli/mcp/tools.ts#L1-L355"
-        },
-        {
-          "path": "ix-cli/src/cli/mcp/stdio-main.ts",
-          "symbol": "stdio entry point",
-          "start_line": 1,
-          "end_line": 36,
-          "commit": "66111917a2a58437c91372616f98928876121395",
-          "repository": "Alot1z/Ix",
-          "url": "https://github.com/Alot1z/Ix/blob/66111917a2a58437c91372616f98928876121395/ix-cli/src/cli/mcp/stdio-main.ts#L1-L36"
-        },
-        {
-          "path": "ix-cli/src/cli/mcp/cli-executor.ts",
-          "symbol": "CLI subprocess executor, cancellation, tree-kill",
-          "start_line": 1,
-          "end_line": 250,
-          "commit": "1a5b0b93c9e8871610370c0f36212be8f6cf6980",
-          "repository": "Alot1z/Ix",
-          "url": "https://github.com/Alot1z/Ix/blob/1a5b0b93c9e8871610370c0f36212be8f6cf6980/ix-cli/src/cli/mcp/cli-executor.ts#L1-L250"
-        },
-        {
-          "path": "ix-cli/src/cli/mcp/types.ts",
-          "symbol": "MCP type contracts",
-          "start_line": 1,
-          "end_line": 88,
-          "commit": "36c7c7eccd8068d48df4f61394b42a3ffa62483c",
-          "repository": "Alot1z/Ix",
-          "url": "https://github.com/Alot1z/Ix/blob/36c7c7eccd8068d48df4f61394b42a3ffa62483c/ix-cli/src/cli/mcp/types.ts#L1-L88"
-        },
-        {
-          "path": "ix-cli/src/cli/__tests__/mcp-abuse.test.ts",
-          "symbol": "protocol-abuse matrix",
-          "start_line": 1,
-          "end_line": 236,
-          "commit": "1a5b0b93c9e8871610370c0f36212be8f6cf6980",
-          "repository": "Alot1z/Ix",
-          "url": "https://github.com/Alot1z/Ix/blob/1a5b0b93c9e8871610370c0f36212be8f6cf6980/ix-cli/src/cli/__tests__/mcp-abuse.test.ts#L1-L236"
-        },
-        {
-          "path": "ix-cli/src/cli/__tests__/mcp-stdio.integration.test.ts",
-          "symbol": "stdio integration tests",
-          "start_line": 1,
-          "end_line": 128,
-          "commit": "66111917a2a58437c91372616f98928876121395",
-          "repository": "Alot1z/Ix",
-          "url": "https://github.com/Alot1z/Ix/blob/66111917a2a58437c91372616f98928876121395/ix-cli/src/cli/__tests__/mcp-stdio.integration.test.ts#L1-L128"
-        },
-        {
-          "path": "ix-cli/src/cli/__tests__/mcp-protocol.test.ts",
-          "symbol": "protocol tests",
-          "start_line": 1,
-          "end_line": 117,
-          "commit": "1a5b0b93c9e8871610370c0f36212be8f6cf6980",
-          "repository": "Alot1z/Ix",
-          "url": "https://github.com/Alot1z/Ix/blob/1a5b0b93c9e8871610370c0f36212be8f6cf6980/ix-cli/src/cli/__tests__/mcp-protocol.test.ts#L1-L117"
-        },
-        {
-          "path": "ix-cli/src/cli/__tests__/mcp-server.test.ts",
-          "symbol": "server tests",
-          "start_line": 1,
-          "end_line": 310,
-          "commit": "66111917a2a58437c91372616f98928876121395",
-          "repository": "Alot1z/Ix",
-          "url": "https://github.com/Alot1z/Ix/blob/66111917a2a58437c91372616f98928876121395/ix-cli/src/cli/__tests__/mcp-server.test.ts#L1-L310"
-        },
-        {
-          "path": "ix-cli/src/cli/__tests__/mcp-cli-executor.test.ts",
-          "symbol": "executor tests",
-          "start_line": 1,
-          "end_line": 123,
-          "commit": "66111917a2a58437c91372616f98928876121395",
-          "repository": "Alot1z/Ix",
-          "url": "https://github.com/Alot1z/Ix/blob/66111917a2a58437c91372616f98928876121395/ix-cli/src/cli/__tests__/mcp-cli-executor.test.ts#L1-L123"
-        },
-        {
-          "path": "ix-cli/src/cli/__tests__/mcp-command.test.ts",
-          "symbol": "command tests",
-          "start_line": 1,
-          "end_line": 67,
-          "commit": "36c7c7eccd8068d48df4f61394b42a3ffa62483c",
-          "repository": "Alot1z/Ix",
-          "url": "https://github.com/Alot1z/Ix/blob/36c7c7eccd8068d48df4f61394b42a3ffa62483c/ix-cli/src/cli/__tests__/mcp-command.test.ts#L1-L67"
-        }
-      ],
-      "test_refs": [
-        {
-          "name": "MCP protocol-abuse matrix",
-          "file": "ix-cli/src/cli/__tests__/mcp-abuse.test.ts",
-          "start_line": 1,
-          "end_line": 236
-        },
-        {
-          "name": "MCP stdio integration",
-          "file": "ix-cli/src/cli/__tests__/mcp-stdio.integration.test.ts",
-          "start_line": 1,
-          "end_line": 128
-        },
-        {
-          "name": "MCP protocol conformance",
-          "file": "ix-cli/src/cli/__tests__/mcp-protocol.test.ts",
-          "start_line": 1,
-          "end_line": 117
-        }
-      ],
-      "finding_refs": [],
-      "related_sections": [
-        "/mcp",
-        "/mcp/implementation",
-        "/mcp/implementation/stdio",
-        "/mcp/implementation/tools",
-        "/mcp/security",
-        "/mcp/tests"
-      ]
-    },
-    {
-      "id": "ISSUESEC-349",
-      "issue": 349,
-      "title": "Issue #349 — [bug] Windows installer — path with spaces",
-      "graph_path": "/issues/349",
-      "issue_url": "https://github.com/ix-infrastructure/Ix/issues/349",
-      "issue_title": "[bug] Windows installer — path with spaces",
-      "state": "open",
-      "user": "RMA1313",
-      "labels": [
-        "bug"
-      ],
-      "implementation_ids": [],
-      "pr_refs": [
-        "ix-infrastructure/Ix#395"
-      ],
-      "commit_refs": [],
-      "file_refs": [],
-      "test_refs": [],
-      "finding_refs": [],
-      "related_sections": []
-    },
-    {
-      "id": "ISSUESEC-383",
-      "issue": 383,
-      "title": "Issue #383 — [bug] Codex hooks and CLI subprocess calls fail on native Windows",
-      "graph_path": "/issues/383",
-      "issue_url": "https://github.com/ix-infrastructure/Ix/issues/383",
-      "issue_title": "[bug] Codex hooks and CLI subprocess calls fail on native Windows",
-      "state": "open",
-      "user": "tept-creator",
+      "user": "Hiro-Chiba",
       "labels": [],
       "implementation_ids": [],
       "pr_refs": [],
@@ -1681,17 +1487,15 @@
       "related_sections": []
     },
     {
-      "id": "ISSUESEC-385",
-      "issue": 385,
-      "title": "Issue #385 — [bug] ix upgrade breaks Windows CLI when upgrading from 0.8.1 to 0.9.1",
-      "graph_path": "/issues/385",
-      "issue_url": "https://github.com/ix-infrastructure/Ix/issues/385",
-      "issue_title": "[bug] ix upgrade breaks Windows CLI when upgrading from 0.8.1 to 0.9.1",
+      "id": "ISSUESEC-413",
+      "issue": 413,
+      "title": "Issue #413 — [bug] ix config set fails when ~/.ix does not exist",
+      "graph_path": "/issues/413",
+      "issue_url": "https://github.com/ix-infrastructure/Ix/issues/413",
+      "issue_title": "[bug] ix config set fails when ~/.ix does not exist",
       "state": "open",
-      "user": "RMA1313",
-      "labels": [
-        "bug"
-      ],
+      "user": "Hiro-Chiba",
+      "labels": [],
       "implementation_ids": [],
       "pr_refs": [],
       "commit_refs": [],
@@ -1703,42 +1507,20 @@
   ],
   "issues": [
     {
-      "number": 219,
-      "title": "Add ix mcp subcommand: expose ix as a local MCP server",
+      "number": 420,
+      "title": "[bug] ix watch bypasses canonical ingestion and leaves stale graph data",
       "state": "open",
-      "user": "josephismikhail",
-      "url": "https://github.com/ix-infrastructure/Ix/issues/219",
-      "labels": [
-        "enhancement"
-      ]
-    },
-    {
-      "number": 349,
-      "title": "[bug] Windows installer — path with spaces",
-      "state": "open",
-      "user": "RMA1313",
-      "url": "https://github.com/ix-infrastructure/Ix/issues/349",
-      "labels": [
-        "bug"
-      ]
-    },
-    {
-      "number": 383,
-      "title": "[bug] Codex hooks and CLI subprocess calls fail on native Windows",
-      "state": "open",
-      "user": "tept-creator",
-      "url": "https://github.com/ix-infrastructure/Ix/issues/383",
+      "user": "Hiro-Chiba",
+      "url": "https://github.com/ix-infrastructure/Ix/issues/420",
       "labels": []
     },
     {
-      "number": 385,
-      "title": "[bug] ix upgrade breaks Windows CLI when upgrading from 0.8.1 to 0.9.1",
+      "number": 413,
+      "title": "[bug] ix config set fails when ~/.ix does not exist",
       "state": "open",
-      "user": "RMA1313",
-      "url": "https://github.com/ix-infrastructure/Ix/issues/385",
-      "labels": [
-        "bug"
-      ]
+      "user": "Hiro-Chiba",
+      "url": "https://github.com/ix-infrastructure/Ix/issues/413",
+      "labels": []
     }
   ]
 }

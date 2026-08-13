@@ -1,0 +1,118 @@
+{
+  "id": "FILE-53b1c914b232",
+  "type": "artifact",
+  "title": "docs/llm-format.md",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/file-53b1c914b232",
+  "summary": {
+    "id": "FILE-53b1c914b232",
+    "type": "artifact",
+    "title": "docs/llm-format.md",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "source_mirror_id": "github:file:ix-infrastructure/Ix:docs/llm-format.md",
+    "source_type": "github_file",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/blob/86f3684c4e4dc77dd0a579eb92863824953a3ce9/docs%2Fllm-format.md",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 372,
+    "filename": "docs/llm-format.md",
+    "status": "modified",
+    "additions": 28,
+    "deletions": 5,
+    "changes": 33,
+    "blob_url": "https://github.com/ix-infrastructure/Ix/blob/86f3684c4e4dc77dd0a579eb92863824953a3ce9/docs%2Fllm-format.md",
+    "raw_url": "https://github.com/ix-infrastructure/Ix/raw/86f3684c4e4dc77dd0a579eb92863824953a3ce9/docs%2Fllm-format.md",
+    "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/docs%2Fllm-format.md?ref=86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+    "patch": "@@ -95,8 +95,31 @@ Renderers shipped: Tier 1 (`map`, `subsystems`, `impact`, `smells`,\n `overview`) plus `stats`; Tier 2 (`inventory`, `rank`, `depends`, `trace`,\n `contains`, `callers`, `callees`, `imports`, `imported-by`); Tier 3 (`search`,\n `text`, `history`, `patches`); Tier 4 (`entity`, `locate`, `diff`,\n-`conflicts`). Commands whose output is verbatim source or prose (`read`,\n-`explain`, `doctor`, `status`, `savings`, and `diff --content`) route\n-`--format llm` to `text`, the most compact existing form. Programmatic\n-consumers that need to parse output should continue to use `--format json`; the\n-`llm` format is optimized for being read by a model, not parsed.\n+`conflicts`); Tier 5 (`explain`, `read`, `status`, `doctor`, `savings`).\n+\n+Tier 5 closes the prose fallback. Those five routed `--format llm` to `text` on\n+the theory that verbatim source and prose have no record form, which is true of\n+the *payload* but not of what surrounds it — `explain`'s prose is a rendering of\n+facts the agent can have directly, and `read`'s source was arriving under a\n+per-line number gutter and ANSI escapes. `explain` is the one that mattered\n+most: it is the first call most plugins make, and its records are ~55% smaller\n+than the `--format json` that `text` sent people to as a workaround.\n+\n+Two deliberate exceptions remain:\n+\n+- **`read`'s content block is not records.** An agent asked for source and wants\n+  it byte-for-byte, so the payload is emitted raw after a `content lines=<n>`\n+  record that makes the block self-delimiting. This is the only place the\n+  one-record-per-line invariant is relaxed, and the count is what lets a\n+  consumer relax it safely.\n+- **`status` is not smaller** — it is within a byte or two of `json`, because\n+  the payload is a handful of scalars either way. It is in Tier 5 for the\n+  explicit `stale=true|false` field, which is the question the command gets\n+  called to answer and which `text` only implied through a warning line.\n+\n+Still routing to `text`: `diff --content` (verbatim hunks) and `ingest`, a\n+hidden implementation-detail command whose output is a completion summary.\n+\n+Programmatic consumers that need to parse output should continue to use\n+`--format json`; the `llm` format is optimized for being read by a model, not\n+parsed.",
+    "parent_pr": 372
+  },
+  "source_context": {
+    "id": "github:file:ix-infrastructure/Ix:docs/llm-format.md",
+    "source": {
+      "type": "github_file",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/blob/86f3684c4e4dc77dd0a579eb92863824953a3ce9/docs%2Fllm-format.md",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T02:54:48Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T16:27:44Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "FILE-53b1c914b232",
+    "entity_type": "FILE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#372",
+    "line_precision": "FILE_LEVEL"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-b7e04e73b7174b87831f4c5d981b5e198f363a75",
+      "other_type": "commit",
+      "other_title": "b7e04e73b7174b87831f4c5d981b5e198f363a75",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b7e04e73b7174b87831f4c5d981b5e198f363a75"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+      "other_type": "commit",
+      "other_title": "86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-86f3684c4e4dc77dd0a579eb92863824953a3ce9"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-ed361190094b2d31c6a51e8df1e23f4cd8daa884",
+      "other_type": "commit",
+      "other_title": "ed361190094b2d31c6a51e8df1e23f4cd8daa884",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-ed361190094b2d31c6a51e8df1e23f4cd8daa884"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-63c76173055d60b354536a8aaebfecf83697a0f7",
+      "other_type": "commit",
+      "other_title": "63c76173055d60b354536a8aaebfecf83697a0f7",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-63c76173055d60b354536a8aaebfecf83697a0f7"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-19db830d6cc43a3e2bb96f4711ff02836bb0c16e",
+      "other_type": "commit",
+      "other_title": "19db830d6cc43a3e2bb96f4711ff02836bb0c16e",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-19db830d6cc43a3e2bb96f4711ff02836bb0c16e"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-fe27c9d2432db883c02cc5bda0018111045815fe",
+      "other_type": "commit",
+      "other_title": "fe27c9d2432db883c02cc5bda0018111045815fe",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-fe27c9d2432db883c02cc5bda0018111045815fe"
+    }
+  ]
+}

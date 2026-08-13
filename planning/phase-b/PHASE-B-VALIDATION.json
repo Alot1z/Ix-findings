@@ -1,0 +1,58 @@
+{
+  "generated_at": "2026-08-12T09:54:35.985Z",
+  "phase": "B",
+  "ui_shell": {
+    "status": "FIXED_STRUCTURALLY",
+    "canonical_source": "planning/wiki/index.html",
+    "deep_shell_source": "planning/pages/build-public.mjs",
+    "sidebar_group_parity": true,
+    "deep_route_explosion_removed": true,
+    "visual_audit": "NOT_AVAILABLE_IN_SDK_PREVIEW",
+    "visual_note": "Source/DOM and generated-artifact checks passed; visual screenshot was unavailable because register_preview exposes no usable source-argument interface in this environment."
+  },
+  "canonical_identity": {
+    "status": "PASS",
+    "canonical_source": "knowledge/entities.json + knowledge/relationships.json",
+    "entity_count": 757,
+    "relationship_count": 1292,
+    "identity_registry": "knowledge/identity-registry.json",
+    "identity_entity_count": 165,
+    "identity_relationship_count": 258
+  },
+  "public_projection": {
+    "status": "STRUCTURAL_PASS",
+    "route_count": 771,
+    "entity_count": 757,
+    "graph_entities": 757,
+    "graph_relationships": 1292
+  },
+  "freshness": {
+    "gate": "STALE",
+    "checked_at": "2026-08-12T09:53:03.067Z",
+    "repository": "ix-infrastructure/Ix",
+    "live_upstream_head": "fa6ad7b0ff52734685ff7425b08ec240837751fa",
+    "canonical_head": "1292375548fb8f4431ac5afc34c68fe2573434d1",
+    "stale_check_count": 3,
+    "publication_safe": false,
+    "mode": "live",
+    "source": "node knowledge/freshness-gate.mjs --json; GitHub API via gh api (read-only)",
+    "external_mutations": 0
+  },
+  "external_actions": {
+    "github_comments": 0,
+    "github_issues": 0,
+    "prs": 0,
+    "reviews": 0,
+    "pushes": 0,
+    "merges": 0,
+    "deployments": 0,
+    "mcp_registrations": 0,
+    "hooks_installed": 0,
+    "installations": 0
+  },
+  "privacy": {
+    "local_path_leak_scan": "PASS",
+    "token_scan": "PASS",
+    "public_allowlist": "PASS"
+  }
+}

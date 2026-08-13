@@ -1,0 +1,79 @@
+{
+  "id": "FILE-44d59c4ebd36",
+  "type": "artifact",
+  "title": "ix-cli/src/cli/commands/mcp.ts",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/file-44d59c4ebd36",
+  "summary": {
+    "id": "FILE-44d59c4ebd36",
+    "type": "artifact",
+    "title": "ix-cli/src/cli/commands/mcp.ts",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/blob/HEAD/ix-cli/src/cli/commands/mcp.ts",
+    "source_mirror_id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/commands/mcp.ts",
+    "source_type": "github_file",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/blob/2be2c25f63dca94116bfb299e5037e293b840aa9/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fmcp.ts",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 397,
+    "filename": "ix-cli/src/cli/commands/mcp.ts",
+    "status": "added",
+    "additions": 131,
+    "deletions": 0,
+    "changes": 131,
+    "blob_url": "https://github.com/ix-infrastructure/Ix/blob/2be2c25f63dca94116bfb299e5037e293b840aa9/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fmcp.ts",
+    "raw_url": "https://github.com/ix-infrastructure/Ix/raw/2be2c25f63dca94116bfb299e5037e293b840aa9/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fmcp.ts",
+    "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fmcp.ts?ref=2be2c25f63dca94116bfb299e5037e293b840aa9",
+    "patch": "@@ -0,0 +1,131 @@\n+import type { Command } from \"commander\";\n+import chalk from \"chalk\";\n+\n+import { llmLine, type LlmValue } from \"../llm.js\";\n+import type { DoctorReport, HostReport, InstallReport, Outcome } from \"../../mcp/install.js\";\n+\n+/** Symbol and colour per outcome, shared by install and doctor. */\n+const OUTCOME_STYLE: Record<Outcome, { mark: string; paint: (text: string) => string }> = {\n+  registered: { mark: \"+\", paint: chalk.green },\n+  \"would-register\": { mark: \"+\", paint: chalk.cyan },\n+  \"already-registered\": { mark: \"=\", paint: chalk.dim },\n+  conflict: { mark: \"!\", paint: chalk.yellow },\n+  failed: { mark: \"x\", paint: chalk.red },\n+  \"not-registered\": { mark: \"o\", paint: chalk.yellow },\n+  \"not-installed\": { mark: \"-\", paint: chalk.dim },\n+};\n+\n+const OUTCOME_TEXT: Record<Outcome, string> = {\n+  registered: \"registered\",\n+  \"would-register\": \"would register\",\n+  \"already-registered\": \"already registered\",\n+  conflict: \"conflict — left alone\",\n+  failed: \"failed\",\n+  \"not-registered\": \"not registered\",\n+  \"not-installed\": \"not installed\",\n+};\n+\n+function renderHostLine(host: HostReport): string {\n+  const style = OUTCOME_STYLE[host.outcome];\n+  const label = host.label.padEnd(13);\n+  const line = `  ${style.mark} ${label} ${OUTCOME_TEXT[host.outcome]}`;\n+  return style.paint(line) + (host.note ? chalk.dim(`\\n      ${host.note}`) : \"\");\n+}\n+\n+function hostFields(host: HostReport): Array<[string, LlmValue]> {\n+  return [\n+    [\"host\", host.id],\n+    [\"outcome\", host.outcome],\n+    [\"installed\", host.installed],\n+    [\"registration\", host.registration],\n+    [\"note\", host.note],\n+  ];\n+}\n+\n+function renderInstall(report: InstallReport, format: string, dryRun: boolean): void {\n+  if (format === \"json\") {\n+    console.log(JSON.stringify(report, null, 2));\n+    return;\n+  }\n+  if (format === \"llm\") {\n+    for (const host of report.hosts) console.log(llmLine(\"host\", hostFields(host)));\n+    console.log(llmLine(\"summary\", [[\"registered\", report.registered], [\"conflicts\", report.conflicts]]));\n+    return;\n+  }\n+\n+  console.log(chalk.bold(dryRun ? \"\\nix mcp install --dry-run\" : \"\\nix mcp install\"));\n+  for (const host of report.hosts) console.log(renderHostLine(host));\n+\n+  const conflicts = report.hosts.filter((host) => host.outcome === \"conflict\");\n+  if (conflicts.length > 0) {\n+    console.log(\n+      chalk.dim(\n+        `\\n  ${conflicts.length} host(s) already use the name '${chalk.bold(\"ix-memory\")}' for a different server.` +\n+          `\\n  Nothing was changed there. Re-run with --force to replace them.`,\n+      ),\n+    );\n+  }\n+  console.log();\n+}\n+\n+function renderDoctor(report: DoctorReport, format: string): void {\n+  if (format === \"json\") {\n+    console.log(JSON.stringify(report, null, 2));\n+    return;\n+  }\n+  if (format === \"llm\") {\n+    console.log(llmLine(\"server\", [[\"ix_on_path\", report.ixOnPath], [\"tools\", report.toolCount]]));\n+    for (const host of report.hosts) console.log(llmLine(\"host\", hostFields(host)));\n+    return;\n+  }\n+\n+  console.log(chalk.bold(\"\\nix mcp doctor\"));\n+  console.log(\n+    report.ixOnPath\n+      ? chalk.green(`  + ix on PATH`) + chalk.dim(`  (hosts launch the bare command \\`ix\\`)`)\n+      : chalk.red(`  x ix is NOT on PATH`) +\n+          chalk.dim(`\\n      Every registration launches \\`ix mcp\\` and will fail until it resolves.`),\n+  );\n+  console.log(chalk.dim(`  ${report.toolCount} tools advertised`));\n+  console.log();\n+  for (const host of report.hosts) console.log(renderHostLine(host));\n+  console.log();\n+}\n+\n+export function registerMcpCommand(program: Command): void {\n+  const mcp = program\n+    .command(\"mcp\")\n+    .description(\"Serve Ix tools over the Model Context Protocol (stdio)\")\n+    .action(async () => {\n+      // Keep the SDK off the startup path for ordinary CLI commands.\n+      const { startIxMcpServer } = await import(\"../../mcp/server.js\");\n+      await startIxMcpServer(program.version());\n+    });\n+\n+  mcp\n+    .command(\"install\")\n+    .description(\"Register `ix mcp` with the AI clients installed on this machine\")\n+    .option(\"--host <ids...>\", \"Only these hosts (claude, codex, cursor, vscode, gemini, openclaw, opencode)\")\n+    .option(\"--dry-run\", \"Report what would change without writing anything\", false)\n+    .option(\"--force\", \"Replace a registration held by a different server\", false)\n+    .option(\"--format <fmt>\", \"Output format (text|json|llm)\", \"text\")\n+    .action(async (opts: { host?: string[]; dryRun: boolean; force: boolean; format: string }) => {\n+      const { runInstall } = await import(\"../../mcp/install.js\");\n+      const report = await runInstall({ only: opts.host, dryRun: opts.dryRun, force: opts.force });\n+      renderInstall(report, opts.format, opts.dryRun);\n+      if (report.hosts.some((host) => host.outcome === \"failed\")) process.exitCode = 1;\n+    });\n+\n+  mcp\n+    .command(\"doctor\")\n+    .description(\"Check that `ix mcp` is registered and launchable from each client\")\n+    .option(\"--host <ids...>\", \"Only these hosts\")\n+    .option(\"--format <fmt>\", \"Output format (text|json|llm)\", \"text\")\n+    .action(async (opts: { host?: string[]; format: string }) => {\n+      const { runDoctor } = await import(\"../../mcp/install.js\");\n+      const report = await runDoctor({ only: opts.host });\n+      renderDoctor(report, opts.format);\n+      const broken = report.hosts.some((host) => host.outcome === \"conflict\" || host.outcome === \"not-registered\");\n+      if (!report.ixOnPath || broken) process.exitCode = 1;\n+    });\n+}",
+    "parent_pr": 397
+  },
+  "source_context": {
+    "id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/commands/mcp.ts",
+    "source": {
+      "type": "github_file",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/blob/2be2c25f63dca94116bfb299e5037e293b840aa9/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fmcp.ts",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-12T15:23:12Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-12T16:26:44Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "FILE-44d59c4ebd36",
+    "entity_type": "FILE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#397",
+    "line_precision": "FILE_LEVEL"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+      "other_type": "commit",
+      "other_title": "36c7c7eccd8068d48df4f61394b42a3ffa62483c",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-36c7c7eccd8068d48df4f61394b42a3ffa62483c"
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "id": "COMMIT-1e590250a4ab70da9c4016b3faa52bf2be5749c6",
+  "type": "commit",
+  "title": "1e590250a4ab70da9c4016b3faa52bf2be5749c6",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-1e590250a4ab70da9c4016b3faa52bf2be5749c6",
+  "summary": {
+    "id": "COMMIT-1e590250a4ab70da9c4016b3faa52bf2be5749c6",
+    "type": "commit",
+    "title": "1e590250a4ab70da9c4016b3faa52bf2be5749c6",
+    "status": "CURRENT"
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "POINTS_TO",
+      "other": "BRANCH-7e46de30501b",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:fix/status-workspace-scoped-patch",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-7e46de30501b"
+    },
+    {
+      "direction": "in",
+      "relationship": "POINTS_TO",
+      "other": "BRANCH-aedc7d952c95",
+      "other_type": "branch",
+      "other_title": "ix-infrastructure/Ix:fix/status-workspace-scoped-patch",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-aedc7d952c95"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-5b14632f67eea337663bb66188a30ac9f84a7d08",
+      "other_type": "commit",
+      "other_title": "5b14632f67eea337663bb66188a30ac9f84a7d08",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-5b14632f67eea337663bb66188a30ac9f84a7d08"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-13e511049507",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/stale-workspace-scope.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-13e511049507"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2dd5083b3a93",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/stale-workspace-scope.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2dd5083b3a93"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-d2292911aece",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/stale-workspace-scope.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-d2292911aece"
+    }
+  ]
+}

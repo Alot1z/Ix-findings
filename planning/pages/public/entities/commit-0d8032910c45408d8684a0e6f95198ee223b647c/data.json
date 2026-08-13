@@ -1,0 +1,185 @@
+{
+  "id": "COMMIT-0d8032910c45408d8684a0e6f95198ee223b647c",
+  "type": "commit",
+  "title": "0d8032910c45408d8684a0e6f95198ee223b647c",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-0d8032910c45408d8684a0e6f95198ee223b647c",
+  "summary": {
+    "id": "COMMIT-0d8032910c45408d8684a0e6f95198ee223b647c",
+    "type": "commit",
+    "title": "0d8032910c45408d8684a0e6f95198ee223b647c",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/0d8032910c45408d8684a0e6f95198ee223b647c",
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "source_mirror_id": "github:commit:ix-infrastructure/Ix@0d8032910c45408d8684a0e6f95198ee223b647c",
+    "source_type": "github_commit",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/commit/0d8032910c45408d8684a0e6f95198ee223b647c",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/0d8032910c45408d8684a0e6f95198ee223b647c",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "sha": "0d8032910c45408d8684a0e6f95198ee223b647c",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/0d8032910c45408d8684a0e6f95198ee223b647c",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/0d8032910c45408d8684a0e6f95198ee223b647c",
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "committer": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "message": "fix(view): keep \"absent\" and \"unreadable\" apart, and screen the rev at its source\n\nReview of the first commit found three regressions in it, all one mistake:\nreplacing the `existsSync` guards with bare `catch {}` made an unreadable\nfile indistinguishable from a missing one. Both callers of `readAlivePid`\ntreat null as licence to act, so that reads badly:\n\n- `ix view` took an unreadable compass.pid as \"not running\", spawned the\n  detached server, and only then died writing the PID — leaving a visualizer\n  with nothing recording it, which `ix view stop` reports as not running and\n  no later `ix view` can get past. Reproduced: spawn called, then EISDIR.\n- `ix view stop` against a root-owned compass.pid deleted a live server's\n  pid/scope/port (unlink needs the directory permission, not the file's) and\n  then killed nothing.\n- An unreadable compass.scope silently skipped the cross-workspace warning\n  and handed back another workspace's graph — the exact confusion that file\n  exists to prevent.\n\n`readTextIfPresent` now returns null only for ENOENT and rethrows the rest,\nwhich is what `main` did, without the racy check. `readRunningPort` keeps\nits swallow-all policy on purpose and says why: it looks up a URL to print,\nnot liveness. The scope read also stops treating a zero-length file as a\nworkspace named \"\".\n\nThe rev change was directionally right with a false rationale. `currentRev`\nis read only by `ix status` — incremental skipping runs off the mtime map —\nso a rejected rev costs a wrong Revision line, not a re-ingest. Comment and\ntest header corrected. More to the point the guard was at the last stop: the\nvalue enters at the accumulator, where a bare `>` compares it as a string,\nso \"9\" becomes the max and \"10\" > \"9\" is then false and the max walks\nbackwards. `advanceRev` screens it there, which fixes the max, the\n`--format json` contract and the baseline at once. `isRev` is now one\npredicate both sides share — they previously sat three lines apart and\ndisagreed on whether 0 was valid. `previousRev` is looked up lazily; it\nparses the whole baseline, and `onCommitted` saves once per deleted file.\n\nTests: the scope-mismatch branch had no coverage in the whole suite (every\ncase seeded \"*all*\" and launched with --all), and the PID test asserted a\ncleanup that cannot happen. Both replaced, plus the vacuous NaN case, which\npassed against the bug. All five new assertions were checked against\nrestored mutants: swallow-all resurrects the orphan spawn and the silent\nscope warning, and dropping the rev screen lets \"9\" win the max.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>",
+    "parents": [
+      {
+        "sha": "7a815573e4388e77b8b7af4c1ba0376a8bd36e25",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/7a815573e4388e77b8b7af4c1ba0376a8bd36e25"
+      }
+    ],
+    "tree_sha": "cab7f69174d43dd12c17fc30604ea527136a6d84",
+    "authored_at": "2026-08-10T22:14:32Z",
+    "committed_at": "2026-08-10T22:14:32Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@0d8032910c45408d8684a0e6f95198ee223b647c",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/0d8032910c45408d8684a0e6f95198ee223b647c",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/0d8032910c45408d8684a0e6f95198ee223b647c",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T22:14:32Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T22:14:32Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-0d8032910c45408d8684a0e6f95198ee223b647c",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#389"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-7a815573e4388e77b8b7af4c1ba0376a8bd36e25",
+      "other_type": "commit",
+      "other_title": "7a815573e4388e77b8b7af4c1ba0376a8bd36e25",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-7a815573e4388e77b8b7af4c1ba0376a8bd36e25"
+    },
+    {
+      "direction": "in",
+      "relationship": "HEADS_AT",
+      "other": "PR-389",
+      "other_type": "pr",
+      "other_title": "Ix PR #389",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-389"
+    },
+    {
+      "direction": "in",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "PR-389",
+      "other_type": "pr",
+      "other_title": "Ix PR #389",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-389"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-8a311e102a4a",
+      "other_type": "artifact",
+      "other_title": "core-ingestion/package-lock.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-8a311e102a4a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-29743d3a9ad0",
+      "other_type": "artifact",
+      "other_title": "ix-cli/package-lock.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-29743d3a9ad0"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ce3d1d7517bb",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/ingest-baseline-rev.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ce3d1d7517bb"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-69e78392d02c",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/view-running-port.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-69e78392d02c"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-07f14ce9998a",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/ingest.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-07f14ce9998a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-201d35c8a82e",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/view.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-201d35c8a82e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-56dc219369f6",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/ingest-baseline.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-56dc219369f6"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGED_BY",
+      "other": "PR-389",
+      "other_type": "pr",
+      "other_title": "Ix PR #389",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-389"
+    }
+  ]
+}

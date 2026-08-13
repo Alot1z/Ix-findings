@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-d52c3f754033c439cc3b3d095def08d744ede052",
+  "type": "commit",
+  "title": "d52c3f754033c439cc3b3d095def08d744ede052",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-d52c3f754033c439cc3b3d095def08d744ede052",
+  "summary": {
+    "id": "COMMIT-d52c3f754033c439cc3b3d095def08d744ede052",
+    "type": "commit",
+    "title": "d52c3f754033c439cc3b3d095def08d744ede052",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/d52c3f754033c439cc3b3d095def08d744ede052",
+    "author": {
+      "name": "Joseph Mikhail",
+      "email": "56614593+josephismikhail@users.noreply.github.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-ad28caa7de62f7530ca8d9d880342db859ee02b7",
+      "other_type": "commit",
+      "other_title": "ad28caa7de62f7530ca8d9d880342db859ee02b7",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-ad28caa7de62f7530ca8d9d880342db859ee02b7"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-f62effa03473f46a438a4742f23987c5250a2491",
+      "other_type": "commit",
+      "other_title": "f62effa03473f46a438a4742f23987c5250a2491",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-f62effa03473f46a438a4742f23987c5250a2491"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-8a311e102a4a",
+      "other_type": "artifact",
+      "other_title": "core-ingestion/package-lock.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-8a311e102a4a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-724b9a40806f",
+      "other_type": "artifact",
+      "other_title": "core-ingestion/package-lock.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-724b9a40806f"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-39bfe3bfede9",
+      "other_type": "artifact",
+      "other_title": "core-ingestion/package-lock.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-39bfe3bfede9"
+    }
+  ]
+}

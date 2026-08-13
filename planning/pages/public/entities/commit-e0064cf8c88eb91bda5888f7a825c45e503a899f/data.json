@@ -1,0 +1,137 @@
+{
+  "id": "COMMIT-e0064cf8c88eb91bda5888f7a825c45e503a899f",
+  "type": "commit",
+  "title": "e0064cf8c88eb91bda5888f7a825c45e503a899f",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-e0064cf8c88eb91bda5888f7a825c45e503a899f",
+  "summary": {
+    "id": "COMMIT-e0064cf8c88eb91bda5888f7a825c45e503a899f",
+    "type": "commit",
+    "title": "e0064cf8c88eb91bda5888f7a825c45e503a899f",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/e0064cf8c88eb91bda5888f7a825c45e503a899f",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "source_mirror_id": "github:commit:ix-infrastructure/Ix@e0064cf8c88eb91bda5888f7a825c45e503a899f",
+    "source_type": "github_commit",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/commit/e0064cf8c88eb91bda5888f7a825c45e503a899f",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/e0064cf8c88eb91bda5888f7a825c45e503a899f",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "sha": "e0064cf8c88eb91bda5888f7a825c45e503a899f",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/e0064cf8c88eb91bda5888f7a825c45e503a899f",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/e0064cf8c88eb91bda5888f7a825c45e503a899f",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "committer": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "message": "fix(upgrade): stage downloads under IX_HOME, not TEMP\n\n#349 is a Windows install that died after extraction because TEMP arrived in\n8.3 short form (`[local-path] on a profile named `[local-path] 10`;\nthe reporter confirmed that pointing TEMP and TMP at a path without a space let\nthe same install finish. #352 moved install.ps1's scratch off TEMP for that\nreason, and said in its own comment that `ix upgrade` still stages through\n`os.tmpdir()` — which on Windows is TEMP verbatim — so if the class is real it\nis unfixed there.\n\nIt is the worse of the two places for it to bite: a failed install leaves a\nmachine with no Ix on it, but a failed upgrade breaks an install that was\nworking.\n\nBoth download directories move to `IX_HOME`, which comes from USERPROFILE in\nits long form, joining the staging and backup directories that were already\nthere. `mkdirSync(IX_HOME)` first, because a first upgrade after a manual\ninstall may reach this before anything has created it.\n\nLeaving TEMP also leaves the OS's own cleanup, so `sweepUpgradeOrphans` learns\nthe two new prefixes — otherwise an upgrade killed mid-download parks a\nmulti-MB archive in ~/.ix forever. They are deliberately `-download-` and not\n`-backup-`: `recover()` renames the newest `.cli-backup-*` over the install\ndirectory, and an archive must never be a candidate for that.\n\n**The sweep call had to move above the download.** It sat between the download\nand the extract, which was safe only while the scratch lived in os.tmpdir();\nnow that the sweep reclaims `.cli-download-*`, from that position it would\ndelete the archive it was about to extract and break every upgrade. Above the\ndownload it also puts an interrupted install back even when the download then\nfails, which the old order could not do. The compass branch already had this\nordering.\n\nRefs #349",
+    "parents": [
+      {
+        "sha": "af23b558efea953869d03ea655cbb0b3c82123b2",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/af23b558efea953869d03ea655cbb0b3c82123b2"
+      }
+    ],
+    "tree_sha": "5e390ca0288f05b955c9af889645089aad495428",
+    "authored_at": "2026-08-11T00:18:52Z",
+    "committed_at": "2026-08-11T04:37:05Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@e0064cf8c88eb91bda5888f7a825c45e503a899f",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/e0064cf8c88eb91bda5888f7a825c45e503a899f",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/e0064cf8c88eb91bda5888f7a825c45e503a899f",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-11T04:37:05Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-11T04:37:05Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-e0064cf8c88eb91bda5888f7a825c45e503a899f",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#392"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-af23b558efea953869d03ea655cbb0b3c82123b2",
+      "other_type": "commit",
+      "other_title": "af23b558efea953869d03ea655cbb0b3c82123b2",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-af23b558efea953869d03ea655cbb0b3c82123b2"
+    },
+    {
+      "direction": "in",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "PR-392",
+      "other_type": "pr",
+      "other_title": "Ix PR #392",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-392"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-8fd3c7d3cd9b",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/upgrade-archive-shape.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-8fd3c7d3cd9b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e559b6bc2060",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/upgrade.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e559b6bc2060"
+    },
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-a4b1da988ea8e3bacb9457da67ff4fa4c3a1117d",
+      "other_type": "commit",
+      "other_title": "a4b1da988ea8e3bacb9457da67ff4fa4c3a1117d",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-a4b1da988ea8e3bacb9457da67ff4fa4c3a1117d"
+    }
+  ]
+}

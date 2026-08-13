@@ -1,0 +1,171 @@
+{
+  "id": "COMMIT-7a815573e4388e77b8b7af4c1ba0376a8bd36e25",
+  "type": "commit",
+  "title": "7a815573e4388e77b8b7af4c1ba0376a8bd36e25",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-7a815573e4388e77b8b7af4c1ba0376a8bd36e25",
+  "summary": {
+    "id": "COMMIT-7a815573e4388e77b8b7af4c1ba0376a8bd36e25",
+    "type": "commit",
+    "title": "7a815573e4388e77b8b7af4c1ba0376a8bd36e25",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/7a815573e4388e77b8b7af4c1ba0376a8bd36e25",
+    "source_mirror_id": "github:commit:ix-infrastructure/Ix@7a815573e4388e77b8b7af4c1ba0376a8bd36e25",
+    "source_type": "github_commit",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/commit/7a815573e4388e77b8b7af4c1ba0376a8bd36e25",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/7a815573e4388e77b8b7af4c1ba0376a8bd36e25",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "sha": "7a815573e4388e77b8b7af4c1ba0376a8bd36e25",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/7a815573e4388e77b8b7af4c1ba0376a8bd36e25",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/7a815573e4388e77b8b7af4c1ba0376a8bd36e25",
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "committer": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "message": "fix(security): close the file-system race in view, and the two lockfile CVEs\n\nThree of the eight open code scanning alerts, all of which had a real fix\nbehind them.\n\n**#44 (high, js/file-system-race).** `readRunningPort` checked\n`existsSync(PORT_FILE)` and then, fifteen lines later, wrote to it — the\npair CodeQL flagged. The check never earned its keep: a missing file throws\ninto the same catch that already handled unreadable content, so removing it\nloses no behaviour and closes the window in which the file can change\nbetween the two calls. Same shape removed from `readAlivePid` and the\nscope-file read.\n\n`readAlivePid` gets a real fix out of it too. `existsSync` passing did not\nmean the read would succeed, and when it failed the EISDIR escaped the\ncommand instead of clearing the stale state. Reading straight out treats\nabsent and unreadable the same way, which is what the caller wanted.\n\n**#47 (medium, js/http-to-file-access).** The rev comes off the backend's\ncommit response, and only the read side ever checked its shape. A rev that\nis not an integer — an older backend answering `\"9\"` rather than `9` —\ncleared the bare `> 0`, got written, and was then rejected by\n`loadIngestBaseline` on the next run, resetting the rev to 0. That is a\nfull re-ingest on every single map, with nothing said about it. Both sides\nnow insist on the same shape.\n\n**#40 (high, Scorecard Vulnerabilities).** nanoid 3.3.16 -> 3.3.18 and\nbrace-expansion 5.0.7 -> 5.0.9, clearing GHSA-2v37-7h3g-55p8,\nGHSA-mh99-v99m-4gvg and GHSA-rgw5-rvv9-x895. Lockfiles only, and both are\ndev-only transitive deps.\n\nThe new tests were checked against the restored bugs: the numeric-string\nand fractional revs both write through, and the unreadable PID file throws\nEISDIR out of `ix view status`.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>",
+    "parents": [
+      {
+        "sha": "b25bf2efe837a29022770bd220c58b2da05bca32",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/b25bf2efe837a29022770bd220c58b2da05bca32"
+      }
+    ],
+    "tree_sha": "f6d5d480ca11b078a649b0e18670ae23ea0e692d",
+    "authored_at": "2026-08-10T21:16:00Z",
+    "committed_at": "2026-08-10T21:18:50Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@7a815573e4388e77b8b7af4c1ba0376a8bd36e25",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/7a815573e4388e77b8b7af4c1ba0376a8bd36e25",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/7a815573e4388e77b8b7af4c1ba0376a8bd36e25",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T21:18:50Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T21:18:50Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-7a815573e4388e77b8b7af4c1ba0376a8bd36e25",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#389"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-0d8032910c45408d8684a0e6f95198ee223b647c",
+      "other_type": "commit",
+      "other_title": "0d8032910c45408d8684a0e6f95198ee223b647c",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-0d8032910c45408d8684a0e6f95198ee223b647c"
+    },
+    {
+      "direction": "out",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-b25bf2efe837a29022770bd220c58b2da05bca32",
+      "other_type": "commit",
+      "other_title": "b25bf2efe837a29022770bd220c58b2da05bca32",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b25bf2efe837a29022770bd220c58b2da05bca32"
+    },
+    {
+      "direction": "in",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "PR-389",
+      "other_type": "pr",
+      "other_title": "Ix PR #389",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-389"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-8a311e102a4a",
+      "other_type": "artifact",
+      "other_title": "core-ingestion/package-lock.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-8a311e102a4a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-29743d3a9ad0",
+      "other_type": "artifact",
+      "other_title": "ix-cli/package-lock.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-29743d3a9ad0"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ce3d1d7517bb",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/ingest-baseline-rev.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ce3d1d7517bb"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-69e78392d02c",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/view-running-port.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-69e78392d02c"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-07f14ce9998a",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/ingest.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-07f14ce9998a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-201d35c8a82e",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/view.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-201d35c8a82e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-56dc219369f6",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/ingest-baseline.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-56dc219369f6"
+    }
+  ]
+}

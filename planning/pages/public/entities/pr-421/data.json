@@ -1,0 +1,327 @@
+{
+  "id": "PR-421",
+  "type": "pr",
+  "title": "Ix PR #421",
+  "status": "OPEN",
+  "url": "https://alot1z.github.io/Ix-findings/entities/pr-421",
+  "summary": {
+    "id": "PR-421",
+    "type": "pr",
+    "title": "Ix PR #421",
+    "status": "OPEN",
+    "number": 421,
+    "url": "https://github.com/ix-infrastructure/Ix/pull/421",
+    "source_mirror_id": "github:pull_request:ix-infrastructure/Ix#421",
+    "source_type": "github_pull_request",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/pull/421",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/421",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "number": 421,
+    "node_id": "PR_kwDORdC75M7-w1PY",
+    "title": "fix(watch): refresh through canonical map ingestion",
+    "body": "Fixes #420\n\n## Summary\nRefresh watched workspaces through the canonical map ingestion path so watch produces the same graph data as a normal full ingest and map.\n\n## Type\n- [x] Bug fix\n- [ ] Feature\n- [ ] Refactor\n- [ ] Docs\n- [ ] Test\n- [ ] CI\n\n## Changes\n- Replace watch's direct per-file patch commits with serialized canonical workspace refreshes.\n- Preserve full entity, edge, chunk, claim, replacement, deletion, baseline, and region updates behind the existing map lock.\n- Coalesce changes that arrive during a refresh and retry lock contention without losing the trailing update.\n- Detect deletions in both recursive watch and polling modes while keeping `--path` limited to the watched event scope.\n- Preserve migration baseline handling and TypeScript runtime loaders for the development CLI without forwarding debugger flags.\n\n## Validation\n- `npx vitest run src/cli/__tests__/watch-dedup.test.ts src/cli/__tests__/map-auto-skip.test.ts` (28 passed)\n- `npm test` (61 files; 874 passed, 1 skipped; parser smoke passed)\n- `npm run typecheck`\n- `npm run build`\n- `npm run lint` (0 errors; 41 existing warnings)\n- Isolated-backend E2E: renaming `caller` removed the old entity and produced the new cross-file call edge; deleting the source removed the caller entity and edge\n- `ix map . --silent` against an isolated backend (217 files)\n- `git diff --check`\n- `npm run format:check` still reports repository-baseline formatting failures; the changed watch test passes targeted Prettier checking\n\n## Checklist\n- [x] Tests pass\n- [x] Smoke tests pass\n- [x] No raw errors introduced\n- [x] CLI output follows Ix format\n\n## Release checklist (if merging to main)\n- [ ] `ix-cli/package.json` version bumped\n- [ ] After merge: tag pushed (`git tag vX.Y.Z && git push origin vX.Y.Z`)\n- [ ] If backend changes: `ix-memory-layer` tagged and released first\n- [ ] If `docker-compose.standalone.yml` changed: verified `curl | sh` install works\n",
+    "state": "open",
+    "draft": false,
+    "merged": false,
+    "author": {
+      "login": "Hiro-Chiba",
+      "id": 203865699,
+      "type": "User",
+      "html_url": "https://github.com/Hiro-Chiba"
+    },
+    "html_url": "https://github.com/ix-infrastructure/Ix/pull/421",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/421",
+    "head": {
+      "ref": "fix/watch-canonical-ingest",
+      "sha": "8d6be713600302ca22da3981059e7319c050b64b",
+      "repo": {
+        "id": 1329113547,
+        "full_name": "Hiro-Chiba/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "html_url": "https://github.com/Hiro-Chiba/Ix",
+        "api_url": "https://api.github.com/repos/Hiro-Chiba/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": true,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-08-09T19:06:50Z",
+        "updated_at": "2026-08-09T19:06:51Z",
+        "pushed_at": "2026-08-13T19:14:49Z",
+        "topics": [],
+        "language": null,
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 0,
+        "stargazers_count": 0,
+        "forks_count": 0,
+        "open_issues_count": 0
+      }
+    },
+    "base": {
+      "ref": "main",
+      "sha": "ab823e34b9ec8679dcf0df4b4ec5725207e2a88d",
+      "repo": {
+        "id": 1171307492,
+        "full_name": "ix-infrastructure/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "ix-infrastructure",
+          "id": 256883681,
+          "type": "Organization",
+          "html_url": "https://github.com/ix-infrastructure"
+        },
+        "html_url": "https://github.com/ix-infrastructure/Ix",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": false,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-03-03T04:48:38Z",
+        "updated_at": "2026-08-13T21:51:31Z",
+        "pushed_at": "2026-08-13T19:18:44Z",
+        "topics": [
+          "ai",
+          "ai-memory",
+          "claude-code",
+          "cli",
+          "code-analysis",
+          "code-mapping",
+          "code-memory",
+          "codebase-understanding",
+          "codex",
+          "developer-tools",
+          "llm",
+          "openclaw",
+          "persistent-memory",
+          "program-analysis",
+          "software-architecture",
+          "system-intelligence",
+          "system-mapping"
+        ],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 701,
+        "stargazers_count": 701,
+        "forks_count": 60,
+        "open_issues_count": 6
+      }
+    },
+    "merge_commit_sha": "80071ebc27b1e476124dbb6097c7573001d230f0",
+    "merged_at": null,
+    "closed_at": null,
+    "created_at": "2026-08-13T19:15:39Z",
+    "updated_at": "2026-08-13T19:15:40Z",
+    "labels": [],
+    "milestone": null,
+    "requested_reviewers": [
+      {
+        "login": "josephismikhail",
+        "id": 56614593,
+        "type": "User",
+        "html_url": "https://github.com/josephismikhail"
+      }
+    ],
+    "requested_teams": [],
+    "commits_count": 1,
+    "changed_files_count": 4,
+    "additions": 568,
+    "deletions": 197,
+    "changed_files": [
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 421,
+        "filename": "ix-cli/src/cli/__tests__/map-auto-skip.test.ts",
+        "status": "modified",
+        "additions": 74,
+        "deletions": 2,
+        "changes": 76,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/8d6be713600302ca22da3981059e7319c050b64b/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fmap-auto-skip.test.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/8d6be713600302ca22da3981059e7319c050b64b/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fmap-auto-skip.test.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fmap-auto-skip.test.ts?ref=8d6be713600302ca22da3981059e7319c050b64b",
+        "patch": "@@ -1,5 +1,17 @@\n-import { afterEach, describe, expect, it } from 'vitest';\n-import { shouldSkipAutoMap } from '../commands/map.js';\n+import * as fs from 'node:fs';\n+import * as os from 'node:os';\n+import * as path from 'node:path';\n+import { hostname } from 'node:os';\n+import { Command } from 'commander';\n+import { afterEach, describe, expect, it, vi } from 'vitest';\n+import {\n+  applyRequestedMapCoalesceExitCode,\n+  mapModeForIngest,\n+  registerMapCommand,\n+  requestedMapCoalesceExitCode,\n+  shouldSkipAutoMap,\n+} from '../commands/map.js';\n+import { lockPathForTest } from '../single-flight.js';\n \n describe('shouldSkipAutoMap', () => {\n   afterEach(() => { delete process[redacted].IX_AUTO_MAP_CLOUD; });\n@@ -21,3 +33,63 @@ describe('shouldSkipAutoMap', () => {\n     expect(shouldSkipAutoMap({ auto: true, cloudReady: true })).toBe(false);\n   });\n });\n+\n+describe('requestedMapCoalesceExitCode', () => {\n+  it('accepts a private non-zero process exit code', () => {\n+    expect(requestedMapCoalesceExitCode('75')).toBe(75);\n+  });\n+\n+  it.each([undefined, '', '0', '256', '1.5', 'nope'])('ignores invalid value %s', value => {\n+    expect(requestedMapCoalesceExitCode(value)).toBeUndefined();\n+  });\n+\n+  it('applies the requested exit code on the map-lock coalesce path', () => {\n+    let applied: number | undefined;\n+\n+    expect(applyRequestedMapCoalesceExitCode('75', code => { applied = code; })).toBe(true);\n+    expect(applied).toBe(75);\n+  });\n+\n+  it('preserves normal exit behavior when the private option is absent', () => {\n+    const apply = vi.fn();\n+\n+    expect(applyRequestedMapCoalesceExitCode(undefined, apply)).toBe(false);\n+    expect(apply).not.toHaveBeenCalled();\n+  });\n+\n+  it('makes the real map action exit before ingest when its lock is contended', async () => {\n+    const lockDir = fs.mkdtempSync(path.join(os.tmpdir(), 'ix-map-coalesce-'));\n+    const root = path.join(lockDir, 'workspace');\n+    fs.mkdirSync(root);\n+    process[redacted].IX_LOCK_DIR = lockDir;\n+    process[redacted].IX_MAP_COALESCE_EXIT_CODE = '75';\n+    fs.writeFileSync(lockPathForTest(root), JSON.stringify({\n+      pid: process.pid,\n+      host: hostname(),\n+      startedAt: Date.now(),\n+      label: 'held by test',\n+    }));\n+\n+    try {\n+      const program = new Command();\n+      registerMapCommand(program);\n+      await program.parseAsync(['node', 'ix', 'map', root, '--silent']);\n+      expect(process.exitCode).toBe(75);\n+    } finally {\n+      process.exitCode = undefined;\n+      delete process[redacted].IX_LOCK_DIR;\n+      delete process[redacted].IX_MAP_COALESCE_EXIT_CODE;\n+      fs.rmSync(lockDir, { recursive: true, force: true });\n+    }\n+  });\n+});\n+\n+describe('mapModeForIngest', () => {\n+  it('keeps ordinary map ingestion topology-only', () => {\n+    expect(mapModeForIngest(undefined)).toBe(true);\n+  });\n+\n+  it('lets watch request full canonical patches after the map lock is acquired', () => {\n+    expect(mapModeForIngest('1')).toBe(false);\n+  });\n+});"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 421,
+        "filename": "ix-cli/src/cli/__tests__/watch-dedup.test.ts",
+        "status": "modified",
+        "additions": 212,
+        "deletions": 34,
+        "changes": 246,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/8d6be713600302ca22da3981059e7319c050b64b/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fwatch-dedup.test.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/8d6be713600302ca22da3981059e7319c050b64b/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fwatch-dedup.test.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fwatch-dedup.test.ts?ref=8d6be713600302ca22da3981059e7319c050b64b",
+        "patch": "@@ -1,57 +1,235 @@\n-import { describe, it, expect } from \"vitest\";\n import * as fs from \"node:fs\";\n import * as path from \"node:path\";\n-import { readFileContent } from \"../commands/watch-utils.js\";\n+import { spawnSync } from \"node:child_process\";\n+import { EventEmitter } from \"node:events\";\n+import { fileURLToPath } from \"node:url\";\n+import { describe, expect, it, vi } from \"vitest\";\n+import {\n+  WatchRefreshScheduler,\n+  canonicalMapInvocation,\n+  childCliArgs,\n+  prepareMigratedWorkspaceRefresh,\n+  runCanonicalMap,\n+  shouldWatch,\n+  updatePollingSnapshot,\n+} from \"../commands/watch.js\";\n \n-const watchTsPath = path.resolve(__dirname, \"../commands/watch.ts\");\n-const watchContent = fs.readFileSync(watchTsPath, \"utf-8\");\n+describe(\"WatchRefreshScheduler\", () => {\n+  it(\"serializes refreshes and coalesces requests made while one is running\", async () => {\n+    let releaseFirst!: () => void;\n+    const first = new Promise<void>((resolve) => {\n+      releaseFirst = resolve;\n+    });\n+    let runs = 0;\n+    let active = 0;\n+    let maxActive = 0;\n+    const refresh = vi.fn(async () => {\n+      runs++;\n+      active++;\n+      maxActive = Math.max(maxActive, active);\n+      if (runs === 1) await first;\n+      active--;\n+    });\n+    const errors: unknown[] = [];\n+    const scheduler = new WatchRefreshScheduler(refresh, (err) => errors.push(err));\n \n-// ── Unit tests for readFileContent ──────────────────────────────────\n+    scheduler.request();\n+    scheduler.request();\n+    scheduler.request();\n+    expect(refresh).toHaveBeenCalledTimes(1);\n \n-describe(\"readFileContent\", () => {\n-  it(\"reads an existing file\", () => {\n-    const result = readFileContent(watchTsPath);\n-    expect(result).not.toBeNull();\n-    expect(result).toContain(\"readFileContent\");\n+    releaseFirst();\n+    await scheduler.waitForIdle();\n+\n+    expect(refresh).toHaveBeenCalledTimes(2);\n+    expect(maxActive).toBe(1);\n+    expect(errors).toEqual([]);\n   });\n \n-  it(\"returns null for non-existent file\", () => {\n-    const result = readFileContent(\"/tmp/ix-test-nonexistent-file-abc123.ts\");\n-    expect(result).toBeNull();\n+  it(\"reports a failed refresh and remains usable\", async () => {\n+    const failure = new Error(\"backend rejected patch\");\n+    const refresh = vi.fn().mockRejectedValueOnce(failure).mockResolvedValueOnce(undefined);\n+    const onError = vi.fn();\n+    const scheduler = new WatchRefreshScheduler(refresh, onError);\n+\n+    scheduler.request();\n+    await scheduler.waitForIdle();\n+    scheduler.request();\n+    await scheduler.waitForIdle();\n+\n+    expect(onError).toHaveBeenCalledWith(failure);\n+    expect(refresh).toHaveBeenCalledTimes(2);\n   });\n });\n \n-// ── Source-reading: watch.ts watcher correctness ────────────────────\n+describe(\"canonical watch refresh\", () => {\n+  it(\"keeps TypeScript runtime loaders without copying debugger flags\", () => {\n+    expect(\n+      childCliArgs(\n+        \"/workspace/src/cli/main.ts\",\n+        [\"--version\"],\n+        [\n+          \"--inspect=0\",\n+          \"--require\",\n+          \"/workspace/node_modules/tsx/dist/preflight.cjs\",\n+          \"--import=file:///workspace/node_modules/tsx/dist/loader.mjs\",\n+          \"--trace-warnings\",\n+        ],\n+      ),\n+    ).toEqual([\n+      \"--require\",\n+      \"/workspace/node_modules/tsx/dist/preflight.cjs\",\n+      \"--import=file:///workspace/node_modules/tsx/dist/loader.mjs\",\n+      \"/workspace/src/cli/main.ts\",\n+      \"--version\",\n+    ]);\n+  });\n+\n+  it(\"drops parent runtime flags for a built JavaScript entry\", () => {\n+    expect(\n+      childCliArgs(\n+        \"/workspace/dist/cli/main.js\",\n+        [\"--help\"],\n+        [\"--inspect=0\", \"--require\", \"preflight.cjs\", \"--import\", \"loader.mjs\"],\n+      ),\n+    ).toEqual([\"/workspace/dist/cli/main.js\", \"--help\"]);\n+  });\n+\n+  it(\"starts both the tsx source CLI and a normal built CLI child\", () => {\n+    const packageRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), \"../../..\");\n+    const tempRoot = fs.mkdtempSync(path.join(packageRoot, \".watch-child-runtime-\"));\n+    const ixHome = path.join(tempRoot, \"ix-home\");\n+    fs.mkdirSync(ixHome);\n+    fs.writeFileSync(\n+      path.join(ixHome, \".version-check.json\"),\n+      JSON.stringify({ latest: \"0.9.3\", checkedAt: Date.now() }),\n+    );\n+    const env = { ...process[redacted], IX_HOME: ixHome, NO_COLOR: \"1\" };\n+\n+    try {\n+      const sourceEntry = path.join(packageRoot, \"src/cli/main.ts\");\n+      const source = spawnSync(\n+        process.execPath,\n+        childCliArgs(sourceEntry, [\"--version\"], [\"--inspect=0\", \"--import\", \"tsx\"]),\n+        { cwd: packageRoot, env, encoding: \"utf8\" },\n+      );\n+      expect(source.status, source.stderr).toBe(0);\n+      expect(source.stdout.trim()).toBe(\"0.9.3\");\n+      expect(source.stderr).not.toContain(\"Debugger listening\");\n+\n+      const outDir = path.join(tempRoot, \"dist\");\n+      const build = spawnSync(\n+        process.execPath,\n+        [\n+          path.join(packageRoot, \"node_modules/typescript/bin/tsc\"),\n+          \"-p\",\n+          path.join(packageRoot, \"tsconfig.build.json\"),\n+          \"--outDir\",\n+          outDir,\n+          \"--declaration\",\n+          \"false\",\n+        ],\n+        { cwd: packageRoot, env, encoding: \"utf8\" },\n+      );\n+      expect(build.status, build.stderr || build.stdout).toBe(0);\n+\n+      const builtEntry = path.join(outDir, \"cli/main.js\");\n+      const built = spawnSync(\n+        process.execPath,\n+        childCliArgs(builtEntry, [\"--help\"], [\"--inspect=0\", \"--import\", \"tsx\"]),\n+        { cwd: packageRoot, env, encoding: \"utf8\" },\n+      );\n+      expect(built.status, built.stderr).toBe(0);\n+      expect(built.stdout).toContain(\"ix — System Intelligence CLI\");\n+      expect(built.stderr).not.toContain(\"Debugger listening\");\n+    } finally {\n+      fs.rmSync(tempRoot, { recursive: true, force: true });\n+    }\n+  }, 30_000);\n+\n+  it(\"delegates the workspace root to the existing map command with full ingest enabled\", () => {\n+    const root = \"/workspace/project\";\n+    const entry = \"/workspace/dist/cli/main.js\";\n+    const map = canonicalMapInvocation(root, entry, [\"--inspect=0\"]);\n \n-describe(\"watch.ts watcher correctness\", () => {\n-  it(\"uses content hash for deduplication\", () => {\n-    expect(watchContent).toContain(\"hashContent\");\n-    expect(watchContent).toContain(\"createHash\");\n-    expect(watchContent).toContain('lastHash.get(filePath) === hash');\n+    expect(map.command).toBe(process.execPath);\n+    expect(map.args).toEqual([entry, \"map\", root, \"--silent\"]);\n+    expect(map[redacted].IX_AUTO_MAP).toBe(\"1\");\n+    expect(map[redacted].IX_MAP_FULL_INGEST).toBe(\"1\");\n+    expect(map[redacted].IX_MAP_COALESCE_EXIT_CODE).toBe(\"75\");\n   });\n \n-  it(\"re-reads file at ingest time, not event time\", () => {\n-    // readFileContent called inside ingestFile, not in the event handler\n-    expect(watchContent).toContain(\"readFileContent(filePath)\");\n-    // The debounce callback does NOT read the file\n-    expect(watchContent).toContain(\"content is re-read at ingest time\");\n+  it(\"retries a map coalesced by another process so the change is not lost\", async () => {\n+    const exits = [75, 0];\n+    const launch = vi.fn(() => {\n+      const child = new EventEmitter();\n+      queueMicrotask(() => child.emit(\"exit\", exits.shift(), null));\n+      return child as any;\n+    });\n+    const wait = vi.fn().mockResolvedValue(undefined);\n+\n+    await runCanonicalMap(\"/workspace/project\", launch, wait);\n+\n+    expect(launch).toHaveBeenCalledTimes(2);\n+    expect(wait).toHaveBeenCalledOnce();\n   });\n \n-  it(\"uses short debounce (300ms)\", () => {\n-    expect(watchContent).toContain(\"DEBOUNCE_MS = 300\");\n+  it(\"propagates a canonical map failure without spinning\", async () => {\n+    const launch = vi.fn(() => {\n+      const child = new EventEmitter();\n+      queueMicrotask(() => child.emit(\"exit\", 2, null));\n+      return child as any;\n+    });\n+\n+    await expect(runCanonicalMap(\"/workspace/project\", launch)).rejects.toThrow(\n+      \"ix map failed (exit 2)\",\n+    );\n+    expect(launch).toHaveBeenCalledOnce();\n   });\n \n-  it(\"tracks last hash per file\", () => {\n-    expect(watchContent).toContain(\"lastHash\");\n-    expect(watchContent).toContain(\"lastHash.set(filePath, hash)\");\n+  it(\"keeps delete events eligible without requiring the file to exist\", () => {\n+    expect(shouldWatch(\"/workspace/project\", \"/workspace/project/deleted.ts\")).toBe(true);\n   });\n \n-  it(\"skips ingest when content hash unchanged\", () => {\n-    expect(watchContent).toContain(\"unchanged (hash)\");\n+  it(\"clears the parent's baseline before migration refresh crosses into a child process\", () => {\n+    const clear = vi.fn();\n+    const root = \"/workspace/migrated\";\n+\n+    prepareMigratedWorkspaceRefresh(root, clear);\n+\n+    expect(clear).toHaveBeenCalledWith(root);\n+    expect(canonicalMapInvocation(root, \"/workspace/dist/cli/main.js\").args).toEqual([\n+      \"/workspace/dist/cli/main.js\",\n+      \"map\",\n+      root,\n+      \"--silent\",\n+    ]);\n   });\n+});\n+\n+describe(\"updatePollingSnapshot\", () => {\n+  it(\"detects new, modified, and deleted files\", () => {\n+    const mtimes = new Map([\n+      [\"kept.ts\", 1],\n+      [\"changed.ts\", 1],\n+      [\"deleted.ts\", 1],\n+    ]);\n+    const current = [\"kept.ts\", \"changed.ts\", \"new.ts\"];\n+    const values = new Map([\n+      [\"kept.ts\", 1],\n+      [\"changed.ts\", 2],\n+      [\"new.ts\", 3],\n+    ]);\n+\n+    const changed = updatePollingSnapshot(current, mtimes, (filePath) => values.get(filePath)!);\n+\n+    expect(changed).toEqual([\"changed.ts\", \"new.ts\", \"deleted.ts\"]);\n+    expect(mtimes).toEqual(values);\n+  });\n+\n+  it(\"detects a backwards mtime change instead of requiring mtime to increase\", () => {\n+    const mtimes = new Map([[\"restored.ts\", 10]]);\n \n-  it(\"coalesces rapid events per file via debounce map\", () => {\n-    expect(watchContent).toContain(\"pending.get(fullPath)\");\n-    expect(watchContent).toContain(\"clearTimeout(existing)\");\n+    expect(updatePollingSnapshot([\"restored.ts\"], mtimes, () => 5)).toEqual([\"restored.ts\"]);\n   });\n });"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 421,
+        "filename": "ix-cli/src/cli/commands/map.ts",
+        "status": "modified",
+        "additions": 26,
+        "deletions": 1,
+        "changes": 27,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/8d6be713600302ca22da3981059e7319c050b64b/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fmap.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/8d6be713600302ca22da3981059e7319c050b64b/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fmap.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fmap.ts?ref=8d6be713600302ca22da3981059e7319c050b64b",
+        "patch": "@@ -38,6 +38,30 @@ export function shouldSkipAutoMap(opts: { auto: boolean; cloudReady: boolean }):\n   return true;\n }\n \n+/** Optional exit code for callers that must distinguish coalescing from success. */\n+export function requestedMapCoalesceExitCode(\n+  raw = process[redacted].IX_MAP_COALESCE_EXIT_CODE,\n+): number | undefined {\n+  if (raw === undefined) return undefined;\n+  const code = Number(raw);\n+  return Number.isInteger(code) && code >= 1 && code <= 255 ? code : undefined;\n+}\n+\n+export function applyRequestedMapCoalesceExitCode(\n+  raw = process[redacted].IX_MAP_COALESCE_EXIT_CODE,\n+  apply: (code: number) => void = code => { process.exitCode = code; },\n+): boolean {\n+  const code = requestedMapCoalesceExitCode(raw);\n+  if (code === undefined) return false;\n+  apply(code);\n+  return true;\n+}\n+\n+/** Watch opts into full patches; ordinary `ix map` keeps its topology-only ingest. */\n+export function mapModeForIngest(raw = process[redacted].IX_MAP_FULL_INGEST): boolean {\n+  return raw !== \"1\";\n+}\n+\n export interface MapRegion {\n   id: string;\n   label: string;\n@@ -175,6 +199,7 @@ Examples:\n         if (!silent && opts.format !== \"json\" && opts.format !== \"llm\") {\n           process.stderr.write(chalk.dim(\"  Another ix map is already running for this workspace — skipping.\\n\"));\n         }\n+        applyRequestedMapCoalesceExitCode();\n         return; // coalesce; the in-flight map will refresh the graph\n       }\n \n@@ -256,7 +281,7 @@ Examples:\n             format: (machineFormat || silent) ? \"json\" : \"text\",\n             printSummary: false,\n             suppressOutput: true,\n-            mapMode: true,\n+            mapMode: mapModeForIngest(),\n             deadlineSignal,\n             // `ix map` has no --debug, so the per-file `[commit error] <uri>`\n             // detail was unreachable from the command that produced the"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 421,
+        "filename": "ix-cli/src/cli/commands/watch.ts",
+        "status": "modified",
+        "additions": 256,
+        "deletions": 160,
+        "changes": 416,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/8d6be713600302ca22da3981059e7319c050b64b/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fwatch.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/8d6be713600302ca22da3981059e7319c050b64b/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fwatch.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fwatch.ts?ref=8d6be713600302ca22da3981059e7319c050b64b",
+        "patch": "@@ -1,14 +1,11 @@\n import * as fs from \"node:fs\";\n import * as path from \"node:path\";\n-import * as crypto from \"node:crypto\";\n+import { spawn } from \"node:child_process\";\n+import type { SpawnOptions } from \"node:child_process\";\n import type { Command } from \"commander\";\n import chalk from \"chalk\";\n-import { spawnSync } from \"node:child_process\";\n-import { IxClient } from \"../../client/api.js\";\n-import { getEndpoint, resolveWorkspaceRoot, clearIngestMtimeCache } from \"../config.js\";\n-import { bootstrap, ensureWorkspaceId, ensureWorkspaceIdState } from \"../bootstrap.js\";\n-import { loadWatchIngestionModules } from \"./ingestion-loader.js\";\n-import { readFileContent } from \"./watch-utils.js\";\n+import { resolveWorkspaceRoot, clearIngestMtimeCache } from \"../config.js\";\n+import { bootstrap, ensureWorkspaceIdState } from \"../bootstrap.js\";\n import { SUPPORTED_EXTENSIONS } from \"../supported-extensions.js\";\n \n const SUPPORTED_NAMES = new Set([\n@@ -24,21 +21,233 @@ const IGNORE_DIRS = new Set([\n ]);\n \n const DEBOUNCE_MS = 300;\n+const MAP_COALESCED_EXIT_CODE = 75;\n+const MAP_RETRY_MS = 1000;\n \n-/** Compute SHA-256 hash of file content for dedup. */\n-function hashContent(content: string): string {\n-  return crypto.createHash(\"sha256\").update(content).digest(\"hex\");\n+interface MapChild {\n+  once(event: \"error\", listener: (err: Error) => void): unknown;\n+  once(event: \"exit\", listener: (code: number | null, signal: NodeJS.Signals | null) => void): unknown;\n }\n \n-/**\n- * Convert an absolute path to a workspace-relative POSIX path. This is the\n- * canonical source_uri and the basis for every deterministic node/edge/chunk\n- * id, so it must match what `ix ingest` emits (see toWorkspaceRelative in\n- * ingest.ts). Forcing POSIX separators keeps ids stable across operating\n- * systems and never embeds an absolute host path.\n- */\n-function toWorkspaceRelative(root: string, absPath: string): string {\n-  return path.relative(root, absPath).split(path.sep).join(\"/\");\n+type MapLauncher = (command: string, args: string[], options: SpawnOptions) => MapChild;\n+\n+const RUNTIME_LOADER_FLAGS = new Set([\n+  \"--import\", \"--loader\", \"--experimental-loader\", \"--require\", \"-r\",\n+]);\n+\n+/** Preserve source loaders for a TypeScript CLI entry without cloning debugger flags. */\n+export function childCliArgs(\n+  entry: string,\n+  cliArgs: string[],\n+  execArgv: string[] = process.execArgv,\n+): string[] {\n+  if (!/\\.[cm]?tsx?$/.test(entry)) return [entry, ...cliArgs];\n+\n+  const loaders: string[] = [];\n+  for (let index = 0; index < execArgv.length; index++) {\n+    const arg = execArgv[index]!;\n+    if (RUNTIME_LOADER_FLAGS.has(arg)) {\n+      const value = execArgv[index + 1];\n+      if (value !== undefined) {\n+        loaders.push(arg, value);\n+        index++;\n+      }\n+      continue;\n+    }\n+    if (\n+      [...RUNTIME_LOADER_FLAGS].some(flag => arg.startsWith(`${flag}=`)) ||\n+      (arg.startsWith(\"-r\") && !arg.startsWith(\"--\") && arg.length > 2)\n+    ) {\n+      loaders.push(arg);\n+    }\n+  }\n+\n+  return [...loaders, entry, ...cliArgs];\n+}\n+\n+export function canonicalMapInvocation(\n+  root: string,\n+  entry = process.argv[1],\n+  execArgv = process.execArgv,\n+): { command: string; args: string[]; env: NodeJS.ProcessEnv } {\n+  if (!entry) throw new Error(\"Could not locate the Ix CLI entry point.\");\n+  return {\n+    command: process.execPath,\n+    args: childCliArgs(entry, [\"map\", root, \"--silent\"], execArgv),\n+    env: {\n+      ...process[redacted],\n+      IX_AUTO_MAP: \"1\",\n+      IX_MAP_FULL_INGEST: \"1\",\n+      IX_MAP_COALESCE_EXIT_CODE: String(MAP_COALESCED_EXIT_CODE),\n+    },\n+  };\n+}\n+\n+function runChild(\n+  invocation: ReturnType<typeof canonicalMapInvocation>,\n+  launch: MapLauncher,\n+): Promise<{ code: number | null; signal: NodeJS.Signals | null }> {\n+  return new Promise((resolve, reject) => {\n+    const child = launch(invocation.command, invocation.args, {\n+      env: invocation[redacted],\n+      stdio: \"inherit\",\n+    });\n+    child.once(\"error\", reject);\n+    child.once(\"exit\", (code, signal) => {\n+      if (code === 0 || code === MAP_COALESCED_EXIT_CODE) {\n+        resolve({ code, signal });\n+      } else {\n+        reject(new Error(`ix map failed${signal ? ` (${signal})` : ` (exit ${code ?? 1})`}`));\n+      }\n+    });\n+  });\n+}\n+\n+export async function runCanonicalMap(\n+  root: string,\n+  launch: MapLauncher = spawn as MapLauncher,\n+  wait: (ms: number) => Promise<void> = ms => new Promise(resolve => setTimeout(resolve, ms)),\n+): Promise<void> {\n+  const invocation = canonicalMapInvocation(root);\n+  for (;;) {\n+    const { code } = await runChild(invocation, launch);\n+    if (code === 0) return;\n+    await wait(MAP_RETRY_MS);\n+  }\n+}\n+\n+/** Serialize refreshes and coalesce changes during a run into one trailing refresh. */\n+export class WatchRefreshScheduler {\n+  private running = false;\n+  private queued = false;\n+  private idleWaiters: Array<() => void> = [];\n+\n+  constructor(\n+    private readonly refresh: () => Promise<void>,\n+    private readonly onError: (err: unknown) => void,\n+  ) {}\n+\n+  request(): void {\n+    this.queued = true;\n+    if (!this.running) void this.drain();\n+  }\n+\n+  waitForIdle(): Promise<void> {\n+    if (!this.running && !this.queued) return Promise.resolve();\n+    return new Promise(resolve => this.idleWaiters.push(resolve));\n+  }\n+\n+  private async drain(): Promise<void> {\n+    this.running = true;\n+    try {\n+      while (this.queued) {\n+        this.queued = false;\n+        try {\n+          await this.refresh();\n+        } catch (err) {\n+          this.onError(err);\n+        }\n+      }\n+    } finally {\n+      this.running = false;\n+      for (const resolve of this.idleWaiters.splice(0)) resolve();\n+    }\n+  }\n+}\n+\n+/** Detect new, changed, and deleted files while advancing the polling snapshot. */\n+export function updatePollingSnapshot(\n+  currentFiles: string[],\n+  mtimes: Map<string, number>,\n+  statMtime: (filePath: string) => number = filePath => fs.statSync(filePath).mtimeMs,\n+): string[] {\n+  const next = new Map<string, number>();\n+  const changed: string[] = [];\n+\n+  for (const filePath of currentFiles) {\n+    try {\n+      const mtime = statMtime(filePath);\n+      next.set(filePath, mtime);\n+      if (mtimes.get(filePath) !== mtime) changed.push(filePath);\n+    } catch {\n+      // A racy delete is handled by the missing-file pass below.\n+    }\n+  }\n+\n+  const current = new Set(next.keys());\n+  for (const filePath of mtimes.keys()) {\n+    if (!current.has(filePath)) changed.push(filePath);\n+  }\n+\n+  mtimes.clear();\n+  for (const [filePath, mtime] of next) mtimes.set(filePath, mtime);\n+  return changed;\n+}\n+\n+function isSupportedPath(filePath: string): boolean {\n+  const ext = path.extname(filePath).toLowerCase();\n+  return SUPPORTED_EXTENSIONS.has(ext) || SUPPORTED_NAMES.has(path.basename(filePath));\n+}\n+\n+export function shouldWatch(root: string, filePath: string): boolean {\n+  if (!isSupportedPath(filePath)) return false;\n+  const segments = path.relative(root, filePath).split(path.sep);\n+  return !segments.some(segment => IGNORE_DIRS.has(segment));\n+}\n+\n+export function prepareMigratedWorkspaceRefresh(\n+  root: string,\n+  clear: (workspaceRoot: string) => void = clearIngestMtimeCache,\n+): void {\n+  clear(root);\n+}\n+\n+function collectFiles(dir: string): string[] {\n+  const results: string[] = [];\n+  const stack = [dir];\n+  while (stack.length > 0) {\n+    const current = stack.pop()!;\n+    let entries: fs.Dirent[];\n+    try { entries = fs.readdirSync(current, { withFileTypes: true }); }\n+    catch { continue; }\n+    for (const entry of entries) {\n+      if (IGNORE_DIRS.has(entry.name)) continue;\n+      if (entry.name.startsWith(\".\") && entry.isDirectory()) continue;\n+      const fullPath = path.join(current, entry.name);\n+      if (entry.isDirectory()) stack.push(fullPath);\n+      else if (entry.isFile() && isSupportedPath(fullPath)) results.push(fullPath);\n+    }\n+  }\n+  return results;\n+}\n+\n+function createBatchNotifier(root: string, scheduler: WatchRefreshScheduler): {\n+  notify(filePath: string): void;\n+  cancel(): void;\n+} {\n+  const pending = new Set<string>();\n+  let timer: NodeJS.Timeout | undefined;\n+\n+  const flush = () => {\n+    timer = undefined;\n+    for (const filePath of [...pending].sort()) {\n+      console.log(`${chalk.dim(\"[watch]\")} changed: ${path.relative(root, filePath)}`);\n+    }\n+    pending.clear();\n+    scheduler.request();\n+  };\n+\n+  return {\n+    notify(filePath: string) {\n+      pending.add(filePath);\n+      if (timer) clearTimeout(timer);\n+      timer = setTimeout(flush, DEBOUNCE_MS);\n+    },\n+    cancel() {\n+      if (timer) clearTimeout(timer);\n+      pending.clear();\n+    },\n+  };\n }\n \n export function registerWatchCommand(program: Command): void {\n@@ -48,24 +257,15 @@ export function registerWatchCommand(program: Command): void {\n     .option(\"--path <path>\", \"Restrict watching to a subdirectory\")\n     .option(\"--root <dir>\", \"Workspace root directory\")\n     .action(async (opts: { path?: string; root?: string }) => {\n+      const root = path.resolve(resolveWorkspaceRoot(opts.root));\n       try {\n-        await bootstrap();\n+        await bootstrap(root);\n       } catch (err: any) {\n         console.error(chalk.red(\"Error:\"), err.message);\n         process.exit(1);\n       }\n \n-      const root = resolveWorkspaceRoot(opts.root);\n-      const { workspaceId, migrated } = ensureWorkspaceIdState(root);\n-      // If the workspace_id was just migrated to the path-based id (Ix#225 gap 2), the\n-      // new id has no nodes yet and watch only ingests files as they change — so do a\n-      // one-time full re-ingest under the new id first (clear the mtime cache so the\n-      // spawned map re-ingests everything, then run it synchronously before watching).\n-      if (migrated) {\n-        console.error(chalk.dim(\"[watch] Workspace migrated to a stable id; re-ingesting once before watching...\"));\n-        clearIngestMtimeCache(root);\n-        spawnSync(process.argv[0], [process.argv[1], \"map\", root, \"--silent\"], { stdio: \"inherit\" });\n-      }\n+      const { migrated } = ensureWorkspaceIdState(root);\n       const watchPath = opts.path\n         ? path.resolve(root, opts.path)\n         : root;\n@@ -75,96 +275,44 @@ export function registerWatchCommand(program: Command): void {\n         process.exit(1);\n       }\n \n-      const client = new IxClient(getEndpoint());\n+      const refresh = () => runCanonicalMap(root);\n+      const scheduler = new WatchRefreshScheduler(refresh, err =>\n+        console.error(`${chalk.red(\"[watch]\")} refresh error: ${(err as Error).message}`)\n+      );\n+\n+      if (migrated) {\n+        console.error(chalk.dim(\"[watch] Workspace migrated to a stable id; re-ingesting once before watching...\"));\n+        prepareMigratedWorkspaceRefresh(root);\n+        await refresh();\n+      }\n \n       const relative = path.relative(root, watchPath) || \".\";\n       console.log(chalk.cyan(`[watch] Watching ${relative}`));\n       console.log(chalk.dim(`[watch] Debounce: ${DEBOUNCE_MS}ms`));\n       console.log(chalk.dim(\"[watch] Press Ctrl+C to stop.\\n\"));\n \n-      // Track pending changes with debounce + content hash dedup\n-      const pending = new Map<string, NodeJS.Timeout>();\n-      const lastHash = new Map<string, string>();\n-\n-      function shouldWatch(filePath: string): boolean {\n-        const ext = path.extname(filePath).toLowerCase();\n-        const basename = path.basename(filePath);\n-        if (!SUPPORTED_EXTENSIONS.has(ext) && !SUPPORTED_NAMES.has(basename)) return false;\n-        // Check no segment is an ignored dir\n-        const segments = path.relative(root, filePath).split(path.sep);\n-        return !segments.some(s => IGNORE_DIRS.has(s));\n-      }\n-\n-      async function ingestFile(filePath: string): Promise<void> {\n-        const [{ parseFile }, { buildPatch }] = await loadWatchIngestionModules();\n-        // Workspace-relative POSIX path drives source_uri and node identity; it\n-        // must match `ix ingest` or the same file ingested via watch vs ingest\n-        // would mint divergent node ids and reintroduce absolute-path coupling.\n-        const relPath = toWorkspaceRelative(root, filePath);\n-\n-        // Re-read content at actual ingest time (not at event time)\n-        const content = readFileContent(filePath);\n-        if (content === null) return;\n-\n-        // Skip if content hash is unchanged since last ingest\n-        const hash = hashContent(content);\n-        if (lastHash.get(filePath) === hash) {\n-          console.log(`${chalk.dim(\"[watch]\")} unchanged (hash): ${relPath}`);\n-          return;\n-        }\n-\n-        try {\n-          const parsed = parseFile(relPath, content);\n-          if (!parsed) {\n-            console.log(`${chalk.dim(\"[watch]\")} skipped (unsupported): ${relPath}`);\n-            return;\n-          }\n-          const patch = buildPatch(parsed, hash, workspaceId);\n-          const result = await client.commitPatch(patch);\n-          lastHash.set(filePath, hash);\n-          console.log(`${chalk.cyan(\"[watch]\")} ingested: ${chalk.bold(relPath)} → rev ${result.rev}`);\n-        } catch (err: any) {\n-          console.error(`${chalk.red(\"[watch]\")} error ingesting ${relPath}: ${err.message}`);\n-        }\n-      }\n+      const batch = createBatchNotifier(root, scheduler);\n \n       // Use fs.watch recursively\n       try {\n         const watcher = fs.watch(watchPath, { recursive: true }, (_event, filename) => {\n           if (!filename) return;\n           const fullPath = path.resolve(watchPath, filename);\n-          if (!shouldWatch(fullPath)) return;\n-\n-          // Check file still exists (might be a delete event)\n-          if (!fs.existsSync(fullPath)) return;\n-\n-          const rel = path.relative(root, fullPath);\n-\n-          // Cancel any existing debounce for this file\n-          const existing = pending.get(fullPath);\n-          if (existing) clearTimeout(existing);\n-\n-          // Set new debounce — content is re-read at ingest time, not here\n-          pending.set(fullPath, setTimeout(async () => {\n-            pending.delete(fullPath);\n-            console.log(`${chalk.dim(\"[watch]\")} changed: ${rel}`);\n-            await ingestFile(fullPath);\n-          }, DEBOUNCE_MS));\n+          if (shouldWatch(root, fullPath)) batch.notify(fullPath);\n         });\n \n         // Keep process alive\n         process.on(\"SIGINT\", () => {\n           watcher.close();\n-          // Clear pending timers\n-          for (const timer of pending.values()) clearTimeout(timer);\n+          batch.cancel();\n           console.log(chalk.dim(\"\\n[watch] Stopped.\"));\n           process.exit(0);\n         });\n       } catch (err: any) {\n         // Fallback to polling if fs.watch with recursive isn't supported\n         if (err.code === \"ERR_FEATURE_UNAVAILABLE_ON_PLATFORM\") {\n           console.log(chalk.dim(\"[watch] Falling back to polling mode (2s interval)...\"));\n-          await pollMode(watchPath, root, client);\n+          pollMode(watchPath, root, scheduler);\n         } else {\n           throw err;\n         }\n@@ -175,81 +323,29 @@ export function registerWatchCommand(program: Command): void {\n /**\n  * Fallback polling mode for platforms where recursive fs.watch isn't available.\n  */\n-async function pollMode(\n+function pollMode(\n   watchPath: string,\n   root: string,\n-  client: IxClient\n-): Promise<void> {\n-  const [{ parseFile }, { buildPatch }] = await loadWatchIngestionModules();\n-  const workspaceId = ensureWorkspaceId(root);\n+  scheduler: WatchRefreshScheduler,\n+): void {\n   const mtimes = new Map<string, number>();\n \n-  function collectFiles(dir: string): string[] {\n-    const results: string[] = [];\n-    const stack = [dir];\n-    while (stack.length > 0) {\n-      const current = stack.pop()!;\n-      let entries: fs.Dirent[];\n-      try { entries = fs.readdirSync(current, { withFileTypes: true }); }\n-      catch { continue; }\n-      for (const entry of entries) {\n-        if (IGNORE_DIRS.has(entry.name)) continue;\n-        if (entry.name.startsWith(\".\") && entry.isDirectory()) continue;\n-        const fullPath = path.join(current, entry.name);\n-        if (entry.isDirectory()) {\n-          stack.push(fullPath);\n-        } else if (entry.isFile()) {\n-          const ext = path.extname(entry.name).toLowerCase();\n-          if (SUPPORTED_EXTENSIONS.has(ext) || SUPPORTED_NAMES.has(entry.name)) {\n-            results.push(fullPath);\n-          }\n-        }\n-      }\n-    }\n-    return results;\n-  }\n-\n   // Initial scan\n   for (const f of collectFiles(watchPath)) {\n     try { mtimes.set(f, fs.statSync(f).mtimeMs); } catch {}\n   }\n \n-  const poll = async () => {\n-    const currentFiles = collectFiles(watchPath);\n-    const changed: string[] = [];\n-\n-    for (const f of currentFiles) {\n-      try {\n-        const mtime = fs.statSync(f).mtimeMs;\n-        const prev = mtimes.get(f);\n-        if (prev === undefined || mtime > prev) {\n-          changed.push(f);\n-          mtimes.set(f, mtime);\n-        }\n-      } catch {}\n-    }\n-\n-    for (const f of changed) {\n-      const relPath = toWorkspaceRelative(root, f);\n-      console.log(`${chalk.dim(\"[watch]\")} changed: ${relPath}`);\n-      try {\n-        const content = readFileContent(f);\n-        if (!content) continue;\n-        const parsed = parseFile(relPath, content);\n-        if (!parsed) continue;\n-        const hash = hashContent(content);\n-        const patch = buildPatch(parsed, hash, workspaceId);\n-        const result = await client.commitPatch(patch);\n-        console.log(`${chalk.cyan(\"[watch]\")} ingested: ${chalk.bold(relPath)} → rev ${result.rev}`);\n-      } catch (err: any) {\n-        console.error(`${chalk.red(\"[watch]\")} error: ${err.message}`);\n-      }\n+  const interval = setInterval(() => {\n+    const changed = updatePollingSnapshot(collectFiles(watchPath), mtimes);\n+    if (changed.length === 0) return;\n+    for (const filePath of changed.sort()) {\n+      console.log(`${chalk.dim(\"[watch]\")} changed: ${path.relative(root, filePath)}`);\n     }\n-  };\n-\n-  setInterval(poll, 2000);\n+    scheduler.request();\n+  }, 2000);\n \n   process.on(\"SIGINT\", () => {\n+    clearInterval(interval);\n     console.log(chalk.dim(\"\\n[watch] Stopped.\"));\n     process.exit(0);\n   });"
+      }
+    ],
+    "commits": [
+      {
+        "sha": "8d6be713600302ca22da3981059e7319c050b64b",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/8d6be713600302ca22da3981059e7319c050b64b",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/8d6be713600302ca22da3981059e7319c050b64b",
+        "author": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "committer": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "message": "fix(watch): refresh through canonical map ingestion",
+        "parents": [
+          {
+            "sha": "ab823e34b9ec8679dcf0df4b4ec5725207e2a88d",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/ab823e34b9ec8679dcf0df4b4ec5725207e2a88d"
+          }
+        ],
+        "tree_sha": "97770ea82db37f954ca5cb8cb8d2da39618e5c49",
+        "authored_at": "2026-08-13T19:14:42Z",
+        "committed_at": "2026-08-13T19:14:42Z"
+      }
+    ],
+    "comments": [],
+    "reviews": [],
+    "review_comments": [],
+    "timeline": [
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/8d6be713600302ca22da3981059e7319c050b64b"
+      },
+      {
+        "id": 29420147904,
+        "event": "review_requested",
+        "actor": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "created_at": "2026-08-13T19:15:40Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29420147904"
+      }
+    ],
+    "source": "OFFICIAL_GITHUB_FACT",
+    "review_threads": [],
+    "review_thread_capture": {
+      "status": "UNKNOWN",
+      "source": "GitHub GraphQL API"
+    }
+  },
+  "source_context": {
+    "id": "github:pull_request:ix-infrastructure/Ix#421",
+    "source": {
+      "type": "github_pull_request",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/421",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/421",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-13T19:15:39Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-13T19:15:40Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "PR-421",
+    "entity_type": "PULL_REQUEST",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "mirror_scope": "source PR, commits, files, comments, reviews, review comments, and review threads",
+    "related_analysis_types": [
+      "FINDING",
+      "DECISION",
+      "IMPLEMENTATION"
+    ],
+    "review_thread_state": "UNKNOWN"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "CHANGED_BY",
+      "other": "COMMIT-8d6be713600302ca22da3981059e7319c050b64b",
+      "other_type": "commit",
+      "other_title": "8d6be713600302ca22da3981059e7319c050b64b",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-8d6be713600302ca22da3981059e7319c050b64b"
+    },
+    {
+      "direction": "out",
+      "relationship": "FOUND_IN",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    }
+  ]
+}

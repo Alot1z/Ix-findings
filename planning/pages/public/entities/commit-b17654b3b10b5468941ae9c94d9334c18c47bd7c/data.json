@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-b17654b3b10b5468941ae9c94d9334c18c47bd7c",
+  "type": "commit",
+  "title": "b17654b3b10b5468941ae9c94d9334c18c47bd7c",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-b17654b3b10b5468941ae9c94d9334c18c47bd7c",
+  "summary": {
+    "id": "COMMIT-b17654b3b10b5468941ae9c94d9334c18c47bd7c",
+    "type": "commit",
+    "title": "b17654b3b10b5468941ae9c94d9334c18c47bd7c",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/b17654b3b10b5468941ae9c94d9334c18c47bd7c",
+    "author": {
+      "name": "riley0227",
+      "email": "riley0227@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-aad0ff71c3d6cab6e839798a00764b990b68adf4",
+      "other_type": "commit",
+      "other_title": "aad0ff71c3d6cab6e839798a00764b990b68adf4",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-aad0ff71c3d6cab6e839798a00764b990b68adf4"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-24610033ac85b008bf17c20588c7f554657ea449",
+      "other_type": "commit",
+      "other_title": "24610033ac85b008bf17c20588c7f554657ea449",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-24610033ac85b008bf17c20588c7f554657ea449"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-47ea08db02a7",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/model/Node.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-47ea08db02a7"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3b83e0cbad7e",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/model/Node.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3b83e0cbad7e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5b1fe43005ba",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/model/Node.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5b1fe43005ba"
+    }
+  ]
+}

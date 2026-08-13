@@ -1,0 +1,427 @@
+{
+  "generated_at": "2026-08-12T10:42:30.430Z",
+  "source": "planning/phase-c/GITHUB-LIVE-CAPTURE.json",
+  "canonical_before_phase_c": {
+    "upstream_head": "1292375548fb8f4431ac5afc34c68fe2573434d1",
+    "entity_count": 4800,
+    "relationship_count": 14814
+  },
+  "live": {
+    "upstream_head": "fa6ad7b0ff52734685ff7425b08ec240837751fa",
+    "fork_heads": {
+      "chore/brew-update-v0.9.1": "23fdc9ab76fa2fd3fb487ed1e12cf0e36cfeb800",
+      "chore/raise-node-floor-to-22": "0bc722d25997f3e49e4529389958f1b877b926db",
+      "copilot/research-open-source-contribution": "ff7df414e165779f72e9dd121b3f48c2f55b9350",
+      "feat/ix-agent-skill": "30f28b3c7f2771a7003af83b5be618a7913d447a",
+      "feat/ix-mcp": "603e51f7f877bb59677516be08ee83ef30e562a8",
+      "feat/ix-remap-hardening": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+      "feat/remote-runner-and-create-client": "f4259b7d1ede45e8ae62e42407ac2e184c92ca0f",
+      "fix/installer-docker-autoinstall-noop": "4475d240b3a9bae0618626c9b1f5d73c8883c167",
+      "fix/installer-ghcr-denied-diagnostics": "14eb3506160bf7aabba9ea6261a714dff02e39f6",
+      "fix/prerequisites-not-a-pip-manifest": "7054d5fc3fb98a987b0cba4e78efad1db4bff1af",
+      "fix/progress-frames-non-tty": "decd85e25d922f13b049f08d5875e162e8d7a62f",
+      "fix/release-prerelease-handling": "77e8a5ecd079c12b6921ac2a0273153f580cd92b",
+      "fix/stamp-bundled-compass-version": "83c4308b5d1c7f70fd1294350474890c3549ea04",
+      "fix/status-workspace-scoped-patch": "1e590250a4ab70da9c4016b3faa52bf2be5749c6",
+      "fix/view-port-mismatch-warning": "72c0b850681618a7a12a3d1ce1b8c90f0c26a7d3",
+      "fix/view-reports-running-port": "c5357aa6965aa0a88706c49005a4d70b58aec41a",
+      "fix/windows-short-temp-path": "e3b591c3b0507b0440d6891dab2f1bcd1457f970",
+      "fix/windows-tar-cygpath-pairing": "f434f9d0bc5027a5d3033df35caed7a8c2c84fc8",
+      "fix/workspace-id-yaml-numeric-coercion": "80b429f2ce398eb3bf9e842cdf7b4d35dc34286d",
+      "main": "7e28e05e36e8f890e8f8a9a6ba7a7ff8c6ea18b8",
+      "old-dev": "f771abffab3d7104550a593746a2d7cdffd7d088",
+      "refactor/core-ingestion-cloud-architecture": "480915b643a705bb7ac8be6fe353ed34b007e7f2",
+      "refactor/stale-drop-dead-client": "2f68cccb28440f2679e838decc40866cd5d98f34"
+    },
+    "captured_at": "2026-08-12T10:42:30.430Z"
+  },
+  "classification_policy": {
+    "CURRENT": "newly observed live fact or still current",
+    "UNCHANGED": "same compared value",
+    "STALE": "canonical fact differs from live fact",
+    "SUPERSEDED": "old object replaced by an explicitly newer object",
+    "HISTORICAL": "retained past state",
+    "UNKNOWN": "insufficient evidence"
+  },
+  "affected_entities": [
+    {
+      "entity_id": "REPO-ix-infrastructure/Ix",
+      "kind": "UPSTREAM_HEAD",
+      "previous": "1292375548fb8f4431ac5afc34c68fe2573434d1",
+      "current": "fa6ad7b0ff52734685ff7425b08ec240837751fa",
+      "status": "STALE"
+    },
+    {
+      "entity_id": "BRANCH-Alot1z/Ix:chore/brew-update-v0.9.1",
+      "kind": "BRANCH_HEAD",
+      "previous": null,
+      "current": "23fdc9ab76fa2fd3fb487ed1e12cf0e36cfeb800",
+      "status": "CURRENT"
+    },
+    {
+      "entity_id": "BRANCH-Alot1z/Ix:chore/raise-node-floor-to-22",
+      "kind": "BRANCH_HEAD",
+      "previous": null,
+      "current": "0bc722d25997f3e49e4529389958f1b877b926db",
+      "status": "CURRENT"
+    },
+    {
+      "entity_id": "BRANCH-Alot1z/Ix:copilot/research-open-source-contribution",
+      "kind": "BRANCH_HEAD",
+      "previous": null,
+      "current": "ff7df414e165779f72e9dd121b3f48c2f55b9350",
+      "status": "CURRENT"
+    },
+    {
+      "entity_id": "BRANCH-Alot1z/Ix:feat/remote-runner-and-create-client",
+      "kind": "BRANCH_HEAD",
+      "previous": null,
+      "current": "f4259b7d1ede45e8ae62e42407ac2e184c92ca0f",
+      "status": "CURRENT"
+    },
+    {
+      "entity_id": "BRANCH-Alot1z/Ix:fix/installer-docker-autoinstall-noop",
+      "kind": "BRANCH_HEAD",
+      "previous": null,
+      "current": "4475d240b3a9bae0618626c9b1f5d73c8883c167",
+      "status": "CURRENT"
+    },
+    {
+      "entity_id": "BRANCH-Alot1z/Ix:fix/installer-ghcr-denied-diagnostics",
+      "kind": "BRANCH_HEAD",
+      "previous": null,
+      "current": "14eb3506160bf7aabba9ea6261a714dff02e39f6",
+      "status": "CURRENT"
+    },
+    {
+      "entity_id": "BRANCH-Alot1z/Ix:fix/prerequisites-not-a-pip-manifest",
+      "kind": "BRANCH_HEAD",
+      "previous": null,
+      "current": "7054d5fc3fb98a987b0cba4e78efad1db4bff1af",
+      "status": "CURRENT"
+    },
+    {
+      "entity_id": "BRANCH-Alot1z/Ix:fix/progress-frames-non-tty",
+      "kind": "BRANCH_HEAD",
+      "previous": null,
+      "current": "decd85e25d922f13b049f08d5875e162e8d7a62f",
+      "status": "CURRENT"
+    },
+    {
+      "entity_id": "BRANCH-Alot1z/Ix:fix/release-prerelease-handling",
+      "kind": "BRANCH_HEAD",
+      "previous": null,
+      "current": "77e8a5ecd079c12b6921ac2a0273153f580cd92b",
+      "status": "CURRENT"
+    },
+    {
+      "entity_id": "BRANCH-Alot1z/Ix:fix/stamp-bundled-compass-version",
+      "kind": "BRANCH_HEAD",
+      "previous": null,
+      "current": "83c4308b5d1c7f70fd1294350474890c3549ea04",
+      "status": "CURRENT"
+    },
+    {
+      "entity_id": "BRANCH-Alot1z/Ix:fix/status-workspace-scoped-patch",
+      "kind": "BRANCH_HEAD",
+      "previous": null,
+      "current": "1e590250a4ab70da9c4016b3faa52bf2be5749c6",
+      "status": "CURRENT"
+    },
+    {
+      "entity_id": "BRANCH-Alot1z/Ix:fix/view-port-mismatch-warning",
+      "kind": "BRANCH_HEAD",
+      "previous": null,
+      "current": "72c0b850681618a7a12a3d1ce1b8c90f0c26a7d3",
+      "status": "CURRENT"
+    },
+    {
+      "entity_id": "BRANCH-Alot1z/Ix:fix/view-reports-running-port",
+      "kind": "BRANCH_HEAD",
+      "previous": null,
+      "current": "c5357aa6965aa0a88706c49005a4d70b58aec41a",
+      "status": "CURRENT"
+    },
+    {
+      "entity_id": "BRANCH-Alot1z/Ix:fix/windows-short-temp-path",
+      "kind": "BRANCH_HEAD",
+      "previous": null,
+      "current": "e3b591c3b0507b0440d6891dab2f1bcd1457f970",
+      "status": "CURRENT"
+    },
+    {
+      "entity_id": "BRANCH-Alot1z/Ix:fix/windows-tar-cygpath-pairing",
+      "kind": "BRANCH_HEAD",
+      "previous": null,
+      "current": "f434f9d0bc5027a5d3033df35caed7a8c2c84fc8",
+      "status": "CURRENT"
+    },
+    {
+      "entity_id": "BRANCH-Alot1z/Ix:fix/workspace-id-yaml-numeric-coercion",
+      "kind": "BRANCH_HEAD",
+      "previous": null,
+      "current": "80b429f2ce398eb3bf9e842cdf7b4d35dc34286d",
+      "status": "CURRENT"
+    },
+    {
+      "entity_id": "BRANCH-Alot1z/Ix:old-dev",
+      "kind": "BRANCH_HEAD",
+      "previous": null,
+      "current": "f771abffab3d7104550a593746a2d7cdffd7d088",
+      "status": "CURRENT"
+    },
+    {
+      "entity_id": "BRANCH-Alot1z/Ix:refactor/core-ingestion-cloud-architecture",
+      "kind": "BRANCH_HEAD",
+      "previous": null,
+      "current": "480915b643a705bb7ac8be6fe353ed34b007e7f2",
+      "status": "CURRENT"
+    },
+    {
+      "entity_id": "BRANCH-Alot1z/Ix:refactor/stale-drop-dead-client",
+      "kind": "BRANCH_HEAD",
+      "previous": null,
+      "current": "2f68cccb28440f2679e838decc40866cd5d98f34",
+      "status": "CURRENT"
+    },
+    {
+      "entity_id": "PR-358",
+      "kind": "PULL_REQUEST",
+      "previous_head": null,
+      "current_head": "1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+      "previous_state": null,
+      "current_state": "closed",
+      "status": "HISTORICAL"
+    },
+    {
+      "entity_id": "PR-362",
+      "kind": "PULL_REQUEST",
+      "previous_head": null,
+      "current_head": "95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449",
+      "previous_state": null,
+      "current_state": "closed",
+      "status": "HISTORICAL"
+    },
+    {
+      "entity_id": "PR-365",
+      "kind": "PULL_REQUEST",
+      "previous_head": null,
+      "current_head": "83c4308b5d1c7f70fd1294350474890c3549ea04",
+      "previous_state": null,
+      "current_state": "closed",
+      "status": "HISTORICAL"
+    },
+    {
+      "entity_id": "PR-366",
+      "kind": "PULL_REQUEST",
+      "previous_head": null,
+      "current_head": "f434f9d0bc5027a5d3033df35caed7a8c2c84fc8",
+      "previous_state": null,
+      "current_state": "closed",
+      "status": "HISTORICAL"
+    },
+    {
+      "entity_id": "PR-368",
+      "kind": "PULL_REQUEST",
+      "previous_head": null,
+      "current_head": "0c9087c4292254472174b02475d094359c88c055",
+      "previous_state": null,
+      "current_state": "closed",
+      "status": "HISTORICAL"
+    },
+    {
+      "entity_id": "PR-372",
+      "kind": "PULL_REQUEST",
+      "previous_head": null,
+      "current_head": "86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+      "previous_state": null,
+      "current_state": "closed",
+      "status": "HISTORICAL"
+    },
+    {
+      "entity_id": "PR-373",
+      "kind": "PULL_REQUEST",
+      "previous_head": null,
+      "current_head": "d785e1ad2740e56ef712b432c7b328125c5f4599",
+      "previous_state": null,
+      "current_state": "closed",
+      "status": "HISTORICAL"
+    },
+    {
+      "entity_id": "PR-375",
+      "kind": "PULL_REQUEST",
+      "previous_head": null,
+      "current_head": "304e7e490d5537e7f86f71c297e04656360f1bf1",
+      "previous_state": null,
+      "current_state": "closed",
+      "status": "HISTORICAL"
+    },
+    {
+      "entity_id": "PR-378",
+      "kind": "PULL_REQUEST",
+      "previous_head": null,
+      "current_head": "d827cc9fa63a203b138d35621057af7c9a21bad0",
+      "previous_state": null,
+      "current_state": "closed",
+      "status": "HISTORICAL"
+    },
+    {
+      "entity_id": "PR-380",
+      "kind": "PULL_REQUEST",
+      "previous_head": null,
+      "current_head": "b89046144f0a8cd960a7bbee22b3a12145c6c82e",
+      "previous_state": null,
+      "current_state": "closed",
+      "status": "HISTORICAL"
+    },
+    {
+      "entity_id": "PR-382",
+      "kind": "PULL_REQUEST",
+      "previous_head": null,
+      "current_head": "9c74d47d1cd0faa86ef381a8888c450872675f7a",
+      "previous_state": null,
+      "current_state": "closed",
+      "status": "HISTORICAL"
+    },
+    {
+      "entity_id": "PR-384",
+      "kind": "PULL_REQUEST",
+      "previous_head": null,
+      "current_head": "4eb8d4e04c141e4cf49aaae297b0e89b08f74f43",
+      "previous_state": null,
+      "current_state": "closed",
+      "status": "HISTORICAL"
+    },
+    {
+      "entity_id": "PR-386",
+      "kind": "PULL_REQUEST",
+      "previous_head": null,
+      "current_head": "cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8",
+      "previous_state": null,
+      "current_state": "closed",
+      "status": "HISTORICAL"
+    },
+    {
+      "entity_id": "PR-387",
+      "kind": "PULL_REQUEST",
+      "previous_head": null,
+      "current_head": "94328d82bc6738f4900d5aff51b406bf6c934e73",
+      "previous_state": null,
+      "current_state": "closed",
+      "status": "HISTORICAL"
+    },
+    {
+      "entity_id": "PR-388",
+      "kind": "PULL_REQUEST",
+      "previous_head": null,
+      "current_head": "71b8986e1c3164e78275604b76399860fb3313e3",
+      "previous_state": "open",
+      "current_state": "open",
+      "status": "STALE"
+    },
+    {
+      "entity_id": "PR-389",
+      "kind": "PULL_REQUEST",
+      "previous_head": null,
+      "current_head": "0d8032910c45408d8684a0e6f95198ee223b647c",
+      "previous_state": null,
+      "current_state": "closed",
+      "status": "HISTORICAL"
+    },
+    {
+      "entity_id": "PR-390",
+      "kind": "PULL_REQUEST",
+      "previous_head": null,
+      "current_head": "89ca55e21672696deb7627cb3e5b1846754707fa",
+      "previous_state": null,
+      "current_state": "closed",
+      "status": "HISTORICAL"
+    },
+    {
+      "entity_id": "PR-391",
+      "kind": "PULL_REQUEST",
+      "previous_head": null,
+      "current_head": "3f70e75a7e5cc21cd50eaa01908948e7036aa9f6",
+      "previous_state": null,
+      "current_state": "closed",
+      "status": "HISTORICAL"
+    },
+    {
+      "entity_id": "PR-392",
+      "kind": "PULL_REQUEST",
+      "previous_head": null,
+      "current_head": "b4d9c0038b4595b0562f9dc2e8ef457511112d29",
+      "previous_state": null,
+      "current_state": "closed",
+      "status": "HISTORICAL"
+    },
+    {
+      "entity_id": "ISSUE-349",
+      "kind": "COMMENTS",
+      "previous_count": 0,
+      "current_count": 3,
+      "status": "STALE"
+    },
+    {
+      "entity_id": "ISSUE-371",
+      "kind": "ISSUE_STATE",
+      "previous_state": null,
+      "current_state": "closed",
+      "status": "HISTORICAL"
+    },
+    {
+      "entity_id": "ISSUE-374",
+      "kind": "ISSUE_STATE",
+      "previous_state": null,
+      "current_state": "closed",
+      "status": "HISTORICAL"
+    },
+    {
+      "entity_id": "ISSUE-376",
+      "kind": "ISSUE_STATE",
+      "previous_state": null,
+      "current_state": "closed",
+      "status": "HISTORICAL"
+    },
+    {
+      "entity_id": "ISSUE-377",
+      "kind": "ISSUE_STATE",
+      "previous_state": null,
+      "current_state": "closed",
+      "status": "HISTORICAL"
+    },
+    {
+      "entity_id": "ISSUE-379",
+      "kind": "ISSUE_STATE",
+      "previous_state": null,
+      "current_state": "closed",
+      "status": "HISTORICAL"
+    },
+    {
+      "entity_id": "ISSUE-383",
+      "kind": "COMMENTS",
+      "previous_count": 0,
+      "current_count": 1,
+      "status": "STALE"
+    },
+    {
+      "entity_id": "ISSUE-385",
+      "kind": "COMMENTS",
+      "previous_count": 0,
+      "current_count": 2,
+      "status": "STALE"
+    }
+  ],
+  "unchanged_entities": [
+    "PR-393",
+    "PR-395",
+    "ISSUE-219"
+  ],
+  "historical_entities": [],
+  "summary": {
+    "affected_count": 47,
+    "unchanged_count": 3,
+    "historical_transition_count": 0,
+    "stale_check": "STALE"
+  }
+}

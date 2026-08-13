@@ -1,0 +1,32 @@
+{
+  "schema_version": "phase-d.incremental-sync-implementation.v1",
+  "implementation": "planning/phase-d/incremental-sync.mjs",
+  "mode": "LOCAL_MANUAL_DETERMINISTIC_DRY_RUN",
+  "supports": [
+    "watermark",
+    "source cursor",
+    "changed objects",
+    "affected entities",
+    "affected relationships",
+    "rebuild scope",
+    "validation result",
+    "sync timestamp",
+    "failure state"
+  ],
+  "representative_event": "changed_pr_head",
+  "receipt": "planning/phase-d/SYNC-RECEIPT.json",
+  "state": "planning/phase-d/SYNC-STATE.json",
+  "validation": {
+    "deterministic_event_id": true,
+    "source_cursor_present": true,
+    "all_commit_ids_full_sha": true,
+    "no_unknown_entity_ids": true,
+    "unknown_entity_ids": [],
+    "canonical_entity_count": 3614,
+    "canonical_relationship_count": 13535,
+    "design_schema": "phase-c.incremental-sync.v1"
+  },
+  "no_webhooks": true,
+  "no_hooks": true,
+  "no_external_mutation": true
+}

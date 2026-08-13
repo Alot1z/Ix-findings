@@ -1,0 +1,85 @@
+{
+  "id": "REVIEW-ix-infrastructure-Ix-pr-378-4900961342",
+  "type": "artifact",
+  "title": "Review 4900961342 on PR #378",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/review-ix-infrastructure-ix-pr-378-4900961342",
+  "summary": {
+    "id": "REVIEW-ix-infrastructure-Ix-pr-378-4900961342",
+    "type": "artifact",
+    "title": "Review 4900961342 on PR #378",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/pull/378#pullrequestreview-4900961342",
+    "source_mirror_id": "github:review:ix-infrastructure/Ix#pr-378-4900961342",
+    "source_type": "github_review",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/pull/378#pullrequestreview-4900961342",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "id": 4900961342,
+    "node_id": "PRR_kwDORdC75M8AAAABJB68Pg",
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 378,
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "state": "APPROVED",
+    "body": "Blocking items resolved — see the comment above for what I pushed and why. Approving.\n\nVerified after the changes: full `ix-cli` suite green, typecheck clean, lint 0 errors, and `core-ingestion` still at exactly the six pre-existing failures you documented on `origin/main`.",
+    "html_url": "https://github.com/ix-infrastructure/Ix/pull/378#pullrequestreview-4900961342",
+    "submitted_at": "2026-08-10T21:06:28Z",
+    "commit_id": "d827cc9fa63a203b138d35621057af7c9a21bad0",
+    "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+    "source": "OFFICIAL_GITHUB_FACT",
+    "parent_pr": 378
+  },
+  "source_context": {
+    "id": "github:review:ix-infrastructure/Ix#pr-378-4900961342",
+    "source": {
+      "type": "github_review",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/378#pullrequestreview-4900961342",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T21:06:28Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T21:06:28Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "REVIEW-ix-infrastructure-Ix-pr-378-4900961342",
+    "entity_type": "REVIEW",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#378",
+    "review_thread_state": "VERIFIED_GRAPHQL_NO_ASSOCIATED_THREAD_DATA"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "HAS_REVIEW",
+      "other": "PR-378",
+      "other_type": "pr",
+      "other_title": "Ix PR #378",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-378"
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "id": "COMMIT-abe1d909d9804c67d99e5c1e383d3e40ff0d7d07",
+  "type": "commit",
+  "title": "abe1d909d9804c67d99e5c1e383d3e40ff0d7d07",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-abe1d909d9804c67d99e5c1e383d3e40ff0d7d07",
+  "summary": {
+    "id": "COMMIT-abe1d909d9804c67d99e5c1e383d3e40ff0d7d07",
+    "type": "commit",
+    "title": "abe1d909d9804c67d99e5c1e383d3e40ff0d7d07",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/abe1d909d9804c67d99e5c1e383d3e40ff0d7d07",
+    "author": {
+      "name": "kagebinary",
+      "email": "ianjakobhock@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-6a05692415d4d3b30e373e5f030bf376602d43d6",
+      "other_type": "commit",
+      "other_title": "6a05692415d4d3b30e373e5f030bf376602d43d6",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-6a05692415d4d3b30e373e5f030bf376602d43d6"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-706d402e6d1b782205f45addfb135fdcdde48a86",
+      "other_type": "commit",
+      "other_title": "706d402e6d1b782205f45addfb135fdcdde48a86",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-706d402e6d1b782205f45addfb135fdcdde48a86"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-336ca35483f0",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/map.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-336ca35483f0"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c540ea78fa25",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/map/MapService.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c540ea78fa25"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2457891d64fa",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/map.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2457891d64fa"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-f782e49f771e",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/map/MapService.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f782e49f771e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-99ec40e9efdb",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/map.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-99ec40e9efdb"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-474226c201ee",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/map/MapService.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-474226c201ee"
+    }
+  ]
+}

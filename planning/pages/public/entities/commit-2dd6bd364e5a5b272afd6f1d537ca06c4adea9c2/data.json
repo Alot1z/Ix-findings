@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-2dd6bd364e5a5b272afd6f1d537ca06c4adea9c2",
+  "type": "commit",
+  "title": "2dd6bd364e5a5b272afd6f1d537ca06c4adea9c2",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-2dd6bd364e5a5b272afd6f1d537ca06c4adea9c2",
+  "summary": {
+    "id": "COMMIT-2dd6bd364e5a5b272afd6f1d537ca06c4adea9c2",
+    "type": "commit",
+    "title": "2dd6bd364e5a5b272afd6f1d537ca06c4adea9c2",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/2dd6bd364e5a5b272afd6f1d537ca06c4adea9c2",
+    "author": {
+      "name": "riley0227",
+      "email": "riley0227@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-f1341dbc0591432990b5979be5caae6f790e18fd",
+      "other_type": "commit",
+      "other_title": "f1341dbc0591432990b5979be5caae6f790e18fd",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-f1341dbc0591432990b5979be5caae6f790e18fd"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-6ab8141d2df95d585146d49392582d1b7b8bbdf3",
+      "other_type": "commit",
+      "other_title": "6ab8141d2df95d585146d49392582d1b7b8bbdf3",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-6ab8141d2df95d585146d49392582d1b7b8bbdf3"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5f9beee23892",
+      "other_type": "artifact",
+      "other_title": "docker-compose.standalone.yml",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5f9beee23892"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-b77a34f5340e",
+      "other_type": "artifact",
+      "other_title": "docker-compose.standalone.yml",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b77a34f5340e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3a8e790cb2fa",
+      "other_type": "artifact",
+      "other_title": "docker-compose.standalone.yml",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3a8e790cb2fa"
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "id": "FILE-928f31e1f7d6",
+  "type": "artifact",
+  "title": "ix-cli/src/cli/__tests__/upgrade-compass-bundle.test.ts",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/file-928f31e1f7d6",
+  "summary": {
+    "id": "FILE-928f31e1f7d6",
+    "type": "artifact",
+    "title": "ix-cli/src/cli/__tests__/upgrade-compass-bundle.test.ts",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "source_mirror_id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/__tests__/upgrade-compass-bundle.test.ts",
+    "source_type": "github_file",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/blob/f434f9d0bc5027a5d3033df35caed7a8c2c84fc8/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fupgrade-compass-bundle.test.ts",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 366,
+    "filename": "ix-cli/src/cli/__tests__/upgrade-compass-bundle.test.ts",
+    "status": "modified",
+    "additions": 84,
+    "deletions": 0,
+    "changes": 84,
+    "blob_url": "https://github.com/ix-infrastructure/Ix/blob/f434f9d0bc5027a5d3033df35caed7a8c2c84fc8/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fupgrade-compass-bundle.test.ts",
+    "raw_url": "https://github.com/ix-infrastructure/Ix/raw/f434f9d0bc5027a5d3033df35caed7a8c2c84fc8/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fupgrade-compass-bundle.test.ts",
+    "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fupgrade-compass-bundle.test.ts?ref=f434f9d0bc5027a5d3033df35caed7a8c2c84fc8",
+    "patch": "@@ -16,6 +16,8 @@ import {\n   cleanupCompassSwap,\n   installCompassBundle,\n   sweepUpgradeOrphans,\n+  systemTarPath,\n+  tarAttempts,\n } from \"../commands/upgrade.js\";\n \n // The compass repair used to empty COMPASS_DIR and extract into the hole, so\n@@ -210,3 +212,85 @@ describe(\"installCompassBundle\", () => {\n     expect(existsSync(backup())).toBe(false);\n   });\n });\n+\n+// The Windows compass extract converted its paths to Cygwin form whenever\n+// `cygpath` was on the box, and then ran whatever `tar` PATH resolved to. Git\n+// for Windows supplies cygpath; Windows 10 1803+ supplies System32\\tar.exe. On\n+// a machine with both — an ordinary Windows dev box — the rewrite happened and\n+// bsdtar was handed the result:\n+//\n+//   tar: Error opening archive: Failed to open '/cygdrive/c/Users/...'\n+//\n+// The binary and the path form have to be chosen as a pair.\n+describe(\"tarAttempts\", () => {\n+  const realPlatform = process.platform;\n+  const setPlatform = (value: string) =>\n+    Object.defineProperty(process, \"platform\", { value, configurable: true });\n+\n+  afterEach(() => setPlatform(realPlatform));\n+\n+  it(\"is a single native invocation off Windows\", () => {\n+    setPlatform(\"linux\");\n+    expect(tarAttempts(\"/tmp/c.tar.gz\", \"/tmp/dest\")).toEqual([\n+      { bin: \"tar\", file: \"/tmp/c.tar.gz\", dest: \"/tmp/dest\" },\n+    ]);\n+  });\n+\n+  // A box that has cygpath, which is what made the old code convert.\n+  const cygpath = (p: string) =>\n+    \"/cygdrive/\" + p[0].toLowerCase() + p.slice(2).replace(/\\\\/g, \"/\");\n+\n+  it(\"tries native Windows paths before any converted form\", () => {\n+    setPlatform(\"win32\");\n+    const attempts = tarAttempts(\"[local-path]\", \"[local-path]\", cygpath);\n+\n+    // The whole bug: the only invocation used a converted path, so a tar taking\n+    // native paths could never succeed. Native must come first.\n+    expect(attempts[0].file).toBe(\"[local-path]\");\n+    expect(attempts[0].dest).toBe(\"[local-path]\");\n+\n+    // ...and the converted form must still be offered, for a real MSYS-only box.\n+    expect(attempts.some(a => a.file.startsWith(\"/cygdrive/\"))).toBe(true);\n+\n+    const firstConverted = attempts.findIndex(a => a.file.startsWith(\"/cygdrive/\"));\n+    const lastNative = attempts.map(a => a.file.startsWith(\"/cygdrive/\")).lastIndexOf(false);\n+    expect(firstConverted).toBeGreaterThan(lastNative);\n+  });\n+\n+  it(\"offers only native paths when there is no cygpath\", () => {\n+    setPlatform(\"win32\");\n+    const attempts = tarAttempts(\"[local-path]\", \"[local-path]\", () => null);\n+    expect(attempts.every(a => a.file === \"[local-path]\")).toBe(true);\n+  });\n+\n+  it(\"never pairs a converted path with the system tar\", () => {\n+    setPlatform(\"win32\");\n+    for (const attempt of tarAttempts(\"[local-path]\", \"[local-path]\", cygpath)) {\n+      // bsdtar cannot open a cygdrive path; pairing the two is the failure.\n+      if (attempt.bin.toLowerCase().includes(\"system32\")) {\n+        expect(attempt.file.startsWith(\"/cygdrive/\")).toBe(false);\n+      }\n+    }\n+  });\n+});\n+\n+describe(\"systemTarPath\", () => {\n+  it(\"finds bsdtar under SystemRoot\", () => {\n+    expect(systemTarPath({ SystemRoot: \"[local-path]\" }, () => true))\n+      .toBe(join(\"[local-path]\", \"System32\", \"tar.exe\"));\n+  });\n+\n+  it(\"falls back to windir when SystemRoot is unset\", () => {\n+    expect(systemTarPath({ windir: \"[local-path]\" }, () => true))\n+      .toBe(join(\"[local-path]\", \"System32\", \"tar.exe\"));\n+  });\n+\n+  it(\"is null when the binary is not there\", () => {\n+    // Windows before 1803. The PATH fallbacks are the only option.\n+    expect(systemTarPath({ SystemRoot: \"[local-path]\" }, () => false)).toBeNull();\n+  });\n+\n+  it(\"is null with no Windows root in the environment\", () => {\n+    expect(systemTarPath({}, () => true)).toBeNull();\n+  });\n+});",
+    "parent_pr": 366
+  },
+  "source_context": {
+    "id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/__tests__/upgrade-compass-bundle.test.ts",
+    "source": {
+      "type": "github_file",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/blob/f434f9d0bc5027a5d3033df35caed7a8c2c84fc8/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fupgrade-compass-bundle.test.ts",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-09T22:30:51Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-09T23:10:05Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "FILE-928f31e1f7d6",
+    "entity_type": "FILE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#366",
+    "line_precision": "FILE_LEVEL"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-f434f9d0bc5027a5d3033df35caed7a8c2c84fc8",
+      "other_type": "commit",
+      "other_title": "f434f9d0bc5027a5d3033df35caed7a8c2c84fc8",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-f434f9d0bc5027a5d3033df35caed7a8c2c84fc8"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-0437abf5de675f16fe161df86fca9adf7eee9b93",
+      "other_type": "commit",
+      "other_title": "0437abf5de675f16fe161df86fca9adf7eee9b93",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-0437abf5de675f16fe161df86fca9adf7eee9b93"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-0b4caf9fc2811977e333e22486799bf7d923a6cc",
+      "other_type": "commit",
+      "other_title": "0b4caf9fc2811977e333e22486799bf7d923a6cc",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-0b4caf9fc2811977e333e22486799bf7d923a6cc"
+    }
+  ]
+}

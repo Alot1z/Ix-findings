@@ -1,0 +1,145 @@
+{
+  "id": "COMMIT-95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449",
+  "type": "commit",
+  "title": "95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449",
+  "summary": {
+    "id": "COMMIT-95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449",
+    "type": "commit",
+    "title": "95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449",
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "source_mirror_id": "github:commit:ix-infrastructure/Ix@95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449",
+    "source_type": "github_commit",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/commit/95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "sha": "95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449",
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "committer": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "message": "fix(view): say the port is unknown from status, not nothing\n\nReview follow-up. `ix view` and `ix view status` disagreed in exactly the\nstate that motivated #358: with a live PID but no recoverable port, `ix view`\nprinted the \"port is unknown\" advisory and told you how to recover, while\n`status` printed the PID line and stopped.\n\nNeither guessed a URL, so this was never a #358 regression -- but silence is\nthe wrong answer for someone who ran `status` *for* the URL, and it was also\nunpinned: the existing test only asserted the absence of \"http://localhost\",\nwhich the advisory satisfies too, so the behaviour could drift either way.\n\nRoute status through runningInstanceLines so the two branches cannot drift.\n`status` takes no -p, so the mismatch branch is unreachable from here.\n\nConfirmed non-vacuous: with the old two-line form restored, the new test fails\non \"expected '[ok] Visualizer is running (PID 4242)' to contain 'unknown'\".\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01PZhcNcCtFQ6Bz2XMDpJPJS",
+    "parents": [
+      {
+        "sha": "72c0b850681618a7a12a3d1ce1b8c90f0c26a7d3",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/72c0b850681618a7a12a3d1ce1b8c90f0c26a7d3"
+      }
+    ],
+    "tree_sha": "a03effeb9092cd9e5d9e7a3ec3048e1fb5571625",
+    "authored_at": "2026-08-10T04:37:43Z",
+    "committed_at": "2026-08-10T04:37:43Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T04:37:43Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T04:37:43Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#362"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-72c0b850681618a7a12a3d1ce1b8c90f0c26a7d3",
+      "other_type": "commit",
+      "other_title": "72c0b850681618a7a12a3d1ce1b8c90f0c26a7d3",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-72c0b850681618a7a12a3d1ce1b8c90f0c26a7d3"
+    },
+    {
+      "direction": "in",
+      "relationship": "HEADS_AT",
+      "other": "PR-362",
+      "other_type": "pr",
+      "other_title": "Ix PR #362",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-362"
+    },
+    {
+      "direction": "in",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "PR-362",
+      "other_type": "pr",
+      "other_title": "Ix PR #362",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-362"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-69e78392d02c",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/view-running-port.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-69e78392d02c"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-201d35c8a82e",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/view.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-201d35c8a82e"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGED_BY",
+      "other": "PR-362",
+      "other_type": "pr",
+      "other_title": "Ix PR #362",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-362"
+    }
+  ]
+}

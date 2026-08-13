@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-847d7316373dca3760ae95d9cb3848492f9f19d4",
+  "type": "commit",
+  "title": "847d7316373dca3760ae95d9cb3848492f9f19d4",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-847d7316373dca3760ae95d9cb3848492f9f19d4",
+  "summary": {
+    "id": "COMMIT-847d7316373dca3760ae95d9cb3848492f9f19d4",
+    "type": "commit",
+    "title": "847d7316373dca3760ae95d9cb3848492f9f19d4",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/847d7316373dca3760ae95d9cb3848492f9f19d4",
+    "author": {
+      "name": "kagebinary",
+      "email": "ianjakobhock@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-ad5ca098c2d81aa8208269e8b000585f111cf258",
+      "other_type": "commit",
+      "other_title": "ad5ca098c2d81aa8208269e8b000585f111cf258",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-ad5ca098c2d81aa8208269e8b000585f111cf258"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-2df025cf7180cbf9d9accbc6db9e5d74dd66eba6",
+      "other_type": "commit",
+      "other_title": "2df025cf7180cbf9d9accbc6db9e5d74dd66eba6",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-2df025cf7180cbf9d9accbc6db9e5d74dd66eba6"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-07f14ce9998a",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/ingest.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-07f14ce9998a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-6d783a082e75",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/ingest.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-6d783a082e75"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-52e473712974",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/ingest.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-52e473712974"
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "id": "COMMIT-23fdc9ab76fa2fd3fb487ed1e12cf0e36cfeb800",
+  "type": "commit",
+  "title": "23fdc9ab76fa2fd3fb487ed1e12cf0e36cfeb800",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-23fdc9ab76fa2fd3fb487ed1e12cf0e36cfeb800",
+  "summary": {
+    "id": "COMMIT-23fdc9ab76fa2fd3fb487ed1e12cf0e36cfeb800",
+    "type": "commit",
+    "title": "23fdc9ab76fa2fd3fb487ed1e12cf0e36cfeb800",
+    "status": "CURRENT"
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "POINTS_TO",
+      "other": "BRANCH-da76bc8f3dc5",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:chore/brew-update-v0.9.1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-da76bc8f3dc5"
+    },
+    {
+      "direction": "in",
+      "relationship": "POINTS_TO",
+      "other": "BRANCH-a4cda2fd84ac",
+      "other_type": "branch",
+      "other_title": "ix-infrastructure/Ix:chore/brew-update-v0.9.1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-a4cda2fd84ac"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-0437abf5de675f16fe161df86fca9adf7eee9b93",
+      "other_type": "commit",
+      "other_title": "0437abf5de675f16fe161df86fca9adf7eee9b93",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-0437abf5de675f16fe161df86fca9adf7eee9b93"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-cd98b1572b9c",
+      "other_type": "artifact",
+      "other_title": "Formula/ix.rb",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-cd98b1572b9c"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-a12074782c47",
+      "other_type": "artifact",
+      "other_title": "Formula/ix.rb",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-a12074782c47"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-f5daaba6e07e",
+      "other_type": "artifact",
+      "other_title": "Formula/ix.rb",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f5daaba6e07e"
+    }
+  ]
+}

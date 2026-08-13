@@ -1,0 +1,34 @@
+{
+  "id": "BRANCH-a456acb6ef82",
+  "type": "branch",
+  "title": "ix-infrastructure/Ix:main",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/branch-a456acb6ef82",
+  "summary": {
+    "id": "BRANCH-a456acb6ef82",
+    "type": "branch",
+    "title": "ix-infrastructure/Ix:main",
+    "status": "CURRENT"
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "BELONGS_TO",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "out",
+      "relationship": "POINTS_TO",
+      "other": "COMMIT-1292375548fb8f4431ac5afc34c68fe2573434d1",
+      "other_type": "commit",
+      "other_title": "1292375548fb8f4431ac5afc34c68fe2573434d1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-1292375548fb8f4431ac5afc34c68fe2573434d1"
+    }
+  ]
+}

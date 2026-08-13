@@ -1,0 +1,42 @@
+{
+  "id": "WORKTREE-E-E-github-repos-Ix-remap",
+  "type": "artifact",
+  "title": "WORKTREE-E-E-github-repos-Ix-remap",
+  "status": "IN_PROGRESS",
+  "url": "https://alot1z.github.io/Ix-findings/entities/worktree-e-e-github-repos-ix-remap",
+  "summary": {
+    "id": "WORKTREE-E-E-github-repos-Ix-remap",
+    "type": "artifact",
+    "title": "WORKTREE-E-E-github-repos-Ix-remap",
+    "status": "IN_PROGRESS"
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "WORKTREE_OF",
+      "other": "CLONE-E-E-github-repos-Ix-remap",
+      "other_type": "artifact",
+      "other_title": "CLONE-E-E-github-repos-Ix-remap",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/clone-e-e-github-repos-ix-remap"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHECKS_OUT",
+      "other": "BRANCH-49d4a74be2b8",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:feat/ix-remap-hardening",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-49d4a74be2b8"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHECKS_OUT",
+      "other": "BRANCH-ee20ecfc893b",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:feat/ix-remap-hardening",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-ee20ecfc893b"
+    }
+  ]
+}

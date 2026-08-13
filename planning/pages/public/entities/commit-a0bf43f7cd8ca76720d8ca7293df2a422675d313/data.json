@@ -1,0 +1,208 @@
+{
+  "id": "COMMIT-a0bf43f7cd8ca76720d8ca7293df2a422675d313",
+  "type": "commit",
+  "title": "a0bf43f7cd8ca76720d8ca7293df2a422675d313",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-a0bf43f7cd8ca76720d8ca7293df2a422675d313",
+  "summary": {
+    "id": "COMMIT-a0bf43f7cd8ca76720d8ca7293df2a422675d313",
+    "type": "commit",
+    "title": "a0bf43f7cd8ca76720d8ca7293df2a422675d313",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/a0bf43f7cd8ca76720d8ca7293df2a422675d313",
+    "author": {
+      "name": "riley0227",
+      "email": "riley0227@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-547ad485686b502b71d89730ab24c5a529173c75",
+      "other_type": "commit",
+      "other_title": "547ad485686b502b71d89730ab24c5a529173c75",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-547ad485686b502b71d89730ab24c5a529173c75"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-f17ac0427bbcf1aebea8845e94aabfc0dbb59e4b",
+      "other_type": "commit",
+      "other_title": "f17ac0427bbcf1aebea8845e94aabfc0dbb59e4b",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-f17ac0427bbcf1aebea8845e94aabfc0dbb59e4b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-94c312c76cbd",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/conflict/ConflictDetectorSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-94c312c76cbd"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-1d9e857e7503",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/context/ConfidenceScorerSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-1d9e857e7503"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-06a5f9c3374c",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/context/ContextServiceSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-06a5f9c3374c"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-6ac118bc753d",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/context/CorroborationCounterSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-6ac118bc753d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3501f71c8070",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/context/LlmJudgeSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3501f71c8070"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-45be58483331",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/context/RelevanceScorerSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-45be58483331"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3ee31408ddc0",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/context/StalenessDetectorSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3ee31408ddc0"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-551176b680e8",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/conflict/ConflictDetectorSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-551176b680e8"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-9ce827a7e8ee",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/context/ConfidenceScorerSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-9ce827a7e8ee"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-09059c1143fc",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/context/ContextServiceSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-09059c1143fc"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-39f84ea753b3",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/context/CorroborationCounterSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-39f84ea753b3"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-a59c0334f821",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/context/LlmJudgeSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-a59c0334f821"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-f95ccc39b514",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/context/RelevanceScorerSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f95ccc39b514"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c30681ed299f",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/context/StalenessDetectorSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c30681ed299f"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e31870c38ab6",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/conflict/ConflictDetectorSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e31870c38ab6"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-f126dfb7cc42",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/context/ConfidenceScorerSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f126dfb7cc42"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-b7727058d34d",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/context/ContextServiceSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b7727058d34d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-59e8cdcd35f6",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/context/CorroborationCounterSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-59e8cdcd35f6"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-8b29fe030bbc",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/context/LlmJudgeSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-8b29fe030bbc"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5e7f26bf2a12",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/context/RelevanceScorerSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5e7f26bf2a12"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e1bd5cf6f07e",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/context/StalenessDetectorSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e1bd5cf6f07e"
+    }
+  ]
+}

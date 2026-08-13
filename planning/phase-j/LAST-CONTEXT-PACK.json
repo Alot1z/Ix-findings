@@ -1,0 +1,24 @@
+{
+  "schema_version": "phase-j.context-pack.v1",
+  "query": "Which phase introduced artifact SEARCH-INDEX.json?",
+  "generated_at": "2026-08-12T21:48:42.128Z",
+  "index_version": "phase-i.search-index.v1",
+  "evidence": "DETERMINISTIC_INDEX_RETRIEVAL",
+  "source_files": [
+    "planning/PHASE-INDEX.json"
+  ],
+  "source_record_count": 0,
+  "bytes": 135,
+  "token_estimate": 34,
+  "latency_ms": 4,
+  "retrieval_method": "CURRENT-STATE + PHASE-INDEX + TARGETED INDEX + EXCERPT; no full-repository scan",
+  "external_mutations": 0,
+  "body": {
+    "pack_type": "ARTIFACT_PHASE",
+    "artifact": "SEARCH-INDEX.json?",
+    "phases": [],
+    "unknown": [
+      "No phase record references SEARCH-INDEX.json?."
+    ]
+  }
+}

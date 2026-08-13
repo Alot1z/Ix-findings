@@ -1,0 +1,66 @@
+{
+  "id": "COMMIT-4475d240b3a9bae0618626c9b1f5d73c8883c167",
+  "type": "commit",
+  "title": "4475d240b3a9bae0618626c9b1f5d73c8883c167",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-4475d240b3a9bae0618626c9b1f5d73c8883c167",
+  "summary": {
+    "id": "COMMIT-4475d240b3a9bae0618626c9b1f5d73c8883c167",
+    "type": "commit",
+    "title": "4475d240b3a9bae0618626c9b1f5d73c8883c167",
+    "status": "CURRENT"
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "POINTS_TO",
+      "other": "BRANCH-d87026bbb07d",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:fix/installer-docker-autoinstall-noop",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-d87026bbb07d"
+    },
+    {
+      "direction": "in",
+      "relationship": "POINTS_TO",
+      "other": "BRANCH-6a65bfbe793b",
+      "other_type": "branch",
+      "other_title": "ix-infrastructure/Ix:fix/installer-docker-autoinstall-noop",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-6a65bfbe793b"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-da62872b0475badb131da1f8d706729bb9cd402a",
+      "other_type": "commit",
+      "other_title": "da62872b0475badb131da1f8d706729bb9cd402a",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-da62872b0475badb131da1f8d706729bb9cd402a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-eec42651f157",
+      "other_type": "artifact",
+      "other_title": "scripts/install/install.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-eec42651f157"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-17675c476570",
+      "other_type": "artifact",
+      "other_title": "scripts/install/install.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-17675c476570"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-d2a064cfaffd",
+      "other_type": "artifact",
+      "other_title": "scripts/install/install.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-d2a064cfaffd"
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "schema_version": "phase-e.validation.v1",
+  "phase": "E",
+  "status": "PARTIALLY_COMPLETE",
+  "mirror": {
+    "records": 166,
+    "counts": {
+      "total": 166,
+      "by_type": {
+        "github_repository": 4,
+        "github_issue": 9,
+        "github_issue_comment": 9,
+        "github_pull_request": 21,
+        "github_review": 21,
+        "github_commit": 37,
+        "github_file": 58,
+        "github_pr_comment": 7
+      }
+    },
+    "snapshot_version": "2026-08-12T13:07:16.090Z",
+    "previous_snapshot_version": "2026-08-12T10:42:30.430Z",
+    "external_mutations": 0
+  },
+  "graphql_review_threads": {
+    "state": "VERIFIED",
+    "summary": {
+      "verified_prs": 21,
+      "partial_prs": 0,
+      "unknown_prs": 0,
+      "threads": 0,
+      "resolved_threads": 0,
+      "unresolved_threads": 0
+    },
+    "errors": 0
+  },
+  "diff": {
+    "changed": 4,
+    "unchanged": 162,
+    "schema_enrichment": 25,
+    "class_counts": {
+      "SCHEMA_ENRICHED": 4
+    },
+    "semantic_source_changes": 0
+  },
+  "canonical_graph": {
+    "entities": 3614,
+    "relationships": 13535,
+    "public_graph_entities": 3614,
+    "public_graph_relationships": 13535
+  },
+  "projections": {
+    "routes": 3803,
+    "external_source_routes": 175,
+    "entity_index": 3614,
+    "public_validation_command": "node planning/pages/validate-public.mjs"
+  },
+  "validation": {
+    "duplicate_record_ids": 0,
+    "source_analysis_separation": true,
+    "freshness_fields_complete": true,
+    "malformed_github_urls": 0,
+    "local_path_leaks": 0,
+    "external_mutations": 0
+  },
+  "limitations": [
+    "GraphQL verified zero review threads for the 21 captured PRs; no thread records were available to mirror.",
+    "The current REST capture remains scoped to the verified Phase-C repository and issue/PR selection policy.",
+    "Existing static site generation refreshed the complete projection; selective file-level page reuse is not yet implemented."
+  ],
+  "public_projection": {
+    "command": "node planning/pages/validate-public.mjs",
+    "status": "PASS",
+    "output_tail": "ok: sitemap.xml free of placeholder tokens\n\nVALIDATION PASSED — public projection safe for review."
+  },
+  "protected_work": {
+    "baseline_head": "309329a3dd733694bed967655436d5d8dcc352f2",
+    "current_head": "309329a3dd733694bed967655436d5d8dcc352f2",
+    "baseline_changed_paths": 5444,
+    "current_changed_paths": 5500,
+    "baseline_paths_missing": [],
+    "external_worktrees_untouched_by_phase_e": true
+  }
+}

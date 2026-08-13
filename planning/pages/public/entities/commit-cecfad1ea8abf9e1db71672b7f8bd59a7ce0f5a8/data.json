@@ -1,0 +1,161 @@
+{
+  "id": "COMMIT-cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8",
+  "type": "commit",
+  "title": "cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8",
+  "summary": {
+    "id": "COMMIT-cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8",
+    "type": "commit",
+    "title": "cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "source_mirror_id": "github:commit:ix-infrastructure/Ix@cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8",
+    "source_type": "github_commit",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/commit/cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "sha": "cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "committer": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "message": "fix(windows): make the ix.cmd launcher diagnose its own broken target\n\n`ix upgrade` before 0.9.0 refreshed only the bash shim under Git Bash and\nleft `%IX_HOME%\\bin\\ix.cmd` aimed at a `cli\\ix.cmd` that the same upgrade\nhad just replaced with a version-nested directory. Everyone upgrading from\n<=0.8.1 on Windows lands there, and all cmd.exe offers is\n\n  '\"[local-path]\"' is not recognized as an internal or\n  external command, operable program or batch file.\n\nwhich names the wrapper rather than the cause and reads like a broken\ninstall rather than a broken upgrade.\n\nThis cannot be fixed forward. `ix upgrade` is executed by the version being\nupgraded *from*, so no change shipped today reaches the installs that break\n— and once broken, `ix doctor` is exactly as unreachable as `ix`. The\nrecovery instruction therefore has to live in the batch file itself, which\nis the only thing the user can still run.\n\nSo the launcher now checks its target first and, when it is gone, prints\nwhat happened and the reinstall one-liner. It also propagates %errorlevel%\non the success path, which the old one-line body silently swallowed --\nevery non-zero ix exit had been reported to callers as success.\n\ninstall.ps1 and refreshLaunchers() both emit this body; a test asserts the\ntwo stay identical, since they drifting apart is how the flat/nested shim\nbugs happened before.\n\n`ix doctor` gains a Windows-only launcher check. It cannot help the\nPowerShell user whose shim is dead, but the bash shim IS refreshed by every\nversion, so someone living in Git Bash can be broken in PowerShell for\nweeks without knowing; this tells them.\n\nRefs #385.",
+    "parents": [
+      {
+        "sha": "fa1004586b8057c410de826dd3c6da1b0d735853",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/fa1004586b8057c410de826dd3c6da1b0d735853"
+      }
+    ],
+    "tree_sha": "3f079bb8b43196fe3221342485ddc142a23d5de1",
+    "authored_at": "2026-08-10T20:32:43Z",
+    "committed_at": "2026-08-10T20:33:32Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T20:33:32Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T20:33:32Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#386"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-fa1004586b8057c410de826dd3c6da1b0d735853",
+      "other_type": "commit",
+      "other_title": "fa1004586b8057c410de826dd3c6da1b0d735853",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-fa1004586b8057c410de826dd3c6da1b0d735853"
+    },
+    {
+      "direction": "in",
+      "relationship": "HEADS_AT",
+      "other": "PR-386",
+      "other_type": "pr",
+      "other_title": "Ix PR #386",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-386"
+    },
+    {
+      "direction": "in",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "PR-386",
+      "other_type": "pr",
+      "other_title": "Ix PR #386",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-386"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-49c17010c253",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/windows-launcher.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-49c17010c253"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-b33a6fbad5d4",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/doctor.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b33a6fbad5d4"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e559b6bc2060",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/upgrade.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e559b6bc2060"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ca4b1bc98da8",
+      "other_type": "artifact",
+      "other_title": "scripts/install/install.ps1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ca4b1bc98da8"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGED_BY",
+      "other": "PR-386",
+      "other_type": "pr",
+      "other_title": "Ix PR #386",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-386"
+    }
+  ]
+}

@@ -47,6 +47,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14p
 .breadcrumb .sep{color:var(--ink-faint)}
 .breadcrumb .crumb{cursor:pointer}
 .breadcrumb .crumb:hover{color:var(--accent)}
+.breadcrumb .crumb a{color:inherit;text-decoration:none}
 .content{flex:1;overflow-y:auto;padding:20px 22px}
 
 /* headings & tables */

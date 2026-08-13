@@ -1,0 +1,160 @@
+{
+  "id": "COMMIT-f3020dff8458302707a4e019b58be838ff1c0552",
+  "type": "commit",
+  "title": "f3020dff8458302707a4e019b58be838ff1c0552",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-f3020dff8458302707a4e019b58be838ff1c0552",
+  "summary": {
+    "id": "COMMIT-f3020dff8458302707a4e019b58be838ff1c0552",
+    "type": "commit",
+    "title": "f3020dff8458302707a4e019b58be838ff1c0552",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/f3020dff8458302707a4e019b58be838ff1c0552",
+    "author": {
+      "name": "Tanner Kocher",
+      "email": "tannertorrey3@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-2df025cf7180cbf9d9accbc6db9e5d74dd66eba6",
+      "other_type": "commit",
+      "other_title": "2df025cf7180cbf9d9accbc6db9e5d74dd66eba6",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-2df025cf7180cbf9d9accbc6db9e5d74dd66eba6"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-4c280a387e97c30d655c03f449598c8ef8c7b969",
+      "other_type": "commit",
+      "other_title": "4c280a387e97c30d655c03f449598c8ef8c7b969",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-4c280a387e97c30d655c03f449598c8ef8c7b969"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-07f14ce9998a",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/ingest.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-07f14ce9998a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3f05df7612a2",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/client/api.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3f05df7612a2"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c7d7ba3edefd",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/SourceHashRoutes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c7d7ba3edefd"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-b65c702fbc12",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/ArangoGraphQueryApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b65c702fbc12"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3f8d83f0d485",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/GraphQueryApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3f8d83f0d485"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-6d783a082e75",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/ingest.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-6d783a082e75"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-20aa33a5aad3",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/client/api.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-20aa33a5aad3"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-d470a5a3f543",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/SourceHashRoutes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-d470a5a3f543"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c8947973d6aa",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/ArangoGraphQueryApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c8947973d6aa"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2186ed233b1f",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/GraphQueryApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2186ed233b1f"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-52e473712974",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/ingest.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-52e473712974"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-f5363913e866",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/client/api.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f5363913e866"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-69f5816cf346",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/SourceHashRoutes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-69f5816cf346"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-4de3a54ff174",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/ArangoGraphQueryApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-4de3a54ff174"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-6f1940d00172",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/GraphQueryApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-6f1940d00172"
+    }
+  ]
+}

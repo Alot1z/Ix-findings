@@ -1,0 +1,79 @@
+{
+  "id": "COMMIT-8031cf1c000b4f1dae0b8cc3f891facb6f3b771d",
+  "type": "commit",
+  "title": "8031cf1c000b4f1dae0b8cc3f891facb6f3b771d",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-8031cf1c000b4f1dae0b8cc3f891facb6f3b771d",
+  "summary": {
+    "id": "COMMIT-8031cf1c000b4f1dae0b8cc3f891facb6f3b771d",
+    "type": "commit",
+    "title": "8031cf1c000b4f1dae0b8cc3f891facb6f3b771d",
+    "status": "HISTORICAL",
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    }
+  },
+  "source_snapshot": {
+    "sha": "8031cf1c000b4f1dae0b8cc3f891facb6f3b771d",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/8031cf1c000b4f1dae0b8cc3f891facb6f3b771d",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/8031cf1c000b4f1dae0b8cc3f891facb6f3b771d",
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "committer": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "message": "fix(mcp): stop parsing the launcher out of a listing row\n\nA fourth review found the previous commit reported `[local-path] Files (x86)\\...`\nas stale: trimming a row's punctuation was applied to every token, including\nthe interior tokens of a path that had just been split on its own spaces, so\nthe rejoin produced `[local-path] Files x86)\\...` and stat'd nothing. Brackets\nand commas in a username did the same. That is the most common path shape on\nWindows, and `stale` re-registers with no `--force`, so it silently rewrote\nworking configs — the exact failure the rewrite existed to remove.\n\nThat is four attempts at recovering a path from a rendered table, each broken\non a different shape: stopping at the first space missed `[local-path] Doe`;\nscanning forward swallowed a `cmd /c` prefix; walking back from the `ix` anchor\nfell to delimiter trimming. The approach is the defect. Table rows are\nspace-delimited and paths contain spaces; there is no parse that is right.\n\nSo it stops parsing. Staleness only ever needed to establish whether the row\nrecords the launcher we would write today, and a row that does contains that\nstring verbatim, whatever surrounds it. Containment, case-insensitive with\nseparators normalised. No tokens, no delimiters, no reconstruction — and no\npath shape left to get wrong. The parsed-entry path is unchanged, since a\nrecorded command needs no guessing at all. `resolveLauncher` is memoised\nbecause `doctor` now consults it once per host.\n\nTests cover every host row format against every launcher shape that has broken\nan attempt — spaces, `(x86)`, brackets, a comma, a wrapper prefix, quotes — in\nboth directions, which the previous one-directional set did not.\n\nAlso from the review: the lock-owner resolver no longer falls back to\n`activeRun`. For output that fallback only narrows the damage, but an owner\nguessed wrong for a lock means a *different* command's settle deletes a lock\nstill in use; unattributed is the safe direction. Two comments describing\nmechanisms this PR removed are corrected, and the test drain drops from 500ms\nto 250 — it was costing ~11s on one file for no coverage.\n\nEvery fix validated by restoring the defect, including reinstating the whole\nparsing approach to confirm the `(x86)` case goes red. 8/8 shuffle seeds clean.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>",
+    "parents": [
+      {
+        "sha": "110c336b7d995a746a8e57556f28cf5ab2930b4b",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/110c336b7d995a746a8e57556f28cf5ab2930b4b"
+      }
+    ],
+    "tree_sha": "04e10955e6375bb50862790996189b136d7da4a7",
+    "authored_at": "2026-08-12T20:20:51Z",
+    "committed_at": "2026-08-12T20:20:51Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@8031cf1c000b4f1dae0b8cc3f891facb6f3b771d",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/8031cf1c000b4f1dae0b8cc3f891facb6f3b771d",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/8031cf1c000b4f1dae0b8cc3f891facb6f3b771d",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-12T20:20:51Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-12T20:20:51Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-8031cf1c000b4f1dae0b8cc3f891facb6f3b771d",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#401"
+  },
+  "relationships": []
+}

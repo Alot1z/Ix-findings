@@ -1,0 +1,318 @@
+{
+  "id": "FILE-eec42651f157",
+  "type": "artifact",
+  "title": "scripts/install/install.sh",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/file-eec42651f157",
+  "summary": {
+    "id": "FILE-eec42651f157",
+    "type": "artifact",
+    "title": "scripts/install/install.sh",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "source_mirror_id": "github:file:ix-infrastructure/Ix:scripts/install/install.sh",
+    "source_type": "github_file",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/blob/3f70e75a7e5cc21cd50eaa01908948e7036aa9f6/scripts%2Finstall%2Finstall.sh",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 391,
+    "filename": "scripts/install/install.sh",
+    "status": "modified",
+    "additions": 42,
+    "deletions": 7,
+    "changes": 49,
+    "blob_url": "https://github.com/ix-infrastructure/Ix/blob/3f70e75a7e5cc21cd50eaa01908948e7036aa9f6/scripts%2Finstall%2Finstall.sh",
+    "raw_url": "https://github.com/ix-infrastructure/Ix/raw/3f70e75a7e5cc21cd50eaa01908948e7036aa9f6/scripts%2Finstall%2Finstall.sh",
+    "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/scripts%2Finstall%2Finstall.sh?ref=3f70e75a7e5cc21cd50eaa01908948e7036aa9f6",
+    "patch": "@@ -132,10 +132,11 @@ resolve_backend_version() {\n     | sed -n 's/.*\"tag_name\"[[:space:]]*:[[:space:]]*\"v\\([^\"]*\\)\".*/\\1/p' || true\n }\n \n-resolve_compass_version() {\n-  _fetch \"https://api.github.com/repos/${GITHUB_ORG}/ix-compass-dist/releases/latest\" 2>/dev/null \\\n-    | sed -n 's/.*\"tag_name\"[[:space:]]*:[[:space:]]*\"v\\([^\"]*\\)\".*/\\1/p' || true\n-}\n+# resolve_compass_version() was removed with Ix#376: the compass this script\n+# installs comes from the release tarball, so the latest ix-compass-dist release\n+# number was never the right thing to stamp it with. Nothing here needs to know\n+# what dist has published — `ix upgrade` asks that question, at a point where it\n+# can also tell which series the installed bundle belongs to.\n \n # -- Detect platform --\n \n@@ -886,6 +887,7 @@ check_installed_version() {\n # specific release, and every build before #259 did publish darwin-amd64 — so a\n # pinned rollback is allowed through to the normal download-and-404 handling.\n SKIP_CLI_INSTALL=0\n+CLI_EXTRACTED=0\n if [ \"$PLATFORM\" = \"darwin-amd64\" ] && [ -z \"${IX_VERSION:-}\" ]; then\n   echo \"\"\n   warn \"Ix does not publish a pre-built CLI for Intel Macs (darwin-amd64).\"\n@@ -919,6 +921,10 @@ if [ \"$SKIP_CLI_INSTALL\" = \"0\" ] && [ -x \"$IX_BIN/ix\" ]; then\n fi\n \n if [ \"$SKIP_CLI_INSTALL\" = \"0\" ] && { [ ! -x \"$IX_BIN/ix\" ] || [ \"$(check_installed_version)\" != \"$VERSION\" ]; }; then\n+  # Records that the compass now under $IX_HOME/cli came out of THIS release\n+  # tarball. The stamp block near the end of the script needs to know: it must\n+  # never label a bundle it did not install (Ix#376).\n+  CLI_EXTRACTED=1\n   mkdir -p \"$INSTALL_DIR\"\n \n   TMP_DIR=$(mktemp -d)\n@@ -1076,9 +1082,38 @@ BACKEND_VER=$(resolve_backend_version)\n # Windows path. Keep the -f test on index.html: stamping a version for a\n # compass that is not on disk is what made `ix upgrade` skip the repair\n # download and break `ix view` permanently.\n-COMPASS_VER=$(resolve_compass_version)\n-if [ -n \"$COMPASS_VER\" ] && [ -f \"$IX_HOME/cli/compass/index.html\" ]; then\n-  printf '%s' \"$COMPASS_VER\" > \"$IX_HOME/cli/compass/.version\"\n+#\n+# The compass installed here always comes from the release tarball, never from\n+# ix-compass-dist — so it must be stamped as a *release* bundle. This used to\n+# write the latest ix-compass-dist release number instead, which mislabelled a\n+# release bundle as a dist build and clobbered the correct stamp the tarball\n+# already carried. The result was live on real installs: a v0.9.x bundle\n+# stamped `0.2.0`, against a dist latest of `0.3.0`, so `ix upgrade` reported an\n+# update and would have *downgraded* the bundle to an older build (Ix#376).\n+#\n+# Prefer the stamp the tarball shipped with, which since v0.9.3 carries the\n+# source commit too. Only write one if the bundle has none — tarballs up to\n+# v0.9.2 predate the stamp.\n+#\n+# Gated on CLI_EXTRACTED, and that gate is the whole correctness argument. This\n+# block runs even when the CLI install was skipped: the version on disk already\n+# matched, or SKIP_CLI_INSTALL=1 on darwin-amd64. In that case the compass under\n+# cli/ is whatever was already there, which can be an *ix-compass-dist* bundle\n+# left unstamped by an interrupted `ix upgrade` (its stage=\"stamp\" failure\n+# installs the bundle and then fails to write .version). Stamping that\n+# `+release` would freeze it: shouldOfferCompassUpgradeFor refuses every future\n+# dist update for a release bundle, so a genuinely stale compass would never be\n+# replaced and `ix upgrade` would print a claim about it that is simply untrue.\n+#\n+# Nothing is lost by skipping it. When we DID extract, the tarball's own stamp\n+# has already landed and is authoritative — which is also what repairs an\n+# install mislabelled by the pre-#376 installer. One line, semver build\n+# metadata: see the note in release.yml on why this file must stay readable by\n+# already-shipped CLIs.\n+if [ -f \"$IX_HOME/cli/compass/index.html\" ]; then\n+  if [ \"$CLI_EXTRACTED\" = \"1\" ] && [ ! -s \"$IX_HOME/cli/compass/.version\" ]; then\n+    printf '%s+release\\n' \"$VERSION\" > \"$IX_HOME/cli/compass/.version\"\n+  fi\n elif [ ! -f \"$IX_HOME/cli/compass/index.html\" ]; then\n   warn \"System Compass is not installed at $IX_HOME/cli/compass — 'ix view' is unavailable until you run 'ix upgrade', which will fetch it.\"\n fi",
+    "parent_pr": 391
+  },
+  "source_context": {
+    "id": "github:file:ix-infrastructure/Ix:scripts/install/install.sh",
+    "source": {
+      "type": "github_file",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/blob/3f70e75a7e5cc21cd50eaa01908948e7036aa9f6/scripts%2Finstall%2Finstall.sh",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-11T00:07:35Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-11T04:37:01Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "FILE-eec42651f157",
+    "entity_type": "FILE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#391",
+    "line_precision": "FILE_LEVEL"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-3353000f9b6666f929f52b1d5b5e5248a4e68678",
+      "other_type": "commit",
+      "other_title": "3353000f9b6666f929f52b1d5b5e5248a4e68678",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-3353000f9b6666f929f52b1d5b5e5248a4e68678"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-c4154613a2fdd434c5271f2babc10bcd88ab46b1",
+      "other_type": "commit",
+      "other_title": "c4154613a2fdd434c5271f2babc10bcd88ab46b1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-c4154613a2fdd434c5271f2babc10bcd88ab46b1"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-3f70e75a7e5cc21cd50eaa01908948e7036aa9f6",
+      "other_type": "commit",
+      "other_title": "3f70e75a7e5cc21cd50eaa01908948e7036aa9f6",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-3f70e75a7e5cc21cd50eaa01908948e7036aa9f6"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-af23b558efea953869d03ea655cbb0b3c82123b2",
+      "other_type": "commit",
+      "other_title": "af23b558efea953869d03ea655cbb0b3c82123b2",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-af23b558efea953869d03ea655cbb0b3c82123b2"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-0b4caf9fc2811977e333e22486799bf7d923a6cc",
+      "other_type": "commit",
+      "other_title": "0b4caf9fc2811977e333e22486799bf7d923a6cc",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-0b4caf9fc2811977e333e22486799bf7d923a6cc"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-d6de7006ccf4107df1512f51d3ee6b1e2f876d74",
+      "other_type": "commit",
+      "other_title": "d6de7006ccf4107df1512f51d3ee6b1e2f876d74",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-d6de7006ccf4107df1512f51d3ee6b1e2f876d74"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-8689968e03b7336db653a1cba8dd347a52335049",
+      "other_type": "commit",
+      "other_title": "8689968e03b7336db653a1cba8dd347a52335049",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-8689968e03b7336db653a1cba8dd347a52335049"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-8f2c509beb2c21b2867978ad811df6c3f4faac69",
+      "other_type": "commit",
+      "other_title": "8f2c509beb2c21b2867978ad811df6c3f4faac69",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-8f2c509beb2c21b2867978ad811df6c3f4faac69"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-b88dce2d88658784a2cebd3db07efe41bad043f3",
+      "other_type": "commit",
+      "other_title": "b88dce2d88658784a2cebd3db07efe41bad043f3",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b88dce2d88658784a2cebd3db07efe41bad043f3"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-b4ad6a8334e452daba6f4c03b1d2273269896a63",
+      "other_type": "commit",
+      "other_title": "b4ad6a8334e452daba6f4c03b1d2273269896a63",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b4ad6a8334e452daba6f4c03b1d2273269896a63"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-4475d240b3a9bae0618626c9b1f5d73c8883c167",
+      "other_type": "commit",
+      "other_title": "4475d240b3a9bae0618626c9b1f5d73c8883c167",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-4475d240b3a9bae0618626c9b1f5d73c8883c167"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-14eb3506160bf7aabba9ea6261a714dff02e39f6",
+      "other_type": "commit",
+      "other_title": "14eb3506160bf7aabba9ea6261a714dff02e39f6",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-14eb3506160bf7aabba9ea6261a714dff02e39f6"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-da62872b0475badb131da1f8d706729bb9cd402a",
+      "other_type": "commit",
+      "other_title": "da62872b0475badb131da1f8d706729bb9cd402a",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-da62872b0475badb131da1f8d706729bb9cd402a"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-0a2da73ea04cabb108636b96071688bb0674b7b6",
+      "other_type": "commit",
+      "other_title": "0a2da73ea04cabb108636b96071688bb0674b7b6",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-0a2da73ea04cabb108636b96071688bb0674b7b6"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-1cd4905fa7185c60efb5f5924cb9f549b35be343",
+      "other_type": "commit",
+      "other_title": "1cd4905fa7185c60efb5f5924cb9f549b35be343",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-1cd4905fa7185c60efb5f5924cb9f549b35be343"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-0ccdec659fd367a0447eed0ed522c9048173e0f1",
+      "other_type": "commit",
+      "other_title": "0ccdec659fd367a0447eed0ed522c9048173e0f1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-0ccdec659fd367a0447eed0ed522c9048173e0f1"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-c544daa737f6ac52dc63cdcdc2ce574946f82c5e",
+      "other_type": "commit",
+      "other_title": "c544daa737f6ac52dc63cdcdc2ce574946f82c5e",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-c544daa737f6ac52dc63cdcdc2ce574946f82c5e"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-37d85b5388b354b69930c918de3e627d2a42ec81",
+      "other_type": "commit",
+      "other_title": "37d85b5388b354b69930c918de3e627d2a42ec81",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-37d85b5388b354b69930c918de3e627d2a42ec81"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-a948b009fbc0b088fec650e3a6b07b17b063066d",
+      "other_type": "commit",
+      "other_title": "a948b009fbc0b088fec650e3a6b07b17b063066d",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-a948b009fbc0b088fec650e3a6b07b17b063066d"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-6ab8141d2df95d585146d49392582d1b7b8bbdf3",
+      "other_type": "commit",
+      "other_title": "6ab8141d2df95d585146d49392582d1b7b8bbdf3",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-6ab8141d2df95d585146d49392582d1b7b8bbdf3"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-5728519cc0ea4abc65e3348d7af149d240fc5588",
+      "other_type": "commit",
+      "other_title": "5728519cc0ea4abc65e3348d7af149d240fc5588",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-5728519cc0ea4abc65e3348d7af149d240fc5588"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-d29daa88e2bd4a2f498c42879281c6d8ab34c60d",
+      "other_type": "commit",
+      "other_title": "d29daa88e2bd4a2f498c42879281c6d8ab34c60d",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-d29daa88e2bd4a2f498c42879281c6d8ab34c60d"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-25e3ac9108fc53e483c602b8db363ac768d0e1d1",
+      "other_type": "commit",
+      "other_title": "25e3ac9108fc53e483c602b8db363ac768d0e1d1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-25e3ac9108fc53e483c602b8db363ac768d0e1d1"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-1f15398611aa007f82fd7d86a720a15333ffe139",
+      "other_type": "commit",
+      "other_title": "1f15398611aa007f82fd7d86a720a15333ffe139",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-1f15398611aa007f82fd7d86a720a15333ffe139"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-e773903a797f85b3c6d2c1d27e53b283deeea131",
+      "other_type": "commit",
+      "other_title": "e773903a797f85b3c6d2c1d27e53b283deeea131",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-e773903a797f85b3c6d2c1d27e53b283deeea131"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-57d44e2efc360d56e8d926fea81d7cc40949a865",
+      "other_type": "commit",
+      "other_title": "57d44e2efc360d56e8d926fea81d7cc40949a865",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-57d44e2efc360d56e8d926fea81d7cc40949a865"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-3024f314df4ca8663bd4a4b85500b306cd660e44",
+      "other_type": "commit",
+      "other_title": "3024f314df4ca8663bd4a4b85500b306cd660e44",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-3024f314df4ca8663bd4a4b85500b306cd660e44"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-1ff10e265221b33cc13ff2749af0217c5e709fb4",
+      "other_type": "commit",
+      "other_title": "1ff10e265221b33cc13ff2749af0217c5e709fb4",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-1ff10e265221b33cc13ff2749af0217c5e709fb4"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-767f076d4abd0513c8878c48aae337cb24492740",
+      "other_type": "commit",
+      "other_title": "767f076d4abd0513c8878c48aae337cb24492740",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-767f076d4abd0513c8878c48aae337cb24492740"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-c265e7c271881146d0c67585b691a8a0db5eb97b",
+      "other_type": "commit",
+      "other_title": "c265e7c271881146d0c67585b691a8a0db5eb97b",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-c265e7c271881146d0c67585b691a8a0db5eb97b"
+    },
+    {
+      "direction": "in",
+      "relationship": "CO_CHANGED_WITH",
+      "other": "FILE-ca4b1bc98da8",
+      "other_type": "artifact",
+      "other_title": "scripts/install/install.ps1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ca4b1bc98da8"
+    }
+  ]
+}

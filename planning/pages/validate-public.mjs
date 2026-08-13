@@ -42,7 +42,27 @@ if (data) {
     if (dump.includes(pat)) { fail("excluded pattern present in data: " + pat); clean = false; }
   }
   if (clean) ok("no excluded patterns in published data");
-  if (/[A-Za-z]:\\|E:\//.test(dump)) fail("local drive path leak");
+  // Require a drive prefix plus at least two path segments. This avoids
+  // mistaking escaped prose such as `code:\\n` for `C:\\Users\\...`.
+  const slash = String.fromCharCode(92);
+  const hasLocalDrivePath = value => {
+    if (typeof value !== "string") {
+      if (Array.isArray(value)) return value.some(hasLocalDrivePath);
+      if (value && typeof value === "object") return Object.values(value).some(hasLocalDrivePath);
+      return false;
+    }
+    for (let i = 0; i + 2 < value.length; i += 1) {
+      if (!/[A-Za-z]/.test(value[i]) || value[i + 1] !== ":" || !["/", slash].includes(value[i + 2])) continue;
+      if (/https?:\/\/$/.test(value.slice(Math.max(0, i - 4), i + 4))) continue;
+      let cursor = i + 3;
+      while (cursor < value.length && !/[\\s"']/.test(value[cursor])) cursor += 1;
+      const segments = value.slice(i + 3, cursor).split(/[\\/]/);
+      const validSegment = segment => typeof segment === "string" && segment.length >= 2 && /^[A-Za-z0-9_.~ -]+$/.test(segment);
+      if (validSegment(segments[0]) && validSegment(segments[1])) return true;
+    }
+    return false;
+  };
+  if (hasLocalDrivePath(data)) fail("local drive path leak");
   else ok("no local drive paths");
 
   // 5. Excluded collections

@@ -2,15 +2,114 @@
   "id": "ISSUE-374",
   "type": "issue",
   "title": "Ix issue #374",
-  "status": "HISTORICAL",
+  "status": "RESOLVED",
   "url": "https://alot1z.github.io/Ix-findings/entities/issue-374",
   "summary": {
     "id": "ISSUE-374",
     "type": "issue",
     "title": "Ix issue #374",
-    "status": "HISTORICAL",
+    "status": "RESOLVED",
     "number": 374,
-    "url": "https://github.com/ix-infrastructure/Ix/issues/374"
+    "url": "https://github.com/ix-infrastructure/Ix/issues/374",
+    "source_mirror_id": "github:issue:ix-infrastructure/Ix#374",
+    "source_type": "github_issue",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/issues/374",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/374",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "number": 374,
+    "node_id": "I_kwDORdC75M8AAAABMF1gpA",
+    "title": "[bug] JS and TS calls disappear across 500-file parse batches",
+    "body": "## Description\n\n`ix map` resolves JavaScript and TypeScript calls differently depending on which 500-file parse batch contains the caller and callee. A caller parsed before its imported definition loses its `CALLS` edge, while an equivalent caller in the definition's batch resolves correctly.\n\nThis makes `ix callers`, `ix callees`, and `ix impact` undercount production usage and can produce a low-risk assessment for a widely used symbol.\n\n## Steps to reproduce\n\n1. Create a fresh TypeScript repository with 515 tracked files.\n2. Put `src/a-consumer.ts` near the start of `git ls-files`:\n\n```ts\nimport { crossBatchTarget } from \"src/z-target\";\n\nexport function runCrossBatchTarget(): number {\n  return crossBatchTarget();\n}\n```\n\n3. Add 510 filler TypeScript files so that `src/z-target.ts` is outside the first 500-file batch:\n\n```ts\nexport function crossBatchTarget(): number {\n  return 42;\n}\n```\n\n4. Add `src/zz-consumer.ts` after the target with the same import and call pattern.\n5. Configure `baseUrl` as `.`, then run:\n\n```sh\nix map . --silent\nix impact crossBatchTarget --kind function --depth 2 --format json\nix callees runCrossBatchTarget --kind function --format json\n```\n\n## Expected behavior\n\nBoth `runCrossBatchTarget` and the same-batch consumer are callers of `crossBatchTarget`. The early consumer's `callees` result contains `crossBatchTarget`.\n\n## Actual behavior\n\nOnly the consumer in the target's batch is reported. The earlier consumer has no resolved callee.\n\nThe path-only global index identifies `src/z-target.ts`, but JavaScript and TypeScript definitions are not included in `fileQKeys` or `fileHasSymbol`. `resolveEdges` therefore cannot verify the imported destination and drops the cross-batch `CALLS` edge.\n\n## CLI output\n\n```json\n{\n  \"summary\": {\n    \"callers\": 1,\n    \"callees\": 0\n  },\n  \"callerList\": [\n    {\n      \"kind\": \"function\",\n      \"name\": \"runSameBatchTarget\"\n    }\n  ]\n}\n```\n\n`ix callees runCrossBatchTarget` returns zero results.\n\n## Environment\n\n- OS: macOS 26.6.1\n- Node: v26.7.0\n- Ix version: 0.9.1\n",
+    "state": "closed",
+    "state_reason": "completed",
+    "author": {
+      "login": "Hiro-Chiba",
+      "id": 203865699,
+      "type": "User",
+      "html_url": "https://github.com/Hiro-Chiba"
+    },
+    "html_url": "https://github.com/ix-infrastructure/Ix/issues/374",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/374",
+    "labels": [],
+    "milestone": null,
+    "created_at": "2026-08-10T03:42:50Z",
+    "updated_at": "2026-08-10T21:14:01Z",
+    "closed_at": "2026-08-10T21:14:01Z",
+    "comments_count": 1,
+    "locked": false,
+    "comments": [
+      {
+        "id": 5245018584,
+        "node_id": "IC_kwDORdC75M8AAAABOKCh2A",
+        "repository": "ix-infrastructure/Ix",
+        "parent_type": "ISSUE",
+        "parent_number": 374,
+        "kind": "ISSUE_COMMENT",
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "body": "Thank you for the issue — and for fixing it in the same breath. The report is precise about the mechanism (definitions landing in a later streamed batch than the caller), which is what made #375 straightforward to review against.\n\nTracked by **#375**, which is open with review comments. It carries `Fixes #374`, so this will close automatically when that lands.\n\nThe change itself is correct — the index construction mirrors `resolveEdges`' in-batch path exactly, so cross-batch and in-batch resolution agree on `dstQualifiedKey`. My open question is cost, not correctness: the prescan parses synchronously on the main thread while the streaming loop uses a worker pool, so every unchanged JS/TS file is re-read and re-parsed on each incremental `ix map`. Details and measurements are on the PR.\n",
+        "html_url": "https://github.com/ix-infrastructure/Ix/issues/374#issuecomment-5245018584",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5245018584",
+        "created_at": "2026-08-10T19:33:02Z",
+        "updated_at": "2026-08-10T19:33:02Z",
+        "commit_id": null,
+        "path": null,
+        "line": null,
+        "start_line": null,
+        "side": null,
+        "in_reply_to_id": null,
+        "diff_hunk": null,
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      }
+    ],
+    "source": "OFFICIAL_GITHUB_FACT"
+  },
+  "source_context": {
+    "id": "github:issue:ix-infrastructure/Ix#374",
+    "source": {
+      "type": "github_issue",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/issues/374",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/374",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T03:42:50Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T21:14:01Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "ISSUE-374",
+    "entity_type": "ISSUE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "mirror_scope": "source issue plus captured comments",
+    "related_analysis_types": [
+      "FINDING",
+      "DECISION",
+      "IMPLEMENTATION"
+    ]
   },
   "relationships": [
     {
@@ -44,6 +143,30 @@
       "other_type": "file",
       "other_title": "CLI-HANDOFF/phase-15/FINAL-PR-WORTHINESS-AUDIT.json",
       "other_url": "https://alot1z.github.io/Ix-findings/entities/src-90ab8426282e"
+    },
+    {
+      "direction": "out",
+      "relationship": "FOUND_IN",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "in",
+      "relationship": "AUTHORED",
+      "other": "PERSON-Hiro-Chiba",
+      "other_type": "artifact",
+      "other_title": "Hiro-Chiba",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-hiro-chiba"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMENTED_ON",
+      "other": "COMMENT-ix-infrastructure-Ix-issue-374-5245018584",
+      "other_type": "artifact",
+      "other_title": "Issue #374 comment 5245018584",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/comment-ix-infrastructure-ix-issue-374-5245018584"
     }
   ]
 }

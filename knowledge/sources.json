@@ -1690,6 +1690,16 @@
     "generated_at": "UNKNOWN"
   },
   {
+    "source_id": "SRC-6d467bdd95e7",
+    "path": "planning/CURRENT-STATE.json",
+    "format": "json",
+    "bytes": 1112,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "3a653baa6c7c",
+    "generated_at": "UNKNOWN"
+  },
+  {
     "source_id": "SRC-0bf92b81ad31",
     "path": "planning/decisions/decision-log.md",
     "format": "md",
@@ -1717,6 +1727,76 @@
     "role": "HISTORICAL",
     "readable": true,
     "sha1": "0936a54081be",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-57034ecb0536",
+    "path": "planning/discovery/build-phase-a.mjs",
+    "format": "mjs",
+    "bytes": 22116,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "9f95e71dc2e2",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-af9b13d8f196",
+    "path": "planning/discovery/LINK-MANIFEST.json",
+    "format": "json",
+    "bytes": 259292,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "f3e22510f95b",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-4bcef36ae53c",
+    "path": "planning/discovery/LIVING-GRAPH-DISCOVERY-REPORT.md",
+    "format": "md",
+    "bytes": 32174,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "4aeaeb8f80de",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-5eb5de65110b",
+    "path": "planning/discovery/PATH-MANIFEST.json",
+    "format": "json",
+    "bytes": 3232,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "2e943901239b",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-d0523d22cd6f",
+    "path": "planning/discovery/PHASE-A-REPORT.json",
+    "format": "json",
+    "bytes": 157275,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "0e32694f156c",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-17c1dc4cdff5",
+    "path": "planning/discovery/PHASE-A-REPORT.md",
+    "format": "md",
+    "bytes": 3806,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "558c45d01315",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-acc5a8514a9f",
+    "path": "planning/discovery/PUBLIC-LINK-MANIFEST.json",
+    "format": "json",
+    "bytes": 201257,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "08399594c00c",
     "generated_at": "UNKNOWN"
   },
   {
@@ -1787,6 +1867,26 @@
     "role": "HISTORICAL",
     "readable": true,
     "sha1": "533e2f95c380",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-126ed20c89f3",
+    "path": "planning/EXECUTION-RECEIPT.json",
+    "format": "json",
+    "bytes": 2951,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "534e3c2b7e08",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-101f41d1ad3c",
+    "path": "planning/EXECUTION-REPORT.md",
+    "format": "md",
+    "bytes": 3655,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "b8957449b5d7",
     "generated_at": "UNKNOWN"
   },
   {
@@ -2243,40 +2343,50 @@
     "source_id": "SRC-9ffac45b7321",
     "path": "planning/pages/build-public.mjs",
     "format": "mjs",
-    "bytes": 10921,
+    "bytes": 41942,
     "role": "HISTORICAL",
     "readable": true,
-    "sha1": "b54ec298e299",
+    "sha1": "5e4359502a12",
     "generated_at": "UNKNOWN"
   },
   {
     "source_id": "SRC-2cc12519bc12",
     "path": "planning/pages/public-data-allowlist.json",
     "format": "json",
-    "bytes": 3727,
+    "bytes": 4061,
     "role": "HISTORICAL",
     "readable": true,
-    "sha1": "f0b6eb3443a2",
+    "sha1": "f38df8b1436f",
     "generated_at": "UNKNOWN"
   },
   {
     "source_id": "SRC-819f3277bdff",
     "path": "planning/pages/README.md",
     "format": "md",
-    "bytes": 3849,
+    "bytes": 5973,
     "role": "HISTORICAL",
     "readable": true,
-    "sha1": "e64359434aa5",
+    "sha1": "82f0d0c8b4ab",
     "generated_at": "UNKNOWN"
   },
   {
     "source_id": "SRC-a24821768058",
     "path": "planning/pages/validate-public.mjs",
     "format": "mjs",
-    "bytes": 5801,
+    "bytes": 13331,
     "role": "HISTORICAL",
     "readable": true,
-    "sha1": "d25d08cbcf1c",
+    "sha1": "acb5c1b0db99",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-7c76e0868744",
+    "path": "planning/pages/verify-live.mjs",
+    "format": "mjs",
+    "bytes": 3506,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "66afe6270aa1",
     "generated_at": "UNKNOWN"
   },
   {
@@ -2287,6 +2397,476 @@
     "role": "HISTORICAL",
     "readable": true,
     "sha1": "b268acc69290",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-2937f7f8c1d3",
+    "path": "planning/phase-b/build-phase-b.mjs",
+    "format": "mjs",
+    "bytes": 27091,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "0dffff5795ce",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-5bcb20931757",
+    "path": "planning/phase-b/DUPLICATE-ENTITY-REPORT.json",
+    "format": "json",
+    "bytes": 249,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "66df55141098",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-d56c508b14ae",
+    "path": "planning/phase-b/ENTITY-IDENTITY-MAP.json",
+    "format": "json",
+    "bytes": 144164,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "193beba42fa9",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-9693fbe6aeb1",
+    "path": "planning/phase-b/FORK-CLONE-WORKTREE-MAP.json",
+    "format": "json",
+    "bytes": 9852,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "8758fad0b29e",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-dcd70c746e6c",
+    "path": "planning/phase-b/FRESHNESS-GATE.json",
+    "format": "json",
+    "bytes": 429,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "996cea7c73f8",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-799ccf63a14c",
+    "path": "planning/phase-b/GITHUB-COLLABORATION-MAP.json",
+    "format": "json",
+    "bytes": 2730,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "52ffabe686dd",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-7844e7ac0ccf",
+    "path": "planning/phase-b/INTERNAL-PATH-MANIFEST.json",
+    "format": "json",
+    "bytes": 3157,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "ac51bd038b43",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-bc689a3b594e",
+    "path": "planning/phase-b/PHASE-B-REPORT.md",
+    "format": "md",
+    "bytes": 4977,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "bfb0b2fd52bf",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-abd0017c13e5",
+    "path": "planning/phase-b/PHASE-B-SCHEMA.json",
+    "format": "json",
+    "bytes": 993,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "af3b7a9364a6",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-f5e56edd25d4",
+    "path": "planning/phase-b/PHASE-B-VALIDATION.json",
+    "format": "json",
+    "bytes": 1877,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "410045d63d1a",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-28eb28dd8048",
+    "path": "planning/phase-b/PUBLIC-LINK-MANIFEST.json",
+    "format": "json",
+    "bytes": 21347650,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "44abd1ae54c7",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-319465c1fc2f",
+    "path": "planning/phase-b/REMOTE-BRANCH-COMMIT-MAP.json",
+    "format": "json",
+    "bytes": 146925,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "2a076add1a11",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-08a98fdbe524",
+    "path": "planning/phase-b/REPOSITORY-MAP.json",
+    "format": "json",
+    "bytes": 5182,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "31620c1a8fc5",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-c34bfbd069b8",
+    "path": "planning/phase-b/ROUTE-MANIFEST.json",
+    "format": "json",
+    "bytes": 21324333,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "7e688a022184",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-801e5af5626d",
+    "path": "planning/phase-b/SCHEMA-MIGRATION-REPORT.json",
+    "format": "json",
+    "bytes": 1224,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "8e13a93e381d",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-2c55d15ad34c",
+    "path": "planning/phase-b/SIDEBAR-REGRESSION-REPORT.md",
+    "format": "md",
+    "bytes": 1428,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "db32bfa20eea",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-e051a112cf60",
+    "path": "planning/phase-b/STALE-ENTITY-REPORT.json",
+    "format": "json",
+    "bytes": 777,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "216dbd55f0cf",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-27c68998f411",
+    "path": "planning/phase-b/URL-MANIFEST.json",
+    "format": "json",
+    "bytes": 27071,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "4e67aae69223",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-fe110e6d75ce",
+    "path": "planning/phase-c/build-git-intelligence.mjs",
+    "format": "mjs",
+    "bytes": 13814,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "2efb64dfa0b4",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-36e33ac3701c",
+    "path": "planning/phase-c/build-phase-c-artifacts.mjs",
+    "format": "mjs",
+    "bytes": 29798,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "029480e6222b",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-83625f623fb5",
+    "path": "planning/phase-c/capture-github.mjs",
+    "format": "mjs",
+    "bytes": 20596,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "96a83cb335bd",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-0f3ade5fd2a7",
+    "path": "planning/phase-c/COLLABORATION-GRAPH.json",
+    "format": "json",
+    "bytes": 623056,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "54dbcb0b89b7",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-8b3422841b9f",
+    "path": "planning/phase-c/COMMENT-INGESTION.json",
+    "format": "json",
+    "bytes": 63272,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "64657da900f5",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-bae2c4dc58be",
+    "path": "planning/phase-c/DISCUSSION-QUALITY.json",
+    "format": "json",
+    "bytes": 2938,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "f1cee5fecfc9",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-28ae3971ac7d",
+    "path": "planning/phase-c/finalize-phase-c.mjs",
+    "format": "mjs",
+    "bytes": 20313,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "b8e0f133a45c",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-cbcc898aed63",
+    "path": "planning/phase-c/FINDING-GITHUB-RECONCILIATION.json",
+    "format": "json",
+    "bytes": 11407,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "e73ad3fb29e0",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-1bab9b138465",
+    "path": "planning/phase-c/FRESHNESS-DELTA.json",
+    "format": "json",
+    "bytes": 13620,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "6a4b93518649",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-065f09fb472f",
+    "path": "planning/phase-c/freshness-gate-live.json",
+    "format": "json",
+    "bytes": 5930,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "8276ad339eae",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-859cf4e7dba2",
+    "path": "planning/phase-c/GIT-INTELLIGENCE.json",
+    "format": "json",
+    "bytes": 29286048,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "6277253affd1",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-4153b91f3a3d",
+    "path": "planning/phase-c/GITHUB-LIVE-CAPTURE.json",
+    "format": "json",
+    "bytes": 1631943,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "8f460ac0af05",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-580b10a417e8",
+    "path": "planning/phase-c/HOTSPOT-ANALYSIS.json",
+    "format": "json",
+    "bytes": 1765118,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "56b1266fb6d2",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-f55345975ea0",
+    "path": "planning/phase-c/INCREMENTAL-SYNC-DESIGN.json",
+    "format": "json",
+    "bytes": 3900,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "ce5dee0135ad",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-55a4965fd6c8",
+    "path": "planning/phase-c/ISSUE-INGESTION.json",
+    "format": "json",
+    "bytes": 67241,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "474158fd0eaf",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-beb48caa2f75",
+    "path": "planning/phase-c/LINK-VALIDATION.json",
+    "format": "json",
+    "bytes": 601,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "ff99505cbed1",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-9b27ddb18580",
+    "path": "planning/phase-c/OWNERSHIP-MODEL.json",
+    "format": "json",
+    "bytes": 3359794,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "03ddc8e40d22",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-415c913968d8",
+    "path": "planning/phase-c/PERSON-MODEL.json",
+    "format": "json",
+    "bytes": 1533,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "692c360587d8",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-87c2a654abec",
+    "path": "planning/phase-c/PHASE-C-REPORT.md",
+    "format": "md",
+    "bytes": 8772,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "d16caa27f2d3",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-164babfa9b30",
+    "path": "planning/phase-c/PHASE-C-VALIDATION.json",
+    "format": "json",
+    "bytes": 5526,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "fcd8a18b920d",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-a135f474e58b",
+    "path": "planning/phase-c/PR-INGESTION.json",
+    "format": "json",
+    "bytes": 1433815,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "458c49bf4361",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-b8db3a073743",
+    "path": "planning/phase-c/PROTECTED-WORK-BASELINE.json",
+    "format": "json",
+    "bytes": 110674,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "a8eaa6f7cf5e",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-75fc428500b5",
+    "path": "planning/phase-c/record-protected-baseline.mjs",
+    "format": "mjs",
+    "bytes": 1972,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "d7c150549a68",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-f4e2f4485ed9",
+    "path": "planning/phase-c/REVIEW-INGESTION.json",
+    "format": "json",
+    "bytes": 81016,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "40509d3453be",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-97363f06775e",
+    "path": "planning/phase-c/sync-live-state.mjs",
+    "format": "mjs",
+    "bytes": 3649,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "bc84ff475950",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-b88280a4265d",
+    "path": "planning/phase-c/TEMPORAL-GITHUB-STATE.json",
+    "format": "json",
+    "bytes": 19760,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "001b580a1619",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-ce51fe807ebc",
+    "path": "planning/phase-c/USER-ACTIVITY.json",
+    "format": "json",
+    "bytes": 40209,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "b6141b369ce0",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-0240121ad58e",
+    "path": "planning/phase-c/VISUAL-AUDIT.md",
+    "format": "md",
+    "bytes": 1656,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "45796c531c48",
+    "generated_at": "UNKNOWN"
+  },
+  {
+    "source_id": "SRC-568a65b552ec",
+    "path": "planning/PHASE-INDEX.json",
+    "format": "json",
+    "bytes": 34635,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "89fb9aa33f97",
     "generated_at": "UNKNOWN"
   },
   {
@@ -2780,33 +3360,43 @@
     "generated_at": "UNKNOWN"
   },
   {
+    "source_id": "SRC-cfa3eba511fc",
+    "path": "planning/wiki/assets/entity-view.js",
+    "format": "js",
+    "bytes": 6857,
+    "role": "HISTORICAL",
+    "readable": true,
+    "sha1": "2b7ef8c20909",
+    "generated_at": "UNKNOWN"
+  },
+  {
     "source_id": "SRC-b864930ec47f",
     "path": "planning/wiki/assets/sections.js",
     "format": "js",
-    "bytes": 9255,
+    "bytes": 22710,
     "role": "HISTORICAL",
     "readable": true,
-    "sha1": "620691d3915e",
+    "sha1": "973d9c3234a9",
     "generated_at": "UNKNOWN"
   },
   {
     "source_id": "SRC-77790380b22c",
     "path": "planning/wiki/assets/wiki.css",
     "format": "css",
-    "bytes": 9823,
+    "bytes": 9880,
     "role": "HISTORICAL",
     "readable": true,
-    "sha1": "da10bdd714ec",
+    "sha1": "43f8bf89b768",
     "generated_at": "UNKNOWN"
   },
   {
     "source_id": "SRC-ec1a5b07f363",
     "path": "planning/wiki/assets/wiki.js",
     "format": "js",
-    "bytes": 33364,
+    "bytes": 37560,
     "role": "HISTORICAL",
     "readable": true,
-    "sha1": "1bbf40c3c9a8",
+    "sha1": "17f7ab4902fb",
     "generated_at": "UNKNOWN"
   },
   {
@@ -2833,10 +3423,10 @@
     "source_id": "SRC-9e660cbf742f",
     "path": "planning/wiki/data/data.js",
     "format": "js",
-    "bytes": 426167,
+    "bytes": 7736558,
     "role": "HISTORICAL",
     "readable": true,
-    "sha1": "3865356d6bcd",
+    "sha1": "57070122eda9",
     "generated_at": "UNKNOWN"
   },
   {
@@ -2853,10 +3443,10 @@
     "source_id": "SRC-1f85d30d8ea1",
     "path": "planning/wiki/index.html",
     "format": "html",
-    "bytes": 3606,
+    "bytes": 4567,
     "role": "HISTORICAL",
     "readable": true,
-    "sha1": "ce058543e59e",
+    "sha1": "bedda7ccab37",
     "generated_at": "UNKNOWN"
   },
   {

@@ -1,31 +1,169 @@
 {
   "dataset_identity": "ix-findings-knowledge-graph",
   "dataset_version": "1.0.0",
-  "generated_at": "2026-08-11",
+  "generated_at": "2026-08-12",
   "status": "CANONICAL_LAYER_GENERATED_AND_VALIDATED",
   "ui_unchanged": true,
   "ui_change_required": false,
   "canonical_root": "knowledge/",
-  "source_repositories": ["ix-infrastructure/Ix","Alot1z/Ix","Alot1z/Ix-findings","ix-infrastructure/ix-compass-dist","ix-infrastructure/system-compass"],
-  "source_hierarchy": [
-    {"rank":1,"kind":"current-upstream","paths":["live GitHub source/tests/issues/PRs/releases"],"rule":"Current upstream reality overrides historical phase claims."},
-    {"rank":2,"kind":"direct-evidence","paths":["planning/evidence/registry.json","artifacts/","comparisons/"],"rule":"Evidence class and limitations remain attached."},
-    {"rank":3,"kind":"normalized","paths":["knowledge/entities.json","knowledge/relationships.json","knowledge/evidence.json"],"rule":"Canonical semantic representation generated from sources."},
-    {"rank":4,"kind":"historical","paths":["CLI-HANDOFF/","reports/","state/","decisions/","findings/"],"rule":"Preserve as history; do not treat as current without corroboration."},
-    {"rank":5,"kind":"derived","paths":["planning/wiki/data/data.js","planning/pages/public/"],"rule":"Presentation/snapshot only; never canonical truth."}
+  "source_repositories": [
+    "ix-infrastructure/Ix",
+    "Alot1z/Ix",
+    "Alot1z/Ix-findings",
+    "ix-infrastructure/ix-compass-dist",
+    "ix-infrastructure/system-compass"
   ],
-  "canonical_files": ["ontology.json","entities.json","relationships.json","evidence.json","sources.json","timelines.json","decisions.json","suggestions.json","tests.json","security.json","agents.json","phases.json","contradictions.json","aliases.json","indexes.json","snapshots.json","llm/manifest.json","llm/entity-index.json","llm/traversal-index.json"],
+  "source_hierarchy": [
+    {
+      "rank": 1,
+      "kind": "current-upstream",
+      "paths": [
+        "live GitHub source/tests/issues/PRs/releases"
+      ],
+      "rule": "Current upstream reality overrides historical phase claims."
+    },
+    {
+      "rank": 2,
+      "kind": "direct-evidence",
+      "paths": [
+        "planning/evidence/registry.json",
+        "artifacts/",
+        "comparisons/"
+      ],
+      "rule": "Evidence class and limitations remain attached."
+    },
+    {
+      "rank": 3,
+      "kind": "normalized",
+      "paths": [
+        "knowledge/entities.json",
+        "knowledge/relationships.json",
+        "knowledge/evidence.json"
+      ],
+      "rule": "Canonical semantic representation generated from sources."
+    },
+    {
+      "rank": 4,
+      "kind": "historical",
+      "paths": [
+        "CLI-HANDOFF/",
+        "reports/",
+        "state/",
+        "decisions/",
+        "findings/"
+      ],
+      "rule": "Preserve as history; do not treat as current without corroboration."
+    },
+    {
+      "rank": 5,
+      "kind": "derived",
+      "paths": [
+        "planning/wiki/data/data.js",
+        "planning/pages/public/"
+      ],
+      "rule": "Presentation/snapshot only; never canonical truth."
+    }
+  ],
+  "canonical_files": [
+    "ontology.json",
+    "entities.json",
+    "relationships.json",
+    "evidence.json",
+    "sources.json",
+    "timelines.json",
+    "decisions.json",
+    "suggestions.json",
+    "tests.json",
+    "security.json",
+    "agents.json",
+    "phases.json",
+    "contradictions.json",
+    "aliases.json",
+    "indexes.json",
+    "snapshots.json",
+    "identity-registry.json",
+    "external-github-mirror.json",
+    "llm/manifest.json",
+    "llm/entity-index.json",
+    "llm/traversal-index.json"
+  ],
   "generator": "knowledge/build-knowledge.mjs",
   "live_state_capture": "knowledge/live-github-state.json",
+  "external_mirror": {
+    "file": "knowledge/external-github-mirror.json",
+    "generator": "node knowledge/build-github-mirror.mjs",
+    "mode": "READ_ONLY_EXTERNAL_SOURCE_MIRROR",
+    "authority": "GitHub",
+    "analysis_layer": "Ix-findings analysis is stored separately from source snapshots",
+    "external_mutations": 0
+  },
   "sections_registry": "knowledge/sections.json",
   "ui_adapter": "knowledge/ui-compat-adapter.mjs",
   "freshness_gate": "knowledge/freshness-gate.mjs",
   "query_cli": "knowledge/query-knowledge.mjs",
-  "regeneration": {"command":"node knowledge/build-knowledge.mjs","writes_only":"knowledge/ and knowledge/derived/","does_not_modify":["planning/wiki/","planning/pages/","CLI-HANDOFF/","implementation repositories"],"network":"none","external_mutations":0},
-  "freshness_policy": {"command":"node knowledge/freshness-gate.mjs --json","publication_gate":"planning/pages/validate-public.mjs runs it by default","fixture_mode":"--fixture FILE for deterministic tests","stale_exit_code":2,"unavailable_exit_code":3,"superseded_commit_check":"fails when a manifest-era commit entity is CURRENT while the live capture records a newer head for the same branch; the builder reconciles such commits to HISTORICAL","degraded_mode":"when the live API is unavailable, falls back to the committed knowledge/live-github-state.json capture; report.mode distinguishes live vs degraded-baseline; the authoritative live check still runs whenever gh is authenticated","external_mutations":0},
-  "snapshot_rules": ["Every derived export records generated_at, source_revision when available, live_or_snapshot, and known_staleness.","Pages output remains an explicitly sanitized snapshot.","Unknown timestamps remain UNKNOWN."],
-  "known_blockers": ["system-compass source is inaccessible/private in the Phase 15 baseline.","Live GitHub state must be refreshed before any publication or contribution decision."],
-  "generated_counts": {"raw_source_files":344,"canonical_entities":549,"canonical_relationships":931,"orphan_entities":0,"dangling_relationships":0,"explicit_contradictions":6,"finding_evidence_coverage":0.8666666666666667,"provenance_coverage":0.4117647058823529},
-  "live_baseline": {"upstream_head":"1292375548fb8f4431ac5afc34c68fe2573434d1","open_prs":[395,393,388],"open_issues":[385,383,349,219],"source":"CLI-HANDOFF/phase-15/FINAL-PR-WORTHINESS-AUDIT.json plus fresh read-only GitHub API check"},
-  "external_actions": {"prs":0,"issues":0,"reviews":0,"comments":0,"pushes":0,"deployments":0}
+  "regeneration": {
+    "command": "node knowledge/build-knowledge.mjs",
+    "writes_only": "knowledge/ and knowledge/derived/",
+    "does_not_modify": [
+      "planning/wiki/",
+      "planning/pages/",
+      "CLI-HANDOFF/",
+      "implementation repositories"
+    ],
+    "network": "none",
+    "external_mutations": 0
+  },
+  "freshness_policy": {
+    "command": "node knowledge/freshness-gate.mjs --json",
+    "publication_gate": "planning/pages/validate-public.mjs runs it by default",
+    "fixture_mode": "--fixture FILE for deterministic tests",
+    "stale_exit_code": 2,
+    "unavailable_exit_code": 3,
+    "superseded_commit_check": "fails when a manifest-era commit entity is CURRENT while the live capture records a newer head for the same branch; the builder reconciles such commits to HISTORICAL",
+    "purged_sha_check": "fails when a physically purged commit SHA (knowledge/purged-commits.json) appears in any live/current position: live-status entity metadata or summaries, non-HISTORICAL relationships, live capture heads/file refs, or a non-HISTORICAL COMMIT entity; labeled provenance keys and HISTORICAL records are exempt (knowledge/purged-sha-audit.mjs)",
+    "degraded_mode": "when the live API is unavailable, falls back to the committed knowledge/live-github-state.json capture; report.mode distinguishes live vs degraded-baseline; the authoritative live check still runs whenever gh is authenticated",
+    "external_mutations": 0
+  },
+  "snapshot_rules": [
+    "Every derived export records generated_at, source_revision when available, live_or_snapshot, and known_staleness.",
+    "Pages output remains an explicitly sanitized snapshot.",
+    "Unknown timestamps remain UNKNOWN."
+  ],
+  "known_blockers": [
+    "system-compass source is inaccessible/private in the Phase 15 baseline.",
+    "Live GitHub state must be refreshed again before any later publication or contribution decision."
+  ],
+  "generated_counts": {
+    "raw_source_files": 400,
+    "canonical_entities": 3614,
+    "canonical_relationships": 13535,
+    "orphan_entities": 1,
+    "dangling_relationships": 0,
+    "explicit_contradictions": 6,
+    "finding_evidence_coverage": 0.8666666666666667,
+    "provenance_coverage": 0.8931931377974544
+  },
+  "live_baseline": {
+    "upstream_head": "ab823e34b9ec8679dcf0df4b4ec5725207e2a88d",
+    "open_prs": [
+      423,
+      422,
+      421,
+      414
+    ],
+    "open_issues": [
+      420,
+      413
+    ],
+    "captured_at": "2026-08-13T22:23:39.068Z",
+    "source": "githubfixed-new.token read-only capture 2026-08-13T22:23:39.068Z"
+  },
+  "external_actions": {
+    "prs": 0,
+    "issues": 0,
+    "reviews": 0,
+    "comments": 0,
+    "pushes": 0,
+    "deployments": 0
+  }
 }

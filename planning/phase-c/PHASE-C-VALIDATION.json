@@ -1,0 +1,161 @@
+{
+  "generated_at": "2026-08-12T10:42:30.430Z",
+  "phase": "C",
+  "status": "PARTIALLY_COMPLETE",
+  "live_freshness_gate": {
+    "gate": "PASS",
+    "stale_count": 0,
+    "checked_at": "2026-08-12T11:21:09.303Z",
+    "live_upstream_head": "fa6ad7b0ff52734685ff7425b08ec240837751fa",
+    "canonical_head": "fa6ad7b0ff52734685ff7425b08ec240837751fa",
+    "source": "GitHub API via gh api (read-only)"
+  },
+  "git_intelligence": {
+    "commits": 2154,
+    "files": 2051,
+    "branches": 156,
+    "tags": 91,
+    "relationships": 32433,
+    "cochange_relationships": 20394,
+    "hotspots": 2051
+  },
+  "collaboration": {
+    "entities": 182,
+    "relationships": 429,
+    "dangling_relationships": 0,
+    "duplicate_entity_ids": 0,
+    "duplicate_relationships": 0,
+    "issues": 9,
+    "prs": 21,
+    "comments": 16,
+    "reviews": 21,
+    "review_comments": 0,
+    "people": 8,
+    "review_threads": "UNKNOWN"
+  },
+  "canonical_projection": {
+    "entities": 3614,
+    "relationships": 13535,
+    "routes": 3628,
+    "public_graph_entities": 3614,
+    "public_graph_relationships": 13535,
+    "llm_full_exists": true
+  },
+  "privacy": {
+    "local_path_leak_scan": "PASS",
+    "token_scan": "PASS",
+    "public_allowlist": "PASS",
+    "validator_regex_false_positive_fixed": true
+  },
+  "links": {
+    "generated_at": "2026-08-12T10:42:30.430Z",
+    "source": "Phase-C GitHub REST capture + local Git history",
+    "github_url_records": 4445,
+    "malformed_url_records": 0,
+    "malformed_urls": [],
+    "commit_urls": {
+      "total": 2203,
+      "full_sha": 2203,
+      "abbreviated_or_unknown": 0
+    },
+    "file_urls": {
+      "total": 2109,
+      "exact_line_ranges": 0,
+      "file_level_only": 2109
+    },
+    "issue_pr_comment_review_urls": 67,
+    "policy": "No URL fabricated; exact line ranges are emitted only when source data supplied line fields; otherwise file-level provenance is retained.",
+    "status": "PASS"
+  },
+  "protected_work": {
+    "root_baseline_path_count": 828,
+    "external_worktrees": {
+      "Ix-remap": {
+        "path_internal": "E:/E-github-repos/Ix-remap",
+        "branch_before": "feat/ix-remap-hardening",
+        "head_before": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+        "status_sha_before": "ed42ce64f18aafc4973c37a9a2390dc8d4a049b86100a30d8175fc0f356fab08",
+        "branch_after": "feat/ix-remap-hardening",
+        "head_after": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+        "status_sha_after": "ed42ce64f18aafc4973c37a9a2390dc8d4a049b86100a30d8175fc0f356fab08",
+        "unchanged": true
+      },
+      "Ix": {
+        "path_internal": "E:/E-github-repos/Ix",
+        "branch_before": "feat/ix-agent-skill",
+        "head_before": "30f28b3c7f2771a7003af83b5be618a7913d447a",
+        "status_sha_before": "2d85238a752d36c1f27a3ed66e900fc2c9e96d772b1d8883f2dd365b0a04e67b",
+        "branch_after": "feat/ix-agent-skill",
+        "head_after": "30f28b3c7f2771a7003af83b5be618a7913d447a",
+        "status_sha_after": "2d85238a752d36c1f27a3ed66e900fc2c9e96d772b1d8883f2dd365b0a04e67b",
+        "unchanged": true
+      },
+      "Ix-mcp": {
+        "path_internal": "E:/E-github-repos/Ix-mcp",
+        "branch_before": "feat/ix-mcp",
+        "head_before": "603e51f7f877bb59677516be08ee83ef30e562a8",
+        "status_sha_before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "branch_after": "feat/ix-mcp",
+        "head_after": "603e51f7f877bb59677516be08ee83ef30e562a8",
+        "status_sha_after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "unchanged": true
+      },
+      "Ix-test": {
+        "path_internal": "E:/E-github-repos/Ix-test",
+        "branch_before": "",
+        "head_before": "c4f8fea3916c87e83167bdfaaee945159f64ad0f",
+        "status_sha_before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "branch_after": "",
+        "head_after": "c4f8fea3916c87e83167bdfaaee945159f64ad0f",
+        "status_sha_after": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "unchanged": true
+      },
+      "ix-compass-dist": {
+        "path_internal": "E:/E-github-repos/ix-compass-dist",
+        "branch_before": "main",
+        "head_before": "396426b2a08e689a969f30489aa76dedea325c28",
+        "status_sha_before": "cc6d4d9945180b2f9746c3763c9f8b7c6778400b6efba183dfe6059003d2eda8",
+        "branch_after": "main",
+        "head_after": "396426b2a08e689a969f30489aa76dedea325c28",
+        "status_sha_after": "cc6d4d9945180b2f9746c3763c9f8b7c6778400b6efba183dfe6059003d2eda8",
+        "unchanged": true
+      }
+    },
+    "external_worktrees_unchanged": true
+  },
+  "visual": {
+    "status": "PARTIAL",
+    "screenshot_count": 5,
+    "root_nav_groups": 8,
+    "deep_nav_groups": 8,
+    "responsive": "UNKNOWN",
+    "qwen_review": "COMPLETED_WITH_LOW_CONFIDENCE_OCR"
+  },
+  "findings": {
+    "total": 15,
+    "current": 3,
+    "resolved": 1,
+    "unknown": 3
+  },
+  "user_activity": {
+    "authenticated_login": "Alot1z",
+    "signal_count": 94
+  },
+  "external_actions": {
+    "github_comments": 0,
+    "github_issues": 0,
+    "prs": 0,
+    "reviews": 0,
+    "pushes": 0,
+    "merges": 0,
+    "releases": 0,
+    "pages_deployments": 0,
+    "mcp_registrations": 0,
+    "hooks_installed": 0,
+    "installations": 0
+  },
+  "blockers": [
+    "Review-thread resolved/unresolved state is not available from the REST capture; GraphQL/thread access was not assumed.",
+    "Responsive/mobile and production HTTP visual behavior remain UNKNOWN."
+  ]
+}

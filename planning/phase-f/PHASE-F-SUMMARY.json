@@ -1,0 +1,47 @@
+{
+  "phase": "F",
+  "status": "PARTIALLY_COMPLETE",
+  "summary": "Deterministic repository, symbol, report, phase, and layered retrieval indexes are generated from the current local workspace.",
+  "implemented": [
+    "repository file index",
+    "deterministic symbol index with verified start lines",
+    "phase/report index",
+    "current-state manifest",
+    "layered retrieval contract"
+  ],
+  "verified": [
+    "duplicate IDs",
+    "file existence",
+    "symbol file references",
+    "report indexing",
+    "no external mutations"
+  ],
+  "blocked": [
+    "The optional Ix graph backend is unavailable because Docker is not running; the deterministic repository index is local and independent of that backend."
+  ],
+  "unknown": [
+    "End-line ranges are UNKNOWN for regex-discovered symbols; no AST parser was assumed.",
+    "Last-modified commit is UNKNOWN for untracked files and files absent from reachable Git history."
+  ],
+  "files_changed": [
+    "planning/phase-f/build-phase-f-indexes.mjs",
+    "planning/phase-f/PROTECTED-WORK-BASELINE.json",
+    "planning/phase-f/REPOSITORY-FILE-INDEX.json",
+    "planning/phase-f/SYMBOL-INDEX.json",
+    "planning/phase-f/REPORT-INDEX.json",
+    "planning/phase-f/RETRIEVAL-INDEX.json",
+    "planning/PHASE-INDEX.json",
+    "planning/CURRENT-STATE.json",
+    "planning/phase-f/PHASE-F-VALIDATION.json",
+    "planning/phase-f/PHASE-F-SUMMARY.json"
+  ],
+  "entities_affected": [
+    "repository-file-index",
+    "symbol-index",
+    "report-index",
+    "current-state"
+  ],
+  "routes_affected": [],
+  "github_objects_affected": [],
+  "next_phase": "G or F_REMEDIATION"
+}

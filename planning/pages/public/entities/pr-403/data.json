@@ -1,0 +1,301 @@
+{
+  "id": "PR-403",
+  "type": "pr",
+  "title": "Ix PR #403",
+  "status": "OPEN",
+  "url": "https://alot1z.github.io/Ix-findings/entities/pr-403",
+  "summary": {
+    "id": "PR-403",
+    "type": "pr",
+    "title": "Ix PR #403",
+    "status": "OPEN",
+    "number": 403,
+    "url": "https://github.com/ix-infrastructure/Ix/pull/403",
+    "source_mirror_id": "github:pull_request:ix-infrastructure/Ix#403",
+    "source_type": "github_pull_request",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/pull/403",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/403",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "number": 403,
+    "node_id": "PR_kwDORdC75M7-Rlrw",
+    "title": "fix(config): respect workspace path boundaries",
+    "body": "Fixes #402\n\n## Summary\n\nPrevent workspace lookup from treating an unrelated sibling directory whose name shares a prefix as part of a registered workspace.\n\n## Type\n\n- [x] Bug fix\n- [ ] Feature\n- [ ] Refactor\n- [ ] Docs\n- [ ] Test\n- [ ] CI\n\n## Changes\n\n- Match workspace roots using path-component boundaries instead of raw string prefixes.\n- Preserve nearest-workspace selection for nested workspaces.\n- Add regression coverage for exact roots, descendants, sibling prefixes, and nested roots.\n\n## Validation\n\n- `npm test` (61 files, 843 tests, including parser smoke tests)\n- `npm run typecheck`\n- `npm run build`\n- Targeted ESLint and Prettier checks\n- Live synthetic reproduction with a distinct default workspace. A sibling path no longer resolves a symbol mapped only from the prefix-sharing workspace.\n\n## Checklist\n\n- [x] Tests pass\n- [x] Smoke tests pass\n- [x] No raw errors introduced\n- [x] CLI output follows Ix format\n\n## Release checklist (if merging to main)\n\n- [ ] `ix-cli/package.json` version bumped\n- [ ] After merge: tag pushed (`git tag vX.Y.Z && git push origin vX.Y.Z`)\n- [ ] If backend changes: `ix-memory-layer` tagged and released first\n- [ ] If `docker-compose.standalone.yml` changed: verified `curl | sh` install works\n",
+    "state": "open",
+    "draft": false,
+    "merged": false,
+    "author": {
+      "login": "Hiro-Chiba",
+      "id": 203865699,
+      "type": "User",
+      "html_url": "https://github.com/Hiro-Chiba"
+    },
+    "html_url": "https://github.com/ix-infrastructure/Ix/pull/403",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/403",
+    "head": {
+      "ref": "fix/workspace-path-boundary",
+      "sha": "5be9e24676caef80eff07b6bfcae02a0e794d0a8",
+      "repo": {
+        "id": 1329113547,
+        "full_name": "Hiro-Chiba/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "html_url": "https://github.com/Hiro-Chiba/Ix",
+        "api_url": "https://api.github.com/repos/Hiro-Chiba/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": true,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-08-09T19:06:50Z",
+        "updated_at": "2026-08-09T19:06:51Z",
+        "pushed_at": "2026-08-12T21:07:27Z",
+        "topics": [],
+        "language": null,
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 0,
+        "stargazers_count": 0,
+        "forks_count": 0,
+        "open_issues_count": 0
+      }
+    },
+    "base": {
+      "ref": "main",
+      "sha": "7f6f1ceb60e08cffbddd37d032fdbf7e74df8b70",
+      "repo": {
+        "id": 1171307492,
+        "full_name": "ix-infrastructure/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "ix-infrastructure",
+          "id": 256883681,
+          "type": "Organization",
+          "html_url": "https://github.com/ix-infrastructure"
+        },
+        "html_url": "https://github.com/ix-infrastructure/Ix",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": false,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-03-03T04:48:38Z",
+        "updated_at": "2026-08-12T19:50:49Z",
+        "pushed_at": "2026-08-12T21:07:54Z",
+        "topics": [
+          "ai",
+          "ai-memory",
+          "claude-code",
+          "cli",
+          "code-analysis",
+          "code-mapping",
+          "code-memory",
+          "codebase-understanding",
+          "codex",
+          "developer-tools",
+          "llm",
+          "openclaw",
+          "persistent-memory",
+          "program-analysis",
+          "software-architecture",
+          "system-intelligence",
+          "system-mapping"
+        ],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 701,
+        "stargazers_count": 701,
+        "forks_count": 60,
+        "open_issues_count": 6
+      }
+    },
+    "merge_commit_sha": "32f72024a84a6e0d570dad215e27e0caf898ca3d",
+    "merged_at": null,
+    "closed_at": null,
+    "created_at": "2026-08-12T21:08:27Z",
+    "updated_at": "2026-08-12T21:08:28Z",
+    "labels": [],
+    "milestone": null,
+    "requested_reviewers": [
+      {
+        "login": "josephismikhail",
+        "id": 56614593,
+        "type": "User",
+        "html_url": "https://github.com/josephismikhail"
+      }
+    ],
+    "requested_teams": [],
+    "commits_count": 1,
+    "changed_files_count": 2,
+    "additions": 52,
+    "deletions": 4,
+    "changed_files": [
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 403,
+        "filename": "ix-cli/src/cli/__tests__/config-workspace-boundary.test.ts",
+        "status": "added",
+        "additions": 35,
+        "deletions": 0,
+        "changes": 35,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/5be9e24676caef80eff07b6bfcae02a0e794d0a8/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fconfig-workspace-boundary.test.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/5be9e24676caef80eff07b6bfcae02a0e794d0a8/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fconfig-workspace-boundary.test.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fconfig-workspace-boundary.test.ts?ref=5be9e24676caef80eff07b6bfcae02a0e794d0a8",
+        "patch": "@@ -0,0 +1,35 @@\n+import { describe, expect, it } from \"vitest\";\n+\n+import { selectWorkspaceForCwd, type WorkspaceConfig } from \"../config.js\";\n+\n+function workspace(rootPath: string, name = rootPath): WorkspaceConfig {\n+  return {\n+    workspace_id: name,\n+    workspace_name: name,\n+    root_path: rootPath,\n+    default: false,\n+  };\n+}\n+\n+describe(\"workspace path matching\", () => {\n+  it(\"matches a workspace root and its descendants\", () => {\n+    const candidate = workspace(\"/work/app\", \"app\");\n+\n+    expect(selectWorkspaceForCwd([candidate], \"/work/app\")).toBe(candidate);\n+    expect(selectWorkspaceForCwd([candidate], \"/work/app/src/features\")).toBe(candidate);\n+  });\n+\n+  it(\"does not match a sibling whose name only shares the root prefix\", () => {\n+    const candidate = workspace(\"/work/app\", \"app\");\n+\n+    expect(selectWorkspaceForCwd([candidate], \"/work/app-copy\")).toBeUndefined();\n+    expect(selectWorkspaceForCwd([candidate], \"/work/application\")).toBeUndefined();\n+  });\n+\n+  it(\"selects the nearest workspace when roots are nested\", () => {\n+    const parent = workspace(\"/work/app\", \"parent\");\n+    const child = workspace(\"/work/app/packages/api\", \"child\");\n+\n+    expect(selectWorkspaceForCwd([parent, child], \"/work/app/packages/api/src\")).toBe(child);\n+  });\n+});"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 403,
+        "filename": "ix-cli/src/cli/config.ts",
+        "status": "modified",
+        "additions": 17,
+        "deletions": 4,
+        "changes": 21,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/5be9e24676caef80eff07b6bfcae02a0e794d0a8/ix-cli%2Fsrc%2Fcli%2Fconfig.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/5be9e24676caef80eff07b6bfcae02a0e794d0a8/ix-cli%2Fsrc%2Fcli%2Fconfig.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fconfig.ts?ref=5be9e24676caef80eff07b6bfcae02a0e794d0a8",
+        "patch": "@@ -1,5 +1,5 @@\n import { readFileSync, writeFileSync, existsSync, rmSync, chmodSync, renameSync } from \"node:fs\";\n-import { join, resolve as resolvePath } from \"node:path\";\n+import { isAbsolute, join, relative, resolve as resolvePath, sep } from \"node:path\";\n import { homedir } from \"node:os\";\n import { createHash } from \"node:crypto\";\n import { execSync } from \"node:child_process\";\n@@ -133,13 +133,26 @@ export function loadWorkspaces(): WorkspaceConfig[] {\n   return config.workspaces ?? []; // workspace_id already normalized to string in loadConfig\n }\n \n-export function findWorkspaceForCwd(cwd: string): WorkspaceConfig | undefined {\n-  const workspaces = loadWorkspaces();\n+export function selectWorkspaceForCwd(\n+  workspaces: WorkspaceConfig[],\n+  cwd: string,\n+): WorkspaceConfig | undefined {\n+  const resolvedCwd = resolvePath(cwd);\n   return workspaces\n-    .filter(w => cwd.startsWith(w.root_path))\n+    .filter((workspace) => {\n+      const relativePath = relative(resolvePath(workspace.root_path), resolvedCwd);\n+      return (\n+        relativePath === \"\" ||\n+        (relativePath !== \"..\" && !relativePath.startsWith(`..${sep}`) && !isAbsolute(relativePath))\n+      );\n+    })\n     .sort((a, b) => b.root_path.length - a.root_path.length)[0];\n }\n \n+export function findWorkspaceForCwd(cwd: string): WorkspaceConfig | undefined {\n+  return selectWorkspaceForCwd(loadWorkspaces(), cwd);\n+}\n+\n export function getDefaultWorkspace(): WorkspaceConfig | undefined {\n   return loadWorkspaces().find(w => w.default);\n }"
+      }
+    ],
+    "commits": [
+      {
+        "sha": "5be9e24676caef80eff07b6bfcae02a0e794d0a8",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/5be9e24676caef80eff07b6bfcae02a0e794d0a8",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/5be9e24676caef80eff07b6bfcae02a0e794d0a8",
+        "author": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "committer": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "message": "fix(config): respect workspace path boundaries",
+        "parents": [
+          {
+            "sha": "7f6f1ceb60e08cffbddd37d032fdbf7e74df8b70",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/7f6f1ceb60e08cffbddd37d032fdbf7e74df8b70"
+          }
+        ],
+        "tree_sha": "d47b66e13e3d4802f4501fe8dfe13a59b2ff5865",
+        "authored_at": "2026-08-12T20:49:51Z",
+        "committed_at": "2026-08-12T20:49:52Z"
+      }
+    ],
+    "comments": [],
+    "reviews": [],
+    "review_comments": [],
+    "timeline": [
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/5be9e24676caef80eff07b6bfcae02a0e794d0a8"
+      },
+      {
+        "id": 29366042203,
+        "event": "review_requested",
+        "actor": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "created_at": "2026-08-12T21:08:28Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29366042203"
+      }
+    ],
+    "source": "OFFICIAL_GITHUB_FACT",
+    "review_threads": [],
+    "review_thread_capture": {
+      "status": "VERIFIED",
+      "source": "GitHub GraphQL API"
+    }
+  },
+  "source_context": {
+    "id": "github:pull_request:ix-infrastructure/Ix#403",
+    "source": {
+      "type": "github_pull_request",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/403",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/403",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-12T21:08:27Z",
+      "last_fetched": "2026-08-12T21:38:25.697Z",
+      "last_verified": "2026-08-12T21:38:25.697Z",
+      "source_updated_at": "2026-08-12T21:08:28Z",
+      "snapshot_version": "2026-08-12T21:38:25.697Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "PR-403",
+    "entity_type": "PULL_REQUEST",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "mirror_scope": "source PR, commits, files, comments, reviews, review comments, and review threads",
+    "related_analysis_types": [
+      "FINDING",
+      "DECISION",
+      "IMPLEMENTATION"
+    ],
+    "review_thread_state": "VERIFIED_GRAPHQL"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "CHANGED_BY",
+      "other": "COMMIT-5be9e24676caef80eff07b6bfcae02a0e794d0a8",
+      "other_type": "commit",
+      "other_title": "5be9e24676caef80eff07b6bfcae02a0e794d0a8",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-5be9e24676caef80eff07b6bfcae02a0e794d0a8"
+    },
+    {
+      "direction": "out",
+      "relationship": "FOUND_IN",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    }
+  ]
+}

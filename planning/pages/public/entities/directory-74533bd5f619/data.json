@@ -1,0 +1,34 @@
+{
+  "id": "DIRECTORY-74533bd5f619",
+  "type": "artifact",
+  "title": "ix-cli/src/cli/commands",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/directory-74533bd5f619",
+  "summary": {
+    "id": "DIRECTORY-74533bd5f619",
+    "type": "artifact",
+    "title": "ix-cli/src/cli/commands",
+    "status": "CURRENT"
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "PART_OF",
+      "other": "REPO-Alot1z-Ix-remap",
+      "other_type": "repository",
+      "other_title": "Alot1z/Ix-remap",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-alot1z-ix-remap"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "FILE-6f50afdabc7c",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/mcp.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-6f50afdabc7c"
+    }
+  ]
+}

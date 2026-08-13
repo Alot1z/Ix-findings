@@ -1,0 +1,169 @@
+{
+  "id": "COMMIT-304e7e490d5537e7f86f71c297e04656360f1bf1",
+  "type": "commit",
+  "title": "304e7e490d5537e7f86f71c297e04656360f1bf1",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-304e7e490d5537e7f86f71c297e04656360f1bf1",
+  "summary": {
+    "id": "COMMIT-304e7e490d5537e7f86f71c297e04656360f1bf1",
+    "type": "commit",
+    "title": "304e7e490d5537e7f86f71c297e04656360f1bf1",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/304e7e490d5537e7f86f71c297e04656360f1bf1",
+    "author": {
+      "login": "Hiro-Chiba",
+      "id": 203865699,
+      "type": "User",
+      "html_url": "https://github.com/Hiro-Chiba"
+    },
+    "source_mirror_id": "github:commit:ix-infrastructure/Ix@304e7e490d5537e7f86f71c297e04656360f1bf1",
+    "source_type": "github_commit",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/commit/304e7e490d5537e7f86f71c297e04656360f1bf1",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/304e7e490d5537e7f86f71c297e04656360f1bf1",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "sha": "304e7e490d5537e7f86f71c297e04656360f1bf1",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/304e7e490d5537e7f86f71c297e04656360f1bf1",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/304e7e490d5537e7f86f71c297e04656360f1bf1",
+    "author": {
+      "login": "Hiro-Chiba",
+      "id": 203865699,
+      "type": "User",
+      "html_url": "https://github.com/Hiro-Chiba"
+    },
+    "committer": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "message": "fix(ingest): resolve JS and TS calls across parse batches\n\nPre-scan JavaScript and TypeScript definitions into the repository-wide\nresolution index so streamed parse batches resolve calls to imported symbols\ndefined in later batches.\n\nThe index derives these from real parse results rather than a regex, so they\ncannot drift from what the in-batch path extracts. That costs one parse per\nprescanned file, which was a synchronous main-thread loop — fine for R and SAS,\nnot for .ts, where it is most of a repository and an incremental map pays it for\nevery unchanged file too.\n\nSo the CLI now parses prescan sources on the worker pool it already runs for the\nstreaming loop and hands the results to buildGlobalResolutionIndex, which uses\nthem in place of parsing. Measured on this repo (180 JS/TS files), the index\nbuild drops from 1.24s of blocked main thread to 1ms, with the parsing itself\nmoved onto the pool and spread across cores. Callers without a pool — tests,\nlibrary use — still parse in the index exactly as before.\n\nCo-authored-by: KageBinary <ianjakobhock@gmail.com>",
+    "parents": [
+      {
+        "sha": "5488741155d69a5f03fce41416643ddceca6f8a0",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/5488741155d69a5f03fce41416643ddceca6f8a0"
+      }
+    ],
+    "tree_sha": "353daad85015da246e8ec9c4866f5ca392bbef6c",
+    "authored_at": "2026-08-10T03:40:57Z",
+    "committed_at": "2026-08-10T20:58:52Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@304e7e490d5537e7f86f71c297e04656360f1bf1",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/304e7e490d5537e7f86f71c297e04656360f1bf1",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/304e7e490d5537e7f86f71c297e04656360f1bf1",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T20:58:52Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T20:58:52Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-304e7e490d5537e7f86f71c297e04656360f1bf1",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#375"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-5488741155d69a5f03fce41416643ddceca6f8a0",
+      "other_type": "commit",
+      "other_title": "5488741155d69a5f03fce41416643ddceca6f8a0",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-5488741155d69a5f03fce41416643ddceca6f8a0"
+    },
+    {
+      "direction": "in",
+      "relationship": "HEADS_AT",
+      "other": "PR-375",
+      "other_type": "pr",
+      "other_title": "Ix PR #375",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-375"
+    },
+    {
+      "direction": "in",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "PR-375",
+      "other_type": "pr",
+      "other_title": "Ix PR #375",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-375"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ef1941ef1542",
+      "other_type": "artifact",
+      "other_title": "core-ingestion/src/__tests__/resolveEdges.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ef1941ef1542"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2c59b7724786",
+      "other_type": "artifact",
+      "other_title": "core-ingestion/src/index.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2c59b7724786"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-831b42b21847",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/ingest-discovery.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-831b42b21847"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-07f14ce9998a",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/ingest.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-07f14ce9998a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-65e1406e6c81",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/ingestion-loader.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-65e1406e6c81"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGED_BY",
+      "other": "PR-375",
+      "other_type": "pr",
+      "other_title": "Ix PR #375",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-375"
+    }
+  ]
+}

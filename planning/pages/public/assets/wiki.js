@@ -5,6 +5,18 @@ const D = window.IX_DATA;
 const $ = s => document.querySelector(s);
 const el = (tag, cls, html) => { const n = document.createElement(tag); if (cls) n.className = cls; if (html != null) n.innerHTML = html; return n; };
 
+/* Base path of the app. GitHub Pages serves the repo under /Ix-findings, while
+ * local previews and file:// serve at root. 404.html pre-injects IX_BASE;
+ * otherwise derive it from this script's own URL so canonical navigation to
+ * physical pages works in every serving context. Exposed for later assets. */
+const BASE = (function(){
+  if (typeof window.IX_BASE === "string" && window.IX_BASE) return window.IX_BASE;
+  const src = document.currentScript && document.currentScript.src;
+  if (src) { try { return new URL(src).pathname.replace(/\/assets\/wiki\.js$/, ""); } catch (e) {} }
+  return "";
+})();
+window.IX_BASE = BASE;
+
 const TYPE_COLOR = {
   phase:"#5aa8ff", repository:"#e0b25a", branch:"#c9a96a", commit:"#8a9bb0", worktree:"#7fd0c0",
   issue:"#e06a6a", pr:"#e07a5a", pr_packet:"#ff9d5c", finding:"#5fd0a8",
@@ -46,7 +58,9 @@ function renderBreadcrumb(){
   b.append(el('span','sep',' / '));
   b.append(el('span','crumb active',n));
 }
-document.querySelectorAll('.nav-item').forEach(b=>b.onclick=()=>setView(b.dataset.view));
+// Physical-link nav items (category pages) have no data-view; only buttons
+// with a data-view switch views in-page. Anchors navigate to their real page.
+document.querySelectorAll('.nav-item[data-view]').forEach(b=>b.onclick=()=>setView(b.dataset.view));
 $('#drawer-close').onclick=closeDrawer;
 
 const content=$('#content');
@@ -58,6 +72,43 @@ function chip(label,id,type){ const a=el('a','link',''); a.textContent=label; a.
 function relList(ids,type){ if(!ids||!ids.length)return el('span','faint','none'); const w=el('span','rel'); ids.forEach(id=>w.append(chip(id,id,type))); return w; }
 function kv(t,v){ return '<p><span class="faint">'+t+':</span> '+(v!=null?v:'—')+'</p>'; }
 function sec(t,n){ const w=el('div'); w.append(el('h3','',t)); w.append(n); return w; }
+
+/* Canonical-page navigation — mirrors the generator's entityUrl() so a click
+ * lands on the physical canonical page: sections, issues, and PRs have their
+ * own routes; every other entity resolves to /entities/<slug>/ (+ data.json). */
+const KNOWN_IDS = new Set([
+  ...GRAPH.nodes.map(n => n.id),
+  ...(D.sections || []).map(s => s.id),
+  ...(D.issueSections || []).map(s => "ISSUE-" + s.issue),
+  ...(D.pullRequests || []).map(p => "PR-" + p.number),
+]);
+function slugOf(id){ return String(id || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "") || "entity"; }
+function canonicalUrlOf(id){
+  const sec = (D.sections || []).find(s => s.id === id);
+  if (sec) return BASE + String(sec.graph_path || "").replace(/\/+$/, "");
+  const iss = (D.issueSections || []).find(s => "ISSUE-" + s.issue === id);
+  if (iss) return BASE + String(iss.graph_path || "").replace(/\/+$/, "");
+  if (id === "issues") return BASE + "/issues";
+  const pr = (D.sections || []).map(s => { const m = String(s.graph_path || "").match(/^\/prs\/(\d+)/); return m ? { id: "PR-" + m[1], p: s.graph_path } : null; }).find(x => x && x.id === id);
+  if (pr) return BASE + String(pr.p || "").replace(/\/+$/, "");
+  return BASE + "/entities/" + slugOf(id);
+}
+/* Search results use display ids (PR#393, bare SHAs, repo names) that differ
+ * from canonical entity ids; normalize before resolving, and fall back to the
+ * drawer when an id has no canonical page. */
+function resolveEntityId(id, type){
+  let x = String(id || "");
+  if (/^PR#\d+$/.test(x)) x = x.replace(/^PR#/, "PR-");
+  else if (type === "commit" && x && x.indexOf("COMMIT-") !== 0) x = "COMMIT-" + x;
+  else if (type === "repository" && x && x.indexOf("REPO-") !== 0) x = "REPO-" + x.split("/").join("-");
+  return x;
+}
+function openCanonical(id, type){
+  const rid = resolveEntityId(id, type);
+  if (KNOWN_IDS.has(rid)) { window.location.href = canonicalUrlOf(rid); return true; }
+  openEntity(id, type);
+  return false;
+}
 
 function openEntity(id,type){
   type=type||(NODES[id]&&NODES[id].type);
@@ -185,6 +236,29 @@ function renderOverview(){
     ['⚠ Stale Claims', '8 known discrepancies discovered and documented', 'stale']
   ].forEach(c=>{ const card=el('div','card phase-card'); card.onclick=()=>setView(c[2]); card.append(el('h3','',c[0])); card.append(el('p','muted',c[1])); g.append(card); });
   content.append(g);
+
+  // Every knowledge category has a physical canonical page — link them here
+  // so the root exposes the full hierarchy (spec: no category exists only as
+  // an SPA hash view).
+  content.append(el('h2','','KNOWLEDGE CATEGORIES'));
+  const cat=el('div','grid');
+  [
+    ['Findings', '/findings/', (m.entityCounts?.findings||0)+' findings'],
+    ['Evidence', '/evidence/', (m.entityCounts?.evidence||0)+' evidence items'],
+    ['Repositories', '/repositories/', (D.repos||[]).length+' repositories'],
+    ['Commits', '/commits/', (COMMITS.length||0)+' commits'],
+    ['Pull Requests', '/prs/', (PRS.length||0)+' PRs'],
+    ['Issues', '/issues/', (ISSUES.length||0)+' issues'],
+    ['Timeline', '/timeline/', 'chronological events'],
+    ['Phases', '/phases/', (PHASES.length||0)+' phases'],
+    ['Decisions', '/decisions/', (DECS.length||0)+' decisions'],
+    ['Suggestions', '/suggestions/', (SUGGS.length||0)+' suggestions'],
+    ['Files', '/files/', 'verified file references'],
+    ['Investigation Map', '/map/', 'interactive graph'],
+    ['Entities', '/entities/', 'full entity index'],
+    ['Contributions', '/contributions/', (D.contributions||[]).length+' contributions']
+  ].forEach(c=>{ const card=el('a','card phase-card',''); card.href=BASE+c[1]; card.append(el('h3','',c[0])); card.append(el('p','muted',c[2])); cat.append(card); });
+  content.append(cat);
 }
 
 /* ── repositories ── */
@@ -218,9 +292,9 @@ function renderWorktrees(){
   const ws=typeof WORKTREES==='object'&&!Array.isArray(WORKTREES)?Object.entries(WORKTREES).map(([k,v])=>({name:k,...(typeof v==='object'?v:{sha:v})})):[];
   if(!ws.length){
     const entries=[
-      {name:'primary',path:'E:/E-github-repos/Ix',branch:'feat/ix-agent-skill',sha:'b038c46',dirty:14,note:'PROTECTED — active development'},
-      {name:'remap',path:'E:/E-github-repos/Ix-remap',branch:'feat/ix-remap-hardening',sha:'c021b52',ahead:1,dirty:0,note:'Pushed to fork — PR-ready'},
-      {name:'test',path:'E:/E-github-repos/Ix-test',branch:'detached HEAD',sha:'c4f8fea',dirty:0,note:'Clean test baseline — 646/648 passed'}
+      {name:'primary',path:'<IX_REPO>',branch:'feat/ix-agent-skill',sha:'b038c46',dirty:14,note:'PROTECTED — active development'},
+      {name:'remap',path:'<IX_REPO>/Ix-remap',branch:'feat/ix-remap-hardening',sha:'c021b52',ahead:1,dirty:0,note:'Pushed to fork — PR-ready'},
+      {name:'test',path:'<IX_REPO>/Ix-test',branch:'detached HEAD',sha:'c4f8fea',dirty:0,note:'Clean test baseline — 646/648 passed'}
     ];
     entries.forEach(w=>{
       const card=el('div','card');
@@ -482,18 +556,18 @@ function renderAbout(){
 /* ── map view ── */
 function renderMap(){
   content.append(el('h1','','Investigation Map'));
-  content.append(el('p','lede','Drag to pan, wheel to zoom, click for detail. '+(GRAPH.nodes||[]).length+' nodes, '+(GRAPH.edges||[]).length+' edges.'));
+  content.append(el('p','lede','Drag to pan, wheel to zoom, click a node to open its canonical page. '+(GRAPH.nodes||[]).length+' nodes, '+(GRAPH.edges||[]).length+' edges.'));
   const mw=el('div',''); mw.id='map-wrap';
   const legend=el('div','map-legend');
   [['finding','Finding'],['evidence','Evidence'],['repository','Repo'],['commit','Commit'],['issue','Issue'],['pr','PR'],['phase','Phase']].forEach(([t,l])=>{legend.append(el('span','map-key','<span class="dot" style="background:'+(TYPE_COLOR[t]||'#888')+'\"></span>'+l));});
   mw.append(legend);
-  mw.append(el('div','map-hint','drag=pan · wheel=zoom · click=detail · dblclick=centre'));
+  mw.append(el('div','map-hint','drag=pan · wheel=zoom · click=open page · dblclick=centre'));
   mw.append(el('div','map-ncount',(GRAPH.nodes||[]).length+' nodes · '+(GRAPH.edges||[]).length+' edges'));
   content.append(mw);
 
   const NS='http://www.w3.org/2000/svg';
   const svg=document.createElementNS(NS,'svg'); svg.id='graph';
-  const vp=document.createElementNS(NS,'g');
+  const vp=document.createElementNS(NS,'g'); vp.id='viewport';
   const zedge=document.createElementNS(NS,'g'); zedge.id='zedge';
   const znode=document.createElementNS(NS,'g'); znode.id='znode';
   vp.append(zedge,znode); svg.append(vp);
@@ -538,7 +612,7 @@ function renderMap(){
     t.setAttribute('x',p.x+r+3);t.setAttribute('y',p.y+3);
     t.textContent=n.title.length>50?n.title.slice(0,47)+'…':n.title;
     g.append(t);
-    g.onclick=()=>openEntity(n.id,n.type);
+    g.onclick=()=>{ window.location.href = canonicalUrlOf(n.id); };
     g.onmouseenter=()=>{ Graph.nodes.forEach(n2=>{const g2=nodesEl[n2.id];if(g2)g2.classList.toggle('dim',n2.id!==n.id&&!edges.some(e=>(e.source===n.id&&e.target===n2.id)||(e.target===n.id&&e.source===n2.id)));});zedge.querySelectorAll('line').forEach(l=>l.classList.toggle('focus',l.dataset.s===n.id||l.dataset.t===n.id));};
     g.onmouseleave=()=>{Graph.nodes.forEach(n2=>{const g2=nodesEl[n2.id];if(g2)g2.classList.remove('dim');});zedge.querySelectorAll('line').forEach(l=>l.classList.remove('focus'));};
     g.ondblclick=resetTransform;
@@ -579,7 +653,7 @@ function doSearch(q){
   if(!results.length)w.append(el('p','muted','No matches.'));
   results.forEach(r=>{
     const a=el('a','link','');a.textContent=r.id+' — '+r.label+(r.extra?' ['+r.extra+']':'');a.style.display='block';a.style.marginBottom='6px';
-    a.onclick=()=>openEntity(r.id,r.type);
+    a.onclick=()=>openCanonical(r.id,r.type);
     w.append(a);
   });
   content.innerHTML=''; content.append(w);

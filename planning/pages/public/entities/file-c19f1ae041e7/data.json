@@ -1,0 +1,58 @@
+{
+  "id": "FILE-c19f1ae041e7",
+  "type": "artifact",
+  "title": "skills/ix/scripts/bootstrap.sh",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/file-c19f1ae041e7",
+  "summary": {
+    "id": "FILE-c19f1ae041e7",
+    "type": "artifact",
+    "title": "skills/ix/scripts/bootstrap.sh",
+    "status": "CURRENT"
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "PART_OF",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "out",
+      "relationship": "PART_OF",
+      "other": "DIRECTORY-515ebe1785a7",
+      "other_type": "artifact",
+      "other_title": "skills",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/directory-515ebe1785a7"
+    },
+    {
+      "direction": "out",
+      "relationship": "PART_OF",
+      "other": "DIRECTORY-2353287b1c40",
+      "other_type": "artifact",
+      "other_title": "skills/ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/directory-2353287b1c40"
+    },
+    {
+      "direction": "out",
+      "relationship": "PART_OF",
+      "other": "DIRECTORY-da486f53d1c3",
+      "other_type": "artifact",
+      "other_title": "skills/ix/scripts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/directory-da486f53d1c3"
+    },
+    {
+      "direction": "in",
+      "relationship": "DEFINED_IN",
+      "other": "SYMBOL-b8f4d5d93591",
+      "other_type": "artifact",
+      "other_title": "is_windows() WSL fix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/symbol-b8f4d5d93591"
+    }
+  ]
+}

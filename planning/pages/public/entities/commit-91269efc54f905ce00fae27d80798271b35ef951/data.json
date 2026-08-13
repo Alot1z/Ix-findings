@@ -1,0 +1,147 @@
+{
+  "id": "COMMIT-91269efc54f905ce00fae27d80798271b35ef951",
+  "type": "commit",
+  "title": "91269efc54f905ce00fae27d80798271b35ef951",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-91269efc54f905ce00fae27d80798271b35ef951",
+  "summary": {
+    "id": "COMMIT-91269efc54f905ce00fae27d80798271b35ef951",
+    "type": "commit",
+    "title": "91269efc54f905ce00fae27d80798271b35ef951",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/91269efc54f905ce00fae27d80798271b35ef951",
+    "source_mirror_id": "github:commit:ix-infrastructure/Ix@91269efc54f905ce00fae27d80798271b35ef951",
+    "source_type": "github_commit",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/commit/91269efc54f905ce00fae27d80798271b35ef951",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/91269efc54f905ce00fae27d80798271b35ef951",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "sha": "91269efc54f905ce00fae27d80798271b35ef951",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/91269efc54f905ce00fae27d80798271b35ef951",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/91269efc54f905ce00fae27d80798271b35ef951",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "committer": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "message": "docs: patches is an OSS command, not a Pro one\n\nThree places said otherwise: the gotcha claiming `ix patches` is an unknown\ncommand, the `[Pro]` marker on its routing-table row, and the \"only the first\nthree work without Pro\" line above that table.\n\nThe gotcha is replaced with the constraint that matters going forward — do not\nput `patches` back in `PRO_COMMANDS`, because a stub for a command that exists\nin OSS shadows the real implementation and does it silently.\n\nThe routing row now shows `--format llm`, which this command has supported all\nalong and which the format guidance immediately above the table tells agents to\nprefer when they are reading the output themselves.",
+    "parents": [
+      {
+        "sha": "4d35378ea737825bd591df94ee29db92e1596d30",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/4d35378ea737825bd591df94ee29db92e1596d30"
+      }
+    ],
+    "tree_sha": "3bbd3202f39c2dc54f3654d799430e1b687df4db",
+    "authored_at": "2026-08-11T00:06:56Z",
+    "committed_at": "2026-08-11T00:06:56Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@91269efc54f905ce00fae27d80798271b35ef951",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/91269efc54f905ce00fae27d80798271b35ef951",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/91269efc54f905ce00fae27d80798271b35ef951",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-11T00:06:56Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-11T00:06:56Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-91269efc54f905ce00fae27d80798271b35ef951",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#390"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-89ca55e21672696deb7627cb3e5b1846754707fa",
+      "other_type": "commit",
+      "other_title": "89ca55e21672696deb7627cb3e5b1846754707fa",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-89ca55e21672696deb7627cb3e5b1846754707fa"
+    },
+    {
+      "direction": "out",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-4d35378ea737825bd591df94ee29db92e1596d30",
+      "other_type": "commit",
+      "other_title": "4d35378ea737825bd591df94ee29db92e1596d30",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-4d35378ea737825bd591df94ee29db92e1596d30"
+    },
+    {
+      "direction": "in",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "PR-390",
+      "other_type": "pr",
+      "other_title": "Ix PR #390",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-390"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3a5de4be99c9",
+      "other_type": "artifact",
+      "other_title": "CLAUDE.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3a5de4be99c9"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ecaea3020e55",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/pro-stub-message.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ecaea3020e55"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-6fd1015954e3",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/patches.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-6fd1015954e3"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-4e3bf710c74e",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/register/oss.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-4e3bf710c74e"
+    }
+  ]
+}

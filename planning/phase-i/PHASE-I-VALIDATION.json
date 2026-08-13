@@ -1,0 +1,29 @@
+{
+  "schema_version": "phase-i.validation.v1",
+  "phase": "I",
+  "status": "PARTIALLY_COMPLETE",
+  "generated_at": "2026-08-12T22:13:13.575Z",
+  "checks": {
+    "records_nonzero": true,
+    "token_index_nonzero": true,
+    "record_ids_unique": true,
+    "postings_resolve": true,
+    "source_analysis_separated": true,
+    "no_absolute_paths": true,
+    "external_mutations": 0
+  },
+  "counts": {
+    "records": 22595,
+    "tokens": 28315
+  },
+  "blockers": [
+    "Semantic ranking remains out of scope; the optional Ix backend was re-verified during Phase J (MATCHED for deterministic symbol/file records)."
+  ],
+  "unknowns": [
+    "Search tokenization is lexical and does not provide semantic ranking or fuzzy symbol resolution."
+  ],
+  "protected_work": {
+    "baseline": "planning/phase-i/PROTECTED-WORK-BASELINE.json",
+    "external_mutations": 0
+  }
+}

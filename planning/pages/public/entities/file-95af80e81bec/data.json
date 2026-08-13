@@ -1,0 +1,118 @@
+{
+  "id": "FILE-95af80e81bec",
+  "type": "artifact",
+  "title": "ix-cli/src/cli/commands/savings.ts",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/file-95af80e81bec",
+  "summary": {
+    "id": "FILE-95af80e81bec",
+    "type": "artifact",
+    "title": "ix-cli/src/cli/commands/savings.ts",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "source_mirror_id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/commands/savings.ts",
+    "source_type": "github_file",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/blob/86f3684c4e4dc77dd0a579eb92863824953a3ce9/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fsavings.ts",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 372,
+    "filename": "ix-cli/src/cli/commands/savings.ts",
+    "status": "modified",
+    "additions": 49,
+    "deletions": 0,
+    "changes": 49,
+    "blob_url": "https://github.com/ix-infrastructure/Ix/blob/86f3684c4e4dc77dd0a579eb92863824953a3ce9/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fsavings.ts",
+    "raw_url": "https://github.com/ix-infrastructure/Ix/raw/86f3684c4e4dc77dd0a579eb92863824953a3ce9/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fsavings.ts",
+    "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fsavings.ts?ref=86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+    "patch": "@@ -2,6 +2,7 @@ import type { Command } from \"commander\";\n import chalk from \"chalk\";\n import { IxClient } from \"../../client/api.js\";\n import { getEndpoint } from \"../config.js\";\n+import { llmLine, printLlmLines } from \"../llm.js\";\n \n interface CommandBreakdown {\n   count: number;\n@@ -21,6 +22,49 @@ interface SavingsResponse {\n   lifetime: SavingsData;\n }\n \n+/**\n+ * `ix savings --format llm`.\n+ *\n+ * `text` draws a rule, two labelled blocks and a per-command table. The numbers\n+ * are the whole content, so they go out as two `scope` records with the\n+ * breakdown behind `--detail` exactly as the other formats gate it.\n+ *\n+ * Money and water are computed here rather than left to the caller because the\n+ * pricing table lives in this file — a consumer cannot derive them from\n+ * `tokens_saved` without it.\n+ */\n+export function renderSavingsLlm(\n+  result: SavingsResponse,\n+  model: string,\n+  detail: boolean,\n+): string[] {\n+  const pricing = PRICING[model] ?? PRICING.opus;\n+  const lines = [llmLine(\"savings\", [[\"model\", pricing.label]])];\n+\n+  for (const [scope, data] of [[\"session\", result.session], [\"lifetime\", result.lifetime]] as const) {\n+    lines.push(llmLine(\"scope\", [\n+      [\"name\", scope],\n+      [\"commands\", String(data.commandCount)],\n+      [\"tokens_saved\", String(data.tokensSaved)],\n+      [\"naive_tokens\", String(data.naiveTokens)],\n+      [\"actual_tokens\", String(data.actualTokens)],\n+      [\"money_saved\", estimateMoney(data.tokensSaved, model).toFixed(2)],\n+      [\"water_saved_ml\", String(estimateWater(data.tokensSaved))],\n+    ]));\n+    if (!detail) continue;\n+    for (const [command, breakdown] of Object.entries(data.byCommandType)) {\n+      lines.push(llmLine(\"command\", [\n+        [\"scope\", scope],\n+        [\"name\", command],\n+        [\"count\", String(breakdown.count)],\n+        [\"tokens_saved\", String(breakdown.saved)],\n+      ]));\n+    }\n+  }\n+\n+  return lines;\n+}\n+\n // Pricing models: input $/MTok, output $/MTok\n const PRICING: Record<string, { input: number; output: number; label: string }> = {\n   opus:   { input: 15,   output: 75,   label: \"Claude Opus ($15/MTok in, $75/MTok out)\" },\n@@ -102,6 +146,11 @@ export function registerSavingsCommand(program: Command): void {\n     const detail = opts.detail ?? false;\n     const result: SavingsResponse = await client.savings(detail);\n \n+    if (opts.format === \"llm\") {\n+      printLlmLines(renderSavingsLlm(result, opts.model, detail));\n+      return;\n+    }\n+\n     if (opts.format === \"json\") {\n       const pricing = PRICING[opts.model] ?? PRICING.opus;\n       console.log(JSON.stringify({",
+    "parent_pr": 372
+  },
+  "source_context": {
+    "id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/commands/savings.ts",
+    "source": {
+      "type": "github_file",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/blob/86f3684c4e4dc77dd0a579eb92863824953a3ce9/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fsavings.ts",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T02:54:48Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T16:27:44Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "FILE-95af80e81bec",
+    "entity_type": "FILE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#372",
+    "line_precision": "FILE_LEVEL"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-b7e04e73b7174b87831f4c5d981b5e198f363a75",
+      "other_type": "commit",
+      "other_title": "b7e04e73b7174b87831f4c5d981b5e198f363a75",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b7e04e73b7174b87831f4c5d981b5e198f363a75"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+      "other_type": "commit",
+      "other_title": "86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-86f3684c4e4dc77dd0a579eb92863824953a3ce9"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-ed361190094b2d31c6a51e8df1e23f4cd8daa884",
+      "other_type": "commit",
+      "other_title": "ed361190094b2d31c6a51e8df1e23f4cd8daa884",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-ed361190094b2d31c6a51e8df1e23f4cd8daa884"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-fe27c9d2432db883c02cc5bda0018111045815fe",
+      "other_type": "commit",
+      "other_title": "fe27c9d2432db883c02cc5bda0018111045815fe",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-fe27c9d2432db883c02cc5bda0018111045815fe"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-480915b643a705bb7ac8be6fe353ed34b007e7f2",
+      "other_type": "commit",
+      "other_title": "480915b643a705bb7ac8be6fe353ed34b007e7f2",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-480915b643a705bb7ac8be6fe353ed34b007e7f2"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-7c9704401503c7ab23a279bb83dffc0393598d17",
+      "other_type": "commit",
+      "other_title": "7c9704401503c7ab23a279bb83dffc0393598d17",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-7c9704401503c7ab23a279bb83dffc0393598d17"
+    }
+  ]
+}

@@ -1,0 +1,211 @@
+{
+  "id": "COMMIT-b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+  "type": "commit",
+  "title": "b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+  "summary": {
+    "id": "COMMIT-b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+    "type": "commit",
+    "title": "b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+    "source_mirror_id": "github:commit:ix-infrastructure/Ix@b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+    "source_type": "github_commit",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/commit/b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "sha": "b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+    "author": {
+      "login": "bertolikimberly",
+      "id": 134340724,
+      "type": "User",
+      "html_url": "https://github.com/bertolikimberly"
+    },
+    "committer": {
+      "login": "bertolikimberly",
+      "id": 134340724,
+      "type": "User",
+      "html_url": "https://github.com/bertolikimberly"
+    },
+    "message": "feat(skill): ship the ix agent skill with Compass patch, API docs, and upstream port\n\nAdds the self-contained ix agent skill (SKILL.md, references, bootstrap\nscripts, and the Compass fit-view patch) that teaches any LLM agent to drive\nthe ix CLI, plus the supporting artifacts produced while building it:\n\n- skills/ix: the skill itself — command routing, output-format rules,\n  troubleshooting, first-run bootstrap for bash and PowerShell, and the\n  compass-patch (F fit-view, hint/no-map chips with live theme re-sampling,\n  and a real /__ix/remap endpoint)\n- upstream/compass-fit-view: React port of the fit-view feature destined for\n  the real Compass codebase\n- docs/api: backend HTTP API reference and an OpenAPI 3.0 spec\n- scripts/install-skill.sh: one-shot deploy to ~/.claude/skills and\n  ~/.agents/skills\n- README: skill section; CLAUDE.md: project context and verified gotchas\n- .gitignore: dist/, .freebuff/, .understand-anything/\n\nGenerated with Codebuff 🤖\nCo-Authored-By: Codebuff <noreply@codebuff.com>",
+    "parents": [
+      {
+        "sha": "01308e6c4a64231e7fcf6f545af1d350a52c68c0",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/01308e6c4a64231e7fcf6f545af1d350a52c68c0"
+      }
+    ],
+    "tree_sha": "8703efc5b6441bf156485e1b652d7e839836230b",
+    "authored_at": "2026-08-10T00:14:59Z",
+    "committed_at": "2026-08-10T00:14:59Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T00:14:59Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T00:14:59Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#368"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-0c9087c4292254472174b02475d094359c88c055",
+      "other_type": "commit",
+      "other_title": "0c9087c4292254472174b02475d094359c88c055",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-0c9087c4292254472174b02475d094359c88c055"
+    },
+    {
+      "direction": "out",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-01308e6c4a64231e7fcf6f545af1d350a52c68c0",
+      "other_type": "commit",
+      "other_title": "01308e6c4a64231e7fcf6f545af1d350a52c68c0",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-01308e6c4a64231e7fcf6f545af1d350a52c68c0"
+    },
+    {
+      "direction": "in",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "PR-368",
+      "other_type": "pr",
+      "other_title": "Ix PR #368",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-368"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-809da0d53df5",
+      "other_type": "artifact",
+      "other_title": ".gitignore",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-809da0d53df5"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3a5de4be99c9",
+      "other_type": "artifact",
+      "other_title": "CLAUDE.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3a5de4be99c9"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-bbbba2af7455",
+      "other_type": "artifact",
+      "other_title": "README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-bbbba2af7455"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5b1b927b6a8e",
+      "other_type": "artifact",
+      "other_title": "docs/api/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5b1b927b6a8e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-4f46bd8b8bc8",
+      "other_type": "artifact",
+      "other_title": "docs/api/openapi.yaml",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-4f46bd8b8bc8"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-61bf75a401a3",
+      "other_type": "artifact",
+      "other_title": "scripts/install-skill.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-61bf75a401a3"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-83c45e74eb69",
+      "other_type": "artifact",
+      "other_title": "skills/ix/SKILL.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-83c45e74eb69"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-f1ae4df1b803",
+      "other_type": "artifact",
+      "other_title": "skills/ix/references/commands.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f1ae4df1b803"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-04ef1773eadf",
+      "other_type": "artifact",
+      "other_title": "skills/ix/references/output-formats.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-04ef1773eadf"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e6083dcd375e",
+      "other_type": "artifact",
+      "other_title": "skills/ix/references/troubleshooting.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e6083dcd375e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-36c1657074c2",
+      "other_type": "artifact",
+      "other_title": "skills/ix/scripts/bootstrap.ps1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-36c1657074c2"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-4818b5c86e91",
+      "other_type": "artifact",
+      "other_title": "skills/ix/scripts/bootstrap.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-4818b5c86e91"
+    }
+  ]
+}

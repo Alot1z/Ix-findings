@@ -1,0 +1,12 @@
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
+const index = JSON.parse(readFileSync(resolve(process.cwd(), "planning/phase-i/SEARCH-INDEX.json"), "utf8"));
+const args = process.argv.slice(2);
+const limitIndex = args.indexOf("--limit");
+const limit = limitIndex >= 0 ? Math.max(1, Number(args[limitIndex + 1]) || 10) : 10;
+const query = args.filter((arg, i) => arg !== "--limit" && i !== limitIndex + 1).join(" ").trim();
+const tokens = [...new Set(query.toLowerCase().replace(/[^a-z0-9_./#-]+/g, " ").split(/\s+/).filter(token => token.length >= 2))];
+const scores = new Map();
+for (const token of tokens) for (const id of index.tokens[token] || []) scores.set(id, (scores.get(id) || 0) + 1);
+const results = [...scores.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, limit).map(([id, score]) => ({ score, ...index.records[id] }));
+console.log(JSON.stringify({ schema_version: "ix-findings.search-result.v1", query, tokens, results, source: "planning/phase-i/SEARCH-INDEX.json", retrieval: "TOKEN_POSTINGS_ONLY", external_mutations: 0 }, null, 2));

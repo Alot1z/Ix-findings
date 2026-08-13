@@ -1,0 +1,85 @@
+{
+  "id": "REVIEW-ix-infrastructure-Ix-pr-368-4893362491",
+  "type": "artifact",
+  "title": "Review 4893362491 on PR #368",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/review-ix-infrastructure-ix-pr-368-4893362491",
+  "summary": {
+    "id": "REVIEW-ix-infrastructure-Ix-pr-368-4893362491",
+    "type": "artifact",
+    "title": "Review 4893362491 on PR #368",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/pull/368#pullrequestreview-4893362491",
+    "source_mirror_id": "github:review:ix-infrastructure/Ix#pr-368-4893362491",
+    "source_type": "github_review",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/pull/368#pullrequestreview-4893362491",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "id": 4893362491,
+    "node_id": "PRR_kwDORdC75M8AAAABI6rJOw",
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 368,
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "state": "CHANGES_REQUESTED",
+    "body": "Thanks for this — and welcome. This is a lot of careful work, and unusually, everything you claimed in the PR description checks out when I ran it myself rather than just reading it. That is rarer than it should be, so I want to be specific about what I verified before getting to the changes I'm asking for.\n\n## What I verified as working\n\n- Your stated checks all pass: `node --check fit-view.js`, `bash -n` on all three shell scripts, and the OpenAPI spec parses cleanly (39 paths, 13 schemas). Every path's base segment exists in the backend's Scala routes, so the API reference is grounded, not invented.\n- `apply.sh` is genuinely idempotent. I ran it three times against a fixture; the third pass printed \"already patched\" for all three steps and the `<script>` tag count in `index.html` stayed at 1.\n- It works against the **real shipped Compass**. I copied `~/.ix/cli/compass` (v0.2.0) to a scratch dir and ran the patch: the minified marker `` {keys:[`0`],label:`Reset zoom & center`} `` really is present in `KeyboardHelp-CLjfSVTU.js`, the F entry inserted correctly, and `node --check` confirms the patched chunk still parses. Same for the injected `view.js`.\n- `registerPatchesCommand is defined but never registered` — **correct**, and a real find. `patches.ts:6` exports it and nothing imports it, so `ix patches` is an unknown command today. That deserves its own issue; I'll open one.\n\nSo the mechanism works. My concerns are about layer and packaging, not craft.\n\n## Blocking\n\n**1. It patches the same two inline styles React owns.** `SystemMapCanvas.tsx:858-871` in the Compass source renders:\n\n```jsx\n<div style={{ transform: `translate(${snappedPan.x}px, ${snappedPan.y}px)`, transformOrigin: \"0 0\" }}>\n  <div className=\"relative ix-crisp-canvas\" style={{ zoom: snappedZoom, ... }}>\n```\n\n`fit-view.js` writes `wrap.style.transform` and `canvas.style.zoom` from outside React — the exact two properties driven by `snappedPan` / `snappedZoom` state. Every subsequent render restores React's values. The 60 ms \"verify the target stuck and re-apply\" timer is a band-aid on that race rather than a fix. Related: the background grid at `:855` uses `backgroundPosition: snappedPan`, which the patch doesn't update, so after pressing F the grid stays put while the nodes move.\n\nWorth checking too whether the auto-frame is still needed: Compass #57 (`fix/bounded-layout-and-viewport-refit`, merged and bundled in v0.9.1) fixed the empty-first-paint case directly — the comment at `SystemMapCanvas.tsx:450` describes the same symptom you're solving.\n\n**2. Two of three patch steps silently no-op on stock Linux.** This box has `python3` and no `python` (standard on Debian/Ubuntu/Fedora). Running `apply.sh`:\n\n```\nindex.html: added fit-view.js script tag\napply.sh: line 40: python: command not found\nkeyboard help: skipped (python unavailable)\napply.sh: line 68: python: command not found\nview.js server: skipped (python unavailable)\nCompass fit-view patch applied. Restart the visualizer ... picks up the real /__ix/remap endpoint\n--- exit code: 0 ---\n```\n\nIt exits 0 and tells you to restart for an endpoint it never installed. `bootstrap.sh:137` compounds it by redirecting to `/dev/null` and reporting success. Swapping in a `python` → `python3` shim made all three steps apply perfectly, so this is purely the interpreter name plus the `|| { echo \"skipped\"; }` swallowing a real failure.\n\n**3. `sed -i` with no suffix is GNU-only** (`apply.sh:33`) and fails on macOS, which the README section and `SKILL.md` both claim to support. The repo already has both portable forms: `scripts/disconnect.sh` uses `sed -i.bak`, `scripts/release.sh` uses `sed -i ''`.\n\n**4. The `/__ix/remap` endpoint should be source, not a patched artifact.** This repo owns `ix-cli/src/cli/commands/view.ts`; step 4 string-injects the handler into the *compiled* `~/.ix/cli/cli/dist/cli/commands/view.js`, which every `ix upgrade` overwrites. In `serverScript()` it would be typechecked, tested, and permanent. Two things to fix on the way in: `serverScript` ends in `server.listen(PORT)` with no host, so it binds `0.0.0.0` — the handler would be reachable from the whole LAN, and from any web page in the user's browser, since a simple-content-type POST isn't preflighted. It should bind `127.0.0.1` and check `Sec-Fetch-Site` / `Origin` before spawning a 30-minute `ix map`.\n\n**5. `CLAUDE.md` ships an absolute path from your machine:** `python \"[redacted]/jacob/.agents/skills/skill-creator/scripts/package_skill.py\"`. This is the file every agent working in the repo loads. The README's copy of the same command already uses `$HOME`, so the two disagree.\n\n**6. `CLAUDE.md` documents two paths that can't exist** — `dist/ix.zip` and `.freebuff/run.md` are both gitignored by this same PR, but the layout table presents them as repo contents.\n\n## Smaller\n\n- `.gitignore`: `dist/` is unanchored so it matches at any depth, and `core-ingestion/dist/` + `ix-cli/dist/` were already covered. `/dist/` is what you want. (Nothing tracked is affected today — I checked.)\n- `upstream/compass-fit-view/` is 723 lines of React that nothing here builds, typechecks, or tests. It belongs in the Compass repo as a PR.\n- `install-skill.sh` `rm -rf`s `~/.claude/skills/ix` and `~/.agents/skills/ix` with no prompt, which silently destroys local edits to a same-named skill.\n\n## Suggested split\n\nThis is five unrelated changes in one commit, and they're ready at very different times:\n\n1. **`docs/api/`** — closest to mergeable as-is. I'd take this on its own today.\n2. **`skills/ix/` + `install-skill.sh` + README** — mergeable once (2), (3) and (5) are fixed.\n3. **`/__ix/remap`** — a small PR against `view.ts` with the bind + origin fix.\n4. **fit-view** — to the Compass repo, after checking what #57 already covers.\n5. The `registerPatchesCommand` and global-`ix reset` findings — issues, and thank you for both.\n\nHappy to review each of those as they come. If you'd like to start with just #1, I think that lands quickly.\n",
+    "html_url": "https://github.com/ix-infrastructure/Ix/pull/368#pullrequestreview-4893362491",
+    "submitted_at": "2026-08-10T02:45:30Z",
+    "commit_id": "b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+    "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+    "source": "OFFICIAL_GITHUB_FACT",
+    "parent_pr": 368
+  },
+  "source_context": {
+    "id": "github:review:ix-infrastructure/Ix#pr-368-4893362491",
+    "source": {
+      "type": "github_review",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/368#pullrequestreview-4893362491",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T02:45:30Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T02:45:30Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "REVIEW-ix-infrastructure-Ix-pr-368-4893362491",
+    "entity_type": "REVIEW",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#368",
+    "review_thread_state": "VERIFIED_GRAPHQL_NO_ASSOCIATED_THREAD_DATA"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "HAS_REVIEW",
+      "other": "PR-368",
+      "other_type": "pr",
+      "other_title": "Ix PR #368",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-368"
+    }
+  ]
+}

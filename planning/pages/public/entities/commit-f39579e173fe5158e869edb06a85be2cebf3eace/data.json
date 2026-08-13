@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-f39579e173fe5158e869edb06a85be2cebf3eace",
+  "type": "commit",
+  "title": "f39579e173fe5158e869edb06a85be2cebf3eace",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-f39579e173fe5158e869edb06a85be2cebf3eace",
+  "summary": {
+    "id": "COMMIT-f39579e173fe5158e869edb06a85be2cebf3eace",
+    "type": "commit",
+    "title": "f39579e173fe5158e869edb06a85be2cebf3eace",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/f39579e173fe5158e869edb06a85be2cebf3eace",
+    "author": {
+      "name": "riley0227",
+      "email": "riley0227@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-ae304943beb6b474dcd452e5b2235d26ce4faa8b",
+      "other_type": "commit",
+      "other_title": "ae304943beb6b474dcd452e5b2235d26ce4faa8b",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-ae304943beb6b474dcd452e5b2235d26ce4faa8b"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-7b2cace2742da461817c9b640b37b9104248c870",
+      "other_type": "commit",
+      "other_title": "7b2cace2742da461817c9b640b37b9104248c870",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-7b2cace2742da461817c9b640b37b9104248c870"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-b8d9b549899d",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/resolve.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b8d9b549899d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-4582a758703b",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/resolve.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-4582a758703b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-520e90da5be1",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/resolve.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-520e90da5be1"
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "id": "FILE-bde2f2fa2210",
+  "type": "artifact",
+  "title": "ix-cli/src/cli/mcp/server.ts",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/file-bde2f2fa2210",
+  "summary": {
+    "id": "FILE-bde2f2fa2210",
+    "type": "artifact",
+    "title": "ix-cli/src/cli/mcp/server.ts",
+    "status": "CURRENT"
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "PART_OF",
+      "other": "REPO-Alot1z-Ix-remap",
+      "other_type": "repository",
+      "other_title": "Alot1z/Ix-remap",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-alot1z-ix-remap"
+    },
+    {
+      "direction": "out",
+      "relationship": "PART_OF",
+      "other": "DIRECTORY-4f5ce22d40f6",
+      "other_type": "artifact",
+      "other_title": "ix-cli",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/directory-4f5ce22d40f6"
+    },
+    {
+      "direction": "out",
+      "relationship": "PART_OF",
+      "other": "DIRECTORY-cf91a2071cc3",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/directory-cf91a2071cc3"
+    },
+    {
+      "direction": "out",
+      "relationship": "PART_OF",
+      "other": "DIRECTORY-9ee94d571c1c",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/directory-9ee94d571c1c"
+    },
+    {
+      "direction": "out",
+      "relationship": "PART_OF",
+      "other": "DIRECTORY-88076690cfd7",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/mcp",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/directory-88076690cfd7"
+    },
+    {
+      "direction": "in",
+      "relationship": "DEFINED_IN",
+      "other": "SYMBOL-a38eb4f833b4",
+      "other_type": "artifact",
+      "other_title": "McpServer (stdio transport)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/symbol-a38eb4f833b4"
+    }
+  ]
+}

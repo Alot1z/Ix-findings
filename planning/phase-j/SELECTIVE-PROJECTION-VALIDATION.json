@@ -1,0 +1,42 @@
+{
+  "schema_version": "phase-j.selective-projection-validation.v1",
+  "generated_at": "2026-08-12T21:44:53.082Z",
+  "source_snapshot": "IDENTICAL_LOCAL_CANONICAL_STATE (same files read by full and selective builds)",
+  "event": "PR-393-MERGED-2026-08-12 (planning/phase-j/selective-event.json)",
+  "full_build": {
+    "elapsed_ms": 9266,
+    "output_dir": "planning/phase-j/fixture/full",
+    "file_count": 7467,
+    "bytes": 50047272
+  },
+  "selective_build": {
+    "elapsed_ms": 2430,
+    "output_dir": "planning/phase-j/fixture/selective",
+    "file_count": 7467,
+    "reused_files": 53,
+    "written_files": 0,
+    "entities_examined": 3817,
+    "entities_rendered": 15
+  },
+  "byte_equivalence": {
+    "identical": true,
+    "mismatched_files": [],
+    "missing_in_selective": [],
+    "extra_in_selective": [],
+    "compared_files": 7467
+  },
+  "work_comparison": {
+    "selective_work_lt_full_work": true,
+    "full_rendered_outputs": 7467,
+    "selective_rendered_outputs": 15,
+    "global_aggregates_always_emitted": 3650,
+    "full_elapsed_ms": 9266,
+    "selective_elapsed_ms": 2430,
+    "render_reduction_pct": "99.80",
+    "elapsed_reduction_pct": "73.78"
+  },
+  "conclusion": "PASS",
+  "full_rebuild": false,
+  "selective_rebuild": true,
+  "external_mutations": 0
+}

@@ -1,0 +1,89 @@
+{
+  "id": "COMMIT-8d6be713600302ca22da3981059e7319c050b64b",
+  "type": "commit",
+  "title": "8d6be713600302ca22da3981059e7319c050b64b",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-8d6be713600302ca22da3981059e7319c050b64b",
+  "summary": {
+    "id": "COMMIT-8d6be713600302ca22da3981059e7319c050b64b",
+    "type": "commit",
+    "title": "8d6be713600302ca22da3981059e7319c050b64b",
+    "status": "CURRENT",
+    "source_mirror_id": "github:commit:ix-infrastructure/Ix@8d6be713600302ca22da3981059e7319c050b64b",
+    "source_type": "github_commit",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/commit/8d6be713600302ca22da3981059e7319c050b64b",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/8d6be713600302ca22da3981059e7319c050b64b",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "sha": "8d6be713600302ca22da3981059e7319c050b64b",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/8d6be713600302ca22da3981059e7319c050b64b",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/8d6be713600302ca22da3981059e7319c050b64b",
+    "author": {
+      "login": "Hiro-Chiba",
+      "id": 203865699,
+      "type": "User",
+      "html_url": "https://github.com/Hiro-Chiba"
+    },
+    "committer": {
+      "login": "Hiro-Chiba",
+      "id": 203865699,
+      "type": "User",
+      "html_url": "https://github.com/Hiro-Chiba"
+    },
+    "message": "fix(watch): refresh through canonical map ingestion",
+    "parents": [
+      {
+        "sha": "ab823e34b9ec8679dcf0df4b4ec5725207e2a88d",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/ab823e34b9ec8679dcf0df4b4ec5725207e2a88d"
+      }
+    ],
+    "tree_sha": "97770ea82db37f954ca5cb8cb8d2da39618e5c49",
+    "authored_at": "2026-08-13T19:14:42Z",
+    "committed_at": "2026-08-13T19:14:42Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@8d6be713600302ca22da3981059e7319c050b64b",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/8d6be713600302ca22da3981059e7319c050b64b",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/8d6be713600302ca22da3981059e7319c050b64b",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-13T19:14:42Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-13T19:14:42Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-8d6be713600302ca22da3981059e7319c050b64b",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#421"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGED_BY",
+      "other": "PR-421",
+      "other_type": "pr",
+      "other_title": "Ix PR #421",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-421"
+    }
+  ]
+}

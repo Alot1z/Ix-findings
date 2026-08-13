@@ -1,0 +1,40 @@
+{
+  "schema_version": "phase-f.validation.v1",
+  "phase": "F",
+  "status": "PARTIALLY_COMPLETE",
+  "generated_at": "2026-08-12T22:11:59.806Z",
+  "counts": {
+    "indexed_files": 10446,
+    "indexed_symbols": 8308,
+    "indexed_reports": 28,
+    "canonical_entities": 3624,
+    "canonical_relationships": 13541,
+    "routes": 3832
+  },
+  "checks": {
+    "duplicate_file_ids": 0,
+    "duplicate_symbol_ids": 0,
+    "duplicate_report_ids": 0,
+    "missing_file_paths": 0,
+    "symbol_file_refs_valid": true,
+    "report_files_indexed": true,
+    "absolute_paths_published": false,
+    "external_mutations": 0
+  },
+  "blockers": [
+    "The optional Ix graph backend is unavailable because Docker is not running; the deterministic repository index is local and independent of that backend."
+  ],
+  "unknowns": [
+    "End-line ranges are UNKNOWN for regex-discovered symbols; no AST parser was assumed.",
+    "Last-modified commit is UNKNOWN for untracked files and files absent from reachable Git history."
+  ],
+  "limitations": [
+    "Phase F indexes all local repository files except .git, node_modules, coverage, and .cache; generated public files are classified rather than treated as canonical source.",
+    "Selective page reuse and full incremental projection remain the next evidence-driven capability."
+  ],
+  "protected_work": {
+    "baseline": "planning/phase-f/PROTECTED-WORK-BASELINE.json",
+    "external_worktrees_mutated": false,
+    "external_mutations": 0
+  }
+}

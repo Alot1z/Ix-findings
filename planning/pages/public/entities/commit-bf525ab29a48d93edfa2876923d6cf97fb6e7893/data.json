@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-bf525ab29a48d93edfa2876923d6cf97fb6e7893",
+  "type": "commit",
+  "title": "bf525ab29a48d93edfa2876923d6cf97fb6e7893",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-bf525ab29a48d93edfa2876923d6cf97fb6e7893",
+  "summary": {
+    "id": "COMMIT-bf525ab29a48d93edfa2876923d6cf97fb6e7893",
+    "type": "commit",
+    "title": "bf525ab29a48d93edfa2876923d6cf97fb6e7893",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/bf525ab29a48d93edfa2876923d6cf97fb6e7893",
+    "author": {
+      "name": "riley0227",
+      "email": "riley0227@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-3480aff98e9a64446d616f2954be9b547c6db4c0",
+      "other_type": "commit",
+      "other_title": "3480aff98e9a64446d616f2954be9b547c6db4c0",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-3480aff98e9a64446d616f2954be9b547c6db4c0"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-0498ca3b2f76574f0f02e26fb19202a21b7e4b7e",
+      "other_type": "commit",
+      "other_title": "0498ca3b2f76574f0f02e26fb19202a21b7e4b7e",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-0498ca3b2f76574f0f02e26fb19202a21b7e4b7e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3d3be47cc6c5",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/FileDiscovery.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3d3be47cc6c5"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-b284f49ee785",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/FileDiscovery.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b284f49ee785"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-d9a3c41a9472",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/FileDiscovery.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-d9a3c41a9472"
+    }
+  ]
+}

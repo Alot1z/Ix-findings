@@ -10,7 +10,471 @@
     "title": "Ix PR #389",
     "status": "RESOLVED",
     "number": 389,
-    "url": "https://github.com/ix-infrastructure/Ix/pull/389"
+    "url": "https://github.com/ix-infrastructure/Ix/pull/389",
+    "source_mirror_id": "github:pull_request:ix-infrastructure/Ix#389",
+    "source_type": "github_pull_request",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/pull/389",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/389",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "number": 389,
+    "node_id": "PR_kwDORdC75M79OHhK",
+    "title": "fix(security): close the file-system race in view, and the two lockfile CVEs",
+    "body": "Three of the eight open code scanning alerts — the ones with a real fix behind them. The other five are dispositions rather than code changes; they are listed at the bottom so the whole set is accounted for in one place.\n\n## #44 — `js/file-system-race` (high), `view.ts`\n\n`readRunningPort` called `existsSync(PORT_FILE)` and then, fifteen lines later, wrote to that same path. That pair is what CodeQL flagged, and the check could always go stale before the operation — it never told us the read would succeed either.\n\nThe reads now go straight out through `readTextIfPresent`, which returns null **only** for ENOENT and rethrows everything else. That distinction is load-bearing: both callers of `readAlivePid` treat null as licence to act, so collapsing \"unreadable\" into \"absent\" means `ix view stop` deletes a live server's state and `ix view` spawns a second one it cannot record. `readRunningPort` keeps its swallow-all policy deliberately — it is looking up a URL to print, not liveness — and now says so. The scope read also stops reading a zero-length file as a workspace named `\"\"`.\n\n## #47 — `js/http-to-file-access` (medium), `ingest-baseline.ts`\n\nThe rev arrives off the backend's commit response and only the read side ever checked its shape, so a non-integer rev (an older backend answering `\"9\"` instead of `9`) cleared a bare `> 0` and was written, then rejected on the next read.\n\nThe save side is the *last* stop, though, not the first. The same value enters at the accumulator, where a bare `>` compares it as a string — `\"9\"` becomes the max, and `\"10\" > \"9\"` is then false, so the max walks backwards — and it ships to the user verbatim as the `latestRev` field of `ix ingest --format json`. `advanceRev` screens it where it enters, which fixes the max, the JSON contract and the persisted baseline in one place. `isRev` is now a single predicate both sides of the baseline share; they previously sat three lines apart and disagreed on whether 0 was valid.\n\nTo be accurate about the cost: `currentRev` is read only by `ix status`'s Revision line. Incremental skipping runs off the mtime map, which was always persisted correctly. A bad rev means a wrong Revision, **not** a re-ingest.\n\n## #40 — Scorecard `Vulnerabilities` (high)\n\n`nanoid` 3.3.16 → 3.3.18 and `brace-expansion` 5.0.7 → 5.0.9, clearing all three advisories behind the alert: GHSA-2v37-7h3g-55p8, GHSA-mh99-v99m-4gvg, GHSA-rgw5-rvv9-x895. Lockfiles only; both are dev-only transitive deps, and `npm audit` is clean in `ix-cli` and `core-ingestion`.\n\n## Testing\n\n`npm test` in `ix-cli`: 720 passed, 2 skipped. `npm run typecheck` clean; lint unchanged at 0 errors.\n\nEvery new assertion was checked against a restored mutant rather than assumed to be doing work. Swallowing all read errors brings back the orphan spawn (`spawn` called once, then EISDIR) and the silently-suppressed scope warning; `?? null` on the scope read brings back the bogus warning for an empty file; dropping the rev screen lets `\"9\"` win the max. Five mutants, five failures, then all pass.\n\nThe scope-mismatch branch previously had **no** coverage anywhere in the 713-test suite — every case seeded `compass.scope` as `\"*all*\"` and launched with `--all`, so the keys always matched and the warning never ran. It has a test now.\n\n## Known leftovers\n\n- `watch-utils.ts:readFileContent` still carries the same `existsSync`-then-read shape, plus an any-error-to-null contract that `watch` depends on. Left alone deliberately rather than widened into this PR.\n- The temp-HOME test fixture is now duplicated in four test files and wants extracting into shared test support. Out of scope here.\n\n## The other five alerts, for the record\n\n- **#45, #46** (`js/http-to-file-access`, `view.ts`) — the same finding already dismissed as #28/#29. The flow is the `workspaceSystem` response reaching `systemId`; it is charset-constrained at `view.ts:309` and JSON-encoded at the sink, and the proxy has to embed its own scope. CodeQL keeps the taint because the guard tests the value rather than rebuilding it, which is correct of it and not worth laundering the code to satisfy.\n- **#48** (Scorecard `PinnedDependencies`) — `skills/ix/scripts/bootstrap.sh` runs the official installer. Hash-pinning it would freeze bootstrap at one installer version and break on every release.\n- **#39, #43** (Scorecard `SAST` / `CI-Tests`) — backward-looking scores over the last 30 merged PRs. CodeQL only began running on PR heads at #386; before that it ran on `main` pushes only, so the five uncovered PRs are already behind us. Both heal as PRs roll forward.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)",
+    "state": "closed",
+    "draft": false,
+    "merged": true,
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "html_url": "https://github.com/ix-infrastructure/Ix/pull/389",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/389",
+    "head": {
+      "ref": "fix/code-scanning-alerts",
+      "sha": "0d8032910c45408d8684a0e6f95198ee223b647c",
+      "repo": {
+        "id": 1171307492,
+        "full_name": "ix-infrastructure/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "ix-infrastructure",
+          "id": 256883681,
+          "type": "Organization",
+          "html_url": "https://github.com/ix-infrastructure"
+        },
+        "html_url": "https://github.com/ix-infrastructure/Ix",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": false,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-03-03T04:48:38Z",
+        "updated_at": "2026-08-13T21:51:31Z",
+        "pushed_at": "2026-08-13T19:18:44Z",
+        "topics": [
+          "ai",
+          "ai-memory",
+          "claude-code",
+          "cli",
+          "code-analysis",
+          "code-mapping",
+          "code-memory",
+          "codebase-understanding",
+          "codex",
+          "developer-tools",
+          "llm",
+          "openclaw",
+          "persistent-memory",
+          "program-analysis",
+          "software-architecture",
+          "system-intelligence",
+          "system-mapping"
+        ],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 701,
+        "stargazers_count": 701,
+        "forks_count": 60,
+        "open_issues_count": 6
+      }
+    },
+    "base": {
+      "ref": "main",
+      "sha": "b25bf2efe837a29022770bd220c58b2da05bca32",
+      "repo": {
+        "id": 1171307492,
+        "full_name": "ix-infrastructure/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "ix-infrastructure",
+          "id": 256883681,
+          "type": "Organization",
+          "html_url": "https://github.com/ix-infrastructure"
+        },
+        "html_url": "https://github.com/ix-infrastructure/Ix",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": false,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-03-03T04:48:38Z",
+        "updated_at": "2026-08-13T21:51:31Z",
+        "pushed_at": "2026-08-13T19:18:44Z",
+        "topics": [
+          "ai",
+          "ai-memory",
+          "claude-code",
+          "cli",
+          "code-analysis",
+          "code-mapping",
+          "code-memory",
+          "codebase-understanding",
+          "codex",
+          "developer-tools",
+          "llm",
+          "openclaw",
+          "persistent-memory",
+          "program-analysis",
+          "software-architecture",
+          "system-intelligence",
+          "system-mapping"
+        ],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 701,
+        "stargazers_count": 701,
+        "forks_count": 60,
+        "open_issues_count": 6
+      }
+    },
+    "merge_commit_sha": "ffe21f01268caf6567916da697cd6826358443e2",
+    "merged_at": "2026-08-10T22:20:37Z",
+    "closed_at": "2026-08-10T22:20:37Z",
+    "created_at": "2026-08-10T21:16:50Z",
+    "updated_at": "2026-08-10T22:21:09Z",
+    "labels": [],
+    "milestone": null,
+    "requested_reviewers": [],
+    "requested_teams": [],
+    "commits_count": 2,
+    "changed_files_count": 7,
+    "additions": 271,
+    "deletions": 35,
+    "changed_files": [
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 389,
+        "filename": "core-ingestion/package-lock.json",
+        "status": "modified",
+        "additions": 3,
+        "deletions": 3,
+        "changes": 6,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/0d8032910c45408d8684a0e6f95198ee223b647c/core-ingestion%2Fpackage-lock.json",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/0d8032910c45408d8684a0e6f95198ee223b647c/core-ingestion%2Fpackage-lock.json",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/core-ingestion%2Fpackage-lock.json?ref=0d8032910c45408d8684a0e6f95198ee223b647c",
+        "patch": "@@ -1439,9 +1439,9 @@\n       }\n     },\n     \"node_modules/nanoid\": {\n-      \"version\": \"3.3.16\",\n-      \"resolved\": \"https://registry.npmjs.org/nanoid/-/nanoid-3.3.16.tgz\",\n-      \"integrity\": \"sha512-bzlKTyNJ7+LdGIIwy8ijFpIqEQIvafahV7eYykJ8Cvh42EdJeODoJ6gUJXpQJvej1BddH8OqTXZNE/KfbWAu8Q==\",\n+      \"version\": \"3.3.18\",\n+      \"resolved\": \"https://registry.npmjs.org/nanoid/-/nanoid-3.3.18.tgz\",\n+      \"integrity\": \"sha512-DTg4MJbGMWkfi6VZFdNt2/caMbQy4Ou+Op/hJQvGEWcnVfoA1QA+xzRKAzw9jD6+GVOOeYr/mIcuDSdug6F6+w==\",\n       \"dev\": true,\n       \"funding\": [\n         {"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 389,
+        "filename": "ix-cli/package-lock.json",
+        "status": "modified",
+        "additions": 7,
+        "deletions": 7,
+        "changes": 14,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/0d8032910c45408d8684a0e6f95198ee223b647c/ix-cli%2Fpackage-lock.json",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/0d8032910c45408d8684a0e6f95198ee223b647c/ix-cli%2Fpackage-lock.json",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fpackage-lock.json?ref=0d8032910c45408d8684a0e6f95198ee223b647c",
+        "patch": "@@ -2384,16 +2384,16 @@\n       }\n     },\n     \"node_modules/brace-expansion\": {\n-      \"version\": \"5.0.7\",\n-      \"resolved\": \"https://registry.npmjs.org/brace-expansion/-/brace-expansion-5.0.7.tgz\",\n-      \"integrity\": \"sha512-7oFy703dxfY3/NLxC1fh2SUCQ0H9rmAY+5EpDVfXjUTTs+HEwR2nYaqLv+GWcTsumwxPfiz6CzCNkwXwBUwqCA==\",\n+      \"version\": \"5.0.9\",\n+      \"resolved\": \"https://registry.npmjs.org/brace-expansion/-/brace-expansion-5.0.9.tgz\",\n+      \"integrity\": \"sha512-ScQ4IuvIEF1TMlP7Zt+vjJ//9zlPb2SDcxWxM3bk8s6t6GGdJ7KO1dCcTidOPJKePW30LE/2cT7wCyPho9/Wxg==\",\n       \"dev\": true,\n       \"license\": \"MIT\",\n       \"dependencies\": {\n         \"balanced-match\": \"^4.0.2\"\n       },\n       \"engines\": {\n-        \"node\": \"18 || 20 || >=22\"\n+        \"node\": \"20 || >=22\"\n       }\n     },\n     \"node_modules/chai\": {\n@@ -3185,9 +3185,9 @@\n       \"license\": \"MIT\"\n     },\n     \"node_modules/nanoid\": {\n-      \"version\": \"3.3.16\",\n-      \"resolved\": \"https://registry.npmjs.org/nanoid/-/nanoid-3.3.16.tgz\",\n-      \"integrity\": \"sha512-bzlKTyNJ7+LdGIIwy8ijFpIqEQIvafahV7eYykJ8Cvh42EdJeODoJ6gUJXpQJvej1BddH8OqTXZNE/KfbWAu8Q==\",\n+      \"version\": \"3.3.18\",\n+      \"resolved\": \"https://registry.npmjs.org/nanoid/-/nanoid-3.3.18.tgz\",\n+      \"integrity\": \"sha512-DTg4MJbGMWkfi6VZFdNt2/caMbQy4Ou+Op/hJQvGEWcnVfoA1QA+xzRKAzw9jD6+GVOOeYr/mIcuDSdug6F6+w==\",\n       \"dev\": true,\n       \"funding\": [\n         {"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 389,
+        "filename": "ix-cli/src/cli/__tests__/ingest-baseline-rev.test.ts",
+        "status": "added",
+        "additions": 106,
+        "deletions": 0,
+        "changes": 106,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/0d8032910c45408d8684a0e6f95198ee223b647c/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fingest-baseline-rev.test.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/0d8032910c45408d8684a0e6f95198ee223b647c/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fingest-baseline-rev.test.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fingest-baseline-rev.test.ts?ref=0d8032910c45408d8684a0e6f95198ee223b647c",
+        "patch": "@@ -0,0 +1,106 @@\n+import { afterEach, beforeEach, describe, expect, it } from \"vitest\";\n+import * as fs from \"node:fs\";\n+import * as os from \"node:os\";\n+import * as path from \"node:path\";\n+\n+import { ingestMtimeCachePath } from \"../config.js\";\n+import { loadIngestBaseline, saveIngestBaseline } from \"../ingest-baseline.js\";\n+import { advanceRev } from \"../commands/ingest.js\";\n+\n+let home: string;\n+let savedHome: string | undefined;\n+let savedProfile: string | undefined;\n+\n+/** The rev exactly as it sits on disk — loadIngestBaseline would launder it. */\n+function rawRev(root: string): unknown {\n+  return JSON.parse(fs.readFileSync(ingestMtimeCachePath(root), \"utf-8\")).currentRev;\n+}\n+\n+beforeEach(() => {\n+  home = fs.mkdtempSync(path.join(os.tmpdir(), \"ix-baseline-rev-\"));\n+  savedHome = process[redacted].HOME;\n+  savedProfile = process[redacted].USERPROFILE;\n+  process[redacted].HOME = home;\n+  process[redacted].USERPROFILE = home;\n+});\n+\n+afterEach(() => {\n+  process[redacted].HOME = savedHome;\n+  process[redacted].USERPROFILE = savedProfile;\n+  fs.rmSync(home, { recursive: true, force: true });\n+});\n+\n+// The rev comes off the backend's commit response. loadIngestBaseline has always\n+// insisted on a non-negative integer; saveIngestBaseline used to accept whatever\n+// arrived, so anything that cleared a bare `> 0` without being an integer got\n+// written and was then rejected on the next read. `ix status` is the only reader\n+// — incremental skipping runs off the mtime map — so the cost is a wrong\n+// Revision line, not a re-ingest.\n+describe(\"ingest baseline rev normalization\", () => {\n+  const files = new Map<string, number>([[\"a.ts\", 1_000]]);\n+\n+  it(\"persists a real rev unchanged\", () => {\n+    const root = path.join(home, \"p\");\n+    saveIngestBaseline(root, files, 7);\n+\n+    expect(rawRev(root)).toBe(7);\n+    expect(loadIngestBaseline(root)?.currentRev).toBe(7);\n+  });\n+\n+  it(\"keeps the previous rev when the backend answers with a numeric string\", () => {\n+    const root = path.join(home, \"p\");\n+    saveIngestBaseline(root, files, 5);\n+    saveIngestBaseline(root, files, \"9\" as unknown as number);\n+\n+    // \"9\" > 0 is true, so the old code wrote the string through. Round-tripping\n+    // it is what mattered: the read side drops a non-number and hands back 0.\n+    expect(rawRev(root)).toBe(5);\n+    expect(loadIngestBaseline(root)?.currentRev).toBe(5);\n+  });\n+\n+  it(\"keeps the previous rev when the backend answers with a fraction\", () => {\n+    const root = path.join(home, \"p\");\n+    saveIngestBaseline(root, files, 5);\n+    saveIngestBaseline(root, files, 6.5);\n+\n+    expect(rawRev(root)).toBe(5);\n+    expect(loadIngestBaseline(root)?.currentRev).toBe(5);\n+  });\n+\n+  it(\"still records the mtimes when the rev is rejected\", () => {\n+    const root = path.join(home, \"p\");\n+    saveIngestBaseline(root, files, \"9\" as unknown as number);\n+\n+    // A bad rev must not cost the mtime cache — that is the part that makes the\n+    // next map fast, and it never came from the backend at all.\n+    expect(loadIngestBaseline(root)?.files.get(\"a.ts\")).toBe(1_000);\n+  });\n+});\n+\n+// The save side is the last stop, not the first. The same malformed value enters\n+// at the accumulator, where a bare `>` compares it as a string: \"9\" becomes the\n+// max, then \"10\" > \"9\" is false and the max walks backwards. It also ships to\n+// the user as the `latestRev` field of `ix ingest --format json`.\n+describe(\"advanceRev\", () => {\n+  it(\"takes a larger real rev\", () => {\n+    expect(advanceRev(3, 9)).toBe(9);\n+  });\n+\n+  it(\"keeps the current max when the incoming rev is smaller\", () => {\n+    expect(advanceRev(9, 3)).toBe(9);\n+  });\n+\n+  it(\"ignores a numeric string instead of letting it become the max\", () => {\n+    // The bug this pins: \"9\" > 0 coerces true, so the string won and the next\n+    // comparison silently became lexicographic.\n+    expect(advanceRev(0, \"9\")).toBe(0);\n+    expect(advanceRev(9, \"10\")).toBe(9);\n+  });\n+\n+  it(\"ignores fractions, NaN, null and undefined\", () => {\n+    expect(advanceRev(3, 6.5)).toBe(3);\n+    expect(advanceRev(3, Number.NaN)).toBe(3);\n+    expect(advanceRev(3, null)).toBe(3);\n+    expect(advanceRev(3, undefined)).toBe(3);\n+  });\n+});"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 389,
+        "filename": "ix-cli/src/cli/__tests__/view-running-port.test.ts",
+        "status": "modified",
+        "additions": 58,
+        "deletions": 0,
+        "changes": 58,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/0d8032910c45408d8684a0e6f95198ee223b647c/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fview-running-port.test.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/0d8032910c45408d8684a0e6f95198ee223b647c/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fview-running-port.test.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fview-running-port.test.ts?ref=0d8032910c45408d8684a0e6f95198ee223b647c",
+        "patch": "@@ -138,6 +138,64 @@ describe(\"view running port state\", () => {\n     expect(existsSync(portFile())).toBe(false);\n   });\n \n+  it(\"refuses to read an unreadable PID file as 'not running'\", async () => {\n+    // A directory where the PID file belongs: present, but the read fails. Only\n+    // ENOENT means absent; anything else has to surface. Answering \"not\n+    // running\" here would delete a live server's only record, because both\n+    // callers of readAlivePid treat null as licence to act.\n+    mkdirSync(pidFile(), { recursive: true });\n+    writeFileSync(scopeFile(), \"*all*\");\n+    writeFileSync(portFile(), \"19123\");\n+\n+    await expect(runView([\"status\"])).rejects.toThrow(/EISDIR|EPERM|EACCES/);\n+\n+    expect(existsSync(scopeFile())).toBe(true);\n+    expect(existsSync(portFile())).toBe(true);\n+  });\n+\n+  it(\"does not spawn a second server when the PID file is unreadable\", async () => {\n+    // The sharper half of the same bug: swallowing the read error let `start`\n+    // run all the way to spawn(), and only then die writing the PID — leaving a\n+    // detached visualizer with nothing recording it, which `ix view stop` then\n+    // reports as not running and no later `ix view` can get past.\n+    mkdirSync(pidFile(), { recursive: true });\n+\n+    await expect(\n+      runView([\"start\", \"--no-open\", \"--all\"]),\n+    ).rejects.toThrow(/EISDIR|EPERM|EACCES/);\n+\n+    expect(mocks.spawn).not.toHaveBeenCalled();\n+  });\n+\n+  it(\"warns when the running instance is scoped to another workspace\", async () => {\n+    // Nothing in the suite reached this branch before: every case seeded the\n+    // scope file as \"*all*\" and launched with --all, so the keys always matched\n+    // and the warning block never ran.\n+    writeFileSync(pidFile(), \"4242\");\n+    writeFileSync(scopeFile(), \"some-other-workspace\");\n+    writeFileSync(portFile(), \"19123\");\n+    vi.spyOn(process, \"kill\").mockReturnValue(true);\n+\n+    const output = await runView([\"start\", \"--no-open\", \"--all\"]);\n+\n+    expect(output).toContain(\"It is scoped to\");\n+    expect(output).toContain(\"rescope\");\n+  });\n+\n+  it(\"treats an empty scope file as unknown, not as a workspace named ''\", async () => {\n+    // A start interrupted between opening and writing compass.scope leaves it\n+    // zero-length. Reading that as a scope makes every later `ix view` tell the\n+    // user to tear down an instance that is already scoped correctly.\n+    writeFileSync(pidFile(), \"4242\");\n+    writeFileSync(scopeFile(), \"\");\n+    writeFileSync(portFile(), \"19123\");\n+    vi.spyOn(process, \"kill\").mockReturnValue(true);\n+\n+    const output = await runView([\"start\", \"--no-open\", \"--all\"]);\n+\n+    expect(output).not.toContain(\"It is scoped to\");\n+  });\n+\n   it(\"removes persisted state when the visualizer stops\", async () => {\n     seedRunningState(19123);\n     const kill = vi.spyOn(process, \"kill\").mockReturnValue(true);"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 389,
+        "filename": "ix-cli/src/cli/commands/ingest.ts",
+        "status": "modified",
+        "additions": 18,
+        "deletions": 3,
+        "changes": 21,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/0d8032910c45408d8684a0e6f95198ee223b647c/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fingest.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/0d8032910c45408d8684a0e6f95198ee223b647c/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fingest.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fingest.ts?ref=0d8032910c45408d8684a0e6f95198ee223b647c",
+        "patch": "@@ -11,7 +11,7 @@ import chalk from 'chalk';\n import { IxClient } from '../../client/api.js';\n import type { GraphPatchPayload } from '../../client/types.js';\n import { getEndpoint, resolveWorkspaceRoot } from '../config.js';\n-import { loadIngestBaseline, saveIngestBaseline } from '../ingest-baseline.js';\n+import { isRev, loadIngestBaseline, saveIngestBaseline } from '../ingest-baseline.js';\n import { resolveGitHubToken } from '../github/auth.js';\n import { parseGitHubRepo, fetchGitHubData } from '../github/fetch.js';\n import { loadIngestionModules } from './ingestion-loader.js';\n@@ -484,6 +484,21 @@ async function retryOnConflict<T>(fn: () => Promise<T>, maxRetries: number): Pro\n   }\n }\n \n+/**\n+ * Advance the running max revision, ignoring anything that is not a revision.\n+ *\n+ * `result.rev` comes off the wire, and a bare `>` is not safe on it. A string\n+ * \"9\" clears `> 0` by coercion and becomes the max; the next comparison is then\n+ * string-to-string, so `\"10\" > \"9\"` is false and the max walks backwards. That\n+ * value also reaches the user verbatim as the `latestRev` field of\n+ * `ix ingest --format json`, where every consumer reads it as a number.\n+ * Screening it here fixes the max, the JSON contract and the persisted baseline\n+ * in one place, rather than papering over the last of the three.\n+ */\n+export function advanceRev(current: number, incoming: unknown): number {\n+  return isRev(incoming) && incoming > current ? incoming : current;\n+}\n+\n // ---------------------------------------------------------------------------\n // Mtime cache — skip readFileSync+sha256 for unchanged files\n // ---------------------------------------------------------------------------\n@@ -1242,7 +1257,7 @@ export async function ingestFiles(\n                 const chunkMs = Math.round(performance.now() - commitStart);\n                 commitMsPerChunk[ci] += chunkMs;\n                 timings.fallbackCommitMs += chunkMs;\n-                if (result.rev > latestRev) latestRev = result.rev;\n+                latestRev = advanceRev(latestRev, result.rev);\n                 patchesApplied++;\n                 opts?.onCommitted?.(item, result.rev);\n               } catch (commitErr) {\n@@ -1276,7 +1291,7 @@ export async function ingestFiles(\n             const chunkMs = Math.round(performance.now() - commitStart);\n             commitMsPerChunk[ci] = chunkMs;\n             timings.bulkCommitMs += chunkMs;\n-            if (result.rev > latestRev) latestRev = result.rev;\n+            latestRev = advanceRev(latestRev, result.rev);\n             patchesApplied += patches.length;\n             for (const item of chunk) opts?.onCommitted?.(item, result.rev);\n           } catch (err) {"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 389,
+        "filename": "ix-cli/src/cli/commands/view.ts",
+        "status": "modified",
+        "additions": 54,
+        "deletions": 14,
+        "changes": 68,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/0d8032910c45408d8684a0e6f95198ee223b647c/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fview.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/0d8032910c45408d8684a0e6f95198ee223b647c/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fview.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fview.ts?ref=0d8032910c45408d8684a0e6f95198ee223b647c",
+        "patch": "@@ -51,20 +51,48 @@ function parsePort(value: string): number | null {\n   return Number.isInteger(port) && port >= 1 && port <= 65535 ? port : null;\n }\n \n-/** Read the persisted port, falling back to the server script written by older releases. */\n+/**\n+ * Read a file, keeping \"not there\" and \"there but unreadable\" apart.\n+ *\n+ * Collapsing both to null is the tempting shape and the wrong one. An\n+ * unreadable compass.pid — a directory left by a botched extract, a root-owned\n+ * file after one `sudo ix` — would read as \"no visualizer running\", and the\n+ * callers act on that: one deletes a live server's state files, the other goes\n+ * on to spawn a second server it then cannot record or stop. Only ENOENT means\n+ * absent. Anything else is a real problem and belongs to the caller.\n+ *\n+ * Reading straight out instead of checking existsSync first is what closes\n+ * CodeQL js/file-system-race: the check could always go stale before the read,\n+ * and it never told us the read would succeed anyway.\n+ */\n+function readTextIfPresent(path: string): string | null {\n+  try {\n+    return readFileSync(path, \"utf-8\");\n+  } catch (err) {\n+    if ((err as NodeJS.ErrnoException).code === \"ENOENT\") return null;\n+    throw err;\n+  }\n+}\n+\n+/**\n+ * Read the persisted port, falling back to the server script written by older releases.\n+ *\n+ * Unlike the PID and scope reads, this one does swallow an unreadable file: it\n+ * is a best-effort lookup for a URL to print, not a liveness check, so a corrupt\n+ * compass.port should degrade to the legacy script rather than fail the command.\n+ * That was already the behaviour; only the existsSync guards are gone.\n+ */\n function readRunningPort(): number | null {\n-  if (existsSync(PORT_FILE)) {\n-    try {\n-      const port = parsePort(readFileSync(PORT_FILE, \"utf-8\"));\n-      if (port !== null) return port;\n-    } catch {\n-      // Fall through to the legacy server script.\n-    }\n+  try {\n+    const raw = readTextIfPresent(PORT_FILE);\n+    const port = raw === null ? null : parsePort(raw);\n+    if (port !== null) return port;\n+  } catch {\n+    // Fall through to the legacy server script.\n   }\n \n-  if (!existsSync(SERVER_SCRIPT_FILE)) return null;\n   try {\n-    const match = readFileSync(SERVER_SCRIPT_FILE, \"utf-8\").match(/^const PORT = (\\d+);$/m);\n+    const match = readTextIfPresent(SERVER_SCRIPT_FILE)?.match(/^const PORT = (\\d+);$/m);\n     const port = match?.[1] ? parsePort(match[1]) : null;\n     if (port !== null) {\n       // Best-effort migration for a visualizer started before compass.port existed.\n@@ -108,13 +136,21 @@ export function runningInstanceLines(\n   return lines;\n }\n \n-/** Read PID from file and check if the process is alive. */\n+/**\n+ * Read PID from file and check if the process is alive.\n+ *\n+ * An unreadable PID file throws rather than reporting \"not running\". Both\n+ * callers treat null as licence to act — `stop` wipes the state files, `start`\n+ * launches a detached server — so answering null for a file we simply could not\n+ * read would delete a live server's only record, or orphan a fresh one.\n+ */\n function readAlivePid(): number | null {\n-  if (!existsSync(PID_FILE)) {\n+  const raw = readTextIfPresent(PID_FILE);\n+  if (raw === null) {\n     removeCompassState();\n     return null;\n   }\n-  const pid = Number(readFileSync(PID_FILE, \"utf-8\").trim());\n+  const pid = Number(raw.trim());\n   if (!Number.isInteger(pid) || pid <= 0) {\n     removeCompassState();\n     return null;\n@@ -328,7 +364,11 @@ export function registerViewCommand(program: Command): void {\n         }\n         // The running instance has a fixed scope (baked at launch). If this directory\n         // maps to a different workspace, say so rather than silently showing the old one.\n-        const runningKey = existsSync(SCOPE_FILE) ? readFileSync(SCOPE_FILE, \"utf-8\").trim() : null;\n+        // Unreadable must not read as \"no scope\": that would skip the check\n+        // below and quietly hand back another workspace's graph, which is the\n+        // exact confusion the scope file exists to prevent. Empty counts as\n+        // unknown too, not as a scope literally named \"\".\n+        const runningKey = readTextIfPresent(SCOPE_FILE)?.trim() || null;\n         if (runningKey !== null && runningKey !== scopeKey) {\n           const runningLabel = runningKey === \"*all*\"\n             ? \"all workspaces\""
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 389,
+        "filename": "ix-cli/src/cli/ingest-baseline.ts",
+        "status": "modified",
+        "additions": 25,
+        "deletions": 8,
+        "changes": 33,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/0d8032910c45408d8684a0e6f95198ee223b647c/ix-cli%2Fsrc%2Fcli%2Fingest-baseline.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/0d8032910c45408d8684a0e6f95198ee223b647c/ix-cli%2Fsrc%2Fcli%2Fingest-baseline.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fingest-baseline.ts?ref=0d8032910c45408d8684a0e6f95198ee223b647c",
+        "patch": "@@ -17,6 +17,19 @@ export interface IngestBaseline {\n   lastIngestAt: string;\n }\n \n+/**\n+ * What counts as a revision, for both sides of this file.\n+ *\n+ * The rev arrives off the backend's commit response, so it is response data\n+ * rather than anything this process computed, and `typeof` is not enough — the\n+ * read side has always insisted on a non-negative integer. One predicate so the\n+ * two sides cannot drift apart again; they were previously three lines apart\n+ * and disagreed.\n+ */\n+export function isRev(value: unknown): value is number {\n+  return typeof value === \"number\" && Number.isInteger(value) && value >= 0;\n+}\n+\n export function loadIngestBaseline(projectRoot: string): IngestBaseline | null {\n   const cachePath = ingestMtimeCachePath(projectRoot);\n   try {\n@@ -40,12 +53,7 @@ export function loadIngestBaseline(projectRoot: string): IngestBaseline | null {\n     const lastIngestAt = Number.isFinite(parsedTimestamp)\n       ? new Date(parsedTimestamp).toISOString()\n       : fs.statSync(cachePath).mtime.toISOString();\n-    const currentRev =\n-      typeof data.currentRev === \"number\" &&\n-      Number.isInteger(data.currentRev) &&\n-      data.currentRev >= 0\n-        ? data.currentRev\n-        : 0;\n+    const currentRev = isRev(data.currentRev) ? data.currentRev : 0;\n \n     return { files, deletedFiles, currentRev, lastIngestAt };\n   } catch {\n@@ -61,12 +69,21 @@ export function saveIngestBaseline(\n   deletedFiles: Map<string, string[]> = new Map(),\n ): void {\n   try {\n-    const previousRev = loadIngestBaseline(projectRoot)?.currentRev ?? 0;\n+    // Keep the last good rev rather than writing a shape the read side will\n+    // reject. `ix status` is the only thing that reads this number, so a bad one\n+    // costs a wrong Revision line, not a re-ingest — incremental skipping runs\n+    // off the mtime map below and is unaffected either way. The lookup is lazy\n+    // because it parses the entire baseline for one integer, and the reject\n+    // branch is the only one that wants it: onCommitted calls this once per\n+    // deleted file, so an eager read would re-parse the whole map N times.\n+    const rev = isRev(currentRev) && currentRev > 0\n+      ? currentRev\n+      : (loadIngestBaseline(projectRoot)?.currentRev ?? 0);\n     const data: SerializedIngestBaseline = {\n       root: projectRoot,\n       files: Object.fromEntries(mtimes),\n       deletedFiles: Object.fromEntries(deletedFiles),\n-      currentRev: currentRev > 0 ? currentRev : previousRev,\n+      currentRev: rev,\n       lastIngestAt: now.toISOString(),\n     };\n     fs.mkdirSync(path.dirname(ingestMtimeCachePath(projectRoot)), { recursive: true });"
+      }
+    ],
+    "commits": [
+      {
+        "sha": "7a815573e4388e77b8b7af4c1ba0376a8bd36e25",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/7a815573e4388e77b8b7af4c1ba0376a8bd36e25",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/7a815573e4388e77b8b7af4c1ba0376a8bd36e25",
+        "author": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "committer": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "message": "fix(security): close the file-system race in view, and the two lockfile CVEs\n\nThree of the eight open code scanning alerts, all of which had a real fix\nbehind them.\n\n**#44 (high, js/file-system-race).** `readRunningPort` checked\n`existsSync(PORT_FILE)` and then, fifteen lines later, wrote to it — the\npair CodeQL flagged. The check never earned its keep: a missing file throws\ninto the same catch that already handled unreadable content, so removing it\nloses no behaviour and closes the window in which the file can change\nbetween the two calls. Same shape removed from `readAlivePid` and the\nscope-file read.\n\n`readAlivePid` gets a real fix out of it too. `existsSync` passing did not\nmean the read would succeed, and when it failed the EISDIR escaped the\ncommand instead of clearing the stale state. Reading straight out treats\nabsent and unreadable the same way, which is what the caller wanted.\n\n**#47 (medium, js/http-to-file-access).** The rev comes off the backend's\ncommit response, and only the read side ever checked its shape. A rev that\nis not an integer — an older backend answering `\"9\"` rather than `9` —\ncleared the bare `> 0`, got written, and was then rejected by\n`loadIngestBaseline` on the next run, resetting the rev to 0. That is a\nfull re-ingest on every single map, with nothing said about it. Both sides\nnow insist on the same shape.\n\n**#40 (high, Scorecard Vulnerabilities).** nanoid 3.3.16 -> 3.3.18 and\nbrace-expansion 5.0.7 -> 5.0.9, clearing GHSA-2v37-7h3g-55p8,\nGHSA-mh99-v99m-4gvg and GHSA-rgw5-rvv9-x895. Lockfiles only, and both are\ndev-only transitive deps.\n\nThe new tests were checked against the restored bugs: the numeric-string\nand fractional revs both write through, and the unreadable PID file throws\nEISDIR out of `ix view status`.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>",
+        "parents": [
+          {
+            "sha": "b25bf2efe837a29022770bd220c58b2da05bca32",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/b25bf2efe837a29022770bd220c58b2da05bca32"
+          }
+        ],
+        "tree_sha": "f6d5d480ca11b078a649b0e18670ae23ea0e692d",
+        "authored_at": "2026-08-10T21:16:00Z",
+        "committed_at": "2026-08-10T21:18:50Z"
+      },
+      {
+        "sha": "0d8032910c45408d8684a0e6f95198ee223b647c",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/0d8032910c45408d8684a0e6f95198ee223b647c",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/0d8032910c45408d8684a0e6f95198ee223b647c",
+        "author": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "committer": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "message": "fix(view): keep \"absent\" and \"unreadable\" apart, and screen the rev at its source\n\nReview of the first commit found three regressions in it, all one mistake:\nreplacing the `existsSync` guards with bare `catch {}` made an unreadable\nfile indistinguishable from a missing one. Both callers of `readAlivePid`\ntreat null as licence to act, so that reads badly:\n\n- `ix view` took an unreadable compass.pid as \"not running\", spawned the\n  detached server, and only then died writing the PID — leaving a visualizer\n  with nothing recording it, which `ix view stop` reports as not running and\n  no later `ix view` can get past. Reproduced: spawn called, then EISDIR.\n- `ix view stop` against a root-owned compass.pid deleted a live server's\n  pid/scope/port (unlink needs the directory permission, not the file's) and\n  then killed nothing.\n- An unreadable compass.scope silently skipped the cross-workspace warning\n  and handed back another workspace's graph — the exact confusion that file\n  exists to prevent.\n\n`readTextIfPresent` now returns null only for ENOENT and rethrows the rest,\nwhich is what `main` did, without the racy check. `readRunningPort` keeps\nits swallow-all policy on purpose and says why: it looks up a URL to print,\nnot liveness. The scope read also stops treating a zero-length file as a\nworkspace named \"\".\n\nThe rev change was directionally right with a false rationale. `currentRev`\nis read only by `ix status` — incremental skipping runs off the mtime map —\nso a rejected rev costs a wrong Revision line, not a re-ingest. Comment and\ntest header corrected. More to the point the guard was at the last stop: the\nvalue enters at the accumulator, where a bare `>` compares it as a string,\nso \"9\" becomes the max and \"10\" > \"9\" is then false and the max walks\nbackwards. `advanceRev` screens it there, which fixes the max, the\n`--format json` contract and the baseline at once. `isRev` is now one\npredicate both sides share — they previously sat three lines apart and\ndisagreed on whether 0 was valid. `previousRev` is looked up lazily; it\nparses the whole baseline, and `onCommitted` saves once per deleted file.\n\nTests: the scope-mismatch branch had no coverage in the whole suite (every\ncase seeded \"*all*\" and launched with --all), and the PID test asserted a\ncleanup that cannot happen. Both replaced, plus the vacuous NaN case, which\npassed against the bug. All five new assertions were checked against\nrestored mutants: swallow-all resurrects the orphan spawn and the silent\nscope warning, and dropping the rev screen lets \"9\" win the max.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>",
+        "parents": [
+          {
+            "sha": "7a815573e4388e77b8b7af4c1ba0376a8bd36e25",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/7a815573e4388e77b8b7af4c1ba0376a8bd36e25"
+          }
+        ],
+        "tree_sha": "cab7f69174d43dd12c17fc30604ea527136a6d84",
+        "authored_at": "2026-08-10T22:14:32Z",
+        "committed_at": "2026-08-10T22:14:32Z"
+      }
+    ],
+    "comments": [],
+    "reviews": [],
+    "review_comments": [],
+    "timeline": [
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/7a815573e4388e77b8b7af4c1ba0376a8bd36e25"
+      },
+      {
+        "id": 29247389391,
+        "event": "head_ref_force_pushed",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-10T21:19:23Z",
+        "commit_id": "7a815573e4388e77b8b7af4c1ba0376a8bd36e25",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29247389391"
+      },
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/0d8032910c45408d8684a0e6f95198ee223b647c"
+      },
+      {
+        "id": 29249584258,
+        "event": "merged",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-10T22:20:37Z",
+        "commit_id": "ffe21f01268caf6567916da697cd6826358443e2",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29249584258"
+      },
+      {
+        "id": 29249584318,
+        "event": "closed",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-10T22:20:38Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29249584318"
+      },
+      {
+        "id": 29249601133,
+        "event": "head_ref_deleted",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-10T22:21:09Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29249601133"
+      },
+      {
+        "id": 29349208464,
+        "event": "referenced",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-12T15:31:08Z",
+        "commit_id": "2be2c25f63dca94116bfb299e5037e293b840aa9",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29349208464"
+      },
+      {
+        "id": 29352040503,
+        "event": "referenced",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-12T16:26:46Z",
+        "commit_id": "68e090e6554bee4a5a5705e328439d2c7edc7d56",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29352040503"
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-12T16:30:46Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      }
+    ],
+    "source": "OFFICIAL_GITHUB_FACT",
+    "review_threads": [],
+    "review_thread_capture": {
+      "status": "VERIFIED",
+      "source": "GitHub GraphQL API"
+    }
+  },
+  "source_context": {
+    "id": "github:pull_request:ix-infrastructure/Ix#389",
+    "source": {
+      "type": "github_pull_request",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/389",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/389",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T21:16:50Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T22:21:09Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "PR-389",
+    "entity_type": "PULL_REQUEST",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "mirror_scope": "source PR, commits, files, comments, reviews, review comments, and review threads",
+    "related_analysis_types": [
+      "FINDING",
+      "DECISION",
+      "IMPLEMENTATION"
+    ],
+    "review_thread_state": "VERIFIED_GRAPHQL"
   },
   "relationships": [
     {
@@ -28,6 +492,54 @@
       "other_type": "file",
       "other_title": "CLI-HANDOFF/phase-15/FINAL-PR-WORTHINESS-AUDIT.json",
       "other_url": "https://alot1z.github.io/Ix-findings/entities/src-90ab8426282e"
+    },
+    {
+      "direction": "out",
+      "relationship": "FOUND_IN",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "in",
+      "relationship": "AUTHORED",
+      "other": "PERSON-josephismikhail",
+      "other_type": "artifact",
+      "other_title": "josephismikhail",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-josephismikhail"
+    },
+    {
+      "direction": "out",
+      "relationship": "HEADS_AT",
+      "other": "COMMIT-0d8032910c45408d8684a0e6f95198ee223b647c",
+      "other_type": "commit",
+      "other_title": "0d8032910c45408d8684a0e6f95198ee223b647c",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-0d8032910c45408d8684a0e6f95198ee223b647c"
+    },
+    {
+      "direction": "out",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "COMMIT-7a815573e4388e77b8b7af4c1ba0376a8bd36e25",
+      "other_type": "commit",
+      "other_title": "7a815573e4388e77b8b7af4c1ba0376a8bd36e25",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-7a815573e4388e77b8b7af4c1ba0376a8bd36e25"
+    },
+    {
+      "direction": "out",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "COMMIT-0d8032910c45408d8684a0e6f95198ee223b647c",
+      "other_type": "commit",
+      "other_title": "0d8032910c45408d8684a0e6f95198ee223b647c",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-0d8032910c45408d8684a0e6f95198ee223b647c"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGED_BY",
+      "other": "COMMIT-0d8032910c45408d8684a0e6f95198ee223b647c",
+      "other_type": "commit",
+      "other_title": "0d8032910c45408d8684a0e6f95198ee223b647c",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-0d8032910c45408d8684a0e6f95198ee223b647c"
     }
   ]
 }

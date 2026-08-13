@@ -1,0 +1,85 @@
+{
+  "id": "REVIEW-ix-infrastructure-Ix-pr-382-4899756376",
+  "type": "artifact",
+  "title": "Review 4899756376 on PR #382",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/review-ix-infrastructure-ix-pr-382-4899756376",
+  "summary": {
+    "id": "REVIEW-ix-infrastructure-Ix-pr-382-4899756376",
+    "type": "artifact",
+    "title": "Review 4899756376 on PR #382",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/pull/382#pullrequestreview-4899756376",
+    "source_mirror_id": "github:review:ix-infrastructure/Ix#pr-382-4899756376",
+    "source_type": "github_review",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/pull/382#pullrequestreview-4899756376",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "id": 4899756376,
+    "node_id": "PRR_kwDORdC75M8AAAABJAxZWA",
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 382,
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "state": "CHANGES_REQUESTED",
+    "body": "Thanks for contributing! This is careful work — the receiver-type plumbing is well matched to how the existing Python/Go/C++ paths do it, and the `paramTypeMap` scope keys line up correctly with `findEnclosingFunction` (`${className}.${methodName}` on both sides), which is the detail I expected to be wrong and wasn't.\n\nI ran your tests plus a set of probes on your branch. The core mechanism works. Two query gaps are worth closing before this lands, because both are ordinary modern PHP.\n\n## 1. Nullable types silently fall back to bare names\n\nThe queries match `type: (named_type (name) @_typed_var_type)`, but `?Service` does not parse as `named_type` — it is `optional_type` wrapping it:\n\n```\nprivate ?Service $s;   → (property_declaration type: (optional_type (named_type (name))) ...)\nprivate Service $s;    → (property_declaration type: (named_type (name)) ...)\n```\n\nSo on your branch:\n\n```php\nclass C {\n  private ?Service $s;\n  public function go(): void { $this->s->create(); }\n}\n```\nresolves to `C.go -> create` rather than `C.go -> Service.create`. Given `?Type` is idiomatic for any nullable dependency, I would expect this to be a large share of real member calls.\n\n## 2. Plain functions are not covered, only methods\n\nThe typed-parameter pattern is rooted at `(method_declaration ...)`, so a top-level `function` gets nothing:\n\n```php\nfunction run(Service $svc): void { $svc->create(); }   // → run -> create\n```\n\nYour third test pins the bare-name fallback using an *untyped* param, so it passes either way and doesn't catch this.\n\n## Suggested fix — verified on your branch\n\nAccept `optional_type` alongside `named_type`, and alternate the parameter pattern over both declaration forms:\n\n```\n; Typed properties: private Service $s / private ?Service $s\n(property_declaration\n  type: [(named_type (name) @_typed_var_type)\n         (optional_type (named_type (name) @_typed_var_type))]\n  (property_element\n    name: (variable_name (name) @_typed_var_name))) @_typed_var_scope\n\n; Constructor-promoted properties: private ?Service $service\n(property_promotion_parameter\n  type: [(named_type (name) @_typed_var_type)\n         (optional_type (named_type (name) @_typed_var_type))]\n  name: (variable_name (name) @_typed_var_name)) @_typed_var_scope\n\n; Typed parameters on methods and plain functions: function run(?Service $s)\n[(method_declaration\n   parameters: (formal_parameters\n     [(simple_parameter\n       type: [(named_type (name) @_typed_param_type)\n              (optional_type (named_type (name) @_typed_param_type))]\n       name: (variable_name (name) @_typed_param_name))\n      (property_promotion_parameter\n       type: [(named_type (name) @_typed_param_type)\n              (optional_type (named_type (name) @_typed_param_type))]\n       name: (variable_name (name) @_typed_param_name))]))\n (function_definition\n   parameters: (formal_parameters\n     (simple_parameter\n       type: [(named_type (name) @_typed_param_type)\n              (optional_type (named_type (name) @_typed_param_type))]\n       name: (variable_name (name) @_typed_param_name))))] @_typed_param_scope\n```\n\nNo handler changes needed — `childForFieldName('name')` works on `function_definition` too, and with no enclosing class the scope becomes the bare function name, which is exactly what `findEnclosingFunction` returns for a top-level function.\n\nWith that applied on your branch:\n\n- `function run(Service $svc)` → `run -> Service.create` ✅\n- `private ?Service $s` → `C.go -> Service.create` ✅\n- your three PHP tests and `resolveEdges.test.ts` still pass ✅\n- full `core-ingestion` suite: 6 failures, the same six you documented as pre-existing on `origin/main` — no new ones ✅\n\n## Deliberately left alone\n\n- **Union types** (`Service|Repo $x`) parse as `union_type` and still fall back to the bare name. That seems right — there is no single receiver type to attribute the call to, so bare is the honest answer. Worth a one-line comment saying so, since the next reader will wonder.\n- **Chained and static receivers** (`$this->repo->find()->hydrate()`, `A::make()->run()`, `self::$log->write()`) fall back via `phpReceiverIsSupported = false`. Correct — resolving them needs return-type inference, which is well beyond this PR.\n\n## Minor\n\n`.php` joins the prescan set here, which has the same incremental-map cost I raised on #375 — every unchanged `.php` file gets re-read and re-parsed serially on each `ix map`. The blast radius is much smaller than the JS/TS case in that PR, so I would not block on it, but whatever you land there should probably cover this too.\n\nHappy to re-review once the query is updated.\n",
+    "html_url": "https://github.com/ix-infrastructure/Ix/pull/382#pullrequestreview-4899756376",
+    "submitted_at": "2026-08-10T18:20:48Z",
+    "commit_id": "1ec4fa67f3a3dc7209d6b528440d33b872bbdef1",
+    "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+    "source": "OFFICIAL_GITHUB_FACT",
+    "parent_pr": 382
+  },
+  "source_context": {
+    "id": "github:review:ix-infrastructure/Ix#pr-382-4899756376",
+    "source": {
+      "type": "github_review",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/382#pullrequestreview-4899756376",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T18:20:48Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T18:20:48Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "REVIEW-ix-infrastructure-Ix-pr-382-4899756376",
+    "entity_type": "REVIEW",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#382",
+    "review_thread_state": "VERIFIED_GRAPHQL_NO_ASSOCIATED_THREAD_DATA"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "HAS_REVIEW",
+      "other": "PR-382",
+      "other_type": "pr",
+      "other_title": "Ix PR #382",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-382"
+    }
+  ]
+}

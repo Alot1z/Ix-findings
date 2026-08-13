@@ -1,0 +1,79 @@
+{
+  "id": "COMMIT-f347aeff4373fe8fac9ef66e5d9bc7a0821e3477",
+  "type": "commit",
+  "title": "f347aeff4373fe8fac9ef66e5d9bc7a0821e3477",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-f347aeff4373fe8fac9ef66e5d9bc7a0821e3477",
+  "summary": {
+    "id": "COMMIT-f347aeff4373fe8fac9ef66e5d9bc7a0821e3477",
+    "type": "commit",
+    "title": "f347aeff4373fe8fac9ef66e5d9bc7a0821e3477",
+    "status": "HISTORICAL",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    }
+  },
+  "source_snapshot": {
+    "sha": "f347aeff4373fe8fac9ef66e5d9bc7a0821e3477",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/f347aeff4373fe8fac9ef66e5d9bc7a0821e3477",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/f347aeff4373fe8fac9ef66e5d9bc7a0821e3477",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "committer": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "message": "fix(mcp): register the resolved ix launcher on Windows\n\n`ix mcp install` wrote `command: \"ix\"` into all seven hosts. npm ships no\n`ix.exe` — only `ix.CMD` — and a host that spawns the bare name through\nCreateProcess never consults PATHEXT, so the registration resolves to\nnothing on Windows however well-formed the rest of it is.\n\nix-codex-plugin already hit this and resolves the path itself before\nspawning (its #13). Consolidating onto `ix mcp` would have discarded that\nfix and handed the same problem to every host, so the launcher is resolved\nonce here and each host records what `where ix` returned. Unix keeps the\nbare name, which survives an upgrade that moves the install.\n\nUntested on Windows from this machine; the Unix path is unchanged and\nresolution falls back to the bare name.",
+    "parents": [
+      {
+        "sha": "8f547c7e2130f37a853ac8cc9ab6486be1a6b0dd",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/8f547c7e2130f37a853ac8cc9ab6486be1a6b0dd"
+      }
+    ],
+    "tree_sha": "4462b6f50b484ed8dcaf7b0949dcf8a83634a09c",
+    "authored_at": "2026-08-12T00:14:37Z",
+    "committed_at": "2026-08-12T15:21:16Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@f347aeff4373fe8fac9ef66e5d9bc7a0821e3477",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/f347aeff4373fe8fac9ef66e5d9bc7a0821e3477",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/f347aeff4373fe8fac9ef66e5d9bc7a0821e3477",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-12T15:21:16Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-12T15:21:16Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-f347aeff4373fe8fac9ef66e5d9bc7a0821e3477",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#397"
+  },
+  "relationships": []
+}

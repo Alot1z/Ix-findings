@@ -1,0 +1,554 @@
+{
+  "generated_at": "2026-08-13T22:23:39.068Z",
+  "source": "GitHub REST API, read-only, authenticated account metadata only",
+  "reviews": [
+    {
+      "id": 4892590196,
+      "node_id": "PRR_kwDORdC75M8AAAABI58AdA",
+      "repository": "ix-infrastructure/Ix",
+      "pr_number": 358,
+      "author": {
+        "login": "KageBinary",
+        "id": 107007243,
+        "type": "User",
+        "html_url": "https://github.com/KageBinary"
+      },
+      "state": "APPROVED",
+      "body": "Reviewed and verified locally (fork PRs don't get a CI run here): `tsc --noEmit` clean, `eslint src` clean, full suite green (631 tests), merges onto `main` alongside #356/#359 with no conflicts.\n\nPicking this over my own #360, and the deciding factor is the legacy recovery — parsing `const PORT = N;` out of the old `compass-server.js` and migrating it into the port file means anyone with a visualizer already running when they upgrade gets a real answer instead of being told to restart. Mine just gave up in that case. `removeCompassState()` and the `pid <= 0` hardening in `readAlivePid` are both improvements on what was there.\n\nThe tests are the other reason: driving the real command against a temp `IX_HOME` with `spawn`/`net` mocked, asserting output *and* file state, catches wiring mistakes that my pure-function tests would have sailed straight past.\n\nTwo small things from #360 I will port as a follow-up rather than block on:\n\n1. When `-p` does not match the running port, say so. Right now the correct URL prints but the user never learns their `-p` was ignored — worth using `getOptionValueSource(\"port\")` so an explicit `-p 8080` warns and a bare `ix view` stays quiet.\n2. `ix view status` could print the URL now that the port is recorded.",
+      "html_url": "https://github.com/ix-infrastructure/Ix/pull/358#pullrequestreview-4892590196",
+      "submitted_at": "2026-08-09T21:17:45Z",
+      "commit_id": "1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+      "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+      "source": "OFFICIAL_GITHUB_FACT"
+    },
+    {
+      "id": 4893362967,
+      "node_id": "PRR_kwDORdC75M8AAAABI6rLFw",
+      "repository": "ix-infrastructure/Ix",
+      "pr_number": 362,
+      "author": {
+        "login": "KageBinary",
+        "id": 107007243,
+        "type": "User",
+        "html_url": "https://github.com/KageBinary"
+      },
+      "state": "COMMENTED",
+      "body": "Extracting `runningInstanceLines` as a pure function is the right move — inline in the command action this branch could only be exercised by launching a detached server, which is why the gap survived #358 in the first place.\n\n`getOptionValueSource(\"port\") === \"cli\"` is the correct predicate, and the comment explains why the obvious alternative is wrong in *both* directions: comparing against the default stays silent for someone who explicitly typed `-p 8080` against a server running elsewhere (exactly the case they typed the flag to discover), and nags anyone who typed nothing.\n\nThe `runningPort === null` test earns its place — asserting that no `http://localhost` appears at all is a direct regression guard on the confidently-wrong URL #358 removed. Easy to reintroduce that through a new warning path; now it fails loudly.\n\n`status` reporting the URL is the small one that will get used the most.\n\nAll checks green. Approving.\n",
+      "html_url": "https://github.com/ix-infrastructure/Ix/pull/362#pullrequestreview-4893362967",
+      "submitted_at": "2026-08-10T02:45:41Z",
+      "commit_id": "72c0b850681618a7a12a3d1ce1b8c90f0c26a7d3",
+      "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+      "source": "OFFICIAL_GITHUB_FACT"
+    },
+    {
+      "id": 4898844330,
+      "node_id": "PRR_kwDORdC75M8AAAABI_5uqg",
+      "repository": "ix-infrastructure/Ix",
+      "pr_number": 362,
+      "author": {
+        "login": "josephismikhail",
+        "id": 56614593,
+        "type": "User",
+        "html_url": "https://github.com/josephismikhail"
+      },
+      "state": "APPROVED",
+      "body": "Two independent review passes (one on your commit, one on my follow-up). Merging.\n\n**Your `getOptionValueSource` approach checks out empirically, not just by reading.** Against the installed commander 15.0.0 source: `.default()` stamps `'default'` (`command.js:679`), the argv path stamps `'cli'` (`:713`), and `'env'` is only registered when `.env()` is used (`:719`) — which this isn't. 12 argv orderings probed, and every genuinely typed `-p` returns `cli`, including `--port=19124`, `-p19124`, `-p` after the subcommand, and the `-p 8080` case your comment calls out. `main.ts` does no argv rewriting and no config layer supplies a port, so the source is only ever `cli` or `default`. The warning cannot silently never fire.\n\n**The wiring is genuinely tested**, which was my main worry given the extracted-pure-function shape. `runView` builds a real `new Command()`, calls the production `registerViewCommand`, and parses real argv — nothing stubs commander or the option source. Forcing the source comparison to fail breaks a test:\n`× says the requested port was not honoured — expected '[ok] Visualizer is already running (P…' to contain 'You asked for port 19124'`\nAll five load-bearing lines mutation-checked; each kills exactly the test that claims it.\n\n**I pushed one commit.** `ix view` and `ix view status` disagreed in precisely the state that motivated #358: with a live PID and no recoverable port, `ix view` printed the advisory and a recovery command, `status` printed the PID line and stopped. Not a #358 regression — neither guesses a URL, and `readRunningPort` funnels everything through `parsePort`, so a corrupt port file yields `null`, never a bad port. But silence is the wrong answer for someone who ran `status` *for* the URL, and it was unpinned: the old assertion was only `not.toContain(\"http://localhost\")`, which the advisory satisfies too, so it could have drifted either way.\n\n`status` now routes through `runningInstanceLines` so the two branches cannot drift. It takes no `-p`, so the mismatch branch is unreachable from there — `portWasRequested: false` means the `0` is never read, confirmed against every reachable `runningPort` value. The old assertion is retained, not replaced. Bug restored: `× says the port is unknown from status instead of printing nothing`, exactly one failure, so nothing else depended on the silence.\n\nOne cosmetic thing I left alone: when the port and scope advisories both fire, they print two recovery commands that each silently undo the other's intent (one drops `--all`, the other drops `-p`). Uncommon state, and worth a follow-up rather than widening this PR.",
+      "html_url": "https://github.com/ix-infrastructure/Ix/pull/362#pullrequestreview-4898844330",
+      "submitted_at": "2026-08-10T16:23:59Z",
+      "commit_id": "95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449",
+      "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+      "source": "OFFICIAL_GITHUB_FACT"
+    },
+    {
+      "id": 4893362491,
+      "node_id": "PRR_kwDORdC75M8AAAABI6rJOw",
+      "repository": "ix-infrastructure/Ix",
+      "pr_number": 368,
+      "author": {
+        "login": "KageBinary",
+        "id": 107007243,
+        "type": "User",
+        "html_url": "https://github.com/KageBinary"
+      },
+      "state": "CHANGES_REQUESTED",
+      "body": "Thanks for this — and welcome. This is a lot of careful work, and unusually, everything you claimed in the PR description checks out when I ran it myself rather than just reading it. That is rarer than it should be, so I want to be specific about what I verified before getting to the changes I'm asking for.\n\n## What I verified as working\n\n- Your stated checks all pass: `node --check fit-view.js`, `bash -n` on all three shell scripts, and the OpenAPI spec parses cleanly (39 paths, 13 schemas). Every path's base segment exists in the backend's Scala routes, so the API reference is grounded, not invented.\n- `apply.sh` is genuinely idempotent. I ran it three times against a fixture; the third pass printed \"already patched\" for all three steps and the `<script>` tag count in `index.html` stayed at 1.\n- It works against the **real shipped Compass**. I copied `~/.ix/cli/compass` (v0.2.0) to a scratch dir and ran the patch: the minified marker `` {keys:[`0`],label:`Reset zoom & center`} `` really is present in `KeyboardHelp-CLjfSVTU.js`, the F entry inserted correctly, and `node --check` confirms the patched chunk still parses. Same for the injected `view.js`.\n- `registerPatchesCommand is defined but never registered` — **correct**, and a real find. `patches.ts:6` exports it and nothing imports it, so `ix patches` is an unknown command today. That deserves its own issue; I'll open one.\n\nSo the mechanism works. My concerns are about layer and packaging, not craft.\n\n## Blocking\n\n**1. It patches the same two inline styles React owns.** `SystemMapCanvas.tsx:858-871` in the Compass source renders:\n\n```jsx\n<div style={{ transform: `translate(${snappedPan.x}px, ${snappedPan.y}px)`, transformOrigin: \"0 0\" }}>\n  <div className=\"relative ix-crisp-canvas\" style={{ zoom: snappedZoom, ... }}>\n```\n\n`fit-view.js` writes `wrap.style.transform` and `canvas.style.zoom` from outside React — the exact two properties driven by `snappedPan` / `snappedZoom` state. Every subsequent render restores React's values. The 60 ms \"verify the target stuck and re-apply\" timer is a band-aid on that race rather than a fix. Related: the background grid at `:855` uses `backgroundPosition: snappedPan`, which the patch doesn't update, so after pressing F the grid stays put while the nodes move.\n\nWorth checking too whether the auto-frame is still needed: Compass #57 (`fix/bounded-layout-and-viewport-refit`, merged and bundled in v0.9.1) fixed the empty-first-paint case directly — the comment at `SystemMapCanvas.tsx:450` describes the same symptom you're solving.\n\n**2. Two of three patch steps silently no-op on stock Linux.** This box has `python3` and no `python` (standard on Debian/Ubuntu/Fedora). Running `apply.sh`:\n\n```\nindex.html: added fit-view.js script tag\napply.sh: line 40: python: command not found\nkeyboard help: skipped (python unavailable)\napply.sh: line 68: python: command not found\nview.js server: skipped (python unavailable)\nCompass fit-view patch applied. Restart the visualizer ... picks up the real /__ix/remap endpoint\n--- exit code: 0 ---\n```\n\nIt exits 0 and tells you to restart for an endpoint it never installed. `bootstrap.sh:137` compounds it by redirecting to `/dev/null` and reporting success. Swapping in a `python` → `python3` shim made all three steps apply perfectly, so this is purely the interpreter name plus the `|| { echo \"skipped\"; }` swallowing a real failure.\n\n**3. `sed -i` with no suffix is GNU-only** (`apply.sh:33`) and fails on macOS, which the README section and `SKILL.md` both claim to support. The repo already has both portable forms: `scripts/disconnect.sh` uses `sed -i.bak`, `scripts/release.sh` uses `sed -i ''`.\n\n**4. The `/__ix/remap` endpoint should be source, not a patched artifact.** This repo owns `ix-cli/src/cli/commands/view.ts`; step 4 string-injects the handler into the *compiled* `~/.ix/cli/cli/dist/cli/commands/view.js`, which every `ix upgrade` overwrites. In `serverScript()` it would be typechecked, tested, and permanent. Two things to fix on the way in: `serverScript` ends in `server.listen(PORT)` with no host, so it binds `0.0.0.0` — the handler would be reachable from the whole LAN, and from any web page in the user's browser, since a simple-content-type POST isn't preflighted. It should bind `127.0.0.1` and check `Sec-Fetch-Site` / `Origin` before spawning a 30-minute `ix map`.\n\n**5. `CLAUDE.md` ships an absolute path from your machine:** `python \"C:/Users/jacob/.agents/skills/skill-creator/scripts/package_skill.py\"`. This is the file every agent working in the repo loads. The README's copy of the same command already uses `$HOME`, so the two disagree.\n\n**6. `CLAUDE.md` documents two paths that can't exist** — `dist/ix.zip` and `.freebuff/run.md` are both gitignored by this same PR, but the layout table presents them as repo contents.\n\n## Smaller\n\n- `.gitignore`: `dist/` is unanchored so it matches at any depth, and `core-ingestion/dist/` + `ix-cli/dist/` were already covered. `/dist/` is what you want. (Nothing tracked is affected today — I checked.)\n- `upstream/compass-fit-view/` is 723 lines of React that nothing here builds, typechecks, or tests. It belongs in the Compass repo as a PR.\n- `install-skill.sh` `rm -rf`s `~/.claude/skills/ix` and `~/.agents/skills/ix` with no prompt, which silently destroys local edits to a same-named skill.\n\n## Suggested split\n\nThis is five unrelated changes in one commit, and they're ready at very different times:\n\n1. **`docs/api/`** — closest to mergeable as-is. I'd take this on its own today.\n2. **`skills/ix/` + `install-skill.sh` + README** — mergeable once (2), (3) and (5) are fixed.\n3. **`/__ix/remap`** — a small PR against `view.ts` with the bind + origin fix.\n4. **fit-view** — to the Compass repo, after checking what #57 already covers.\n5. The `registerPatchesCommand` and global-`ix reset` findings — issues, and thank you for both.\n\nHappy to review each of those as they come. If you'd like to start with just #1, I think that lands quickly.\n",
+      "html_url": "https://github.com/ix-infrastructure/Ix/pull/368#pullrequestreview-4893362491",
+      "submitted_at": "2026-08-10T02:45:30Z",
+      "commit_id": "b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+      "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+      "source": "OFFICIAL_GITHUB_FACT"
+    },
+    {
+      "id": 4893476799,
+      "node_id": "PRR_kwDORdC75M8AAAABI6yHvw",
+      "repository": "ix-infrastructure/Ix",
+      "pr_number": 368,
+      "author": {
+        "login": "KageBinary",
+        "id": 107007243,
+        "type": "User",
+        "html_url": "https://github.com/KageBinary"
+      },
+      "state": "APPROVED",
+      "body": "Re-reviewed after `0c9087c`. Every blocking item is resolved — the two that were architectural by removal, the rest by fix — and the full matrix is green now that the held workflow runs are approved (`CI Passed`, E2E, Linux/macOS/Windows on Node 22 and 24).\n\nWhat lands: the skill, the API reference, and two real findings about this codebase. That is a good first contribution.\n\n@Alot1z — the fit-view work is not rejected, just addressed to the wrong repo. If you open it against `system-compass` I will review it there. Your `upstream/compass-fit-view/` port is most of the way; drop the auto-frame (Compass #57 covers it) and keep the F key, which nothing binds today.\n\nApproving. Merging per the queue.",
+      "html_url": "https://github.com/ix-infrastructure/Ix/pull/368#pullrequestreview-4893476799",
+      "submitted_at": "2026-08-10T03:19:34Z",
+      "commit_id": "0c9087c4292254472174b02475d094359c88c055",
+      "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+      "source": "OFFICIAL_GITHUB_FACT"
+    },
+    {
+      "id": 4898874189,
+      "node_id": "PRR_kwDORdC75M8AAAABI_7jTQ",
+      "repository": "ix-infrastructure/Ix",
+      "pr_number": 372,
+      "author": {
+        "login": "josephismikhail",
+        "id": 56614593,
+        "type": "User",
+        "html_url": "https://github.com/josephismikhail"
+      },
+      "state": "APPROVED",
+      "body": "Two independent review passes (one on your commit, one on my follow-up). Merging.\n\n**The renderers themselves are solid.** Record shape matches the shipped Tier 1–4 convention (header record named after the command, then repeated child records), keys are snake_case throughout with no camelCase leaking, and every field except `read`'s content block goes through `llmLine` → `llmField` → `llmQuote`. Probed the free-text fields directly with embedded newlines, quotes, tabs and backslashes — doctor check names and details, status paths with spaces and quotes, raw-explain docstrings — all correctly escaped, nothing spans two lines. Every docs claim was verified by running the built CLI rather than reading: all seven of `config`/`init`/`reset`/`upgrade`/`view`/`watch`/`docker` do exit 1 with `unknown option`, and `query` really does offer only `text|json`. Three of the strongest test claims mutation-checked and each bites.\n\n**One blocker found and fixed, in a commit I pushed.** `printLlmLines` skipped falsy entries, and a blank source line is `\"\"`. So `read --format llm` counted lines in `content lines=<n>` that never reached stdout, and a consumer honouring the count — the entire point of the self-delimiting block — read the following records as source. Wrong on almost every real input, not an edge case: `ix read src/cli/llm.ts --format llm` declared **91** and emitted **81**. Correct only for a file with no blank lines and no trailing newline.\n\nChanged to `!= null`. Safe because `printLlmLines` had zero callers on `main` before this branch, and I enumerated every path into it: all seven call sites go through renderers that build lines exclusively from `llmLine(\"<literal>\", …)`. The only three `llmLine` calls with a variable kind (`impact.ts:548`, `trace.ts:331`, `format.ts:490`) don't use `printLlmLines`, and the only `push(\"\")` calls are text renderers behind `subsystems`.\n\nWorth naming the trap, because it's the recurring one here: **your test was correct and still passed against the bug.** `expect(lines.slice(2)).toEqual([…, \"\"])` asserts on `renderReadLlm`'s return value, which was always right — the defect lived in render *composed with* print. So `outputResult` is now exported and the new tests drive the real print path across blank lines, an empty file, CRLF, no-trailing-newline and blank-lines-only.\n\nAlso added the `{ok:true, warn:true}` row for `doctor` — the one shape your ternary's ordering actually decides, and previously uncovered. It pins `status=ok`, matching what the glyph line renders for the same record; `warn` would have been wrong. And folded the CLAUDE.md paragraph that still said \"these commands take no `--format`\" into your new one, since yours is a strict superset (it adds `docker`) and the two contradicted each other two paragraphs apart.\n\nBug restored on both fixes: 6 targeted failures — 5 framing, 1 doctor. `\"no trailing newline\"` correctly does *not* fail, since it's the one input the old code got right. tsc/eslint/knip clean, 667 passing.\n\nNot fixed, flagged for follow-up: **the `--format llm` dispatch itself is still untested for all five commands.** Reverting the `\"llm\"` comparison in each leaves the full suite green. The renderers are covered; the branch that reaches them is not, which is exactly the regression this PR exists to fix. Closing that needs client mocking per command, and I'd rather leave it to you than bolt on a structural test that gives false confidence. Also unfixed: `read`'s not-found and `explain`'s resolve-failure branches still emit human prose to stderr and nothing on stdout, so `ix read bogus --format llm` gives an agent zero bytes and exit 0 — `diff.ts:471` already has the `llmError` precedent.",
+      "html_url": "https://github.com/ix-infrastructure/Ix/pull/372#pullrequestreview-4898874189",
+      "submitted_at": "2026-08-10T16:27:39Z",
+      "commit_id": "86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+      "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+      "source": "OFFICIAL_GITHUB_FACT"
+    },
+    {
+      "id": 4898709257,
+      "node_id": "PRR_kwDORdC75M8AAAABI_xfCQ",
+      "repository": "ix-infrastructure/Ix",
+      "pr_number": 373,
+      "author": {
+        "login": "josephismikhail",
+        "id": 56614593,
+        "type": "User",
+        "html_url": "https://github.com/josephismikhail"
+      },
+      "state": "APPROVED",
+      "body": "Two independent review passes (one on your commit, one on my follow-up). Merging.\n\n**Your change is correct and complete.** `chore` is in `pr-title.yml`'s type list, and there is no `scopes`/`requireScope`/`subjectPattern` config that could reject the title for a different reason — verified against the action source at the pinned SHA, where all four of those checks are strictly opt-in. `grep` for `brew:` repo-wide returns only the comment itself, the tap is this repo (no `--repo` on `gh pr create`, `Formula/ix.rb` lives here), and nothing parses commit subjects — no commitlint, no `.github/release.yml`, and the only consumer (`github/transform.ts:141`) takes the subject as a display string. `bash -n` clean, YAML re-parses, one argv element with the parens intact.\n\n**I pushed one commit** correcting the comment, because it lands as permanent in-repo documentation and three claims in it did not hold:\n\n- *\"every release\"* — `pr-title.yml` arrived in #282 on 2026-06-08. Nine of the eleven formula PRs (#38→#268, latest 2026-06-05) predate it. Only #364 and #367 were ever in scope.\n- *\"failed on arrival\"* — it does not run on arrival. The PR is opened by `github-actions[bot]`, so its `pull_request` runs land in `action_required`. On #364 the title check **never ran at all** — there was no red X. Direct evidence on #367: runs `created_at 23:16:07`, `run_started_at 03:05:05` — queued 3h49m awaiting approval.\n- *\"written off as noise each time\"* — n=1, and it wasn't written off; you renamed it and it went green 94 seconds later. That manual rename is the toil this removes, and it's the stronger argument.\n\nThe comment now also records the approval hold, since that is what actually blocks the formula PR and this doesn't fix it.\n\nTwo things I got slightly wrong in my own commit message, for the record: the rename was 94 seconds after the red X (3h50m after opening), not \"within six minutes\" — six minutes is the rename→merge gap. And the ruleset carries `required_approving_review_count: 1` as well as the workflow-approval hold, so there are two holds, not one. Neither affects the landed comment.",
+      "html_url": "https://github.com/ix-infrastructure/Ix/pull/373#pullrequestreview-4898709257",
+      "submitted_at": "2026-08-10T16:07:18Z",
+      "commit_id": "d785e1ad2740e56ef712b432c7b328125c5f4599",
+      "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+      "source": "OFFICIAL_GITHUB_FACT"
+    },
+    {
+      "id": 4899753084,
+      "node_id": "PRR_kwDORdC75M8AAAABJAxMfA",
+      "repository": "ix-infrastructure/Ix",
+      "pr_number": 375,
+      "author": {
+        "login": "KageBinary",
+        "id": 107007243,
+        "type": "User",
+        "html_url": "https://github.com/KageBinary"
+      },
+      "state": "CHANGES_REQUESTED",
+      "body": "Thanks for contributing! The diagnosis here is correct and the index construction is careful — my one concern is the cost, which I think is larger than the 515-file validation repo could show.\n\n## The part that's right\n\nThe JS/TS block mirrors the in-batch construction in `resolveEdges` exactly — same `kind === 'file' || kind === 'module'` filter, same `qualifiedKey(e)`, same name-keyed list of qkeys. That is the thing that usually drifts in this file (it is why the R and SAS blocks carry those \"mirrors the qkMap construction at resolveEdges\" comments), and you got it right, so cross-batch and in-batch resolution will agree on `dstQualifiedKey`. No correctness objection.\n\n## The concern: this is the first prescan language where the prescan is the dominant cost\n\n`buildGlobalResolutionIndex` calls `parseFile`, which is **synchronous tree-sitter on the main thread**. The streaming parse loop below it uses `ensureParsePool()` — a worker pool. So every JS/TS file now gets parsed twice: once serially in the prescan, once in parallel in the pool.\n\nThat trade was fine for the existing prescan set. Go uses a regex scan specifically to stay cheap, and R/SAS are niche and usually a small slice of a repo. JS/TS is the common case, and for a TypeScript repo it is ~all of the files.\n\nMeasured on this repo's own TS (176 files, 1.5 MB, `parseFile` via `core-ingestion/dist`):\n\n```\nSYNC prescan parse of all JS/TS: 1.02 s for 176 files  (~5.8 ms/file)\n```\n\nExtrapolating: ~5.8 s per 1,000 JS/TS files, ~29 s at 5,000 — single-threaded, before the parse pool starts.\n\n**The incremental path is where this really bites.** In Path A:\n\n```js\nconst remainingIndexFiles = filePaths.filter(fp => needsIndexPrescan(fp) && !changedSet.has(fp));\n```\n\n`filePaths` is the whole repo, so every *mtime-clean, unchanged* JS/TS file is read from disk and then synchronously parsed. Before this change `.ts` was not in `INDEX_PRESCAN_EXTENSIONS`, so `sources` and `remainingIndexFiles` were both empty and the cost was ~zero. After it, a one-file edit in a 5,000-file TS repo pays the full read + full serial parse on every `ix map`. That is the fast path this cache exists to protect.\n\nAt 515 files this is ~3 s and reads as acceptable, which I suspect is why it did not surface in your validation.\n\n## Options, roughly in order of preference\n\n1. **Run the prescan through the existing worker pool.** `ensureParsePool()` already exists in `ingest.ts` and is already parallel. It would need `buildGlobalResolutionIndex` to accept pre-parsed entities (or an async variant) rather than calling `parseFile` itself, since the pool lives in the CLI and this function is in `core-ingestion` — a bit of plumbing, but it removes both the double-parse and the serialization.\n2. **Reuse the streaming loop's parse output.** The pool parses these files moments later anyway; only the ordering (index-before-batch) forces the duplicate.\n3. **Narrow what gets prescanned.** Only files that are actually import targets of something in the changed set need to be in the index, which on an incremental map is a small fraction of the repo.\n4. **Regex scan like Go.** Cheapest, but you deliberately avoided it for the drift reason above, and I think you were right to.\n\nI do not think the fix has to be in this PR — but I would not want to land the JS/TS prescan without a plan for the incremental case, since that is the most common thing users do.\n\nHappy to look again once you have picked a direction.\n",
+      "html_url": "https://github.com/ix-infrastructure/Ix/pull/375#pullrequestreview-4899753084",
+      "submitted_at": "2026-08-10T18:20:21Z",
+      "commit_id": "eaeb791f9b09ccff8ff745989dd64f2327b65c1a",
+      "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+      "source": "OFFICIAL_GITHUB_FACT"
+    },
+    {
+      "id": 4900961122,
+      "node_id": "PRR_kwDORdC75M8AAAABJB67Yg",
+      "repository": "ix-infrastructure/Ix",
+      "pr_number": 375,
+      "author": {
+        "login": "KageBinary",
+        "id": 107007243,
+        "type": "User",
+        "html_url": "https://github.com/KageBinary"
+      },
+      "state": "APPROVED",
+      "body": "Blocking items resolved — see the comment above for what I pushed and why. Approving.\n\nVerified after the changes: full `ix-cli` suite green, typecheck clean, lint 0 errors, and `core-ingestion` still at exactly the six pre-existing failures you documented on `origin/main`.",
+      "html_url": "https://github.com/ix-infrastructure/Ix/pull/375#pullrequestreview-4900961122",
+      "submitted_at": "2026-08-10T21:06:25Z",
+      "commit_id": "304e7e490d5537e7f86f71c297e04656360f1bf1",
+      "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+      "source": "OFFICIAL_GITHUB_FACT"
+    },
+    {
+      "id": 4899761389,
+      "node_id": "PRR_kwDORdC75M8AAAABJAxs7Q",
+      "repository": "ix-infrastructure/Ix",
+      "pr_number": 378,
+      "author": {
+        "login": "KageBinary",
+        "id": 107007243,
+        "type": "User",
+        "html_url": "https://github.com/KageBinary"
+      },
+      "state": "CHANGES_REQUESTED",
+      "body": "Thanks for contributing — and thanks for taking on the hardest of the four. Stale-entity cleanup is a real gap and the overall shape here (compare the previous patch manifest, emit explicit deletions, track dependents so a recreated file heals its callers) is the right one. The tombstone `patchId` derivation is nicely done: deterministic per `(previousHash, deletionToken)` so a retry is idempotent but a later deletion is not, which is exactly the property you want.\n\nThere is one bug I think is a blocker, plus a few things worth reconsidering.\n\n## Blocker — `ix map` after `ix ingest` deletes chunk nodes and never recreates them\n\n`reconcileRemovedEntities` runs **before** `stripMapModeOps`, at both call sites:\n\n```js\npatch = await reconcileRemovedEntities(client, patch, sourcePatchIdCandidates(...));\nif (mapMode) patch = stripMapModeOps(patch);\n```\n\n`stripMapModeOps` filters out chunk `UpsertNode` ops but leaves `DeleteNode` ops untouched. And `chunkId` hashes the start line:\n\n```js\nchunkId: (filePath, chunkKind, name, startLine) =>\n  deterministicId(`${ns}${normalizePath(filePath)}:chunk:${chunkKind}:${name ?? 'file_body'}:${startLine}`)\n```\n\nSo any edit that shifts lines changes the chunk ids. Sequence: user runs `ix ingest` (chunks created), edits a file, runs `ix map`. Reconcile sees the old chunk ids missing from the new patch and emits deletions; the strip then removes the replacement upserts.\n\nI confirmed this on your branch with the real `reconcileRemovedEntities` and a copy of `stripMapModeOps` — previous patch `[file-node, chunk-L1, chunk-L10]`, new patch upserting `[file-node, chunk-L1, chunk-L12]`:\n\n```\nDELETED : [ 'chunk-L10' ]\nUPSERTED: [ 'file-node' ]\n=> chunk nodes deleted but NOT recreated: [ 'chunk-L10' ]\n```\n\nBefore this PR `ix map` simply left chunks alone (stale, but present). Now the cheaper command silently destroys embedding/search data for every file it touches, and only a full `ix ingest` puts it back. Easiest fix is to skip reconciliation entirely in `mapMode`, or to filter chunk-node ids out of `removedNodeIds` when `mapMode` is set — `ix map` never owned that data and shouldn't be deleting it.\n\n## Please reconsider — dropping the `mtimes.size === 0` guard\n\n```js\n- if (!ingestCompletedCleanly(parseErrors, commitErrors) || mtimes.size === 0) return false;\n+ if (!ingestCompletedCleanly(parseErrors, commitErrors)) return false;\n```\n\nI understand why: an emptied repo has to be able to persist an empty baseline. But there is no `filePaths.length === 0` guard anywhere in `ingestFiles`, so *any* run that discovers zero files — an over-broad ignore rule, a bad `cwd`, a discovery glitch — now overwrites a good baseline with an empty one and forces a full re-ingest next time.\n\nThe `!fs.existsSync(filePath)` check on `deletedPaths` is a good safeguard and does stop this from turning into mass deletion, which I was glad to see. But the baseline still gets wiped. Gating on `mtimes.size > 0 || deletedPaths.length > 0` would keep the guard while still covering the case you actually need.\n\n## Please reconsider — hash-lookup failure now aborts the whole map\n\n```js\nknownHashes = await loadExistingHashes(..., deletedPaths.length > 0);\n```\n\nWith any deleted file present, a transient `getSourceHashes` failure throws instead of degrading to an empty map, so one network blip fails the entire ingest rather than just the deletion work. Failing closed on *deletion* is right — deleting from an unreliable baseline is how you lose data. But the scope is wider than the risk. Consider catching it and skipping deletion reconciliation for this run (leaving `deletedFiles` in the baseline so the next run retries) while letting the ordinary ingest proceed.\n\n## Perf — per-file round-trips inside the patch loop\n\n`reconcileRemovedEntities` now runs for every file with a `previousHash`, and it is serial I/O in what used to be a pure-CPU loop:\n\n- `sourcePatchIdCandidates` returns **25** ids (current + 23 `PREVIOUS_EXTRACTORS` + legacy), tried one at a time until one is not a 404. Common case is 1 call, but the first `ix map` after a CLI upgrade walks the list for *every* changed file.\n- then one `client.entity(nodeId)` per removed node, also serial.\n\nA refactor that removes 50 symbols across 20 files pays 50 sequential `entity()` calls on top of the `getPatch` walk. Worth batching, or at least running the candidate probe concurrently.\n\n## Smaller things\n\n- **Op ordering.** `DeleteNode` ops are emitted before the `UpsertEdge` ops, and the `DeleteEdge` ops for incident edges come *after* the `DeleteNode`s. If the backend cascades incident-edge removal on node delete, those trailing `DeleteEdge`s target rows that are already gone — is that a no-op server-side, or an error? Worth confirming, since it decides whether the ordering is load-bearing.\n- **Baseline write amplification.** `onCommitted` calls `saveIngestBaseline` once per committed deletion, rewriting the whole JSON each time. Deleting a directory of 500 files means 500 full rewrites. Durability per-file is a reasonable goal, but a debounce or a single write after the batch would be cheaper.\n- **`readStoredPatchEntities` `data.ops` branch** treats `DeleteNode` ids from a previous patch as live entities. Harmless (they re-delete), but it means a tombstone-follows-tombstone sequence re-emits deletions for already-removed nodes.\n\n## Also\n\nThe branch is currently conflicting with `main` and will need a rebase.\n\nThe test coverage is genuinely good — `planDeletedFileRecovery`, the retry-idempotency assertion on the tombstone id, and the \"fails closed when the previous patch has no entity manifest\" case are all the right things to pin. Once the map-mode chunk issue is sorted I would be happy to take another pass.\n",
+      "html_url": "https://github.com/ix-infrastructure/Ix/pull/378#pullrequestreview-4899761389",
+      "submitted_at": "2026-08-10T18:21:30Z",
+      "commit_id": "3c6006093e850bb00eac179df011e5e3b3c49bf5",
+      "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+      "source": "OFFICIAL_GITHUB_FACT"
+    },
+    {
+      "id": 4900961342,
+      "node_id": "PRR_kwDORdC75M8AAAABJB68Pg",
+      "repository": "ix-infrastructure/Ix",
+      "pr_number": 378,
+      "author": {
+        "login": "KageBinary",
+        "id": 107007243,
+        "type": "User",
+        "html_url": "https://github.com/KageBinary"
+      },
+      "state": "APPROVED",
+      "body": "Blocking items resolved — see the comment above for what I pushed and why. Approving.\n\nVerified after the changes: full `ix-cli` suite green, typecheck clean, lint 0 errors, and `core-ingestion` still at exactly the six pre-existing failures you documented on `origin/main`.",
+      "html_url": "https://github.com/ix-infrastructure/Ix/pull/378#pullrequestreview-4900961342",
+      "submitted_at": "2026-08-10T21:06:28Z",
+      "commit_id": "d827cc9fa63a203b138d35621057af7c9a21bad0",
+      "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+      "source": "OFFICIAL_GITHUB_FACT"
+    },
+    {
+      "id": 4899750103,
+      "node_id": "PRR_kwDORdC75M8AAAABJAxA1w",
+      "repository": "ix-infrastructure/Ix",
+      "pr_number": 380,
+      "author": {
+        "login": "KageBinary",
+        "id": 107007243,
+        "type": "User",
+        "html_url": "https://github.com/KageBinary"
+      },
+      "state": "APPROVED",
+      "body": "Thanks for contributing! This one is my favourite of the four — small, and it fixes a real correctness bug rather than papering over it.\n\nThe premise is right: `--kind` is a **filter**, not a **tiebreaker**. The old shortcut treated \"the user named a kind\" as consent to pick arbitrarily among everything matching that kind, so two same-named classes resolved to whichever sorted first — and because it returned `\"exact\"` as the resolution mode, the output actively asserted confidence it did not have. Silently analysing the wrong symbol is worse than asking.\n\nI checked the things a change like this usually breaks, and they hold:\n\n- **`--pick` still reaches the user.** `buildAmbiguous` already emits `\"Use --pick <n> or --path to disambiguate.\"`, so the new ambiguous path is actionable rather than a dead end.\n- **The earlier exits still cover the single-match case.** `--kind` narrowing to one candidate returns via the `unique.length === 1` branch with `resolutionMode(best, opts)`, so the ordinary \"kind disambiguates\" flow is unchanged.\n- **No accidental auto-pick downstream.** With the shortcut gone, `--kind` queries now fall through to the preferred-kind and container-kind rules. For two same-kind candidates the kind ranks are equal, so the `topTierKindRanks.every(...)` guard does not fire, and `CONTAINER_KINDS.has(bestKind) && !CONTAINER_KINDS.has(secondKind)` is false when both kinds are identical. Ambiguity is preserved, which is what your test asserts.\n\nBoth new tests are testing the actual behaviour change (ambiguity preserved; `--pick 2` selects by index and carries the right path), not just the code path.\n\nApproving. No changes requested.\n",
+      "html_url": "https://github.com/ix-infrastructure/Ix/pull/380#pullrequestreview-4899750103",
+      "submitted_at": "2026-08-10T18:19:55Z",
+      "commit_id": "b89046144f0a8cd960a7bbee22b3a12145c6c82e",
+      "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+      "source": "OFFICIAL_GITHUB_FACT"
+    },
+    {
+      "id": 4899756376,
+      "node_id": "PRR_kwDORdC75M8AAAABJAxZWA",
+      "repository": "ix-infrastructure/Ix",
+      "pr_number": 382,
+      "author": {
+        "login": "KageBinary",
+        "id": 107007243,
+        "type": "User",
+        "html_url": "https://github.com/KageBinary"
+      },
+      "state": "CHANGES_REQUESTED",
+      "body": "Thanks for contributing! This is careful work — the receiver-type plumbing is well matched to how the existing Python/Go/C++ paths do it, and the `paramTypeMap` scope keys line up correctly with `findEnclosingFunction` (`${className}.${methodName}` on both sides), which is the detail I expected to be wrong and wasn't.\n\nI ran your tests plus a set of probes on your branch. The core mechanism works. Two query gaps are worth closing before this lands, because both are ordinary modern PHP.\n\n## 1. Nullable types silently fall back to bare names\n\nThe queries match `type: (named_type (name) @_typed_var_type)`, but `?Service` does not parse as `named_type` — it is `optional_type` wrapping it:\n\n```\nprivate ?Service $s;   → (property_declaration type: (optional_type (named_type (name))) ...)\nprivate Service $s;    → (property_declaration type: (named_type (name)) ...)\n```\n\nSo on your branch:\n\n```php\nclass C {\n  private ?Service $s;\n  public function go(): void { $this->s->create(); }\n}\n```\nresolves to `C.go -> create` rather than `C.go -> Service.create`. Given `?Type` is idiomatic for any nullable dependency, I would expect this to be a large share of real member calls.\n\n## 2. Plain functions are not covered, only methods\n\nThe typed-parameter pattern is rooted at `(method_declaration ...)`, so a top-level `function` gets nothing:\n\n```php\nfunction run(Service $svc): void { $svc->create(); }   // → run -> create\n```\n\nYour third test pins the bare-name fallback using an *untyped* param, so it passes either way and doesn't catch this.\n\n## Suggested fix — verified on your branch\n\nAccept `optional_type` alongside `named_type`, and alternate the parameter pattern over both declaration forms:\n\n```\n; Typed properties: private Service $s / private ?Service $s\n(property_declaration\n  type: [(named_type (name) @_typed_var_type)\n         (optional_type (named_type (name) @_typed_var_type))]\n  (property_element\n    name: (variable_name (name) @_typed_var_name))) @_typed_var_scope\n\n; Constructor-promoted properties: private ?Service $service\n(property_promotion_parameter\n  type: [(named_type (name) @_typed_var_type)\n         (optional_type (named_type (name) @_typed_var_type))]\n  name: (variable_name (name) @_typed_var_name)) @_typed_var_scope\n\n; Typed parameters on methods and plain functions: function run(?Service $s)\n[(method_declaration\n   parameters: (formal_parameters\n     [(simple_parameter\n       type: [(named_type (name) @_typed_param_type)\n              (optional_type (named_type (name) @_typed_param_type))]\n       name: (variable_name (name) @_typed_param_name))\n      (property_promotion_parameter\n       type: [(named_type (name) @_typed_param_type)\n              (optional_type (named_type (name) @_typed_param_type))]\n       name: (variable_name (name) @_typed_param_name))]))\n (function_definition\n   parameters: (formal_parameters\n     (simple_parameter\n       type: [(named_type (name) @_typed_param_type)\n              (optional_type (named_type (name) @_typed_param_type))]\n       name: (variable_name (name) @_typed_param_name))))] @_typed_param_scope\n```\n\nNo handler changes needed — `childForFieldName('name')` works on `function_definition` too, and with no enclosing class the scope becomes the bare function name, which is exactly what `findEnclosingFunction` returns for a top-level function.\n\nWith that applied on your branch:\n\n- `function run(Service $svc)` → `run -> Service.create` ✅\n- `private ?Service $s` → `C.go -> Service.create` ✅\n- your three PHP tests and `resolveEdges.test.ts` still pass ✅\n- full `core-ingestion` suite: 6 failures, the same six you documented as pre-existing on `origin/main` — no new ones ✅\n\n## Deliberately left alone\n\n- **Union types** (`Service|Repo $x`) parse as `union_type` and still fall back to the bare name. That seems right — there is no single receiver type to attribute the call to, so bare is the honest answer. Worth a one-line comment saying so, since the next reader will wonder.\n- **Chained and static receivers** (`$this->repo->find()->hydrate()`, `A::make()->run()`, `self::$log->write()`) fall back via `phpReceiverIsSupported = false`. Correct — resolving them needs return-type inference, which is well beyond this PR.\n\n## Minor\n\n`.php` joins the prescan set here, which has the same incremental-map cost I raised on #375 — every unchanged `.php` file gets re-read and re-parsed serially on each `ix map`. The blast radius is much smaller than the JS/TS case in that PR, so I would not block on it, but whatever you land there should probably cover this too.\n\nHappy to re-review once the query is updated.\n",
+      "html_url": "https://github.com/ix-infrastructure/Ix/pull/382#pullrequestreview-4899756376",
+      "submitted_at": "2026-08-10T18:20:48Z",
+      "commit_id": "1ec4fa67f3a3dc7209d6b528440d33b872bbdef1",
+      "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+      "source": "OFFICIAL_GITHUB_FACT"
+    },
+    {
+      "id": 4900568487,
+      "node_id": "PRR_kwDORdC75M8AAAABJBi9pw",
+      "repository": "ix-infrastructure/Ix",
+      "pr_number": 382,
+      "author": {
+        "login": "KageBinary",
+        "id": 107007243,
+        "type": "User",
+        "html_url": "https://github.com/KageBinary"
+      },
+      "state": "APPROVED",
+      "body": "Blocking item resolved by `9c74d47` — nullable types and plain-function parameters both resolve now, with regression tests that fail without the query change. Verified the full `ix-cli` suite (686) and typecheck clean, and `core-ingestion` still at exactly the six pre-existing failures you documented.\n\nApproving. The remaining prescan-cost note is shared with #375 and belongs there, not here.",
+      "html_url": "https://github.com/ix-infrastructure/Ix/pull/382#pullrequestreview-4900568487",
+      "submitted_at": "2026-08-10T20:11:24Z",
+      "commit_id": "9c74d47d1cd0faa86ef381a8888c450872675f7a",
+      "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+      "source": "OFFICIAL_GITHUB_FACT"
+    },
+    {
+      "id": 4902664702,
+      "node_id": "PRR_kwDORdC75M8AAAABJDi5_g",
+      "repository": "ix-infrastructure/Ix",
+      "pr_number": 390,
+      "author": {
+        "login": "josephismikhail",
+        "id": 56614593,
+        "type": "User",
+        "html_url": "https://github.com/josephismikhail"
+      },
+      "state": "APPROVED",
+      "body": "Verified the two claims this turns on, both hold.\n\n**Pro shadowing.** `tryRegister`'s `try` covers the `fn(program)` call, not just the `import` (`Ix-pro/src/cli/register.ts:17-23`), so commander's duplicate-name throw is swallowed. `main.ts:69` runs `registerOssCommands` synchronously before the Pro probe at :74, so the OSS registration is the survivor. And `Ix-pro/src/cli/commands/patches.ts` is now identical to this one bar the `llm` in its `--format` description — it already imports `createClient` and `formatPatches` from `@ix/cli`, so switching to `createClient()` here makes them the same call, not merely a similar one.\n\n**One gap, fixed in 89ca55e.** The new test pins that `patches` is absent from the stub list. That is the half that can't silently regress — the other half can. I deleted the `registerPatchesCommand(program)` line from `oss.ts` and the whole suite stayed green (722 passed) while `ix patches` went back to being commander's `unknown command`, i.e. the state #371 was filed about.\n\nAdded `registers patches as an OSS command` alongside it, asserting the command exists on the program after `registerOssCommands` and carries `--format`. It fails with `expected undefined to be defined` against that mutation.\n\nBoth halves are now pinned. 723 green.",
+      "html_url": "https://github.com/ix-infrastructure/Ix/pull/390#pullrequestreview-4902664702",
+      "submitted_at": "2026-08-11T03:14:11Z",
+      "commit_id": "89ca55e21672696deb7627cb3e5b1846754707fa",
+      "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+      "source": "OFFICIAL_GITHUB_FACT"
+    },
+    {
+      "id": 4902665897,
+      "node_id": "PRR_kwDORdC75M8AAAABJDi-qQ",
+      "repository": "ix-infrastructure/Ix",
+      "pr_number": 391,
+      "author": {
+        "login": "josephismikhail",
+        "id": 56614593,
+        "type": "User",
+        "html_url": "https://github.com/josephismikhail"
+      },
+      "state": "APPROVED",
+      "body": "The diagnosis is right and the live reproduction settles it — `.version` really was denominated in the wrong series, and `source=` is the correct shape for the answer. Checked the parts that could bite:\n\n- `build` does declare `needs: compass`, so `needs.compass.outputs.sha` resolves; on a PR dry-run compass is skipped and the `${COMPASS_SHA:-unknown}` fallback covers it.\n- No leftover callers of `resolve_compass_version` / `Get-CompassLatestVersion` — both survive only as comments.\n- `$Version` is assigned at `install.ps1:207`, well above the stamp block at :532.\n- The `0.0.0` repair check correctly sits *ahead* of the source check, so a gutted release bundle is still repaired rather than pinned forever.\n\n**One gap, fixed in c415461.** `shouldOfferCompassUpgrade` read the stamp itself, so the only thing the new test file could reach was `parseCompassStamp` — a pure function that was never the bug. I deleted the `readCompassStamp().source === \"release\"` line, which is the entire behavioural change here, and all 728 tests passed. The case named `pins the inversion the marker exists to prevent` survives it too: `expect(parseCompassStamp(...).source).toBe(\"release\")` restates the parser rather than the decision.\n\nMade the decision take the stamp as an argument (`shouldOfferCompassUpgradeFor`) and exported it. `installedCompass()` now returns the whole stamp rather than the version alone, which also drops a second read of `compass/.version` per call.\n\nFive cases now cover it: the inversion, the dist-series comparison that must still happen, the repair path for a gutted bundle, the offline case, and a legacy bare stamp. Two mutations verified failing — deleting the source check, and swapping it ahead of the `0.0.0` check (that one is #365/#366 again: `ix view` never repairs).\n\n733 green.",
+      "html_url": "https://github.com/ix-infrastructure/Ix/pull/391#pullrequestreview-4902665897",
+      "submitted_at": "2026-08-11T03:14:26Z",
+      "commit_id": "c4154613a2fdd434c5271f2babc10bcd88ab46b1",
+      "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+      "source": "OFFICIAL_GITHUB_FACT"
+    },
+    {
+      "id": 4902847986,
+      "node_id": "PRR_kwDORdC75M8AAAABJDuF8g",
+      "repository": "ix-infrastructure/Ix",
+      "pr_number": 391,
+      "author": {
+        "login": "josephismikhail",
+        "id": 56614593,
+        "type": "User",
+        "html_url": "https://github.com/josephismikhail"
+      },
+      "state": "CHANGES_REQUESTED",
+      "body": "Retracting my earlier approval. A deeper review turned up a blocking backward-compatibility break that I verified empirically, so this should not merge in its current form.\n\n## Blocking: the new stamp format is unreadable by every already-shipped CLI\n\nThe shipped reader is `getTrackedVersion` (`upgrade.ts:199-206`) — `readFileSync(...).trim()`, i.e. **the whole file**. The upgrade sequence matters here: `ix upgrade` swaps in the new tree (including the new-format `compass/.version`), and then the *still-running old process* continues into its own compass block and reads that file with the old parser.\n\nI ran the new format through `origin/main`'s own `isNewer`:\n\n```\ndist 0.3.0 vs release-stamp 0.9.4 -> isNewer=false\ndist 0.3.0 vs release-stamp 1.0.0 -> isNewer=TRUE\ndist 0.3.0 vs release-stamp 1.1.0 -> isNewer=TRUE\ndist 0.3.0 vs legacy bare  0.9.4 -> isNewer=false\n```\n\n`splitVersion` yields `Number(\"source=release\\nix=1\") = NaN -> 0` for the major, so a 1.x release parses as `[0,0,0]`. Today (0.9.x) the damage is a garbled three-line version string in `[ok] Compass already on the latest version (...)`. **At the first 1.0.0 release, every CLI older than this one downloads ix-compass-dist over the newer bundled compass** — the exact #376 downgrade this PR exists to prevent, caused by the format change itself.\n\nSuggested fix that keeps the whole design: make the stamp a **single-line semver with build metadata**, `0.9.4+release.7f98724`. `splitVersion` already does `v.split(\"+\")[0]` with the comment \"Build metadata (`+sha`) never participates in precedence\" — so old CLIs read `0.9.4` and behave exactly as they do today, while `parseCompassStamp` reads the `+release.<sha>` suffix for provenance. Dist stays a bare number, which is already the legacy-compatible form.\n\n## Also blocking\n\n**`0.0.0` is overloaded** (`upgrade.ts:298`). The doc comment says only a missing `index.html` produces it, but `parseCompassStamp` also returns `{source:\"release\", version:\"0.0.0\"}` for a release stamp missing its `ix=` key — a `.version` truncated by a full disk or a kill during the non-atomic write. With the bundle perfectly serviceable, the repair branch fires ahead of the source check and downgrades it. Worth distinguishing \"absent\" from \"malformed\" explicitly rather than through the version number.\n\n**`install.sh:1094` stamps `source=release` on a compass it did not install.** The stamp block runs even when the CLI install was skipped (`check_installed_version` == `$VERSION`, or `SKIP_CLI_INSTALL=1`). If `compass/` holds an unstamped *dist* bundle — reachable via `ix upgrade`'s own `stage=\"stamp\"` failure, or Ctrl-C between extract and stamp — it is now permanently labelled `release`, and `shouldOfferCompassUpgradeFor` refuses every future compass update while printing \"Compass is the build bundled with Ix <v>\", which is false. The deleted code re-stamped with the dist number and stayed self-correcting.\n\n**`install.sh:1093`'s `[ ! -s .version ]` never repairs a mislabelled stamp** — so the fix does not reach the installs the PR body calls the majority in the wild. Re-running the installer on an already-current version skips the extract, so no tarball stamp is laid down, and the bare `0.3.0` survives.\n\n**`IX_VERSION=0.9.0` pins** stamp `source=release ix=0.9.0` onto a months-old bundle and exempt it from dist upgrades forever. `resolve_version` also falls back to `0.1.0` when the API is unreachable.\n\n## Non-blocking\n\nGating the compass block behind `shouldOfferCompassUpgrade` also gates the orphan sweep inside it. `main` has exactly two sweep sites — one behind \"CLI needs updating\", one behind \"compass needs updating\" — and the second exists as the fallback for the first, per its own comment. After this change a user on the latest CLI with a release compass sweeps nothing. I traced it and the severe cases self-heal (a gutted compass reports 0.0.0 and repairs; an interrupted CLI upgrade leaves the CLI stale), so this is stranded orphan directories rather than breakage — but it undercuts #392's reason for sweeping downloads at all.\n\nThe diagnosis and the live reproduction in the PR body are right, and the provenance idea is the correct answer. It is the encoding that needs to change.",
+      "html_url": "https://github.com/ix-infrastructure/Ix/pull/391#pullrequestreview-4902847986",
+      "submitted_at": "2026-08-11T04:05:26Z",
+      "commit_id": "c4154613a2fdd434c5271f2babc10bcd88ab46b1",
+      "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+      "source": "OFFICIAL_GITHUB_FACT"
+    },
+    {
+      "id": 4902957479,
+      "node_id": "PRR_kwDORdC75M8AAAABJD0xpw",
+      "repository": "ix-infrastructure/Ix",
+      "pr_number": 391,
+      "author": {
+        "login": "josephismikhail",
+        "id": 56614593,
+        "type": "User",
+        "html_url": "https://github.com/josephismikhail"
+      },
+      "state": "APPROVED",
+      "body": "Addressed in 3f70e75. Re-verified end to end.\n\n**Stamp format.** Provenance now rides in semver build metadata on one line — `0.9.3+release.7f98724` for a release bundle, a bare number for dist. `splitVersion` already drops everything after `+`, so every already-shipped CLI reads `0.9.3` and behaves exactly as it does today. The design intent is unchanged; only the encoding moved.\n\n**`present` replaces the `0.0.0` sentinel.** `installedCompass()` carries whether `index.html` is on disk, so a stamp truncated mid-write no longer masquerades as a missing bundle and triggers a downgrade of an intact one. The present-check still sits ahead of the source-check, so a gutted release bundle is repaired.\n\n**install.sh only stamps what it installed.** Gated on a new `CLI_EXTRACTED` flag. The block runs even when the install was skipped, and in that case the compass on disk can be an unstamped dist bundle — labelling that `+release` froze it against every future update. When we did extract, the tarball's own stamp has already landed, which is also what repairs a mislabelled install. `install.ps1` needs no such gate: it has no already-current skip path.\n\n**New producer drift test.** `upgrade-compass-stamp-producers.test.ts` reads `release.yml`, `install.sh` and `install.ps1`, renders the literal each one writes, and pushes it through the real `parseCompassStamp`. Three producers in three languages with no compile-time link to the reader is how this class of bug keeps recurring. Verified non-vacuous — restoring the multi-line form fails both properties it asserts.\n\nMutations re-run against the reworked code: deleting the release guard fails two cases, and reverting the stamp producer fails two more.\n\n744 green. `bash -n` and `sh -n` clean on install.sh, release.yml parses, install.ps1 parses clean.\n\nLeft as-is deliberately: an `IX_VERSION` pin stamps `+release` on that release's bundle and exempts it from dist upgrades. That reads correct to me — the user pinned a release, and the repair path still fires if the bundle is gutted — but flagging it since the review raised it.",
+      "html_url": "https://github.com/ix-infrastructure/Ix/pull/391#pullrequestreview-4902957479",
+      "submitted_at": "2026-08-11T04:36:37Z",
+      "commit_id": "3f70e75a7e5cc21cd50eaa01908948e7036aa9f6",
+      "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+      "source": "OFFICIAL_GITHUB_FACT"
+    },
+    {
+      "id": 4902666335,
+      "node_id": "PRR_kwDORdC75M8AAAABJDjAXw",
+      "repository": "ix-infrastructure/Ix",
+      "pr_number": 392,
+      "author": {
+        "login": "josephismikhail",
+        "id": 56614593,
+        "type": "User",
+        "html_url": "https://github.com/josephismikhail"
+      },
+      "state": "APPROVED",
+      "body": "Taking the upgrade path off TEMP is right, and the reasoning for `-download-` over `-backup-` is correct — `recover()` renames the newest `.cli-backup-*` over the install directory, so an archive must never match that prefix.\n\n**One gap, fixed in c8754ba.** The PR calls the sweep-above-download move \"the part I nearly broke\" and says \"there is now a test for it\". There wasn't. The two new cases pin *which prefixes the sweep reclaims*, which is what makes the ordering matter, but not the ordering itself — that lived inline in the command action where no test reaches it. I moved the call back below the download and all 724 tests passed, on a change that breaks every upgrade on every platform because the sweep then deletes the archive it is about to extract.\n\nBoth call sites now go through `prepareDownloadDir(ixHome, installDir, prefix)`, which does mkdir → sweep → mkdtemp. The order is inside one testable function instead of duplicated across two sites as a comment. Three cases: an earlier run's scratch is reclaimed while the one just created survives, an interrupted install is restored before any download happens, and IX_HOME is created when a manual install never did. Inverting the order inside the helper fails all three.\n\nWorth noting the compass branch got the same treatment, so it no longer sweeps and then separately mkdirs — one shape on both paths.\n\n727 green, lint clean.",
+      "html_url": "https://github.com/ix-infrastructure/Ix/pull/392#pullrequestreview-4902666335",
+      "submitted_at": "2026-08-11T03:14:33Z",
+      "commit_id": "c8754ba18918bc0c7a5f76c87605ed0df0d26c82",
+      "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+      "source": "OFFICIAL_GITHUB_FACT"
+    },
+    {
+      "id": 4902849260,
+      "node_id": "PRR_kwDORdC75M8AAAABJDuK7A",
+      "repository": "ix-infrastructure/Ix",
+      "pr_number": 392,
+      "author": {
+        "login": "josephismikhail",
+        "id": 56614593,
+        "type": "User",
+        "html_url": "https://github.com/josephismikhail"
+      },
+      "state": "CHANGES_REQUESTED",
+      "body": "Retracting my earlier approval — a deeper review found two correctness regressions introduced by moving the scratch into `IX_HOME`, one of which is data loss.\n\n## Blocking: a failed download can delete the user's only working compass\n\n`cleanupCompassSwap:615` tests `existsSync(join(compassDir, \"index.html\"))` and its comment is explicit about why: a `compass/` holding only a `.version` is a real state, and a bare `existsSync` \"would call that 'back in place' and drop a backup the caller had just told the user to go and rescue.\"\n\n`recover()` inside `sweepUpgradeOrphans` uses exactly that bare `existsSync(dest)`. So with `compass/` left as a `.version`-only husk and `.compass-backup-1234` holding the only real bundle, `recover()` declines to restore, and the loop below then deletes the backup.\n\nOn `main` that sweep ran *after* a successful download, so an offline run exited before reaching it and the backup survived for the next attempt. Hoisting the sweep above `curl` means **a run that installs nothing now destroys it** — the user sees only \"[error] Failed to download\", and `ix view` is permanently blank with no copy left on disk.\n\nThe two tests can't see this because they never construct the husk. Aligning `recover`'s test with `cleanupCompassSwap`'s (`index.html`, not bare `existsSync`) fixes it and makes the two agree.\n\n## Blocking: concurrent `ix upgrade` deletes an in-flight download\n\nThe scratch moved from `os.tmpdir()`, where no sweep could match it, into `IX_HOME` with a swept prefix. Process A creates `.cli-download-AAAAAA` and starts a curl with a 300s timeout; process B — a second terminal, or `bootstrap.sh` re-running `ix upgrade` when it finds compass missing — calls `prepareDownloadDir` and deletes A's directory wholesale. On Linux/macOS curl's fd stays valid so A exits 0, then `tar -xzf` hits a missing path and A reports \"Failed to extract CLI update\" on a good download.\n\n`.cli-staging-<pid>` has the same shape on main, but its window is the few seconds of extraction; this one is the whole download. Some ownership marker (pid in the name, skipped when that pid is live) would close both.\n\n## Worth addressing\n\n- `prepareDownloadDir` in the compass branch is the first filesystem write under `IX_HOME` and sits *outside* the try/catch that deliberately keeps compass failures non-fatal. On an unwritable `~/.ix` this turns \"[!!] Compass extract failed / ix view keeps working\" into a hard abort that also skips `writeCache`.\n- Two bare `rmSync` calls (959, 1264) skip the retry treatment `rmQuiet` exists for — and this PR moves those directories into the user profile, where AV and indexer handles are the norm, which is precisely the case `rmQuiet`'s comment describes.\n\n## One question before this lands\n\n#349's reporter is on `C:\\Users\\Win 10` and their confirmed workaround was pointing TEMP at a space-free path. This moves the scratch from `C:\\Users\\WIN10~1\\AppData\\Local\\Temp\\...` (no space — 8.3 aliases never contain one) to `C:\\Users\\Win 10\\.ix\\.cli-download-...` (space). If the failure is space-driven rather than short-path-driven, the upgrade path now has the space where it previously didn't. \"Refs #349\" rather than \"Fixes\" is the right call, and the PR is honest that it's unreproduced — but \"fixes the failure under every reading of it\" doesn't hold under the space reading. Nothing in the suite sets `IX_HOME` to a path with a space.\n\nTaking the upgrade path off TEMP is still right, and the `-download-` vs `-backup-` prefix reasoning is correct. It's the sweep's new reach that needs bounding.",
+      "html_url": "https://github.com/ix-infrastructure/Ix/pull/392#pullrequestreview-4902849260",
+      "submitted_at": "2026-08-11T04:05:48Z",
+      "commit_id": "c8754ba18918bc0c7a5f76c87605ed0df0d26c82",
+      "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+      "source": "OFFICIAL_GITHUB_FACT"
+    },
+    {
+      "id": 4902995743,
+      "node_id": "PRR_kwDORdC75M8AAAABJD3HHw",
+      "repository": "ix-infrastructure/Ix",
+      "pr_number": 392,
+      "author": {
+        "login": "josephismikhail",
+        "id": 56614593,
+        "type": "User",
+        "html_url": "https://github.com/josephismikhail"
+      },
+      "state": "APPROVED",
+      "body": "Addressed in 5432c49 and b4d9c00, and rebased onto main now that #391 has landed.\n\n**The data-loss path.** `recover()` now takes the file that proves the thing is real — `index.html` for the compass, `cli/dist/cli/main.js` for the install — so it applies the same test `cleanupCompassSwap` already applies. The two no longer disagree about a husk, so a torn swap restores the backup instead of the sweep deleting it. Verified: reverting to the bare `existsSync` fails two of the new cases.\n\n**The concurrency window.** Download directories carry their pid (`.cli-download-<pid>-<rand>`) and the sweep skips one whose process is still addressable — `process.kill(pid, 0)`, treating EPERM as live. Unparseable names are treated as dead so the pre-pid naming stays collectable, and the guard is scoped to download prefixes so staging/backup reclaim behaviour is untouched. Verified: removing the guard fails the live-process case.\n\n**The two bare `rmSync` calls** are now `rmQuiet`, which is the whole reason that helper exists — and this PR is what moves those directories from TEMP into the user profile.\n\n**One more, found while composing the two PRs** (b4d9c00): both sweep calls sit behind \"something needs updating\", and #391 tightened the compass gate to skip release-bundled compasses — which is every install from v0.9.3 on. So on a healthy current install neither would fire and nothing would ever be reclaimed, which defeats the reason for sweeping the downloads at all. There is now one unconditional sweep at the top of a real `ix upgrade`; the calls inside `prepareDownloadDir` stay, since that is where the ordering invariant lives.\n\n753 green on the rebased result, lint clean.\n\n**Still open, and deliberately not resolved here:** whether #349 is space-driven or short-path-driven. The scratch now sits under `C:\\Users\\Win 10\\.ix\\...`, which contains the space, where the TEMP path it replaces did not. `Refs #349` is the right framing until someone reproduces it — worth keeping the issue open rather than closing it on this.",
+      "html_url": "https://github.com/ix-infrastructure/Ix/pull/392#pullrequestreview-4902995743",
+      "submitted_at": "2026-08-11T04:46:19Z",
+      "commit_id": "b4d9c0038b4595b0562f9dc2e8ef457511112d29",
+      "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+      "source": "OFFICIAL_GITHUB_FACT"
+    },
+    {
+      "id": 4918700259,
+      "node_id": "PRR_kwDORdC75M8AAAABJS1o4w",
+      "repository": "ix-infrastructure/Ix",
+      "pr_number": 393,
+      "author": {
+        "login": "github-advanced-security[bot]",
+        "id": 62310815,
+        "type": "Bot",
+        "html_url": "https://github.com/apps/github-advanced-security"
+      },
+      "state": "COMMENTED",
+      "body": "",
+      "html_url": "https://github.com/ix-infrastructure/Ix/pull/393#pullrequestreview-4918700259",
+      "submitted_at": "2026-08-12T16:16:44Z",
+      "commit_id": "b4060d4b59d177e0feed253f977292986158d99d",
+      "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+      "source": "OFFICIAL_GITHUB_FACT"
+    },
+    {
+      "id": 4918207084,
+      "node_id": "PRR_kwDORdC75M8AAAABJSXibA",
+      "repository": "ix-infrastructure/Ix",
+      "pr_number": 397,
+      "author": {
+        "login": "github-advanced-security[bot]",
+        "id": 62310815,
+        "type": "Bot",
+        "html_url": "https://github.com/apps/github-advanced-security"
+      },
+      "state": "COMMENTED",
+      "body": "",
+      "html_url": "https://github.com/ix-infrastructure/Ix/pull/397#pullrequestreview-4918207084",
+      "submitted_at": "2026-08-12T15:24:32Z",
+      "commit_id": "f347aeff4373fe8fac9ef66e5d9bc7a0821e3477",
+      "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+      "source": "OFFICIAL_GITHUB_FACT"
+    },
+    {
+      "id": 4932091186,
+      "node_id": "PRR_kwDORdC75M8AAAABJfm9Mg",
+      "repository": "ix-infrastructure/Ix",
+      "pr_number": 423,
+      "author": {
+        "login": "github-advanced-security[bot]",
+        "id": 62310815,
+        "type": "Bot",
+        "html_url": "https://github.com/apps/github-advanced-security"
+      },
+      "state": "COMMENTED",
+      "body": "",
+      "html_url": "https://github.com/ix-infrastructure/Ix/pull/423#pullrequestreview-4932091186",
+      "submitted_at": "2026-08-13T22:16:13Z",
+      "commit_id": "815afeac0b1fcdff7d140c74a093e52375da1bab",
+      "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+      "source": "OFFICIAL_GITHUB_FACT"
+    }
+  ],
+  "review_comments": [
+    {
+      "id": 3768220084,
+      "node_id": "PRRC_kwDORdC75M7gmnm0",
+      "repository": "ix-infrastructure/Ix",
+      "parent_type": "PULL_REQUEST",
+      "parent_number": 393,
+      "kind": "REVIEW_COMMENT",
+      "author": {
+        "login": "github-advanced-security[bot]",
+        "id": 62310815,
+        "type": "Bot",
+        "html_url": "https://github.com/apps/github-advanced-security"
+      },
+      "body": "## CodeQL / Network data written to file\n\nWrite to file system depends on [Untrusted data](1).\n\n[Show more details](https://github.com/ix-infrastructure/Ix/security/code-scanning/50)",
+      "html_url": "https://github.com/ix-infrastructure/Ix/pull/393#discussion_r3768220084",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/comments/3768220084",
+      "created_at": "2026-08-12T16:16:44Z",
+      "updated_at": "2026-08-12T16:16:44Z",
+      "commit_id": "b4060d4b59d177e0feed253f977292986158d99d",
+      "path": "ix-cli/src/cli/commands/view.ts",
+      "line": 537,
+      "start_line": null,
+      "side": "RIGHT",
+      "in_reply_to_id": null,
+      "diff_hunk": "@@ -406,7 +534,7 @@\n       // Write server script to temp location\n       const scriptDir = dirname(SERVER_SCRIPT_FILE);\n       mkdirSync(scriptDir, { recursive: true });\n-      writeFileSync(SERVER_SCRIPT_FILE, serverScript(distDir, port, workspaceId, systemId));\n+      writeFileSync(SERVER_SCRIPT_FILE, serverScript(distDir, port, workspaceId, systemId, mapRoot));",
+      "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+      "source": "OFFICIAL_GITHUB_FACT"
+    },
+    {
+      "id": 3767793367,
+      "node_id": "PRRC_kwDORdC75M7gk_bX",
+      "repository": "ix-infrastructure/Ix",
+      "parent_type": "PULL_REQUEST",
+      "parent_number": 397,
+      "kind": "REVIEW_COMMENT",
+      "author": {
+        "login": "github-advanced-security[bot]",
+        "id": 62310815,
+        "type": "Bot",
+        "html_url": "https://github.com/apps/github-advanced-security"
+      },
+      "body": "## CodeQL / Potential file system race condition\n\nThe file may have changed since it [was checked](1).\n\n[Show more details](https://github.com/ix-infrastructure/Ix/security/code-scanning/49)",
+      "html_url": "https://github.com/ix-infrastructure/Ix/pull/397#discussion_r3767793367",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/comments/3767793367",
+      "created_at": "2026-08-12T15:24:32Z",
+      "updated_at": "2026-08-12T15:24:32Z",
+      "commit_id": "2be2c25f63dca94116bfb299e5037e293b840aa9",
+      "path": "ix-cli/src/mcp/install.ts",
+      "line": 109,
+      "start_line": null,
+      "side": "RIGHT",
+      "in_reply_to_id": null,
+      "diff_hunk": "@@ -0,0 +1,186 @@\n+import { copyFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from \"node:fs\";\n+import { dirname } from \"node:path\";\n+\n+import {\n+  createHosts,\n+  isOnPath,\n+  SERVER_NAME,\n+  type HostStatus,\n+  type McpHost,\n+  type Registration,\n+} from \"./hosts.js\";\n+import { IX_MCP_OSS_TOOL_NAMES, IX_MCP_PRO_TOOL_NAMES } from \"./server.js\";\n+import { detectPro } from \"./runner.js\";\n+\n+/** What install decided to do about one host. */\n+export type Outcome =\n+  | \"registered\"\n+  | \"already-registered\"\n+  | \"conflict\"\n+  | \"not-installed\"\n+  | \"failed\"\n+  | \"would-register\"\n+  /** Doctor only: host is present and the name is free, but nothing points at us. */\n+  | \"not-registered\";\n+\n+export interface HostReport extends HostStatus {\n+  outcome: Outcome;\n+  target: string;\n+  /** Why it was skipped, or how it failed. */\n+  note?: string;\n+}\n+\n+export interface InstallReport {\n+  hosts: HostReport[];\n+  registered: number;\n+  conflicts: number;\n+}\n+\n+export interface DoctorReport {\n+  /** Hosts launch the bare command `ix`; if that does not resolve, every registration is dead. */\n+  ixOnPath: boolean;\n+  toolCount: number;\n+  hosts: HostReport[];\n+}\n+\n+export interface InstallOptions {\n+  hosts?: McpHost[];\n+  /** Restrict to these host ids. */\n+  only?: string[];\n+  dryRun?: boolean;\n+  /** Replace a name held by something else. Off by default: never clobber. */\n+  force?: boolean;\n+}\n+\n+/**\n+ * Merge into a JSON config in place, keeping a `.bak` of what was there.\n+ *\n+ * Only used for the two hosts with no usable CLI. Everything the user already\n+ * had is preserved: the file is parsed, mutated, and re-serialised, so an\n+ * unrelated key cannot be dropped, and the backup makes a bad merge reversible.\n+ */\n+export function writeJsonConfig(path: string, mutate: (config: Record<string, unknown>) => void): void {\n+  let config: Record<string, unknown> = {};\n+  const exists = existsSync(path);\n+\n+  if (exists) {\n+    const raw = readFileSync(path, \"utf8\");\n+    if (raw.trim() !== \"\") {\n+      let parsed: unknown;\n+      try {\n+        parsed = JSON.parse(raw);\n+      } catch {\n+        // Refuse rather than overwrite: a file we cannot parse is a file whose\n+        // contents we would be destroying.\n+        throw new Error(`${path} is not valid JSON — fix or move it, then re-run`);\n+      }\n+      if (typeof parsed !== \"object\" || parsed === null || Array.isArray(parsed)) {\n+        throw new Error(`${path} is not a JSON object`);\n+      }\n+      config = parsed as Record<string, unknown>;\n+    }\n+    copyFileSync(path, `${path}.bak`);\n+  } else {\n+    mkdirSync(dirname(path), { recursive: true });\n+  }\n+\n+  mutate(config);\n+  writeFileSync(path, `${JSON.stringify(config, null, 2)}\\n`, \"utf8\");",
+      "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+      "source": "OFFICIAL_GITHUB_FACT"
+    },
+    {
+      "id": 3779528504,
+      "node_id": "PRRC_kwDORdC75M7hRwc4",
+      "repository": "ix-infrastructure/Ix",
+      "parent_type": "PULL_REQUEST",
+      "parent_number": 423,
+      "kind": "REVIEW_COMMENT",
+      "author": {
+        "login": "github-advanced-security[bot]",
+        "id": 62310815,
+        "type": "Bot",
+        "html_url": "https://github.com/apps/github-advanced-security"
+      },
+      "body": "## CodeQL / Network data written to file\n\nWrite to file system depends on [Untrusted data](1).\nWrite to file system depends on [Untrusted data](2).\n\n[Show more details](https://github.com/ix-infrastructure/Ix/security/code-scanning/53)",
+      "html_url": "https://github.com/ix-infrastructure/Ix/pull/423#discussion_r3779528504",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/comments/3779528504",
+      "created_at": "2026-08-13T22:16:13Z",
+      "updated_at": "2026-08-13T22:16:13Z",
+      "commit_id": "815afeac0b1fcdff7d140c74a093e52375da1bab",
+      "path": "ix-cli/src/cli/commands/context.ts",
+      "line": 165,
+      "start_line": null,
+      "side": "RIGHT",
+      "in_reply_to_id": null,
+      "diff_hunk": "@@ -0,0 +1,495 @@\n+import type { Command } from \"commander\";\n+\n+import { IxClient } from \"../../client/api.js\";\n+import type {\n+  ConflictReport,\n+  DecisionReport,\n+  GraphNode,\n+  IntentReport,\n+  StructuredContext,\n+} from \"../../client/types.js\";\n+import { getEndpoint } from \"../config.js\";\n+import { collectFacts, type EntityFacts } from \"../explain/facts.js\";\n+import { printLlmLines } from \"../llm.js\";\n+import { resolveFileOrEntity } from \"../resolve.js\";\n+import { renderNote, renderSection, renderWarning } from \"../ui.js\";\n+\n+/**\n+ * Schema version for the deterministic bundle shape. Bump only on a breaking\n+ * shape change, never per run.\n+ */\n+const BUNDLE_SCHEMA = \"ix-context-bundle/1\";\n+\n+interface ContextOptions {\n+  kind?: string;\n+  path?: string;\n+  pick?: string;\n+  depth?: string;\n+  asOfRev?: string;\n+  maxEntities?: string;\n+  maxRelationships?: string;\n+  maxEvidence?: string;\n+  maxChars?: string;\n+  out?: string;\n+  format: string;\n+}\n+\n+/** Stable evidence kinds, ordered by relevance tier (lower is more relevant). */\n+type EvidenceKind =\n+  | \"target\"\n+  | \"structural\"\n+  | \"claim\"\n+  | \"decision\"\n+  | \"conflict\"\n+  | \"intent\"\n+  | \"relationship\"\n+  | \"provenance\";\n+\n+interface EvidenceItem {\n+  id: string;\n+  kind: EvidenceKind;\n+  source: string;\n+  title: string;\n+  /** Deterministic relevance score: tier plus a stable tiebreaker. */\n+  score: number;\n+  reason: string;\n+  refs: string[];\n+}\n+\n+interface ContextBundle {\n+  schema: typeof BUNDLE_SCHEMA;\n+  /** The one explicitly declared time-dependent field. */\n+  generatedAt: string;\n+  target: { id: string; name: string; kind: string; resolutionMode: string };\n+  entities: Array<{ id: string; name: string; kind: string; path?: string; stale: boolean }>;\n+  relationships: Array<{ src: string; dst: string; predicate: string }>;\n+  claims: Array<{ id: string; entityId: string; statement: string; status: string }>;\n+  decisions: DecisionReport[];\n+  conflicts: ConflictReport[];\n+  intents: IntentReport[];\n+  provenance: {\n+    sourceUri?: string;\n+    sourceHash?: string;\n+    extractor?: string;\n+    sourceType?: string;\n+    observedAt?: string;\n+    introducedRev?: number;\n+    historyLength: number;\n+    stale: boolean;\n+  };\n+  freshness: { stale: boolean; classification: \"current\" | \"stale\" | \"unverified\" };\n+  evidence: EvidenceItem[];\n+  budgets: { maxEntities: number; maxRelationships: number; maxEvidence: number; maxChars: number };\n+  truncation: {\n+    entitiesTruncated: number;\n+    relationshipsTruncated: number;\n+    evidenceTruncated: number;\n+    charactersTruncated: number;\n+  };\n+  metadata: {\n+    asOfRev?: number;\n+    depth?: string;\n+    rankingRule: \"deterministic-tier\";\n+  };\n+}\n+\n+/**\n+ * Build a bounded, deterministic context bundle for one target.\n+ *\n+ * This composes Ix's existing intelligence rather than re-deriving it: the\n+ * target is resolved through the same resolver as `ix explain`, structural\n+ * facts come from the same collector, and claims/conflicts/decisions/intents\n+ * come from the same `/v1/context` service. The only new thing here is the\n+ * bundling, budgeting, and deterministic ranking.\n+ */\n+export function registerContextCommand(program: Command): void {\n+  program\n+    .command(\"context <target>\")\n+    .description(\"Build a bounded, deterministic context bundle for a symbol, file, or entity\")\n+    .option(\"--kind <kind>\", \"Filter target entity by kind\")\n+    .option(\"--path <path>\", \"Prefer symbols from files matching this path substring\")\n+    .option(\"--pick <n>\", \"Pick Nth candidate from ambiguous results (1-based)\")\n+    .option(\"--depth <depth>\", \"Context-graph expansion depth\")\n+    .option(\"--as-of-rev <n>\", \"Historical context as of a graph revision\")\n+    .option(\"--max-entities <n>\", \"Maximum entities in the bundle\", \"50\")\n+    .option(\"--max-relationships <n>\", \"Maximum relationships in the bundle\", \"100\")\n+    .option(\"--max-evidence <n>\", \"Maximum evidence items in the bundle\", \"25\")\n+    .option(\"--max-chars <n>\", \"Maximum characters of evidence output\", \"12000\")\n+    .option(\"--format <fmt>\", \"Output format (text|json|llm)\", \"text\")\n+    .option(\"--out <path>\", \"Write the JSON bundle to this file instead of stdout\")\n+    .addHelpText(\n+      \"after\",\n+      \"\\nExamples:\\n  ix context IngestionService\\n  ix context src/main.ts --format json\\n  ix context Widget --max-entities 20 --max-evidence 10\",\n+    )\n+    .action(async (target: string, opts: ContextOptions) => {\n+      const client = new IxClient(getEndpoint());\n+\n+      const resolved = await resolveFileOrEntity(client, target, {\n+        kind: opts.kind,\n+        path: opts.path,\n+        pick: opts.pick ? parseInt(opts.pick, 10) : undefined,\n+      });\n+      if (!resolved) return;\n+\n+      const asOfRev = opts.asOfRev ? parseInt(opts.asOfRev, 10) : undefined;\n+      const maxEntities = clampInt(opts.maxEntities, 1, 500, 50);\n+      const maxRelationships = clampInt(opts.maxRelationships, 1, 1000, 100);\n+      const maxEvidence = clampInt(opts.maxEvidence, 1, 200, 25);\n+      const maxChars = clampInt(opts.maxChars, 1000, 1_000_000, 12_000);\n+\n+      const [facts, context, provenance] = await Promise.all([\n+        collectFacts(client, resolved.id, resolved.name, resolved.kind),\n+        client.query(resolved.name, {\n+          asOfRev,\n+          depth: opts.depth,\n+        }),\n+        client.provenance(resolved.id),\n+      ]);\n+\n+      const bundle = buildBundle({\n+        resolved,\n+        facts,\n+        context,\n+        provenance,\n+        asOfRev,\n+        depth: opts.depth,\n+        budgets: { maxEntities, maxRelationships, maxEvidence, maxChars },\n+      });\n+\n+      if (opts.out && opts.format !== \"json\") {\n+        renderWarning(\"--out writes JSON; ignoring --format and forcing json.\");\n+      }\n+      const out = opts.out;\n+      if (out) {\n+        const fs = await import(\"node:fs\");\n+        fs.writeFileSync(out, JSON.stringify(bundle, null, 2) + \"\\n\");",
+      "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+      "source": "OFFICIAL_GITHUB_FACT"
+    }
+  ],
+  "count": 24,
+  "review_comment_count": 3,
+  "review_threads": {
+    "status": "UNKNOWN",
+    "reason": "REST capture includes review comments but not GraphQL resolved/unresolved thread state"
+  }
+}

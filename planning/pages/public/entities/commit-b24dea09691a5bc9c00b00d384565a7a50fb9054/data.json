@@ -1,0 +1,376 @@
+{
+  "id": "COMMIT-b24dea09691a5bc9c00b00d384565a7a50fb9054",
+  "type": "commit",
+  "title": "b24dea09691a5bc9c00b00d384565a7a50fb9054",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-b24dea09691a5bc9c00b00d384565a7a50fb9054",
+  "summary": {
+    "id": "COMMIT-b24dea09691a5bc9c00b00d384565a7a50fb9054",
+    "type": "commit",
+    "title": "b24dea09691a5bc9c00b00d384565a7a50fb9054",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/b24dea09691a5bc9c00b00d384565a7a50fb9054",
+    "author": {
+      "name": "Tanner Kocher",
+      "email": "tannertorrey3@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-7b2eff157d29c8335a7306cc6bdb1ac941ad51bf",
+      "other_type": "commit",
+      "other_title": "7b2eff157d29c8335a7306cc6bdb1ac941ad51bf",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-7b2eff157d29c8335a7306cc6bdb1ac941ad51bf"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-5f23b934facc6c6733215e687ac52b51f083ef28",
+      "other_type": "commit",
+      "other_title": "5f23b934facc6c6733215e687ac52b51f083ef28",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-5f23b934facc6c6733215e687ac52b51f083ef28"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-edb5a61135ab",
+      "other_type": "artifact",
+      "other_title": ".claude/settings.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-edb5a61135ab"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-fd66fe761424",
+      "other_type": "artifact",
+      "other_title": ".mcp.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-fd66fe761424"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-4e4824e9a44b",
+      "other_type": "artifact",
+      "other_title": "build.sbt",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-4e4824e9a44b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-b1736d3f45eb",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/DecideRoutes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b1736d3f45eb"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c32fa39b8452",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/GoalRoutes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c32fa39b8452"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2d41eae1fea1",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/Routes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2d41eae1fea1"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-8c90ed64cc6b",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/ParserRouter.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-8c90ed64cc6b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-443b1b7431a6",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/parsers/TreeSitterPythonParser.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-443b1b7431a6"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-87abec0cf035",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/parsers/TreeSitterScalaParser.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-87abec0cf035"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-600ca80b3fa0",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/parsers/TreeSitterTypeScriptParser.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-600ca80b3fa0"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-26c05bbb69b9",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/parsers/TreeSitterUtils.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-26c05bbb69b9"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-47ea08db02a7",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/model/Node.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-47ea08db02a7"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2191d17ce8e9",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/ingestion/parsers/ScalaParserSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2191d17ce8e9"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-31bbeef48213",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/ingestion/parsers/TypeScriptParserSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-31bbeef48213"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ea0f73fc5e58",
+      "other_type": "artifact",
+      "other_title": ".claude/settings.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ea0f73fc5e58"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-96122933af61",
+      "other_type": "artifact",
+      "other_title": ".mcp.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-96122933af61"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-29b7f09675e4",
+      "other_type": "artifact",
+      "other_title": "build.sbt",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-29b7f09675e4"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-106a33001314",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/DecideRoutes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-106a33001314"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c446000f6638",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/GoalRoutes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c446000f6638"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-b40158942cff",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/Routes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b40158942cff"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-d81ccd7a3932",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/ParserRouter.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-d81ccd7a3932"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-70274d5b3bfd",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/parsers/TreeSitterPythonParser.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-70274d5b3bfd"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-72084f738a52",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/parsers/TreeSitterScalaParser.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-72084f738a52"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-a637c7acfb26",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/parsers/TreeSitterTypeScriptParser.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-a637c7acfb26"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-d073c74afd50",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/parsers/TreeSitterUtils.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-d073c74afd50"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3b83e0cbad7e",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/model/Node.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3b83e0cbad7e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3ae8235155ef",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/ingestion/parsers/ScalaParserSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3ae8235155ef"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-d5a52903e676",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/ingestion/parsers/TypeScriptParserSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-d5a52903e676"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e582b3a1f0d4",
+      "other_type": "artifact",
+      "other_title": ".claude/settings.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e582b3a1f0d4"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c4f9ccdea86e",
+      "other_type": "artifact",
+      "other_title": ".mcp.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c4f9ccdea86e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-0a23d2d364de",
+      "other_type": "artifact",
+      "other_title": "build.sbt",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-0a23d2d364de"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-72e77f2e4cdf",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/DecideRoutes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-72e77f2e4cdf"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-08b6911c9b4d",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/GoalRoutes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-08b6911c9b4d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-a64d4c665471",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/Routes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-a64d4c665471"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-f94b87ca30cb",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/ParserRouter.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f94b87ca30cb"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-9cffad5ac9df",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/parsers/TreeSitterPythonParser.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-9cffad5ac9df"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e05d07614719",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/parsers/TreeSitterScalaParser.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e05d07614719"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e0b1c5805b09",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/parsers/TreeSitterTypeScriptParser.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e0b1c5805b09"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-0af6d5b47390",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/parsers/TreeSitterUtils.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-0af6d5b47390"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5b1fe43005ba",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/model/Node.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5b1fe43005ba"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-02e7bf657b17",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/ingestion/parsers/ScalaParserSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-02e7bf657b17"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-12b8da331658",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/ingestion/parsers/TypeScriptParserSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-12b8da331658"
+    }
+  ]
+}

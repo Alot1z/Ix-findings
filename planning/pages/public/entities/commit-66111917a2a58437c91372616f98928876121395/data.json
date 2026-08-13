@@ -10,6 +10,9 @@
     "title": "66111917a2a58437c91372616f98928876121395",
     "status": "CURRENT"
   },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
   "relationships": [
     {
       "direction": "in",
@@ -58,6 +61,286 @@
       "other_type": "artifact",
       "other_title": "MCP tests",
       "other_url": "https://alot1z.github.io/Ix-findings/mcp/tests"
+    },
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+      "other_type": "commit",
+      "other_title": "1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-1a5b0b93c9e8871610370c0f36212be8f6cf6980"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-a5350b6d6dc67958fa4abef63559affcd74aff56",
+      "other_type": "commit",
+      "other_title": "a5350b6d6dc67958fa4abef63559affcd74aff56",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-a5350b6d6dc67958fa4abef63559affcd74aff56"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3a5de4be99c9",
+      "other_type": "artifact",
+      "other_title": "CLAUDE.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3a5de4be99c9"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5b1b927b6a8e",
+      "other_type": "artifact",
+      "other_title": "docs/api/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5b1b927b6a8e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-4b16972279fc",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/fixtures/mcp-slow-fixture.mjs",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-4b16972279fc"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-005cafc4b173",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/mcp-cli-executor.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-005cafc4b173"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ae52f875d6a1",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/mcp-command.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ae52f875d6a1"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-05bc77b38332",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/mcp-protocol.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-05bc77b38332"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-982192303328",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/mcp-server.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-982192303328"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2b7e95446614",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/mcp-stdio.integration.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2b7e95446614"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-88cc26582cef",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/mcp/server.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-88cc26582cef"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-db146ff83aa5",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/mcp/tools.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-db146ff83aa5"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-83c45e74eb69",
+      "other_type": "artifact",
+      "other_title": "skills/ix/SKILL.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-83c45e74eb69"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-fff4841506bd",
+      "other_type": "artifact",
+      "other_title": "CLAUDE.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-fff4841506bd"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2bc1374b9b3e",
+      "other_type": "artifact",
+      "other_title": "docs/api/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2bc1374b9b3e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-b0db595d5b98",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/fixtures/mcp-slow-fixture.mjs",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b0db595d5b98"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-0dd32d8e2201",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/mcp-cli-executor.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-0dd32d8e2201"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2f2cf4c44cbd",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/mcp-command.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2f2cf4c44cbd"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c7cc230edc2e",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/mcp-protocol.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c7cc230edc2e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-0576f8244c87",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/mcp-server.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-0576f8244c87"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-f3802aa68f4e",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/mcp-stdio.integration.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f3802aa68f4e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-46a189ae4bda",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/mcp/server.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-46a189ae4bda"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-894b5e791e9d",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/mcp/tools.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-894b5e791e9d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-331da7e53b34",
+      "other_type": "artifact",
+      "other_title": "skills/ix/SKILL.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-331da7e53b34"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2835a38f417b",
+      "other_type": "artifact",
+      "other_title": "CLAUDE.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2835a38f417b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-28371090626f",
+      "other_type": "artifact",
+      "other_title": "docs/api/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-28371090626f"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-a358f57f2faa",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/fixtures/mcp-slow-fixture.mjs",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-a358f57f2faa"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-68f5e633e9bf",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/mcp-cli-executor.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-68f5e633e9bf"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-7caee880e363",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/mcp-command.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-7caee880e363"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-fbab865398ba",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/mcp-protocol.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-fbab865398ba"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-7485cc30d595",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/mcp-server.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-7485cc30d595"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-a2f16efa6c05",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/mcp-stdio.integration.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-a2f16efa6c05"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5dfba802d0cf",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/mcp/server.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5dfba802d0cf"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5bd405a6c876",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/mcp/tools.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5bd405a6c876"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-f0fb98abbdda",
+      "other_type": "artifact",
+      "other_title": "skills/ix/SKILL.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f0fb98abbdda"
     }
   ]
 }

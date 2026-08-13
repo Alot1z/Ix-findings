@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-633cb653ff7db0fc9c3017cbae8485058b728420",
+  "type": "commit",
+  "title": "633cb653ff7db0fc9c3017cbae8485058b728420",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-633cb653ff7db0fc9c3017cbae8485058b728420",
+  "summary": {
+    "id": "COMMIT-633cb653ff7db0fc9c3017cbae8485058b728420",
+    "type": "commit",
+    "title": "633cb653ff7db0fc9c3017cbae8485058b728420",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/633cb653ff7db0fc9c3017cbae8485058b728420",
+    "author": {
+      "name": "Joseph Mikhail",
+      "email": "jsmikhai@ucsd.edu"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-b69a44af5b668ec4df8d50ec4aa941d9b7c55f78",
+      "other_type": "commit",
+      "other_title": "b69a44af5b668ec4df8d50ec4aa941d9b7c55f78",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b69a44af5b668ec4df8d50ec4aa941d9b7c55f78"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-217a3a7c09f650ebb53f7f18512cce07fe0e30f6",
+      "other_type": "commit",
+      "other_title": "217a3a7c09f650ebb53f7f18512cce07fe0e30f6",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-217a3a7c09f650ebb53f7f18512cce07fe0e30f6"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-4e3bf710c74e",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/register/oss.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-4e3bf710c74e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-6a1dda5bceab",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/register/oss.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-6a1dda5bceab"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-d1361ec2e4a1",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/register/oss.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-d1361ec2e4a1"
+    }
+  ]
+}

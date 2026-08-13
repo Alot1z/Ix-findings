@@ -1,0 +1,760 @@
+{
+  "id": "COMMIT-76ab10d89c5ddb4acb635554d13e76a8d672df9c",
+  "type": "commit",
+  "title": "76ab10d89c5ddb4acb635554d13e76a8d672df9c",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-76ab10d89c5ddb4acb635554d13e76a8d672df9c",
+  "summary": {
+    "id": "COMMIT-76ab10d89c5ddb4acb635554d13e76a8d672df9c",
+    "type": "commit",
+    "title": "76ab10d89c5ddb4acb635554d13e76a8d672df9c",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/76ab10d89c5ddb4acb635554d13e76a8d672df9c",
+    "author": {
+      "name": "Tanner Kocher",
+      "email": "tannertorrey3@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-eacdd6b0e139573b7c180828d30a8baaf8c312f0",
+      "other_type": "commit",
+      "other_title": "eacdd6b0e139573b7c180828d30a8baaf8c312f0",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-eacdd6b0e139573b7c180828d30a8baaf8c312f0"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-eec6aed067c81c69fad533606b83d1262d1c58fd",
+      "other_type": "commit",
+      "other_title": "eec6aed067c81c69fad533606b83d1262d1c58fd",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-eec6aed067c81c69fad533606b83d1262d1c58fd"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-167332b6ad95",
+      "other_type": "artifact",
+      "other_title": "ix-cli/package.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-167332b6ad95"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-481bee11296a",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/briefing.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-481bee11296a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-9e33a7530170",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/bug-patch.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-9e33a7530170"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ec1a8a6184c2",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/decide-linking.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ec1a8a6184c2"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-d5470c39f819",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/goal-truth-separation.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-d5470c39f819"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c41d5ac36e24",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/help-coverage.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c41d5ac36e24"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-292a27b3ca3f",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/help-topics.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-292a27b3ca3f"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-08364cbce0d3",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/name-resolution.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-08364cbce0d3"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e83238f1e5ed",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/plan-patch.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e83238f1e5ed"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-318110ec86bc",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/task-status.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-318110ec86bc"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-da6e055c5b7c",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/workflow-attach.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-da6e055c5b7c"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ba4531a0c153",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/workflow-state.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ba4531a0c153"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3049fb3f9cd7",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/briefing.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3049fb3f9cd7"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-1dcf83ab4e48",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/bug.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-1dcf83ab4e48"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ad2030db1fc5",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/bugs.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ad2030db1fc5"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-a12f0596ed7a",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/decide.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-a12f0596ed7a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-088f979a827a",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/decisions.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-088f979a827a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-1974341d40a9",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/goal.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-1974341d40a9"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-35e641869bc1",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/goals.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-35e641869bc1"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-4e09d5c0a826",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/plan.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-4e09d5c0a826"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-81688ce9f843",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/plans.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-81688ce9f843"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ab3469f7a6dc",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/tasks.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ab3469f7a6dc"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5bbbca8ceb1a",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/truth.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5bbbca8ceb1a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-05661952f8f5",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/workflow.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-05661952f8f5"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e3c4605c527e",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/workflows.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e3c4605c527e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3aadd9a277d5",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/help-text.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3aadd9a277d5"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-451b37ef714a",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/main.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-451b37ef714a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-4e3bf710c74e",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/register/oss.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-4e3bf710c74e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-97b1ab833a13",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/register/pro-loader.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-97b1ab833a13"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-070a8423b9d8",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/task-utils.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-070a8423b9d8"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3410e74f825b",
+      "other_type": "artifact",
+      "other_title": "ix-cli/package.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3410e74f825b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-7ab751946a7e",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/briefing.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-7ab751946a7e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c7737428b4f9",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/bug-patch.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c7737428b4f9"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-228ca161f40f",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/decide-linking.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-228ca161f40f"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-71f13785ded0",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/goal-truth-separation.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-71f13785ded0"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-d358b74acdfb",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/help-coverage.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-d358b74acdfb"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-0878ce9605c6",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/help-topics.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-0878ce9605c6"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-76dafc961f65",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/name-resolution.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-76dafc961f65"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-74b2646c22a5",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/plan-patch.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-74b2646c22a5"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-956b1b330b3e",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/task-status.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-956b1b330b3e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-f53f7ec613bb",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/workflow-attach.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f53f7ec613bb"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-1d342168e76c",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/workflow-state.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-1d342168e76c"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-9f045794d7d7",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/briefing.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-9f045794d7d7"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-7d353aa74f02",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/bug.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-7d353aa74f02"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-6731c8e0613f",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/bugs.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-6731c8e0613f"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-6f9fd2fd2a90",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/decide.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-6f9fd2fd2a90"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-50004a2afc94",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/decisions.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-50004a2afc94"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-b691216588dd",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/goal.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b691216588dd"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-457f41d2eab7",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/goals.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-457f41d2eab7"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-1e8a7617bcab",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/plan.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-1e8a7617bcab"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-41c2dd77ba66",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/plans.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-41c2dd77ba66"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-f1e6779c149b",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/tasks.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f1e6779c149b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-04d2f590bbb4",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/truth.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-04d2f590bbb4"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-0e1ceb2e8ea5",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/workflow.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-0e1ceb2e8ea5"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e6eafe52ebe2",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/workflows.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e6eafe52ebe2"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-6abe844c9ddd",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/help-text.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-6abe844c9ddd"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-65cc8f779a87",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/main.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-65cc8f779a87"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-6a1dda5bceab",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/register/oss.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-6a1dda5bceab"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-1b15530d157f",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/register/pro-loader.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-1b15530d157f"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-211643160f3a",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/task-utils.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-211643160f3a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-a3c787dda247",
+      "other_type": "artifact",
+      "other_title": "ix-cli/package.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-a3c787dda247"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e57483a3fe40",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/briefing.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e57483a3fe40"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-debee3d1d21b",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/bug-patch.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-debee3d1d21b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-0363625f9809",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/decide-linking.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-0363625f9809"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-fe0d9bec0df0",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/goal-truth-separation.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-fe0d9bec0df0"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-7fd9b1cf2616",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/help-coverage.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-7fd9b1cf2616"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e455b3c93560",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/help-topics.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e455b3c93560"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5965339862c5",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/name-resolution.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5965339862c5"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5ebc1a0c0935",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/plan-patch.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5ebc1a0c0935"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-45a7000647eb",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/task-status.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-45a7000647eb"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-19a597aa1a34",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/workflow-attach.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-19a597aa1a34"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-14cad26b898b",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/workflow-state.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-14cad26b898b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-a0f6e8f116fa",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/briefing.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-a0f6e8f116fa"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ac3cfc9991cf",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/bug.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ac3cfc9991cf"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-7f69a64f55be",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/bugs.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-7f69a64f55be"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-28811ca4a32e",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/decide.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-28811ca4a32e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-edd84e260d28",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/decisions.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-edd84e260d28"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-254d7ccac9c2",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/goal.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-254d7ccac9c2"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-74e1dedd0058",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/goals.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-74e1dedd0058"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-37ec1a2144aa",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/plan.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-37ec1a2144aa"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-8b6706703876",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/plans.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-8b6706703876"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ca5316074376",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/tasks.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ca5316074376"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3ea26fbb6ca8",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/truth.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3ea26fbb6ca8"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-a34bd802ee55",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/workflow.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-a34bd802ee55"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ac182b8efe5d",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/workflows.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ac182b8efe5d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-384f853ed998",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/help-text.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-384f853ed998"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-a9c615c7707c",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/main.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-a9c615c7707c"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-d1361ec2e4a1",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/register/oss.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-d1361ec2e4a1"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-7f02307621da",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/register/pro-loader.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-7f02307621da"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-03a7be8e7601",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/task-utils.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-03a7be8e7601"
+    }
+  ]
+}

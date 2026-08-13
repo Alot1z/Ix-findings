@@ -1,0 +1,84 @@
+{
+  "id": "FILE-fd6f0602497b",
+  "type": "artifact",
+  "title": "ix-cli/src/cli/explain/subsystem.ts",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/file-fd6f0602497b",
+  "summary": {
+    "id": "FILE-fd6f0602497b",
+    "type": "artifact",
+    "title": "ix-cli/src/cli/explain/subsystem.ts",
+    "status": "CURRENT",
+    "repository": "Alot1z/Ix-mcp",
+    "url": "https://github.com/Alot1z/Ix-mcp/blob/HEAD/ix-cli/src/cli/explain/subsystem.ts"
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-3996214f130e816bef8bc5b9b71a43385ec6b203",
+      "other_type": "commit",
+      "other_title": "3996214f130e816bef8bc5b9b71a43385ec6b203",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-3996214f130e816bef8bc5b9b71a43385ec6b203"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-befde2c38786251239dd93a6adbdadcfe5e5877b",
+      "other_type": "commit",
+      "other_title": "befde2c38786251239dd93a6adbdadcfe5e5877b",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-befde2c38786251239dd93a6adbdadcfe5e5877b"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-e7a95ea1202f48ee41b70e3d4b04baa614483186",
+      "other_type": "commit",
+      "other_title": "e7a95ea1202f48ee41b70e3d4b04baa614483186",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-e7a95ea1202f48ee41b70e3d4b04baa614483186"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-e38a87a117269ff27051d5eda3b01ae4f2cbf6c3",
+      "other_type": "commit",
+      "other_title": "e38a87a117269ff27051d5eda3b01ae4f2cbf6c3",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-e38a87a117269ff27051d5eda3b01ae4f2cbf6c3"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-1f7abf218b175d40d05f4493316463bd12779933",
+      "other_type": "commit",
+      "other_title": "1f7abf218b175d40d05f4493316463bd12779933",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-1f7abf218b175d40d05f4493316463bd12779933"
+    },
+    {
+      "direction": "in",
+      "relationship": "CO_CHANGED_WITH",
+      "other": "FILE-52e473712974",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/ingest.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-52e473712974"
+    },
+    {
+      "direction": "out",
+      "relationship": "CO_CHANGED_WITH",
+      "other": "FILE-99dfb8c5ff43",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/ArangoClient.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-99dfb8c5ff43"
+    },
+    {
+      "direction": "out",
+      "relationship": "CO_CHANGED_WITH",
+      "other": "FILE-8fe8197934db",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/BulkWriteApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-8fe8197934db"
+    }
+  ]
+}

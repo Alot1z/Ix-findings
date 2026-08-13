@@ -1,0 +1,85 @@
+{
+  "id": "REVIEW-ix-infrastructure-Ix-pr-390-4902664702",
+  "type": "artifact",
+  "title": "Review 4902664702 on PR #390",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/review-ix-infrastructure-ix-pr-390-4902664702",
+  "summary": {
+    "id": "REVIEW-ix-infrastructure-Ix-pr-390-4902664702",
+    "type": "artifact",
+    "title": "Review 4902664702 on PR #390",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/pull/390#pullrequestreview-4902664702",
+    "source_mirror_id": "github:review:ix-infrastructure/Ix#pr-390-4902664702",
+    "source_type": "github_review",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/pull/390#pullrequestreview-4902664702",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "id": 4902664702,
+    "node_id": "PRR_kwDORdC75M8AAAABJDi5_g",
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 390,
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "state": "APPROVED",
+    "body": "Verified the two claims this turns on, both hold.\n\n**Pro shadowing.** `tryRegister`'s `try` covers the `fn(program)` call, not just the `import` (`Ix-pro/src/cli/register.ts:17-23`), so commander's duplicate-name throw is swallowed. `main.ts:69` runs `registerOssCommands` synchronously before the Pro probe at :74, so the OSS registration is the survivor. And `Ix-pro/src/cli/commands/patches.ts` is now identical to this one bar the `llm` in its `--format` description — it already imports `createClient` and `formatPatches` from `@ix/cli`, so switching to `createClient()` here makes them the same call, not merely a similar one.\n\n**One gap, fixed in 89ca55e.** The new test pins that `patches` is absent from the stub list. That is the half that can't silently regress — the other half can. I deleted the `registerPatchesCommand(program)` line from `oss.ts` and the whole suite stayed green (722 passed) while `ix patches` went back to being commander's `unknown command`, i.e. the state #371 was filed about.\n\nAdded `registers patches as an OSS command` alongside it, asserting the command exists on the program after `registerOssCommands` and carries `--format`. It fails with `expected undefined to be defined` against that mutation.\n\nBoth halves are now pinned. 723 green.",
+    "html_url": "https://github.com/ix-infrastructure/Ix/pull/390#pullrequestreview-4902664702",
+    "submitted_at": "2026-08-11T03:14:11Z",
+    "commit_id": "89ca55e21672696deb7627cb3e5b1846754707fa",
+    "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+    "source": "OFFICIAL_GITHUB_FACT",
+    "parent_pr": 390
+  },
+  "source_context": {
+    "id": "github:review:ix-infrastructure/Ix#pr-390-4902664702",
+    "source": {
+      "type": "github_review",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/390#pullrequestreview-4902664702",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-11T03:14:11Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-11T03:14:11Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "REVIEW-ix-infrastructure-Ix-pr-390-4902664702",
+    "entity_type": "REVIEW",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#390",
+    "review_thread_state": "VERIFIED_GRAPHQL_NO_ASSOCIATED_THREAD_DATA"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "HAS_REVIEW",
+      "other": "PR-390",
+      "other_type": "pr",
+      "other_title": "Ix PR #390",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-390"
+    }
+  ]
+}

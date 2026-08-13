@@ -1,0 +1,102 @@
+{
+  "id": "COMMENT-ix-infrastructure-Ix-issue-383-5247516593",
+  "type": "artifact",
+  "title": "Issue #383 comment 5247516593",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/comment-ix-infrastructure-ix-issue-383-5247516593",
+  "summary": {
+    "id": "COMMENT-ix-infrastructure-Ix-issue-383-5247516593",
+    "type": "artifact",
+    "title": "Issue #383 comment 5247516593",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/issues/383#issuecomment-5247516593",
+    "source_mirror_id": "github:comment:ix-infrastructure/Ix#issue-383-5247516593",
+    "source_type": "github_issue_comment",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/issues/383#issuecomment-5247516593",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5247516593",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "id": 5247516593,
+    "node_id": "IC_kwDORdC75M8AAAABOMa_sQ",
+    "repository": "ix-infrastructure/Ix",
+    "parent_type": "ISSUE",
+    "parent_number": 383,
+    "kind": "ISSUE_COMMENT",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "body": "Both causes are now covered, in the plugin repo — mirrored there as ix-codex-plugin#22, because GitHub closing keywords do not work across repositories and this issue would otherwise never auto-close.\n\n| cause | fix |\n|---|---|\n| `/bin/sh -lc` in all five `hooks.json` commands | ix-codex-plugin#20 |\n| `subprocess` not consulting `PATHEXT` for `ix.CMD` | ix-codex-plugin#19 |\n\nWorth being explicit that **neither alone is enough**: #19's fix lives inside `common.py`, and until #20 lands the hook process never starts, so that code never runs. #19's own description scopes it to \"the half that breaks the CLI\" — it is the half that is unreachable without the other.\n\nLeaving this open. Neither PR has been run on real Windows; both were written and tested on Linux, where the changed paths are no-ops or unit-tested in isolation. @tept-creator — a confirmation from a real Windows box after both merge is what should close this.",
+    "html_url": "https://github.com/ix-infrastructure/Ix/issues/383#issuecomment-5247516593",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5247516593",
+    "created_at": "2026-08-11T00:14:37Z",
+    "updated_at": "2026-08-11T00:14:37Z",
+    "commit_id": null,
+    "path": null,
+    "line": null,
+    "start_line": null,
+    "side": null,
+    "in_reply_to_id": null,
+    "diff_hunk": null,
+    "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+    "source": "OFFICIAL_GITHUB_FACT",
+    "parent_issue": 383
+  },
+  "source_context": {
+    "id": "github:comment:ix-infrastructure/Ix#issue-383-5247516593",
+    "source": {
+      "type": "github_issue_comment",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/issues/383#issuecomment-5247516593",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5247516593",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-11T00:14:37Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-11T00:14:37Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMENT-ix-infrastructure-Ix-issue-383-5247516593",
+    "entity_type": "ISSUE_COMMENT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:issue:ix-infrastructure/Ix#383",
+    "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "COMMENTED_ON",
+      "other": "ISSUE-383",
+      "other_type": "issue",
+      "other_title": "Ix issue #383",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/issue-383"
+    },
+    {
+      "direction": "in",
+      "relationship": "AUTHORED",
+      "other": "PERSON-KageBinary",
+      "other_type": "artifact",
+      "other_title": "KageBinary",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-kagebinary"
+    }
+  ]
+}

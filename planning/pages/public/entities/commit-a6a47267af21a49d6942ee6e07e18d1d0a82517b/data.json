@@ -8,17 +8,75 @@
     "id": "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
     "type": "commit",
     "title": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
-    "status": "CURRENT"
+    "status": "CURRENT",
+    "source_mirror_id": "github:commit:ix-infrastructure/Ix@a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+    "source_type": "github_commit",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/commit/a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "sha": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+    "author": {
+      "login": "bertolikimberly",
+      "id": 134340724,
+      "type": "User",
+      "html_url": "https://github.com/bertolikimberly"
+    },
+    "committer": {
+      "login": "bertolikimberly",
+      "id": 134340724,
+      "type": "User",
+      "html_url": "https://github.com/bertolikimberly"
+    },
+    "message": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap\n\nImplements the reviewer-suggested follow-up (#368) in the source layer:\n\n- view.ts serverScript now emits a real POST /__ix/remap handler that\n  rebuilds the code map for the workspace the visualizer was launched from\n  (its cwd) via the shipped CLI, instead of falling through to the SPA\n  stub. The server binds 127.0.0.1, and the handler rejects non-loopback\n  Hosts and non-loopback browser Origins (403), blocking CSRF and\n  DNS-rebinding on an endpoint that shells out with the user's privileges.\n  The Origin is parsed with the URL API (not a regex) because the snippet\n  lives inside a template literal that is re-emitted on every ix view start.\n  The CLI path is overridable via IX_VIEW_MAP_MAIN for tests, and the map\n  child is reaped when the client disconnects before the response.\n- bootstrap.sh: is_windows no longer treats WSL as Windows (uname is Linux\n  there; it was being routed to the PowerShell installer), and the dead\n  node_ok variable is removed.\n- docs/api/README.md documents the real endpoint and its guard.\n\nVerified: 656 vitest tests pass (10 new view-server tests covering the\nguard matrix, success/failure, SPA fallback, loopback bind), tsc clean,\neslint clean.",
+    "parents": [
+      {
+        "sha": "ffe21f01268caf6567916da697cd6826358443e2",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/ffe21f01268caf6567916da697cd6826358443e2"
+      }
+    ],
+    "tree_sha": "de64717516aa91caa8fc3fe5fc4c8f192d6a8541",
+    "authored_at": "2026-08-11T18:56:30Z",
+    "committed_at": "2026-08-11T18:56:30Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-11T18:56:30Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-11T18:56:30Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#393"
   },
   "relationships": [
-    {
-      "direction": "in",
-      "relationship": "CHANGED_BY",
-      "other": "PR-393",
-      "other_type": "pr",
-      "other_title": "Ix PR #393",
-      "other_url": "https://alot1z.github.io/Ix-findings/prs/393/tests"
-    },
     {
       "direction": "in",
       "relationship": "DOCUMENTS_COMMIT",
@@ -50,6 +108,150 @@
       "other_type": "artifact",
       "other_title": "PR #393 — tests",
       "other_url": "https://alot1z.github.io/Ix-findings/prs/393/tests"
+    },
+    {
+      "direction": "in",
+      "relationship": "POINTS_TO",
+      "other": "BRANCH-49d4a74be2b8",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:feat/ix-remap-hardening",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-49d4a74be2b8"
+    },
+    {
+      "direction": "in",
+      "relationship": "POINTS_TO",
+      "other": "BRANCH-ee20ecfc893b",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:feat/ix-remap-hardening",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-ee20ecfc893b"
+    },
+    {
+      "direction": "out",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-ffe21f01268caf6567916da697cd6826358443e2",
+      "other_type": "commit",
+      "other_title": "ffe21f01268caf6567916da697cd6826358443e2",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-ffe21f01268caf6567916da697cd6826358443e2"
+    },
+    {
+      "direction": "in",
+      "relationship": "HEADS_AT",
+      "other": "PR-393",
+      "other_type": "pr",
+      "other_title": "Ix PR #393",
+      "other_url": "https://alot1z.github.io/Ix-findings/prs/393/tests"
+    },
+    {
+      "direction": "in",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "PR-393",
+      "other_type": "pr",
+      "other_title": "Ix PR #393",
+      "other_url": "https://alot1z.github.io/Ix-findings/prs/393/tests"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5b1b927b6a8e",
+      "other_type": "artifact",
+      "other_title": "docs/api/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5b1b927b6a8e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-201d35c8a82e",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/view.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-201d35c8a82e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-655981dd6e0a",
+      "other_type": "artifact",
+      "other_title": "ix-cli/test/view-server.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-655981dd6e0a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-4818b5c86e91",
+      "other_type": "artifact",
+      "other_title": "skills/ix/scripts/bootstrap.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-4818b5c86e91"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2bc1374b9b3e",
+      "other_type": "artifact",
+      "other_title": "docs/api/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2bc1374b9b3e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-035edca4e0b3",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/view.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-035edca4e0b3"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-cf17af7c1a03",
+      "other_type": "artifact",
+      "other_title": "ix-cli/test/view-server.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-cf17af7c1a03"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-cf08bd598832",
+      "other_type": "artifact",
+      "other_title": "skills/ix/scripts/bootstrap.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-cf08bd598832"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-28371090626f",
+      "other_type": "artifact",
+      "other_title": "docs/api/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-28371090626f"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-00889d6a5373",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/view.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-00889d6a5373"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-06efd3511e51",
+      "other_type": "artifact",
+      "other_title": "ix-cli/test/view-server.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-06efd3511e51"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-86f76447eb26",
+      "other_type": "artifact",
+      "other_title": "skills/ix/scripts/bootstrap.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-86f76447eb26"
     }
   ]
 }

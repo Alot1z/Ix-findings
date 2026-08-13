@@ -10,7 +10,511 @@
     "title": "Ix PR #372",
     "status": "RESOLVED",
     "number": 372,
-    "url": "https://github.com/ix-infrastructure/Ix/pull/372"
+    "url": "https://github.com/ix-infrastructure/Ix/pull/372",
+    "source_mirror_id": "github:pull_request:ix-infrastructure/Ix#372",
+    "source_type": "github_pull_request",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/pull/372",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/372",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "number": 372,
+    "node_id": "PR_kwDORdC75M78ze_k",
+    "title": "feat(llm): implement --format llm for the five commands that faked it",
+    "body": "## What\n\n`explain`, `read`, `status`, `doctor` and `savings` advertised `text|json|llm` and rendered `text` when given `llm`. `docs/llm-format.md` documented that fallback as intentional — commands whose output is prose or verbatim source route to \"the most compact existing form\".\n\nThat holds for the *payload* and not for what surrounds it. `explain`'s prose is a rendering of `facts` + `role` + `importance`, so an agent can have the inputs and skip the paragraph. `read`'s source was arriving under a 4-column line-number gutter and two ANSI escapes per line. And `explain` is the first call most plugins make on any question, so the fallback was costing the most tokens on the hottest path.\n\n## Measured\n\nAgainst `--format json`, which the help text sent agents to as the workaround:\n\n| command | json | llm | saved |\n|---|---:|---:|---:|\n| explain | 1849 | 829 | **55%** |\n| doctor | 682 | 470 | 31% |\n| savings --detail | 1010 | 693 | 31% |\n| read (40 lines) | 1661 | 1585 | 5% |\n| status | 184 | 186 | −1% |\n\n`read` gains 23% against `text` instead — 601 of those bytes are gutter and ANSI on a 40-line read.\n\n**`status` is a wash on size and is in anyway**, for the explicit `stale=true|false` field: that is the question the command gets called to answer, and `text` only implied it through a warning line. Its unreachable-backend path now emits the spec's `error code=...` record so a consumer parses the failure the same way it parses a result.\n\n## Notes\n\n- **`read`'s content block is the one place the one-record-per-line invariant is relaxed.** The preceding `content lines=<n>` record makes the block self-delimiting, so a line of source can never be mistaken for a record.\n- Still on text, now documented rather than silent: `diff --content` (verbatim hunks) and `ingest` (hidden implementation-detail command).\n- Found while writing this: the `doctor` status ternary. A warning there is `{ok: false, warn: true}`, so checking `warn` on the `ok` branch reports every warning as a hard failure — the opposite of what `hasFailure` concludes two lines down. Caught by the test, fixed before it shipped.\n\n## CLAUDE.md\n\nThe paragraph on this was wrong in both directions: it claimed the deprecated `query` advertises `llm` (it offers only `text|json`) and missed `doctor`, `savings` and `ingest`. It also never mentioned that `config`, `init`, `reset`, `upgrade`, `view`, `watch` and `docker` take no `--format` at all — `--format llm` there is an `unknown option` error, not a fallback, which is the one case where an agent following the doc's \"pass it unconditionally\" advice breaks.\n\nThat paragraph sits between the `IX-MEMORY` markers, which say not to hand-edit. **There is no generator for it in this repo** (only `scripts/disconnect.sh` touches the markers, and only to strip them), so I corrected it in place — but whatever regenerates it needs the same fix or this reverts on the next run.\n\n## Test\n\n51 files / 661 tests green, plus 13 new in `llm-tier5.test.ts` covering the records, zero-count survival, quoting of a multi-line signature, and the `--detail` gate.",
+    "state": "closed",
+    "draft": false,
+    "merged": true,
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "html_url": "https://github.com/ix-infrastructure/Ix/pull/372",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/372",
+    "head": {
+      "ref": "feat/llm-format-coverage",
+      "sha": "86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+      "repo": {
+        "id": 1171307492,
+        "full_name": "ix-infrastructure/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "ix-infrastructure",
+          "id": 256883681,
+          "type": "Organization",
+          "html_url": "https://github.com/ix-infrastructure"
+        },
+        "html_url": "https://github.com/ix-infrastructure/Ix",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": false,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-03-03T04:48:38Z",
+        "updated_at": "2026-08-13T21:51:31Z",
+        "pushed_at": "2026-08-13T19:18:44Z",
+        "topics": [
+          "ai",
+          "ai-memory",
+          "claude-code",
+          "cli",
+          "code-analysis",
+          "code-mapping",
+          "code-memory",
+          "codebase-understanding",
+          "codex",
+          "developer-tools",
+          "llm",
+          "openclaw",
+          "persistent-memory",
+          "program-analysis",
+          "software-architecture",
+          "system-intelligence",
+          "system-mapping"
+        ],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 701,
+        "stargazers_count": 701,
+        "forks_count": 60,
+        "open_issues_count": 6
+      }
+    },
+    "base": {
+      "ref": "main",
+      "sha": "0437abf5de675f16fe161df86fca9adf7eee9b93",
+      "repo": {
+        "id": 1171307492,
+        "full_name": "ix-infrastructure/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "ix-infrastructure",
+          "id": 256883681,
+          "type": "Organization",
+          "html_url": "https://github.com/ix-infrastructure"
+        },
+        "html_url": "https://github.com/ix-infrastructure/Ix",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": false,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-03-03T04:48:38Z",
+        "updated_at": "2026-08-13T21:51:31Z",
+        "pushed_at": "2026-08-13T19:18:44Z",
+        "topics": [
+          "ai",
+          "ai-memory",
+          "claude-code",
+          "cli",
+          "code-analysis",
+          "code-mapping",
+          "code-memory",
+          "codebase-understanding",
+          "codex",
+          "developer-tools",
+          "llm",
+          "openclaw",
+          "persistent-memory",
+          "program-analysis",
+          "software-architecture",
+          "system-intelligence",
+          "system-mapping"
+        ],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 701,
+        "stargazers_count": 701,
+        "forks_count": 60,
+        "open_issues_count": 6
+      }
+    },
+    "merge_commit_sha": "ed361190094b2d31c6a51e8df1e23f4cd8daa884",
+    "merged_at": "2026-08-10T16:27:42Z",
+    "closed_at": "2026-08-10T16:27:42Z",
+    "created_at": "2026-08-10T02:54:48Z",
+    "updated_at": "2026-08-10T16:27:44Z",
+    "labels": [],
+    "milestone": null,
+    "requested_reviewers": [],
+    "requested_teams": [],
+    "commits_count": 2,
+    "changed_files_count": 10,
+    "additions": 734,
+    "deletions": 22,
+    "changed_files": [
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 372,
+        "filename": "CLAUDE.md",
+        "status": "modified",
+        "additions": 9,
+        "deletions": 7,
+        "changes": 16,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/86f3684c4e4dc77dd0a579eb92863824953a3ce9/CLAUDE.md",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/86f3684c4e4dc77dd0a579eb92863824953a3ce9/CLAUDE.md",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/CLAUDE.md?ref=86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+        "patch": "@@ -15,13 +15,15 @@ Use the `ix` CLI exclusively.\n - `--format json` — use when chaining results between commands, or when you need\n   to pull a specific field out of the response.\n \n-**Four commands advertise `llm` in their help but do not implement it**, and fall\n-back to human-oriented text without an error: `explain`, `read`, `status`, and the\n-deprecated `query`. Use `--format json` on those if you need to parse the result.\n-Everywhere else in the routing tables, `llm` behaves as described.\n-\n-These commands take no `--format` at all: `config`, `init`, `reset`, `upgrade`,\n-`view`, `watch`. (`ingest` does accept it, despite being an action command.)\n+Every command that accepts `--format` implements `llm`, with two exceptions that\n+fall back to text without an error: `diff --content` (verbatim hunks) and\n+`ingest`. The deprecated `query` accepts only `text|json` — passing `--format\n+llm` to it silently renders text.\n+\n+`--format llm` is **not** accepted at all by `config`, `init`, `reset`,\n+`upgrade`, `view`, `watch` and `docker`, which take no `--format`; passing it is\n+an `unknown option` error, not a fallback. Do not pass it blind. (`ingest` does\n+accept `--format`, despite being an action command.)\n \n **Pro features.** Some commands below are marked **[Pro]**, as are the whole\n **Planning** and **Workflows** sections — every command in those two tables is"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 372,
+        "filename": "docs/llm-format.md",
+        "status": "modified",
+        "additions": 28,
+        "deletions": 5,
+        "changes": 33,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/86f3684c4e4dc77dd0a579eb92863824953a3ce9/docs%2Fllm-format.md",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/86f3684c4e4dc77dd0a579eb92863824953a3ce9/docs%2Fllm-format.md",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/docs%2Fllm-format.md?ref=86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+        "patch": "@@ -95,8 +95,31 @@ Renderers shipped: Tier 1 (`map`, `subsystems`, `impact`, `smells`,\n `overview`) plus `stats`; Tier 2 (`inventory`, `rank`, `depends`, `trace`,\n `contains`, `callers`, `callees`, `imports`, `imported-by`); Tier 3 (`search`,\n `text`, `history`, `patches`); Tier 4 (`entity`, `locate`, `diff`,\n-`conflicts`). Commands whose output is verbatim source or prose (`read`,\n-`explain`, `doctor`, `status`, `savings`, and `diff --content`) route\n-`--format llm` to `text`, the most compact existing form. Programmatic\n-consumers that need to parse output should continue to use `--format json`; the\n-`llm` format is optimized for being read by a model, not parsed.\n+`conflicts`); Tier 5 (`explain`, `read`, `status`, `doctor`, `savings`).\n+\n+Tier 5 closes the prose fallback. Those five routed `--format llm` to `text` on\n+the theory that verbatim source and prose have no record form, which is true of\n+the *payload* but not of what surrounds it — `explain`'s prose is a rendering of\n+facts the agent can have directly, and `read`'s source was arriving under a\n+per-line number gutter and ANSI escapes. `explain` is the one that mattered\n+most: it is the first call most plugins make, and its records are ~55% smaller\n+than the `--format json` that `text` sent people to as a workaround.\n+\n+Two deliberate exceptions remain:\n+\n+- **`read`'s content block is not records.** An agent asked for source and wants\n+  it byte-for-byte, so the payload is emitted raw after a `content lines=<n>`\n+  record that makes the block self-delimiting. This is the only place the\n+  one-record-per-line invariant is relaxed, and the count is what lets a\n+  consumer relax it safely.\n+- **`status` is not smaller** — it is within a byte or two of `json`, because\n+  the payload is a handful of scalars either way. It is in Tier 5 for the\n+  explicit `stale=true|false` field, which is the question the command gets\n+  called to answer and which `text` only implied through a warning line.\n+\n+Still routing to `text`: `diff --content` (verbatim hunks) and `ingest`, a\n+hidden implementation-detail command whose output is a completion summary.\n+\n+Programmatic consumers that need to parse output should continue to use\n+`--format json`; the `llm` format is optimized for being read by a model, not\n+parsed."
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 372,
+        "filename": "ix-cli/src/cli/__tests__/llm-tier5.test.ts",
+        "status": "added",
+        "additions": 284,
+        "deletions": 0,
+        "changes": 284,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/86f3684c4e4dc77dd0a579eb92863824953a3ce9/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fllm-tier5.test.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/86f3684c4e4dc77dd0a579eb92863824953a3ce9/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fllm-tier5.test.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fllm-tier5.test.ts?ref=86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+        "patch": "@@ -0,0 +1,284 @@\n+import { describe, it, expect, vi } from \"vitest\";\n+import { renderExplainLlm, renderExplainRawLlm } from \"../explain/llm.js\";\n+import { renderReadLlm, renderReadAmbiguityLlm, outputResult } from \"../commands/read.js\";\n+import type { ReadResult } from \"../commands/read.js\";\n+import { renderStatusLlm } from \"../commands/status.js\";\n+import { renderDoctorLlm } from \"../commands/doctor.js\";\n+import { renderSavingsLlm } from \"../commands/savings.js\";\n+import type { EntityFacts } from \"../explain/facts.js\";\n+\n+/**\n+ * The commands that advertised `llm` in their help and rendered `text`.\n+ *\n+ * docs/llm-format.md says an unimplemented command routes `--format llm` to\n+ * \"whichever existing format is most compact\", which for all five of these was\n+ * the prose renderer — so agents paid full human-oriented output on the path\n+ * they call most. These tests pin the records, and in particular the two\n+ * properties that are easy to regress: zero counts survive, and a value that\n+ * would break the one-record-per-line invariant gets quoted.\n+ */\n+\n+function facts(over: Partial<EntityFacts> = {}): EntityFacts {\n+  return {\n+    id: \"e1\", name: \"IngestionService\", kind: \"class\",\n+    path: \"src/ingest.ts\",\n+    members: [], memberCount: 0,\n+    callerCount: 0, calleeCount: 0, dependentCount: 0, importerCount: 0,\n+    downstreamDependents: 0, downstreamDepth: 0,\n+    topCallers: [], topDependents: [],\n+    historyLength: 0,\n+    stale: false,\n+    diagnostics: [],\n+    ...over,\n+  } as EntityFacts;\n+}\n+\n+const role = { role: \"service\", confidence: \"high\", reasons: [] } as any;\n+const importance = { level: \"high\", category: \"broad-shared-dependency\", reasons: [] } as any;\n+const rendered = {\n+  explanation: \"PROSE_EXPLANATION\", context: \"PROSE_CONTEXT\",\n+  usedBy: null, whyItMatters: \"PROSE_WHY\", notes: [],\n+};\n+\n+describe(\"explain --format llm\", () => {\n+  it(\"emits the facts, not the prose that was rendered from them\", () => {\n+    const lines = renderExplainLlm(\n+      facts({ callerCount: 12, dependentCount: 40, introducedRev: 7 }),\n+      role, importance, rendered,\n+    );\n+\n+    expect(lines[0]).toBe(\"entity id=e1 name=IngestionService kind=class path=src/ingest.ts rev=7\");\n+    expect(lines).toContain(\"role role=service confidence=high\");\n+    expect(lines).toContain(\"importance level=high category=broad-shared-dependency\");\n+    // The whole point: none of the prose survives. It is a rendering of the\n+    // records above, so an agent that gets the records can drop it.\n+    expect(lines.join(\"\\n\")).not.toContain(\"PROSE_EXPLANATION\");\n+    expect(lines.join(\"\\n\")).not.toContain(\"PROSE_CONTEXT\");\n+    expect(lines.join(\"\\n\")).not.toContain(\"PROSE_WHY\");\n+  });\n+\n+  it(\"keeps zero counts, because 'nothing calls this' is an answer\", () => {\n+    const line = renderExplainLlm(facts(), role, importance, rendered)\n+      .find(l => l.startsWith(\"edges \"));\n+\n+    // llmField drops \"\" but keeps \"0\" — if these were passed as numbers a\n+    // future change to that rule would silently delete the answer.\n+    expect(line).toBe(\"edges callers=0 callees=0 dependents=0 importers=0 members=0 downstream=0 depth=0 history=0\");\n+  });\n+\n+  it(\"marks stale sources and carries diagnostics through\", () => {\n+    const lines = renderExplainLlm(\n+      facts({ stale: true, diagnostics: [{ code: \"stale_source\", message: \"File changed since ingest.\" }] }),\n+      role, importance, rendered,\n+    );\n+\n+    expect(lines[0]).toContain(\"stale=true\");\n+    expect(lines).toContain('diagnostic code=stale_source message=\"File changed since ingest.\"');\n+  });\n+\n+  it(\"quotes a signature so a record never spans two lines\", () => {\n+    const lines = renderExplainLlm(\n+      facts({ signature: \"run(a: string,\\n      b: number): void\" }),\n+      role, importance, rendered,\n+    );\n+\n+    const sig = lines.find(l => l.startsWith(\"signature \"))!;\n+    expect(sig).toContain(\"\\\\n\");\n+    expect(sig.split(\"\\n\")).toHaveLength(1);\n+  });\n+\n+  it(\"renders the --raw dump as records too\", () => {\n+    const lines = renderExplainRawLlm({\n+      id: \"e1\", name: \"verify_token\", kind: \"function\", file: \"src/auth.py\",\n+      calledBy: 3, calls: 1, contains: 0, historyLength: 2,\n+      callList: [{ name: \"decode\", kind: \"function\", resolved: true }],\n+    });\n+\n+    expect(lines[0]).toBe(\"entity id=e1 name=verify_token kind=function path=src/auth.py\");\n+    expect(lines).toContain(\"edges called_by=3 calls=1 contains=0 history=2\");\n+    expect(lines).toContain(\"call name=decode kind=function\");\n+  });\n+});\n+\n+describe(\"read --format llm\", () => {\n+  it(\"drops the per-line gutter and self-delimits the payload\", () => {\n+    const lines = renderReadLlm({\n+      targetType: \"symbol\", path: \"/repo/src/auth.py\",\n+      lineStart: 10, lineEnd: 12,\n+      content: \"def verify():\\n    return True\\n\",\n+      symbol: \"verify\", kind: \"function\",\n+    } as any);\n+\n+    expect(lines[0]).toContain(\"line_start=10\");\n+    expect(lines[0]).toContain(\"symbol=verify\");\n+    // content lines=<n> tells the consumer exactly how many lines follow, so a\n+    // line of source can never be mistaken for another record.\n+    expect(lines[1]).toBe(\"content lines=3\");\n+    expect(lines.slice(2)).toEqual([\"def verify():\", \"    return True\", \"\"]);\n+    // No line number prefixes anywhere.\n+    expect(lines.slice(2).some(l => /^\\s*\\d+ /.test(l))).toBe(false);\n+  });\n+\n+  it(\"lists candidates when the target is ambiguous\", () => {\n+    const lines = renderReadAmbiguityLlm({\n+      targetType: \"ambiguous-symbol\",\n+      candidates: [\n+        { name: \"run\", kind: \"function\", path: \"/repo/a.ts\" },\n+        { name: \"run\", kind: \"method\", path: \"/repo/b.ts\" },\n+      ],\n+    } as any, \"run\");\n+\n+    expect(lines[0]).toBe(\"ambiguous kind=symbol target=run count=2\");\n+    expect(lines[1]).toContain(\"candidate n=1 name=run kind=function\");\n+    expect(lines[lines.length - 1]).toContain(\"--pick\");\n+  });\n+});\n+\n+describe(\"status --format llm\", () => {\n+  it(\"answers 'can I trust the graph' in one field\", () => {\n+    const lines = renderStatusLlm(\"ok\", \"http://[redacted]8090\", {\n+      currentRev: 11, lastIngestAt: \"2026-08-09T12:00:00.000Z\",\n+      staleFiles: 2, sampleChangedFiles: [\"src/a.ts\", \"src/b.ts\"],\n+    });\n+\n+    expect(lines[0]).toContain(\"stale=true\");\n+    expect(lines[0]).toContain(\"stale_files=2\");\n+    // ISO, not \"3h ago\" — the consumer can do its own arithmetic.\n+    expect(lines[0]).toContain(\"last_ingest_at=2026-08-09T12:00:00.000Z\");\n+    expect(lines).toContain(\"changed path=src/a.ts\");\n+  });\n+\n+  it(\"says stale=false rather than omitting it when the graph is current\", () => {\n+    const lines = renderStatusLlm(\"ok\", \"http://[redacted]8090\", {\n+      currentRev: 11, lastIngestAt: null, staleFiles: 0, sampleChangedFiles: [],\n+    });\n+\n+    expect(lines[0]).toContain(\"stale=false\");\n+    expect(lines[0]).toContain(\"stale_files=0\");\n+  });\n+\n+  it(\"omits the staleness fields entirely when there is no baseline to read\", () => {\n+    const lines = renderStatusLlm(\"ok\", \"http://[redacted]8090\", null);\n+\n+    expect(lines).toEqual([\"status backend=ok endpoint=http://[redacted]8090\"]);\n+  });\n+});\n+\n+describe(\"doctor --format llm\", () => {\n+  it(\"prints the detail instead of telling you to re-run for it\", () => {\n+    const lines = renderDoctorLlm([\n+      { name: \"Backend reachable\", ok: true, detail: \"ok\" },\n+      { name: \"Graph schema matches engine\", ok: false, warn: true, detail: \"graph schema v2, expected v3\" },\n+      { name: \"Docker running\", ok: false, detail: \"daemon not up\" },\n+    ], true, true);\n+\n+    expect(lines[0]).toBe(\"doctor healthy=false warnings=true checks=3\");\n+    expect(lines).toContain('check name=\"Backend reachable\" status=ok detail=ok');\n+    expect(lines).toContain('check name=\"Graph schema matches engine\" status=warn detail=\"graph schema v2, expected v3\"');\n+    expect(lines).toContain('check name=\"Docker running\" status=fail detail=\"daemon not up\"');\n+  });\n+\n+  // {ok:true, warn:true} is the only shape the ternary's ordering decides —\n+  // `latest-not-pulled` returns it, and every other combination reads the same\n+  // either way round. Without this row the comment explaining why `ok` must be\n+  // tested first sits above an untested branch.\n+  //\n+  // `ok`, not `warn`, because that is what the glyph line renders for the same\n+  // record (green ✓, not yellow !). The two formats describing one check\n+  // differently is the bug worth guarding; the header still carries\n+  // warnings=true, so nothing is lost.\n+  it(\"agrees with the glyph on a check that passes with a warning\", () => {\n+    const lines = renderDoctorLlm(\n+      [{ name: \"Backend image\", ok: true, warn: true, detail: \"can't verify — :latest not pulled\" }],\n+      false, true,\n+    );\n+\n+    expect(lines[0]).toBe(\"doctor healthy=true warnings=true checks=1\");\n+    expect(lines).toContain('check name=\"Backend image\" status=ok detail=\"can\\'t verify — :latest not pulled\"');\n+  });\n+});\n+\n+describe(\"savings --format llm\", () => {\n+  const data = (over = {}) => ({\n+    commandCount: 10, tokensSaved: 50_000, naiveTokens: 60_000, actualTokens: 10_000,\n+    byCommandType: { explain: { count: 4, saved: 20_000 } },\n+    ...over,\n+  });\n+\n+  it(\"emits one record per scope with the derived money and water\", () => {\n+    const lines = renderSavingsLlm(\n+      { session: data(), lifetime: data() } as any, \"opus\", false,\n+    );\n+\n+    const session = lines.find(l => l.includes(\"name=session\"))!;\n+    expect(session).toContain(\"tokens_saved=50000\");\n+    expect(session).toContain(\"water_saved_ml=100\");\n+    expect(session).toMatch(/money_saved=\\d+\\.\\d{2}/);\n+  });\n+\n+  it(\"gates the per-command breakdown behind --detail, like the other formats\", () => {\n+    const without = renderSavingsLlm({ session: data(), lifetime: data() } as any, \"opus\", false);\n+    const with_ = renderSavingsLlm({ session: data(), lifetime: data() } as any, \"opus\", true);\n+\n+    expect(without.some(l => l.startsWith(\"command \"))).toBe(false);\n+    expect(with_).toContain(\"command scope=session name=explain count=4 tokens_saved=20000\");\n+  });\n+});\n+\n+/**\n+ * The `content lines=<n>` header is only true of render *composed with* print.\n+ * renderReadLlm returns the blank lines correctly; printLlmLines used to drop\n+ * them on the way to stdout, so the count promised more lines than a consumer\n+ * ever received and it ate the following records as source. Asserting on the\n+ * returned array cannot see that — these drive the real print path.\n+ */\n+describe(\"read --format llm content framing\", () => {\n+  function emit(content: string, over: Partial<ReadResult> = {}): string[] {\n+    const out: string[] = [];\n+    const spy = vi.spyOn(console, \"log\").mockImplementation((...a: unknown[]) => {\n+      out.push(a.map(String).join(\" \"));\n+    });\n+    try {\n+      outputResult({\n+        targetType: \"file\", path: \"/repo/src/a.ts\",\n+        lineStart: 1, lineEnd: 1, content, stale: false,\n+        ...over,\n+      } as ReadResult, \"llm\");\n+    } finally {\n+      spy.mockRestore();\n+    }\n+    return out;\n+  }\n+\n+  function framing(content: string): { declared: number; emitted: number } {\n+    const out = emit(content);\n+    const header = out.findIndex(l => l.startsWith(\"content lines=\"));\n+    return {\n+      declared: Number(/content lines=(\\d+)/.exec(out[header])![1]),\n+      emitted: out.length - header - 1,\n+    };\n+  }\n+\n+  it.each([\n+    [\"a blank line in the middle\", \"def verify():\\n\\n    return True\\n\"],\n+    [\"an empty file\", \"\"],\n+    [\"CRLF content\", \"a\\r\\nb\\r\\n\"],\n+    [\"no trailing newline\", \"x\\ny\"],\n+    [\"only blank lines\", \"\\n\\n\\n\"],\n+  ])(\"emits exactly as many lines as it declares: %s\", (_label, content) => {\n+    const { declared, emitted } = framing(content);\n+    expect(emitted).toBe(declared);\n+  });\n+\n+  it(\"keeps the blank line in place rather than closing the gap\", () => {\n+    const out = emit(\"a\\n\\nb\\n\");\n+    expect(out.slice(out.findIndex(l => l.startsWith(\"content lines=\")) + 1))\n+      .toEqual([\"a\", \"\", \"b\", \"\"]);\n+  });\n+\n+  it(\"routes --format llm to records, not the numbered gutter\", () => {\n+    const out = emit(\"x\\ny\");\n+    expect(out[0]).toContain(\"file path=\");\n+    expect(out.some(l => /^\\s*\\d+ /.test(l))).toBe(false);\n+  });\n+});"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 372,
+        "filename": "ix-cli/src/cli/commands/doctor.ts",
+        "status": "modified",
+        "additions": 41,
+        "deletions": 0,
+        "changes": 41,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/86f3684c4e4dc77dd0a579eb92863824953a3ce9/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fdoctor.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/86f3684c4e4dc77dd0a579eb92863824953a3ce9/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fdoctor.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fdoctor.ts?ref=86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+        "patch": "@@ -3,6 +3,7 @@ import chalk from \"chalk\";\n import { renderSection, renderSuccess, renderError } from \"../ui.js\";\n import { IxClient } from \"../../client/api.js\";\n import { getEndpoint } from \"../config.js\";\n+import { llmLine, printLlmLines } from \"../llm.js\";\n import {\n   BACKEND_IMAGE,\n   checkBackendImage,\n@@ -18,6 +19,41 @@ interface CheckResult {\n   warn?: boolean;\n }\n \n+/**\n+ * `ix doctor --format llm`.\n+ *\n+ * `text` renders a ✓/!/✗ glyph per check and then, on failure, the singularly\n+ * unhelpful \"Run with --format json for details\" — the details were already in\n+ * hand, they were just not printed. Every check's status and detail is emitted\n+ * here, so an agent never has to make a second call to find out what broke.\n+ *\n+ * Status is a word rather than a symbol because `ok`/`warn`/`fail` survives\n+ * being read back by something that is not a terminal.\n+ */\n+export function renderDoctorLlm(\n+  results: Array<{ name: string } & CheckResult>,\n+  hasFailure: boolean,\n+  hasWarning: boolean,\n+): string[] {\n+  const lines = [llmLine(\"doctor\", [\n+    [\"healthy\", hasFailure ? \"false\" : \"true\"],\n+    [\"warnings\", hasWarning ? \"true\" : \"false\"],\n+    [\"checks\", String(results.length)],\n+  ])];\n+  for (const r of results) {\n+    lines.push(llmLine(\"check\", [\n+      [\"name\", r.name],\n+      // Same precedence as the glyphs and as `hasFailure` below: a warning is\n+      // `{ ok: false, warn: true }`, so `warn` has to be checked on the\n+      // not-ok branch. Testing it on the ok branch reports every warning as a\n+      // hard failure, which is the opposite of what `hasFailure` concludes.\n+      [\"status\", r.ok ? \"ok\" : r.warn ? \"warn\" : \"fail\"],\n+      [\"detail\", r.detail],\n+    ]));\n+  }\n+  return lines;\n+}\n+\n interface Check {\n   name: string;\n   run: () => Promise<CheckResult>;\n@@ -142,6 +178,11 @@ export function registerDoctorCommand(program: Command): void {\n       const hasFailure = results.some((r) => !r.ok && !r.warn);\n       const hasWarning = results.some((r) => r.warn);\n \n+      if (opts.format === \"llm\") {\n+        printLlmLines(renderDoctorLlm(results, hasFailure, hasWarning));\n+        return;\n+      }\n+\n       if (opts.format === \"json\") {\n         console.log(JSON.stringify({ healthy: !hasFailure, hasWarnings: hasWarning, checks: results }, null, 2));\n         return;"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 372,
+        "filename": "ix-cli/src/cli/commands/explain.ts",
+        "status": "modified",
+        "additions": 8,
+        "deletions": 2,
+        "changes": 10,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/86f3684c4e4dc77dd0a579eb92863824953a3ce9/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fexplain.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/86f3684c4e4dc77dd0a579eb92863824953a3ce9/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fexplain.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fexplain.ts?ref=86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+        "patch": "@@ -8,6 +8,8 @@ import { collectFacts } from \"../explain/facts.js\";\n import { inferRole } from \"../explain/role-inference.js\";\n import { inferImportance } from \"../explain/importance.js\";\n import { renderExplanation } from \"../explain/render.js\";\n+import { renderExplainLlm, renderExplainRawLlm } from \"../explain/llm.js\";\n+import { printLlmLines } from \"../llm.js\";\n import { renderSection, renderWarning, renderNote } from \"../ui.js\";\n \n export function registerExplainCommand(program: Command): void {\n@@ -37,7 +39,9 @@ export function registerExplainCommand(program: Command): void {\n       const importance = inferImportance(facts);\n       const rendered = renderExplanation(facts, role, importance);\n \n-      if (opts.format === \"json\") {\n+      if (opts.format === \"llm\") {\n+        printLlmLines(renderExplainLlm(facts, role, importance, rendered));\n+      } else if (opts.format === \"json\") {\n         const output: any = {\n           resolvedTarget: { kind: target.kind, name: target.name },\n           facts,\n@@ -199,7 +203,9 @@ async function rawExplain(\n     (result as any).warning = \"Results may be stale; file has changed since last ingest.\";\n   }\n \n-  if (format === \"json\") {\n+  if (format === \"llm\") {\n+    printLlmLines(renderExplainRawLlm(result));\n+  } else if (format === \"json\") {\n     const output: any = {\n       resolvedTarget: { kind: target.kind, name: target.name },\n       result,"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 372,
+        "filename": "ix-cli/src/cli/commands/read.ts",
+        "status": "modified",
+        "additions": 74,
+        "deletions": 4,
+        "changes": 78,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/86f3684c4e4dc77dd0a579eb92863824953a3ce9/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fread.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/86f3684c4e4dc77dd0a579eb92863824953a3ce9/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fread.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fread.ts?ref=86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+        "patch": "@@ -8,6 +8,7 @@ import { resolveEntityFull, activeReadScope, ensureReadScope } from \"../resolve.\n import { stderr } from \"../stderr.js\";\n import { isFileStale } from \"../stale.js\";\n import { relativePath } from \"../format.js\";\n+import { llmLine, printLlmLines } from \"../llm.js\";\n \n /** Common file extensions that signal the target is file-like, not a symbol name. */\n const FILE_EXTENSIONS = new Set([\n@@ -26,7 +27,7 @@ function looksFileLike(target: string): boolean {\n   return false;\n }\n \n-interface ReadResult {\n+export interface ReadResult {\n   targetType: \"file\" | \"file-range\" | \"filename-match\" | \"symbol\";\n   path: string;\n   lineStart: number;\n@@ -57,8 +58,75 @@ function readFileRange(filePath: string, start?: number, end?: number): { conten\n   return { content, lineStart, lineEnd };\n }\n \n-function outputResult(result: ReadResult, format: string): void {\n-  if (format === \"json\") {\n+/**\n+ * `ix read --format llm`.\n+ *\n+ * The one command whose payload is not records: an agent asked for source and\n+ * wants it byte-for-byte. Everything around it goes, though — `text` prefixes\n+ * every single line with a 4-column padded line number and an ANSI dim escape,\n+ * which on a 200-line read is 200 gutters of pure overhead for information the\n+ * `line_start` field already carries once.\n+ *\n+ * The `content lines=<n>` record makes the block self-delimiting, so a\n+ * consumer knows exactly how many following lines are payload and never has to\n+ * guess whether a line of source is another record.\n+ */\n+export function renderReadLlm(result: ReadResult): string[] {\n+  const contentLines = result.content.split(\"\\n\");\n+  return [\n+    llmLine(\"file\", [\n+      [\"path\", relativePath(result.path) ?? result.path],\n+      [\"line_start\", String(result.lineStart)],\n+      [\"line_end\", String(result.lineEnd)],\n+      [\"target\", result.targetType],\n+      [\"symbol\", result.symbol],\n+      [\"kind\", result.kind],\n+      [\"stale\", result.stale ? \"true\" : null],\n+    ]),\n+    llmLine(\"content\", [[\"lines\", String(contentLines.length)]]),\n+    ...contentLines,\n+  ];\n+}\n+\n+/** `ix read --format llm` when the target resolves to more than one thing. */\n+export function renderReadAmbiguityLlm(result: AmbiguityResult, target: string): string[] {\n+  const isFile = result.targetType === \"ambiguous-file\";\n+  const lines = [\n+    llmLine(\"ambiguous\", [\n+      [\"kind\", isFile ? \"file\" : \"symbol\"],\n+      [\"target\", target],\n+      [\"count\", String(result.candidates.length)],\n+    ]),\n+  ];\n+  result.candidates.forEach((c, i) => {\n+    lines.push(llmLine(\"candidate\", [\n+      [\"n\", String(i + 1)],\n+      [\"name\", c.name],\n+      [\"kind\", c.kind],\n+      [\"path\", c.path ? relativePath(c.path) ?? c.path : undefined],\n+      [\"id\", c.id],\n+    ]));\n+  });\n+  lines.push(llmLine(\"hint\", [[\n+    \"text\",\n+    isFile\n+      ? \"Provide a more specific path to disambiguate.\"\n+      : \"Use --pick <n>, --kind, or --path to disambiguate.\",\n+  ]]));\n+  for (const d of result.diagnostics ?? []) {\n+    lines.push(llmLine(\"diagnostic\", [[\"code\", d.code], [\"message\", d.message]]));\n+  }\n+  return lines;\n+}\n+\n+// Exported for the tests: the `content lines=<n>` invariant is a property of\n+// render *composed with* print, not of either alone. Asserting on\n+// renderReadLlm's return value passes just as happily when printLlmLines drops\n+// the blank lines out from under the count.\n+export function outputResult(result: ReadResult, format: string): void {\n+  if (format === \"llm\") {\n+    printLlmLines(renderReadLlm(result));\n+  } else if (format === \"json\") {\n     const out = { ...result, path: relativePath(result.path) ?? result.path };\n     console.log(JSON.stringify(out, null, 2));\n   } else {\n@@ -74,7 +142,9 @@ function outputResult(result: ReadResult, format: string): void {\n }\n \n function outputAmbiguity(result: AmbiguityResult, target: string, format: string): void {\n-  if (format === \"json\") {\n+  if (format === \"llm\") {\n+    printLlmLines(renderReadAmbiguityLlm(result, target));\n+  } else if (format === \"json\") {\n     console.log(JSON.stringify(result, null, 2));\n   } else {\n     const label = result.targetType === \"ambiguous-file\" ? \"file\" : \"symbol\";"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 372,
+        "filename": "ix-cli/src/cli/commands/savings.ts",
+        "status": "modified",
+        "additions": 49,
+        "deletions": 0,
+        "changes": 49,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/86f3684c4e4dc77dd0a579eb92863824953a3ce9/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fsavings.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/86f3684c4e4dc77dd0a579eb92863824953a3ce9/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fsavings.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fsavings.ts?ref=86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+        "patch": "@@ -2,6 +2,7 @@ import type { Command } from \"commander\";\n import chalk from \"chalk\";\n import { IxClient } from \"../../client/api.js\";\n import { getEndpoint } from \"../config.js\";\n+import { llmLine, printLlmLines } from \"../llm.js\";\n \n interface CommandBreakdown {\n   count: number;\n@@ -21,6 +22,49 @@ interface SavingsResponse {\n   lifetime: SavingsData;\n }\n \n+/**\n+ * `ix savings --format llm`.\n+ *\n+ * `text` draws a rule, two labelled blocks and a per-command table. The numbers\n+ * are the whole content, so they go out as two `scope` records with the\n+ * breakdown behind `--detail` exactly as the other formats gate it.\n+ *\n+ * Money and water are computed here rather than left to the caller because the\n+ * pricing table lives in this file — a consumer cannot derive them from\n+ * `tokens_saved` without it.\n+ */\n+export function renderSavingsLlm(\n+  result: SavingsResponse,\n+  model: string,\n+  detail: boolean,\n+): string[] {\n+  const pricing = PRICING[model] ?? PRICING.opus;\n+  const lines = [llmLine(\"savings\", [[\"model\", pricing.label]])];\n+\n+  for (const [scope, data] of [[\"session\", result.session], [\"lifetime\", result.lifetime]] as const) {\n+    lines.push(llmLine(\"scope\", [\n+      [\"name\", scope],\n+      [\"commands\", String(data.commandCount)],\n+      [\"tokens_saved\", String(data.tokensSaved)],\n+      [\"naive_tokens\", String(data.naiveTokens)],\n+      [\"actual_tokens\", String(data.actualTokens)],\n+      [\"money_saved\", estimateMoney(data.tokensSaved, model).toFixed(2)],\n+      [\"water_saved_ml\", String(estimateWater(data.tokensSaved))],\n+    ]));\n+    if (!detail) continue;\n+    for (const [command, breakdown] of Object.entries(data.byCommandType)) {\n+      lines.push(llmLine(\"command\", [\n+        [\"scope\", scope],\n+        [\"name\", command],\n+        [\"count\", String(breakdown.count)],\n+        [\"tokens_saved\", String(breakdown.saved)],\n+      ]));\n+    }\n+  }\n+\n+  return lines;\n+}\n+\n // Pricing models: input $/MTok, output $/MTok\n const PRICING: Record<string, { input: number; output: number; label: string }> = {\n   opus:   { input: 15,   output: 75,   label: \"Claude Opus ($15/MTok in, $75/MTok out)\" },\n@@ -102,6 +146,11 @@ export function registerSavingsCommand(program: Command): void {\n     const detail = opts.detail ?? false;\n     const result: SavingsResponse = await client.savings(detail);\n \n+    if (opts.format === \"llm\") {\n+      printLlmLines(renderSavingsLlm(result, opts.model, detail));\n+      return;\n+    }\n+\n     if (opts.format === \"json\") {\n       const pricing = PRICING[opts.model] ?? PRICING.opus;\n       console.log(JSON.stringify({"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 372,
+        "filename": "ix-cli/src/cli/commands/status.ts",
+        "status": "modified",
+        "additions": 48,
+        "deletions": 2,
+        "changes": 50,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/86f3684c4e4dc77dd0a579eb92863824953a3ce9/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fstatus.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/86f3684c4e4dc77dd0a579eb92863824953a3ce9/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fstatus.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fstatus.ts?ref=86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+        "patch": "@@ -3,6 +3,43 @@ import { renderSection, renderKeyValue, renderWarning, renderNote, renderSuccess\n import { IxClient } from \"../../client/api.js\";\n import { getEndpoint, resolveWorkspaceRoot } from \"../config.js\";\n import { detectStaleFiles } from \"../stale.js\";\n+import { llmError, llmLine, printLlmLines } from \"../llm.js\";\n+\n+interface StatusStaleInfo {\n+  currentRev: number;\n+  lastIngestAt: string | null;\n+  staleFiles: number;\n+  sampleChangedFiles: string[];\n+}\n+\n+/**\n+ * `ix status --format llm`.\n+ *\n+ * The reason to call `status` from an agent is to decide one thing: is the\n+ * graph current enough to trust, or does it need `ix map` first. `text` buries\n+ * that behind section headers, a \"Last ingest\" field humanised to \"3h ago\", and\n+ * a sampled file list. The `stale` field answers it directly, and\n+ * `last_ingest_at` stays ISO so the consumer can do its own arithmetic instead\n+ * of parsing prose.\n+ */\n+export function renderStatusLlm(\n+  backend: string,\n+  endpoint: string,\n+  staleInfo: StatusStaleInfo | null,\n+): string[] {\n+  const lines = [llmLine(\"status\", [\n+    [\"backend\", backend],\n+    [\"endpoint\", endpoint],\n+    [\"rev\", staleInfo ? String(staleInfo.currentRev) : null],\n+    [\"last_ingest_at\", staleInfo?.lastIngestAt ?? null],\n+    [\"stale_files\", staleInfo ? String(staleInfo.staleFiles) : null],\n+    [\"stale\", staleInfo ? (staleInfo.staleFiles > 0 ? \"true\" : \"false\") : null],\n+  ])];\n+  for (const f of staleInfo?.sampleChangedFiles ?? []) {\n+    lines.push(llmLine(\"changed\", [[\"path\", f]]));\n+  }\n+  return lines;\n+}\n \n export function registerStatusCommand(program: Command): void {\n   program\n@@ -24,7 +61,9 @@ export function registerStatusCommand(program: Command): void {\n           staleInfo = null;\n         }\n \n-        if (opts.format === \"json\") {\n+        if (opts.format === \"llm\") {\n+          printLlmLines(renderStatusLlm(health.status, getEndpoint(), staleInfo ?? null));\n+        } else if (opts.format === \"json\") {\n           const result: any = {\n             backend: health.status,\n             currentRev: staleInfo?.currentRev ?? null,\n@@ -58,7 +97,14 @@ export function registerStatusCommand(program: Command): void {\n           }\n         }\n       } catch (err) {\n-        console.error(`Ix backend not reachable at ${getEndpoint()}`);\n+        // The spec's uniform error record, so a consumer that pipes `--format\n+        // llm` parses the failure the same way it parses a result rather than\n+        // hitting an unparseable human sentence. Exit code is unchanged.\n+        if (opts.format === \"llm\") {\n+          console.log(llmError(\"backend_unreachable\", `Ix backend not reachable at ${getEndpoint()}`));\n+        } else {\n+          console.error(`Ix backend not reachable at ${getEndpoint()}`);\n+        }\n         process.exit(1);\n       }\n     });"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 372,
+        "filename": "ix-cli/src/cli/explain/llm.ts",
+        "status": "added",
+        "additions": 181,
+        "deletions": 0,
+        "changes": 181,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/86f3684c4e4dc77dd0a579eb92863824953a3ce9/ix-cli%2Fsrc%2Fcli%2Fexplain%2Fllm.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/86f3684c4e4dc77dd0a579eb92863824953a3ce9/ix-cli%2Fsrc%2Fcli%2Fexplain%2Fllm.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fexplain%2Fllm.ts?ref=86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+        "patch": "@@ -0,0 +1,181 @@\n+import { llmLine } from \"../llm.js\";\n+import { relativePath } from \"../format.js\";\n+import type { EntityFacts } from \"./facts.js\";\n+import type { RoleInference } from \"./role-inference.js\";\n+import type { ImportanceInference } from \"./importance.js\";\n+import type { ExplanationOutput } from \"./render.js\";\n+\n+/**\n+ * `ix explain --format llm`.\n+ *\n+ * `explain` advertised `llm` and rendered `text` — the prose pipeline\n+ * (explanation / context / why-it-matters) with section headers and indents.\n+ * That is the single most expensive thing an agent reads, and it is the\n+ * command a plugin calls first on almost every question, so the fallback was\n+ * costing the most tokens on the hottest path.\n+ *\n+ * The prose is a *rendering* of `facts` + `role` + `importance`, so an agent\n+ * does not need it: emit the inputs as records and let the model do its own\n+ * summarising. `whyItMatters` and `explanation` are dropped entirely for that\n+ * reason — every claim in them is derivable from the `role`, `importance` and\n+ * `edges` lines below.\n+ *\n+ * Counts are emitted even at zero on the `edges` line: \"this has no callers\"\n+ * is a real answer to \"who calls this\", and dropping the field would make it\n+ * indistinguishable from a field the renderer forgot.\n+ */\n+export function renderExplainLlm(\n+  facts: EntityFacts,\n+  role: RoleInference,\n+  importance: ImportanceInference,\n+  rendered: ExplanationOutput,\n+): string[] {\n+  const lines: string[] = [];\n+\n+  lines.push(llmLine(\"entity\", [\n+    [\"id\", facts.id],\n+    [\"name\", facts.name],\n+    [\"kind\", facts.kind],\n+    [\"path\", facts.path],\n+    [\"rev\", facts.introducedRev],\n+    [\"stale\", facts.stale ? \"true\" : null],\n+  ]));\n+\n+  lines.push(llmLine(\"role\", [\n+    [\"role\", role.role],\n+    [\"confidence\", role.confidence],\n+  ]));\n+\n+  lines.push(llmLine(\"importance\", [\n+    [\"level\", importance.level],\n+    [\"category\", importance.category],\n+  ]));\n+\n+  // Zeroes are meaningful here, so they are stringified rather than passed as\n+  // numbers — llmField drops \"\" but keeps \"0\".\n+  lines.push(llmLine(\"edges\", [\n+    [\"callers\", String(facts.callerCount)],\n+    [\"callees\", String(facts.calleeCount)],\n+    [\"dependents\", String(facts.dependentCount)],\n+    [\"importers\", String(facts.importerCount)],\n+    [\"members\", String(facts.memberCount)],\n+    [\"downstream\", String(facts.downstreamDependents)],\n+    [\"depth\", String(facts.downstreamDepth)],\n+    [\"history\", String(facts.historyLength)],\n+  ]));\n+\n+  if (facts.container) {\n+    lines.push(llmLine(\"container\", [\n+      [\"kind\", facts.container.kind],\n+      [\"name\", facts.container.name],\n+    ]));\n+  }\n+\n+  if (facts.subsystemName || facts.moduleName) {\n+    lines.push(llmLine(\"location\", [\n+      [\"subsystem\", facts.subsystemName],\n+      [\"module\", facts.moduleName],\n+    ]));\n+  }\n+\n+  if (facts.signature) lines.push(llmLine(\"signature\", [[\"text\", facts.signature]]));\n+\n+  for (const caller of facts.topCallers) {\n+    lines.push(llmLine(\"caller\", [[\"name\", caller]]));\n+  }\n+  for (const dependent of facts.topDependents) {\n+    lines.push(llmLine(\"dependent\", [[\"name\", dependent]]));\n+  }\n+  for (const member of facts.members) {\n+    lines.push(llmLine(\"member\", [[\"name\", member]]));\n+  }\n+\n+  // Kept from the prose because it is the one part that is not derivable from\n+  // the records above: `usedBy` names call sites the counts only total up.\n+  if (rendered.usedBy) lines.push(llmLine(\"used_by\", [[\"text\", rendered.usedBy]]));\n+\n+  for (const note of rendered.notes) {\n+    lines.push(llmLine(\"note\", [[\"text\", note]]));\n+  }\n+\n+  for (const diagnostic of facts.diagnostics) {\n+    lines.push(llmLine(\"diagnostic\", [\n+      [\"code\", diagnostic.code],\n+      [\"message\", diagnostic.message],\n+    ]));\n+  }\n+\n+  return lines;\n+}\n+\n+/**\n+ * `ix explain --raw --format llm`.\n+ *\n+ * The legacy metadata dump. Same treatment, driven off the assembled\n+ * `ExplainResult` rather than the fact pipeline.\n+ */\n+export function renderExplainRawLlm(result: {\n+  kind?: string;\n+  name?: string;\n+  id?: string;\n+  file?: string;\n+  chunkKind?: string;\n+  container?: { kind: string; name: string };\n+  introducedRev?: number;\n+  calledBy?: number;\n+  calls?: number;\n+  contains?: number;\n+  historyLength?: number;\n+  signature?: string;\n+  docstring?: string;\n+  callList?: Array<{ name: string; kind?: string; path?: string; resolved: boolean }>;\n+  diagnostics?: Array<{ code: string; message: string }>;\n+  stale?: boolean;\n+}): string[] {\n+  const lines: string[] = [];\n+\n+  lines.push(llmLine(\"entity\", [\n+    [\"id\", result.id],\n+    [\"name\", result.name],\n+    [\"kind\", result.kind],\n+    [\"path\", result.file],\n+    [\"chunk_kind\", result.chunkKind],\n+    [\"rev\", result.introducedRev],\n+    [\"stale\", result.stale ? \"true\" : null],\n+  ]));\n+\n+  lines.push(llmLine(\"edges\", [\n+    [\"called_by\", String(result.calledBy ?? 0)],\n+    [\"calls\", String(result.calls ?? 0)],\n+    [\"contains\", String(result.contains ?? 0)],\n+    [\"history\", String(result.historyLength ?? 0)],\n+  ]));\n+\n+  if (result.container) {\n+    lines.push(llmLine(\"container\", [\n+      [\"kind\", result.container.kind],\n+      [\"name\", result.container.name],\n+    ]));\n+  }\n+\n+  if (result.signature) lines.push(llmLine(\"signature\", [[\"text\", result.signature]]));\n+  if (result.docstring) lines.push(llmLine(\"docstring\", [[\"text\", result.docstring]]));\n+\n+  for (const call of result.callList ?? []) {\n+    lines.push(llmLine(\"call\", [\n+      [\"name\", call.name],\n+      [\"kind\", call.kind],\n+      [\"path\", relativePath(call.path)],\n+      [\"resolved\", call.resolved ? null : \"false\"],\n+    ]));\n+  }\n+\n+  for (const diagnostic of result.diagnostics ?? []) {\n+    lines.push(llmLine(\"diagnostic\", [\n+      [\"code\", diagnostic.code],\n+      [\"message\", diagnostic.message],\n+    ]));\n+  }\n+\n+  return lines;\n+}"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 372,
+        "filename": "ix-cli/src/cli/llm.ts",
+        "status": "modified",
+        "additions": 12,
+        "deletions": 2,
+        "changes": 14,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/86f3684c4e4dc77dd0a579eb92863824953a3ce9/ix-cli%2Fsrc%2Fcli%2Fllm.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/86f3684c4e4dc77dd0a579eb92863824953a3ce9/ix-cli%2Fsrc%2Fcli%2Fllm.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fllm.ts?ref=86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+        "patch": "@@ -82,9 +82,19 @@ export function llmError(\n   return llmLine(\"error\", [[\"code\", code], [\"message\", message], ...fieldEntries(extra)]);\n }\n \n-/** Print rendered lines, skipping any that are empty. */\n+/**\n+ * Print rendered lines, skipping only the ones that were omitted.\n+ *\n+ * `!= null`, not truthiness: `read` pushes raw source through here after a\n+ * `content lines=<n>` header, and a blank source line is `\"\"`. Dropping those\n+ * left the header counting lines that never reached stdout, so a consumer\n+ * honouring the count ate the following records as source. Nothing else can\n+ * arrive empty — every renderer builds its lines with a record kind, and\n+ * `llmLine` only returns `\"\"` for a null kind with no surviving fields, which\n+ * no caller does.\n+ */\n export function printLlmLines(lines: Array<string | null | undefined>): void {\n   for (const line of lines) {\n-    if (line) console.log(line);\n+    if (line != null) console.log(line);\n   }\n }"
+      }
+    ],
+    "commits": [
+      {
+        "sha": "b7e04e73b7174b87831f4c5d981b5e198f363a75",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/b7e04e73b7174b87831f4c5d981b5e198f363a75",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/b7e04e73b7174b87831f4c5d981b5e198f363a75",
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "committer": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "message": "feat(llm): implement --format llm for the five commands that faked it\n\n`explain`, `read`, `status`, `doctor` and `savings` all advertised\n`text|json|llm` in their help and rendered `text` when given `llm`.\ndocs/llm-format.md documented the fallback as intentional — \"route to\nwhichever existing format is most compact\" — on the theory that prose and\nverbatim source have no record form.\n\nThat is true of the payload and false of everything around it. `explain`'s\nprose is a rendering of `facts` + `role` + `importance`, so an agent can have\nthe inputs instead and skip the paragraph entirely; `read`'s source was\narriving under a 4-column line-number gutter and a pair of ANSI escapes per\nline. `explain` is the one that mattered: it is the first call most plugins\nmake on any question, so the fallback was costing the most tokens on the\nhottest path.\n\nMeasured against `--format json`, which the help text sent agents to as the\nworkaround: explain -55%, doctor -31%, savings -31%, read -5%, and status\n+1%. `read` gains 23% against `text` instead, 601 bytes of which is gutter\nand ANSI on a 40-line read.\n\n`status` is kept despite being a wash on size: it is in for the explicit\n`stale=true|false` field, which is the question the command gets called to\nanswer and which `text` only implied through a warning line. Its unreachable\n-backend path now emits the spec's `error code=...` record so a consumer\nparses the failure the same way it parses a result.\n\nTwo exceptions stay on text and are now documented as such: `diff --content`\n(verbatim hunks) and `ingest`, a hidden implementation-detail command.\n\n`read`'s content block is the one place the one-record-per-line invariant is\nrelaxed. The preceding `content lines=<n>` record makes the block\nself-delimiting so a line of source can never be mistaken for a record.\n\nAlso corrects the CLAUDE.md paragraph on this, which was wrong in both\ndirections: it claimed `query` advertises `llm` (it offers only `text|json`)\nand missed `doctor`, `savings` and `ingest`. It also never mentioned that\nseven commands take no `--format` at all, where `--format llm` is an\n`unknown option` error rather than a fallback — the one case where an agent\nfollowing the \"pass it unconditionally\" advice breaks.",
+        "parents": [
+          {
+            "sha": "0437abf5de675f16fe161df86fca9adf7eee9b93",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/0437abf5de675f16fe161df86fca9adf7eee9b93"
+          }
+        ],
+        "tree_sha": "f3309dbbcc2179ec4d4a412d058c0324de15ace5",
+        "authored_at": "2026-08-10T02:54:24Z",
+        "committed_at": "2026-08-10T02:54:24Z"
+      },
+      {
+        "sha": "86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+        "author": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "committer": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "message": "fix(llm): stop printLlmLines dropping the blank lines read counts\n\nReview follow-up. `read --format llm` frames its payload with\n`content lines=<n>` and then prints the raw source, but printLlmLines skipped\nfalsy entries -- and a blank source line is `\"\"`. So the header counted lines\nthat never reached stdout, and a consumer honouring the count read the\nfollowing records as source.\n\nWrong on almost every real input, not an edge case: `ix read src/cli/llm.ts\n--format llm` declared 91 and emitted 81. Correct only for a file with no\nblank lines and no trailing newline.\n\n`!= null` rather than truthiness. printLlmLines had no callers on main before\nthis branch, so nothing else is affected: every renderer builds lines with a\nrecord kind, and llmLine returns `\"\"` only for a null kind with no surviving\nfields, which no caller passes.\n\nThe existing test asserted renderReadLlm's return value, which is correct in\nisolation -- the defect was in render composed with print. So outputResult is\nexported and the new tests drive the real print path across blank lines, an\nempty file, CRLF, no trailing newline, and blank-lines-only.\n\nAlso pins doctor's status precedence for {ok:true, warn:true} -- the one shape\nthe ternary ordering decides, and previously uncovered. It renders `ok`, which\nis what the glyph line renders for the same record.\n\nBug restored on both: 6 targeted failures, then byte-exact restore (sha256\nverified). tsc/eslint/knip clean, 667 tests pass.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01PZhcNcCtFQ6Bz2XMDpJPJS",
+        "parents": [
+          {
+            "sha": "b7e04e73b7174b87831f4c5d981b5e198f363a75",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/b7e04e73b7174b87831f4c5d981b5e198f363a75"
+          }
+        ],
+        "tree_sha": "4dcd7533b136426e64c070178a82d8ebbdb61fc2",
+        "authored_at": "2026-08-10T04:49:14Z",
+        "committed_at": "2026-08-10T04:49:14Z"
+      }
+    ],
+    "comments": [],
+    "reviews": [
+      {
+        "id": 4898874189,
+        "node_id": "PRR_kwDORdC75M8AAAABI_7jTQ",
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 372,
+        "author": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "state": "APPROVED",
+        "body": "Two independent review passes (one on your commit, one on my follow-up). Merging.\n\n**The renderers themselves are solid.** Record shape matches the shipped Tier 1–4 convention (header record named after the command, then repeated child records), keys are snake_case throughout with no camelCase leaking, and every field except `read`'s content block goes through `llmLine` → `llmField` → `llmQuote`. Probed the free-text fields directly with embedded newlines, quotes, tabs and backslashes — doctor check names and details, status paths with spaces and quotes, raw-explain docstrings — all correctly escaped, nothing spans two lines. Every docs claim was verified by running the built CLI rather than reading: all seven of `config`/`init`/`reset`/`upgrade`/`view`/`watch`/`docker` do exit 1 with `unknown option`, and `query` really does offer only `text|json`. Three of the strongest test claims mutation-checked and each bites.\n\n**One blocker found and fixed, in a commit I pushed.** `printLlmLines` skipped falsy entries, and a blank source line is `\"\"`. So `read --format llm` counted lines in `content lines=<n>` that never reached stdout, and a consumer honouring the count — the entire point of the self-delimiting block — read the following records as source. Wrong on almost every real input, not an edge case: `ix read src/cli/llm.ts --format llm` declared **91** and emitted **81**. Correct only for a file with no blank lines and no trailing newline.\n\nChanged to `!= null`. Safe because `printLlmLines` had zero callers on `main` before this branch, and I enumerated every path into it: all seven call sites go through renderers that build lines exclusively from `llmLine(\"<literal>\", …)`. The only three `llmLine` calls with a variable kind (`impact.ts:548`, `trace.ts:331`, `format.ts:490`) don't use `printLlmLines`, and the only `push(\"\")` calls are text renderers behind `subsystems`.\n\nWorth naming the trap, because it's the recurring one here: **your test was correct and still passed against the bug.** `expect(lines.slice(2)).toEqual([…, \"\"])` asserts on `renderReadLlm`'s return value, which was always right — the defect lived in render *composed with* print. So `outputResult` is now exported and the new tests drive the real print path across blank lines, an empty file, CRLF, no-trailing-newline and blank-lines-only.\n\nAlso added the `{ok:true, warn:true}` row for `doctor` — the one shape your ternary's ordering actually decides, and previously uncovered. It pins `status=ok`, matching what the glyph line renders for the same record; `warn` would have been wrong. And folded the CLAUDE.md paragraph that still said \"these commands take no `--format`\" into your new one, since yours is a strict superset (it adds `docker`) and the two contradicted each other two paragraphs apart.\n\nBug restored on both fixes: 6 targeted failures — 5 framing, 1 doctor. `\"no trailing newline\"` correctly does *not* fail, since it's the one input the old code got right. tsc/eslint/knip clean, 667 passing.\n\nNot fixed, flagged for follow-up: **the `--format llm` dispatch itself is still untested for all five commands.** Reverting the `\"llm\"` comparison in each leaves the full suite green. The renderers are covered; the branch that reaches them is not, which is exactly the regression this PR exists to fix. Closing that needs client mocking per command, and I'd rather leave it to you than bolt on a structural test that gives false confidence. Also unfixed: `read`'s not-found and `explain`'s resolve-failure branches still emit human prose to stderr and nothing on stdout, so `ix read bogus --format llm` gives an agent zero bytes and exit 0 — `diff.ts:471` already has the `llmError` precedent.",
+        "html_url": "https://github.com/ix-infrastructure/Ix/pull/372#pullrequestreview-4898874189",
+        "submitted_at": "2026-08-10T16:27:39Z",
+        "commit_id": "86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      }
+    ],
+    "review_comments": [],
+    "timeline": [
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/b7e04e73b7174b87831f4c5d981b5e198f363a75"
+      },
+      {
+        "id": 29199821117,
+        "event": "review_requested",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T02:54:49Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29199821117"
+      },
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/86f3684c4e4dc77dd0a579eb92863824953a3ce9"
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-10T04:58:20Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": 4898874189,
+        "event": "reviewed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": "86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": 29234432129,
+        "event": "merged",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-10T16:27:42Z",
+        "commit_id": "ed361190094b2d31c6a51e8df1e23f4cd8daa884",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29234432129"
+      },
+      {
+        "id": 29234432208,
+        "event": "closed",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-10T16:27:42Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29234432208"
+      },
+      {
+        "id": 29234433696,
+        "event": "head_ref_deleted",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-10T16:27:44Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29234433696"
+      }
+    ],
+    "source": "OFFICIAL_GITHUB_FACT",
+    "review_threads": [],
+    "review_thread_capture": {
+      "status": "VERIFIED",
+      "source": "GitHub GraphQL API"
+    }
+  },
+  "source_context": {
+    "id": "github:pull_request:ix-infrastructure/Ix#372",
+    "source": {
+      "type": "github_pull_request",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/372",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/372",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T02:54:48Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T16:27:44Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "PR-372",
+    "entity_type": "PULL_REQUEST",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "mirror_scope": "source PR, commits, files, comments, reviews, review comments, and review threads",
+    "related_analysis_types": [
+      "FINDING",
+      "DECISION",
+      "IMPLEMENTATION"
+    ],
+    "review_thread_state": "VERIFIED_GRAPHQL"
   },
   "relationships": [
     {
@@ -36,6 +540,70 @@
       "other_type": "file",
       "other_title": "CLI-HANDOFF/phase-15/FINAL-PR-WORTHINESS-AUDIT.json",
       "other_url": "https://alot1z.github.io/Ix-findings/entities/src-90ab8426282e"
+    },
+    {
+      "direction": "out",
+      "relationship": "FOUND_IN",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "in",
+      "relationship": "AUTHORED",
+      "other": "PERSON-KageBinary",
+      "other_type": "artifact",
+      "other_title": "KageBinary",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-kagebinary"
+    },
+    {
+      "direction": "out",
+      "relationship": "HEADS_AT",
+      "other": "COMMIT-86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+      "other_type": "commit",
+      "other_title": "86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-86f3684c4e4dc77dd0a579eb92863824953a3ce9"
+    },
+    {
+      "direction": "out",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "COMMIT-b7e04e73b7174b87831f4c5d981b5e198f363a75",
+      "other_type": "commit",
+      "other_title": "b7e04e73b7174b87831f4c5d981b5e198f363a75",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b7e04e73b7174b87831f4c5d981b5e198f363a75"
+    },
+    {
+      "direction": "out",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "COMMIT-86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+      "other_type": "commit",
+      "other_title": "86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-86f3684c4e4dc77dd0a579eb92863824953a3ce9"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_REVIEW",
+      "other": "REVIEW-ix-infrastructure-Ix-pr-372-4898874189",
+      "other_type": "artifact",
+      "other_title": "Review 4898874189 on PR #372",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/review-ix-infrastructure-ix-pr-372-4898874189"
+    },
+    {
+      "direction": "in",
+      "relationship": "REVIEWED_BY",
+      "other": "PERSON-josephismikhail",
+      "other_type": "artifact",
+      "other_title": "josephismikhail",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-josephismikhail"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGED_BY",
+      "other": "COMMIT-86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+      "other_type": "commit",
+      "other_title": "86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-86f3684c4e4dc77dd0a579eb92863824953a3ce9"
     }
   ]
 }

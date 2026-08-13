@@ -4,6 +4,7 @@ import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { auditPurgedShas } from "./purged-sha-audit.mjs";
 
 const ROOT = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const DEFAULT_REPO = "ix-infrastructure/Ix";
@@ -26,6 +27,8 @@ function canonicalState(root = ROOT) {
   const phaseManifest = readJson(join(root, "CLI-HANDOFF/manifest.json")) || {};
   const liveCapture = readJson(join(root, "knowledge/live-github-state.json")) || {};
   const entities = readJson(join(knowledge, "entities.json"));
+  const relationships = readJson(join(knowledge, "relationships.json"));
+  const purgedRegistry = readJson(join(knowledge, "purged-commits.json")) || {};
   const snapshots = readJson(join(knowledge, "snapshots.json"));
   const branches = entities.filter(entity => entity.entity_type === "BRANCH");
   const prs = entities.filter(entity => entity.entity_type === "PULL_REQUEST");
@@ -52,7 +55,12 @@ function canonicalState(root = ROOT) {
     phaseManifestCommits: phaseManifest.commits || [],
     liveCapturePRs: liveCapture.open_pull_requests || [],
     liveCaptureForkBranches: liveCapture.fork_branches || {},
+    liveCaptureImplementations: liveCapture.implementations || [],
     commitEntityStatus: new Map(entities.filter(entity => entity.entity_type === "COMMIT").map(entity => [entity.canonical_id, entity.status])),
+    // Purged-SHA hygiene: full canonical sets + the physically purged commit list.
+    entities,
+    relationships,
+    purgedShas: Object.values(purgedRegistry.repositories || {}).flat(),
   };
 }
 
@@ -176,6 +184,23 @@ export function compareFreshness(canonical, live, snapshotMeta = [], options = {
     const entityStatus = canonical.commitEntityStatus.get(`COMMIT-${c.sha}`);
     if (!entityStatus) continue;
     check(checks, `superseded-commit:${c.sha}`, entityStatus !== "CURRENT", `commit ${c.sha} entity status is ${entityStatus}; live capture records ${currentHead.slice(0, 8)} as head of ${branch} — superseded manifest-era commits must be HISTORICAL, not CURRENT`);
+  }
+
+  // Purged-SHA hygiene: commits physically purged from the local clones must
+  // never appear in a live/current position — only as labeled provenance
+  // (historical_sha, superseded_at, HISTORICAL status, ...).
+  const purgeAudit = auditPurgedShas({
+    entities: canonical.entities || [],
+    relationships: canonical.relationships || [],
+    live: {
+      implementations: canonical.liveCaptureImplementations || [],
+      open_pull_requests: canonical.liveCapturePRs || [],
+      fork_branches: canonical.liveCaptureForkBranches || {},
+    },
+    purgedShas: canonical.purgedShas || [],
+  });
+  for (const problem of purgeAudit.problems) {
+    check(checks, `purged-sha:${problem.id}`, false, problem.message);
   }
 
   for (const snapshot of snapshotMeta) {

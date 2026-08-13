@@ -1,0 +1,62 @@
+{
+  "phase": "B-1",
+  "status": "COMPLETE",
+  "canonical_source": "knowledge/",
+  "added_identity_registry": "knowledge/identity-registry.json",
+  "added_entity_types": [
+    "ORGANIZATION",
+    "FORK",
+    "CLONE",
+    "WORKTREE",
+    "REMOTE",
+    "TAG",
+    "DIRECTORY",
+    "FILE",
+    "SYMBOL",
+    "PACKAGE",
+    "DEPENDENCY",
+    "ISSUE_COMMENT",
+    "REVIEW_COMMENT",
+    "PERSON",
+    "TEAM",
+    "ARCHITECTURE_COMPONENT",
+    "IMPLEMENTATION_SECTION"
+  ],
+  "added_relationship_types": [
+    "FORK_OF",
+    "CLONES",
+    "WORKTREE_OF",
+    "POINTS_TO",
+    "BELONGS_TO",
+    "CHECKS_OUT",
+    "PARENT_OF",
+    "HEADS_AT",
+    "DEFINED_IN",
+    "AUTHORED",
+    "OPENED",
+    "COMMENTED_ON",
+    "REVIEWED",
+    "DISCOVERED",
+    "DECIDED",
+    "DOCUMENTS_ISSUE",
+    "DOCUMENTS_PR",
+    "DOCUMENTS_COMMIT",
+    "DOCUMENTS_FINDING"
+  ],
+  "unsupported_types_preserved": [
+    "TAG",
+    "PACKAGE",
+    "DEPENDENCY",
+    "ISSUE_COMMENT",
+    "REVIEW",
+    "REVIEW_COMMENT",
+    "TEAM",
+    "ARCHITECTURE_COMPONENT"
+  ],
+  "evidence": [
+    "planning/discovery/PHASE-A-REPORT.json",
+    "planning/discovery/LINK-MANIFEST.json",
+    "planning/discovery/PATH-MANIFEST.json",
+    "planning/pages/public/files.json"
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "generated_at": "2026-08-12T09:54:35.985Z",
+  "source": "knowledge/live-github-state.json",
+  "issues": [
+    {
+      "number": 219,
+      "title": "Add ix mcp subcommand: expose ix as a local MCP server",
+      "state": "open",
+      "user": "josephismikhail",
+      "url": "https://github.com/ix-infrastructure/Ix/issues/219",
+      "labels": [
+        "enhancement"
+      ]
+    },
+    {
+      "number": 349,
+      "title": "[bug] Windows installer — path with spaces",
+      "state": "open",
+      "user": "RMA1313",
+      "url": "https://github.com/ix-infrastructure/Ix/issues/349",
+      "labels": [
+        "bug"
+      ]
+    },
+    {
+      "number": 383,
+      "title": "[bug] Codex hooks and CLI subprocess calls fail on native Windows",
+      "state": "open",
+      "user": "tept-creator",
+      "url": "https://github.com/ix-infrastructure/Ix/issues/383"
+    },
+    {
+      "number": 385,
+      "title": "[bug] ix upgrade breaks Windows CLI when upgrading from 0.8.1 to 0.9.1",
+      "state": "open",
+      "user": "RMA1313",
+      "url": "https://github.com/ix-infrastructure/Ix/issues/385",
+      "labels": [
+        "bug"
+      ]
+    }
+  ],
+  "pull_requests": [
+    {
+      "number": 388,
+      "title": "chore(brew): update formula for v0.9.2",
+      "state": "open",
+      "user": "github-actions[bot]",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/388"
+    },
+    {
+      "number": 393,
+      "title": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap",
+      "state": "open",
+      "user": "Alot1z",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/393",
+      "head_ref": "feat/ix-remap-hardening",
+      "head_sha": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+      "head_repo": "Alot1z/Ix"
+    },
+    {
+      "number": 395,
+      "title": "test(upgrade): cover an IX_HOME containing a space",
+      "state": "open",
+      "user": "KageBinary",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/395",
+      "head_ref": "test/ix-home-with-space",
+      "head_sha": "13e96bacc648ee979f35e2874cd8aa2004f920e1",
+      "head_repo": "Alot1z/Ix",
+      "related_issue": 349
+    }
+  ],
+  "comments": {
+    "status": "NOT_INGESTED",
+    "count": 0,
+    "reason": "Phase B source capture contains no verified comment records"
+  },
+  "reviews": {
+    "status": "NOT_INGESTED",
+    "count": 0,
+    "reason": "Phase B source capture contains no verified review records"
+  },
+  "linked_objects": {
+    "status": "PARTIAL",
+    "verified": [
+      "PR head commits",
+      "PR related issues where explicitly present"
+    ]
+  },
+  "unknowns": [
+    "issue comments",
+    "PR comments",
+    "review threads",
+    "review identities beyond object authors"
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "id": "COMMIT-e1b48cd5ac6c398b1354e345ab9efad32bfb5604",
+  "type": "commit",
+  "title": "e1b48cd5ac6c398b1354e345ab9efad32bfb5604",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-e1b48cd5ac6c398b1354e345ab9efad32bfb5604",
+  "summary": {
+    "id": "COMMIT-e1b48cd5ac6c398b1354e345ab9efad32bfb5604",
+    "type": "commit",
+    "title": "e1b48cd5ac6c398b1354e345ab9efad32bfb5604",
+    "status": "HISTORICAL",
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    }
+  },
+  "source_snapshot": {
+    "sha": "e1b48cd5ac6c398b1354e345ab9efad32bfb5604",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/e1b48cd5ac6c398b1354e345ab9efad32bfb5604",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/e1b48cd5ac6c398b1354e345ab9efad32bfb5604",
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "committer": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "message": "fix(mcp): stop the grace path releasing a live lock, restore listing staleness\n\nA review of the previous commit found two regressions in it.\n\n**The grace timer released the lock of a command that was still running.**\n`forget()` dropped orphan-set membership *and* ran `afterCommand`. On the settle\npath that is right; on the grace path the command is by definition still\nworking, so `releaseHeldLocks()` deleted the single-flight lock of a map still\nin progress — a second `ix map` could then take the workspace out from under it,\nwhich is the window single-flight exists to close. `ix_map` gets 120s, so its\ngrace is 120s: a map overrunning by that much lost its lock mid-run. The same\ncall reset the read scope mid-ingest, and because the settle path then\nshort-circuited, it never reset again — leaving the pre-map scope pinned with\nnothing left to invalidate it. The grace now only drops membership; settle\nalways runs `afterCommand`.\n\n**Staleness detection had gone dead for Claude Code, Codex and Gemini.**\nReading the launcher only from a parsed entry left the three hosts that answer\nwith a rendered table — and the three that record an absolute `ix.cmd` on\nWindows — with no launcher at all, so `judge` skipped the check entirely. After\nan nvm switch or a moved npm prefix those hosts read as healthy again and\n`install` skipped the repair: the exact failure `stale` was added to fix,\nrestored where it mattered most, and invisible to a suite whose install/doctor\ntests inject the registration directly.\n\nThe listing row is read again, but anchored to a token boundary and with a lazy\nbody: the anchor is what stops a match beginning at an interior `/` and latching\nonto the `/npm/ix.cmd` suffix of a live path, and the lazy body is what lets it\nspan `[local-path] Doe\\...`. Both faults the first regex had, without giving up\nthe coverage. Tests now use the real `claude`/`codex`/`gemini` listing shapes,\nand the false-positive fixture uses a path that exists, contains a space and\nuses forward slashes — without all three it cannot tell the behaviours apart.\n\nAlso from the review: openclaw's Windows read goes back through\n`openclaw mcp show`, which cmd handles fine and which is the only check that the\nshape written there is one openclaw actually reads — pairing it with the file\nwrite traded a loud `not registered` for a silent `already registered`. The\ncomment on the grace bound now says plainly that its cost lands on a later call\nrather than on the abandoned command. And the README no longer implies OpenClaw\nis detected by a config directory; it is still detected on PATH.\n\nValidated by restoring each defect and confirming the intended test goes red,\nand the timing-sensitive runner suite was run five times over to check it is\nnot flaky.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>",
+    "parents": [
+      {
+        "sha": "f808b819174e8b414982393024b3829a536fe8cd",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/f808b819174e8b414982393024b3829a536fe8cd"
+      }
+    ],
+    "tree_sha": "7206f3a51a10a08d14b47d70316aff85524a3b9e",
+    "authored_at": "2026-08-12T18:53:21Z",
+    "committed_at": "2026-08-12T18:53:21Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@e1b48cd5ac6c398b1354e345ab9efad32bfb5604",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/e1b48cd5ac6c398b1354e345ab9efad32bfb5604",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/e1b48cd5ac6c398b1354e345ab9efad32bfb5604",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-12T18:53:21Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-12T18:53:21Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-e1b48cd5ac6c398b1354e345ab9efad32bfb5604",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#401"
+  },
+  "relationships": []
+}

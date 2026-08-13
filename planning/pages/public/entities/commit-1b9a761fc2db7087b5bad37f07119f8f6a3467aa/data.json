@@ -1,0 +1,145 @@
+{
+  "id": "COMMIT-1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+  "type": "commit",
+  "title": "1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+  "summary": {
+    "id": "COMMIT-1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+    "type": "commit",
+    "title": "1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+    "author": {
+      "login": "Hiro-Chiba",
+      "id": 203865699,
+      "type": "User",
+      "html_url": "https://github.com/Hiro-Chiba"
+    },
+    "source_mirror_id": "github:commit:ix-infrastructure/Ix@1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+    "source_type": "github_commit",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/commit/1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "sha": "1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+    "author": {
+      "login": "Hiro-Chiba",
+      "id": 203865699,
+      "type": "User",
+      "html_url": "https://github.com/Hiro-Chiba"
+    },
+    "committer": {
+      "login": "Hiro-Chiba",
+      "id": 203865699,
+      "type": "User",
+      "html_url": "https://github.com/Hiro-Chiba"
+    },
+    "message": "fix: report the running visualizer port",
+    "parents": [
+      {
+        "sha": "01308e6c4a64231e7fcf6f545af1d350a52c68c0",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/01308e6c4a64231e7fcf6f545af1d350a52c68c0"
+      }
+    ],
+    "tree_sha": "65eb8b7e9b346f5691aed4b6912772f974f575ca",
+    "authored_at": "2026-08-09T19:05:27Z",
+    "committed_at": "2026-08-09T19:05:27Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-09T19:05:27Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-09T19:05:27Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#358"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-01308e6c4a64231e7fcf6f545af1d350a52c68c0",
+      "other_type": "commit",
+      "other_title": "01308e6c4a64231e7fcf6f545af1d350a52c68c0",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-01308e6c4a64231e7fcf6f545af1d350a52c68c0"
+    },
+    {
+      "direction": "in",
+      "relationship": "HEADS_AT",
+      "other": "PR-358",
+      "other_type": "pr",
+      "other_title": "Ix PR #358",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-358"
+    },
+    {
+      "direction": "in",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "PR-358",
+      "other_type": "pr",
+      "other_title": "Ix PR #358",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-358"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-69e78392d02c",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/view-running-port.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-69e78392d02c"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-201d35c8a82e",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/view.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-201d35c8a82e"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGED_BY",
+      "other": "PR-358",
+      "other_type": "pr",
+      "other_title": "Ix PR #358",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-358"
+    }
+  ]
+}

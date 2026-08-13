@@ -1,0 +1,86 @@
+{
+  "id": "FILE-49c17010c253",
+  "type": "artifact",
+  "title": "ix-cli/src/cli/__tests__/windows-launcher.test.ts",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/file-49c17010c253",
+  "summary": {
+    "id": "FILE-49c17010c253",
+    "type": "artifact",
+    "title": "ix-cli/src/cli/__tests__/windows-launcher.test.ts",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "source_mirror_id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/__tests__/windows-launcher.test.ts",
+    "source_type": "github_file",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/blob/cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fwindows-launcher.test.ts",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 386,
+    "filename": "ix-cli/src/cli/__tests__/windows-launcher.test.ts",
+    "status": "added",
+    "additions": 149,
+    "deletions": 0,
+    "changes": 149,
+    "blob_url": "https://github.com/ix-infrastructure/Ix/blob/cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fwindows-launcher.test.ts",
+    "raw_url": "https://github.com/ix-infrastructure/Ix/raw/cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fwindows-launcher.test.ts",
+    "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fwindows-launcher.test.ts?ref=cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8",
+    "patch": "@@ -0,0 +1,149 @@\n+import { describe, expect, it } from \"vitest\";\n+import { win32 as winPath } from \"node:path\";\n+import { readFileSync } from \"node:fs\";\n+import { fileURLToPath } from \"node:url\";\n+\n+import { windowsShimBody } from \"../commands/upgrade.js\";\n+import { checkWindowsLauncher } from \"../commands/doctor.js\";\n+\n+/**\n+ * Ix#385: `ix upgrade` before 0.9.0 refreshed only the bash shim and left\n+ * `%IX_HOME%\\bin\\ix.cmd` pointing at a `cli\\ix.cmd` the upgrade had just\n+ * replaced with a version-nested directory. cmd.exe's error names the wrapper\n+ * rather than the cause:\n+ *\n+ *   '\"[local-path] 10\\.ix\\bin\\..\\cli\\ix.cmd\"' is not recognized as an internal\n+ *   or external command, operable program or batch file.\n+ *\n+ * The fix cannot be delivered by new CLI code — the *old* version performs the\n+ * upgrade — so the launcher has to diagnose itself, and the CLI that would\n+ * explain it is exactly as unreachable as the launcher.\n+ */\n+describe(\"windowsShimBody\", () => {\n+  const FLAT = String.raw`%~dp0..\\cli\\ix.cmd`;\n+  const NESTED = String.raw`%~dp0..\\cli\\ix-0.9.1-windows-amd64\\ix.cmd`;\n+\n+  it(\"guards the target before invoking it\", () => {\n+    const body = windowsShimBody(FLAT);\n+    const guard = body.indexOf(`if not exist \"${FLAT}\" goto :ix_missing`);\n+    const invoke = body.indexOf(`\"${FLAT}\" %*`);\n+    expect(guard).toBeGreaterThanOrEqual(0);\n+    expect(invoke).toBeGreaterThan(guard);\n+  });\n+\n+  it(\"propagates the CLI's exit code on the success path\", () => {\n+    // Without this the launcher always exits 0 and every non-zero ix exit —\n+    // a failed map, a Pro stub — reads as success to any caller.\n+    expect(windowsShimBody(FLAT)).toContain(\"exit /b %errorlevel%\");\n+  });\n+\n+  it(\"names the cause and the recovery, not just the missing path\", () => {\n+    const body = windowsShimBody(FLAT);\n+    expect(body).toContain(\"ix upgrade\");\n+    expect(body).toContain(\"irm https://ix-infra.com/install.ps1 ^| iex\");\n+    expect(body).toContain(\"exit /b 1\");\n+  });\n+\n+  it(\"escapes the pipe so cmd.exe prints it instead of building a pipeline\", () => {\n+    // A bare | in `echo irm ... | iex` pipes echo's output into `iex`, which\n+    // does not exist as a program on Windows, so the recovery line would be\n+    // replaced by an error about `iex`.\n+    const body = windowsShimBody(FLAT);\n+    expect(body).toContain(\"^| iex\");\n+    expect(body).not.toMatch(/[^^]\\| iex/);\n+  });\n+\n+  it(\"uses CRLF, which batch files require\", () => {\n+    const body = windowsShimBody(FLAT);\n+    expect(body).toContain(\"\\r\\n\");\n+    expect(body.split(\"\\r\\n\").length).toBeGreaterThan(5);\n+    expect(body).not.toMatch(/[^\\r]\\n/);\n+  });\n+\n+  it(\"carries the nested target through verbatim\", () => {\n+    const body = windowsShimBody(NESTED);\n+    expect(body).toContain(`if not exist \"${NESTED}\" goto :ix_missing`);\n+    expect(body).toContain(`\"${NESTED}\" %*`);\n+    expect(body).not.toContain(FLAT);\n+  });\n+});\n+\n+describe(\"install.ps1 and refreshLaunchers emit the same launcher\", () => {\n+  it(\"does not let the two writers drift apart\", () => {\n+    // Two places write this file: install.ps1 on a fresh install, and\n+    // refreshLaunchers() on every upgrade. They have drifted before — the flat\n+    // vs version-nested shim bugs (#346, #385) were both one writer learning\n+    // something the other did not. A fresh install and an upgraded install must\n+    // end up with byte-identical launchers.\n+    const ps1 = readFileSync(\n+      fileURLToPath(new URL(\"../../../../scripts/install/install.ps1\", import.meta.url)),\n+      \"utf-8\",\n+    );\n+    const heredoc = ps1.match(/@\"\\r?\\n(@echo off\\r?\\n[\\s\\S]*?)\\r?\\n\"@ \\| Out-File/);\n+    expect(heredoc, \"install.ps1 no longer contains the ix.cmd here-string\").not.toBeNull();\n+\n+    const fromInstaller = heredoc![1].replace(/\\r?\\n/g, \"\\n\").trim();\n+    const fromUpgrade = windowsShimBody(String.raw`%~dp0..\\cli\\ix.cmd`)\n+      .replace(/\\r?\\n/g, \"\\n\")\n+      .trim();\n+\n+    expect(fromInstaller).toBe(fromUpgrade);\n+  });\n+});\n+\n+describe(\"checkWindowsLauncher\", () => {\n+  const IX_HOME = String.raw`[local-path] 10\\.ix`;\n+  const shim = (target: string) => windowsShimBody(target);\n+\n+  it(\"passes when the launcher target exists\", () => {\n+    const result = checkWindowsLauncher(\n+      IX_HOME,\n+      () => shim(String.raw`%~dp0..\\cli\\ix.cmd`),\n+      () => true,\n+    );\n+    expect(result.ok).toBe(true);\n+  });\n+\n+  it(\"fails with the repair command when the target is gone\", () => {\n+    const result = checkWindowsLauncher(\n+      IX_HOME,\n+      () => shim(String.raw`%~dp0..\\cli\\ix.cmd`),\n+      () => false,\n+    );\n+    expect(result.ok).toBe(false);\n+    expect(result.warn).toBeFalsy();\n+    expect(result.detail).toContain(\"does not exist\");\n+    expect(result.detail).toContain(\"install.ps1\");\n+  });\n+\n+  it(\"resolves the target relative to bin/, matching %~dp0\", () => {\n+    // %~dp0 is the directory of ix.cmd itself — IX_HOME\\bin — so the check has\n+    // to resolve from there, not from IX_HOME, or it probes the wrong path and\n+    // reports a healthy install as broken.\n+    const probed: string[] = [];\n+    checkWindowsLauncher(\n+      IX_HOME,\n+      () => shim(String.raw`%~dp0..\\cli\\ix.cmd`),\n+      (p) => { probed.push(p); return true; },\n+    );\n+    expect(probed).toEqual([winPath.join(IX_HOME, \"cli\", \"ix.cmd\")]);\n+  });\n+\n+  it(\"is silent when no launcher exists (POSIX install, or never installed)\", () => {\n+    const result = checkWindowsLauncher(IX_HOME, () => null, () => false);\n+    expect(result.ok).toBe(true);\n+  });\n+\n+  it(\"leaves an unrecognized launcher alone rather than calling it broken\", () => {\n+    // A contributor's dev shim from scripts/dev/setup.sh points straight at a\n+    // working tree with an absolute path. Reporting that as a failure would\n+    // send them reinstalling over their own build.\n+    const result = checkWindowsLauncher(\n+      IX_HOME,\n+      () => '@echo off\\r\\nnode \"[local-path]\" %*\\r\\n',\n+      () => false,\n+    );\n+    expect(result.ok).toBe(true);\n+    expect(result.warn).toBe(true);\n+  });\n+});",
+    "parent_pr": 386
+  },
+  "source_context": {
+    "id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/__tests__/windows-launcher.test.ts",
+    "source": {
+      "type": "github_file",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/blob/cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fwindows-launcher.test.ts",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T20:33:56Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T20:40:27Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "FILE-49c17010c253",
+    "entity_type": "FILE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#386",
+    "line_precision": "FILE_LEVEL"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8",
+      "other_type": "commit",
+      "other_title": "cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-83a534f6a8d116e17e68799d27c1010340def163",
+      "other_type": "commit",
+      "other_title": "83a534f6a8d116e17e68799d27c1010340def163",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-83a534f6a8d116e17e68799d27c1010340def163"
+    }
+  ]
+}

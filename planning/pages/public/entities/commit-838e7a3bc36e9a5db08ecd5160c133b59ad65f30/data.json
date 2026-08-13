@@ -1,0 +1,79 @@
+{
+  "id": "COMMIT-838e7a3bc36e9a5db08ecd5160c133b59ad65f30",
+  "type": "commit",
+  "title": "838e7a3bc36e9a5db08ecd5160c133b59ad65f30",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-838e7a3bc36e9a5db08ecd5160c133b59ad65f30",
+  "summary": {
+    "id": "COMMIT-838e7a3bc36e9a5db08ecd5160c133b59ad65f30",
+    "type": "commit",
+    "title": "838e7a3bc36e9a5db08ecd5160c133b59ad65f30",
+    "status": "HISTORICAL",
+    "author": {
+      "login": "Alot1z",
+      "id": 16801672,
+      "type": "User",
+      "html_url": "https://github.com/Alot1z"
+    }
+  },
+  "source_snapshot": {
+    "sha": "838e7a3bc36e9a5db08ecd5160c133b59ad65f30",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/838e7a3bc36e9a5db08ecd5160c133b59ad65f30",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/838e7a3bc36e9a5db08ecd5160c133b59ad65f30",
+    "author": {
+      "login": "Alot1z",
+      "id": 16801672,
+      "type": "User",
+      "html_url": "https://github.com/Alot1z"
+    },
+    "committer": {
+      "login": "Alot1z",
+      "id": 16801672,
+      "type": "User",
+      "html_url": "https://github.com/Alot1z"
+    },
+    "message": "feat(mcp): annotate MCP tools with semantic hints\n\nClassify every advertised tool with readOnly/destructive/idempotent/openWorld\nhints so MCP clients can present and route them correctly. Graph reads are\nread-only and idempotent; ix_map/ix_ingest/ix_decide are destructive; only\nix_ingest is open-world because it reaches GitHub. The table is keyed by the\ntool catalog, so the typechecker rejects an unclassified addition. Hints are\nadvisory client metadata, not security controls — the runner's hardening is\nunchanged.",
+    "parents": [
+      {
+        "sha": "ab823e34b9ec8679dcf0df4b4ec5725207e2a88d",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/ab823e34b9ec8679dcf0df4b4ec5725207e2a88d"
+      }
+    ],
+    "tree_sha": "9ba73904d03acba27a93edf1e6e8d140a3ce5c69",
+    "authored_at": "2026-08-13T21:40:29Z",
+    "committed_at": "2026-08-13T21:40:29Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@838e7a3bc36e9a5db08ecd5160c133b59ad65f30",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/838e7a3bc36e9a5db08ecd5160c133b59ad65f30",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/838e7a3bc36e9a5db08ecd5160c133b59ad65f30",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-13T21:40:29Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-13T21:40:29Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-838e7a3bc36e9a5db08ecd5160c133b59ad65f30",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#422"
+  },
+  "relationships": []
+}

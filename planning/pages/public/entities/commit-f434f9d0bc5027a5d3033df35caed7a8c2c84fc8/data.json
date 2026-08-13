@@ -1,0 +1,185 @@
+{
+  "id": "COMMIT-f434f9d0bc5027a5d3033df35caed7a8c2c84fc8",
+  "type": "commit",
+  "title": "f434f9d0bc5027a5d3033df35caed7a8c2c84fc8",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-f434f9d0bc5027a5d3033df35caed7a8c2c84fc8",
+  "summary": {
+    "id": "COMMIT-f434f9d0bc5027a5d3033df35caed7a8c2c84fc8",
+    "type": "commit",
+    "title": "f434f9d0bc5027a5d3033df35caed7a8c2c84fc8",
+    "status": "CURRENT",
+    "source_mirror_id": "github:commit:ix-infrastructure/Ix@f434f9d0bc5027a5d3033df35caed7a8c2c84fc8",
+    "source_type": "github_commit",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/commit/f434f9d0bc5027a5d3033df35caed7a8c2c84fc8",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/f434f9d0bc5027a5d3033df35caed7a8c2c84fc8",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "sha": "f434f9d0bc5027a5d3033df35caed7a8c2c84fc8",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/f434f9d0bc5027a5d3033df35caed7a8c2c84fc8",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/f434f9d0bc5027a5d3033df35caed7a8c2c84fc8",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "committer": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "message": "fix(upgrade): pair the tar binary with the path form it understands\n\nThe Windows compass extract rewrote its paths to Cygwin form whenever\n`cygpath` was on the box, then ran whatever `tar` PATH resolved to. Those\nare two independent decisions and the code assumed they agreed.\n\nGit for Windows supplies cygpath. Windows 10 1803+ supplies\nSystem32\\tar.exe. On a machine with both — an ordinary Windows dev box —\nthe rewrite happened and bsdtar, which has never heard of /cygdrive/c,\nwas handed the result:\n\n  tar: Error opening archive: Failed to open '/cygdrive/c/Users/...'\n\nNow the binary and the path form are chosen together, best first: the\nsystem tar with native paths, which cannot be mismatched; then PATH tar\nwith native paths; then PATH tar with converted paths for a genuine\nMSYS-only environment. Trying rather than detecting, because \"which tar\nis this\" has no reliable answer and being wrong costs one failed extract\ninto a scratch directory that is wiped between attempts.\n\nThe converter is injectable so the ordering is testable off Windows,\nwhere cygpath does not exist and every attempt would otherwise collapse\nto the native form — hiding the inversion the test exists to catch. It\nfails against the old logic with 'expected /cygdrive/c/Temp/c.tar.gz to\nbe [local-path]'.",
+    "parents": [
+      {
+        "sha": "3c49cc243654aae428cfc4b8802f0b3a99de56a4",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/3c49cc243654aae428cfc4b8802f0b3a99de56a4"
+      }
+    ],
+    "tree_sha": "99e8b427c1095a42bf198f1b38782455cee175ba",
+    "authored_at": "2026-08-09T22:30:32Z",
+    "committed_at": "2026-08-09T22:30:32Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@f434f9d0bc5027a5d3033df35caed7a8c2c84fc8",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/f434f9d0bc5027a5d3033df35caed7a8c2c84fc8",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/f434f9d0bc5027a5d3033df35caed7a8c2c84fc8",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-09T22:30:32Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-09T22:30:32Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-f434f9d0bc5027a5d3033df35caed7a8c2c84fc8",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#366"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "POINTS_TO",
+      "other": "BRANCH-71584d3c6b92",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:fix/windows-tar-cygpath-pairing",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-71584d3c6b92"
+    },
+    {
+      "direction": "in",
+      "relationship": "POINTS_TO",
+      "other": "BRANCH-3fb7582da978",
+      "other_type": "branch",
+      "other_title": "ix-infrastructure/Ix:fix/windows-tar-cygpath-pairing",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-3fb7582da978"
+    },
+    {
+      "direction": "out",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-3c49cc243654aae428cfc4b8802f0b3a99de56a4",
+      "other_type": "commit",
+      "other_title": "3c49cc243654aae428cfc4b8802f0b3a99de56a4",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-3c49cc243654aae428cfc4b8802f0b3a99de56a4"
+    },
+    {
+      "direction": "in",
+      "relationship": "HEADS_AT",
+      "other": "PR-366",
+      "other_type": "pr",
+      "other_title": "Ix PR #366",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-366"
+    },
+    {
+      "direction": "in",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "PR-366",
+      "other_type": "pr",
+      "other_title": "Ix PR #366",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-366"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-928f31e1f7d6",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/upgrade-compass-bundle.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-928f31e1f7d6"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e559b6bc2060",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/upgrade.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e559b6bc2060"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ed578d2b6f52",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/upgrade-compass-bundle.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ed578d2b6f52"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5335f7460d14",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/upgrade.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5335f7460d14"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3cc9bacc593d",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/upgrade-compass-bundle.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3cc9bacc593d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3d4b7b10ad9e",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/upgrade.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3d4b7b10ad9e"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGED_BY",
+      "other": "PR-366",
+      "other_type": "pr",
+      "other_title": "Ix PR #366",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-366"
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "id": "FILE-e02ec31e059b",
+  "type": "artifact",
+  "title": "ix-cli/src/cli/stale.ts",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/file-e02ec31e059b",
+  "summary": {
+    "id": "FILE-e02ec31e059b",
+    "type": "artifact",
+    "title": "ix-cli/src/cli/stale.ts",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "source_mirror_id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/stale.ts",
+    "source_type": "github_file",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/blob/d827cc9fa63a203b138d35621057af7c9a21bad0/ix-cli%2Fsrc%2Fcli%2Fstale.ts",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 378,
+    "filename": "ix-cli/src/cli/stale.ts",
+    "status": "modified",
+    "additions": 17,
+    "deletions": 3,
+    "changes": 20,
+    "blob_url": "https://github.com/ix-infrastructure/Ix/blob/d827cc9fa63a203b138d35621057af7c9a21bad0/ix-cli%2Fsrc%2Fcli%2Fstale.ts",
+    "raw_url": "https://github.com/ix-infrastructure/Ix/raw/d827cc9fa63a203b138d35621057af7c9a21bad0/ix-cli%2Fsrc%2Fcli%2Fstale.ts",
+    "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fstale.ts?ref=d827cc9fa63a203b138d35621057af7c9a21bad0",
+    "patch": "@@ -93,6 +93,7 @@ export function detectStaleFiles(\n   }\n \n   const files = collectFiles(workspaceRoot);\n+  const currentFiles = new Set(files.map((filePath) => path.resolve(filePath)));\n   const changedFiles: string[] = [];\n \n   for (const filePath of files) {\n@@ -110,6 +111,15 @@ export function detectStaleFiles(\n     }\n   }\n \n+  for (const ingestedPath of baseline.files.keys()) {\n+    const absolutePath = path.isAbsolute(ingestedPath)\n+      ? path.resolve(ingestedPath)\n+      : path.resolve(workspaceRoot, ingestedPath);\n+    if (!currentFiles.has(absolutePath) && !fs.existsSync(absolutePath)) {\n+      changedFiles.push(path.relative(workspaceRoot, absolutePath));\n+    }\n+  }\n+\n   return {\n     lastIngestAt: baseline.lastIngestAt,\n     currentRev: baseline.currentRev,\n@@ -126,14 +136,18 @@ export function detectStaleFiles(\n  * this used to need was once a backend round-trip per file.\n  */\n export function isFileStale(filePath: string): boolean {\n-  if (!fs.existsSync(filePath)) return false;\n-\n   const workspaceRoot = path.resolve(resolveWorkspaceRoot());\n   const baseline = loadIngestBaseline(workspaceRoot);\n   if (!baseline) return false;\n \n+  const absolutePath = path.isAbsolute(filePath)\n+    ? path.resolve(filePath)\n+    : path.resolve(workspaceRoot, filePath);\n+  if (!fs.existsSync(absolutePath)) {\n+    return baseline.files.has(absolutePath) || baseline.files.has(filePath);\n+  }\n+\n   try {\n-    const absolutePath = path.resolve(filePath);\n     return differsFromIngestBaseline(\n       absolutePath,\n       fs.statSync(absolutePath).mtimeMs,",
+    "parent_pr": 378
+  },
+  "source_context": {
+    "id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/stale.ts",
+    "source": {
+      "type": "github_file",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/blob/d827cc9fa63a203b138d35621057af7c9a21bad0/ix-cli%2Fsrc%2Fcli%2Fstale.ts",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T04:37:07Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T21:14:21Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "FILE-e02ec31e059b",
+    "entity_type": "FILE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#378",
+    "line_precision": "FILE_LEVEL"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-1b2e760d5dfd2cf31f6cf4ba818ed2cd200edcda",
+      "other_type": "commit",
+      "other_title": "1b2e760d5dfd2cf31f6cf4ba818ed2cd200edcda",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-1b2e760d5dfd2cf31f6cf4ba818ed2cd200edcda"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-16b0d663bab744f9ea5c02341919fff5636756ea",
+      "other_type": "commit",
+      "other_title": "16b0d663bab744f9ea5c02341919fff5636756ea",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-16b0d663bab744f9ea5c02341919fff5636756ea"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-d827cc9fa63a203b138d35621057af7c9a21bad0",
+      "other_type": "commit",
+      "other_title": "d827cc9fa63a203b138d35621057af7c9a21bad0",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-d827cc9fa63a203b138d35621057af7c9a21bad0"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-b25bf2efe837a29022770bd220c58b2da05bca32",
+      "other_type": "commit",
+      "other_title": "b25bf2efe837a29022770bd220c58b2da05bca32",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b25bf2efe837a29022770bd220c58b2da05bca32"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-e6a1d7f54195c268e9c777c89ba2a4e8a113b9d4",
+      "other_type": "commit",
+      "other_title": "e6a1d7f54195c268e9c777c89ba2a4e8a113b9d4",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-e6a1d7f54195c268e9c777c89ba2a4e8a113b9d4"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-2f68cccb28440f2679e838decc40866cd5d98f34",
+      "other_type": "commit",
+      "other_title": "2f68cccb28440f2679e838decc40866cd5d98f34",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-2f68cccb28440f2679e838decc40866cd5d98f34"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-ebeee6ce5eb7baa15f519b4879b26d9bd461dc14",
+      "other_type": "commit",
+      "other_title": "ebeee6ce5eb7baa15f519b4879b26d9bd461dc14",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-ebeee6ce5eb7baa15f519b4879b26d9bd461dc14"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-5b14632f67eea337663bb66188a30ac9f84a7d08",
+      "other_type": "commit",
+      "other_title": "5b14632f67eea337663bb66188a30ac9f84a7d08",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-5b14632f67eea337663bb66188a30ac9f84a7d08"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-dbb517b0680bdd3a3a36f5f69268fb725b7729c1",
+      "other_type": "commit",
+      "other_title": "dbb517b0680bdd3a3a36f5f69268fb725b7729c1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-dbb517b0680bdd3a3a36f5f69268fb725b7729c1"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-af815ce4ba0a6f8e1d33603c8c28ba20986b41ca",
+      "other_type": "commit",
+      "other_title": "af815ce4ba0a6f8e1d33603c8c28ba20986b41ca",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-af815ce4ba0a6f8e1d33603c8c28ba20986b41ca"
+    }
+  ]
+}

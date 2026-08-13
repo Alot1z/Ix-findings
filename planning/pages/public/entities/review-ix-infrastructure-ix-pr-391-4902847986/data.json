@@ -1,0 +1,85 @@
+{
+  "id": "REVIEW-ix-infrastructure-Ix-pr-391-4902847986",
+  "type": "artifact",
+  "title": "Review 4902847986 on PR #391",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/review-ix-infrastructure-ix-pr-391-4902847986",
+  "summary": {
+    "id": "REVIEW-ix-infrastructure-Ix-pr-391-4902847986",
+    "type": "artifact",
+    "title": "Review 4902847986 on PR #391",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/pull/391#pullrequestreview-4902847986",
+    "source_mirror_id": "github:review:ix-infrastructure/Ix#pr-391-4902847986",
+    "source_type": "github_review",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/pull/391#pullrequestreview-4902847986",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "id": 4902847986,
+    "node_id": "PRR_kwDORdC75M8AAAABJDuF8g",
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 391,
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "state": "CHANGES_REQUESTED",
+    "body": "Retracting my earlier approval. A deeper review turned up a blocking backward-compatibility break that I verified empirically, so this should not merge in its current form.\n\n## Blocking: the new stamp format is unreadable by every already-shipped CLI\n\nThe shipped reader is `getTrackedVersion` (`upgrade.ts:199-206`) — `readFileSync(...).trim()`, i.e. **the whole file**. The upgrade sequence matters here: `ix upgrade` swaps in the new tree (including the new-format `compass/.version`), and then the *still-running old process* continues into its own compass block and reads that file with the old parser.\n\nI ran the new format through `origin/main`'s own `isNewer`:\n\n```\ndist 0.3.0 vs release-stamp 0.9.4 -> isNewer=false\ndist 0.3.0 vs release-stamp 1.0.0 -> isNewer=TRUE\ndist 0.3.0 vs release-stamp 1.1.0 -> isNewer=TRUE\ndist 0.3.0 vs legacy bare  0.9.4 -> isNewer=false\n```\n\n`splitVersion` yields `Number(\"source=release\\nix=1\") = NaN -> 0` for the major, so a 1.x release parses as `[0,0,0]`. Today (0.9.x) the damage is a garbled three-line version string in `[ok] Compass already on the latest version (...)`. **At the first 1.0.0 release, every CLI older than this one downloads ix-compass-dist over the newer bundled compass** — the exact #376 downgrade this PR exists to prevent, caused by the format change itself.\n\nSuggested fix that keeps the whole design: make the stamp a **single-line semver with build metadata**, `0.9.4+release.7f98724`. `splitVersion` already does `v.split(\"+\")[0]` with the comment \"Build metadata (`+sha`) never participates in precedence\" — so old CLIs read `0.9.4` and behave exactly as they do today, while `parseCompassStamp` reads the `+release.<sha>` suffix for provenance. Dist stays a bare number, which is already the legacy-compatible form.\n\n## Also blocking\n\n**`0.0.0` is overloaded** (`upgrade.ts:298`). The doc comment says only a missing `index.html` produces it, but `parseCompassStamp` also returns `{source:\"release\", version:\"0.0.0\"}` for a release stamp missing its `ix=` key — a `.version` truncated by a full disk or a kill during the non-atomic write. With the bundle perfectly serviceable, the repair branch fires ahead of the source check and downgrades it. Worth distinguishing \"absent\" from \"malformed\" explicitly rather than through the version number.\n\n**`install.sh:1094` stamps `source=release` on a compass it did not install.** The stamp block runs even when the CLI install was skipped (`check_installed_version` == `$VERSION`, or `SKIP_CLI_INSTALL=1`). If `compass/` holds an unstamped *dist* bundle — reachable via `ix upgrade`'s own `stage=\"stamp\"` failure, or Ctrl-C between extract and stamp — it is now permanently labelled `release`, and `shouldOfferCompassUpgradeFor` refuses every future compass update while printing \"Compass is the build bundled with Ix <v>\", which is false. The deleted code re-stamped with the dist number and stayed self-correcting.\n\n**`install.sh:1093`'s `[ ! -s .version ]` never repairs a mislabelled stamp** — so the fix does not reach the installs the PR body calls the majority in the wild. Re-running the installer on an already-current version skips the extract, so no tarball stamp is laid down, and the bare `0.3.0` survives.\n\n**`IX_VERSION=0.9.0` pins** stamp `source=release ix=0.9.0` onto a months-old bundle and exempt it from dist upgrades forever. `resolve_version` also falls back to `0.1.0` when the API is unreachable.\n\n## Non-blocking\n\nGating the compass block behind `shouldOfferCompassUpgrade` also gates the orphan sweep inside it. `main` has exactly two sweep sites — one behind \"CLI needs updating\", one behind \"compass needs updating\" — and the second exists as the fallback for the first, per its own comment. After this change a user on the latest CLI with a release compass sweeps nothing. I traced it and the severe cases self-heal (a gutted compass reports 0.0.0 and repairs; an interrupted CLI upgrade leaves the CLI stale), so this is stranded orphan directories rather than breakage — but it undercuts #392's reason for sweeping downloads at all.\n\nThe diagnosis and the live reproduction in the PR body are right, and the provenance idea is the correct answer. It is the encoding that needs to change.",
+    "html_url": "https://github.com/ix-infrastructure/Ix/pull/391#pullrequestreview-4902847986",
+    "submitted_at": "2026-08-11T04:05:26Z",
+    "commit_id": "c4154613a2fdd434c5271f2babc10bcd88ab46b1",
+    "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+    "source": "OFFICIAL_GITHUB_FACT",
+    "parent_pr": 391
+  },
+  "source_context": {
+    "id": "github:review:ix-infrastructure/Ix#pr-391-4902847986",
+    "source": {
+      "type": "github_review",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/391#pullrequestreview-4902847986",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-11T04:05:26Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-11T04:05:26Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "REVIEW-ix-infrastructure-Ix-pr-391-4902847986",
+    "entity_type": "REVIEW",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#391",
+    "review_thread_state": "VERIFIED_GRAPHQL_NO_ASSOCIATED_THREAD_DATA"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "HAS_REVIEW",
+      "other": "PR-391",
+      "other_type": "pr",
+      "other_title": "Ix PR #391",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-391"
+    }
+  ]
+}

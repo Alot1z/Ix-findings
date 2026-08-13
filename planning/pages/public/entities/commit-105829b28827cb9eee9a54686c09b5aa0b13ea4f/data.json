@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-105829b28827cb9eee9a54686c09b5aa0b13ea4f",
+  "type": "commit",
+  "title": "105829b28827cb9eee9a54686c09b5aa0b13ea4f",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-105829b28827cb9eee9a54686c09b5aa0b13ea4f",
+  "summary": {
+    "id": "COMMIT-105829b28827cb9eee9a54686c09b5aa0b13ea4f",
+    "type": "commit",
+    "title": "105829b28827cb9eee9a54686c09b5aa0b13ea4f",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/105829b28827cb9eee9a54686c09b5aa0b13ea4f",
+    "author": {
+      "name": "Joseph Mikhail",
+      "email": "jsmikhai@ucsd.edu"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-ad844e76dda6a8d22fc5c18fc883ee2d09a9554d",
+      "other_type": "commit",
+      "other_title": "ad844e76dda6a8d22fc5c18fc883ee2d09a9554d",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-ad844e76dda6a8d22fc5c18fc883ee2d09a9554d"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-e7f9aae0c6c99799f3b6a46f4b2ae76d80ff258d",
+      "other_type": "commit",
+      "other_title": "e7f9aae0c6c99799f3b6a46f4b2ae76d80ff258d",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-e7f9aae0c6c99799f3b6a46f4b2ae76d80ff258d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-47351231d22b",
+      "other_type": "artifact",
+      "other_title": "docker-compose.yml",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-47351231d22b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-0b001b020eb6",
+      "other_type": "artifact",
+      "other_title": "docker-compose.yml",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-0b001b020eb6"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-a52b4f24e2fd",
+      "other_type": "artifact",
+      "other_title": "docker-compose.yml",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-a52b4f24e2fd"
+    }
+  ]
+}

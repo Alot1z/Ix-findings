@@ -10,7 +10,461 @@
     "title": "Ix PR #384",
     "status": "RESOLVED",
     "number": 384,
-    "url": "https://github.com/ix-infrastructure/Ix/pull/384"
+    "url": "https://github.com/ix-infrastructure/Ix/pull/384",
+    "source_mirror_id": "github:pull_request:ix-infrastructure/Ix#384",
+    "source_type": "github_pull_request",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/pull/384",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/384",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "number": 384,
+    "node_id": "PR_kwDORdC75M79KNqa",
+    "title": "fix(cli): register a Pro stub for `goals`",
+    "body": "## Summary\n\n`PRO_COMMANDS` in `ix-cli/src/cli/register/oss.ts` stubs `goal` but not `goals`, so on an OSS install `ix goals` printed `error: unknown command 'goals'` instead of the `The '<name>' command requires Ix Pro.` sentinel that CLAUDE.md tells agents to detect and stop on.\n\n`@ix/pro` registers a plural list command alongside each singular manager — `bug`/`bugs`, `plan`/`plans`, `task`/`tasks`, `goal`/`goals`. Every one of those pairs was stubbed except the last.\n\n`ix goals` is a real, fully implemented Pro command (`Ix-pro/src/cli/commands/goals.ts` — `.command(\"goals\")` with `--status`, `--format`, and an action calling `client.listGoals()`), not an alias. It isn't reachable from the OSS docs, which consistently say `ix goal list`, but anyone who learned it on a Pro install — or any plugin or skill that calls it — hit the wrong error.\n\n## Type\n- [x] Bug fix\n- [ ] Feature\n- [ ] Refactor\n- [ ] Docs\n- [ ] Test\n- [ ] CI\n\n## Changes\n- Add `{ name: \"goals\", desc: \"List all goals\" }` to `PRO_COMMANDS`, matching the description `@ix/pro` uses and the phrasing of the existing `bugs` / `plans` / `tasks` entries.\n- Cover `goals` in the existing argument-passing case table in `pro-stub-message.test.ts`.\n- Add a pair-based regression test that walks `bug`/`bugs`, `plan`/`plans`, `task`/`tasks`, `goal`/`goals` and asserts both halves stub. Enumerating commands one at a time is what let this one go missing, so the guard now checks the rule instead of the list.\n\n## Validation\n\nBoth new tests fail on `main` with exactly the reported symptom, and pass with the fix:\n\n```\n× reports Pro for goals with arguments\n× stubs both goal and goals\nAssertionError: expected 'error: unknown command \\'goals\\'…' to contain 'The \\'goals\\' command requires Ix Pro.'\n```\n\n- `npx vitest run src/cli/__tests__/pro-stub-message.test.ts` — 21 passed\n- `npx vitest run` (full `ix-cli` suite) — 50 files, 653 tests passed\n- `npm run typecheck` — clean\n- `npm run lint` — 0 errors (38 pre-existing warnings, unchanged)\n\n## Checklist\n- [x] Tests pass\n- [x] Smoke tests pass\n- [x] No raw errors introduced\n- [x] CLI output follows Ix format\n\n## Release checklist (if merging to main)\n- [ ] `ix-cli/package.json` version bumped\n- [ ] After merge: tag pushed (`git tag vX.Y.Z && git push origin vX.Y.Z`)\n- [ ] If backend changes: `ix-memory-layer` tagged and released first\n- [ ] If `docker-compose.standalone.yml` changed: verified `curl | sh` install works\n\n---\n\nContext: found while reviewing ix-claude-plugin#31 and ix-opencode-plugin#13, which both replaced `ix goals` with `ix goal list` on the stated grounds that `ix goals` \"does not exist\". Those replacements work and are fine to keep, but the reasoning came from checking the OSS command list only — this is the actual gap.\n",
+    "state": "closed",
+    "draft": false,
+    "merged": true,
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "html_url": "https://github.com/ix-infrastructure/Ix/pull/384",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/384",
+    "head": {
+      "ref": "fix/pro-stub-goals",
+      "sha": "4eb8d4e04c141e4cf49aaae297b0e89b08f74f43",
+      "repo": {
+        "id": 1171307492,
+        "full_name": "ix-infrastructure/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "ix-infrastructure",
+          "id": 256883681,
+          "type": "Organization",
+          "html_url": "https://github.com/ix-infrastructure"
+        },
+        "html_url": "https://github.com/ix-infrastructure/Ix",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": false,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-03-03T04:48:38Z",
+        "updated_at": "2026-08-13T21:51:31Z",
+        "pushed_at": "2026-08-13T19:18:44Z",
+        "topics": [
+          "ai",
+          "ai-memory",
+          "claude-code",
+          "cli",
+          "code-analysis",
+          "code-mapping",
+          "code-memory",
+          "codebase-understanding",
+          "codex",
+          "developer-tools",
+          "llm",
+          "openclaw",
+          "persistent-memory",
+          "program-analysis",
+          "software-architecture",
+          "system-intelligence",
+          "system-mapping"
+        ],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 701,
+        "stargazers_count": 701,
+        "forks_count": 60,
+        "open_issues_count": 6
+      }
+    },
+    "base": {
+      "ref": "main",
+      "sha": "2e246e87995fd0733edd9d6727c30b89db897a12",
+      "repo": {
+        "id": 1171307492,
+        "full_name": "ix-infrastructure/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "ix-infrastructure",
+          "id": 256883681,
+          "type": "Organization",
+          "html_url": "https://github.com/ix-infrastructure"
+        },
+        "html_url": "https://github.com/ix-infrastructure/Ix",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": false,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-03-03T04:48:38Z",
+        "updated_at": "2026-08-13T21:51:31Z",
+        "pushed_at": "2026-08-13T19:18:44Z",
+        "topics": [
+          "ai",
+          "ai-memory",
+          "claude-code",
+          "cli",
+          "code-analysis",
+          "code-mapping",
+          "code-memory",
+          "codebase-understanding",
+          "codex",
+          "developer-tools",
+          "llm",
+          "openclaw",
+          "persistent-memory",
+          "program-analysis",
+          "software-architecture",
+          "system-intelligence",
+          "system-mapping"
+        ],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 701,
+        "stargazers_count": 701,
+        "forks_count": 60,
+        "open_issues_count": 6
+      }
+    },
+    "merge_commit_sha": "43a644cce35208113744b9b99de339c86a146b47",
+    "merged_at": "2026-08-10T19:30:12Z",
+    "closed_at": "2026-08-10T19:30:13Z",
+    "created_at": "2026-08-10T18:34:49Z",
+    "updated_at": "2026-08-10T19:30:14Z",
+    "labels": [],
+    "milestone": null,
+    "requested_reviewers": [
+      {
+        "login": "josephismikhail",
+        "id": 56614593,
+        "type": "User",
+        "html_url": "https://github.com/josephismikhail"
+      }
+    ],
+    "requested_teams": [],
+    "commits_count": 1,
+    "changed_files_count": 2,
+    "additions": 18,
+    "deletions": 0,
+    "changed_files": [
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 384,
+        "filename": "ix-cli/src/cli/__tests__/pro-stub-message.test.ts",
+        "status": "modified",
+        "additions": 17,
+        "deletions": 0,
+        "changes": 17,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/4eb8d4e04c141e4cf49aaae297b0e89b08f74f43/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fpro-stub-message.test.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/4eb8d4e04c141e4cf49aaae297b0e89b08f74f43/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fpro-stub-message.test.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fpro-stub-message.test.ts?ref=4eb8d4e04c141e4cf49aaae297b0e89b08f74f43",
+        "patch": "@@ -57,6 +57,7 @@ describe(\"Pro stubs\", () => {\n     [\"truth\", [\"truth\", \"add\", \"Support 100k file repos\"]],\n     [\"truth\", [\"truth\", \"list\", \"--format\", \"json\"]],\n     [\"goal\", [\"goal\", \"create\", \"Support GitHub\", \"--format\", \"json\"]],\n+    [\"goals\", [\"goals\", \"--status\", \"active\", \"--format\", \"json\"]],\n     [\"decide\", [\"decide\", \"Use X\", \"--rationale\", \"because\", \"--affects\", \"Entity\"]],\n     [\"briefing\", [\"briefing\", \"--format\", \"json\"]],\n     [\"decisions\", [\"decisions\", \"--topic\", \"ingestion\", \"--limit\", \"10\"]],\n@@ -71,6 +72,22 @@ describe(\"Pro stubs\", () => {\n     expect(exitCode).toBe(1);\n   });\n \n+  // @ix/pro registers a plural list command alongside each singular manager\n+  // (`bug`/`bugs`, `plan`/`plans`, `task`/`tasks`, `goal`/`goals`). Stubbing only\n+  // the singular is the failure this pins: `ix goals` fell through to commander's\n+  // \"unknown command\" instead of the sentinel above, so an agent told to stop on\n+  // `requires Ix Pro.` saw an unrecognized error and had nothing to match.\n+  it.each([\n+    [\"bug\", \"bugs\"],\n+    [\"plan\", \"plans\"],\n+    [\"task\", \"tasks\"],\n+    [\"goal\", \"goals\"],\n+  ])(\"stubs both %s and %s\", (singular, plural) => {\n+    for (const name of [singular, plural]) {\n+      expect(runStub([name]).err).toContain(`The '${name}' command requires Ix Pro.`);\n+    }\n+  });\n+\n   it(\"emits the message verbatim as CLAUDE.md quotes it\", () => {\n     // Single quotes around the name, trailing period. Agents match on this.\n     expect(runStub([\"decide\", \"Use X\"]).err).toContain(\"The 'decide' command requires Ix Pro.\");"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 384,
+        "filename": "ix-cli/src/cli/register/oss.ts",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 0,
+        "changes": 1,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/4eb8d4e04c141e4cf49aaae297b0e89b08f74f43/ix-cli%2Fsrc%2Fcli%2Fregister%2Foss.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/4eb8d4e04c141e4cf49aaae297b0e89b08f74f43/ix-cli%2Fsrc%2Fcli%2Fregister%2Foss.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fregister%2Foss.ts?ref=4eb8d4e04c141e4cf49aaae297b0e89b08f74f43",
+        "patch": "@@ -42,6 +42,7 @@ const PRO_COMMANDS: { name: string; desc: string }[] = [\n   { name: \"decide\", desc: \"Record a design decision\" },\n   { name: \"decisions\", desc: \"List recorded design decisions\" },\n   { name: \"goal\", desc: \"Manage project goals\" },\n+  { name: \"goals\", desc: \"List all goals\" },\n   { name: \"patches\", desc: \"List recent patches\" },\n   { name: \"plan\", desc: \"Manage plans and plan tasks\" },\n   { name: \"task\", desc: \"Manage tasks\" },"
+      }
+    ],
+    "commits": [
+      {
+        "sha": "4eb8d4e04c141e4cf49aaae297b0e89b08f74f43",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/4eb8d4e04c141e4cf49aaae297b0e89b08f74f43",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/4eb8d4e04c141e4cf49aaae297b0e89b08f74f43",
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "committer": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "message": "fix(cli): register a Pro stub for `goals`\n\n@ix/pro registers a plural list command alongside each singular manager\n— bug/bugs, plan/plans, task/tasks, goal/goals — and PRO_COMMANDS stubs\nevery one of those pairs except the last. `goal` was stubbed; `goals`\nwas not.\n\nSo on an OSS install `ix goals` fell through to commander and printed\n`error: unknown command 'goals'`. CLAUDE.md tells agents that a Pro-gated\ninstall is identified by the exact string `The '<name>' command requires\nIx Pro.`, and to stop retrying once they see it. An unrecognized\ncommander error gives them nothing to match, so the documented contract\nsimply did not hold for this one command.\n\nThis is only reachable from outside the OSS docs, which consistently say\n`ix goal list` — but `ix goals` is a real, fully implemented Pro command,\nso anyone who learned it on a Pro install, or any plugin that calls it,\nhits the wrong error.\n\nThe regression test now walks the singular/plural pairs explicitly rather\nthan listing commands one at a time, since listing is what let this one go\nmissing.",
+        "parents": [
+          {
+            "sha": "0437abf5de675f16fe161df86fca9adf7eee9b93",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/0437abf5de675f16fe161df86fca9adf7eee9b93"
+          }
+        ],
+        "tree_sha": "885c1d1d27bfb1ffc1ec49d1d1cdef94018e3a1c",
+        "authored_at": "2026-08-10T18:34:25Z",
+        "committed_at": "2026-08-10T18:34:25Z"
+      }
+    ],
+    "comments": [],
+    "reviews": [],
+    "review_comments": [],
+    "timeline": [
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/4eb8d4e04c141e4cf49aaae297b0e89b08f74f43"
+      },
+      {
+        "id": 29240299673,
+        "event": "review_requested",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T18:34:50Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29240299673"
+      },
+      {
+        "id": 29242748864,
+        "event": "merged",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T19:30:13Z",
+        "commit_id": "43a644cce35208113744b9b99de339c86a146b47",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29242748864"
+      },
+      {
+        "id": 29242748929,
+        "event": "closed",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T19:30:13Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29242748929"
+      },
+      {
+        "id": 29242750326,
+        "event": "head_ref_deleted",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T19:30:14Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29242750326"
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T19:56:42Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T19:56:43Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T21:04:21Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-11T00:07:16Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": 29257761412,
+        "event": "referenced",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-11T03:17:26Z",
+        "commit_id": "9bc2305cfd929ff34f5547a6230cb20bb7d61079",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29257761412"
+      },
+      {
+        "id": 29309159084,
+        "event": "referenced",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-11T22:58:47Z",
+        "commit_id": "aef3b37e2e14db9cde273bc1576a018da386b69f",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29309159084"
+      },
+      {
+        "id": 29309713428,
+        "event": "referenced",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-11T23:15:21Z",
+        "commit_id": "4e71e7a4f16f5273e5aaf87ee0617b4f8ebc2e3f",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29309713428"
+      },
+      {
+        "id": 29309781986,
+        "event": "referenced",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-11T23:17:27Z",
+        "commit_id": "fa6ad7b0ff52734685ff7425b08ec240837751fa",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29309781986"
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-12T22:57:52Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      }
+    ],
+    "source": "OFFICIAL_GITHUB_FACT",
+    "review_threads": [],
+    "review_thread_capture": {
+      "status": "VERIFIED",
+      "source": "GitHub GraphQL API"
+    }
+  },
+  "source_context": {
+    "id": "github:pull_request:ix-infrastructure/Ix#384",
+    "source": {
+      "type": "github_pull_request",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/384",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/384",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T18:34:49Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T19:30:14Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "PR-384",
+    "entity_type": "PULL_REQUEST",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "mirror_scope": "source PR, commits, files, comments, reviews, review comments, and review threads",
+    "related_analysis_types": [
+      "FINDING",
+      "DECISION",
+      "IMPLEMENTATION"
+    ],
+    "review_thread_state": "VERIFIED_GRAPHQL"
   },
   "relationships": [
     {
@@ -28,6 +482,46 @@
       "other_type": "file",
       "other_title": "CLI-HANDOFF/phase-15/FINAL-PR-WORTHINESS-AUDIT.json",
       "other_url": "https://alot1z.github.io/Ix-findings/entities/src-90ab8426282e"
+    },
+    {
+      "direction": "out",
+      "relationship": "FOUND_IN",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "in",
+      "relationship": "AUTHORED",
+      "other": "PERSON-KageBinary",
+      "other_type": "artifact",
+      "other_title": "KageBinary",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-kagebinary"
+    },
+    {
+      "direction": "out",
+      "relationship": "HEADS_AT",
+      "other": "COMMIT-4eb8d4e04c141e4cf49aaae297b0e89b08f74f43",
+      "other_type": "commit",
+      "other_title": "4eb8d4e04c141e4cf49aaae297b0e89b08f74f43",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-4eb8d4e04c141e4cf49aaae297b0e89b08f74f43"
+    },
+    {
+      "direction": "out",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "COMMIT-4eb8d4e04c141e4cf49aaae297b0e89b08f74f43",
+      "other_type": "commit",
+      "other_title": "4eb8d4e04c141e4cf49aaae297b0e89b08f74f43",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-4eb8d4e04c141e4cf49aaae297b0e89b08f74f43"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGED_BY",
+      "other": "COMMIT-4eb8d4e04c141e4cf49aaae297b0e89b08f74f43",
+      "other_type": "commit",
+      "other_title": "4eb8d4e04c141e4cf49aaae297b0e89b08f74f43",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-4eb8d4e04c141e4cf49aaae297b0e89b08f74f43"
     }
   ]
 }

@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-a07dd49646588776beadb38353467637d6c0fc76",
+  "type": "commit",
+  "title": "a07dd49646588776beadb38353467637d6c0fc76",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-a07dd49646588776beadb38353467637d6c0fc76",
+  "summary": {
+    "id": "COMMIT-a07dd49646588776beadb38353467637d6c0fc76",
+    "type": "commit",
+    "title": "a07dd49646588776beadb38353467637d6c0fc76",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/a07dd49646588776beadb38353467637d6c0fc76",
+    "author": {
+      "name": "riley0227",
+      "email": "riley0227@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-d629bef0dd6c6e33b77aa22906257cfc2e196fb6",
+      "other_type": "commit",
+      "other_title": "d629bef0dd6c6e33b77aa22906257cfc2e196fb6",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-d629bef0dd6c6e33b77aa22906257cfc2e196fb6"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-635e79952bfd653d86986c060fa7da7e8d1a47a4",
+      "other_type": "commit",
+      "other_title": "635e79952bfd653d86986c060fa7da7e8d1a47a4",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-635e79952bfd653d86986c060fa7da7e8d1a47a4"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-4b977e0c5370",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/api/RoutesSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-4b977e0c5370"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3f6c742e488a",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/api/RoutesSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3f6c742e488a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-d4786d6e545f",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/api/RoutesSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-d4786d6e545f"
+    }
+  ]
+}

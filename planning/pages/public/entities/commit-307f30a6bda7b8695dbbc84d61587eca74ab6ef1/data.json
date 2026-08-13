@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-307f30a6bda7b8695dbbc84d61587eca74ab6ef1",
+  "type": "commit",
+  "title": "307f30a6bda7b8695dbbc84d61587eca74ab6ef1",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-307f30a6bda7b8695dbbc84d61587eca74ab6ef1",
+  "summary": {
+    "id": "COMMIT-307f30a6bda7b8695dbbc84d61587eca74ab6ef1",
+    "type": "commit",
+    "title": "307f30a6bda7b8695dbbc84d61587eca74ab6ef1",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/307f30a6bda7b8695dbbc84d61587eca74ab6ef1",
+    "author": {
+      "name": "riley0227",
+      "email": "riley0227@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-f58f24a7204376fdf86a78cc313885a7ca43cdf8",
+      "other_type": "commit",
+      "other_title": "f58f24a7204376fdf86a78cc313885a7ca43cdf8",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-f58f24a7204376fdf86a78cc313885a7ca43cdf8"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-285e2580b87ea016543b3749f063d1ef4013c1ae",
+      "other_type": "commit",
+      "other_title": "285e2580b87ea016543b3749f063d1ef4013c1ae",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-285e2580b87ea016543b3749f063d1ef4013c1ae"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3487d301f121",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/query.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3487d301f121"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-f0da66c3b76f",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/query.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f0da66c3b76f"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5adc712dc31d",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/query.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5adc712dc31d"
+    }
+  ]
+}

@@ -1,0 +1,145 @@
+{
+  "id": "COMMIT-94328d82bc6738f4900d5aff51b406bf6c934e73",
+  "type": "commit",
+  "title": "94328d82bc6738f4900d5aff51b406bf6c934e73",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-94328d82bc6738f4900d5aff51b406bf6c934e73",
+  "summary": {
+    "id": "COMMIT-94328d82bc6738f4900d5aff51b406bf6c934e73",
+    "type": "commit",
+    "title": "94328d82bc6738f4900d5aff51b406bf6c934e73",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/94328d82bc6738f4900d5aff51b406bf6c934e73",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "source_mirror_id": "github:commit:ix-infrastructure/Ix@94328d82bc6738f4900d5aff51b406bf6c934e73",
+    "source_type": "github_commit",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/commit/94328d82bc6738f4900d5aff51b406bf6c934e73",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/94328d82bc6738f4900d5aff51b406bf6c934e73",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "sha": "94328d82bc6738f4900d5aff51b406bf6c934e73",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/94328d82bc6738f4900d5aff51b406bf6c934e73",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/94328d82bc6738f4900d5aff51b406bf6c934e73",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "committer": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "message": "chore(release): 0.9.2\n\nThe repo copy had drifted to 0.6.1 while releases ran to 0.9.1 — the\nrelease workflow derives the version from the git tag and rewrites this\nfile at build time, so users never saw it. It still feeds\ngetCurrentVersion(), so a source checkout reported 0.6.1 and told\ncontributors they were several versions behind.",
+    "parents": [
+      {
+        "sha": "83a534f6a8d116e17e68799d27c1010340def163",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/83a534f6a8d116e17e68799d27c1010340def163"
+      }
+    ],
+    "tree_sha": "590472397531f1a7c6ea138115827cdb6a19525a",
+    "authored_at": "2026-08-10T20:43:57Z",
+    "committed_at": "2026-08-10T20:43:57Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@94328d82bc6738f4900d5aff51b406bf6c934e73",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/94328d82bc6738f4900d5aff51b406bf6c934e73",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/94328d82bc6738f4900d5aff51b406bf6c934e73",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T20:43:57Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T20:43:57Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-94328d82bc6738f4900d5aff51b406bf6c934e73",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#387"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-83a534f6a8d116e17e68799d27c1010340def163",
+      "other_type": "commit",
+      "other_title": "83a534f6a8d116e17e68799d27c1010340def163",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-83a534f6a8d116e17e68799d27c1010340def163"
+    },
+    {
+      "direction": "in",
+      "relationship": "HEADS_AT",
+      "other": "PR-387",
+      "other_type": "pr",
+      "other_title": "Ix PR #387",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-387"
+    },
+    {
+      "direction": "in",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "PR-387",
+      "other_type": "pr",
+      "other_title": "Ix PR #387",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-387"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-29743d3a9ad0",
+      "other_type": "artifact",
+      "other_title": "ix-cli/package-lock.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-29743d3a9ad0"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-167332b6ad95",
+      "other_type": "artifact",
+      "other_title": "ix-cli/package.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-167332b6ad95"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGED_BY",
+      "other": "PR-387",
+      "other_type": "pr",
+      "other_title": "Ix PR #387",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-387"
+    }
+  ]
+}

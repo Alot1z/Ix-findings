@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-90d587445db43359c426b11c619c8e4b3f930f8c",
+  "type": "commit",
+  "title": "90d587445db43359c426b11c619c8e4b3f930f8c",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-90d587445db43359c426b11c619c8e4b3f930f8c",
+  "summary": {
+    "id": "COMMIT-90d587445db43359c426b11c619c8e4b3f930f8c",
+    "type": "commit",
+    "title": "90d587445db43359c426b11c619c8e4b3f930f8c",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/90d587445db43359c426b11c619c8e4b3f930f8c",
+    "author": {
+      "name": "Tanner Kocher",
+      "email": "tannertorrey3@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-1116272a7ea67c09f92aa98f1050425c3b08c7d4",
+      "other_type": "commit",
+      "other_title": "1116272a7ea67c09f92aa98f1050425c3b08c7d4",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-1116272a7ea67c09f92aa98f1050425c3b08c7d4"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-eaa47476be7f13eb2977c01c707ad68404a66249",
+      "other_type": "commit",
+      "other_title": "eaa47476be7f13eb2977c01c707ad68404a66249",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-eaa47476be7f13eb2977c01c707ad68404a66249"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e6f2ba20b90b",
+      "other_type": "artifact",
+      "other_title": ".github/workflows/release.yml",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e6f2ba20b90b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-d2f38a57606b",
+      "other_type": "artifact",
+      "other_title": ".github/workflows/release.yml",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-d2f38a57606b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c0bc8e5fa2fa",
+      "other_type": "artifact",
+      "other_title": ".github/workflows/release.yml",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c0bc8e5fa2fa"
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "id": "COMMIT-ec9fb328b26b9848ccba4d3e9d27feac8fa50596",
+  "type": "commit",
+  "title": "ec9fb328b26b9848ccba4d3e9d27feac8fa50596",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-ec9fb328b26b9848ccba4d3e9d27feac8fa50596",
+  "summary": {
+    "id": "COMMIT-ec9fb328b26b9848ccba4d3e9d27feac8fa50596",
+    "type": "commit",
+    "title": "ec9fb328b26b9848ccba4d3e9d27feac8fa50596",
+    "status": "HISTORICAL",
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    }
+  },
+  "source_snapshot": {
+    "sha": "ec9fb328b26b9848ccba4d3e9d27feac8fa50596",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/ec9fb328b26b9848ccba4d3e9d27feac8fa50596",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/ec9fb328b26b9848ccba4d3e9d27feac8fa50596",
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "committer": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "message": "fix(mcp): close the in-process state leaks and the Windows install path\n\nReview of #397 surfaced fifteen distinct defects in the new `ix mcp` layer.\nThey fall into three groups.\n\n**The in-process runner leaks state that the process used to reset.**\nA timed-out command is never cancelled, so it keeps writing to the process\nglobals after the queue advances: its late `process.exitCode = 1` was read by\nwhichever tool call was running by then, reporting a *successful* call as\nfailed with its real answer buried in an `error` string. `process.exitCode` is\na non-configurable accessor and cannot be made context-local, so instead a run\nstarted while an abandoned command is still in flight ignores it and judges\nonly by what the command threw. `ix map`'s single-flight lock and\n`resolve.ts`'s per-cwd scope cache had the same shape of bug — the process\nending *was* their invalidation — so the runner now releases held locks and\nresets the scope cache after a command that can change either. And the\nserver no longer inherits main.ts's error handlers, whose every path ends in\n`process.exit(1)`: a stray rejection from one tool call took down the whole\nsession and all 22 tools.\n\n**Nothing registered on Windows, and every report said it had.**\n`where ix` lists npm's extensionless `#!/bin/sh` shim first, which\nCreateProcess cannot launch, and that is what was recorded into all seven\nhosts. Host CLIs could not be spawned either — npm ships them as `.cmd`, which\nNode refuses to spawn without a shell since CVE-2024-27980 — and the resulting\nENOENT was classified as a conflict, so install left every host alone.\nLauncher resolution now takes the first PATHEXT-executable entry, and host\nCLIs go through cmd as one pre-quoted string. A JSON argument cannot be\nencoded that way at all (verified against a round-trip echo: cmd's quote\ntracking flips mid-argument), so VS Code and openclaw write their documented\nconfig shapes directly instead. A registration of ours whose launcher path has\nsince disappeared now reads as `stale` and is repaired without `--force`,\nrather than reported healthy and skipped forever.\n\n**Several paths answered confidently when they could not answer.**\n`openclaw mcp show` failing was read as \"nothing registered\" and overwrote the\nuser's own server; `--host` with an unrecognised id filtered every host out and\nexited 0; a JSONC config passed `inspect` and then hard-failed the write;\nCursor/VS Code/opencode were gated on shell shims they never invoke;\n`ix_smells --path` matched by prefix where the rest of the CLI matches by\nsubstring; `ix_inventory` required a path the CLI treats as optional and\ndropped `--limit`; and every positional was passed bare, so `ix_text \"--path\"`\nsilently searched for something else.\n\nEach fix carries a regression test, and each test was validated by restoring\nthe defect and confirming that test — not merely the suite — goes red.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>",
+    "parents": [
+      {
+        "sha": "41be07b47cdf9d4c18c805193c7bf5f633316a07",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/41be07b47cdf9d4c18c805193c7bf5f633316a07"
+      }
+    ],
+    "tree_sha": "8cdb3887629594950081e4ef2af950e7719ad0a4",
+    "authored_at": "2026-08-12T17:17:09Z",
+    "committed_at": "2026-08-12T17:17:09Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@ec9fb328b26b9848ccba4d3e9d27feac8fa50596",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/ec9fb328b26b9848ccba4d3e9d27feac8fa50596",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/ec9fb328b26b9848ccba4d3e9d27feac8fa50596",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-12T17:17:09Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-12T17:17:09Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-ec9fb328b26b9848ccba4d3e9d27feac8fa50596",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#400"
+  },
+  "relationships": []
+}

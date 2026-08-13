@@ -1,0 +1,195 @@
+{
+  "id": "COMMIT-b7e04e73b7174b87831f4c5d981b5e198f363a75",
+  "type": "commit",
+  "title": "b7e04e73b7174b87831f4c5d981b5e198f363a75",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-b7e04e73b7174b87831f4c5d981b5e198f363a75",
+  "summary": {
+    "id": "COMMIT-b7e04e73b7174b87831f4c5d981b5e198f363a75",
+    "type": "commit",
+    "title": "b7e04e73b7174b87831f4c5d981b5e198f363a75",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/b7e04e73b7174b87831f4c5d981b5e198f363a75",
+    "source_mirror_id": "github:commit:ix-infrastructure/Ix@b7e04e73b7174b87831f4c5d981b5e198f363a75",
+    "source_type": "github_commit",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/commit/b7e04e73b7174b87831f4c5d981b5e198f363a75",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/b7e04e73b7174b87831f4c5d981b5e198f363a75",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "sha": "b7e04e73b7174b87831f4c5d981b5e198f363a75",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/b7e04e73b7174b87831f4c5d981b5e198f363a75",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/b7e04e73b7174b87831f4c5d981b5e198f363a75",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "committer": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "message": "feat(llm): implement --format llm for the five commands that faked it\n\n`explain`, `read`, `status`, `doctor` and `savings` all advertised\n`text|json|llm` in their help and rendered `text` when given `llm`.\ndocs/llm-format.md documented the fallback as intentional — \"route to\nwhichever existing format is most compact\" — on the theory that prose and\nverbatim source have no record form.\n\nThat is true of the payload and false of everything around it. `explain`'s\nprose is a rendering of `facts` + `role` + `importance`, so an agent can have\nthe inputs instead and skip the paragraph entirely; `read`'s source was\narriving under a 4-column line-number gutter and a pair of ANSI escapes per\nline. `explain` is the one that mattered: it is the first call most plugins\nmake on any question, so the fallback was costing the most tokens on the\nhottest path.\n\nMeasured against `--format json`, which the help text sent agents to as the\nworkaround: explain -55%, doctor -31%, savings -31%, read -5%, and status\n+1%. `read` gains 23% against `text` instead, 601 bytes of which is gutter\nand ANSI on a 40-line read.\n\n`status` is kept despite being a wash on size: it is in for the explicit\n`stale=true|false` field, which is the question the command gets called to\nanswer and which `text` only implied through a warning line. Its unreachable\n-backend path now emits the spec's `error code=...` record so a consumer\nparses the failure the same way it parses a result.\n\nTwo exceptions stay on text and are now documented as such: `diff --content`\n(verbatim hunks) and `ingest`, a hidden implementation-detail command.\n\n`read`'s content block is the one place the one-record-per-line invariant is\nrelaxed. The preceding `content lines=<n>` record makes the block\nself-delimiting so a line of source can never be mistaken for a record.\n\nAlso corrects the CLAUDE.md paragraph on this, which was wrong in both\ndirections: it claimed `query` advertises `llm` (it offers only `text|json`)\nand missed `doctor`, `savings` and `ingest`. It also never mentioned that\nseven commands take no `--format` at all, where `--format llm` is an\n`unknown option` error rather than a fallback — the one case where an agent\nfollowing the \"pass it unconditionally\" advice breaks.",
+    "parents": [
+      {
+        "sha": "0437abf5de675f16fe161df86fca9adf7eee9b93",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/0437abf5de675f16fe161df86fca9adf7eee9b93"
+      }
+    ],
+    "tree_sha": "f3309dbbcc2179ec4d4a412d058c0324de15ace5",
+    "authored_at": "2026-08-10T02:54:24Z",
+    "committed_at": "2026-08-10T02:54:24Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@b7e04e73b7174b87831f4c5d981b5e198f363a75",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/b7e04e73b7174b87831f4c5d981b5e198f363a75",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/b7e04e73b7174b87831f4c5d981b5e198f363a75",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T02:54:24Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T02:54:24Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-b7e04e73b7174b87831f4c5d981b5e198f363a75",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#372"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+      "other_type": "commit",
+      "other_title": "86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-86f3684c4e4dc77dd0a579eb92863824953a3ce9"
+    },
+    {
+      "direction": "out",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-0437abf5de675f16fe161df86fca9adf7eee9b93",
+      "other_type": "commit",
+      "other_title": "0437abf5de675f16fe161df86fca9adf7eee9b93",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-0437abf5de675f16fe161df86fca9adf7eee9b93"
+    },
+    {
+      "direction": "in",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "PR-372",
+      "other_type": "pr",
+      "other_title": "Ix PR #372",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-372"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3a5de4be99c9",
+      "other_type": "artifact",
+      "other_title": "CLAUDE.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3a5de4be99c9"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-53b1c914b232",
+      "other_type": "artifact",
+      "other_title": "docs/llm-format.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-53b1c914b232"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e2fb6dc45efb",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/llm-tier5.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e2fb6dc45efb"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-b33a6fbad5d4",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/doctor.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b33a6fbad5d4"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ddbc07b0440d",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/explain.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ddbc07b0440d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c04093d564c8",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/read.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c04093d564c8"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-95af80e81bec",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/savings.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-95af80e81bec"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-490cd3533a0f",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/status.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-490cd3533a0f"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5e64dedc869c",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/explain/llm.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5e64dedc869c"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-27a225acc037",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/llm.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-27a225acc037"
+    }
+  ]
+}

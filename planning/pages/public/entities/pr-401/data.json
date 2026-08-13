@@ -1,0 +1,600 @@
+{
+  "id": "PR-401",
+  "type": "pr",
+  "title": "Ix PR #401",
+  "status": "RESOLVED",
+  "url": "https://alot1z.github.io/Ix-findings/entities/pr-401",
+  "summary": {
+    "id": "PR-401",
+    "type": "pr",
+    "title": "Ix PR #401",
+    "status": "RESOLVED",
+    "repository": "ix-infrastructure/Ix",
+    "number": 401,
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "merged_at": "2026-08-12T21:44:27Z"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "number": 401,
+    "node_id": "PR_kwDORdC75M7-M8vV",
+    "title": "fix(mcp): repair the orphan bookkeeping and the Windows quoting from #400",
+    "body": "An independent review of #400 found that three of its own fixes were wrong, and that two of its tests were written so they could not fail against the defect they claimed to cover. All were reproduced before fixing.\n\n## Three fixes in #400 were wrong\n\n**An orphan settling mid-run released the *running* command's lock.** `releaseHeldLocks` drops every lock the process holds, not the finishing command's — and the guard only asked whether an orphan was in flight, never whether something was running right now. A command abandoned at its timeout, settling part-way through an unrelated `ix map`, deleted that map's lock and reopened the exact window single-flight exists to close. The guard now also requires `activeRun === null`, which the lock-holding command's own `finally` always satisfies, so nothing is stranded.\n\n**A command that never settles was an immortal orphan.** `finished` derives from `work`; if `work` never settles, the entry could never be removed. Everything keyed off it then failed permanently open, for the life of the server:\n\n- `exitCodeIsOurs` stayed false, so **every** later failing command reported `ok: true` — the precise inverse of the misclassification #400 set out to fix.\n- `releaseHeldLocks()` never ran again, so the second `ix_map` coalesced — the headline bug of #400, restored.\n\nMembership is now bounded by a grace timer as well as by the command settling. `installServerErrorHandlers` made non-settling commands *more likely*, since an exception that used to end the process is now only logged, which is what made this reachable.\n\n**Staleness by regex both missed and misfired.** `[^\"'\\s,\\]]*` cannot cross a space, so `[local-path] Doe\\...\\ix.cmd` — the common Windows shape, not the edge one — went on reading as healthy. And allowing a match to start at an interior `/` made it latch onto the `/npm/ix.cmd` suffix of a *live* path, report it stale, and silently rewrite a working registration with no `--force` (plus `doctor` exiting 1 on a healthy machine). The launcher is now read from the parsed entry, so there is nothing to guess; an unreachable path is still not \"gone\", since only ENOENT counts.\n\n## A quoting hole, and two tests that could not fail\n\n**`quoteForCmd` passed cmd metacharacters through bare.** Its fast path tested only whitespace and quotes, so a path with `&`, `^` or `|` and no space was emitted unquoted. Verified by round-trip against a real `cmd` invocation:\n\n| argument | before | after |\n|---|---|---|\n| `[local-path] | arrives as `[local-path] cmd runs `D\\npm\\ix.cmd` as a second command | intact |\n| `[local-path] | arrives silently as `[local-path] `ok: true` | intact |\n| `[local-path] | mangled | intact |\n\nThe reachable input is `resolveLauncher()`'s output — the user's own npm prefix path. The predicate is now a whitelist, and `%` joins `\"` as unencodable rather than being expanded by cmd behind the quoting's back.\n\n**The two tests that could not fail are replaced.** The `quoteForCmd` fixture contained a space, so it took the quoting branch either way and never exercised the bare path; the stale-launcher fixture used the one path shape the broken regex happened to match. Both now cover the defect.\n\n## Also\n\n- `MISSING_ENTRY` is tied to our own server name, so an unrelated \"not found\" in a host's output can no longer read as a free name and overwrite the user's server.\n- OpenClaw's Windows write is paired with a matching Windows read, so the platform that writes the file also reads it — the asymmetry VS Code was explicitly fixed for.\n- The README no longer claims a write path Windows does not take.\n- Tests that reach `acquireMapLock` no longer write into the developer's real `~/.ix/locks`.\n\n## Verification\n\n- `typecheck` clean, lint unchanged from baseline (0 errors, same 41 warnings), knip clean.\n- 76 tests pass across the three `mcp` suites.\n- **All five fixes validated by restoring the defect** and confirming the intended test — not merely the suite — goes red. One of them caught a sixth test that had silently failed to apply and was not in the file at all.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)",
+    "state": "closed",
+    "draft": false,
+    "merged": true,
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "html_url": "https://github.com/ix-infrastructure/Ix/pull/401",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/401",
+    "head": {
+      "ref": "fix/mcp-review-400",
+      "sha": "f73028274d996b9dfa1129e03be68325c5c8ecc0",
+      "repo": {
+        "id": 1171307492,
+        "full_name": "ix-infrastructure/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "ix-infrastructure",
+          "id": 256883681,
+          "type": "Organization",
+          "html_url": "https://github.com/ix-infrastructure"
+        },
+        "html_url": "https://github.com/ix-infrastructure/Ix",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": false,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-03-03T04:48:38Z",
+        "updated_at": "2026-08-13T21:51:31Z",
+        "pushed_at": "2026-08-13T19:18:44Z",
+        "topics": [
+          "ai",
+          "ai-memory",
+          "claude-code",
+          "cli",
+          "code-analysis",
+          "code-mapping",
+          "code-memory",
+          "codebase-understanding",
+          "codex",
+          "developer-tools",
+          "llm",
+          "openclaw",
+          "persistent-memory",
+          "program-analysis",
+          "software-architecture",
+          "system-intelligence",
+          "system-mapping"
+        ],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 701,
+        "stargazers_count": 701,
+        "forks_count": 60,
+        "open_issues_count": 6
+      }
+    },
+    "base": {
+      "ref": "main",
+      "sha": "7f6f1ceb60e08cffbddd37d032fdbf7e74df8b70",
+      "repo": {
+        "id": 1171307492,
+        "full_name": "ix-infrastructure/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "ix-infrastructure",
+          "id": 256883681,
+          "type": "Organization",
+          "html_url": "https://github.com/ix-infrastructure"
+        },
+        "html_url": "https://github.com/ix-infrastructure/Ix",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": false,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-03-03T04:48:38Z",
+        "updated_at": "2026-08-13T21:51:31Z",
+        "pushed_at": "2026-08-13T19:18:44Z",
+        "topics": [
+          "ai",
+          "ai-memory",
+          "claude-code",
+          "cli",
+          "code-analysis",
+          "code-mapping",
+          "code-memory",
+          "codebase-understanding",
+          "codex",
+          "developer-tools",
+          "llm",
+          "openclaw",
+          "persistent-memory",
+          "program-analysis",
+          "software-architecture",
+          "system-intelligence",
+          "system-mapping"
+        ],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 701,
+        "stargazers_count": 701,
+        "forks_count": 60,
+        "open_issues_count": 6
+      }
+    },
+    "merge_commit_sha": "8b117da26c395df2680f09b11096751e625b6a3b",
+    "merged_at": "2026-08-12T21:44:27Z",
+    "closed_at": "2026-08-12T21:44:27Z",
+    "created_at": "2026-08-12T18:10:14Z",
+    "updated_at": "2026-08-12T21:45:52Z",
+    "labels": [],
+    "milestone": null,
+    "requested_reviewers": [],
+    "requested_teams": [],
+    "commits_count": 7,
+    "changed_files_count": 6,
+    "additions": 485,
+    "deletions": 91,
+    "changed_files": [
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 401,
+        "filename": "README.md",
+        "status": "modified",
+        "additions": 14,
+        "deletions": 8,
+        "changes": 22,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/f73028274d996b9dfa1129e03be68325c5c8ecc0/README.md",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/f73028274d996b9dfa1129e03be68325c5c8ecc0/README.md",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/README.md?ref=f73028274d996b9dfa1129e03be68325c5c8ecc0",
+        "patch": "@@ -71,18 +71,24 @@ ix mcp doctor             # check each client's registration\n \n `install` knows Claude Code, Codex, Cursor, VS Code, Gemini CLI, OpenClaw and\n opencode. It writes through each client's own MCP command where one exists\n-(`claude mcp add`, `codex mcp add`, `gemini mcp add`, `openclaw mcp set`), so\n-the client owns its config format; Cursor, VS Code and opencode are edited\n-directly, and each is merged in place with a `.bak` kept alongside. Those three\n-are also detected by their config directory rather than by a shell command,\n-since `cursor` and `code` are opt-in shims a GUI install may not have.\n+(`claude mcp add`, `codex mcp add`, `gemini mcp add`, and `openclaw mcp set`\n+everywhere but Windows), so the client owns its config format. Cursor, VS Code\n+and opencode are edited directly instead, as is OpenClaw on Windows — its\n+registration is passed as a JSON argument, which cmd cannot carry intact. Every\n+direct write is merged in place with a `.bak` kept alongside. Cursor, VS Code\n+and opencode are also detected by their config directory rather than by a shell\n+command, since `cursor` and `code` are opt-in shims a GUI install may not have.\n \n **It never overwrites.** If the name `ix-memory` already belongs to a different\n server — an earlier Ix plugin, say — that client is reported and left exactly as\n it was. Pass `--force` to replace it, or `--host <id>` to limit the run; an\n-unrecognised id is an error rather than a silent no-op. `doctor` additionally\n-reports a registration of ours whose recorded launcher path has since\n-disappeared, which `install` then repairs without `--force`.\n+unrecognised id is an error rather than a silent no-op. Where a client's own\n+config can be read back — Cursor, VS Code, opencode, and OpenClaw off Windows —\n+`doctor` also reports a registration of ours whose recorded launcher path has\n+since disappeared, and `install` repairs it. The clients that answer with a\n+rendered table instead expose no stored command, so a launcher that has moved\n+there is not detected: clear the name with that client's own command\n+(`claude mcp remove ix-memory`) and re-run `ix mcp install`.\n \n To register a single client by hand instead, point it at `ix` with the argument\n `mcp`. For Codex:"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 401,
+        "filename": "ix-cli/src/cli/__tests__/mcp-install.test.ts",
+        "status": "modified",
+        "additions": 76,
+        "deletions": 11,
+        "changes": 87,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/f73028274d996b9dfa1129e03be68325c5c8ecc0/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fmcp-install.test.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/f73028274d996b9dfa1129e03be68325c5c8ecc0/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fmcp-install.test.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fmcp-install.test.ts?ref=f73028274d996b9dfa1129e03be68325c5c8ecc0",
+        "patch": "@@ -1,4 +1,4 @@\n-import { chmodSync, existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from \"node:fs\";\n+import { chmodSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from \"node:fs\";\n import { tmpdir } from \"node:os\";\n import { join } from \"node:path\";\n \n@@ -339,28 +339,71 @@ describe(\"registration classification\", () => {\n     expect(classifyListing(\"some-other-server: npx thing\").registration).toBe(\"none\");\n   });\n \n-  it(\"reports an absolute launcher path that no longer resolves as stale\", () => {\n-    // What a Windows registration looks like after an nvm switch or a reinstall\n-    // to a different prefix. Judged from the command string alone this reads as\n-    // healthy, so install skipped it and doctor called it registered while every\n-    // client failed to start a single Ix tool.\n-    const entry = JSON.stringify({ command: \"[local-path]\", args: [\"mcp\"] });\n-\n-    expect(classifyListing(`ix-memory ${entry}`)).toMatchObject({\n+  it.each([\n+    String.raw`[local-path]\n+    // A Windows username with a space is the common case, not the edge one; a\n+    // first attempt that recovered the path by regex stopped at the space and\n+    // read this as healthy — for most of the users the check was written for.\n+    String.raw`[local-path] Doe\\AppData\\Roaming\\npm\\ix.cmd`,\n+    String.raw`[local-path] Files\\nodejs\\ix.cmd`,\n+    \"/opt/my tools/bin/ix\",\n+  ])(\"reports %s as stale once it no longer resolves\", (command) => {\n+    // What a registration looks like after an nvm switch or a reinstall to a\n+    // different prefix. Read as healthy, install skipped the one host it should\n+    // have repaired while doctor agreed it was fine.\n+    expect(classifyListing(`ix-memory ${JSON.stringify({ command, args: [\"mcp\"] })}`, command)).toMatchObject({\n       registration: \"stale\",\n       detail: expect.stringContaining(\"no longer exists\"),\n     });\n   });\n \n   it(\"keeps an absolute launcher that does resolve as ours\", () => {\n-    const launcher = join(tempDir(), \"ix.cmd\");\n+    // Written under a directory with a space in it, so this cannot pass merely\n+    // by failing to recognise the path as a path.\n+    const dir = join(tempDir(), \"my tools\");\n+    mkdirSync(dir, { recursive: true });\n+    const launcher = join(dir, \"ix.cmd\");\n     writeFileSync(launcher, \"@echo off\");\n \n-    expect(classifyListing(`ix-memory ${JSON.stringify({ command: launcher, args: [\"mcp\"] })}`).registration).toBe(\n+    expect(\n+      classifyListing(`ix-memory ${JSON.stringify({ command: launcher, args: [\"mcp\"] })}`, launcher).registration,\n+    ).toBe(\"ours\");\n+  });\n+\n+  // Windows-only by nature: a UNC path is a network location there, and stat\n+  // fails on it with something other than ENOENT. Everywhere else those\n+  // backslashes are ordinary filename characters, so the path really is absent\n+  // and `stale` is the right answer.\n+  it.skipIf(process.platform !== \"win32\")(\"leaves a launcher it cannot conclusively stat alone\", () => {\n+    // A file server being offline is not evidence the launcher is gone, and\n+    // `stale` triggers a rewrite with no --force, so only ENOENT counts.\n+    const unc = String.raw`[local-path]share\\npm\\ix.cmd`;\n+\n+    expect(classifyListing(`ix-memory ${JSON.stringify({ command: unc, args: [\"mcp\"] })}`, unc).registration).toBe(\n       \"ours\",\n     );\n   });\n \n+  it(\"does not invent a stale launcher out of a suffix of a live path\", () => {\n+    // A launcher that genuinely exists, sitting under a `.../npm/ix.cmd` tail.\n+    // A regex allowed to start at an interior `/` matched only that tail,\n+    // stat'd `/npm/ix.cmd` from the filesystem root, found nothing, and called\n+    // a working registration stale — so `install` rewrote it with no --force\n+    // and `doctor` exited 1 on a healthy machine. The fixture has to use a path\n+    // that exists, or it cannot tell the two behaviours apart.\n+    const dir = join(tempDir(), \"Program Files\", \"npm\");\n+    mkdirSync(dir, { recursive: true });\n+    const launcher = join(dir, \"ix.cmd\");\n+    writeFileSync(launcher, \"@echo off\");\n+    // Both properties are needed to reproduce it: the space stops an\n+    // unanchored match from spanning the path from its start, and the forward\n+    // slashes then give it an interior `/npm/ix.cmd` to latch onto instead.\n+    // A temp path without either cannot tell the two behaviours apart.\n+    const rendered = launcher.replaceAll(\"\\\\\", \"/\");\n+\n+    expect(classifyListing(`ix-memory  ${rendered}  mcp  -  enabled`).registration).toBe(\"ours\");\n+  });\n+\n   it(\"recognises a pretty-printed definition split across lines\", () => {\n     // `openclaw mcp show` puts \"ix\" and \"mcp\" on separate lines; matching one\n     // line at a time reads our own entry as a stranger's.\n@@ -399,6 +442,21 @@ describe(\"quoteForCmd\", () => {\n     );\n   });\n \n+  it.each([\n+    String.raw`[local-path]\n+    String.raw`[local-path]\n+    String.raw`[local-path]\n+  ])(\"quotes %s, which carries a metacharacter but no space\", (path) => {\n+    // The case the test above cannot reach, because its fixture has a space and\n+    // so takes the quoting branch either way. A \"does this need quoting?\" check\n+    // that asks only about whitespace lets these through bare: verified by\n+    // round-trip that `[local-path] then arrives as `[local-path]\n+    // with cmd running `D\\npm\\ix.cmd` as a second command, and that\n+    // `[local-path] arrives silently as `[local-path] — a wrong launcher\n+    // path written into every host config and reported as a success.\n+    expect(quoteForCmd(path)).toBe(`\"${path}\"`);\n+  });\n+\n   it(\"leaves an ordinary argument alone\", () => {\n     expect(quoteForCmd(\"--scope\")).toBe(\"--scope\");\n   });\n@@ -418,6 +476,13 @@ describe(\"classifyShown\", () => {\n     expect(classifyShown(\"No MCP server named ix-memory\\n\", false).registration).toBe(\"none\");\n   });\n \n+  it(\"does not read an unrelated 'not found' as free\", () => {\n+    // A missing plugin, or the host's own loader failing. Neither says anything\n+    // about our name, and reading one as an empty slot writes over whatever the\n+    // user had — the very thing this function exists to prevent.\n+    expect(classifyShown(\"Error: plugin 'foo' not found\\n\", false).registration).toBe(\"unknown\");\n+  });\n+\n   it(\"reads a definition body as ours\", () => {\n     const shown = 'MCP server \"ix-memory\":\\n{\\n  \"command\": \"ix\",\\n  \"args\": [\"mcp\"]\\n}';\n "
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 401,
+        "filename": "ix-cli/src/cli/__tests__/mcp-runner.test.ts",
+        "status": "modified",
+        "additions": 173,
+        "deletions": 29,
+        "changes": 202,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/f73028274d996b9dfa1129e03be68325c5c8ecc0/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fmcp-runner.test.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/f73028274d996b9dfa1129e03be68325c5c8ecc0/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fmcp-runner.test.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fmcp-runner.test.ts?ref=f73028274d996b9dfa1129e03be68325c5c8ecc0",
+        "patch": "@@ -1,11 +1,11 @@\n-import { mkdtempSync, rmSync } from \"node:fs\";\n+import { existsSync, mkdtempSync, rmSync } from \"node:fs\";\n import { tmpdir } from \"node:os\";\n import { join } from \"node:path\";\n \n import { Command } from \"commander\";\n import { afterEach, describe, expect, it, vi } from \"vitest\";\n \n-import { acquireMapLock } from \"../single-flight.js\";\n+import { acquireMapLock, lockPathForTest } from \"../single-flight.js\";\n import { createInProcessRunner, resolveDefaultRunner, runCurrentIx } from \"../../mcp/runner.js\";\n \n const resetReadScope = vi.hoisted(() => vi.fn());\n@@ -76,25 +76,82 @@ function createTestProgram(): Command {\n   // process exit to release.\n   program\n     .command(\"map\")\n-    .action(() => {\n-      const lock = acquireMapLock(process[redacted].IX_TEST_WORKSPACE ?? \"workspace\", \"ix map test\");\n-      console.log(lock ? \"mapped\" : \"coalesced\");\n+    .option(\"--hold <ms>\", \"keep working after taking the lock\", \"0\")\n+    .option(\"--hang\", \"take the lock and never finish\")\n+    .action(async (opts: { hold: string; hang?: boolean }) => {\n+      const workspace = process[redacted].IX_TEST_WORKSPACE ?? \"workspace\";\n+      const lock = acquireMapLock(workspace, \"ix map test\");\n+      if (!lock) {\n+        console.log(\"coalesced\");\n+        return;\n+      }\n+      if (opts.hang) await new Promise(() => {});\n+      await new Promise((resolve) => setTimeout(resolve, Number(opts.hold)));\n+      // Whether the lock this command took is still its own by the time it\n+      // finishes — anything releasing it mid-run reopens the window.\n+      console.log(existsSync(lockPathForTest(workspace)) ? \"mapped\" : \"lock-taken-mid-run\");\n     });\n \n   program.command(\"ingest\").action(() => console.log(\"ingested\"));\n \n+  // Never settles: a hung backend call, or a rejection that used to end the\n+  // process and is now only logged by the server's error handlers.\n+  program.command(\"hang\").action(async () => {\n+    await new Promise(() => {});\n+  });\n+\n   return program;\n }\n \n function testRunner() {\n   return createInProcessRunner({ version: \"test-version\", createProgram: createTestProgram });\n }\n \n+/**\n+ * Run a body against a throwaway lock directory.\n+ *\n+ * Any test whose commands reach `acquireMapLock` needs this: without it the\n+ * lock lands in the developer's real `~/.ix/locks` and can block their own\n+ * `ix map` for twenty minutes.\n+ */\n+async function withLockDir(body: () => Promise<void>): Promise<void> {\n+  const dir = mkdtempSync(join(tmpdir(), \"ix-mcp-lock-\"));\n+  const previous = { lockDir: process[redacted].IX_LOCK_DIR, workspace: process[redacted].IX_TEST_WORKSPACE };\n+  process[redacted].IX_LOCK_DIR = dir;\n+  process[redacted].IX_TEST_WORKSPACE = join(dir, \"workspace\");\n+  try {\n+    await body();\n+  } finally {\n+    if (previous.lockDir === undefined) delete process[redacted].IX_LOCK_DIR;\n+    else process[redacted].IX_LOCK_DIR = previous.lockDir;\n+    if (previous.workspace === undefined) delete process[redacted].IX_TEST_WORKSPACE;\n+    else process[redacted].IX_TEST_WORKSPACE = previous.workspace;\n+    rmSync(dir, { recursive: true, force: true });\n+  }\n+}\n+\n const originalSubprocessFlag = process[redacted].IX_MCP_SUBPROCESS;\n \n-afterEach(() => {\n+/**\n+ * Longer than the slowest command any test here abandons and then waits for.\n+ *\n+ * Every test pays it, so it is kept close to what the slowest one needs rather\n+ * than padded: at 500 it added ~11s to this file alone. The two commands that\n+ * never settle are unaffected either way — their grace is what bounds them.\n+ */\n+const DRAIN_MS = 250;\n+\n+afterEach(async () => {\n   if (originalSubprocessFlag === undefined) delete process[redacted].IX_MCP_SUBPROCESS;\n   else process[redacted].IX_MCP_SUBPROCESS = originalSubprocessFlag;\n+\n+  // Several tests deliberately abandon a command at its timeout, and an\n+  // abandoned command outlives the test that started it. The runner's state is\n+  // module-level, so while one is in flight every later test sees exit codes\n+  // distrusted and a lock held — which is correct behaviour, and silently\n+  // changes what an unrelated assertion observes. Draining here rather than at\n+  // the end of each body means a failing assertion cannot skip it.\n+  await new Promise((resolve) => setTimeout(resolve, DRAIN_MS));\n });\n \n describe(\"in-process ix runner\", () => {\n@@ -219,13 +276,7 @@ describe(\"in-process ix runner\", () => {\n   });\n \n   it(\"releases the map single-flight lock when the command ends, not the process\", async () => {\n-    const lockDir = mkdtempSync(join(tmpdir(), \"ix-mcp-lock-\"));\n-    const previousLockDir = process[redacted].IX_LOCK_DIR;\n-    const previousWorkspace = process[redacted].IX_TEST_WORKSPACE;\n-    process[redacted].IX_LOCK_DIR = lockDir;\n-    process[redacted].IX_TEST_WORKSPACE = join(lockDir, \"workspace\");\n-\n-    try {\n+    await withLockDir(async () => {\n       const run = testRunner();\n \n       const first = await run([\"map\"]);\n@@ -236,27 +287,120 @@ describe(\"in-process ix runner\", () => {\n       // stale. Held across calls, every later ix_map coalesced into an empty\n       // success while the graph was never refreshed.\n       expect(second.stdout).toBe(\"mapped\\n\");\n-    } finally {\n-      if (previousLockDir === undefined) delete process[redacted].IX_LOCK_DIR;\n-      else process[redacted].IX_LOCK_DIR = previousLockDir;\n-      if (previousWorkspace === undefined) delete process[redacted].IX_TEST_WORKSPACE;\n-      else process[redacted].IX_TEST_WORKSPACE = previousWorkspace;\n-      rmSync(lockDir, { recursive: true, force: true });\n-    }\n+    });\n+  });\n+\n+  it(\"does not release a running command's lock when an orphan settles\", async () => {\n+    await withLockDir(async () => {\n+      const run = testRunner();\n+\n+      // Abandoned at 40ms, settles at ~150ms — part-way through the map below.\n+      const orphan = run([\"slow\", \"--delay\", \"150\", \"--tag\", \"orphan\"], 40);\n+      const mapped = run([\"map\", \"--hold\", \"400\"]);\n+\n+      expect((await orphan).ok).toBe(false);\n+      // Releasing every lock the process holds drops more than the\n+      // finishing command's, so an orphan settling mid-map deleted the lock of\n+      // the map that was still running — reopening the exact window\n+      // single-flight exists to close.\n+      expect((await mapped).stdout).toBe(\"mapped\\n\");\n+    });\n+  });\n+\n+  it(\"does not release a still-running command's lock when its own grace fires\", async () => {\n+    await withLockDir(async () => {\n+      const run = createInProcessRunner({\n+        version: \"test-version\",\n+        createProgram: createTestProgram,\n+        orphanGraceMs: 60,\n+      });\n+\n+      // Abandoned at 40ms, grace fires at ~100ms, still working until ~400ms.\n+      // The grace drops the exit-code distrust; the lock is a separate lifetime\n+      // and stays with the command that is still using it.\n+      expect((await run([\"map\", \"--hold\", \"400\"], 40)).ok).toBe(false);\n+      await new Promise((resolve) => setTimeout(resolve, 200));\n+\n+      // An unrelated command completing must not take the running map's lock\n+      // with it — releasing everything held is what did, one call later than\n+      // the grace itself.\n+      expect((await run([\"say\", \"unrelated\"], 5_000)).stdout).toBe(\"out:unrelated\\n\");\n+      expect((await run([\"map\"], 5_000)).stdout).toBe(\"coalesced\\n\");\n+    });\n+  });\n+\n+  it(\"releases the lock of a command that overran its grace once it finishes\", async () => {\n+    await withLockDir(async () => {\n+      const run = createInProcessRunner({\n+        version: \"test-version\",\n+        createProgram: createTestProgram,\n+        orphanGraceMs: 40,\n+      });\n+\n+      // The other direction: holding every lock back to protect a running\n+      // command stranded the ones whose command had genuinely finished, and the\n+      // next ix_map coalesced forever. Ownership is what lets both hold.\n+      await run([\"map\", \"--hold\", \"250\"], 30);\n+      await new Promise((resolve) => setTimeout(resolve, 400));\n+\n+      expect((await run([\"map\"], 5_000)).stdout).toBe(\"mapped\\n\");\n+    });\n+  });\n+\n+  it(\"invalidates the read scope for a command that never settles at all\", async () => {\n+    await withLockDir(async () => {\n+      const run = createInProcessRunner({\n+        version: \"test-version\",\n+        createProgram: createTestProgram,\n+        orphanGraceMs: 40,\n+      });\n+      resetReadScope.mockClear();\n+\n+      // A hung `ix map` has no settle to hang the invalidation off, so the\n+      // grace has to carry it — otherwise the pre-map scope stays pinned for\n+      // the life of the server with nothing left to clear it.\n+      await run([\"map\", \"--hang\"], 30);\n+      await new Promise((resolve) => setTimeout(resolve, 150));\n+\n+      expect(resetReadScope).toHaveBeenCalled();\n+    });\n+  });\n+\n+  it(\"stops distrusting the exit code once an abandoned command overruns its grace\", async () => {\n+    await withLockDir(async () => {\n+      const run = createInProcessRunner({\n+        version: \"test-version\",\n+        createProgram: createTestProgram,\n+        orphanGraceMs: 60,\n+      });\n+      process.exitCode = undefined;\n+\n+      // Never settles, so nothing will ever remove it from the orphan set.\n+      // Left unbounded, every later failure reports ok and no lock is ever\n+      // released again — both for the life of the server.\n+      await run([\"hang\"], 30);\n+      await new Promise((resolve) => setTimeout(resolve, 120));\n+\n+      expect(await run([\"soft-fail\"], 30)).toMatchObject({ ok: false });\n+      expect((await run([\"map\"], 30)).stdout).toBe(\"mapped\\n\");\n+      expect((await run([\"map\"], 30)).stdout).toBe(\"mapped\\n\");\n+    });\n   });\n \n   it(\"invalidates the read-scope cache after a command that can change it\", async () => {\n-    const run = testRunner();\n-    resetReadScope.mockClear();\n+    await withLockDir(async () => {\n+      const run = testRunner();\n+      resetReadScope.mockClear();\n \n-    await run([\"say\", \"read\"]);\n-    expect(resetReadScope).not.toHaveBeenCalled();\n+      await run([\"say\", \"read\"]);\n+      expect(resetReadScope).not.toHaveBeenCalled();\n \n-    // `ix map` can stitch the repo into a System server-side; every later read\n-    // in the session would otherwise still scope to the pre-map workspace.\n-    await run([\"map\"]);\n-    await run([\"ingest\"]);\n-    expect(resetReadScope).toHaveBeenCalledTimes(2);\n+      // `ix map` can stitch the repo into a System server-side; every later read\n+      // in the session would otherwise still scope to the pre-map workspace.\n+      await run([\"map\"]);\n+      await run([\"ingest\"]);\n+      expect(resetReadScope).toHaveBeenCalledTimes(2);\n+    });\n   });\n \n   it(\"truncates output instead of growing the server heap without bound\", async () => {"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 401,
+        "filename": "ix-cli/src/cli/single-flight.ts",
+        "status": "modified",
+        "additions": 34,
+        "deletions": 6,
+        "changes": 40,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/f73028274d996b9dfa1129e03be68325c5c8ecc0/ix-cli%2Fsrc%2Fcli%2Fsingle-flight.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/f73028274d996b9dfa1129e03be68325c5c8ecc0/ix-cli%2Fsrc%2Fcli%2Fsingle-flight.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fsingle-flight.ts?ref=f73028274d996b9dfa1129e03be68325c5c8ecc0",
+        "patch": "@@ -127,8 +127,32 @@ export function acquireMapLock(workspaceRoot: string, label: string): LockHandle\n }\n \n // Locks this process still holds. `ix mcp` runs commands in-process, so \"the\n-// process exits\" is no longer the end of a command — see releaseHeldLocks.\n-const held = new Set<() => void>();\n+// process exits\" is no longer the end of a command — see releaseLocksOwnedBy.\n+/**\n+ * Whatever the caller uses to identify the command taking a lock.\n+ *\n+ * Opaque here: single-flight only ever compares it by identity.\n+ */\n+export type LockOwner = unknown;\n+\n+let resolveOwner: () => LockOwner = () => null;\n+\n+/**\n+ * Teach single-flight how to tell which command is acquiring a lock.\n+ *\n+ * \"The process holds this lock\" stopped meaning \"this command holds it\" when\n+ * `ix mcp` began running many commands in one process. Without an owner the\n+ * only available release is \"drop everything\", which either takes a still-\n+ * running command's lock away or, if held back to avoid that, never releases\n+ * the finished command's at all. The MCP runner installs a resolver backed by\n+ * its async-context store; the plain CLI leaves this unset and keeps releasing\n+ * on process exit, exactly as before.\n+ */\n+export function setLockOwnerResolver(resolve: () => LockOwner): void {\n+  resolveOwner = resolve;\n+}\n+\n+const held = new Map<() => void, LockOwner>();\n \n function makeHandle(path: string): LockHandle {\n   let released = false;\n@@ -147,7 +171,7 @@ function makeHandle(path: string): LockHandle {\n   const onSigint = (): void => { release(); process.exit(130); };\n   const onSigterm = (): void => { release(); process.exit(143); };\n \n-  held.add(release);\n+  held.set(release, resolveOwner());\n   // Release on normal exit and on the common termination signals so a killed\n   // map (hook timeout, Ctrl-C) does not leave a lock that blocks the next run\n   // until it ages out.\n@@ -158,17 +182,21 @@ function makeHandle(path: string): LockHandle {\n }\n \n /**\n- * Release every lock this process still holds.\n+ * Release the locks one command took, and only those.\n  *\n  * `ix map` takes its lock and leaves it to process exit, which was the end of\n  * the command until `ix mcp` began running commands in-process. There, the\n  * holder PID is the server's own and stays alive, so the lock never reads as\n  * stale: the first ix_map works and every later one coalesces into an empty\n  * success while the graph is never refreshed. The MCP runner calls this when a\n  * command finishes, restoring the boundary the process used to provide.\n+ *\n+ * Scoped by owner rather than releasing everything, so a command that outlived\n+ * its timeout keeps the lock it is still using while a *different* command that\n+ * has genuinely finished still gives its own up.\n  */\n-export function releaseHeldLocks(): void {\n-  for (const release of [...held]) release();\n+export function releaseLocksOwnedBy(owner: LockOwner): void {\n+  for (const [release, heldBy] of [...held]) if (heldBy === owner) release();\n }\n \n // ── Test-only surface ──────────────────────────────────────────────────────"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 401,
+        "filename": "ix-cli/src/mcp/hosts.ts",
+        "status": "modified",
+        "additions": 110,
+        "deletions": 24,
+        "changes": 134,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/f73028274d996b9dfa1129e03be68325c5c8ecc0/ix-cli%2Fsrc%2Fmcp%2Fhosts.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/f73028274d996b9dfa1129e03be68325c5c8ecc0/ix-cli%2Fsrc%2Fmcp%2Fhosts.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fmcp%2Fhosts.ts?ref=f73028274d996b9dfa1129e03be68325c5c8ecc0",
+        "patch": "@@ -69,6 +69,20 @@ export interface Launcher {\n   args: string[];\n }\n \n+/**\n+ * Characters an argument may contain and still be passed to cmd bare.\n+ *\n+ * A whitelist rather than a blacklist of whitespace and quotes: `&`, `^`, `|`,\n+ * `<` and `>` are all argument-splitting or escaping characters to cmd, and a\n+ * launcher path under `[local-path] contains no space, so a\n+ * \"does it need quoting?\" test that asks only about whitespace let it through\n+ * bare. Verified against a round-trip echo: `[local-path] arrived\n+ * as `[local-path] with cmd then trying to run `D\\npm\\ix.cmd` as a second\n+ * command, and `[local-path] arrived silently as `[local-path] — a wrong\n+ * launcher written into every host config and reported as a success.\n+ */\n+const SAFE_BARE_ARG = /^[A-Za-z0-9_@:.,=+\\-\\\\/]+$/;\n+\n /**\n  * Quote one argument for a Windows command line.\n  *\n@@ -81,7 +95,7 @@ export interface Launcher {\n  * round-trip echo: every cmd encoding mangles such a value.\n  */\n export function quoteForCmd(arg: string): string {\n-  if (arg !== \"\" && !/[\\s\"]/.test(arg)) return arg;\n+  if (SAFE_BARE_ARG.test(arg)) return arg;\n   let out = '\"';\n   let slashes = 0;\n   for (const ch of arg) {\n@@ -119,11 +133,13 @@ async function run(bin: string, args: string[]): Promise<RunResult> {\n   const options = { encoding: \"utf8\" as const, timeout: HOST_CLI_TIMEOUT_MS, windowsHide: true };\n   try {\n     if (platform() === \"win32\") {\n-      const unencodable = [bin, ...args].find((arg) => arg.includes('\"'));\n+      // Refused rather than mangled: a half-parsed argument reaches the host as\n+      // several arguments and writes a corrupt entry. A double quote flips\n+      // cmd's quote tracking mid-argument, and `%` is expanded by cmd before\n+      // the quoting has any say — neither survives quoting, so neither is sent.\n+      const unencodable = [bin, ...args].find((arg) => arg.includes('\"') || arg.includes(\"%\"));\n       if (unencodable !== undefined) {\n-        // Refused rather than mangled: a half-parsed argument reaches the host\n-        // as several arguments and writes a corrupt entry.\n-        return { ok: false, stdout: \"\", stderr: `cannot pass a quoted argument through cmd.exe: ${unencodable}` };\n+        return { ok: false, stdout: \"\", stderr: `cannot pass this argument through cmd.exe: ${unencodable}` };\n       }\n       const line = [bin, ...args].map(quoteForCmd).join(\" \");\n       const { stdout, stderr } = await execFileAsync(line, { ...options, shell: true });\n@@ -153,7 +169,14 @@ export async function isOnPath(bin: string): Promise<boolean> {\n  * that fix instead of handing the same problem to seven hosts. Falls back to\n  * the bare name, which is no worse than not trying.\n  */\n-async function resolveLauncher(): Promise<{ command: string; args: string[] }> {\n+let launcherProbe: Promise<Launcher> | undefined;\n+\n+/** Memoised: `install` resolves this once per host it registers. */\n+function resolveLauncher(): Promise<Launcher> {\n+  return (launcherProbe ??= probeLauncher());\n+}\n+\n+async function probeLauncher(): Promise<Launcher> {\n   if (platform() !== \"win32\") return { command: \"ix\", args: [\"mcp\"] };\n \n   const found = await run(\"where\", [\"ix\"]);\n@@ -201,15 +224,29 @@ function pathExists(path: string): boolean {\n }\n \n /**\n- * The absolute launcher path inside a registration, if it records one.\n+ * The launcher a registration records, read from the parsed entry.\n  *\n- * Unix registers the bare name, so this finds nothing there and staleness never\n- * applies. JSON-encoded entries arrive with their backslashes doubled, which is\n- * undone here so the path can be checked.\n+ * Deliberately structural. Recovering the path by regex from the rendered text\n+ * cannot work: a Windows launcher normally sits under a username, and a path\n+ * containing a space is indistinguishable from two columns of a listing table.\n+ * The first attempt stopped at the space, so `[local-path] Doe\\...\\ix.cmd`\n+ * matched nothing and a dead launcher went on reading as healthy — the common\n+ * case, not the edge one. Worse, allowing a match to start at an interior `/`\n+ * made it latch onto a suffix like `/npm/ix.cmd` of a path that was perfectly\n+ * fine, report it stale, and silently rewrite a working registration.\n  */\n-function absoluteLauncherIn(text: string): string | null {\n-  const match = /(?:[A-Za-z]:[[local-path]/)[^\"'\\s,\\]]*[[local-path].\\w+)?(?=[\"'\\s,\\]]|$)/.exec(text);\n-  return match ? match[0].replace(/[local-path]\\/g, \"\\\\\") : null;\n+function launcherOf(entry: unknown): string | null {\n+  if (typeof entry !== \"object\" || entry === null) return null;\n+  const command = (entry as { command?: unknown }).command;\n+  if (typeof command === \"string\") return command;\n+  // opencode records `command: [\"ix\", \"mcp\"]`.\n+  if (Array.isArray(command) && typeof command[0] === \"string\") return command[0];\n+  return null;\n+}\n+\n+/** Absolute paths are the only ones whose disappearance we can check for. */\n+function isAbsolutePath(value: string): boolean {\n+  return /^(?:[A-Za-z]:[[local-path][local-path]|\\/)/.test(value);\n }\n \n /**\n@@ -238,7 +275,10 @@ const MISSING_ENTRY = /\\b(no (mcp )?server|not found|unknown server|does not exi\n  * `python3 .../server.py` or `node dist/server.js`, and those must read as\n  * `other` so they are reported rather than replaced.\n  */\n-export function classifyListing(listing: string): Pick<HostStatus, \"registration\" | \"detail\"> {\n+export function classifyListing(\n+  listing: string,\n+  recorded: string | null = null,\n+): Pick<HostStatus, \"registration\" | \"detail\"> {\n   const matches = listing\n     .split(\"\\n\")\n     .map((entry) => entry.trim())\n@@ -251,7 +291,7 @@ export function classifyListing(listing: string): Pick<HostStatus, \"registration\n   const candidates = matches.filter((entry) => !LOG_LINE.test(entry));\n   const line = candidates.at(-1) ?? matches[0]!;\n \n-  return judge(line);\n+  return judge(line, recorded);\n }\n \n /**\n@@ -262,7 +302,19 @@ export function classifyListing(listing: string): Pick<HostStatus, \"registration\n  * registration as a stranger's and reports a false conflict on every re-run.\n  */\n export function classifyDefinition(blob: string): Pick<HostStatus, \"registration\" | \"detail\"> {\n-  return judge(blob.replace(/\\s+/g, \" \").trim());\n+  return judge(blob.replace(/\\s+/g, \" \").trim(), launcherOf(parseEmbeddedObject(blob)));\n+}\n+\n+/** The first JSON object in a blob, for hosts that pretty-print one. */\n+function parseEmbeddedObject(blob: string): unknown {\n+  const start = blob.indexOf(\"{\");\n+  const end = blob.lastIndexOf(\"}\");\n+  if (start === -1 || end <= start) return null;\n+  try {\n+    return JSON.parse(blob.slice(start, end + 1));\n+  } catch {\n+    return null;\n+  }\n }\n \n /**\n@@ -282,14 +334,18 @@ export function classifyShown(blob: string, ok: boolean): Pick<HostStatus, \"regi\n   // presence of a definition body is what distinguishes the two.\n   const definition = blob.includes(SERVER_NAME) && blob.includes(\"{\");\n   if (definition) return classifyDefinition(blob);\n-  if (!ok && !MISSING_ENTRY.test(blob)) {\n+  // Tied to our own name: \"not found\" and \"no such\" turn up in plenty of\n+  // unrelated failures (a missing plugin, the host's own loader), and reading\n+  // one of those as \"the name is free\" overwrites the user's server — the very\n+  // thing this function exists to prevent.\n+  if (!ok && !(MISSING_ENTRY.test(blob) && blob.includes(SERVER_NAME))) {\n     return { registration: \"unknown\", detail: firstLine(blob) };\n   }\n   return { registration: \"none\" };\n }\n \n /** Ours iff the entry invokes the `ix` binary with the `mcp` subcommand. */\n-function judge(text: string): Pick<HostStatus, \"registration\" | \"detail\"> {\n+function judge(text: string, recorded: string | null): Pick<HostStatus, \"registration\" | \"detail\"> {\n   if (!(/(^|[\\s\"'/[local-path].\\w+)?([\\s\"',\\]]|$)/.test(text) && /\\bmcp\\b/.test(text))) {\n     return { registration: \"other\", detail: truncate(text) };\n   }\n@@ -299,10 +355,29 @@ function judge(text: string): Pick<HostStatus, \"registration\" | \"detail\"> {\n   // elsewhere. Judging that healthy from the command string alone is what made\n   // `install` skip the one host it should have repaired, while `doctor` agreed\n   // it was fine and no command anywhere would rewrite it.\n-  const launcher = absoluteLauncherIn(text);\n-  if (launcher !== null && !pathExists(launcher)) {\n-    return { registration: \"stale\", detail: `${launcher} no longer exists` };\n+\n+  // A parsed entry gives the recorded command exactly, so it can be checked for\n+  // what it is: a path that has since disappeared.\n+  if (recorded !== null && isAbsolutePath(recorded) && !pathExists(recorded)) {\n+    return { registration: \"stale\", detail: `${recorded} no longer exists` };\n   }\n+\n+  // Hosts that answer with a rendered table give us no recorded command, and\n+  // staleness is not attempted for them. Five attempts at establishing it from\n+  // the row alone each produced the same class of failure — a *working*\n+  // registration reported stale, which re-registers with no `--force`. Parsing\n+  // the path back out broke on a different shape every time; comparing the row\n+  // against the launcher we would write today instead broke when `where`'s\n+  // console output was decoded as UTF-8 and a non-ASCII npm prefix came back\n+  // mangled, so a hand-repaired config was overwritten with an unstartable\n+  // path. The repair could not land on Claude Code anyway (see `register`).\n+  //\n+  // So this reports `ours`. A moved npm prefix on those hosts is not detected\n+  // and not repairable through `ix mcp install` at all — `--force` does not\n+  // apply to a registration already judged ours — so the user has to clear the\n+  // name with the host's own command (`claude mcp remove ix-memory`) and run\n+  // install again. That is a real gap, and a smaller one than silently\n+  // rewriting configs that were fine.\n   return { registration: \"ours\", detail: truncate(text) };\n }\n \n@@ -422,17 +497,21 @@ export function stripJsonComments(raw: string): string {\n }\n \n /** Inspect a host by reading the JSON file its servers live in. */\n-function inspectJsonFile(path: string, key: string): Pick<HostStatus, \"registration\" | \"detail\"> {\n+function inspectJsonFile(path: string, ...keys: string[]): Pick<HostStatus, \"registration\" | \"detail\"> {\n   const { value, missing } = readJsonFile(path);\n   if (missing) return { registration: \"none\" };\n   if (value === null) return { registration: \"unknown\", detail: `${path} is not valid JSON` };\n \n-  const servers = value[key];\n+  let servers: unknown = value;\n+  for (const key of keys) {\n+    if (typeof servers !== \"object\" || servers === null) return { registration: \"none\" };\n+    servers = (servers as Record<string, unknown>)[key];\n+  }\n   if (typeof servers !== \"object\" || servers === null) return { registration: \"none\" };\n \n   const entry = (servers as Record<string, unknown>)[SERVER_NAME];\n   if (entry === undefined) return { registration: \"none\" };\n-  return classifyListing(`${SERVER_NAME} ${JSON.stringify(entry)}`);\n+  return classifyListing(`${SERVER_NAME} ${JSON.stringify(entry)}`, launcherOf(entry));\n }\n \n function vsCodeUserConfig(): string {\n@@ -534,6 +613,13 @@ export function createHosts(writeJson: (path: string, mutate: (config: Record<st\n       // argument cannot be encoded through cmd (see `run`). Windows therefore\n       // writes the documented config shape directly; every other platform keeps\n       // going through the CLI so openclaw owns its own format.\n+      //\n+      // The *read* stays on `openclaw mcp show` on every platform, deliberately.\n+      // Its argv carries no quote and no `%`, so cmd handles it, and asking\n+      // openclaw whether it can see the entry is the only check that the shape\n+      // written here is one openclaw actually reads. Pairing the read with the\n+      // write would make a wrong key report `already registered` forever\n+      // instead of `not registered` — trading a loud failure for a silent one.\n       windowsFallback: (ix) =>\n         writeJson(openclawConfigPath(), (config) => {\n           const mcp = (config.mcp ??= {}) as Record<string, unknown>;"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 401,
+        "filename": "ix-cli/src/mcp/runner.ts",
+        "status": "modified",
+        "additions": 78,
+        "deletions": 13,
+        "changes": 91,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/f73028274d996b9dfa1129e03be68325c5c8ecc0/ix-cli%2Fsrc%2Fmcp%2Frunner.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/f73028274d996b9dfa1129e03be68325c5c8ecc0/ix-cli%2Fsrc%2Fmcp%2Frunner.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fmcp%2Frunner.ts?ref=f73028274d996b9dfa1129e03be68325c5c8ecc0",
+        "patch": "@@ -11,7 +11,7 @@ import { Command, CommanderError } from \"commander\";\n import { registerOssCommands, registerProStubs } from \"../cli/register/oss.js\";\n import { tryLoadProCommands } from \"../cli/register/pro-loader.js\";\n import { resetReadScope } from \"../cli/resolve.js\";\n-import { releaseHeldLocks } from \"../cli/single-flight.js\";\n+import { releaseLocksOwnedBy, setLockOwnerResolver } from \"../cli/single-flight.js\";\n \n const execFileAsync = promisify(execFile);\n const CLI_ENTRYPOINT = fileURLToPath(new URL(\"../cli/main.js\", import.meta.url));\n@@ -99,6 +99,11 @@ const runContext = new AsyncLocalStorage<ActiveRun>();\n  * *successful* tool call as failed, with its real answer buried inside an\n  * `error` string. A run started while this set is non-empty therefore ignores\n  * `process.exitCode` and judges only by what the command threw.\n+ *\n+ * Membership is bounded by a grace timer as well as by the command settling,\n+ * because distrust is not free: while it holds, a genuinely failing command\n+ * reports success. An entry that could never be removed would make that\n+ * permanent.\n  */\n const liveOrphans = new Set<Promise<void>>();\n \n@@ -220,6 +225,15 @@ function installCapture(options: { redirectIdleStdout?: boolean } = {}): void {\n     if (!resolveRun()) return pristineExit(code);\n     throw new ProcessExitSignal(code ?? 0);\n   }) as typeof process.exit;\n+\n+  // Single-flight locks are taken deep inside a command, so the command has to\n+  // be identifiable from there. Deliberately the async context alone, without\n+  // resolveRun's fallback to activeRun: for output that fallback only ever\n+  // narrows the damage, but an owner guessed wrong here means a *different*\n+  // command's settle deletes a lock that is still in use. Unattributed is the\n+  // safe direction — the lock outlives its command and ages out — so a lock\n+  // taken outside any run context simply gets no owner.\n+  setLockOwnerResolver(() => runContext.getStore() ?? null);\n }\n \n /**\n@@ -289,6 +303,12 @@ export interface InProcessRunnerOptions {\n   createProgram?: (version: string) => Command | Promise<Command>;\n   /** Output cap for a single run. Defaults to {@link MAX_OUTPUT_BYTES}. */\n   maxOutputBytes?: number;\n+  /**\n+   * How long an abandoned command keeps {@link liveOrphans} membership before\n+   * it is dropped regardless. Defaults to as long again as the command was\n+   * given. Tests shorten it; nothing else should need to.\n+   */\n+  orphanGraceMs?: number;\n }\n \n /**\n@@ -298,16 +318,27 @@ export interface InProcessRunnerOptions {\n  * process. In a server that never exits they are leaks, and each of them makes\n  * the next tool call answer from something stale rather than fail loudly.\n  */\n-function afterCommand(args: string[]): void {\n+function invalidateAfter(args: string[]): void {\n   if (SCOPE_CHANGING_COMMANDS.has(args[0] ?? \"\")) resetReadScope();\n+}\n \n-  // `ix map` takes a single-flight lock it never releases itself, relying on\n-  // process exit. Held by a long-lived server, the lock file names the server's\n-  // own live PID — so it never reads as stale — and every later ix_map coalesces\n-  // and returns an empty success while the graph goes unrefreshed. It also\n-  // blocks the user's own editor-hook `ix map` for the same 20 minutes. Skipped\n-  // while an orphan is in flight: a map still running is entitled to its lock.\n-  if (liveOrphans.size === 0) releaseHeldLocks();\n+/**\n+ * Give up the single-flight locks this command took.\n+ *\n+ * `ix map` takes its lock and never releases it, relying on process exit. Held\n+ * by a long-lived server the lock names the server's own live PID, so it never\n+ * reads as stale: every later ix_map coalesces into an empty success while the\n+ * graph goes unrefreshed, and the user's own editor-hook `ix map` is blocked\n+ * for the same 20 minutes.\n+ *\n+ * Scoped to this run, which is the whole point. Releasing everything held was\n+ * wrong in both directions — it took the lock of a map still running, and\n+ * holding it back to avoid that then stranded the lock of a map that had\n+ * finished. Ownership makes the question local: this command is over, so its\n+ * own locks go, and nobody else's are touched.\n+ */\n+function releaseLocksOf(run: ActiveRun): void {\n+  releaseLocksOwnedBy(run);\n }\n \n /**\n@@ -339,6 +370,7 @@ async function executeInProcess(\n   version: string,\n   createProgram: (version: string) => Command | Promise<Command>,\n   maxBytes: number,\n+  orphanGraceMs?: number,\n ): Promise<IxRunResult> {\n   const program = throwOnUsageError(await createProgram(version));\n   const run: ActiveRun = {\n@@ -394,12 +426,44 @@ async function executeInProcess(\n     activeRun = null;\n \n     if (commandSettled) {\n-      afterCommand(args);\n+      invalidateAfter(args);\n+      releaseLocksOf(run);\n     } else {\n       liveOrphans.add(finished);\n+\n+      // A command that never settles at all — a hung fetch, or a rejection that\n+      // used to end the process and is now only logged — would otherwise hold\n+      // this entry forever, and exit codes would stay distrusted, so *every*\n+      // later failure would report ok. The wait is bounded to as long again as\n+      // the command was allowed to run. Locks are not keyed off this set at all\n+      // any more, so the bound says nothing about them: a command that never\n+      // settles keeps the lock it is still using until it ages out.\n+      //\n+      // The cost of that bound is real and lands on someone else: past the\n+      // grace this command's late `process.exitCode` is charged to whichever\n+      // call is running by then, which is #400's original symptom in delayed\n+      // form. Bounded-open beats permanently-open, so the trade stands — but it\n+      // is a trade, not a free win.\n+      //\n+      // The grace drops the distrust and invalidates, and nothing else. It must\n+      // not release the lock: the command is by definition *still running*\n+      // there, and its lock is still doing its job. Scope invalidation is\n+      // idempotent, so running it here as well as on settle costs nothing and\n+      // covers the command that never settles at all — which would otherwise\n+      // leave the pre-map scope pinned with nothing left to invalidate it.\n+      const grace = setTimeout(() => {\n+        liveOrphans.delete(finished);\n+        invalidateAfter(args);\n+      }, orphanGraceMs ?? Math.max(timeoutMs, DEFAULT_TIMEOUT_MS));\n+      grace.unref?.();\n+\n       void finished.then(() => {\n         liveOrphans.delete(finished);\n-        afterCommand(args);\n+        clearTimeout(grace);\n+        // On settle the command really is over, however long it overran, so its\n+        // locks go now.\n+        invalidateAfter(args);\n+        releaseLocksOf(run);\n       });\n     }\n   }\n@@ -419,7 +483,7 @@ async function executeInProcess(\n  * agent pays on every hop of a `locate → callers → read` chain. Running the\n  * same command tree here removes that entirely and lets `cli/resolve.ts`'s\n  * per-cwd scope cache survive between calls — but only between *reads*: see\n- * {@link afterCommand} for the state whose sole invalidation used to be the\n+ * {@link invalidateAfter} for the state whose sole invalidation used to be the\n  * process ending, and which is therefore reset per command here.\n  *\n  * Runs are serialized. Commands report failure through `process.exitCode` and\n@@ -434,12 +498,13 @@ export function createInProcessRunner(options: InProcessRunnerOptions = {}): IxR\n   const version = options.version ?? \"0.0.0\";\n   const createProgram = options.createProgram ?? buildProgram;\n   const maxBytes = options.maxOutputBytes ?? MAX_OUTPUT_BYTES;\n+  const orphanGraceMs = options.orphanGraceMs;\n \n   let queue: Promise<unknown> = Promise.resolve();\n \n   return (args, timeoutMs = DEFAULT_TIMEOUT_MS) => {\n     const result = queue.then(() =>\n-      executeInProcess(args, timeoutMs, version, createProgram, maxBytes),\n+      executeInProcess(args, timeoutMs, version, createProgram, maxBytes, orphanGraceMs),\n     );\n     // The chain must survive a rejection, or one failed run would strand every\n     // later call behind it. executeInProcess resolves rather than throws for"
+      }
+    ],
+    "commits": [
+      {
+        "sha": "ce651134107f248683db254bd9c4aee605afd88b",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/ce651134107f248683db254bd9c4aee605afd88b",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/ce651134107f248683db254bd9c4aee605afd88b",
+        "author": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "committer": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "message": "fix(mcp): repair the orphan bookkeeping and the Windows quoting from #400\n\nAn independent review of #400 found that three of its own fixes were wrong,\nand that two of its tests were written so they could not fail against the\ndefect they claimed to cover.\n\n**An orphan settling mid-run released the running command's lock.**\n`releaseHeldLocks` drops every lock the process holds, not the finishing\ncommand's, and the guard only asked whether an orphan was in flight — never\nwhether something was running right now. A command abandoned at its timeout\nsettling part-way through an unrelated `ix map` deleted that map's lock,\nreopening the exact window single-flight exists to close. It now also requires\n`activeRun === null`, which the lock-holding command's own finally always\nsatisfies.\n\n**A command that never settled was an immortal orphan.** Nothing else removed\nit, so `process.exitCode` stayed distrusted for the life of the server — making\n*every* later failure report success, the precise inverse of the bug #400 set\nout to fix — and no lock was ever released again. Membership is now bounded by\na grace timer as well as by the command settling.\n\n**Staleness by regex both missed and misfired.** It could not cross a space, so\n`[local-path] Doe\\...\\ix.cmd` — the common Windows shape, not the edge one —\nwent on reading as healthy; and letting a match start at an interior `/` made\nit latch onto the `/npm/ix.cmd` suffix of a live path, report it stale, and\nsilently rewrite a working registration with no `--force`. The launcher is now\nread from the parsed entry, so there is nothing to guess. An unreachable path\nis still not \"gone\": only ENOENT counts.\n\n**`quoteForCmd` passed metacharacters through bare.** Its fast path asked only\nabout whitespace, so `[local-path] was emitted unquoted; verified by\nround-trip that it then arrives as `[local-path] with cmd running `D\\npm\\ix.cmd`\nas a second command, and that `[local-path] arrives silently as `[local-path]\n— a wrong launcher written into every host config and reported as success. The\npredicate is now a whitelist, and `%` joins `\"` as unencodable rather than\nbeing expanded by cmd behind the quoting's back.\n\nAlso: `MISSING_ENTRY` is tied to our own server name, so an unrelated \"not\nfound\" in a host's output can no longer read as a free name and overwrite the\nuser's server; OpenClaw's Windows write is paired with a matching Windows read,\nso the platform that writes the file also reads it; the README no longer claims\na write path Windows does not take; and the tests that reached `acquireMapLock`\nno longer write into the developer's real `~/.ix/locks`.\n\nThe two tests that could not fail — a `quoteForCmd` fixture whose space sent it\ndown the quoting branch either way, and a stale-launcher fixture that avoided\nspaces — are replaced with cases that exercise the defect. All five fixes were\nvalidated by restoring the defect and confirming the intended test goes red.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>",
+        "parents": [
+          {
+            "sha": "7f6f1ceb60e08cffbddd37d032fdbf7e74df8b70",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/7f6f1ceb60e08cffbddd37d032fdbf7e74df8b70"
+          }
+        ],
+        "tree_sha": "306a2e040fc328765b21aadc49566e6a198de9fd",
+        "authored_at": "2026-08-12T18:09:36Z",
+        "committed_at": "2026-08-12T18:09:36Z"
+      },
+      {
+        "sha": "f808b819174e8b414982393024b3829a536fe8cd",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/f808b819174e8b414982393024b3829a536fe8cd",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/f808b819174e8b414982393024b3829a536fe8cd",
+        "author": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "committer": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "message": "test(mcp): scope the UNC staleness case to Windows\n\nA UNC path is a network location only on Windows, where stat fails on an\nunreachable one with something other than ENOENT — which is the whole point of\nthe assertion. Everywhere else those backslashes are ordinary filename\ncharacters, the path really is absent, and `stale` is the right answer, so the\ntest failed on both Linux runners and both macOS runners while passing on\nWindows where it was written. Confirmed against Linux directly rather than by\nanother CI round-trip.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>",
+        "parents": [
+          {
+            "sha": "ce651134107f248683db254bd9c4aee605afd88b",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/ce651134107f248683db254bd9c4aee605afd88b"
+          }
+        ],
+        "tree_sha": "7773d3a8396df914ed0dbc780b871bc572c5e7e1",
+        "authored_at": "2026-08-12T18:15:07Z",
+        "committed_at": "2026-08-12T18:15:07Z"
+      },
+      {
+        "sha": "e1b48cd5ac6c398b1354e345ab9efad32bfb5604",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/e1b48cd5ac6c398b1354e345ab9efad32bfb5604",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/e1b48cd5ac6c398b1354e345ab9efad32bfb5604",
+        "author": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "committer": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "message": "fix(mcp): stop the grace path releasing a live lock, restore listing staleness\n\nA review of the previous commit found two regressions in it.\n\n**The grace timer released the lock of a command that was still running.**\n`forget()` dropped orphan-set membership *and* ran `afterCommand`. On the settle\npath that is right; on the grace path the command is by definition still\nworking, so `releaseHeldLocks()` deleted the single-flight lock of a map still\nin progress — a second `ix map` could then take the workspace out from under it,\nwhich is the window single-flight exists to close. `ix_map` gets 120s, so its\ngrace is 120s: a map overrunning by that much lost its lock mid-run. The same\ncall reset the read scope mid-ingest, and because the settle path then\nshort-circuited, it never reset again — leaving the pre-map scope pinned with\nnothing left to invalidate it. The grace now only drops membership; settle\nalways runs `afterCommand`.\n\n**Staleness detection had gone dead for Claude Code, Codex and Gemini.**\nReading the launcher only from a parsed entry left the three hosts that answer\nwith a rendered table — and the three that record an absolute `ix.cmd` on\nWindows — with no launcher at all, so `judge` skipped the check entirely. After\nan nvm switch or a moved npm prefix those hosts read as healthy again and\n`install` skipped the repair: the exact failure `stale` was added to fix,\nrestored where it mattered most, and invisible to a suite whose install/doctor\ntests inject the registration directly.\n\nThe listing row is read again, but anchored to a token boundary and with a lazy\nbody: the anchor is what stops a match beginning at an interior `/` and latching\nonto the `/npm/ix.cmd` suffix of a live path, and the lazy body is what lets it\nspan `[local-path] Doe\\...`. Both faults the first regex had, without giving up\nthe coverage. Tests now use the real `claude`/`codex`/`gemini` listing shapes,\nand the false-positive fixture uses a path that exists, contains a space and\nuses forward slashes — without all three it cannot tell the behaviours apart.\n\nAlso from the review: openclaw's Windows read goes back through\n`openclaw mcp show`, which cmd handles fine and which is the only check that the\nshape written there is one openclaw actually reads — pairing it with the file\nwrite traded a loud `not registered` for a silent `already registered`. The\ncomment on the grace bound now says plainly that its cost lands on a later call\nrather than on the abandoned command. And the README no longer implies OpenClaw\nis detected by a config directory; it is still detected on PATH.\n\nValidated by restoring each defect and confirming the intended test goes red,\nand the timing-sensitive runner suite was run five times over to check it is\nnot flaky.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>",
+        "parents": [
+          {
+            "sha": "f808b819174e8b414982393024b3829a536fe8cd",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/f808b819174e8b414982393024b3829a536fe8cd"
+          }
+        ],
+        "tree_sha": "7206f3a51a10a08d14b47d70316aff85524a3b9e",
+        "authored_at": "2026-08-12T18:53:21Z",
+        "committed_at": "2026-08-12T18:53:21Z"
+      },
+      {
+        "sha": "110c336b7d995a746a8e57556f28cf5ab2930b4b",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/110c336b7d995a746a8e57556f28cf5ab2930b4b",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/110c336b7d995a746a8e57556f28cf5ab2930b4b",
+        "author": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "committer": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "message": "fix(mcp): scope lock release to the command that took the lock\n\nA third review found the previous commit only deferred the lock bug by one tool\ncall, and introduced a regression of its own.\n\n**Deferred, not fixed.** Removing `afterCommand` from the grace path left the\nrelease guard reading `liveOrphans.size === 0` — and the grace deliberately\nremoves a still-running command from that set. So the next command to complete\nreleased the abandoned one's lock anyway, mid-run. The set was doing two jobs\nwith different lifetimes: \"this command's exit code is untrustworthy\", which\nmust be bounded, and \"this command is still running\", which must not be.\n\nLocks are now owned. `single-flight` records which command took each lock and\nreleases only that command's, so the question stops being global: a command that\noverran its timeout keeps the lock it is still using, and a different command\nthat has genuinely finished still gives its own up. Both directions were broken\nbefore — releasing everything took a running map's lock, and holding everything\nback to avoid that stranded a finished map's.\n\n**Regression.** Moving `resetReadScope` to the settle handler alone meant a\ncommand that never settles — the case the grace exists for — never invalidated\nat all. It runs on the grace as well now; it is idempotent, so covering both\ncosts nothing.\n\n**`launcherInText`, third attempt.** Reading the row left to right was the flaw\ncommon to both previous versions: the match began at the first absolute-looking\ntoken and ran forward, so `cmd /c [local-path] — the documented Windows\nwrapper form — yielded `/c [local-path] and reported a live launcher dead,\nwhich re-registers with no `--force`. It now anchors on the `ix` end and walks\nback to the nearest absolute-path start, so a preceding flag or an earlier path\non the same row cannot be swallowed, and a launcher under `[local-path] Doe\\`\nis still found. Four wrapper shapes are pinned by tests.\n\nAlso: the orphan drain moved from `withLockDir` to a file-level `afterEach`.\nAbandoned commands outlive the test that starts them and the runner's state is\nmodule-level, so every later test saw distrusted exit codes and a held lock —\ncorrect behaviour, silently changing unrelated assertions. Under\n`--sequence.shuffle.tests` that failed 4 of 6 seeds; all 6 are clean now.\n\nEach fix validated by restoring the defect and confirming the intended test goes\nred, and the ownership one checked by mutating single-flight to ignore the owner.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>",
+        "parents": [
+          {
+            "sha": "e1b48cd5ac6c398b1354e345ab9efad32bfb5604",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/e1b48cd5ac6c398b1354e345ab9efad32bfb5604"
+          }
+        ],
+        "tree_sha": "0f60f075c070719efe3c8b73714d7e046ff6734f",
+        "authored_at": "2026-08-12T19:39:30Z",
+        "committed_at": "2026-08-12T19:39:30Z"
+      },
+      {
+        "sha": "8031cf1c000b4f1dae0b8cc3f891facb6f3b771d",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/8031cf1c000b4f1dae0b8cc3f891facb6f3b771d",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/8031cf1c000b4f1dae0b8cc3f891facb6f3b771d",
+        "author": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "committer": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "message": "fix(mcp): stop parsing the launcher out of a listing row\n\nA fourth review found the previous commit reported `[local-path] Files (x86)\\...`\nas stale: trimming a row's punctuation was applied to every token, including\nthe interior tokens of a path that had just been split on its own spaces, so\nthe rejoin produced `[local-path] Files x86)\\...` and stat'd nothing. Brackets\nand commas in a username did the same. That is the most common path shape on\nWindows, and `stale` re-registers with no `--force`, so it silently rewrote\nworking configs — the exact failure the rewrite existed to remove.\n\nThat is four attempts at recovering a path from a rendered table, each broken\non a different shape: stopping at the first space missed `[local-path] Doe`;\nscanning forward swallowed a `cmd /c` prefix; walking back from the `ix` anchor\nfell to delimiter trimming. The approach is the defect. Table rows are\nspace-delimited and paths contain spaces; there is no parse that is right.\n\nSo it stops parsing. Staleness only ever needed to establish whether the row\nrecords the launcher we would write today, and a row that does contains that\nstring verbatim, whatever surrounds it. Containment, case-insensitive with\nseparators normalised. No tokens, no delimiters, no reconstruction — and no\npath shape left to get wrong. The parsed-entry path is unchanged, since a\nrecorded command needs no guessing at all. `resolveLauncher` is memoised\nbecause `doctor` now consults it once per host.\n\nTests cover every host row format against every launcher shape that has broken\nan attempt — spaces, `(x86)`, brackets, a comma, a wrapper prefix, quotes — in\nboth directions, which the previous one-directional set did not.\n\nAlso from the review: the lock-owner resolver no longer falls back to\n`activeRun`. For output that fallback only narrows the damage, but an owner\nguessed wrong for a lock means a *different* command's settle deletes a lock\nstill in use; unattributed is the safe direction. Two comments describing\nmechanisms this PR removed are corrected, and the test drain drops from 500ms\nto 250 — it was costing ~11s on one file for no coverage.\n\nEvery fix validated by restoring the defect, including reinstating the whole\nparsing approach to confirm the `(x86)` case goes red. 8/8 shuffle seeds clean.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>",
+        "parents": [
+          {
+            "sha": "110c336b7d995a746a8e57556f28cf5ab2930b4b",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/110c336b7d995a746a8e57556f28cf5ab2930b4b"
+          }
+        ],
+        "tree_sha": "04e10955e6375bb50862790996189b136d7da4a7",
+        "authored_at": "2026-08-12T20:20:51Z",
+        "committed_at": "2026-08-12T20:20:51Z"
+      },
+      {
+        "sha": "b80c6455c4947d88b2d4d3449787a779bcbcbbb8",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/b80c6455c4947d88b2d4d3449787a779bcbcbbb8",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/b80c6455c4947d88b2d4d3449787a779bcbcbbb8",
+        "author": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "committer": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "message": "fix(mcp): drop launcher staleness for the CLI-listed hosts, and make --force work\n\nA fifth review found the containment check regressed the case it was meant to\nprotect, and that the repair it feeds could not land on the flagship host\nanyway. Both were demonstrated against the real `claude` and `codex` binaries.\n\n**The regression.** `run()` decodes host output as UTF-8, but a Windows console\nemits the OEM code page, so `where ix` returns a non-ASCII npm prefix mangled.\nThe row holds the real path and `expected` holds the mangled one, so a working\nregistration read as stale — and `install` then overwrote a config the user had\nrepaired by hand with a launcher that cannot start, no `--force` required. That\nis the failure the previous commit said it existed to remove, reached by a\ndifferent road.\n\n**The repair could not land.** `claude mcp add` refuses a name that already\nexists and has no force flag. Seeding an isolated Claude config and running the\nreal `runInstall` gave `outcome: failed`, note `\"MCP server ix-memory already\nexists in user config\"`, config unchanged — for a stale entry *and* for a\nforeign one under `--force`. So `--force` was inert for Claude Code, which the\nREADME advertises.\n\nStaleness from a rendered listing row is therefore gone rather than fixed\nagain. Five attempts, five variants of the same failure: a working registration\ncalled stale, which re-registers without `--force`. A moved npm prefix on\nClaude Code, Codex and Gemini is now a manual `ix mcp install --force`. That is\na real gap, and a smaller one than silently rewriting configs that were fine.\nHosts whose config we read directly keep it: there the recorded command is\nexact, and the repair is a file write that works.\n\n`--force` is fixed independently, since it was broken for conflicts too:\n`register` now takes whether it is replacing something, and hosts whose `add`\nwill not overwrite clear the name first. Verified against the real `claude`\nbinary — a foreign registration under `--force` now yields `registered` with\nthe entry replaced, where before it was `failed` with the entry untouched.\n\nThe launcher-shape test matrix goes with the feature it covered; the removal\nargv is pinned instead, because the wiring is only observable against a host\nbinary CI does not have.\n\nSix mutations caught by the intended test, 10/10 shuffle seeds clean.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>",
+        "parents": [
+          {
+            "sha": "8031cf1c000b4f1dae0b8cc3f891facb6f3b771d",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/8031cf1c000b4f1dae0b8cc3f891facb6f3b771d"
+          }
+        ],
+        "tree_sha": "65c220db9028b8bc678dfd6d80888d23aa8e6ac0",
+        "authored_at": "2026-08-12T21:07:52Z",
+        "committed_at": "2026-08-12T21:07:52Z"
+      },
+      {
+        "sha": "f73028274d996b9dfa1129e03be68325c5c8ecc0",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/f73028274d996b9dfa1129e03be68325c5c8ecc0",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/f73028274d996b9dfa1129e03be68325c5c8ecc0",
+        "author": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "committer": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "message": "revert(mcp): drop the remove-then-add force repair\n\nA sixth review reproduced, against the real `claude` and `codex` binaries, that\nthe previous commit's `--force` repair can destroy a third-party registration:\n`remove` runs, `add` then fails, and the user's server is gone with no backup\nand no message saying so. It emptied a seeded `config.toml` — env secret and\nall — and a seeded `.claude.json`. The trigger used was an npm prefix containing\n`%`, which `run()` deliberately refuses, but any add failure does it: a `\"` in\nthe path, a host CLI error, the 20s timeout, Ctrl-C between the two spawns. I\nhit a real transient of that class during the review itself.\n\nThe behaviour it replaced was a *bug* — `--force` was inert for Claude Code —\nbut a safe one: it reported `failed` and left the config untouched. Trading a\nsafe failure for a destructive one is worse, and fixing it properly needs the\nexisting definition captured and restored, which is its own change with its own\nrisks. It was never one of the fifteen findings this branch exists to fix, so\nit goes back out rather than getting a seventh iteration here.\n\nThe same review also found the remedy this branch documents for the CLI-listed\nhosts does not work: `outcomeFor` returns `already-registered` for `ours`\nwhatever `--force` says, so a moved launcher there is not repairable through\n`ix mcp install` at all. The user has to clear the name with the host's own\ncommand first. The README and the code comment now say that instead of\npromising `--force`.\n\nAlso dropped: the test asserting the removed listing-staleness, which passed\nwith the feature present or absent — it called `classifyListing` with one\nargument, while the removed mechanism was driven by a second. A test that\ncannot fail is worse than no test, and the behaviour it aimed at is not\nobservable at the seams this module exposes.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>",
+        "parents": [
+          {
+            "sha": "b80c6455c4947d88b2d4d3449787a779bcbcbbb8",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/b80c6455c4947d88b2d4d3449787a779bcbcbbb8"
+          }
+        ],
+        "tree_sha": "1e73ea6e11a68f9d41ce9e11371d6b29a498f31f",
+        "authored_at": "2026-08-12T21:40:27Z",
+        "committed_at": "2026-08-12T21:40:27Z"
+      }
+    ],
+    "comments": [],
+    "reviews": [],
+    "review_comments": [],
+    "timeline": [
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/ce651134107f248683db254bd9c4aee605afd88b"
+      },
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/f808b819174e8b414982393024b3829a536fe8cd"
+      },
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/e1b48cd5ac6c398b1354e345ab9efad32bfb5604"
+      },
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/110c336b7d995a746a8e57556f28cf5ab2930b4b"
+      },
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/8031cf1c000b4f1dae0b8cc3f891facb6f3b771d"
+      },
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/b80c6455c4947d88b2d4d3449787a779bcbcbbb8"
+      },
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/f73028274d996b9dfa1129e03be68325c5c8ecc0"
+      },
+      {
+        "id": 29367440352,
+        "event": "merged",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-12T21:44:27Z",
+        "commit_id": "8b117da26c395df2680f09b11096751e625b6a3b",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29367440352"
+      },
+      {
+        "id": 29367440413,
+        "event": "closed",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-12T21:44:27Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29367440413"
+      },
+      {
+        "id": 29367491749,
+        "event": "head_ref_deleted",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-12T21:45:52Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29367491749"
+      }
+    ],
+    "source": "OFFICIAL_GITHUB_FACT",
+    "review_threads": [],
+    "review_thread_capture": {
+      "status": "VERIFIED",
+      "source": "GitHub GraphQL API"
+    }
+  },
+  "source_context": {
+    "id": "github:pull_request:ix-infrastructure/Ix#401",
+    "source": {
+      "type": "github_pull_request",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/401",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/401",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-12T18:10:14Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-12T21:45:52Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "PR-401",
+    "entity_type": "PULL_REQUEST",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "mirror_scope": "source PR, commits, files, comments, reviews, review comments, and review threads",
+    "related_analysis_types": [
+      "FINDING",
+      "DECISION",
+      "IMPLEMENTATION"
+    ],
+    "review_thread_state": "VERIFIED_GRAPHQL"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "CHANGED_BY",
+      "other": "COMMIT-f73028274d996b9dfa1129e03be68325c5c8ecc0",
+      "other_type": "commit",
+      "other_title": "f73028274d996b9dfa1129e03be68325c5c8ecc0",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-f73028274d996b9dfa1129e03be68325c5c8ecc0"
+    }
+  ]
+}

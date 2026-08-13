@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-e773903a797f85b3c6d2c1d27e53b283deeea131",
+  "type": "commit",
+  "title": "e773903a797f85b3c6d2c1d27e53b283deeea131",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-e773903a797f85b3c6d2c1d27e53b283deeea131",
+  "summary": {
+    "id": "COMMIT-e773903a797f85b3c6d2c1d27e53b283deeea131",
+    "type": "commit",
+    "title": "e773903a797f85b3c6d2c1d27e53b283deeea131",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/e773903a797f85b3c6d2c1d27e53b283deeea131",
+    "author": {
+      "name": "Riley Thompson",
+      "email": "riley0227@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-1f15398611aa007f82fd7d86a720a15333ffe139",
+      "other_type": "commit",
+      "other_title": "1f15398611aa007f82fd7d86a720a15333ffe139",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-1f15398611aa007f82fd7d86a720a15333ffe139"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-57d44e2efc360d56e8d926fea81d7cc40949a865",
+      "other_type": "commit",
+      "other_title": "57d44e2efc360d56e8d926fea81d7cc40949a865",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-57d44e2efc360d56e8d926fea81d7cc40949a865"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-eec42651f157",
+      "other_type": "artifact",
+      "other_title": "scripts/install/install.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-eec42651f157"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-17675c476570",
+      "other_type": "artifact",
+      "other_title": "scripts/install/install.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-17675c476570"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-d2a064cfaffd",
+      "other_type": "artifact",
+      "other_title": "scripts/install/install.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-d2a064cfaffd"
+    }
+  ]
+}

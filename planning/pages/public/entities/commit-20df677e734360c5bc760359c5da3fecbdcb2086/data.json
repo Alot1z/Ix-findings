@@ -1,0 +1,184 @@
+{
+  "id": "COMMIT-20df677e734360c5bc760359c5da3fecbdcb2086",
+  "type": "commit",
+  "title": "20df677e734360c5bc760359c5da3fecbdcb2086",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-20df677e734360c5bc760359c5da3fecbdcb2086",
+  "summary": {
+    "id": "COMMIT-20df677e734360c5bc760359c5da3fecbdcb2086",
+    "type": "commit",
+    "title": "20df677e734360c5bc760359c5da3fecbdcb2086",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/20df677e734360c5bc760359c5da3fecbdcb2086",
+    "author": {
+      "name": "Sam Braude",
+      "email": "sambraude@users.noreply.github.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-e669af186b4d41fb4a0a8a56ec6b1eaa3b336324",
+      "other_type": "commit",
+      "other_title": "e669af186b4d41fb4a0a8a56ec6b1eaa3b336324",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-e669af186b4d41fb4a0a8a56ec6b1eaa3b336324"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-a176d590e8ab4101f2e1a753146779607c1923af",
+      "other_type": "commit",
+      "other_title": "a176d590e8ab4101f2e1a753146779607c1923af",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-a176d590e8ab4101f2e1a753146779607c1923af"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-357b36cdd4d8",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/ExpandRoutes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-357b36cdd4d8"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2f0fe0297dac",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/MapEncoder.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2f0fe0297dac"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-b65c702fbc12",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/ArangoGraphQueryApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b65c702fbc12"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3f8d83f0d485",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/GraphQueryApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3f8d83f0d485"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c540ea78fa25",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/map/MapService.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c540ea78fa25"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-b5b4d9e2471d",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/map/MapTypes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b5b4d9e2471d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-0f5024fa699c",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/ExpandRoutes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-0f5024fa699c"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3835ce9d836b",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/MapEncoder.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3835ce9d836b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c8947973d6aa",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/ArangoGraphQueryApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c8947973d6aa"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2186ed233b1f",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/GraphQueryApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2186ed233b1f"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-f782e49f771e",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/map/MapService.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f782e49f771e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-bbaaa3105f1a",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/map/MapTypes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-bbaaa3105f1a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2d935d8b952a",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/ExpandRoutes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2d935d8b952a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-8e31dd8f584b",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/MapEncoder.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-8e31dd8f584b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-4de3a54ff174",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/ArangoGraphQueryApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-4de3a54ff174"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-6f1940d00172",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/GraphQueryApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-6f1940d00172"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-474226c201ee",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/map/MapService.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-474226c201ee"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-820363b20178",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/map/MapTypes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-820363b20178"
+    }
+  ]
+}

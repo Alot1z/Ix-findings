@@ -10,6 +10,9 @@
     "title": "606f18f7ca1a69f4b8ede7c27c1079b024297856",
     "status": "CURRENT"
   },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
   "relationships": [
     {
       "direction": "in",
@@ -58,6 +61,46 @@
       "other_type": "artifact",
       "other_title": "MCP tests",
       "other_url": "https://alot1z.github.io/Ix-findings/mcp/tests"
+    },
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-603e51f7f877bb59677516be08ee83ef30e562a8",
+      "other_type": "commit",
+      "other_title": "603e51f7f877bb59677516be08ee83ef30e562a8",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-603e51f7f877bb59677516be08ee83ef30e562a8"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+      "other_type": "commit",
+      "other_title": "1a5b0b93c9e8871610370c0f36212be8f6cf6980",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-1a5b0b93c9e8871610370c0f36212be8f6cf6980"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5b1b927b6a8e",
+      "other_type": "artifact",
+      "other_title": "docs/api/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5b1b927b6a8e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2bc1374b9b3e",
+      "other_type": "artifact",
+      "other_title": "docs/api/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2bc1374b9b3e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-28371090626f",
+      "other_type": "artifact",
+      "other_title": "docs/api/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-28371090626f"
     }
   ]
 }

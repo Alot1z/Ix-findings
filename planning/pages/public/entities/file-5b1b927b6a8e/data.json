@@ -1,0 +1,158 @@
+{
+  "id": "FILE-5b1b927b6a8e",
+  "type": "artifact",
+  "title": "docs/api/README.md",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/file-5b1b927b6a8e",
+  "summary": {
+    "id": "FILE-5b1b927b6a8e",
+    "type": "artifact",
+    "title": "docs/api/README.md",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "source_mirror_id": "github:file:ix-infrastructure/Ix:docs/api/README.md",
+    "source_type": "github_file",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/blob/0c9087c4292254472174b02475d094359c88c055/docs%2Fapi%2FREADME.md",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 368,
+    "filename": "docs/api/README.md",
+    "status": "added",
+    "additions": 619,
+    "deletions": 0,
+    "changes": 619,
+    "blob_url": "https://github.com/ix-infrastructure/Ix/blob/0c9087c4292254472174b02475d094359c88c055/docs%2Fapi%2FREADME.md",
+    "raw_url": "https://github.com/ix-infrastructure/Ix/raw/0c9087c4292254472174b02475d094359c88c055/docs%2Fapi%2FREADME.md",
+    "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/docs%2Fapi%2FREADME.md?ref=0c9087c4292254472174b02475d094359c88c055",
+    "patch": "@@ -0,0 +1,619 @@\n+# Ix HTTP API Reference\n+\n+The Ix backend exposes a JSON-over-HTTP API on **`http://[redacted]8090`** (the\n+local Docker memory-layer). The `ix` CLI and the Compass visualizer are its two\n+primary clients. This reference is generated from the client source\n+(`ix-cli/src/client/api.ts`), the visualizer server template\n+(`ix-cli/src/cli/commands/view.js`), and the shared client types\n+(`ix-cli/src/client/types.ts`).\n+\n+## Table of Contents\n+\n+1. [Overview](#overview)\n+2. [Quick Start](#quick-start)\n+3. [Authentication & Scoping](#authentication--scoping)\n+4. [Base Endpoints](#base-endpoints)\n+5. [Endpoints by Area](#endpoints-by-area)\n+   - [Health & Capabilities](#health--capabilities)\n+   - [Context & Question Answering](#context--question-answering)\n+   - [Ingestion & Mapping](#ingestion--mapping)\n+   - [Search & Discovery](#search--discovery)\n+   - [Entities & Traversal](#entities--traversal)\n+   - [Planning Artifacts](#planning-artifacts)\n+   - [Patches & Provenance](#patches--provenance)\n+   - [Analysis (Diff, Conflicts, Smells, Subsystems)](#analysis)\n+   - [Stats & Savings](#stats--savings)\n+   - [Reset](#reset)\n+6. [Visualizer Proxy Surface](#visualizer-proxy-surface)\n+7. [Data Models](#data-models)\n+8. [Error Reference](#error-reference)\n+9. [Timeouts & Deadlines](#timeouts--deadlines)\n+10. [Versioning](#versioning)\n+\n+## Overview\n+\n+All endpoints are under `/v1` and speak JSON. Requests use `Content-Type:\n+application/json`; responses are JSON objects. There is no version prefix other\n+than `/v1`; schema compatibility is signaled by `schema_version` in\n+`/v1/health`.\n+\n+The API has two logical surfaces:\n+\n+- **Backend API (direct, port 8090)** — used by the CLI.\n+- **Visualizer proxy (port 8080)** — Compass serves the SPA and proxies every\n+  `/v1/*` request to the backend, stamping workspace/system scoping headers.\n+\n+## Quick Start\n+\n+```bash\n+# Liveness + graph schema version\n+curl -s http://[redacted]8090/v1/health\n+\n+# Ingest a repository\n+curl -s -X POST http://[redacted]8090/v1/ingest \\\n+  -H \"Content-Type: application/json\" \\\n+  -d '{\"path\": \"/absolute/path/to/repo\", \"recursive\": true}'\n+\n+# Search for a symbol\n+curl -s -X POST http://[redacted]8090/v1/search \\\n+  -H \"Content-Type: application/json\" \\\n+  -d '{\"term\": \"IngestionService\", \"limit\": 10, \"kind\": \"class\"}'\n+\n+# Get structured context for a question\n+curl -s -X POST http://[redacted]8090/v1/context \\\n+  -H \"Content-Type: application/json\" \\\n+  -d '{\"query\": \"how does ingestion flow end to end?\"}'\n+```\n+\n+## Authentication & Scoping\n+\n+- **Local backend**: no authentication. The endpoint is bound to localhost.\n+- **Scoping headers**: the visualizer proxy stamps `x-ix-workspace` (and\n+  `x-ix-system` when the launch directory is part of a stitched multi-repo\n+  system) on every proxied `/v1` request. The backend reads these as a\n+  fallback when no explicit `workspace_id` / `system_id` is on the request.\n+- **Query/body scoping**: most read endpoints accept optional `workspace_id`\n+  and `system_id` parameters to bound the result set server-side.\n+- **Pro features**: `GET /v1/capabilities` reports whether Pro features are\n+  enabled. Treat an absent field as *unknown*, not *false* (older backends).\n+\n+## Base Endpoints\n+\n+| Method | Path | Client | Purpose |\n+|---|---|---|---|\n+| GET | `/v1/health` | `health()` | Liveness, status, `schema_version` |\n+| GET | `/v1/capabilities` | `capabilities()` | Pro feature flags |\n+| POST | `/v1/context` | `query()` | Structured-context QA |\n+\n+## Endpoints by Area\n+\n+### Health & Capabilities\n+\n+#### GET `/v1/health`\n+\n+Liveness probe. Returns `{\"status\": \"ok\", \"schema_version\": 3}`. A client whose\n+expected schema version differs forces a clean re-ingest (e.g. after the\n+absolute→relative `source_uri` migration).\n+\n+**Response**\n+\n+```json\n+{ \"status\": \"ok\", \"schema_version\": 3 }\n+```\n+\n+#### GET `/v1/capabilities`\n+\n+Feature-detection probe. Returns an object whose presence/absence drives\n+client behavior.\n+\n+**Response**\n+\n+```json\n+{ \"proFeaturesEnabled\": true }\n+```\n+\n+### Context & Question Answering\n+\n+#### POST `/v1/context`\n+\n+Ask a bounded structural question; the backend returns claims, conflicts,\n+decisions, intents, and the supporting subgraph.\n+\n+**Request body**\n+\n+| Field | Type | Notes |\n+|---|---|---|\n+| `query` | string | required — the question |\n+| `asOfRev` | number | optional — read the graph as of this revision |\n+| `depth` | string | optional — traversal depth hint |\n+\n+**Response** — `StructuredContext` (see [Data Models](#data-models)).\n+\n+### Ingestion & Mapping\n+\n+#### POST `/v1/ingest`\n+\n+Ingest a path into the graph. Long-running: the client allows **30 minutes**.\n+\n+**Request body**\n+\n+| Field | Type | Notes |\n+|---|---|---|\n+| `path` | string | required — absolute path to ingest |\n+| `recursive` | boolean | optional |\n+| `force` | boolean | optional — re-ingest unchanged files |\n+\n+**Response** — `IngestResult`:\n+\n+```json\n+{\n+  \"filesProcessed\": 128,\n+  \"patchesApplied\": 142,\n+  \"filesSkipped\": 3,\n+  \"entitiesCreated\": 640,\n+  \"latestRev\": 217,\n+  \"skipReasons\": { \"unchanged\": 1, \"emptyFile\": 1, \"parseError\": 1, \"tooLarge\": 0 }\n+}\n+```\n+\n+#### POST `/v1/map`\n+\n+Return the full code map (systems → subsystems → members). The visualizer and\n+`ix map` consume this. Reads **snake_case** keys off the raw body.\n+\n+**Request body**\n+\n+| Field | Type | Notes |\n+|---|---|---|\n+| `full` | boolean | default `false` |\n+| `workspace_id` | string | optional — scope to a workspace |\n+| `system_id` | string | optional — scope to a stitched system |\n+\n+**Response**\n+\n+```json\n+{\n+  \"file_count\": 409,\n+  \"region_count\": 44,\n+  \"levels\": 3,\n+  \"map_rev\": 217,\n+  \"outcome\": \"ok\",\n+  \"regions\": [],\n+  \"edges\": [],\n+  \"hierarchy\": []\n+}\n+```\n+\n+#### POST `/v1/source-hashes`\n+\n+Workspace-scoped baseline lookup. Returns one row per `(workspace_id, uri)` so\n+each file matches against its **own** workspace's hash (avoids collisions when\n+workspaces share relative paths).\n+\n+**Request body**\n+\n+| Field | Type | Notes |\n+|---|---|---|\n+| `uris` | string[] | required — workspace-relative paths |\n+| `workspaceIds` | string[] | optional — bounds the query server-side |\n+\n+**Response** — array of `{ workspaceId: string | null, uri: string, hash: string }`.\n+\n+#### GET `/v1/source-hashes/exists`\n+\n+Returns `{ \"exists\": boolean }` — whether an ingest baseline exists for the\n+scoped workspace.\n+\n+#### POST `/v1/stitch`\n+\n+Cross-repo stitching (Ix#225 Path 2). Registers this workspace's published\n+packages (`provides`) and production-dep external imports (`consumes`); the\n+backend joins them bidirectionally against other workspaces and writes\n+cross-repo `IMPORTS` edges.\n+\n+**Request body**\n+\n+| Field | Type | Notes |\n+|---|---|---|\n+| `workspaceId` | string | required |\n+| `provides` | array | `{ name, entryNodeId, entryUri? }` |\n+| `consumes` | array | `{ name, consumerNodeId }` |\n+| `exports` | array | optional — `{ name, nodeId }` |\n+| `symbolConsumes` | array | optional — `{ symbol, callerNodeId, pkg? }` |\n+\n+**Response** — `{ stitched: number, systemId: string | null, edges: [{ src, dst, name }] }`.\n+\n+#### GET `/v1/stitch/system/{workspaceId}`\n+\n+Return the `system_id` a workspace currently belongs to (null for a singleton).\n+Older backends 404 — clients fall back to `{ systemId: null }`.\n+\n+### Search & Discovery\n+\n+#### POST `/v1/search`\n+\n+Search nodes by name/term.\n+\n+**Request body**\n+\n+| Field | Type | Notes |\n+|---|---|---|\n+| `term` | string | required |\n+| `limit` | number | optional |\n+| `kind` | string | optional — filter by entity kind |\n+| `language` | string | optional |\n+| `asOfRev` | number | optional |\n+| `nameOnly` | boolean | optional |\n+| `workspaceId` / `systemId` | string | optional — scope |\n+\n+**Response** — array of `GraphNode`.\n+\n+#### POST `/v1/search/semantic`\n+\n+Vector-similarity search. The backend embeds the term and returns nodes already\n+ordered by similarity — **do not re-rank client-side**. The request field is\n+`term` (not `query`); no `language` filter. Requires the extraction service\n+(cloud); returns **503** when not configured.\n+\n+**Response** — array of `GraphNode`.\n+\n+#### POST `/v1/list`\n+\n+List entities by kind.\n+\n+**Request body**\n+\n+| Field | Type | Notes |\n+|---|---|---|\n+| `kind` | string | required |\n+| `limit` | number | optional |\n+| `scope` | string | optional |\n+| `workspaceId` / `systemId` | string | optional |\n+\n+**Response** — array of `GraphNode`.\n+\n+### Entities & Traversal\n+\n+#### GET `/v1/entity/{id}`\n+\n+Fetch a node with its claims and edges.\n+\n+**Response** — `{ node: GraphNode, claims: unknown[], edges: unknown[] }`.\n+\n+#### GET `/v1/resolve-prefix/{prefix}`\n+\n+Resolve a shortened entity id prefix. Full UUIDs pass through untouched.\n+\n+**Response**\n+\n+```json\n+{ \"id\": \"900031a5-...\" }\n+```\n+\n+or, on ambiguity, `{ \"error\": \"ambiguous\", \"matches\": [\"…\"] }`; the client\n+throws `Ambiguous prefix …` in that case.\n+\n+#### POST `/v1/expand`\n+\n+Expand a node's neighborhood.\n+\n+**Request body**\n+\n+| Field | Type | Default |\n+|---|---|---|\n+| `nodeId` | string | required |\n+| `direction` | string | `\"both\"` |\n+| `predicates` | string[] | — |\n+| `hops` | number | `1` |\n+\n+**Response** — `{ nodes: GraphNode[], edges: GraphEdge[] }`.\n+\n+#### POST `/v1/expand-by-name`\n+\n+Same as expand, but by entity name.\n+\n+### Planning Artifacts\n+\n+Planning artifacts (goals, truth statements, decisions, bugs, tasks) persist\n+across code-graph resets.\n+\n+#### GET `/v1/truth`\n+\n+List planning artifacts. **Response** — array of `GraphNode`.\n+\n+#### POST `/v1/truth`\n+\n+Create a goal/truth statement.\n+\n+**Request body**\n+\n+| Field | Type | Notes |\n+|---|---|---|\n+| `statement` | string | required |\n+| `parentIntent` | string | optional |\n+\n+**Response** — `{ status: string, nodeId: string, rev: number }`.\n+\n+#### POST `/v1/decide`\n+\n+Record a decision.\n+\n+**Request body** — `{ title, rationale, intentId? }`.\n+\n+**Response** — `{ status, nodeId, rev }`.\n+\n+#### GET `/v1/decisions`\n+\n+List decisions. **Query**: `limit`, `topic`. **Response** — array of `GraphNode`.\n+\n+### Patches & Provenance\n+\n+#### GET `/v1/patches`\n+\n+List patches. **Query**: `limit`. **Response** — array of `PatchSummary`:\n+\n+```json\n+[{ \"patch_id\": \"…\", \"rev\": 217, \"intent\": \"…\", \"source_uri\": \"…\", \"timestamp\": \"…\" }]\n+```\n+\n+#### GET `/v1/patches/{id}`\n+\n+Fetch a single patch.\n+\n+#### POST `/v1/patch`\n+\n+Commit one patch. Client timeout **5 minutes**.\n+\n+**Request body** — `GraphPatchPayload` (see [Data Models](#data-models)).\n+\n+**Response** — `PatchCommitResult`: `{ status, rev }`.\n+\n+#### POST `/v1/patches/batch`\n+\n+Commit an array of patches directly as the body (not wrapped).\n+\n+#### POST `/v1/patches/bulk`\n+\n+Commit patches wrapped as `{ \"patches\": [...] }`. Client timeout **5 minutes**\n+(prevents hangs when a k8s ingress closes idle connections).\n+\n+#### POST `/v1/provenance/{entityId}`\n+\n+Provenance for an entity.\n+\n+### Analysis\n+\n+#### POST `/v1/diff`\n+\n+Diff between graph revisions.\n+\n+**Request body**\n+\n+| Field | Type | Notes |\n+|---|---|---|\n+| `fromRev` | number | required |\n+| `toRev` | number | required |\n+| `entityId` | string | optional |\n+| `summary` | boolean | optional |\n+| `limit` | number | optional |\n+\n+#### GET `/v1/conflicts`\n+\n+List detected conflicts. **Response** — array of `ConflictReport`.\n+\n+#### POST `/v1/smells`\n+\n+Run smell analysis. **Query params**: `orphan-max-connections`, `god-module-chunks`,\n+`god-module-fan`, `weak-max-neighbors`, `workspace_id`, `system_id`.\n+\n+#### GET `/v1/smells`\n+\n+List computed smells. **Query**: `workspace_id`, `system_id`.\n+\n+#### POST `/v1/subsystems/score`\n+\n+Score subsystems. **Query**: `workspace_id`, `system_id`.\n+\n+#### GET `/v1/subsystems`\n+\n+List subsystems. **Query**: `detailed`, `limit`, `offset`, `regions`,\n+`edge_cap`, `member_file_cap`, `workspace_id`, `system_id`.\n+\n+#### GET `/v1/subsystems/map`\n+\n+Subsystem map for the visualizer. **Query**: `target` (entity id), `pick`\n+(1-based candidate for ambiguous targets), `workspace_id`, `system_id`.\n+\n+### Stats & Savings\n+\n+#### GET `/v1/stats`\n+\n+Graph statistics. **Query**: `workspace_id`, `system_id`.\n+\n+**Response** — node/edge totals by kind:\n+\n+```json\n+{\n+  \"nodes\": { \"total\": 10144, \"byKind\": [ { \"kind\": \"function\", \"count\": 1883 } ] },\n+  \"edges\": { \"total\": 26084, \"byKind\": [ … ] }\n+}\n+```\n+\n+#### GET `/v1/savings`\n+\n+Token-savings metrics. **Query**: `detail=true` for detail.\n+\n+#### DELETE `/v1/savings`\n+\n+Reset savings metrics.\n+\n+### Reset\n+\n+> ⚠️ **`ix reset` is GLOBAL.** The reset endpoints below take **no\n+> workspace_id** and wipe every workspace's graph in the shared backend. The\n+> only scoped variant is `/v1/reset/workspace`, which the CLI does not expose.\n+\n+| Method | Path | Behavior |\n+|---|---|---|\n+| POST | `/v1/reset` | Wipe **all** nodes and edges (sync; local endpoints) |\n+| POST | `/v1/reset/async` | Begin an async wipe (remote endpoints) |\n+| POST | `/v1/reset/code` | Wipe only the code graph, preserving planning artifacts |\n+| POST | `/v1/reset/code/async` | Async variant of the code wipe |\n+| GET | `/v1/reset/status/{opId}` | Poll async op — `{ state: \"done\" \\| \"failed\", error? }` |\n+| POST | `/v1/reset/workspace` | **Scoped** wipe — `{ workspaceId }`; other workspaces untouched |\n+\n+**Async reset flow (client-side):** local endpoints use the sync path; remote\n+endpoints begin via `/async`, then poll `/v1/reset/status/{opId}` every 2s up\n+to 15 minutes. A 404 on `begin` falls back to the sync path (old backend); a\n+404 on `status` means the op was lost to a server restart — reset is idempotent,\n+so re-run to confirm.\n+\n+## Visualizer Proxy Surface\n+\n+Compass (`ix view`, default port **8080**) adds three behaviors on top of the\n+backend:\n+\n+1. **`/v1/*` proxy** — every backend request is proxied to `[redacted]8090`\n+   with `x-ix-workspace` and `x-ix-system` headers baked in at launch, so the\n+   browser app never knows about workspaces. `--all` opts out of scoping.\n+2. **SPA fallback** — any other path serves `index.html`. There is no\n+   `/__ix/remap` endpoint: a `POST` to it falls through to this handler and\n+   returns the SPA HTML with a `200`, so a caller cannot tell it did nothing.\n+   Re-map from the CLI with `ix map .` instead.\n+\n+## Data Models\n+\n+### GraphNode\n+\n+```ts\n+interface GraphNode {\n+  id: string;\n+  kind: string;            // function | class | file | module | region | …\n+  name: string;\n+  attrs: Record<string, unknown>;\n+  provenance: {\n+    sourceUri: string;     // workspace-relative path (POSIX separators)\n+    sourceHash?: string;\n+    extractor: string;\n+    sourceType: string;\n+    observedAt: string;\n+  };\n+  createdRev: number;\n+  deletedRev?: number;\n+  createdAt: string;\n+  updatedAt: string;\n+}\n+```\n+\n+### GraphEdge\n+\n+```ts\n+interface GraphEdge {\n+  id: string;\n+  src: string;\n+  dst: string;\n+  predicate: string;       // calls | imports | contains | …\n+  attrs: Record<string, unknown>;\n+  createdRev: number;\n+  deletedRev?: number;\n+}\n+```\n+\n+### StructuredContext\n+\n+```ts\n+interface StructuredContext {\n+  claims: ScoredClaim[];\n+  compactClaims?: CompactScoredClaim[];\n+  conflicts: ConflictReport[];\n+  decisions: DecisionReport[];\n+  intents: IntentReport[];\n+  nodes: GraphNode[];\n+  edges: GraphEdge[];\n+  metadata: { query: string; seedEntities: string[]; hopsExpanded: number; asOfRev: number; depth?: string };\n+}\n+```\n+\n+### IngestResult\n+\n+```ts\n+interface IngestResult {\n+  filesProcessed: number;\n+  patchesApplied: number;\n+  filesSkipped?: number;\n+  entitiesCreated: number;\n+  latestRev: number;\n+  skipReasons?: { unchanged: number; emptyFile: number; parseError: number; tooLarge: number; minifiedLikely?: number };\n+}\n+```\n+\n+### GraphPatchPayload\n+\n+```ts\n+interface GraphPatchPayload {\n+  patchId: string;\n+  actor: string;\n+  timestamp: string;\n+  source: {\n+    uri: string;           // workspace-relative, opaque key for joins/tombstones\n+    sourceHash?: string;\n+    extractor: string;\n+    sourceType: string;\n+    workspaceId?: string;  // SHA-256 of the workspace root path\n+  };\n+  baseRev: number;\n+  ops: Array<{ type: string; [k: string]: unknown }>;\n+  replaces: string[];\n+  intent?: string;\n+}\n+```\n+\n+### PatchCommitResult\n+\n+```ts\n+interface PatchCommitResult { status: string; rev: number; }\n+```\n+\n+### HealthResponse\n+\n+```ts\n+interface HealthResponse { status: string; schema_version?: number; }\n+```\n+\n+### CapabilitiesResponse\n+\n+```ts\n+interface CapabilitiesResponse { proFeaturesEnabled?: boolean; }\n+```\n+\n+## Error Reference\n+\n+| Code | Meaning |\n+|---|---|\n+| `4xx` | Client error — body is plain text (not JSON), surfaced as `\"<status>: <text>\"` |\n+| `404` | Unknown endpoint / entity / lost async op / old backend without async endpoints |\n+| `502` | Cloud proxy timeout on long sync ops — use the async variants |\n+| `503` | `/v1/search/semantic` without the extraction service configured |\n+\n+Client error convention: `IxClient` throws `Error(\"<status>: <text>\")` on any\n+non-`ok` response, so CLI errors carry both the HTTP status and the raw body.\n+\n+## Timeouts & Deadlines\n+\n+| Operation | Per-request timeout |\n+|---|---|\n+| General `get` / `post` | 2 minutes |\n+| `POST /v1/patch`, `/v1/patches/bulk` | 5 minutes |\n+| `POST /v1/ingest`, `/v1/map` | 30 minutes |\n+| Async reset begin / status poll | 30 seconds each |\n+| Sync reset (local) | 10 minutes |\n+| Shared deadline (`ix map`) | hard wall-clock budget; aborts all in-flight requests via `AbortSignal.any` |\n+\n+## Versioning\n+\n+- The graph has a schema version (`/v1/health.schema_version`, currently `v3`);\n+  a mismatch forces a clean re-ingest.\n+- Endpoints are additive under `/v1`; the `capabilities` probe is the\n+  recommended way to feature-detect rather than hard-code against versions.\n+- Older backends may 404 new endpoints (`/v1/stitch/system/*`, async reset) —\n+  clients implement fallbacks, and so should any new client code.",
+    "parent_pr": 368
+  },
+  "source_context": {
+    "id": "github:file:ix-infrastructure/Ix:docs/api/README.md",
+    "source": {
+      "type": "github_file",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/blob/0c9087c4292254472174b02475d094359c88c055/docs%2Fapi%2FREADME.md",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T00:15:22Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T03:58:43Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "FILE-5b1b927b6a8e",
+    "entity_type": "FILE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#368",
+    "line_precision": "FILE_LEVEL"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+      "other_type": "commit",
+      "other_title": "b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b038c46117c26e17ff7f3dc8edd4c4f5083f79f6"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-0c9087c4292254472174b02475d094359c88c055",
+      "other_type": "commit",
+      "other_title": "0c9087c4292254472174b02475d094359c88c055",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-0c9087c4292254472174b02475d094359c88c055"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+      "other_type": "commit",
+      "other_title": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-a6a47267af21a49d6942ee6e07e18d1d0a82517b"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-ffee9dfca2cbbb9ae08f4f7e864d0d0dcb5ac681",
+      "other_type": "commit",
+      "other_title": "ffee9dfca2cbbb9ae08f4f7e864d0d0dcb5ac681",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-ffee9dfca2cbbb9ae08f4f7e864d0d0dcb5ac681"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-6a1e7e178b905745c12f9faebe0a56f91c8ffb0c",
+      "other_type": "commit",
+      "other_title": "6a1e7e178b905745c12f9faebe0a56f91c8ffb0c",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-6a1e7e178b905745c12f9faebe0a56f91c8ffb0c"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-606f18f7ca1a69f4b8ede7c27c1079b024297856",
+      "other_type": "commit",
+      "other_title": "606f18f7ca1a69f4b8ede7c27c1079b024297856",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-606f18f7ca1a69f4b8ede7c27c1079b024297856"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-66111917a2a58437c91372616f98928876121395",
+      "other_type": "commit",
+      "other_title": "66111917a2a58437c91372616f98928876121395",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-66111917a2a58437c91372616f98928876121395"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-a5350b6d6dc67958fa4abef63559affcd74aff56",
+      "other_type": "commit",
+      "other_title": "a5350b6d6dc67958fa4abef63559affcd74aff56",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-a5350b6d6dc67958fa4abef63559affcd74aff56"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-2157158446a74d3d2303f818dc4f3f4e3758432c",
+      "other_type": "commit",
+      "other_title": "2157158446a74d3d2303f818dc4f3f4e3758432c",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-2157158446a74d3d2303f818dc4f3f4e3758432c"
+    },
+    {
+      "direction": "in",
+      "relationship": "CO_CHANGED_WITH",
+      "other": "FILE-3a5de4be99c9",
+      "other_type": "artifact",
+      "other_title": "CLAUDE.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3a5de4be99c9"
+    },
+    {
+      "direction": "out",
+      "relationship": "CO_CHANGED_WITH",
+      "other": "FILE-83c45e74eb69",
+      "other_type": "artifact",
+      "other_title": "skills/ix/SKILL.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-83c45e74eb69"
+    }
+  ]
+}

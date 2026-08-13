@@ -1,0 +1,33 @@
+{
+  "phase": "G",
+  "status": "PARTIALLY_COMPLETE",
+  "summary": "Deterministic selective projection scope and content-hash reuse manifest implemented over the existing static projection.",
+  "implemented": [
+    "projection content manifest",
+    "affected entity/route/index planner",
+    "unaffected file reuse set",
+    "incremental sync receipt"
+  ],
+  "verified": [
+    "event_present",
+    "canonical_entities_resolved",
+    "affected_routes_deterministic",
+    "projection_manifest_hashes",
+    "unaffected_files_identified"
+  ],
+  "blocked": [
+    "The generator now reuses byte-identical output files at write time, but it still computes the complete projection and does not yet emit only event-scoped entities."
+  ],
+  "unknown": [
+    "Whether every category index can be safely emitted independently requires a full-vs-selective output comparison on a controlled fixture."
+  ],
+  "next_phase": "H_OR_G_REMEDIATION",
+  "protected_work": {
+    "baseline": "planning/phase-g/PROTECTED-WORK-BASELINE.json",
+    "baseline_head": "309329a3dd733694bed967655436d5d8dcc352f2",
+    "current_head": "309329a3dd733694bed967655436d5d8dcc352f2",
+    "baseline_paths_missing": [],
+    "external_worktrees_mutated": false,
+    "external_mutations": 0
+  }
+}

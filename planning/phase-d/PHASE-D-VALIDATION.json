@@ -1,0 +1,209 @@
+{
+  "generated_at": "2026-08-12T11:57:27.404Z",
+  "phase": "D",
+  "status": "PARTIALLY_COMPLETE",
+  "canonical_reconciliation": {
+    "status": "PASS",
+    "entities": 3614,
+    "relationships": 13535,
+    "duplicate_ids": 0,
+    "duplicate_relationships": 0,
+    "dangling_relationships": 0
+  },
+  "provenance": {
+    "entities": {
+      "UNKNOWN": 386,
+      "PARTIAL": 3120,
+      "BLOCKED": 7,
+      "VERIFIED": 101
+    },
+    "relationships": {
+      "UNKNOWN": 774,
+      "PARTIAL": 1740,
+      "VERIFIED": 11021
+    },
+    "entity_gap_counts": {
+      "canonical_source_url": 746,
+      "source_reference": 386,
+      "evidence_reference": 3573,
+      "first_seen": 3502,
+      "last_verified": 3513,
+      "extraction_method": 3614,
+      "repository": 655,
+      "full_commit_sha": 13,
+      "exact_line_range": 2084
+    },
+    "relationship_gap_counts": {
+      "source_or_evidence": 774,
+      "temporal_scope": 13113
+    },
+    "policy": "Missing provenance is reported, never fabricated. Local absolute paths are internal-only and not copied into public projections."
+  },
+  "current_historical_commits": {
+    "historical_current_relationships": 0,
+    "status": "PASS"
+  },
+  "collaboration": {
+    "generated_at": "2026-08-12T11:57:27.404Z",
+    "baseline": "planning/phase-c/COLLABORATION-GRAPH.json",
+    "entities": 182,
+    "relationships": 429,
+    "duplicate_entity_ids": 0,
+    "duplicate_relationships": 0,
+    "dangling_relationships": 0,
+    "review_thread_state": "UNKNOWN",
+    "evidence_classes": {
+      "OFFICIAL_GITHUB_FACT": 145,
+      "DISCUSSION_EVIDENCE_UNTRUSTED": 37
+    },
+    "ownership_policy": "AUTHOR/COMMITTER/CONTRIBUTOR/REVIEWER signals may be retained; OWNER/MAINTAINER require authoritative repeated evidence and are not inferred here.",
+    "cross_reference_policy": "Only explicit URLs and captured GitHub metadata create collaboration links; discussion text remains untrusted evidence."
+  },
+  "findings": {
+    "total": 15,
+    "current": 3,
+    "resolved": 1,
+    "unknown": 3,
+    "needs_reproduction": 3,
+    "blocked": 3
+  },
+  "incremental_sync": {
+    "status": "PASS",
+    "affected_entities": 2,
+    "full_rebuild": false,
+    "validation": {
+      "deterministic_event_id": true,
+      "source_cursor_present": true,
+      "all_commit_ids_full_sha": true,
+      "no_unknown_entity_ids": true,
+      "unknown_entity_ids": [],
+      "canonical_entity_count": 3614,
+      "canonical_relationship_count": 13535,
+      "design_schema": "phase-c.incremental-sync.v1"
+    }
+  },
+  "projections": {
+    "generated_at": "2026-08-12T11:57:27.404Z",
+    "canonical_entities": 3614,
+    "canonical_relationships": 13535,
+    "routes": 3628,
+    "public_graph_entities": 3614,
+    "public_graph_relationships": 13535,
+    "llm_full_exists": true,
+    "generated_files_present": [
+      {
+        "file": "planning/pages/public/routes.json",
+        "present": true
+      },
+      {
+        "file": "planning/pages/public/graph.json",
+        "present": true
+      },
+      {
+        "file": "planning/pages/public/data/data.js",
+        "present": true
+      },
+      {
+        "file": "planning/pages/public/llms-full.txt",
+        "present": true
+      },
+      {
+        "file": "planning/pages/public/sitemap.xml",
+        "present": true
+      }
+    ],
+    "canonical_shell": {
+      "root": "planning/wiki/index.html",
+      "generator": "planning/pages/build-public.mjs",
+      "deep_shell_reuses_root": true
+    },
+    "sidebar_group_count": 8,
+    "deep_sidebar_group_count": 8,
+    "status": "PASS"
+  },
+  "visual": {
+    "generated_at": "2026-08-12T11:57:27.404Z",
+    "screenshots": [
+      {
+        "file": "planning/phase-c/visual-root.png",
+        "present": true
+      },
+      {
+        "file": "planning/phase-c/visual-repositories.png",
+        "present": true
+      },
+      {
+        "file": "planning/phase-c/visual-findings.png",
+        "present": true
+      },
+      {
+        "file": "planning/phase-c/visual-pr-393.png",
+        "present": true
+      },
+      {
+        "file": "planning/phase-c/visual-issue-219.png",
+        "present": true
+      }
+    ],
+    "desktop": "VERIFIED_FROM_PHASE_C_SCREENSHOTS_AND_QWEN_REVIEW",
+    "mobile_responsive": "UNKNOWN",
+    "direct_deep_link_refresh": "UNKNOWN",
+    "production_http": "UNKNOWN",
+    "qwen": "Phase-C Qwen review is retained; no redesign was made from low-confidence OCR.",
+    "status": "PARTIAL"
+  },
+  "links": {
+    "phase_c_status": "PASS",
+    "malformed_url_records": 0
+  },
+  "protected_work": {
+    "root_baseline_path_count": 4911,
+    "external_worktrees": {
+      "Ix-remap": {
+        "branch": "feat/ix-remap-hardening",
+        "head": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+        "status_sha256": "288ad507afdcaf405da244123320e9de9ca0f018e3b49ed39a58d040e4b64cf9",
+        "unchanged": true
+      },
+      "Ix": {
+        "branch": "feat/ix-agent-skill",
+        "head": "30f28b3c7f2771a7003af83b5be618a7913d447a",
+        "status_sha256": "f64a5dad142a0edb8693f4e016a56f2bfb73805dd91fcf181a1aed2c61955cec",
+        "unchanged": true
+      },
+      "Ix-mcp": {
+        "branch": "feat/ix-mcp",
+        "head": "603e51f7f877bb59677516be08ee83ef30e562a8",
+        "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "unchanged": true
+      },
+      "Ix-test": {
+        "branch": "",
+        "head": "c4f8fea3916c87e83167bdfaaee945159f64ad0f",
+        "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "unchanged": true
+      },
+      "ix-compass-dist": {
+        "branch": "main",
+        "head": "396426b2a08e689a969f30489aa76dedea325c28",
+        "status_sha256": "5f8d39df688cebbb9816b928de1e9e28abf3a09db7837e298937804657fa5e66",
+        "unchanged": true
+      }
+    },
+    "external_worktrees_unchanged": true,
+    "root_mutation_scope": "Canonical/projection/planning paths were intentionally mutated; pre-existing root dirty work was not reset, cleaned, stashed, or discarded."
+  },
+  "external_actions": {
+    "github_writes": 0,
+    "pushes": 0,
+    "deployments": 0,
+    "hooks": 0,
+    "mcp_registrations": 0,
+    "credential_changes": 0
+  },
+  "blockers": [
+    "Mobile/responsive, direct refresh/back-forward, and production HTTP behavior remain UNKNOWN.",
+    "Review-thread resolved/unresolved state remains UNKNOWN without GraphQL capture.",
+    "Provenance is PARTIAL/UNKNOWN for many local source artifacts and relationship records; gaps are reported rather than fabricated."
+  ]
+}

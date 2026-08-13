@@ -10,7 +10,393 @@
     "title": "Ix PR #373",
     "status": "RESOLVED",
     "number": 373,
-    "url": "https://github.com/ix-infrastructure/Ix/pull/373"
+    "url": "https://github.com/ix-infrastructure/Ix/pull/373",
+    "source_mirror_id": "github:pull_request:ix-infrastructure/Ix#373",
+    "source_type": "github_pull_request",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/pull/373",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/373",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "number": 373,
+    "node_id": "PR_kwDORdC75M78zquE",
+    "title": "ci(release): give the auto-generated brew PR a conventional title",
+    "body": "`pr-title.yml` runs `action-semantic-pull-request` against a fixed type list — `feat fix docs refactor test ci build perf chore revert`. The release workflow opens its formula PR as `brew: update formula for vX`, and `brew` is not on that list, so **the Conventional title check has failed on arrival for every release**.\n\nIt is not one of the ruleset's required checks (the ruleset requires only `CI Passed`), so the PR stays technically mergeable and the red X reads as background noise instead of something with a fixable cause. #367 is the current instance — I retitled it by hand to `chore(brew): …` to clear it; this stops the next release from reproducing it.\n\n`scripts/release.sh` prints the same string as a copy-paste instruction for the manual path, so it drifts the same way. Fixed alongside.\n\nVerified: `bash -n scripts/release.sh` and a YAML parse of `release.yml`.\n\n### Separate, not fixed here\n\n#367's workflow runs also arrived in `action_required` and sat there — held pending manual approval, which is why `CI Passed` never reported and the merge was blocked. I approved the six runs by hand and they went green. That will recur on every release too: the PR is created with `GITHUB_TOKEN` as `github-actions[bot]`, which is what puts its runs behind the approval gate. Fixing it properly means opening that PR as a real actor (app token or PAT), which needs a secret and is your call to make.",
+    "state": "closed",
+    "draft": false,
+    "merged": true,
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "html_url": "https://github.com/ix-infrastructure/Ix/pull/373",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/373",
+    "head": {
+      "ref": "ci/brew-pr-conventional-title",
+      "sha": "d785e1ad2740e56ef712b432c7b328125c5f4599",
+      "repo": {
+        "id": 1171307492,
+        "full_name": "ix-infrastructure/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "ix-infrastructure",
+          "id": 256883681,
+          "type": "Organization",
+          "html_url": "https://github.com/ix-infrastructure"
+        },
+        "html_url": "https://github.com/ix-infrastructure/Ix",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": false,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-03-03T04:48:38Z",
+        "updated_at": "2026-08-13T21:51:31Z",
+        "pushed_at": "2026-08-13T19:18:44Z",
+        "topics": [
+          "ai",
+          "ai-memory",
+          "claude-code",
+          "cli",
+          "code-analysis",
+          "code-mapping",
+          "code-memory",
+          "codebase-understanding",
+          "codex",
+          "developer-tools",
+          "llm",
+          "openclaw",
+          "persistent-memory",
+          "program-analysis",
+          "software-architecture",
+          "system-intelligence",
+          "system-mapping"
+        ],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 701,
+        "stargazers_count": 701,
+        "forks_count": 60,
+        "open_issues_count": 6
+      }
+    },
+    "base": {
+      "ref": "main",
+      "sha": "0437abf5de675f16fe161df86fca9adf7eee9b93",
+      "repo": {
+        "id": 1171307492,
+        "full_name": "ix-infrastructure/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "ix-infrastructure",
+          "id": 256883681,
+          "type": "Organization",
+          "html_url": "https://github.com/ix-infrastructure"
+        },
+        "html_url": "https://github.com/ix-infrastructure/Ix",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": false,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-03-03T04:48:38Z",
+        "updated_at": "2026-08-13T21:51:31Z",
+        "pushed_at": "2026-08-13T19:18:44Z",
+        "topics": [
+          "ai",
+          "ai-memory",
+          "claude-code",
+          "cli",
+          "code-analysis",
+          "code-mapping",
+          "code-memory",
+          "codebase-understanding",
+          "codex",
+          "developer-tools",
+          "llm",
+          "openclaw",
+          "persistent-memory",
+          "program-analysis",
+          "software-architecture",
+          "system-intelligence",
+          "system-mapping"
+        ],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 701,
+        "stargazers_count": 701,
+        "forks_count": 60,
+        "open_issues_count": 6
+      }
+    },
+    "merge_commit_sha": "fc24655d33a541b544983c73bbdfbc2bf1b75060",
+    "merged_at": "2026-08-10T16:07:21Z",
+    "closed_at": "2026-08-10T16:07:21Z",
+    "created_at": "2026-08-10T03:07:35Z",
+    "updated_at": "2026-08-10T16:07:22Z",
+    "labels": [],
+    "milestone": null,
+    "requested_reviewers": [],
+    "requested_teams": [],
+    "commits_count": 2,
+    "changed_files_count": 2,
+    "additions": 17,
+    "deletions": 3,
+    "changed_files": [
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 373,
+        "filename": ".github/workflows/release.yml",
+        "status": "modified",
+        "additions": 16,
+        "deletions": 2,
+        "changes": 18,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/d785e1ad2740e56ef712b432c7b328125c5f4599/.github%2Fworkflows%2Frelease.yml",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/d785e1ad2740e56ef712b432c7b328125c5f4599/.github%2Fworkflows%2Frelease.yml",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/.github%2Fworkflows%2Frelease.yml?ref=d785e1ad2740e56ef712b432c7b328125c5f4599",
+        "patch": "@@ -533,6 +533,20 @@ jobs:\n           BRANCH=\"chore/brew-update-v${VERSION}\"\n           git checkout -b \"$BRANCH\"\n           git add Formula/ix.rb\n-          git commit -m \"brew: update formula for v${VERSION}\" || exit 0\n+          # `chore(brew):`, not `brew:` — pr-title.yml runs\n+          # action-semantic-pull-request against a fixed type list that has\n+          # never included `brew`, so the formula PR this step opens has to be\n+          # retitled by hand before its Conventional title check can pass.\n+          # That check is not in the ruleset's required set (only `CI Passed`\n+          # is), so it never blocked the merge — this removes the rename, not a\n+          # blocker. Applies from v0.9.0 on: pr-title.yml arrived in #282\n+          # (2026-06-08) and every earlier formula PR predates it. #367 is the\n+          # instance that was renamed by hand.\n+          #\n+          # Note the real hold is elsewhere: this PR is created by\n+          # github-actions[bot], so its workflow runs land in `action_required`\n+          # and `CI Passed` never reports until someone approves them. On #364\n+          # that meant the title check never ran at all.\n+          git commit -m \"chore(brew): update formula for v${VERSION}\" || exit 0\n           git push --force-with-lease origin \"$BRANCH\"\n-          gh pr create --title \"brew: update formula for v${VERSION}\" --body \"Auto-generated: updates Homebrew formula SHA for v${VERSION}\" --base main || true\n+          gh pr create --title \"chore(brew): update formula for v${VERSION}\" --body \"Auto-generated: updates Homebrew formula SHA for v${VERSION}\" --base main || true"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 373,
+        "filename": "scripts/release.sh",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 1,
+        "changes": 2,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/d785e1ad2740e56ef712b432c7b328125c5f4599/scripts%2Frelease.sh",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/d785e1ad2740e56ef712b432c7b328125c5f4599/scripts%2Frelease.sh",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/scripts%2Frelease.sh?ref=d785e1ad2740e56ef712b432c7b328125c5f4599",
+        "patch": "@@ -92,5 +92,5 @@ echo \"Formula updated at: Formula/ix.rb\"\n echo \"\"\n echo \"To publish the tap, push the updated formula:\"\n echo \"  git add Formula/ix.rb\"\n-echo \"  git commit -m \\\"brew: update formula for $TAG\\\"\"\n+echo \"  git commit -m \\\"chore(brew): update formula for $TAG\\\"\"\n echo \"  git push origin main\""
+      }
+    ],
+    "commits": [
+      {
+        "sha": "3bcaeecb8439e7079eb848560aaed8f60f2d583f",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/3bcaeecb8439e7079eb848560aaed8f60f2d583f",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/3bcaeecb8439e7079eb848560aaed8f60f2d583f",
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "committer": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "message": "ci(release): give the auto-generated brew PR a conventional title\n\npr-title.yml runs action-semantic-pull-request against a fixed type list —\nfeat, fix, docs, refactor, test, ci, build, perf, chore, revert. The release\nworkflow opened its formula PR as \"brew: update formula for vX\", so the\nConventional title check failed the moment the PR appeared, on every release.\n\nIt is not one of the ruleset's required checks, so the PR stayed mergeable and\nthe failure read as background noise rather than something with a cause. #367\nis the current instance.\n\nscripts/release.sh prints the same string as a copy-paste instruction for the\nmanual path, so it drifts the same way; fixed alongside.",
+        "parents": [
+          {
+            "sha": "0437abf5de675f16fe161df86fca9adf7eee9b93",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/0437abf5de675f16fe161df86fca9adf7eee9b93"
+          }
+        ],
+        "tree_sha": "ac999c6ce822da0f2762a2fdd74e778341b0e9ec",
+        "authored_at": "2026-08-10T03:07:16Z",
+        "committed_at": "2026-08-10T03:07:16Z"
+      },
+      {
+        "sha": "d785e1ad2740e56ef712b432c7b328125c5f4599",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/d785e1ad2740e56ef712b432c7b328125c5f4599",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/d785e1ad2740e56ef712b432c7b328125c5f4599",
+        "author": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "committer": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "message": "docs(release): correct the brew-title comment to what actually happened\n\nReview follow-up -- the fix is right, the rationale beside it was not, and it\nlands as permanent in-repo documentation.\n\nThree corrections:\n\n- Not \"every release\". pr-title.yml arrived in #282 on 2026-06-08; nine of the\n  eleven formula PRs (#38 through #268, latest 2026-06-05) predate the check\n  entirely. Only #364 and #367 were ever in scope.\n- Not \"failed on arrival\". The PR is opened by github-actions[bot], so its\n  pull_request runs land in `action_required` and wait for manual approval. On\n  #364 the title check never ran at all -- there was no red X to notice.\n- Not \"written off as noise each time\". n=1: on #367 it was renamed by hand\n  within six minutes and the check went green. That manual rename is the toil\n  this change removes, and it is the better argument.\n\nAlso records the approval hold, since it is the thing that actually blocks the\nformula PR and this change does not fix it.\n\nComment-only: `bash -n` on the extracted run block is clean and the two title\nstrings are byte-identical to before.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01PZhcNcCtFQ6Bz2XMDpJPJS",
+        "parents": [
+          {
+            "sha": "3bcaeecb8439e7079eb848560aaed8f60f2d583f",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/3bcaeecb8439e7079eb848560aaed8f60f2d583f"
+          }
+        ],
+        "tree_sha": "911a6267b35c0c7df029161906f5b43c542f6567",
+        "authored_at": "2026-08-10T04:38:44Z",
+        "committed_at": "2026-08-10T04:38:44Z"
+      }
+    ],
+    "comments": [],
+    "reviews": [
+      {
+        "id": 4898709257,
+        "node_id": "PRR_kwDORdC75M8AAAABI_xfCQ",
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 373,
+        "author": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "state": "APPROVED",
+        "body": "Two independent review passes (one on your commit, one on my follow-up). Merging.\n\n**Your change is correct and complete.** `chore` is in `pr-title.yml`'s type list, and there is no `scopes`/`requireScope`/`subjectPattern` config that could reject the title for a different reason — verified against the action source at the pinned SHA, where all four of those checks are strictly opt-in. `grep` for `brew:` repo-wide returns only the comment itself, the tap is this repo (no `--repo` on `gh pr create`, `Formula/ix.rb` lives here), and nothing parses commit subjects — no commitlint, no `.github/release.yml`, and the only consumer (`github/transform.ts:141`) takes the subject as a display string. `bash -n` clean, YAML re-parses, one argv element with the parens intact.\n\n**I pushed one commit** correcting the comment, because it lands as permanent in-repo documentation and three claims in it did not hold:\n\n- *\"every release\"* — `pr-title.yml` arrived in #282 on 2026-06-08. Nine of the eleven formula PRs (#38→#268, latest 2026-06-05) predate it. Only #364 and #367 were ever in scope.\n- *\"failed on arrival\"* — it does not run on arrival. The PR is opened by `github-actions[bot]`, so its `pull_request` runs land in `action_required`. On #364 the title check **never ran at all** — there was no red X. Direct evidence on #367: runs `created_at 23:16:07`, `run_started_at 03:05:05` — queued 3h49m awaiting approval.\n- *\"written off as noise each time\"* — n=1, and it wasn't written off; you renamed it and it went green 94 seconds later. That manual rename is the toil this removes, and it's the stronger argument.\n\nThe comment now also records the approval hold, since that is what actually blocks the formula PR and this doesn't fix it.\n\nTwo things I got slightly wrong in my own commit message, for the record: the rename was 94 seconds after the red X (3h50m after opening), not \"within six minutes\" — six minutes is the rename→merge gap. And the ruleset carries `required_approving_review_count: 1` as well as the workflow-approval hold, so there are two holds, not one. Neither affects the landed comment.",
+        "html_url": "https://github.com/ix-infrastructure/Ix/pull/373#pullrequestreview-4898709257",
+        "submitted_at": "2026-08-10T16:07:18Z",
+        "commit_id": "d785e1ad2740e56ef712b432c7b328125c5f4599",
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      }
+    ],
+    "review_comments": [],
+    "timeline": [
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/3bcaeecb8439e7079eb848560aaed8f60f2d583f"
+      },
+      {
+        "id": 29200134426,
+        "event": "review_requested",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T03:07:35Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29200134426"
+      },
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/d785e1ad2740e56ef712b432c7b328125c5f4599"
+      },
+      {
+        "id": 4898709257,
+        "event": "reviewed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": "d785e1ad2740e56ef712b432c7b328125c5f4599",
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": 29233410606,
+        "event": "merged",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-10T16:07:21Z",
+        "commit_id": "fc24655d33a541b544983c73bbdfbc2bf1b75060",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29233410606"
+      },
+      {
+        "id": 29233410676,
+        "event": "closed",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-10T16:07:21Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29233410676"
+      },
+      {
+        "id": 29233412042,
+        "event": "head_ref_deleted",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-10T16:07:22Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29233412042"
+      }
+    ],
+    "source": "OFFICIAL_GITHUB_FACT",
+    "review_threads": [],
+    "review_thread_capture": {
+      "status": "VERIFIED",
+      "source": "GitHub GraphQL API"
+    }
+  },
+  "source_context": {
+    "id": "github:pull_request:ix-infrastructure/Ix#373",
+    "source": {
+      "type": "github_pull_request",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/373",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/373",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T03:07:35Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T16:07:22Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "PR-373",
+    "entity_type": "PULL_REQUEST",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "mirror_scope": "source PR, commits, files, comments, reviews, review comments, and review threads",
+    "related_analysis_types": [
+      "FINDING",
+      "DECISION",
+      "IMPLEMENTATION"
+    ],
+    "review_thread_state": "VERIFIED_GRAPHQL"
   },
   "relationships": [
     {
@@ -28,6 +414,70 @@
       "other_type": "file",
       "other_title": "CLI-HANDOFF/phase-15/FINAL-PR-WORTHINESS-AUDIT.json",
       "other_url": "https://alot1z.github.io/Ix-findings/entities/src-90ab8426282e"
+    },
+    {
+      "direction": "out",
+      "relationship": "FOUND_IN",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "in",
+      "relationship": "AUTHORED",
+      "other": "PERSON-KageBinary",
+      "other_type": "artifact",
+      "other_title": "KageBinary",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-kagebinary"
+    },
+    {
+      "direction": "out",
+      "relationship": "HEADS_AT",
+      "other": "COMMIT-d785e1ad2740e56ef712b432c7b328125c5f4599",
+      "other_type": "commit",
+      "other_title": "d785e1ad2740e56ef712b432c7b328125c5f4599",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-d785e1ad2740e56ef712b432c7b328125c5f4599"
+    },
+    {
+      "direction": "out",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "COMMIT-3bcaeecb8439e7079eb848560aaed8f60f2d583f",
+      "other_type": "commit",
+      "other_title": "3bcaeecb8439e7079eb848560aaed8f60f2d583f",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-3bcaeecb8439e7079eb848560aaed8f60f2d583f"
+    },
+    {
+      "direction": "out",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "COMMIT-d785e1ad2740e56ef712b432c7b328125c5f4599",
+      "other_type": "commit",
+      "other_title": "d785e1ad2740e56ef712b432c7b328125c5f4599",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-d785e1ad2740e56ef712b432c7b328125c5f4599"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_REVIEW",
+      "other": "REVIEW-ix-infrastructure-Ix-pr-373-4898709257",
+      "other_type": "artifact",
+      "other_title": "Review 4898709257 on PR #373",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/review-ix-infrastructure-ix-pr-373-4898709257"
+    },
+    {
+      "direction": "in",
+      "relationship": "REVIEWED_BY",
+      "other": "PERSON-josephismikhail",
+      "other_type": "artifact",
+      "other_title": "josephismikhail",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-josephismikhail"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGED_BY",
+      "other": "COMMIT-d785e1ad2740e56ef712b432c7b328125c5f4599",
+      "other_type": "commit",
+      "other_title": "d785e1ad2740e56ef712b432c7b328125c5f4599",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-d785e1ad2740e56ef712b432c7b328125c5f4599"
     }
   ]
 }

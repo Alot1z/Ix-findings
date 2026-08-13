@@ -1,0 +1,79 @@
+{
+  "id": "COMMIT-110c336b7d995a746a8e57556f28cf5ab2930b4b",
+  "type": "commit",
+  "title": "110c336b7d995a746a8e57556f28cf5ab2930b4b",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-110c336b7d995a746a8e57556f28cf5ab2930b4b",
+  "summary": {
+    "id": "COMMIT-110c336b7d995a746a8e57556f28cf5ab2930b4b",
+    "type": "commit",
+    "title": "110c336b7d995a746a8e57556f28cf5ab2930b4b",
+    "status": "HISTORICAL",
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    }
+  },
+  "source_snapshot": {
+    "sha": "110c336b7d995a746a8e57556f28cf5ab2930b4b",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/110c336b7d995a746a8e57556f28cf5ab2930b4b",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/110c336b7d995a746a8e57556f28cf5ab2930b4b",
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "committer": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "message": "fix(mcp): scope lock release to the command that took the lock\n\nA third review found the previous commit only deferred the lock bug by one tool\ncall, and introduced a regression of its own.\n\n**Deferred, not fixed.** Removing `afterCommand` from the grace path left the\nrelease guard reading `liveOrphans.size === 0` — and the grace deliberately\nremoves a still-running command from that set. So the next command to complete\nreleased the abandoned one's lock anyway, mid-run. The set was doing two jobs\nwith different lifetimes: \"this command's exit code is untrustworthy\", which\nmust be bounded, and \"this command is still running\", which must not be.\n\nLocks are now owned. `single-flight` records which command took each lock and\nreleases only that command's, so the question stops being global: a command that\noverran its timeout keeps the lock it is still using, and a different command\nthat has genuinely finished still gives its own up. Both directions were broken\nbefore — releasing everything took a running map's lock, and holding everything\nback to avoid that stranded a finished map's.\n\n**Regression.** Moving `resetReadScope` to the settle handler alone meant a\ncommand that never settles — the case the grace exists for — never invalidated\nat all. It runs on the grace as well now; it is idempotent, so covering both\ncosts nothing.\n\n**`launcherInText`, third attempt.** Reading the row left to right was the flaw\ncommon to both previous versions: the match began at the first absolute-looking\ntoken and ran forward, so `cmd /c [local-path] — the documented Windows\nwrapper form — yielded `/c [local-path] and reported a live launcher dead,\nwhich re-registers with no `--force`. It now anchors on the `ix` end and walks\nback to the nearest absolute-path start, so a preceding flag or an earlier path\non the same row cannot be swallowed, and a launcher under `[local-path] Doe\\`\nis still found. Four wrapper shapes are pinned by tests.\n\nAlso: the orphan drain moved from `withLockDir` to a file-level `afterEach`.\nAbandoned commands outlive the test that starts them and the runner's state is\nmodule-level, so every later test saw distrusted exit codes and a held lock —\ncorrect behaviour, silently changing unrelated assertions. Under\n`--sequence.shuffle.tests` that failed 4 of 6 seeds; all 6 are clean now.\n\nEach fix validated by restoring the defect and confirming the intended test goes\nred, and the ownership one checked by mutating single-flight to ignore the owner.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>",
+    "parents": [
+      {
+        "sha": "e1b48cd5ac6c398b1354e345ab9efad32bfb5604",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/e1b48cd5ac6c398b1354e345ab9efad32bfb5604"
+      }
+    ],
+    "tree_sha": "0f60f075c070719efe3c8b73714d7e046ff6734f",
+    "authored_at": "2026-08-12T19:39:30Z",
+    "committed_at": "2026-08-12T19:39:30Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@110c336b7d995a746a8e57556f28cf5ab2930b4b",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/110c336b7d995a746a8e57556f28cf5ab2930b4b",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/110c336b7d995a746a8e57556f28cf5ab2930b4b",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-12T19:39:30Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-12T19:39:30Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-110c336b7d995a746a8e57556f28cf5ab2930b4b",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#401"
+  },
+  "relationships": []
+}

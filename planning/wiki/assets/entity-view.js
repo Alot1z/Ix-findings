@@ -27,6 +27,47 @@ const kv = (label, value) => {
   else if (value && value.nodeType) p.append(value);
   return p;
 };
+const mirror = (D.externalMirror?.records || []).find(record => record.analysis?.canonical_entity_id === id) || null;
+const externalLink = (url, label) => {
+  const a = el("a", "ext", label || url || "Open on GitHub");
+  if (url) { a.href = url; a.target = "_blank"; a.rel = "noopener"; }
+  return a;
+};
+const sourceBody = text => { const pre = el("pre", "source-body"); pre.textContent = text || "(empty)"; return pre; };
+const discussion = (title, rows) => {
+  if (!rows || !rows.length) return null;
+  const wrap = el("div", "source-discussion"); wrap.append(el("h3", "", title));
+  rows.forEach(row => {
+    const card = el("div", "card");
+    card.append(kv("Author", row.author?.login || row.user?.login || "UNKNOWN"));
+    card.append(kv("Timestamp", row.created_at || row.submitted_at || "UNKNOWN"));
+    if (row.html_url) card.append(kv("GitHub", externalLink(row.html_url, "Open on GitHub")));
+    if (row.state) card.append(kv("State", row.state));
+    if (row.body) card.append(sourceBody(row.body));
+    if (row.path) card.append(kv("File", row.path + (row.line ? ":" + row.line : "")));
+    wrap.append(card);
+  });
+  return wrap;
+};
+const sourcePanel = () => {
+  if (!mirror) return null;
+  const panel = el("div", "card source-panel"); panel.append(el("h2", "", "SOURCE — GITHUB (AUTHORITATIVE)"));
+  panel.append(kv("Source type", mirror.source?.type || "UNKNOWN"));
+  panel.append(kv("Repository", mirror.source?.repository || "UNKNOWN"));
+  panel.append(kv("Source URL", externalLink(mirror.source?.url, mirror.source?.url || "UNKNOWN")));
+  panel.append(kv("Snapshot version", mirror.freshness?.snapshot_version || "UNKNOWN"));
+  panel.append(kv("Last fetched", mirror.freshness?.last_fetched || "UNKNOWN"));
+  if (mirror.snapshot?.title) panel.append(kv("Title", mirror.snapshot.title));
+  if (mirror.snapshot?.state) panel.append(kv("Source state", mirror.snapshot.state));
+  if (mirror.snapshot?.body) panel.append(el("h3", "", "Source body"), sourceBody(mirror.snapshot.body));
+  for (const [label, rows] of [["Comments", mirror.snapshot?.comments], ["Reviews", mirror.snapshot?.reviews], ["Review comments", mirror.snapshot?.review_comments]]) { const block = discussion(label, rows); if (block) panel.append(block); }
+  const analysis = el("div", "card analysis-panel"); analysis.append(el("h2", "", "IX-FINDINGS ANALYSIS (SEPARATE LAYER)"));
+  analysis.append(kv("Analysis status", mirror.analysis?.status || "UNKNOWN"));
+  analysis.append(kv("Canonical entity", mirror.analysis?.canonical_entity_id || id));
+  analysis.append(kv("Authority", "Ix-findings analysis is not authoritative for the GitHub object."));
+  panel.append(analysis);
+  return panel;
+};
 // Same canonical URL resolution as the generator: sections and issues first,
 // PR sections second, everything else /entities/<slug>.
 function urlOf(other) {
@@ -67,6 +108,9 @@ if (node) {
   }
 }
 
+const sourceContext = sourcePanel();
+if (sourceContext) content.append(sourceContext);
+
 // Relationships (outgoing and incoming).
 const related = edges.filter(e => e.source === id || e.target === id);
 if (related.length) {
@@ -91,7 +135,8 @@ if (related.length) {
 // Machine representation + navigation.
 const nav = el("p");
 const dataLink = el("a", "link", "data.json — machine-readable record");
-dataLink.href = BASE + "/" + String(location.pathname).replace(BASE, "").replace(/\/index\.html$/, "") + "/data.json";
+const here = String(location.pathname).replace(BASE, "").replace(/\/index\.html$/, "").replace(/\/+$/, "");
+dataLink.href = (here ? BASE + here : BASE) + "/data.json";
 nav.append(dataLink);
 nav.append(document.createTextNode(" · "));
 const home = el("a", "ext", "Open explorer overview");

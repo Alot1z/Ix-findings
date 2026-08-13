@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-372be244a17ea7b1ceeaf5d882e2e12fc6da6dde",
+  "type": "commit",
+  "title": "372be244a17ea7b1ceeaf5d882e2e12fc6da6dde",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-372be244a17ea7b1ceeaf5d882e2e12fc6da6dde",
+  "summary": {
+    "id": "COMMIT-372be244a17ea7b1ceeaf5d882e2e12fc6da6dde",
+    "type": "commit",
+    "title": "372be244a17ea7b1ceeaf5d882e2e12fc6da6dde",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/372be244a17ea7b1ceeaf5d882e2e12fc6da6dde",
+    "author": {
+      "name": "Tanner Kocher",
+      "email": "tannertorrey3@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-590730349c65bbe453e695d03eb250eddd9a003e",
+      "other_type": "commit",
+      "other_title": "590730349c65bbe453e695d03eb250eddd9a003e",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-590730349c65bbe453e695d03eb250eddd9a003e"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-c11a5a89de889b986044f6ac40a1d03d12a698c0",
+      "other_type": "commit",
+      "other_title": "c11a5a89de889b986044f6ac40a1d03d12a698c0",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-c11a5a89de889b986044f6ac40a1d03d12a698c0"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-6366fcc1197b",
+      "other_type": "artifact",
+      "other_title": "ix-smoke-test.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-6366fcc1197b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c5db388a3755",
+      "other_type": "artifact",
+      "other_title": "ix-smoke-test.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c5db388a3755"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3c956c9ae1dd",
+      "other_type": "artifact",
+      "other_title": "ix-smoke-test.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3c956c9ae1dd"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": "phase-h.validation.v1",
+  "phase": "H",
+  "status": "PARTIALLY_COMPLETE",
+  "generated_at": "2026-08-12T14:14:37.655Z",
+  "checks": {
+    "canonical_model_used": true,
+    "source_analysis_separated": true,
+    "pr_393_not_fabricated": true,
+    "phase_e_pack_available": true,
+    "symbol_pack_uses_index": true,
+    "relative_paths_only": true,
+    "protected_paths_preserved": true,
+    "external_mutations": 0
+  },
+  "counts": {
+    "canonical_entities": 3614,
+    "mirror_records": 166,
+    "phase_e_reports": 1
+  },
+  "blockers": [
+    "PR #393 is not present in the current external mirror scope; no authoritative current state was fabricated."
+  ],
+  "unknowns": [
+    "The sample exact symbol query returned no match; symbol availability must be checked by exact indexed name.",
+    "Context packs currently write one local last-pack artifact; a multi-pack cache/index is not yet implemented."
+  ],
+  "protected_work": {
+    "baseline": "planning/phase-h/PROTECTED-WORK-BASELINE.json",
+    "baseline_head": "309329a3dd733694bed967655436d5d8dcc352f2",
+    "current_head": "309329a3dd733694bed967655436d5d8dcc352f2",
+    "baseline_paths_missing": [],
+    "external_mutations": 0
+  }
+}

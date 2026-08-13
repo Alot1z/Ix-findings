@@ -1,0 +1,150 @@
+{
+  "id": "FILE-8fd3c7d3cd9b",
+  "type": "artifact",
+  "title": "ix-cli/src/cli/__tests__/upgrade-archive-shape.test.ts",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/file-8fd3c7d3cd9b",
+  "summary": {
+    "id": "FILE-8fd3c7d3cd9b",
+    "type": "artifact",
+    "title": "ix-cli/src/cli/__tests__/upgrade-archive-shape.test.ts",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "source_mirror_id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/__tests__/upgrade-archive-shape.test.ts",
+    "source_type": "github_file",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/blob/b4d9c0038b4595b0562f9dc2e8ef457511112d29/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fupgrade-archive-shape.test.ts",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 392,
+    "filename": "ix-cli/src/cli/__tests__/upgrade-archive-shape.test.ts",
+    "status": "modified",
+    "additions": 171,
+    "deletions": 0,
+    "changes": 171,
+    "blob_url": "https://github.com/ix-infrastructure/Ix/blob/b4d9c0038b4595b0562f9dc2e8ef457511112d29/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fupgrade-archive-shape.test.ts",
+    "raw_url": "https://github.com/ix-infrastructure/Ix/raw/b4d9c0038b4595b0562f9dc2e8ef457511112d29/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fupgrade-archive-shape.test.ts",
+    "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fupgrade-archive-shape.test.ts?ref=b4d9c0038b4595b0562f9dc2e8ef457511112d29",
+    "patch": "@@ -5,6 +5,7 @@ import { tmpdir } from \"node:os\";\n \n import {\n   installStagedTree,\n+  prepareDownloadDir,\n   soleChildDir,\n   swapInStagedTree,\n   sweepUpgradeOrphans,\n@@ -291,4 +292,174 @@ describe(\"sweepUpgradeOrphans\", () => {\n   it(\"is a no-op when IX_HOME does not exist yet\", () => {\n     expect(() => sweepUpgradeOrphans(join(root, \"nope\"), join(root, \"nope\", \"cli\"))).not.toThrow();\n   });\n+\n+  // `ix upgrade` downloads into `.cli-download-*` / `.compass-download-*` under\n+  // IX_HOME rather than os.tmpdir(), which on Windows is TEMP verbatim and is\n+  // the path #349 died on. Leaving TEMP also left the OS's own cleanup, so a\n+  // run killed mid-download would park a multi-MB archive in ~/.ix forever\n+  // unless this sweep reclaims it.\n+  it(\"reclaims an interrupted download's scratch directory\", () => {\n+    const installDir = join(root, \"cli\");\n+    mkdirSync(join(installDir, \"cli\", \"dist\", \"cli\"), { recursive: true });\n+    writeFileSync(join(installDir, \"cli\", \"dist\", \"cli\", \"main.js\"), \"// live\\n\");\n+    mkdirSync(join(root, \".cli-download-abc123\"), { recursive: true });\n+    writeFileSync(join(root, \".cli-download-abc123\", \"ix-0.9.2-linux-amd64.tar.gz\"), \"gz\");\n+    mkdirSync(join(root, \".compass-download-def456\"), { recursive: true });\n+\n+    sweepUpgradeOrphans(root, installDir);\n+\n+    expect(existsSync(join(root, \".cli-download-abc123\"))).toBe(false);\n+    expect(existsSync(join(root, \".compass-download-def456\"))).toBe(false);\n+    expect(readFileSync(join(installDir, \"cli\", \"dist\", \"cli\", \"main.js\"), \"utf-8\")).toBe(\"// live\\n\");\n+  });\n+\n+  // The counterpart to the `.cli-backup-` note above, and the reason the sweep\n+  // call had to move above the download rather than staying between the\n+  // download and the extract: a download directory must never be a recovery\n+  // candidate, or an interrupted upgrade would rename an archive over ~/.ix/cli.\n+  it(\"does not treat a download directory as an install worth recovering\", () => {\n+    const installDir = join(root, \"cli\");\n+    mkdirSync(join(root, \".cli-download-abc123\"), { recursive: true });\n+    writeFileSync(join(root, \".cli-download-abc123\", \"ix-0.9.2-linux-amd64.tar.gz\"), \"gz\");\n+\n+    sweepUpgradeOrphans(root, installDir);\n+\n+    expect(existsSync(installDir)).toBe(false);\n+  });\n+\n+  /**\n+   * cleanupCompassSwap tests `index.html` rather than a bare existsSync, and\n+   * says why: a `compass/` holding only a `.version` is a real state, and a\n+   * bare existsSync \"would call that 'back in place' and drop a backup the\n+   * caller had just told the user to go and rescue\".\n+   *\n+   * recover() used the bare test, so the two disagreed on exactly that state —\n+   * it declined to restore, and the loop below then deleted the only working\n+   * bundle. Preserved by the swap's cleanup, destroyed by the sweep. Hoisting\n+   * the sweep above the download made it fire on runs that install nothing, so\n+   * an offline `ix upgrade` was enough to lose the compass permanently.\n+   */\n+  it(\"restores the compass over a husk instead of deleting the backup\", () => {\n+    const installDir = join(root, \"cli\");\n+    // A torn swap: compass/ exists but holds only .version — index.html never\n+    // arrived — while the backup holds the real bundle.\n+    mkdirSync(join(installDir, \"compass\"), { recursive: true });\n+    writeFileSync(join(installDir, \"compass\", \".version\"), \"0.3.0\\n\");\n+    mkdirSync(join(root, \".compass-backup-1234\"), { recursive: true });\n+    writeFileSync(join(root, \".compass-backup-1234\", \"index.html\"), \"<!-- real -->\");\n+\n+    sweepUpgradeOrphans(root, installDir);\n+\n+    expect(existsSync(join(installDir, \"compass\", \"index.html\"))).toBe(true);\n+    expect(readFileSync(join(installDir, \"compass\", \"index.html\"), \"utf-8\")).toBe(\"<!-- real -->\");\n+    expect(existsSync(join(root, \".compass-backup-1234\"))).toBe(false);\n+  });\n+\n+  it(\"leaves a genuinely intact compass alone\", () => {\n+    // The other side of the same test: a real bundle is never replaced by a\n+    // backup, and the backup is still reclaimed.\n+    const installDir = join(root, \"cli\");\n+    mkdirSync(join(installDir, \"compass\"), { recursive: true });\n+    writeFileSync(join(installDir, \"compass\", \"index.html\"), \"<!-- live -->\");\n+    mkdirSync(join(root, \".compass-backup-1234\"), { recursive: true });\n+    writeFileSync(join(root, \".compass-backup-1234\", \"index.html\"), \"<!-- stale -->\");\n+\n+    sweepUpgradeOrphans(root, installDir);\n+\n+    expect(readFileSync(join(installDir, \"compass\", \"index.html\"), \"utf-8\")).toBe(\"<!-- live -->\");\n+    expect(existsSync(join(root, \".compass-backup-1234\"))).toBe(false);\n+  });\n+\n+  it(\"restores the CLI over a tree with no entry point\", () => {\n+    // Same rule for the install: a cli/ that cannot start is not worth keeping\n+    // a backup from.\n+    const installDir = join(root, \"cli\");\n+    mkdirSync(join(installDir, \"cli\", \"dist\"), { recursive: true });\n+    mkdirSync(join(root, \".cli-backup-1234\", \"cli\", \"dist\", \"cli\"), { recursive: true });\n+    writeFileSync(join(root, \".cli-backup-1234\", \"cli\", \"dist\", \"cli\", \"main.js\"), \"// real\\n\");\n+\n+    sweepUpgradeOrphans(root, installDir);\n+\n+    expect(readFileSync(join(installDir, \"cli\", \"dist\", \"cli\", \"main.js\"), \"utf-8\")).toBe(\"// real\\n\");\n+  });\n+\n+  /**\n+   * Moving the scratch under IX_HOME put it inside the sweep's reach for the\n+   * whole 300s curl timeout. A second `ix upgrade` — a second terminal, or\n+   * bootstrap.sh re-running it when compass is missing — would delete the first\n+   * run's archive mid-download; on POSIX the unlink is silent and curl still\n+   * exits 0, so the victim fails at the extract on a download it completed.\n+   */\n+  it(\"does not reclaim a download directory owned by a live process\", () => {\n+    const installDir = join(root, \"cli\");\n+    // process.pid is by definition live — this stands in for the other run.\n+    const live = join(root, `.cli-download-${process.pid}-aaaaaa`);\n+    mkdirSync(live, { recursive: true });\n+    writeFileSync(join(live, \"ix-0.9.2-linux-amd64.tar.gz\"), \"in flight\");\n+\n+    sweepUpgradeOrphans(root, installDir);\n+\n+    expect(existsSync(join(live, \"ix-0.9.2-linux-amd64.tar.gz\"))).toBe(true);\n+  });\n+\n+  it(\"still reclaims a download directory whose process is gone\", () => {\n+    const installDir = join(root, \"cli\");\n+    // PID 2^22 is above every platform's pid_max, so it cannot be running.\n+    const dead = join(root, \".cli-download-4194304-bbbbbb\");\n+    mkdirSync(dead, { recursive: true });\n+    writeFileSync(join(dead, \"ix-0.9.2-linux-amd64.tar.gz\"), \"abandoned\");\n+    // And the pre-pid naming, which must stay collectable.\n+    mkdirSync(join(root, \".compass-download-cccccc\"), { recursive: true });\n+\n+    sweepUpgradeOrphans(root, installDir);\n+\n+    expect(existsSync(dead)).toBe(false);\n+    expect(existsSync(join(root, \".compass-download-cccccc\"))).toBe(false);\n+  });\n+});\n+\n+/**\n+ * The ordering that #349's fix turns on, and the one thing about it no test\n+ * reached while it was written inline in the command action: the sweep must run\n+ * BEFORE the download scratch is created. Once the sweep reclaims\n+ * `.cli-download-*`, running it afterwards deletes the archive the extract is\n+ * about to read — breaking every upgrade on every platform, not just the\n+ * Windows one. Both call sites go through this function so the order cannot\n+ * drift back apart.\n+ */\n+describe(\"prepareDownloadDir\", () => {\n+  it(\"reclaims an earlier run's scratch but keeps the one it just made\", () => {\n+    const installDir = join(root, \"cli\");\n+    mkdirSync(join(root, \".cli-download-stale1\"), { recursive: true });\n+    writeFileSync(join(root, \".cli-download-stale1\", \"ix-0.9.1-linux-amd64.tar.gz\"), \"old\");\n+\n+    const dir = prepareDownloadDir(root, installDir, \".cli-download-\");\n+\n+    expect(existsSync(join(root, \".cli-download-stale1\"))).toBe(false);\n+    // Swept after the mkdtemp instead of before, this directory is gone too and\n+    // the download that follows writes an archive nothing will extract.\n+    expect(existsSync(dir)).toBe(true);\n+\n+    writeFileSync(join(dir, \"ix-0.9.2-linux-amd64.tar.gz\"), \"gz\");\n+    expect(existsSync(join(dir, \"ix-0.9.2-linux-amd64.tar.gz\"))).toBe(true);\n+  });\n+\n+  it(\"puts an interrupted install back before downloading anything\", () => {\n+    // The other half of sweeping first: the recovery happens even if the\n+    // download then fails, which the old position could not do.\n+    const installDir = join(root, \"cli\");\n+    mkdirSync(join(root, \".cli-backup-999\", \"cli\", \"dist\", \"cli\"), { recursive: true });\n+    writeFileSync(join(root, \".cli-backup-999\", \"cli\", \"dist\", \"cli\", \"main.js\"), \"// prev\\n\");\n+\n+    const dir = prepareDownloadDir(root, installDir, \".cli-download-\");\n+\n+    expect(readFileSync(join(installDir, \"cli\", \"dist\", \"cli\", \"main.js\"), \"utf-8\")).toBe(\"// prev\\n\");\n+    expect(existsSync(dir)).toBe(true);\n+  });\n+\n+  it(\"creates IX_HOME when a manual install never did\", () => {\n+    const ixHome = join(root, \"fresh\");\n+    const dir = prepareDownloadDir(ixHome, join(ixHome, \"cli\"), \".compass-download-\");\n+    expect(existsSync(dir)).toBe(true);\n+  });\n });",
+    "parent_pr": 392
+  },
+  "source_context": {
+    "id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/__tests__/upgrade-archive-shape.test.ts",
+    "source": {
+      "type": "github_file",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/blob/b4d9c0038b4595b0562f9dc2e8ef457511112d29/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fupgrade-archive-shape.test.ts",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-11T00:19:10Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-11T04:46:44Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "FILE-8fd3c7d3cd9b",
+    "entity_type": "FILE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#392",
+    "line_precision": "FILE_LEVEL"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-e0064cf8c88eb91bda5888f7a825c45e503a899f",
+      "other_type": "commit",
+      "other_title": "e0064cf8c88eb91bda5888f7a825c45e503a899f",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-e0064cf8c88eb91bda5888f7a825c45e503a899f"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-a4b1da988ea8e3bacb9457da67ff4fa4c3a1117d",
+      "other_type": "commit",
+      "other_title": "a4b1da988ea8e3bacb9457da67ff4fa4c3a1117d",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-a4b1da988ea8e3bacb9457da67ff4fa4c3a1117d"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-5432c49354ab01325a535294343e516355fcaa69",
+      "other_type": "commit",
+      "other_title": "5432c49354ab01325a535294343e516355fcaa69",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-5432c49354ab01325a535294343e516355fcaa69"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-b4d9c0038b4595b0562f9dc2e8ef457511112d29",
+      "other_type": "commit",
+      "other_title": "b4d9c0038b4595b0562f9dc2e8ef457511112d29",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b4d9c0038b4595b0562f9dc2e8ef457511112d29"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-13e96bacc648ee979f35e2874cd8aa2004f920e1",
+      "other_type": "commit",
+      "other_title": "13e96bacc648ee979f35e2874cd8aa2004f920e1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-13e96bacc648ee979f35e2874cd8aa2004f920e1"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-1292375548fb8f4431ac5afc34c68fe2573434d1",
+      "other_type": "commit",
+      "other_title": "1292375548fb8f4431ac5afc34c68fe2573434d1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-1292375548fb8f4431ac5afc34c68fe2573434d1"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-2e246e87995fd0733edd9d6727c30b89db897a12",
+      "other_type": "commit",
+      "other_title": "2e246e87995fd0733edd9d6727c30b89db897a12",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-2e246e87995fd0733edd9d6727c30b89db897a12"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-e3b591c3b0507b0440d6891dab2f1bcd1457f970",
+      "other_type": "commit",
+      "other_title": "e3b591c3b0507b0440d6891dab2f1bcd1457f970",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-e3b591c3b0507b0440d6891dab2f1bcd1457f970"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-0b4caf9fc2811977e333e22486799bf7d923a6cc",
+      "other_type": "commit",
+      "other_title": "0b4caf9fc2811977e333e22486799bf7d923a6cc",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-0b4caf9fc2811977e333e22486799bf7d923a6cc"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-bbe950d806519692820b41e661b325a75abb0bd0",
+      "other_type": "commit",
+      "other_title": "bbe950d806519692820b41e661b325a75abb0bd0",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-bbe950d806519692820b41e661b325a75abb0bd0"
+    }
+  ]
+}

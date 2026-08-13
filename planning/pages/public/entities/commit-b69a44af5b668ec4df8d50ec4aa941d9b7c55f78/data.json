@@ -1,0 +1,72 @@
+{
+  "id": "COMMIT-b69a44af5b668ec4df8d50ec4aa941d9b7c55f78",
+  "type": "commit",
+  "title": "b69a44af5b668ec4df8d50ec4aa941d9b7c55f78",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-b69a44af5b668ec4df8d50ec4aa941d9b7c55f78",
+  "summary": {
+    "id": "COMMIT-b69a44af5b668ec4df8d50ec4aa941d9b7c55f78",
+    "type": "commit",
+    "title": "b69a44af5b668ec4df8d50ec4aa941d9b7c55f78",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/b69a44af5b668ec4df8d50ec4aa941d9b7c55f78",
+    "author": {
+      "name": "Joseph Mikhail",
+      "email": "jsmikhai@ucsd.edu"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-9e9e600c6486900640c2c4e53b6944989acc519f",
+      "other_type": "commit",
+      "other_title": "9e9e600c6486900640c2c4e53b6944989acc519f",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-9e9e600c6486900640c2c4e53b6944989acc519f"
+    },
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-06c33a5cf08316865b4b96b28f4cf71698f8faa7",
+      "other_type": "commit",
+      "other_title": "06c33a5cf08316865b4b96b28f4cf71698f8faa7",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-06c33a5cf08316865b4b96b28f4cf71698f8faa7"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-633cb653ff7db0fc9c3017cbae8485058b728420",
+      "other_type": "commit",
+      "other_title": "633cb653ff7db0fc9c3017cbae8485058b728420",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-633cb653ff7db0fc9c3017cbae8485058b728420"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-809da0d53df5",
+      "other_type": "artifact",
+      "other_title": ".gitignore",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-809da0d53df5"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-65696ebc3adb",
+      "other_type": "artifact",
+      "other_title": ".gitignore",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-65696ebc3adb"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-6c73324ffc0a",
+      "other_type": "artifact",
+      "other_title": ".gitignore",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-6c73324ffc0a"
+    }
+  ]
+}

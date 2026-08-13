@@ -1,0 +1,134 @@
+{
+  "id": "FILE-83c45e74eb69",
+  "type": "artifact",
+  "title": "skills/ix/SKILL.md",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/file-83c45e74eb69",
+  "summary": {
+    "id": "FILE-83c45e74eb69",
+    "type": "artifact",
+    "title": "skills/ix/SKILL.md",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "source_mirror_id": "github:file:ix-infrastructure/Ix:skills/ix/SKILL.md",
+    "source_type": "github_file",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/blob/0c9087c4292254472174b02475d094359c88c055/skills%2Fix%2FSKILL.md",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 368,
+    "filename": "skills/ix/SKILL.md",
+    "status": "added",
+    "additions": 82,
+    "deletions": 0,
+    "changes": 82,
+    "blob_url": "https://github.com/ix-infrastructure/Ix/blob/0c9087c4292254472174b02475d094359c88c055/skills%2Fix%2FSKILL.md",
+    "raw_url": "https://github.com/ix-infrastructure/Ix/raw/0c9087c4292254472174b02475d094359c88c055/skills%2Fix%2FSKILL.md",
+    "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/skills%2Fix%2FSKILL.md?ref=0c9087c4292254472174b02475d094359c88c055",
+    "patch": "@@ -0,0 +1,82 @@\n+---\n+name: ix\n+description: \"This skill should be used when answering structural questions about a codebase: understanding what a symbol is, tracing flows, measuring change impact, finding callers/callees/imports, or detecting code smells. It drives the Ix CLI (ix map/explain/trace/impact/search/rank/smells) against a persistent code graph stored in a local backend, instead of grepping or guessing. Run scripts/bootstrap.sh once to install the CLI and start the backend, then ix map on the repo root.\"\n+license: Apache-2.0\n+metadata:\n+  version: 1.0.0\n+  source: https://github.com/ix-infrastructure/Ix\n+---\n+\n+# Ix — Persistent Codebase Map\n+\n+## Overview\n+\n+Ix parses a repository with tree-sitter (26 languages), builds a graph of its symbols, calls, and imports, and stores it in a local backend (ArangoDB via Docker). Query that graph with `ix` commands to answer bounded, structural questions instead of reading files blindly. The graph persists between sessions.\n+\n+Use this skill whenever the question is about structure, relationships, or impact: what a symbol is, what calls it, what it calls, how data flows, what breaks if a change lands, which files are most depended-on, or where the smells are.\n+\n+## When to Use\n+\n+- Answering \"what is this / what does it touch\" questions about a symbol, class, or module.\n+- Tracing how a flow moves through the system.\n+- Estimating blast radius before a change.\n+- Finding callers, callees, imports, and dependents.\n+- Detecting smells, ranking hotspots, and scoring subsystems.\n+- Onboarding to an unfamiliar codebase.\n+\n+Do not use this skill for prose-style or history questions — use it for structural, graph-backed answers.\n+\n+## Quick Start (first run)\n+\n+Map the target repo with the bootstrap script:\n+\n+```bash\n+bash scripts/bootstrap.sh [repo-root] [--no-map]                                            # Bash / Git Bash / macOS / Linux\n+powershell -ExecutionPolicy Bypass -File scripts/bootstrap.ps1 [repo-root] [-NoMap]         # Windows PowerShell\n+```\n+\n+The bootstrap checks Node >= 22, git, Docker, and ripgrep; installs the `ix` CLI if missing; starts the local Docker backend; and maps the repo by default. Re-run `scripts/bootstrap.sh` on each new repo to register and map it.\n+\n+Refresh the graph after code changes:\n+\n+```bash\n+ix map --silent\n+```\n+\n+## Core Workflow\n+\n+Map → Explain → Trace → Impact\n+\n+| Step | Command | Example |\n+|---|---|---|\n+| Build/refresh the graph | `ix map` | `ix map .` |\n+| Understand a component | `ix explain` | `ix explain IngestionService` |\n+| Trace a flow | `ix trace` | `ix trace user_login_flow` |\n+| Analyze impact | `ix impact` | `ix impact verify_token --format llm` |\n+\n+## Using the Skill\n+\n+1. Start with high-level commands for one-shot answers: `ix overview`, `ix impact`, `ix rank`.\n+2. Drill down with primitives — `ix search`, `ix callers`, `ix callees`, `ix contains`, `ix imports`, `ix imported-by`, `ix depends` — reusing exact entity IDs from prior JSON output.\n+3. Prefer `--format llm` when reading output yourself (token-minimal); use `--format json` when chaining commands or extracting a field. See references/output-formats.md.\n+4. For the full command surface, decomposition recipes, and best practices, load references/commands.md.\n+5. If the backend is unreachable or a command fails, load references/troubleshooting.md.\n+\n+## Rules\n+\n+1. Before answering codebase questions, run targeted `ix` commands. Do not answer from training data alone.\n+2. After noticing contradictory information, run `ix conflicts` and present the results.\n+3. Never guess codebase facts — if Ix has structured data, use it.\n+4. Immediately after modifying code, run `ix map --silent` to re-ingest.\n+5. When Ix reports low confidence, mention the uncertainty to the user, suggest re-running `ix map`, and never present low-confidence data as established fact.\n+\n+## References\n+\n+- **references/commands.md** — full command routing tables, decomposition recipes, best practices, and the do-not-use list. Load before running any command beyond the core four above.\n+- **references/output-formats.md** — `--format llm|json|text` rules, commands that do not implement `llm`, and Pro-gated commands. Load when formatting output or when a \"requires Ix Pro\" error appears.\n+- **references/troubleshooting.md** — prerequisites, backend health checks, `ix doctor`, and environment flags. Load when a command fails or the backend is unreachable.\n+\n+## Scripts\n+\n+- **scripts/bootstrap.sh** — cross-platform first-run setup (bash; works on macOS, Linux, and Windows under Git Bash / MSYS2 / WSL).\n+- **scripts/bootstrap.ps1** — native Windows PowerShell first-run setup.",
+    "parent_pr": 368
+  },
+  "source_context": {
+    "id": "github:file:ix-infrastructure/Ix:skills/ix/SKILL.md",
+    "source": {
+      "type": "github_file",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/blob/0c9087c4292254472174b02475d094359c88c055/skills%2Fix%2FSKILL.md",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T00:15:22Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T03:58:43Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "FILE-83c45e74eb69",
+    "entity_type": "FILE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#368",
+    "line_precision": "FILE_LEVEL"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+      "other_type": "commit",
+      "other_title": "b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b038c46117c26e17ff7f3dc8edd4c4f5083f79f6"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-0c9087c4292254472174b02475d094359c88c055",
+      "other_type": "commit",
+      "other_title": "0c9087c4292254472174b02475d094359c88c055",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-0c9087c4292254472174b02475d094359c88c055"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-6a1e7e178b905745c12f9faebe0a56f91c8ffb0c",
+      "other_type": "commit",
+      "other_title": "6a1e7e178b905745c12f9faebe0a56f91c8ffb0c",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-6a1e7e178b905745c12f9faebe0a56f91c8ffb0c"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-66111917a2a58437c91372616f98928876121395",
+      "other_type": "commit",
+      "other_title": "66111917a2a58437c91372616f98928876121395",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-66111917a2a58437c91372616f98928876121395"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-a5350b6d6dc67958fa4abef63559affcd74aff56",
+      "other_type": "commit",
+      "other_title": "a5350b6d6dc67958fa4abef63559affcd74aff56",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-a5350b6d6dc67958fa4abef63559affcd74aff56"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-2157158446a74d3d2303f818dc4f3f4e3758432c",
+      "other_type": "commit",
+      "other_title": "2157158446a74d3d2303f818dc4f3f4e3758432c",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-2157158446a74d3d2303f818dc4f3f4e3758432c"
+    },
+    {
+      "direction": "in",
+      "relationship": "CO_CHANGED_WITH",
+      "other": "FILE-3a5de4be99c9",
+      "other_type": "artifact",
+      "other_title": "CLAUDE.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3a5de4be99c9"
+    },
+    {
+      "direction": "in",
+      "relationship": "CO_CHANGED_WITH",
+      "other": "FILE-5b1b927b6a8e",
+      "other_type": "artifact",
+      "other_title": "docs/api/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5b1b927b6a8e"
+    }
+  ]
+}

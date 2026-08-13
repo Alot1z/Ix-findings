@@ -10,7 +10,431 @@
     "title": "Ix PR #386",
     "status": "RESOLVED",
     "number": 386,
-    "url": "https://github.com/ix-infrastructure/Ix/pull/386"
+    "url": "https://github.com/ix-infrastructure/Ix/pull/386",
+    "source_mirror_id": "github:pull_request:ix-infrastructure/Ix#386",
+    "source_type": "github_pull_request",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/pull/386",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/386",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "number": 386,
+    "node_id": "PR_kwDORdC75M79NHt8",
+    "title": "fix(windows): make the ix.cmd launcher diagnose its own broken target",
+    "body": "## Summary\n\nRecovery for **#385**, reported by @RMA1313. `ix upgrade` on any version before 0.9.0 refreshed only the *bash* shim under Git Bash and left `%IX_HOME%\\bin\\ix.cmd` aimed at a `cli\\ix.cmd` that the same upgrade had replaced with a version-nested directory. All cmd.exe offers is:\n\n```text\n'\"[local-path] 10\\.ix\\bin\\..\\cli\\ix.cmd\"' is not recognized as an internal or external command, operable program or batch file.\n```\n\nwhich names the wrapper rather than the cause, and reads like a broken install rather than a broken upgrade.\n\n**This one cannot be fixed forward.** `ix upgrade` is executed by the version being upgraded *from*, so nothing shipped today reaches the installs that break — and once broken, `ix doctor` is exactly as unreachable as `ix`. The only thing the user can still run is the batch file, so the recovery instruction has to live there.\n\nRoot cause is the layout bug fixed in #346 (v0.9.0); this PR is about the population that upgrades *into* the fix from below it.\n\n## Type\n- [x] Bug fix\n\n## Changes\n- `windowsShimBody()` — the launcher checks its target before invoking it and, when it is gone, prints what happened plus `irm https://ix-infra.com/install.ps1 | iex`.\n- **It also propagates `%errorlevel%`**, which the old one-line body silently swallowed. Every non-zero `ix` exit — a failed map, a Pro stub — had been reported to callers as success. Unrelated to #385, found while writing it.\n- `install.ps1` and `refreshLaunchers()` both emit that body, with a test asserting they stay byte-identical. They have drifted before: the flat-vs-nested shim bugs (#346, #385) were each one writer knowing something the other did not.\n- `ix doctor` gains a Windows-only launcher check.\n\n## Validation\n- `npx vitest run` — 52 files, **697 passed**\n- `npm run typecheck` clean; `npm run lint` 0 errors (38 pre-existing warnings)\n- 12 new tests, including the drift guard and the pipe-escaping case (a bare `|` would pipe the recovery line into `iex` and print an error instead of the command)\n\n**`Refs #385`, not `Fixes`** — I have no Windows machine. The batch logic is asserted by tests but has not been executed by cmd.exe. Wants a real run before #385 closes, same call as #352/#349.\n\n## Honest limitation\n\n`ix doctor`'s check cannot help the PowerShell user whose launcher is already dead — they cannot run `ix` at all. It covers the case the shim cannot: the bash shim **is** refreshed by every version, so someone living in Git Bash keeps a working `ix` there while their native launcher is quietly broken, potentially for weeks. The self-diagnosing launcher is the load-bearing half of this PR.\n\n## Release checklist (if merging to main)\n- [ ] `ix-cli/package.json` version bumped\n- [ ] After merge: tag pushed (`git tag vX.Y.Z && git push origin vX.Y.Z`)\n- [ ] If backend changes: `ix-memory-layer` tagged and released first\n- [ ] If `docker-compose.standalone.yml` changed: verified `curl | sh` install works\n",
+    "state": "closed",
+    "draft": false,
+    "merged": true,
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "html_url": "https://github.com/ix-infrastructure/Ix/pull/386",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/386",
+    "head": {
+      "ref": "fix/windows-shim-self-diagnosis",
+      "sha": "cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8",
+      "repo": {
+        "id": 1171307492,
+        "full_name": "ix-infrastructure/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "ix-infrastructure",
+          "id": 256883681,
+          "type": "Organization",
+          "html_url": "https://github.com/ix-infrastructure"
+        },
+        "html_url": "https://github.com/ix-infrastructure/Ix",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": false,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-03-03T04:48:38Z",
+        "updated_at": "2026-08-13T21:51:31Z",
+        "pushed_at": "2026-08-13T19:18:44Z",
+        "topics": [
+          "ai",
+          "ai-memory",
+          "claude-code",
+          "cli",
+          "code-analysis",
+          "code-mapping",
+          "code-memory",
+          "codebase-understanding",
+          "codex",
+          "developer-tools",
+          "llm",
+          "openclaw",
+          "persistent-memory",
+          "program-analysis",
+          "software-architecture",
+          "system-intelligence",
+          "system-mapping"
+        ],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 701,
+        "stargazers_count": 701,
+        "forks_count": 60,
+        "open_issues_count": 6
+      }
+    },
+    "base": {
+      "ref": "main",
+      "sha": "b19008335a93347abd40252b5e6cbfc4a6325a7e",
+      "repo": {
+        "id": 1171307492,
+        "full_name": "ix-infrastructure/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "ix-infrastructure",
+          "id": 256883681,
+          "type": "Organization",
+          "html_url": "https://github.com/ix-infrastructure"
+        },
+        "html_url": "https://github.com/ix-infrastructure/Ix",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": false,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-03-03T04:48:38Z",
+        "updated_at": "2026-08-13T21:51:31Z",
+        "pushed_at": "2026-08-13T19:18:44Z",
+        "topics": [
+          "ai",
+          "ai-memory",
+          "claude-code",
+          "cli",
+          "code-analysis",
+          "code-mapping",
+          "code-memory",
+          "codebase-understanding",
+          "codex",
+          "developer-tools",
+          "llm",
+          "openclaw",
+          "persistent-memory",
+          "program-analysis",
+          "software-architecture",
+          "system-intelligence",
+          "system-mapping"
+        ],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 701,
+        "stargazers_count": 701,
+        "forks_count": 60,
+        "open_issues_count": 6
+      }
+    },
+    "merge_commit_sha": "83a534f6a8d116e17e68799d27c1010340def163",
+    "merged_at": "2026-08-10T20:40:25Z",
+    "closed_at": "2026-08-10T20:40:25Z",
+    "created_at": "2026-08-10T20:33:56Z",
+    "updated_at": "2026-08-10T20:40:27Z",
+    "labels": [],
+    "milestone": null,
+    "requested_reviewers": [
+      {
+        "login": "josephismikhail",
+        "id": 56614593,
+        "type": "User",
+        "html_url": "https://github.com/josephismikhail"
+      }
+    ],
+    "requested_teams": [],
+    "commits_count": 1,
+    "changed_files_count": 4,
+    "additions": 276,
+    "deletions": 1,
+    "changed_files": [
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 386,
+        "filename": "ix-cli/src/cli/__tests__/windows-launcher.test.ts",
+        "status": "added",
+        "additions": 149,
+        "deletions": 0,
+        "changes": 149,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fwindows-launcher.test.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fwindows-launcher.test.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fwindows-launcher.test.ts?ref=cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8",
+        "patch": "@@ -0,0 +1,149 @@\n+import { describe, expect, it } from \"vitest\";\n+import { win32 as winPath } from \"node:path\";\n+import { readFileSync } from \"node:fs\";\n+import { fileURLToPath } from \"node:url\";\n+\n+import { windowsShimBody } from \"../commands/upgrade.js\";\n+import { checkWindowsLauncher } from \"../commands/doctor.js\";\n+\n+/**\n+ * Ix#385: `ix upgrade` before 0.9.0 refreshed only the bash shim and left\n+ * `%IX_HOME%\\bin\\ix.cmd` pointing at a `cli\\ix.cmd` the upgrade had just\n+ * replaced with a version-nested directory. cmd.exe's error names the wrapper\n+ * rather than the cause:\n+ *\n+ *   '\"[local-path] 10\\.ix\\bin\\..\\cli\\ix.cmd\"' is not recognized as an internal\n+ *   or external command, operable program or batch file.\n+ *\n+ * The fix cannot be delivered by new CLI code — the *old* version performs the\n+ * upgrade — so the launcher has to diagnose itself, and the CLI that would\n+ * explain it is exactly as unreachable as the launcher.\n+ */\n+describe(\"windowsShimBody\", () => {\n+  const FLAT = String.raw`%~dp0..\\cli\\ix.cmd`;\n+  const NESTED = String.raw`%~dp0..\\cli\\ix-0.9.1-windows-amd64\\ix.cmd`;\n+\n+  it(\"guards the target before invoking it\", () => {\n+    const body = windowsShimBody(FLAT);\n+    const guard = body.indexOf(`if not exist \"${FLAT}\" goto :ix_missing`);\n+    const invoke = body.indexOf(`\"${FLAT}\" %*`);\n+    expect(guard).toBeGreaterThanOrEqual(0);\n+    expect(invoke).toBeGreaterThan(guard);\n+  });\n+\n+  it(\"propagates the CLI's exit code on the success path\", () => {\n+    // Without this the launcher always exits 0 and every non-zero ix exit —\n+    // a failed map, a Pro stub — reads as success to any caller.\n+    expect(windowsShimBody(FLAT)).toContain(\"exit /b %errorlevel%\");\n+  });\n+\n+  it(\"names the cause and the recovery, not just the missing path\", () => {\n+    const body = windowsShimBody(FLAT);\n+    expect(body).toContain(\"ix upgrade\");\n+    expect(body).toContain(\"irm https://ix-infra.com/install.ps1 ^| iex\");\n+    expect(body).toContain(\"exit /b 1\");\n+  });\n+\n+  it(\"escapes the pipe so cmd.exe prints it instead of building a pipeline\", () => {\n+    // A bare | in `echo irm ... | iex` pipes echo's output into `iex`, which\n+    // does not exist as a program on Windows, so the recovery line would be\n+    // replaced by an error about `iex`.\n+    const body = windowsShimBody(FLAT);\n+    expect(body).toContain(\"^| iex\");\n+    expect(body).not.toMatch(/[^^]\\| iex/);\n+  });\n+\n+  it(\"uses CRLF, which batch files require\", () => {\n+    const body = windowsShimBody(FLAT);\n+    expect(body).toContain(\"\\r\\n\");\n+    expect(body.split(\"\\r\\n\").length).toBeGreaterThan(5);\n+    expect(body).not.toMatch(/[^\\r]\\n/);\n+  });\n+\n+  it(\"carries the nested target through verbatim\", () => {\n+    const body = windowsShimBody(NESTED);\n+    expect(body).toContain(`if not exist \"${NESTED}\" goto :ix_missing`);\n+    expect(body).toContain(`\"${NESTED}\" %*`);\n+    expect(body).not.toContain(FLAT);\n+  });\n+});\n+\n+describe(\"install.ps1 and refreshLaunchers emit the same launcher\", () => {\n+  it(\"does not let the two writers drift apart\", () => {\n+    // Two places write this file: install.ps1 on a fresh install, and\n+    // refreshLaunchers() on every upgrade. They have drifted before — the flat\n+    // vs version-nested shim bugs (#346, #385) were both one writer learning\n+    // something the other did not. A fresh install and an upgraded install must\n+    // end up with byte-identical launchers.\n+    const ps1 = readFileSync(\n+      fileURLToPath(new URL(\"../../../../scripts/install/install.ps1\", import.meta.url)),\n+      \"utf-8\",\n+    );\n+    const heredoc = ps1.match(/@\"\\r?\\n(@echo off\\r?\\n[\\s\\S]*?)\\r?\\n\"@ \\| Out-File/);\n+    expect(heredoc, \"install.ps1 no longer contains the ix.cmd here-string\").not.toBeNull();\n+\n+    const fromInstaller = heredoc![1].replace(/\\r?\\n/g, \"\\n\").trim();\n+    const fromUpgrade = windowsShimBody(String.raw`%~dp0..\\cli\\ix.cmd`)\n+      .replace(/\\r?\\n/g, \"\\n\")\n+      .trim();\n+\n+    expect(fromInstaller).toBe(fromUpgrade);\n+  });\n+});\n+\n+describe(\"checkWindowsLauncher\", () => {\n+  const IX_HOME = String.raw`[local-path] 10\\.ix`;\n+  const shim = (target: string) => windowsShimBody(target);\n+\n+  it(\"passes when the launcher target exists\", () => {\n+    const result = checkWindowsLauncher(\n+      IX_HOME,\n+      () => shim(String.raw`%~dp0..\\cli\\ix.cmd`),\n+      () => true,\n+    );\n+    expect(result.ok).toBe(true);\n+  });\n+\n+  it(\"fails with the repair command when the target is gone\", () => {\n+    const result = checkWindowsLauncher(\n+      IX_HOME,\n+      () => shim(String.raw`%~dp0..\\cli\\ix.cmd`),\n+      () => false,\n+    );\n+    expect(result.ok).toBe(false);\n+    expect(result.warn).toBeFalsy();\n+    expect(result.detail).toContain(\"does not exist\");\n+    expect(result.detail).toContain(\"install.ps1\");\n+  });\n+\n+  it(\"resolves the target relative to bin/, matching %~dp0\", () => {\n+    // %~dp0 is the directory of ix.cmd itself — IX_HOME\\bin — so the check has\n+    // to resolve from there, not from IX_HOME, or it probes the wrong path and\n+    // reports a healthy install as broken.\n+    const probed: string[] = [];\n+    checkWindowsLauncher(\n+      IX_HOME,\n+      () => shim(String.raw`%~dp0..\\cli\\ix.cmd`),\n+      (p) => { probed.push(p); return true; },\n+    );\n+    expect(probed).toEqual([winPath.join(IX_HOME, \"cli\", \"ix.cmd\")]);\n+  });\n+\n+  it(\"is silent when no launcher exists (POSIX install, or never installed)\", () => {\n+    const result = checkWindowsLauncher(IX_HOME, () => null, () => false);\n+    expect(result.ok).toBe(true);\n+  });\n+\n+  it(\"leaves an unrecognized launcher alone rather than calling it broken\", () => {\n+    // A contributor's dev shim from scripts/dev/setup.sh points straight at a\n+    // working tree with an absolute path. Reporting that as a failure would\n+    // send them reinstalling over their own build.\n+    const result = checkWindowsLauncher(\n+      IX_HOME,\n+      () => '@echo off\\r\\nnode \"[local-path]\" %*\\r\\n',\n+      () => false,\n+    );\n+    expect(result.ok).toBe(true);\n+    expect(result.warn).toBe(true);\n+  });\n+});"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 386,
+        "filename": "ix-cli/src/cli/commands/doctor.ts",
+        "status": "modified",
+        "additions": 64,
+        "deletions": 0,
+        "changes": 64,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fdoctor.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fdoctor.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fdoctor.ts?ref=cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8",
+        "patch": "@@ -4,6 +4,9 @@ import { renderSection, renderSuccess, renderError } from \"../ui.js\";\n import { IxClient } from \"../../client/api.js\";\n import { getEndpoint } from \"../config.js\";\n import { llmLine, printLlmLines } from \"../llm.js\";\n+import { existsSync, readFileSync } from \"node:fs\";\n+import { join as pathJoin, win32 as winPath } from \"node:path\";\n+import { homedir } from \"node:os\";\n import {\n   BACKEND_IMAGE,\n   checkBackendImage,\n@@ -59,6 +62,54 @@ interface Check {\n   run: () => Promise<CheckResult>;\n }\n \n+/**\n+ * Does `%IX_HOME%\\bin\\ix.cmd` still point at a CLI that exists?\n+ *\n+ * `ix upgrade` before 0.9.0 refreshed only the bash shim and left this launcher\n+ * aimed at a `cli\\ix.cmd` the upgrade had just replaced with a version-nested\n+ * directory (Ix#385).\n+ *\n+ * The obvious objection is that a user whose launcher is broken cannot run\n+ * `ix doctor` to be told so. True from PowerShell — which is why the launcher\n+ * now diagnoses itself. This check covers the case that shim cannot: the *bash*\n+ * shim under Git Bash / MSYS is refreshed by every version, so `ix` keeps\n+ * working there while the native launcher is quietly dead. Someone who lives in\n+ * Git Bash can be broken in PowerShell for weeks without knowing.\n+ */\n+export function checkWindowsLauncher(\n+  ixHome: string,\n+  readShim: (path: string) => string | null,\n+  exists: (path: string) => boolean,\n+): CheckResult {\n+  const shimPath = pathJoin(ixHome, \"bin\", \"ix.cmd\");\n+  const body = readShim(shimPath);\n+  if (body === null) {\n+    return { ok: true, detail: \"no ix.cmd launcher (not installed by install.ps1)\" };\n+  }\n+\n+  // The launcher invokes its target as the first quoted %~dp0-relative path.\n+  const target = body.match(/\"(%~dp0[^\"]+)\"/)?.[1];\n+  if (!target) {\n+    return { ok: true, warn: true, detail: `${shimPath}: unrecognized launcher, left alone` };\n+  }\n+\n+  // %~dp0 is the directory of ix.cmd itself — IX_HOME\\bin — and the target is\n+  // written with backslashes. Resolve with win32 semantics explicitly rather\n+  // than the ambient `path`, so the separator handling does not depend on which\n+  // OS happens to be evaluating it. (Production only reaches here on Windows,\n+  // but a resolver that silently misreads its input off-Windows is untestable.)\n+  const resolved = winPath.join(ixHome, \"bin\", target.replace(/^%~dp0/, \"\"));\n+  if (exists(resolved)) return { ok: true, detail: `ix.cmd → ${target}` };\n+\n+  return {\n+    ok: false,\n+    detail:\n+      `${shimPath} points at ${target}, which does not exist — ` +\n+      \"an upgrade from before 0.9.0 moved the CLI. Reinstall to repair: \" +\n+      \"irm https://ix-infra.com/install.ps1 | iex\",\n+  };\n+}\n+\n export function registerDoctorCommand(program: Command): void {\n   program\n     .command(\"doctor\")\n@@ -169,6 +220,19 @@ export function registerDoctorCommand(program: Command): void {\n         },\n       ];\n \n+      // Windows-only: a launcher pointing at a CLI the upgrade moved (Ix#385).\n+      if (process.platform === \"win32\") {\n+        checks.push({\n+          name: \"Windows launcher\",\n+          run: async () =>\n+            checkWindowsLauncher(\n+              process[redacted].IX_HOME || pathJoin(homedir(), \".ix\"),\n+              (p) => { try { return readFileSync(p, \"utf-8\"); } catch { return null; } },\n+              existsSync,\n+            ),\n+        });\n+      }\n+\n       const results: Array<{ name: string } & CheckResult> = [];\n       for (const check of checks) {\n         const result = await check.run();"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 386,
+        "filename": "ix-cli/src/cli/commands/upgrade.ts",
+        "status": "modified",
+        "additions": 44,
+        "deletions": 1,
+        "changes": 45,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fupgrade.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fupgrade.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fupgrade.ts?ref=cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8",
+        "patch": "@@ -323,6 +323,49 @@ function rmQuiet(target: string): void {\n  * one. Windows release zips nest everything under `ix-<version>-<platform>/`,\n  * and reading it back beats assuming the name — the shim has to point inside it.\n  */\n+/**\n+ * The body of `%IX_HOME%\\bin\\ix.cmd`, which is the launcher every native\n+ * Windows shell actually runs.\n+ *\n+ * It checks its own target before invoking it, because the failure it is\n+ * guarding against is unrecoverable from inside the CLI. `ix upgrade` on any\n+ * version before 0.9.0 refreshed only the *bash* shim under Git Bash and left\n+ * this file pointing at a `cli\\ix.cmd` that the upgrade had just replaced with\n+ * a version-nested directory (Ix#385). The user is then holding a launcher that\n+ * cannot start the program that would have told them what to do — cmd.exe says\n+ * only:\n+ *\n+ *   '\"[local-path]\"' is not recognized as an internal or\n+ *   external command, operable program or batch file.\n+ *\n+ * which names the wrapper rather than the cause and reads like a broken install\n+ * rather than a broken upgrade. So the recovery instruction has to live in the\n+ * batch file itself. Nothing else in the system can reach them at that point:\n+ * `ix doctor` is exactly as unreachable as `ix`.\n+ *\n+ * `^|` is an escaped pipe — cmd.exe would otherwise treat it as a pipeline.\n+ */\n+export function windowsShimBody(inner: string): string {\n+  return [\n+    \"@echo off\",\n+    `if not exist \"${inner}\" goto :ix_missing`,\n+    `\"${inner}\" %*`,\n+    \"exit /b %errorlevel%\",\n+    \"\",\n+    \":ix_missing\",\n+    \"echo(\",\n+    `echo   The Ix CLI is not at \"${inner}\".`,\n+    \"echo(\",\n+    \"echo   An 'ix upgrade' from a version before 0.9.0 moved the CLI and left\",\n+    \"echo   this launcher pointing at the old path. Reinstalling repairs it:\",\n+    \"echo(\",\n+    \"echo     irm https://ix-infra.com/install.ps1 ^| iex\",\n+    \"echo(\",\n+    \"exit /b 1\",\n+    \"\",\n+  ].join(\"\\r\\n\");\n+}\n+\n export function soleChildDir(dir: string): string | null {\n   let entries;\n   try {\n@@ -696,7 +739,7 @@ function refreshLaunchers(installDir: string, installedRoot: string, isWindows:\n           console.log(\"  Left your dev ix.cmd shim untouched (re-run scripts/dev/setup.sh to repoint it).\");\n         } else {\n           mkdirSync(dirname(cmdShim), { recursive: true });\n-          writeFileSync(cmdShim, `@echo off\\r\\n\"${inner}\" %*\\r\\n`, \"ascii\");\n+          writeFileSync(cmdShim, windowsShimBody(inner), \"ascii\");\n         }\n       } catch (err) {\n         problems.push(`${cmdShim}: ${(err as Error).message}`);"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 386,
+        "filename": "scripts/install/install.ps1",
+        "status": "modified",
+        "additions": 19,
+        "deletions": 0,
+        "changes": 19,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8/scripts%2Finstall%2Finstall.ps1",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8/scripts%2Finstall%2Finstall.ps1",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/scripts%2Finstall%2Finstall.ps1?ref=cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8",
+        "patch": "@@ -486,9 +486,28 @@ Write-Ok \"Extraction complete\"\n \n Remove-Item -LiteralPath $tmp -Force\n \n+# Checks its own target before invoking it. `ix upgrade` on any version before\n+# 0.9.0 refreshed only the bash shim and left this file pointing at a\n+# `cli\\ix.cmd` the upgrade had just replaced with a version-nested directory\n+# (Ix#385). cmd.exe's own error names this wrapper rather than the cause, and\n+# the CLI that would explain it is exactly as unreachable as the launcher — so\n+# the recovery instruction has to live here. `^|` is an escaped pipe.\n @\"\n @echo off\n+if not exist \"%~dp0..\\cli\\ix.cmd\" goto :ix_missing\n \"%~dp0..\\cli\\ix.cmd\" %*\n+exit /b %errorlevel%\n+\n+:ix_missing\n+echo(\n+echo   The Ix CLI is not at \"%~dp0..\\cli\\ix.cmd\".\n+echo(\n+echo   An 'ix upgrade' from a version before 0.9.0 moved the CLI and left\n+echo   this launcher pointing at the old path. Reinstalling repairs it:\n+echo(\n+echo     irm https://ix-infra.com/install.ps1 ^| iex\n+echo(\n+exit /b 1\n \"@ | Out-File -LiteralPath \"$IxBin\\ix.cmd\" -Encoding ascii\n \n $userPath = [Environment]::GetEnvironmentVariable(\"PATH\",\"User\")"
+      }
+    ],
+    "commits": [
+      {
+        "sha": "cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8",
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "committer": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "message": "fix(windows): make the ix.cmd launcher diagnose its own broken target\n\n`ix upgrade` before 0.9.0 refreshed only the bash shim under Git Bash and\nleft `%IX_HOME%\\bin\\ix.cmd` aimed at a `cli\\ix.cmd` that the same upgrade\nhad just replaced with a version-nested directory. Everyone upgrading from\n<=0.8.1 on Windows lands there, and all cmd.exe offers is\n\n  '\"[local-path]\"' is not recognized as an internal or\n  external command, operable program or batch file.\n\nwhich names the wrapper rather than the cause and reads like a broken\ninstall rather than a broken upgrade.\n\nThis cannot be fixed forward. `ix upgrade` is executed by the version being\nupgraded *from*, so no change shipped today reaches the installs that break\n— and once broken, `ix doctor` is exactly as unreachable as `ix`. The\nrecovery instruction therefore has to live in the batch file itself, which\nis the only thing the user can still run.\n\nSo the launcher now checks its target first and, when it is gone, prints\nwhat happened and the reinstall one-liner. It also propagates %errorlevel%\non the success path, which the old one-line body silently swallowed --\nevery non-zero ix exit had been reported to callers as success.\n\ninstall.ps1 and refreshLaunchers() both emit this body; a test asserts the\ntwo stay identical, since they drifting apart is how the flat/nested shim\nbugs happened before.\n\n`ix doctor` gains a Windows-only launcher check. It cannot help the\nPowerShell user whose shim is dead, but the bash shim IS refreshed by every\nversion, so someone living in Git Bash can be broken in PowerShell for\nweeks without knowing; this tells them.\n\nRefs #385.",
+        "parents": [
+          {
+            "sha": "fa1004586b8057c410de826dd3c6da1b0d735853",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/fa1004586b8057c410de826dd3c6da1b0d735853"
+          }
+        ],
+        "tree_sha": "3f079bb8b43196fe3221342485ddc142a23d5de1",
+        "authored_at": "2026-08-10T20:32:43Z",
+        "committed_at": "2026-08-10T20:33:32Z"
+      }
+    ],
+    "comments": [],
+    "reviews": [],
+    "review_comments": [],
+    "timeline": [
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8"
+      },
+      {
+        "id": 29245510343,
+        "event": "review_requested",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T20:33:57Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29245510343"
+      },
+      {
+        "id": 29245511039,
+        "event": "mentioned",
+        "actor": {
+          "login": "RMA1313",
+          "id": 75065599,
+          "type": "User",
+          "html_url": "https://github.com/RMA1313"
+        },
+        "created_at": "2026-08-10T20:33:58Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29245511039"
+      },
+      {
+        "id": 29245511087,
+        "event": "subscribed",
+        "actor": {
+          "login": "RMA1313",
+          "id": 75065599,
+          "type": "User",
+          "html_url": "https://github.com/RMA1313"
+        },
+        "created_at": "2026-08-10T20:33:58Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29245511087"
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T20:34:20Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": 29245781226,
+        "event": "merged",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T20:40:25Z",
+        "commit_id": "83a534f6a8d116e17e68799d27c1010340def163",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29245781226"
+      },
+      {
+        "id": 29245781303,
+        "event": "closed",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T20:40:25Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29245781303"
+      },
+      {
+        "id": 29245782407,
+        "event": "head_ref_deleted",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T20:40:27Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29245782407"
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T21:04:21Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-10T21:16:51Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      }
+    ],
+    "source": "OFFICIAL_GITHUB_FACT",
+    "review_threads": [],
+    "review_thread_capture": {
+      "status": "VERIFIED",
+      "source": "GitHub GraphQL API"
+    }
+  },
+  "source_context": {
+    "id": "github:pull_request:ix-infrastructure/Ix#386",
+    "source": {
+      "type": "github_pull_request",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/386",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/386",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T20:33:56Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T20:40:27Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "PR-386",
+    "entity_type": "PULL_REQUEST",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "mirror_scope": "source PR, commits, files, comments, reviews, review comments, and review threads",
+    "related_analysis_types": [
+      "FINDING",
+      "DECISION",
+      "IMPLEMENTATION"
+    ],
+    "review_thread_state": "VERIFIED_GRAPHQL"
   },
   "relationships": [
     {
@@ -28,6 +452,46 @@
       "other_type": "file",
       "other_title": "CLI-HANDOFF/phase-15/FINAL-PR-WORTHINESS-AUDIT.json",
       "other_url": "https://alot1z.github.io/Ix-findings/entities/src-90ab8426282e"
+    },
+    {
+      "direction": "out",
+      "relationship": "FOUND_IN",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "in",
+      "relationship": "AUTHORED",
+      "other": "PERSON-KageBinary",
+      "other_type": "artifact",
+      "other_title": "KageBinary",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-kagebinary"
+    },
+    {
+      "direction": "out",
+      "relationship": "HEADS_AT",
+      "other": "COMMIT-cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8",
+      "other_type": "commit",
+      "other_title": "cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8"
+    },
+    {
+      "direction": "out",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "COMMIT-cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8",
+      "other_type": "commit",
+      "other_title": "cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGED_BY",
+      "other": "COMMIT-cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8",
+      "other_type": "commit",
+      "other_title": "cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-cecfad1ea8abf9e1db71672b7f8bd59a7ce0f5a8"
     }
   ]
 }

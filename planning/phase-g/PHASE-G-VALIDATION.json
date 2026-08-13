@@ -1,0 +1,37 @@
+{
+  "schema_version": "phase-g.validation.v1",
+  "phase": "G",
+  "status": "PARTIALLY_COMPLETE",
+  "checks": {
+    "event_present": true,
+    "canonical_entities_resolved": true,
+    "affected_routes_deterministic": true,
+    "projection_manifest_hashes": true,
+    "unaffected_files_identified": true,
+    "full_rebuild": false,
+    "external_mutations": 0,
+    "protected_paths_preserved": true
+  },
+  "counts": {
+    "affected_entities": 2,
+    "affected_routes": 2,
+    "affected_indexes": 8,
+    "affected_files": 4,
+    "projection_files": 9844,
+    "reusable_files": 9840
+  },
+  "blockers": [
+    "The generator now reuses byte-identical output files at write time, but it still computes the complete projection and does not yet emit only event-scoped entities."
+  ],
+  "unknowns": [
+    "Whether every category index can be safely emitted independently requires a full-vs-selective output comparison on a controlled fixture."
+  ],
+  "protected_work": {
+    "baseline": "planning/phase-g/PROTECTED-WORK-BASELINE.json",
+    "baseline_head": "309329a3dd733694bed967655436d5d8dcc352f2",
+    "current_head": "309329a3dd733694bed967655436d5d8dcc352f2",
+    "baseline_paths_missing": [],
+    "external_worktrees_mutated": false,
+    "external_mutations": 0
+  }
+}

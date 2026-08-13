@@ -1,0 +1,82 @@
+{
+  "id": "COMMIT-e3b591c3b0507b0440d6891dab2f1bcd1457f970",
+  "type": "commit",
+  "title": "e3b591c3b0507b0440d6891dab2f1bcd1457f970",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-e3b591c3b0507b0440d6891dab2f1bcd1457f970",
+  "summary": {
+    "id": "COMMIT-e3b591c3b0507b0440d6891dab2f1bcd1457f970",
+    "type": "commit",
+    "title": "e3b591c3b0507b0440d6891dab2f1bcd1457f970",
+    "status": "CURRENT"
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "POINTS_TO",
+      "other": "BRANCH-f572b0079d75",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:fix/windows-short-temp-path",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-f572b0079d75"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-01308e6c4a64231e7fcf6f545af1d350a52c68c0",
+      "other_type": "commit",
+      "other_title": "01308e6c4a64231e7fcf6f545af1d350a52c68c0",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-01308e6c4a64231e7fcf6f545af1d350a52c68c0"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-8fd3c7d3cd9b",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/upgrade-archive-shape.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-8fd3c7d3cd9b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ca4b1bc98da8",
+      "other_type": "artifact",
+      "other_title": "scripts/install/install.ps1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ca4b1bc98da8"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-0bd9434f2b1d",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/upgrade-archive-shape.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-0bd9434f2b1d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-85dbebf6023a",
+      "other_type": "artifact",
+      "other_title": "scripts/install/install.ps1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-85dbebf6023a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-8e90deead14d",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/upgrade-archive-shape.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-8e90deead14d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-9558933a8e77",
+      "other_type": "artifact",
+      "other_title": "scripts/install/install.ps1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-9558933a8e77"
+    }
+  ]
+}

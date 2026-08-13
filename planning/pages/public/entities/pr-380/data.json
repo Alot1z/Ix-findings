@@ -10,7 +10,416 @@
     "title": "Ix PR #380",
     "status": "RESOLVED",
     "number": 380,
-    "url": "https://github.com/ix-infrastructure/Ix/pull/380"
+    "url": "https://github.com/ix-infrastructure/Ix/pull/380",
+    "source_mirror_id": "github:pull_request:ix-infrastructure/Ix#380",
+    "source_type": "github_pull_request",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/pull/380",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/380",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "number": 380,
+    "node_id": "PR_kwDORdC75M781Pnj",
+    "title": "fix(resolve): preserve same-kind ambiguity",
+    "body": "Fixes #379.\n\n## Summary\n\nKeep exact-name resolution ambiguous when `--kind` still leaves multiple candidates, so commands do not silently analyze the wrong symbol and `--pick` remains effective.\n\n## Type\n- [x] Bug fix\n- [ ] Feature\n- [ ] Refactor\n- [ ] Docs\n- [ ] Test\n- [ ] CI\n\n## Changes\n- Remove the resolver shortcut that treated any requested kind as sufficient disambiguation.\n- Preserve the existing single-candidate, score-gap, preferred-kind, and path-based resolution rules.\n- Add regression coverage for duplicate exact-name classes with `--kind` and `--kind --pick 2`.\n\n## Validation\n\n- `cd ix-cli && npm test` (50 files, 650 tests, parser smoke passed)\n- `npm run typecheck`\n- `npm run build`\n- `npm run lint` (0 errors; 38 existing warnings)\n- Resolver-focused tests (2 files, 25 tests passed)\n- Anonymous end-to-end fixture: `--kind class` now reports both matching classes; `--kind class --pick 2` selects the second class and reports its two members\n\n## Checklist\n- [x] Tests pass\n- [x] Smoke tests pass\n- [x] No raw errors introduced\n- [x] CLI output follows Ix format\n\n## Release checklist (if merging to main)\n- [ ] `ix-cli/package.json` version bumped\n- [ ] After merge: tag pushed (`git tag vX.Y.Z && git push origin vX.Y.Z`)\n- [ ] If backend changes: `ix-memory-layer` tagged and released first\n- [ ] If `docker-compose.standalone.yml` changed: verified `curl | sh` install works\n",
+    "state": "closed",
+    "draft": false,
+    "merged": true,
+    "author": {
+      "login": "Hiro-Chiba",
+      "id": 203865699,
+      "type": "User",
+      "html_url": "https://github.com/Hiro-Chiba"
+    },
+    "html_url": "https://github.com/ix-infrastructure/Ix/pull/380",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/380",
+    "head": {
+      "ref": "fix/impact-ambiguous-target",
+      "sha": "b89046144f0a8cd960a7bbee22b3a12145c6c82e",
+      "repo": {
+        "id": 1329113547,
+        "full_name": "Hiro-Chiba/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "html_url": "https://github.com/Hiro-Chiba/Ix",
+        "api_url": "https://api.github.com/repos/Hiro-Chiba/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": true,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-08-09T19:06:50Z",
+        "updated_at": "2026-08-09T19:06:51Z",
+        "pushed_at": "2026-08-13T19:14:49Z",
+        "topics": [],
+        "language": null,
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 0,
+        "stargazers_count": 0,
+        "forks_count": 0,
+        "open_issues_count": 0
+      }
+    },
+    "base": {
+      "ref": "main",
+      "sha": "2157158446a74d3d2303f818dc4f3f4e3758432c",
+      "repo": {
+        "id": 1171307492,
+        "full_name": "ix-infrastructure/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "ix-infrastructure",
+          "id": 256883681,
+          "type": "Organization",
+          "html_url": "https://github.com/ix-infrastructure"
+        },
+        "html_url": "https://github.com/ix-infrastructure/Ix",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": false,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-03-03T04:48:38Z",
+        "updated_at": "2026-08-13T21:51:31Z",
+        "pushed_at": "2026-08-13T19:18:44Z",
+        "topics": [
+          "ai",
+          "ai-memory",
+          "claude-code",
+          "cli",
+          "code-analysis",
+          "code-mapping",
+          "code-memory",
+          "codebase-understanding",
+          "codex",
+          "developer-tools",
+          "llm",
+          "openclaw",
+          "persistent-memory",
+          "program-analysis",
+          "software-architecture",
+          "system-intelligence",
+          "system-mapping"
+        ],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 701,
+        "stargazers_count": 701,
+        "forks_count": 60,
+        "open_issues_count": 6
+      }
+    },
+    "merge_commit_sha": "fa1004586b8057c410de826dd3c6da1b0d735853",
+    "merged_at": "2026-08-10T19:49:16Z",
+    "closed_at": "2026-08-10T19:49:16Z",
+    "created_at": "2026-08-10T04:48:45Z",
+    "updated_at": "2026-08-10T19:49:16Z",
+    "labels": [],
+    "milestone": null,
+    "requested_reviewers": [
+      {
+        "login": "josephismikhail",
+        "id": 56614593,
+        "type": "User",
+        "html_url": "https://github.com/josephismikhail"
+      }
+    ],
+    "requested_teams": [],
+    "commits_count": 1,
+    "changed_files_count": 2,
+    "additions": 60,
+    "deletions": 5,
+    "changed_files": [
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 380,
+        "filename": "ix-cli/src/cli/__tests__/search-ranking.test.ts",
+        "status": "modified",
+        "additions": 60,
+        "deletions": 0,
+        "changes": 60,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/b89046144f0a8cd960a7bbee22b3a12145c6c82e/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fsearch-ranking.test.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/b89046144f0a8cd960a7bbee22b3a12145c6c82e/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fsearch-ranking.test.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fsearch-ranking.test.ts?ref=b89046144f0a8cd960a7bbee22b3a12145c6c82e",
+        "patch": "@@ -193,6 +193,66 @@ describe(\"resolveEntityFull: method preferred over chunk for PascalCase names\",\n   });\n });\n \n+describe(\"resolveEntityFull: same-kind ambiguity\", () => {\n+  const duplicateClasses = [\n+    {\n+      id: \"alpha-service-id\",\n+      name: \"DuplicateService\",\n+      kind: \"class\",\n+      provenance: { sourceUri: \"src/alpha/DuplicateService.ts\" },\n+    },\n+    {\n+      id: \"beta-service-id\",\n+      name: \"DuplicateService\",\n+      kind: \"class\",\n+      provenance: { sourceUri: \"src/beta/DuplicateService.ts\" },\n+    },\n+  ];\n+\n+  it(\"stays ambiguous when --kind matches multiple exact-name candidates\", async () => {\n+    const mockClient = {\n+      search: vi.fn().mockResolvedValue(duplicateClasses),\n+    } as any;\n+\n+    const result = await resolveEntityFull(\n+      mockClient,\n+      \"DuplicateService\",\n+      [\"class\"],\n+      { kind: \"class\" },\n+    );\n+\n+    expect(result.resolved).toBe(false);\n+    if (!result.resolved) {\n+      expect(result.ambiguous).toBe(true);\n+      if (result.ambiguous) {\n+        expect(result.result.candidates.map(candidate => candidate.id)).toEqual([\n+          \"alpha-service-id\",\n+          \"beta-service-id\",\n+        ]);\n+      }\n+    }\n+  });\n+\n+  it(\"honors --pick after --kind leaves multiple candidates\", async () => {\n+    const mockClient = {\n+      search: vi.fn().mockResolvedValue(duplicateClasses),\n+    } as any;\n+\n+    const result = await resolveEntityFull(\n+      mockClient,\n+      \"DuplicateService\",\n+      [\"class\"],\n+      { kind: \"class\", pick: 2 },\n+    );\n+\n+    expect(result.resolved).toBe(true);\n+    if (result.resolved) {\n+      expect(result.entity.id).toBe(\"beta-service-id\");\n+      expect(result.entity.path).toBe(\"src/beta/DuplicateService.ts\");\n+    }\n+  });\n+});\n+\n describe(\"resolveEntityFull --path hard exclusion\", () => {\n   it(\"excludes out-of-scope candidates even on exact name match\", async () => {\n     // Simulates Bug 1: etcd has 'Notifier' but prometheus does not."
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 380,
+        "filename": "ix-cli/src/cli/resolve.ts",
+        "status": "modified",
+        "additions": 0,
+        "deletions": 5,
+        "changes": 5,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/b89046144f0a8cd960a7bbee22b3a12145c6c82e/ix-cli%2Fsrc%2Fcli%2Fresolve.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/b89046144f0a8cd960a7bbee22b3a12145c6c82e/ix-cli%2Fsrc%2Fcli%2Fresolve.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fresolve.ts?ref=b89046144f0a8cd960a7bbee22b3a12145c6c82e",
+        "patch": "@@ -330,11 +330,6 @@ function pickBest(\n     return { resolved: true, entity: nodeToResolved(best.node, symbol, resolutionMode(best, opts)) };\n   }\n \n-  // If user specified --kind, take the best — they asked for it\n-  if (opts?.kind) {\n-    return { resolved: true, entity: nodeToResolved(best.node, symbol, \"exact\") };\n-  }\n-\n   // Check if all top candidates at the same score tier are the same entity\n   const topScore = best.score;\n   const topTier = unique.filter(s => s.score === topScore);"
+      }
+    ],
+    "commits": [
+      {
+        "sha": "b89046144f0a8cd960a7bbee22b3a12145c6c82e",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/b89046144f0a8cd960a7bbee22b3a12145c6c82e",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/b89046144f0a8cd960a7bbee22b3a12145c6c82e",
+        "author": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "committer": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "message": "fix(resolve): preserve same-kind ambiguity",
+        "parents": [
+          {
+            "sha": "2157158446a74d3d2303f818dc4f3f4e3758432c",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/2157158446a74d3d2303f818dc4f3f4e3758432c"
+          }
+        ],
+        "tree_sha": "dbc9975c58c82c4b97f89a0759d60d223a85033c",
+        "authored_at": "2026-08-10T04:47:52Z",
+        "committed_at": "2026-08-10T04:47:52Z"
+      }
+    ],
+    "comments": [],
+    "reviews": [
+      {
+        "id": 4899750103,
+        "node_id": "PRR_kwDORdC75M8AAAABJAxA1w",
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 380,
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "state": "APPROVED",
+        "body": "Thanks for contributing! This one is my favourite of the four — small, and it fixes a real correctness bug rather than papering over it.\n\nThe premise is right: `--kind` is a **filter**, not a **tiebreaker**. The old shortcut treated \"the user named a kind\" as consent to pick arbitrarily among everything matching that kind, so two same-named classes resolved to whichever sorted first — and because it returned `\"exact\"` as the resolution mode, the output actively asserted confidence it did not have. Silently analysing the wrong symbol is worse than asking.\n\nI checked the things a change like this usually breaks, and they hold:\n\n- **`--pick` still reaches the user.** `buildAmbiguous` already emits `\"Use --pick <n> or --path to disambiguate.\"`, so the new ambiguous path is actionable rather than a dead end.\n- **The earlier exits still cover the single-match case.** `--kind` narrowing to one candidate returns via the `unique.length === 1` branch with `resolutionMode(best, opts)`, so the ordinary \"kind disambiguates\" flow is unchanged.\n- **No accidental auto-pick downstream.** With the shortcut gone, `--kind` queries now fall through to the preferred-kind and container-kind rules. For two same-kind candidates the kind ranks are equal, so the `topTierKindRanks.every(...)` guard does not fire, and `CONTAINER_KINDS.has(bestKind) && !CONTAINER_KINDS.has(secondKind)` is false when both kinds are identical. Ambiguity is preserved, which is what your test asserts.\n\nBoth new tests are testing the actual behaviour change (ambiguity preserved; `--pick 2` selects by index and carries the right path), not just the code path.\n\nApproving. No changes requested.\n",
+        "html_url": "https://github.com/ix-infrastructure/Ix/pull/380#pullrequestreview-4899750103",
+        "submitted_at": "2026-08-10T18:19:55Z",
+        "commit_id": "b89046144f0a8cd960a7bbee22b3a12145c6c82e",
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      }
+    ],
+    "review_comments": [],
+    "timeline": [
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/b89046144f0a8cd960a7bbee22b3a12145c6c82e"
+      },
+      {
+        "id": 29202755311,
+        "event": "review_requested",
+        "actor": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "created_at": "2026-08-10T04:48:46Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29202755311"
+      },
+      {
+        "id": 4899750103,
+        "event": "reviewed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": "b89046144f0a8cd960a7bbee22b3a12145c6c82e",
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T19:33:07Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": 29243571764,
+        "event": "merged",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T19:49:16Z",
+        "commit_id": "fa1004586b8057c410de826dd3c6da1b0d735853",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29243571764"
+      },
+      {
+        "id": 29243571830,
+        "event": "closed",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T19:49:16Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29243571830"
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T19:56:42Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T19:56:43Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-11T00:37:03Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": 29254287616,
+        "event": "referenced",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-11T01:04:03Z",
+        "commit_id": "a56d882ae64453a93f9b9731d967836cecfda435",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29254287616"
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-13T19:12:05Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      }
+    ],
+    "source": "OFFICIAL_GITHUB_FACT",
+    "review_threads": [],
+    "review_thread_capture": {
+      "status": "VERIFIED",
+      "source": "GitHub GraphQL API"
+    }
+  },
+  "source_context": {
+    "id": "github:pull_request:ix-infrastructure/Ix#380",
+    "source": {
+      "type": "github_pull_request",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/380",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/380",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T04:48:45Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T19:49:16Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "PR-380",
+    "entity_type": "PULL_REQUEST",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "mirror_scope": "source PR, commits, files, comments, reviews, review comments, and review threads",
+    "related_analysis_types": [
+      "FINDING",
+      "DECISION",
+      "IMPLEMENTATION"
+    ],
+    "review_thread_state": "VERIFIED_GRAPHQL"
   },
   "relationships": [
     {
@@ -44,6 +453,62 @@
       "other_type": "file",
       "other_title": "CLI-HANDOFF/phase-15/FINAL-PR-WORTHINESS-AUDIT.json",
       "other_url": "https://alot1z.github.io/Ix-findings/entities/src-90ab8426282e"
+    },
+    {
+      "direction": "out",
+      "relationship": "FOUND_IN",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "in",
+      "relationship": "AUTHORED",
+      "other": "PERSON-Hiro-Chiba",
+      "other_type": "artifact",
+      "other_title": "Hiro-Chiba",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-hiro-chiba"
+    },
+    {
+      "direction": "out",
+      "relationship": "HEADS_AT",
+      "other": "COMMIT-b89046144f0a8cd960a7bbee22b3a12145c6c82e",
+      "other_type": "commit",
+      "other_title": "b89046144f0a8cd960a7bbee22b3a12145c6c82e",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b89046144f0a8cd960a7bbee22b3a12145c6c82e"
+    },
+    {
+      "direction": "out",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "COMMIT-b89046144f0a8cd960a7bbee22b3a12145c6c82e",
+      "other_type": "commit",
+      "other_title": "b89046144f0a8cd960a7bbee22b3a12145c6c82e",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b89046144f0a8cd960a7bbee22b3a12145c6c82e"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_REVIEW",
+      "other": "REVIEW-ix-infrastructure-Ix-pr-380-4899750103",
+      "other_type": "artifact",
+      "other_title": "Review 4899750103 on PR #380",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/review-ix-infrastructure-ix-pr-380-4899750103"
+    },
+    {
+      "direction": "in",
+      "relationship": "REVIEWED_BY",
+      "other": "PERSON-KageBinary",
+      "other_type": "artifact",
+      "other_title": "KageBinary",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-kagebinary"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGED_BY",
+      "other": "COMMIT-b89046144f0a8cd960a7bbee22b3a12145c6c82e",
+      "other_type": "commit",
+      "other_title": "b89046144f0a8cd960a7bbee22b3a12145c6c82e",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b89046144f0a8cd960a7bbee22b3a12145c6c82e"
     }
   ]
 }

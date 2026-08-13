@@ -1,0 +1,71 @@
+{
+  "schema_version": "phase-d.sync-receipt.v1",
+  "receipt_id": "SYNC-59481a541a4e0af8",
+  "status": "PASS",
+  "mode": "LOCAL_MANUAL_DETERMINISTIC_DRY_RUN",
+  "source_event": {
+    "event_id": "phase-d-representative-4a873acc3b6b",
+    "source": "Phase-C FRESHNESS-DELTA.json",
+    "event_type": "changed_pr_head",
+    "observed_at": "2026-08-12T10:42:30.430Z",
+    "cursor": "fa6ad7b0ff52734685ff7425b08ec240837751fa",
+    "object": {
+      "entity_id": "PR-358",
+      "kind": "PULL_REQUEST",
+      "previous_head": null,
+      "current_head": "1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+      "previous_state": null,
+      "current_state": "closed",
+      "status": "HISTORICAL"
+    }
+  },
+  "watermark_before": "2026-08-12T10:42:30.430Z",
+  "watermark_after": "2026-08-12T10:42:30.430Z",
+  "source_cursor_before": "fa6ad7b0ff52734685ff7425b08ec240837751fa",
+  "source_cursor_after": "fa6ad7b0ff52734685ff7425b08ec240837751fa",
+  "changed_objects": [
+    {
+      "entity_id": "PR-358",
+      "kind": "PULL_REQUEST",
+      "previous_head": null,
+      "current_head": "1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+      "previous_state": null,
+      "current_state": "closed",
+      "status": "HISTORICAL"
+    }
+  ],
+  "affected_entity_ids": [
+    "COMMIT-1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+    "PR-358"
+  ],
+  "affected_relationship_types": [
+    "CHANGES",
+    "HEADS_AT",
+    "HEAD_MOVED_TO"
+  ],
+  "rebuild_scope": {
+    "projections": [
+      "entity",
+      "freshness",
+      "graph",
+      "llm",
+      "routes",
+      "search"
+    ],
+    "full_rebuild": false,
+    "reason": "Only event-affected entities and relationship types are selected."
+  },
+  "validation": {
+    "deterministic_event_id": true,
+    "source_cursor_present": true,
+    "all_commit_ids_full_sha": true,
+    "no_unknown_entity_ids": true,
+    "unknown_entity_ids": [],
+    "canonical_entity_count": 3614,
+    "canonical_relationship_count": 13535,
+    "design_schema": "phase-c.incremental-sync.v1"
+  },
+  "started_at": "2026-08-12T11:57:26.936Z",
+  "completed_at": "2026-08-12T11:57:26.936Z",
+  "failure": null
+}

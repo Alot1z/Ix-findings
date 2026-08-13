@@ -1,0 +1,85 @@
+{
+  "id": "REVIEW-ix-infrastructure-Ix-pr-392-4902849260",
+  "type": "artifact",
+  "title": "Review 4902849260 on PR #392",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/review-ix-infrastructure-ix-pr-392-4902849260",
+  "summary": {
+    "id": "REVIEW-ix-infrastructure-Ix-pr-392-4902849260",
+    "type": "artifact",
+    "title": "Review 4902849260 on PR #392",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/pull/392#pullrequestreview-4902849260",
+    "source_mirror_id": "github:review:ix-infrastructure/Ix#pr-392-4902849260",
+    "source_type": "github_review",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/pull/392#pullrequestreview-4902849260",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "id": 4902849260,
+    "node_id": "PRR_kwDORdC75M8AAAABJDuK7A",
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 392,
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "state": "CHANGES_REQUESTED",
+    "body": "Retracting my earlier approval — a deeper review found two correctness regressions introduced by moving the scratch into `IX_HOME`, one of which is data loss.\n\n## Blocking: a failed download can delete the user's only working compass\n\n`cleanupCompassSwap:615` tests `existsSync(join(compassDir, \"index.html\"))` and its comment is explicit about why: a `compass/` holding only a `.version` is a real state, and a bare `existsSync` \"would call that 'back in place' and drop a backup the caller had just told the user to go and rescue.\"\n\n`recover()` inside `sweepUpgradeOrphans` uses exactly that bare `existsSync(dest)`. So with `compass/` left as a `.version`-only husk and `.compass-backup-1234` holding the only real bundle, `recover()` declines to restore, and the loop below then deletes the backup.\n\nOn `main` that sweep ran *after* a successful download, so an offline run exited before reaching it and the backup survived for the next attempt. Hoisting the sweep above `curl` means **a run that installs nothing now destroys it** — the user sees only \"[error] Failed to download\", and `ix view` is permanently blank with no copy left on disk.\n\nThe two tests can't see this because they never construct the husk. Aligning `recover`'s test with `cleanupCompassSwap`'s (`index.html`, not bare `existsSync`) fixes it and makes the two agree.\n\n## Blocking: concurrent `ix upgrade` deletes an in-flight download\n\nThe scratch moved from `os.tmpdir()`, where no sweep could match it, into `IX_HOME` with a swept prefix. Process A creates `.cli-download-AAAAAA` and starts a curl with a 300s timeout; process B — a second terminal, or `bootstrap.sh` re-running `ix upgrade` when it finds compass missing — calls `prepareDownloadDir` and deletes A's directory wholesale. On Linux/macOS curl's fd stays valid so A exits 0, then `tar -xzf` hits a missing path and A reports \"Failed to extract CLI update\" on a good download.\n\n`.cli-staging-<pid>` has the same shape on main, but its window is the few seconds of extraction; this one is the whole download. Some ownership marker (pid in the name, skipped when that pid is live) would close both.\n\n## Worth addressing\n\n- `prepareDownloadDir` in the compass branch is the first filesystem write under `IX_HOME` and sits *outside* the try/catch that deliberately keeps compass failures non-fatal. On an unwritable `~/.ix` this turns \"[!!] Compass extract failed / ix view keeps working\" into a hard abort that also skips `writeCache`.\n- Two bare `rmSync` calls (959, 1264) skip the retry treatment `rmQuiet` exists for — and this PR moves those directories into the user profile, where AV and indexer handles are the norm, which is precisely the case `rmQuiet`'s comment describes.\n\n## One question before this lands\n\n#349's reporter is on `[local-path] 10` and their confirmed workaround was pointing TEMP at a space-free path. This moves the scratch from `[local-path] (no space — 8.3 aliases never contain one) to `[local-path] 10\\.ix\\.cli-download-...` (space). If the failure is space-driven rather than short-path-driven, the upgrade path now has the space where it previously didn't. \"Refs #349\" rather than \"Fixes\" is the right call, and the PR is honest that it's unreproduced — but \"fixes the failure under every reading of it\" doesn't hold under the space reading. Nothing in the suite sets `IX_HOME` to a path with a space.\n\nTaking the upgrade path off TEMP is still right, and the `-download-` vs `-backup-` prefix reasoning is correct. It's the sweep's new reach that needs bounding.",
+    "html_url": "https://github.com/ix-infrastructure/Ix/pull/392#pullrequestreview-4902849260",
+    "submitted_at": "2026-08-11T04:05:48Z",
+    "commit_id": "c8754ba18918bc0c7a5f76c87605ed0df0d26c82",
+    "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+    "source": "OFFICIAL_GITHUB_FACT",
+    "parent_pr": 392
+  },
+  "source_context": {
+    "id": "github:review:ix-infrastructure/Ix#pr-392-4902849260",
+    "source": {
+      "type": "github_review",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/392#pullrequestreview-4902849260",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-11T04:05:48Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-11T04:05:48Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "REVIEW-ix-infrastructure-Ix-pr-392-4902849260",
+    "entity_type": "REVIEW",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#392",
+    "review_thread_state": "VERIFIED_GRAPHQL_NO_ASSOCIATED_THREAD_DATA"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "HAS_REVIEW",
+      "other": "PR-392",
+      "other_type": "pr",
+      "other_title": "Ix PR #392",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-392"
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "id": "FILE-650da18e9cd9",
+  "type": "artifact",
+  "title": "ix-cli/src/cli/__tests__/stale-workspace.test.ts",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/file-650da18e9cd9",
+  "summary": {
+    "id": "FILE-650da18e9cd9",
+    "type": "artifact",
+    "title": "ix-cli/src/cli/__tests__/stale-workspace.test.ts",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "source_mirror_id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/__tests__/stale-workspace.test.ts",
+    "source_type": "github_file",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/blob/d827cc9fa63a203b138d35621057af7c9a21bad0/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fstale-workspace.test.ts",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 378,
+    "filename": "ix-cli/src/cli/__tests__/stale-workspace.test.ts",
+    "status": "modified",
+    "additions": 85,
+    "deletions": 2,
+    "changes": 87,
+    "blob_url": "https://github.com/ix-infrastructure/Ix/blob/d827cc9fa63a203b138d35621057af7c9a21bad0/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fstale-workspace.test.ts",
+    "raw_url": "https://github.com/ix-infrastructure/Ix/raw/d827cc9fa63a203b138d35621057af7c9a21bad0/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fstale-workspace.test.ts",
+    "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fstale-workspace.test.ts?ref=d827cc9fa63a203b138d35621057af7c9a21bad0",
+    "patch": "@@ -3,10 +3,10 @@ import * as fs from \"node:fs\";\n import * as os from \"node:os\";\n import * as path from \"node:path\";\n \n-import { ingestMtimeCachePath } from \"../config.js\";\n+import { ingestMtimeCachePath, saveConfig } from \"../config.js\";\n import { loadIngestBaseline } from \"../ingest-baseline.js\";\n import { persistIngestBaselineIfClean } from \"../commands/ingest.js\";\n-import { detectStaleFiles } from \"../stale.js\";\n+import { detectStaleFiles, isFileStale } from \"../stale.js\";\n \n let home: string;\n let savedHome: string | undefined;\n@@ -117,6 +117,89 @@ describe(\"workspace-scoped staleness\", () => {\n     });\n   });\n \n+  it(\"reports a mapped file that was deleted after ingest\", async () => {\n+    const root = path.join(home, \"deleted-file\");\n+    const filePath = writeSource(root, \"deleted.js\", \"export const value = 1;\\n\");\n+    const ingestedAt = new Date(\"2026-08-09T18:00:00.000Z\");\n+    persistIngestBaselineIfClean(\n+      root,\n+      new Map([[filePath, fs.statSync(filePath).mtimeMs]]),\n+      14,\n+      0,\n+      0,\n+      ingestedAt,\n+    );\n+    saveConfig({\n+      endpoint: \"http://[redacted]8090\",\n+      format: \"text\",\n+      workspaces: [\n+        {\n+          workspace_id: \"dead0001\",\n+          workspace_name: \"deleted-file\",\n+          root_path: root,\n+          default: true,\n+        },\n+      ],\n+    });\n+\n+    fs.unlinkSync(filePath);\n+\n+    expect(detectStaleFiles(root)).toEqual({\n+      lastIngestAt: ingestedAt.toISOString(),\n+      currentRev: 14,\n+      staleFiles: 1,\n+      sampleChangedFiles: [\"deleted.js\"],\n+    });\n+    expect(isFileStale(filePath)).toBe(true);\n+    expect(isFileStale(path.join(root, \"never-mapped.js\"))).toBe(false);\n+  });\n+\n+  it(\"persists an empty baseline after the last mapped file is deleted\", () => {\n+    const root = path.join(home, \"empty-after-delete\");\n+    const filePath = writeSource(root, \"deleted.js\", \"export const value = 1;\\n\");\n+    persistIngestBaselineIfClean(\n+      root,\n+      new Map([[filePath, fs.statSync(filePath).mtimeMs]]),\n+      14,\n+      0,\n+      0,\n+      new Date(\"2026-08-09T18:00:00.000Z\"),\n+    );\n+\n+    const completedAt = new Date(\"2026-08-09T18:01:00.000Z\");\n+    const deletedFiles = new Map([[filePath, [\"caller.js\"]]]);\n+    expect(\n+      persistIngestBaselineIfClean(root, new Map(), 15, 0, 0, completedAt, deletedFiles),\n+    ).toBe(true);\n+\n+    expect(loadIngestBaseline(root)).toEqual({\n+      files: new Map(),\n+      deletedFiles,\n+      currentRev: 15,\n+      lastIngestAt: completedAt.toISOString(),\n+    });\n+  });\n+\n+  it(\"refuses an empty baseline when nothing was deleted\", () => {\n+    // An empty mtime map with no deletions is a discovery failure — an\n+    // over-broad ignore rule, the wrong cwd — and persisting it silently\n+    // discards the baseline, forcing a full re-ingest next run.\n+    const root = path.join(home, \"discovery-failure\");\n+    const filePath = writeSource(root, \"kept.js\", \"export const value = 1;\\n\");\n+    persistIngestBaselineIfClean(\n+      root,\n+      new Map([[filePath, fs.statSync(filePath).mtimeMs]]),\n+      20,\n+      0,\n+      0,\n+      new Date(\"2026-08-10T18:00:00.000Z\"),\n+    );\n+\n+    expect(persistIngestBaselineIfClean(root, new Map(), 21, 0, 0)).toBe(false);\n+    expect(loadIngestBaseline(root)?.files.size).toBe(1);\n+    expect(loadIngestBaseline(root)?.currentRev).toBe(20);\n+  });\n+\n   it(\"uses ingest time for files absent from the mtime cache\", async () => {\n     const root = path.join(home, \"partial-cache\");\n     const mappedFile = writeSource(root, \"mapped.js\", \"export const mapped = true;\\n\");",
+    "parent_pr": 378
+  },
+  "source_context": {
+    "id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/__tests__/stale-workspace.test.ts",
+    "source": {
+      "type": "github_file",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/blob/d827cc9fa63a203b138d35621057af7c9a21bad0/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fstale-workspace.test.ts",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T04:37:07Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T21:14:21Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "FILE-650da18e9cd9",
+    "entity_type": "FILE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#378",
+    "line_precision": "FILE_LEVEL"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-1b2e760d5dfd2cf31f6cf4ba818ed2cd200edcda",
+      "other_type": "commit",
+      "other_title": "1b2e760d5dfd2cf31f6cf4ba818ed2cd200edcda",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-1b2e760d5dfd2cf31f6cf4ba818ed2cd200edcda"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-16b0d663bab744f9ea5c02341919fff5636756ea",
+      "other_type": "commit",
+      "other_title": "16b0d663bab744f9ea5c02341919fff5636756ea",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-16b0d663bab744f9ea5c02341919fff5636756ea"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-d827cc9fa63a203b138d35621057af7c9a21bad0",
+      "other_type": "commit",
+      "other_title": "d827cc9fa63a203b138d35621057af7c9a21bad0",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-d827cc9fa63a203b138d35621057af7c9a21bad0"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-b25bf2efe837a29022770bd220c58b2da05bca32",
+      "other_type": "commit",
+      "other_title": "b25bf2efe837a29022770bd220c58b2da05bca32",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b25bf2efe837a29022770bd220c58b2da05bca32"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-e6a1d7f54195c268e9c777c89ba2a4e8a113b9d4",
+      "other_type": "commit",
+      "other_title": "e6a1d7f54195c268e9c777c89ba2a4e8a113b9d4",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-e6a1d7f54195c268e9c777c89ba2a4e8a113b9d4"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-2f68cccb28440f2679e838decc40866cd5d98f34",
+      "other_type": "commit",
+      "other_title": "2f68cccb28440f2679e838decc40866cd5d98f34",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-2f68cccb28440f2679e838decc40866cd5d98f34"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-ebeee6ce5eb7baa15f519b4879b26d9bd461dc14",
+      "other_type": "commit",
+      "other_title": "ebeee6ce5eb7baa15f519b4879b26d9bd461dc14",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-ebeee6ce5eb7baa15f519b4879b26d9bd461dc14"
+    }
+  ]
+}

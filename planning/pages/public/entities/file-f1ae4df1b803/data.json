@@ -1,0 +1,102 @@
+{
+  "id": "FILE-f1ae4df1b803",
+  "type": "artifact",
+  "title": "skills/ix/references/commands.md",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/file-f1ae4df1b803",
+  "summary": {
+    "id": "FILE-f1ae4df1b803",
+    "type": "artifact",
+    "title": "skills/ix/references/commands.md",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "source_mirror_id": "github:file:ix-infrastructure/Ix:skills/ix/references/commands.md",
+    "source_type": "github_file",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/blob/0c9087c4292254472174b02475d094359c88c055/skills%2Fix%2Freferences%2Fcommands.md",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 368,
+    "filename": "skills/ix/references/commands.md",
+    "status": "added",
+    "additions": 135,
+    "deletions": 0,
+    "changes": 135,
+    "blob_url": "https://github.com/ix-infrastructure/Ix/blob/0c9087c4292254472174b02475d094359c88c055/skills%2Fix%2Freferences%2Fcommands.md",
+    "raw_url": "https://github.com/ix-infrastructure/Ix/raw/0c9087c4292254472174b02475d094359c88c055/skills%2Fix%2Freferences%2Fcommands.md",
+    "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/skills%2Fix%2Freferences%2Fcommands.md?ref=0c9087c4292254472174b02475d094359c88c055",
+    "patch": "@@ -0,0 +1,135 @@\n+# Ix Command Reference\n+\n+Use bounded, composable CLI commands — never broad queries. Run every command\n+with the `ix` prefix from the repo root of the mapped workspace.\n+\n+## High-Level Workflow Commands (prefer first)\n+\n+These aggregate multiple graph operations into single bounded responses.\n+\n+| Goal | Command | Example |\n+|---|---|---|\n+| Blast radius / impact | `ix impact` | `ix impact UserService --format llm` |\n+| Hotspot discovery | `ix rank` | `ix rank --by dependents --kind class --top 10 --format llm` |\n+| One-shot summary | `ix overview` | `ix overview IngestionService --format llm` |\n+| Scoped entity listing | `ix inventory` | `ix inventory --kind function --path auth.py --format llm` |\n+\n+## Finding & Understanding Code\n+\n+| Goal | Command | Example |\n+|---|---|---|\n+| Find entity by name | `ix search` | `ix search IngestionService --kind class --limit 10` |\n+| Understand a symbol | `ix explain` | `ix explain IngestionService` |\n+| Read source code | `ix read` | `ix read src/auth.py:10-50` or `ix read verify_token` |\n+| Full entity details | `ix entity` | `ix entity <id> --format json` |\n+| Fast text search | `ix text` | `ix text \"verify_token\" --language python --limit 20` |\n+| Find symbol (graph+text) | `ix locate` | `ix locate AuthProvider --kind class` |\n+\n+## Navigating Relationships\n+\n+| Goal | Command | Example |\n+|---|---|---|\n+| What calls a function | `ix callers` | `ix callers verify_token --format json` |\n+| What a function calls | `ix callees` | `ix callees processPayment` |\n+| Members of a class | `ix contains` | `ix contains IngestionService` |\n+| What an entity imports | `ix imports` | `ix imports auth_provider.py` |\n+| What imports an entity | `ix imported-by` | `ix imported-by AuthProvider` |\n+| Dependency impact | `ix depends` | `ix depends verify_token --depth 2` |\n+\n+## History, Diffs & Contradictions\n+\n+| Goal | Command | Example |\n+|---|---|---|\n+| Entity history | `ix history` | `ix history <entityId> --format llm` |\n+| Changes between revisions | `ix diff` | `ix diff 1 5 --summary --format llm` |\n+| Detect contradictions | `ix conflicts` | `ix conflicts --format llm` |\n+\n+## Architecture Analysis\n+\n+| Goal | Command | Example |\n+|---|---|---|\n+| Detect code smells | `ix smells` | `ix smells --format json` |\n+| Score subsystems | `ix subsystems` | `ix subsystems --level 2 --format json` |\n+| List smell claims | `ix smells --list` | `ix smells --list --format json` |\n+| List subsystem scores | `ix subsystems --list` | `ix subsystems --list --format json` |\n+\n+## Ingestion & Health\n+\n+| Goal | Command | Example |\n+|---|---|---|\n+| Update graph + map | `ix map --silent` | `ix map --silent` |\n+| Ingest GitHub data | `ix ingest` | `ix ingest --github owner/repo --limit 50` |\n+| Backend health | `ix status` | `ix status` |\n+| System doctor | `ix doctor` | `ix doctor` |\n+| Start backend | `ix docker start` | `ix docker start` |\n+| Graph statistics | `ix stats` | `ix stats --format json` |\n+\n+## Decomposition Recipes\n+\n+**\"How does ingestion work?\"**\n+```bash\n+ix overview IngestionService --format json    # start here\n+ix contains IngestionService --format json    # more detail if needed\n+ix callees parseFile --format json\n+```\n+\n+**\"What depends on verify_token?\"**\n+```bash\n+ix impact verify_token --format json          # one-shot answer\n+ix callers verify_token --format json         # or manually\n+ix imported-by verify_token --format json\n+```\n+\n+**\"What are the most important classes?\"**\n+```bash\n+ix rank --by dependents --kind class --top 10 --format json\n+```\n+\n+**\"List all functions in a file\"**\n+```bash\n+ix inventory --kind function --path auth.py --format llm\n+```\n+\n+## Best Practices\n+\n+- Always use `--kind` with `ix search` to get bounded results.\n+- Use `ix inventory` instead of `ix search \"\"` for listing entities by kind.\n+- Use `ix diff --summary` for broad revision comparisons; `--full` only when\n+  every individual change is needed.\n+- Always use `--limit` to cap result sets.\n+- Use `--path` or `--language` to restrict text searches.\n+- Reuse exact entity IDs from previous JSON results when chaining commands.\n+- Decompose large questions into multiple targeted calls.\n+\n+## Gotchas (surprises that already bit us)\n+\n+- **`ix reset` is GLOBAL, not workspace-scoped.** `ix reset` → `POST\n+  /v1/reset`, and `ix reset --code` → `POST /v1/reset/code`; neither sends a\n+  workspace_id, so both wipe EVERY workspace's graph in the shared backend —\n+  the cwd only decides which mtime cache gets cleared. Running\n+  `ix reset -y --code` in one repo also destroys the graphs of every other\n+  mapped workspace (e.g. packwise) and empties the `--all` combined view;\n+  re-run `ix map` per workspace to rebuild. A workspace-scoped endpoint\n+  (`/v1/reset/workspace`, via `deleteWorkspace`) exists server-side, but the\n+  CLI does not expose it.\n+\n+- **The OSS↔Pro command boundary is derived at runtime, not declared.**\n+  `main.ts` snapshots `ossCmdNames` immediately after `registerOssCommands()`;\n+  the Pro probe (`tryLoadProCommands`) then diffs whatever commands exist\n+  against that set to decide which count as \"Pro\". Consequences:\n+  - Adding a `register*Command` call in `oss.ts` silently reclassifies that\n+    command as OSS — it vanishes from the Pro help diff.\n+  - Removing one from `oss.ts` makes Pro own it, or — without the license — a\n+    Pro stub replaces it (stubs skip any name already registered, so an OSS\n+    command left in place blocks its stub).\n+  - `registerProCommands` is async (each Pro command is dynamically imported)\n+    and MUST be awaited; skipping the await makes every `ix <pro-cmd>` fail\n+    with \"unknown command\".\n+  - Real example: `registerPatchesCommand` is defined but never called in\n+    `oss.ts`, so `ix patches` errors as an unknown command today; wiring it in\n+    would flip it to OSS.\n+\n+## Do NOT Use\n+\n+- `ix query` — deprecated, produces oversized low-signal responses.\n+- NLP-style free-text QA in a single command — decompose into targeted calls.",
+    "parent_pr": 368
+  },
+  "source_context": {
+    "id": "github:file:ix-infrastructure/Ix:skills/ix/references/commands.md",
+    "source": {
+      "type": "github_file",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/blob/0c9087c4292254472174b02475d094359c88c055/skills%2Fix%2Freferences%2Fcommands.md",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T00:15:22Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T03:58:43Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "FILE-f1ae4df1b803",
+    "entity_type": "FILE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#368",
+    "line_precision": "FILE_LEVEL"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+      "other_type": "commit",
+      "other_title": "b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b038c46117c26e17ff7f3dc8edd4c4f5083f79f6"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-0c9087c4292254472174b02475d094359c88c055",
+      "other_type": "commit",
+      "other_title": "0c9087c4292254472174b02475d094359c88c055",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-0c9087c4292254472174b02475d094359c88c055"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-6a1e7e178b905745c12f9faebe0a56f91c8ffb0c",
+      "other_type": "commit",
+      "other_title": "6a1e7e178b905745c12f9faebe0a56f91c8ffb0c",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-6a1e7e178b905745c12f9faebe0a56f91c8ffb0c"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-2157158446a74d3d2303f818dc4f3f4e3758432c",
+      "other_type": "commit",
+      "other_title": "2157158446a74d3d2303f818dc4f3f4e3758432c",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-2157158446a74d3d2303f818dc4f3f4e3758432c"
+    }
+  ]
+}

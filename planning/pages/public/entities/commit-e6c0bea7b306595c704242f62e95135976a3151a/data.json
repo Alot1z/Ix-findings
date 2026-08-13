@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-e6c0bea7b306595c704242f62e95135976a3151a",
+  "type": "commit",
+  "title": "e6c0bea7b306595c704242f62e95135976a3151a",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-e6c0bea7b306595c704242f62e95135976a3151a",
+  "summary": {
+    "id": "COMMIT-e6c0bea7b306595c704242f62e95135976a3151a",
+    "type": "commit",
+    "title": "e6c0bea7b306595c704242f62e95135976a3151a",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/e6c0bea7b306595c704242f62e95135976a3151a",
+    "author": {
+      "name": "Joseph Mikhail",
+      "email": "jsmikhai@ucsd.edu"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-7258e0d9cd2c2baf81bb9ff2fa7387be972cbf70",
+      "other_type": "commit",
+      "other_title": "7258e0d9cd2c2baf81bb9ff2fa7387be972cbf70",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-7258e0d9cd2c2baf81bb9ff2fa7387be972cbf70"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-97df62016139c155def4d0c2d5b3ea74ef41e772",
+      "other_type": "commit",
+      "other_title": "97df62016139c155def4d0c2d5b3ea74ef41e772",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-97df62016139c155def4d0c2d5b3ea74ef41e772"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e559b6bc2060",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/upgrade.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e559b6bc2060"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5335f7460d14",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/upgrade.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5335f7460d14"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3d4b7b10ad9e",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/upgrade.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3d4b7b10ad9e"
+    }
+  ]
+}

@@ -1,0 +1,222 @@
+{
+  "id": "ISSUE-385",
+  "type": "issue",
+  "title": "Ix issue #385",
+  "status": "RESOLVED",
+  "url": "https://alot1z.github.io/Ix-findings/entities/issue-385",
+  "summary": {
+    "id": "ISSUE-385",
+    "type": "issue",
+    "title": "Ix issue #385",
+    "status": "RESOLVED",
+    "number": 385,
+    "url": "https://github.com/ix-infrastructure/Ix/issues/385",
+    "source_mirror_id": "github:issue:ix-infrastructure/Ix#385",
+    "source_type": "github_issue",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/issues/385",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/385",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "number": 385,
+    "node_id": "I_kwDORdC75M8AAAABMNBCyw",
+    "title": "[bug] ix upgrade breaks Windows CLI when upgrading from 0.8.1 to 0.9.1",
+    "body": "## Description\n\nRunning `ix upgrade` on Windows broke the installed Ix CLI while upgrading from version `0.8.1` to `0.9.1`.\n\nBefore the upgrade, `ix` worked normally. After the upgrade completed, invoking `ix` failed because the generated wrapper at `~\\.ix\\bin\\ix.cmd` pointed to a CLI path that no longer existed.\n\n## Steps to reproduce\n\n1. Start with a working Ix `0.8.1` installation on Windows.\n2. Run:\n\n   ```powershell\n   ix upgrade\n   ```\n3. After upgrading to `0.9.1`, run:\n\n   ```powershell\n   ix\n   ```\n\n## Expected behavior\n\n`ix upgrade` should upgrade the CLI in place and leave the `ix` command functional.\n\nAfter upgrading, `ix --version` should report `0.9.1` and all existing commands should continue to work.\n\n## Actual behavior\n\nAfter upgrading from `0.8.1` to `0.9.1`, the `ix` command became unusable.\n\nThe wrapper under:\n\n```text\n[local-path] 10\\.ix\\bin\\ix.cmd\n```\n\nattempted to execute:\n\n```text\n[local-path] 10\\.ix\\bin\\..\\cli\\ix.cmd\n```\n\nbut that target was no longer available after the upgrade.\n\nRe-running the full Windows installer restored the CLI.\n\n## CLI output\n\n```text\nPS [local-path] 10\\Documents\\project\\coin> ix\n\n'\"[local-path] 10\\.ix\\bin\\..\\cli\\ix.cmd\"' is not recognized as an internal or external command,\noperable program or batch file.\n```\n\n## Environment\n\n* OS: Windows\n* Node: v24.18.0\n* Ix version before upgrade: 0.8.1\n* Ix version being upgraded to: 0.9.1\n",
+    "state": "closed",
+    "state_reason": "completed",
+    "author": {
+      "login": "RMA1313",
+      "id": 75065599,
+      "type": "User",
+      "html_url": "https://github.com/RMA1313"
+    },
+    "html_url": "https://github.com/ix-infrastructure/Ix/issues/385",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/385",
+    "labels": [
+      "bug"
+    ],
+    "milestone": null,
+    "created_at": "2026-08-10T20:07:02Z",
+    "updated_at": "2026-08-13T15:04:20Z",
+    "closed_at": "2026-08-13T15:04:20Z",
+    "comments_count": 3,
+    "locked": false,
+    "comments": [
+      {
+        "id": 5245654535,
+        "node_id": "IC_kwDORdC75M8AAAABOKpWBw",
+        "repository": "ix-infrastructure/Ix",
+        "parent_type": "ISSUE",
+        "parent_number": 385,
+        "kind": "ISSUE_COMMENT",
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "body": "Thank you for the issue — this is an unusually good report. Naming the exact path the wrapper tried to execute is what made it diagnosable in one pass, and noting that reinstalling restored it confirmed the cause before anyone had to reproduce it.\n\n## Unblocking you now\n\n```powershell\nirm https://ix-infra.com/install.ps1 | iex\n```\n\nThat rewrites the launcher and restores the CLI, which matches what you already found. You should not need to uninstall first, and your graph and config are untouched — the breakage is only in `~\\.ix\\bin\\ix.cmd`.\n\n## What happened\n\nYou were on the wrong side of a one-way door.\n\n`ix upgrade` before 0.9.0 refreshed only the **bash** shim (the one Git Bash uses) and never touched `~\\.ix\\bin\\ix.cmd`, which is the launcher native PowerShell actually runs. Meanwhile the upgrade extracted the new CLI into a **version-nested** directory, so `~\\.ix\\cli\\ix.cmd` — the path your launcher points at — stopped existing. Your wrapper was left aimed at a file the upgrade had just moved.\n\nThe layout half of this was fixed in #346 and shipped in v0.9.0. The catch is that `ix upgrade` is run by the version you are upgrading *from*, so 0.8.1 executed 0.8.1's code and the fix could not participate. **Anyone going from ≤0.8.1 to 0.9.x on Windows hits this**, and no change we ship can prevent it retroactively — which is precisely why it deserved its own fix rather than a \"already fixed, please upgrade\" reply.\n\nOnce you are on 0.9.1, future upgrades go through `refreshLaunchers()`, which rewrites the launcher for either layout. This is a one-time cost.\n\n## What is changing\n\n#386 makes the launcher diagnose itself. It checks its target before invoking it and, when it is missing, prints the cause and the reinstall command instead of cmd.exe's message naming the wrapper. That has to live in the batch file: at that point `ix doctor` is exactly as unreachable as `ix`, so nothing inside the CLI can reach you.\n\nYour report also turned up a second bug in the same three lines: the old launcher never propagated the exit code, so **every** non-zero `ix` exit was reported to callers as success. That has been fixed alongside it.\n\nI am leaving this issue open until someone confirms the new launcher on real Windows — I do not have a machine to run cmd.exe on, and I would rather not close it on tests alone.\n\nOne question, if you have a moment: does `ix --version` report `0.9.1` after reinstalling? That tells us whether the upgrade had already staged the new CLI correctly and only the launcher was wrong, or whether the payload needed replacing too.\n",
+        "html_url": "https://github.com/ix-infrastructure/Ix/issues/385#issuecomment-5245654535",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5245654535",
+        "created_at": "2026-08-10T20:34:20Z",
+        "updated_at": "2026-08-10T20:34:20Z",
+        "commit_id": null,
+        "path": null,
+        "line": null,
+        "start_line": null,
+        "side": null,
+        "in_reply_to_id": null,
+        "diff_hunk": null,
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      },
+      {
+        "id": 5247525966,
+        "node_id": "IC_kwDORdC75M8AAAABOMbkTg",
+        "repository": "ix-infrastructure/Ix",
+        "parent_type": "ISSUE",
+        "parent_number": 385,
+        "kind": "ISSUE_COMMENT",
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "body": "Status check, since three separate changes touch this and it is not obvious from the outside which of them closes it.\n\n**The forward path is complete.** Traced end to end on `main`:\n\n- the release archive carries `ix.cmd` at its top level (`release.yml:309`), so the file the shim targets is genuinely in the tarball;\n- `install.ps1` collapses that top level into a flat `$IX_HOME\\cli\\`, which is why `%~dp0..\\cli\\ix.cmd` resolves (#346, v0.9.0);\n- `ix upgrade` re-derives the same layout — `soleChildDir(installDir) ?? installDir` (`upgrade.ts:1026`) — and `refreshLaunchers()` rewrites `bin\\ix.cmd` to match, flat or nested, on every upgrade.\n\nSo an upgrade **from v0.9.0 or later** rewrites the shim to a target that exists.\n\n**What cannot be fixed forward** is the population this was reported from: `ix upgrade` is executed by the version being upgraded *from*, so nothing shipped today reaches a v0.8.1 install. #386 is the recovery for exactly that — the launcher now checks its target before invoking it and prints the reinstall command, because once broken, `ix doctor` is as unreachable as `ix`.\n\n**What is still missing is a Windows run.** Every piece above is asserted by tests and has never been executed by `cmd.exe` — #386 shipped as `Refs`, not `Fixes`, for that reason. This wants:\n\n1. a v0.9.1 → v0.9.2 upgrade, confirming `ix --version` still works afterwards, and\n2. a deliberately broken `bin\\ix.cmd` (point it at a nonexistent target), confirming the recovery message prints rather than the raw `is not recognized` error.\n\nThat is what should close this, not another patch. Same standing requirement as #349 and #383.",
+        "html_url": "https://github.com/ix-infrastructure/Ix/issues/385#issuecomment-5247525966",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5247525966",
+        "created_at": "2026-08-11T00:15:58Z",
+        "updated_at": "2026-08-11T00:15:58Z",
+        "commit_id": null,
+        "path": null,
+        "line": null,
+        "start_line": null,
+        "side": null,
+        "in_reply_to_id": null,
+        "diff_hunk": null,
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      },
+      {
+        "id": 5282171733,
+        "node_id": "IC_kwDORdC75M8AAAABOteLVQ",
+        "repository": "ix-infrastructure/Ix",
+        "parent_type": "ISSUE",
+        "parent_number": 385,
+        "kind": "ISSUE_COMMENT",
+        "author": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "body": "Verified on native Windows on 2026-08-13. Closing as fixed.\n\nEnvironment:\n- Windows 11 Home, build 26200\n- Windows PowerShell 5.1 for installation; PowerShell 7.6.4 for upgrade/launcher checks\n- Node v26.7.0\n\nForward-upgrade check:\n\n1. Used the live installer with `IX_VERSION=0.9.1` to create a fresh, working install under the spaced profile path `[local-path] 385 Test`.\n2. Restricted PATH to that isolated `bin\\ix.cmd`, Node, Windows tools, and a Docker stub. `where ix` returned only the isolated launcher; the real npm launcher was SHA-256 checked before and after and stayed byte-identical.\n3. Invoked the real v0.9.1 CLI's own `ix upgrade`. It selected current v0.9.3 and completed with exit 0:\n   - `Upgraded ix: 0.9.1 → 0.9.3`\n   - `ix --version` afterwards returned `0.9.3` with exit 0\n   - `$IX_HOME\\cli\\ix.cmd` existed\n\nThis is the requested v0.9.1→newer forward-path check, using v0.9.3 rather than v0.9.2 because that is now the current release.\n\nBroken-launcher recovery check:\n\n1. Re-ran the live v0.9.3 installer so `bin\\ix.cmd` contained #386's current self-diagnosing body.\n2. Temporarily moved `$IX_HOME\\cli\\ix.cmd` aside and invoked `bin\\ix.cmd` through PowerShell/cmd.exe.\n3. The launcher exited 1 and printed the intended diagnosis plus:\n   `irm https://ix-infra.com/install.ps1 | iex`\n4. The output did **not** contain cmd.exe's raw `not recognized as an internal or external command` failure.\n5. Restored the target; the launcher again returned `0.9.3`. A deliberately invalid Ix command returned exit 1, also confirming the launcher propagates `%errorlevel%`.\n\nDocker Compose was stubbed so the test did not touch real containers; the release installs, CLI upgrade download/extract/swap, launcher rewrite, and cmd.exe execution were real. Focused regression suite also passes: 45/45 across `windows-launcher.test.ts` and `upgrade-archive-shape.test.ts`.\n\nThe original ≤0.8.1 one-way upgrade cannot be changed retroactively, as discussed above, but both the supported forward path and #386 recovery behavior are now confirmed on Windows.",
+        "html_url": "https://github.com/ix-infrastructure/Ix/issues/385#issuecomment-5282171733",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5282171733",
+        "created_at": "2026-08-13T15:04:19Z",
+        "updated_at": "2026-08-13T15:04:19Z",
+        "commit_id": null,
+        "path": null,
+        "line": null,
+        "start_line": null,
+        "side": null,
+        "in_reply_to_id": null,
+        "diff_hunk": null,
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      }
+    ],
+    "source": "OFFICIAL_GITHUB_FACT"
+  },
+  "source_context": {
+    "id": "github:issue:ix-infrastructure/Ix#385",
+    "source": {
+      "type": "github_issue",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/issues/385",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/385",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T20:07:02Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-13T15:04:20Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "ISSUE-385",
+    "entity_type": "ISSUE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "mirror_scope": "source issue plus captured comments",
+    "related_analysis_types": [
+      "FINDING",
+      "DECISION",
+      "IMPLEMENTATION"
+    ]
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-2a5998452c1a",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/manifest.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-2a5998452c1a"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-90ab8426282e",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-15/FINAL-PR-WORTHINESS-AUDIT.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-90ab8426282e"
+    },
+    {
+      "direction": "out",
+      "relationship": "FOUND_IN",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "in",
+      "relationship": "AUTHORED",
+      "other": "PERSON-RMA1313",
+      "other_type": "artifact",
+      "other_title": "RMA1313",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-rma1313"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMENTED_ON",
+      "other": "COMMENT-ix-infrastructure-Ix-issue-385-5245654535",
+      "other_type": "artifact",
+      "other_title": "Issue #385 comment 5245654535",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/comment-ix-infrastructure-ix-issue-385-5245654535"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMENTED_ON",
+      "other": "COMMENT-ix-infrastructure-Ix-issue-385-5247525966",
+      "other_type": "artifact",
+      "other_title": "Issue #385 comment 5247525966",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/comment-ix-infrastructure-ix-issue-385-5247525966"
+    }
+  ]
+}

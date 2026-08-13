@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-1116272a7ea67c09f92aa98f1050425c3b08c7d4",
+  "type": "commit",
+  "title": "1116272a7ea67c09f92aa98f1050425c3b08c7d4",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-1116272a7ea67c09f92aa98f1050425c3b08c7d4",
+  "summary": {
+    "id": "COMMIT-1116272a7ea67c09f92aa98f1050425c3b08c7d4",
+    "type": "commit",
+    "title": "1116272a7ea67c09f92aa98f1050425c3b08c7d4",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/1116272a7ea67c09f92aa98f1050425c3b08c7d4",
+    "author": {
+      "name": "Tanner Kocher",
+      "email": "tannertorrey3@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-f777ab9073b15c29b972531914c7716b6944d83a",
+      "other_type": "commit",
+      "other_title": "f777ab9073b15c29b972531914c7716b6944d83a",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-f777ab9073b15c29b972531914c7716b6944d83a"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-90d587445db43359c426b11c619c8e4b3f930f8c",
+      "other_type": "commit",
+      "other_title": "90d587445db43359c426b11c619c8e4b3f930f8c",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-90d587445db43359c426b11c619c8e4b3f930f8c"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3f32b2fa8105",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/docker.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3f32b2fa8105"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-14647b08544f",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/docker.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-14647b08544f"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-513ed4e9f05c",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/docker.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-513ed4e9f05c"
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "id": "COMMIT-30f28b3c7f2771a7003af83b5be618a7913d447a",
+  "type": "commit",
+  "title": "30f28b3c7f2771a7003af83b5be618a7913d447a",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-30f28b3c7f2771a7003af83b5be618a7913d447a",
+  "summary": {
+    "id": "COMMIT-30f28b3c7f2771a7003af83b5be618a7913d447a",
+    "type": "commit",
+    "title": "30f28b3c7f2771a7003af83b5be618a7913d447a",
+    "status": "CURRENT"
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "POINTS_TO",
+      "other": "BRANCH-b1f456263292",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:feat/ix-agent-skill",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-b1f456263292"
+    },
+    {
+      "direction": "in",
+      "relationship": "POINTS_TO",
+      "other": "BRANCH-60c0494d9642",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:feat/ix-agent-skill",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-60c0494d9642"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-ffee9dfca2cbbb9ae08f4f7e864d0d0dcb5ac681",
+      "other_type": "commit",
+      "other_title": "ffee9dfca2cbbb9ae08f4f7e864d0d0dcb5ac681",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-ffee9dfca2cbbb9ae08f4f7e864d0d0dcb5ac681"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ec332d189999",
+      "other_type": "artifact",
+      "other_title": "AGENTS.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ec332d189999"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e6d8d9bef065",
+      "other_type": "artifact",
+      "other_title": "AGENTS.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e6d8d9bef065"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c8b90a417691",
+      "other_type": "artifact",
+      "other_title": "AGENTS.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c8b90a417691"
+    }
+  ]
+}

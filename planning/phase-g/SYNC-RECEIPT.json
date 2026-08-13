@@ -1,0 +1,48 @@
+{
+  "schema_version": "phase-g.sync-receipt.v1",
+  "source": "LOCAL_CANONICAL_PROJECTION",
+  "source_event": {
+    "event_id": "phase-d-representative-4a873acc3b6b",
+    "source": "Phase-C FRESHNESS-DELTA.json",
+    "event_type": "changed_pr_head",
+    "observed_at": "2026-08-12T10:42:30.430Z",
+    "cursor": "fa6ad7b0ff52734685ff7425b08ec240837751fa",
+    "object": {
+      "entity_id": "PR-358",
+      "kind": "PULL_REQUEST",
+      "previous_head": null,
+      "current_head": "1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+      "previous_state": null,
+      "current_state": "closed",
+      "status": "HISTORICAL"
+    }
+  },
+  "affected_entity_ids": [
+    "COMMIT-1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+    "PR-358"
+  ],
+  "affected_routes": [
+    "/entities/commit-1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+    "/entities/pr-358"
+  ],
+  "affected_files": [
+    "planning/pages/public/entities/commit-1b9a761fc2db7087b5bad37f07119f8f6a3467aa/data.json",
+    "planning/pages/public/entities/commit-1b9a761fc2db7087b5bad37f07119f8f6a3467aa/index.html",
+    "planning/pages/public/entities/pr-358/data.json",
+    "planning/pages/public/entities/pr-358/index.html"
+  ],
+  "affected_indexes": [
+    "/entities.json",
+    "/graph.json",
+    "/llms-full.txt",
+    "/llms.txt",
+    "/routes.json",
+    "/search.json",
+    "/sitemap.xml",
+    "/timeline.json"
+  ],
+  "full_rebuild": false,
+  "validation": "PARTIALLY_COMPLETE",
+  "external_mutations": 0,
+  "timestamp": "2026-08-12T14:12:37.073Z"
+}

@@ -10,7 +10,678 @@
     "title": "Ix PR #378",
     "status": "RESOLVED",
     "number": 378,
-    "url": "https://github.com/ix-infrastructure/Ix/pull/378"
+    "url": "https://github.com/ix-infrastructure/Ix/pull/378",
+    "source_mirror_id": "github:pull_request:ix-infrastructure/Ix#378",
+    "source_type": "github_pull_request",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/pull/378",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/378",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "number": 378,
+    "node_id": "PR_kwDORdC75M781DeG",
+    "title": "fix(ingest): remove stale graph entities",
+    "body": "Fixes #377.\n\n## Summary\n\nRemove graph entities that disappear after a source edit or file deletion, and restore surviving dependency edges when a deleted file returns.\n\n## Type\n- [x] Bug fix\n- [ ] Feature\n- [ ] Refactor\n- [ ] Docs\n- [ ] Test\n- [ ] CI\n\n## Changes\n- Compare the previous patch manifest with the new patch and emit explicit node and incident-edge deletions for entities no longer present.\n- Detect mapped files that have disappeared from disk and commit deterministic deletion patches through the single-patch endpoint.\n- Track surviving dependent source files and re-ingest them when a deleted provider is recreated.\n- Keep the workspace-local ingest baseline backward compatible and avoid advancing it after incomplete cleanup.\n- Add regression coverage for stale detection, deletion reconciliation, retry safety, and dependent recovery.\n\n## Validation\n\n- `cd ix-cli && npm test` (51 files, 656 tests, parser smoke passed)\n- `npm run typecheck`\n- `npm run build`\n- `npm run lint` (0 errors; 38 existing warnings)\n- `core-ingestion/src/__tests__/patchBuilder.test.ts` (2 tests passed)\n- Anonymous end-to-end fixture: the deleted symbol and its caller edge disappear after remapping; recreating the provider restores the caller edge\n- The complete `core-ingestion` suite has six pre-existing failures identical on `origin/main`: two fixtures require the private `memory-layer` tree, one snapshot is stale, and three existing Rust/Scala expectations differ from current parser output\n\n## Checklist\n- [x] Tests pass\n- [x] Smoke tests pass\n- [x] No raw errors introduced\n- [x] CLI output follows Ix format\n\n## Release checklist (if merging to main)\n- [ ] `ix-cli/package.json` version bumped\n- [ ] After merge: tag pushed (`git tag vX.Y.Z && git push origin vX.Y.Z`)\n- [ ] If backend changes: `ix-memory-layer` tagged and released first\n- [ ] If `docker-compose.standalone.yml` changed: verified `curl | sh` install works\n",
+    "state": "closed",
+    "draft": false,
+    "merged": true,
+    "author": {
+      "login": "Hiro-Chiba",
+      "id": 203865699,
+      "type": "User",
+      "html_url": "https://github.com/Hiro-Chiba"
+    },
+    "html_url": "https://github.com/ix-infrastructure/Ix/pull/378",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/378",
+    "head": {
+      "ref": "fix/detect-deleted-files",
+      "sha": "d827cc9fa63a203b138d35621057af7c9a21bad0",
+      "repo": {
+        "id": 1329113547,
+        "full_name": "Hiro-Chiba/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "html_url": "https://github.com/Hiro-Chiba/Ix",
+        "api_url": "https://api.github.com/repos/Hiro-Chiba/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": true,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-08-09T19:06:50Z",
+        "updated_at": "2026-08-09T19:06:51Z",
+        "pushed_at": "2026-08-13T19:14:49Z",
+        "topics": [],
+        "language": null,
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 0,
+        "stargazers_count": 0,
+        "forks_count": 0,
+        "open_issues_count": 0
+      }
+    },
+    "base": {
+      "ref": "main",
+      "sha": "5488741155d69a5f03fce41416643ddceca6f8a0",
+      "repo": {
+        "id": 1171307492,
+        "full_name": "ix-infrastructure/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "ix-infrastructure",
+          "id": 256883681,
+          "type": "Organization",
+          "html_url": "https://github.com/ix-infrastructure"
+        },
+        "html_url": "https://github.com/ix-infrastructure/Ix",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": false,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-03-03T04:48:38Z",
+        "updated_at": "2026-08-13T21:51:31Z",
+        "pushed_at": "2026-08-13T19:18:44Z",
+        "topics": [
+          "ai",
+          "ai-memory",
+          "claude-code",
+          "cli",
+          "code-analysis",
+          "code-mapping",
+          "code-memory",
+          "codebase-understanding",
+          "codex",
+          "developer-tools",
+          "llm",
+          "openclaw",
+          "persistent-memory",
+          "program-analysis",
+          "software-architecture",
+          "system-intelligence",
+          "system-mapping"
+        ],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 701,
+        "stargazers_count": 701,
+        "forks_count": 60,
+        "open_issues_count": 6
+      }
+    },
+    "merge_commit_sha": "b25bf2efe837a29022770bd220c58b2da05bca32",
+    "merged_at": "2026-08-10T21:14:21Z",
+    "closed_at": "2026-08-10T21:14:21Z",
+    "created_at": "2026-08-10T04:37:07Z",
+    "updated_at": "2026-08-10T21:14:21Z",
+    "labels": [],
+    "milestone": null,
+    "requested_reviewers": [
+      {
+        "login": "josephismikhail",
+        "id": 56614593,
+        "type": "User",
+        "html_url": "https://github.com/josephismikhail"
+      }
+    ],
+    "requested_teams": [],
+    "commits_count": 3,
+    "changed_files_count": 9,
+    "additions": 826,
+    "deletions": 43,
+    "changed_files": [
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 378,
+        "filename": "core-ingestion/src/__tests__/patchBuilder.test.ts",
+        "status": "modified",
+        "additions": 31,
+        "deletions": 1,
+        "changes": 32,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/d827cc9fa63a203b138d35621057af7c9a21bad0/core-ingestion%2Fsrc%2F__tests__%2FpatchBuilder.test.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/d827cc9fa63a203b138d35621057af7c9a21bad0/core-ingestion%2Fsrc%2F__tests__%2FpatchBuilder.test.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/core-ingestion%2Fsrc%2F__tests__%2FpatchBuilder.test.ts?ref=d827cc9fa63a203b138d35621057af7c9a21bad0",
+        "patch": "@@ -1,6 +1,11 @@\n import { describe, expect, it } from 'vitest';\n \n-import { extractorName, PREVIOUS_EXTRACTORS } from '../patch-builder.js';\n+import {\n+  buildDeletionPatch,\n+  extractorName,\n+  PREVIOUS_EXTRACTORS,\n+  sourcePatchIdCandidates,\n+} from '../patch-builder.js';\n \n describe('patch-builder extractor policy', () => {\n   it('tracks the immediate predecessor when the extractor version is bumped', () => {\n@@ -17,4 +22,29 @@ describe('patch-builder extractor policy', () => {\n     expect(PREVIOUS_EXTRACTORS).not.toContain(current);\n     expect(PREVIOUS_EXTRACTORS.every(version => /^tree-sitter\\/\\d+\\.\\d+$/.test(version))).toBe(true);\n   });\n+\n+  it('builds a deterministic tombstone for every supported prior patch id', () => {\n+    const filePath = 'src/removed.ts';\n+    const sourceHash = 'previous-source-hash';\n+    const workspaceId = 'deadbeef';\n+    const candidates = sourcePatchIdCandidates(filePath, sourceHash, workspaceId);\n+    const ops = [{ type: 'DeleteNode', id: '00000000-0000-0000-0000-000000000001' }];\n+\n+    const patch = buildDeletionPatch(filePath, sourceHash, 'baseline-1', workspaceId, ops);\n+    const retry = buildDeletionPatch(filePath, sourceHash, 'baseline-1', workspaceId, ops);\n+    const nextDeletion = buildDeletionPatch(filePath, sourceHash, 'baseline-2', workspaceId, ops);\n+\n+    expect(new Set(candidates).size).toBe(PREVIOUS_EXTRACTORS.length + 2);\n+    expect(patch.patchId).toBe(retry.patchId);\n+    expect(patch.patchId).not.toBe(nextDeletion.patchId);\n+    expect(patch.source).toMatchObject({\n+      uri: filePath,\n+      extractor: extractorName(),\n+      sourceType: 'code',\n+      workspaceId,\n+    });\n+    expect(patch.source.sourceHash).not.toBe(sourceHash);\n+    expect(patch.ops).toEqual(ops);\n+    expect(patch.replaces).toEqual(candidates);\n+  });\n });"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 378,
+        "filename": "core-ingestion/src/patch-builder.ts",
+        "status": "modified",
+        "additions": 50,
+        "deletions": 0,
+        "changes": 50,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/d827cc9fa63a203b138d35621057af7c9a21bad0/core-ingestion%2Fsrc%2Fpatch-builder.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/d827cc9fa63a203b138d35621057af7c9a21bad0/core-ingestion%2Fsrc%2Fpatch-builder.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/core-ingestion%2Fsrc%2Fpatch-builder.ts?ref=d827cc9fa63a203b138d35621057af7c9a21bad0",
+        "patch": "@@ -95,6 +95,20 @@ export function extractorName(): string {\n /** Previous extractor versions — their patches are superseded when re-ingesting. */\n export const PREVIOUS_EXTRACTORS = ['tree-sitter/1.23', 'tree-sitter/1.22', 'tree-sitter/1.21', 'tree-sitter/1.20', 'tree-sitter/1.19', 'tree-sitter/1.18', 'tree-sitter/1.17', 'tree-sitter/1.16', 'tree-sitter/1.15', 'tree-sitter/1.14', 'tree-sitter/1.13', 'tree-sitter/1.12', 'tree-sitter/1.11', 'tree-sitter/1.10', 'tree-sitter/1.9', 'tree-sitter/1.8', 'tree-sitter/1.7', 'tree-sitter/1.6', 'tree-sitter/1.5', 'tree-sitter/1.4', 'tree-sitter/1.3', 'tree-sitter/1.2', 'tree-sitter/1.1'];\n \n+/** Patch ids that may own the active graph entities for a stored source hash. */\n+export function sourcePatchIdCandidates(\n+  filePath: string,\n+  sourceHash: string,\n+  workspaceId: string,\n+): string[] {\n+  const { computePatchId, legacyPatchId } = makeIds(workspaceId);\n+  return [\n+    computePatchId(filePath, sourceHash, extractorName()),\n+    ...PREVIOUS_EXTRACTORS.map(extractor => computePatchId(filePath, sourceHash, extractor)),\n+    legacyPatchId(filePath, sourceHash),\n+  ];\n+}\n+\n // nodeId / edgeId / chunkId / computePatchId / legacyPatchId are produced by\n // makeIds(workspaceId) above so every id is scoped to its workspace.\n \n@@ -379,6 +393,42 @@ export interface MultiRepoContext {\n   repoWorkspaceOf?: (filePath: string) => string | undefined;\n }\n \n+/** Build a patch that retires every entity previously emitted for a deleted file. */\n+export function buildDeletionPatch(\n+  filePath: string,\n+  previousSourceHash: string,\n+  deletionToken: string,\n+  workspaceId: string,\n+  ops: PatchOp[],\n+  multiRepo?: MultiRepoContext,\n+): GraphPatchPayload {\n+  const extractor = extractorName();\n+  const deletionHash = crypto\n+    .createHash('sha256')\n+    .update(`deleted:${previousSourceHash}:${deletionToken}`)\n+    .digest('hex');\n+  const { computePatchId } = makeIds(workspaceId);\n+\n+  return {\n+    patchId: computePatchId(filePath, deletionHash, extractor),\n+    actor: 'ix/ingestion',\n+    timestamp: new Date().toISOString(),\n+    source: {\n+      uri: filePath,\n+      sourceHash: deletionHash,\n+      extractor,\n+      sourceType: sourceType(filePath),\n+      workspaceId,\n+      ...(multiRepo?.systemId ? { systemId: multiRepo.systemId } : {}),\n+      ...(multiRepo?.repoId ? { repoId: multiRepo.repoId } : {}),\n+    },\n+    baseRev: 0,\n+    ops,\n+    replaces: sourcePatchIdCandidates(filePath, previousSourceHash, workspaceId),\n+    intent: `Deleted ${nodePath.basename(filePath)}`,\n+  };\n+}\n+\n export function buildPatchWithResolution(\n   result: FileParseResult,\n   sourceHash: string,"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 378,
+        "filename": "ix-cli/src/cli/__tests__/ingest-reconcile.test.ts",
+        "status": "added",
+        "additions": 216,
+        "deletions": 0,
+        "changes": 216,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/d827cc9fa63a203b138d35621057af7c9a21bad0/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fingest-reconcile.test.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/d827cc9fa63a203b138d35621057af7c9a21bad0/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fingest-reconcile.test.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fingest-reconcile.test.ts?ref=d827cc9fa63a203b138d35621057af7c9a21bad0",
+        "patch": "@@ -0,0 +1,216 @@\n+import { describe, expect, it, vi } from \"vitest\";\n+import * as nodePath from \"node:path\";\n+\n+import type { GraphPatchPayload } from \"../../client/types.js\";\n+import {\n+  patchRequiresPerFileCommit,\n+  planDeletedFileRecovery,\n+  reconcileRemovedEntities,\n+} from \"../commands/ingest.js\";\n+\n+function patchWith(ops: GraphPatchPayload[\"ops\"]): GraphPatchPayload {\n+  return {\n+    patchId: \"next-patch\",\n+    actor: \"ix/ingestion\",\n+    timestamp: \"2026-08-10T00:00:00.000Z\",\n+    source: {\n+      uri: \"src/example.ts\",\n+      sourceHash: \"next-hash\",\n+      extractor: \"tree-sitter/1.24\",\n+      sourceType: \"code\",\n+      workspaceId: \"deadbeef\",\n+    },\n+    baseRev: 0,\n+    ops,\n+    replaces: [],\n+  };\n+}\n+\n+describe(\"reconcileRemovedEntities\", () => {\n+  it(\"routes patches with deletion ops away from the bulk endpoint\", () => {\n+    expect(patchRequiresPerFileCommit(patchWith([{ type: \"DeleteNode\", id: \"old-node\" }]))).toBe(true);\n+    expect(patchRequiresPerFileCommit(patchWith([{ type: \"DeleteEdge\", id: \"old-edge\" }]))).toBe(true);\n+    expect(patchRequiresPerFileCommit(patchWith([{ type: \"UpsertNode\", id: \"node\" }]))).toBe(false);\n+  });\n+\n+  it(\"reingests surviving dependents when a deleted file returns\", () => {\n+    const projectRoot = nodePath.resolve(\"workspace\");\n+    const returnedPath = nodePath.join(projectRoot, \"src\", \"returned.ts\");\n+    const callerPath = nodePath.join(projectRoot, \"src\", \"caller.ts\");\n+    const stillDeletedPath = nodePath.join(projectRoot, \"src\", \"still-deleted.ts\");\n+    const deletedFiles = new Map([\n+      [\"src/returned.ts\", [\"src/caller.ts\", \"src/missing.ts\"]],\n+      [\"src/still-deleted.ts\", [\"src/other.ts\"]],\n+    ]);\n+\n+    const plan = planDeletedFileRecovery(\n+      projectRoot,\n+      [returnedPath, callerPath],\n+      deletedFiles,\n+    );\n+\n+    expect(plan.recreatedPaths).toEqual([returnedPath]);\n+    expect(plan.previousDeletedFiles).toEqual(\n+      new Map([\n+        [returnedPath, [\"src/caller.ts\", \"src/missing.ts\"]],\n+        [stillDeletedPath, [\"src/other.ts\"]],\n+      ]),\n+    );\n+    expect(plan.forceReingestPaths).toEqual(new Set([callerPath]));\n+    expect(plan.nextDeletedFiles).toEqual(\n+      new Map([[stillDeletedPath, [\"src/other.ts\"]]]),\n+    );\n+  });\n+\n+  it(\"deletes removed nodes and their incident edges while preserving current entities\", async () => {\n+    const getPatch = vi\n+      .fn()\n+      .mockRejectedValueOnce(new Error(\"404: not found\"))\n+      .mockResolvedValueOnce({\n+        data: {\n+          entityIds: [\"kept-node\", \"removed-node\", \"kept-edge\", \"removed-edge\"],\n+          nodeOpCount: 2,\n+          edgeOpCount: 2,\n+        },\n+      });\n+    const entity = vi.fn().mockResolvedValue({\n+      node: {},\n+      claims: [],\n+      edges: [\n+        { id: \"removed-edge\", provenance: { sourceUri: \"src/example.ts\" } },\n+        { id: \"incoming-edge\", provenance: { sourceUri: \"src/caller.ts\" } },\n+        { id: \"kept-edge\", provenance: { sourceUri: \"src/example.ts\" } },\n+      ],\n+    });\n+    const patch = patchWith([\n+      { type: \"UpsertNode\", id: \"kept-node\", kind: \"file\", name: \"example.ts\", attrs: {} },\n+      {\n+        type: \"UpsertEdge\",\n+        id: \"kept-edge\",\n+        src: \"kept-node\",\n+        dst: \"kept-node\",\n+        predicate: \"CONTAINS\",\n+        attrs: {},\n+      },\n+      { type: \"AssertClaim\", entityId: \"kept-node\", field: \"calls:x\", value: \"x\" },\n+    ]);\n+\n+    const dependents = new Set<string>();\n+    const reconciled = await reconcileRemovedEntities(\n+      { getPatch, entity },\n+      patch,\n+      [\"missing-patch\", \"previous-patch\"],\n+      dependents,\n+    );\n+\n+    expect(getPatch).toHaveBeenCalledTimes(2);\n+    expect(entity).toHaveBeenCalledWith(\"removed-node\");\n+    expect(dependents).toEqual(new Set([\"src/caller.ts\"]));\n+    expect(reconciled.ops).toEqual([\n+      { type: \"DeleteNode\", id: \"removed-node\" },\n+      patch.ops[0],\n+      { type: \"DeleteEdge\", id: \"removed-edge\" },\n+      { type: \"DeleteEdge\", id: \"incoming-edge\" },\n+      patch.ops[1],\n+      patch.ops[2],\n+    ]);\n+  });\n+\n+  it(\"does not repeat edge deletions from a prior tombstone when a file returns\", async () => {\n+    const getPatch = vi.fn().mockResolvedValue({\n+      data: {\n+        ops: [\n+          { type: \"DeleteNode\", id: \"returned-node\" },\n+          { type: \"DeleteEdge\", id: \"incoming-edge\" },\n+        ],\n+      },\n+    });\n+    const entity = vi.fn();\n+    const patch = patchWith([\n+      { type: \"UpsertNode\", id: \"returned-node\", kind: \"file\", name: \"example.ts\" },\n+    ]);\n+\n+    const reconciled = await reconcileRemovedEntities(\n+      { getPatch, entity },\n+      patch,\n+      [\"tombstone-patch\"],\n+    );\n+\n+    expect(reconciled.ops).toEqual(patch.ops);\n+    expect(entity).not.toHaveBeenCalled();\n+  });\n+\n+  it(\"does not delete chunk nodes in map mode\", async () => {\n+    // stripMapModeOps drops chunk UpsertNodes but keeps DeleteNode, and chunk\n+    // ids hash the start line — so any edit that shifts lines made every\n+    // downstream chunk look removed. Without this guard, `ix map` after an\n+    // `ix ingest` deleted the file's chunks and never recreated them.\n+    const getPatch = vi.fn().mockResolvedValue({\n+      data: { entityIds: [\"file-node\", \"chunk-L1\", \"chunk-L10\"], nodeOpCount: 3, edgeOpCount: 0 },\n+    });\n+    const entity = vi.fn().mockImplementation(async (id: string) => ({\n+      node: { kind: id.startsWith(\"chunk\") ? \"chunk\" : \"function\" },\n+      claims: [],\n+      edges: [],\n+    }));\n+    const patch = patchWith([\n+      { type: \"UpsertNode\", id: \"file-node\", kind: \"file\", name: \"example.ts\" },\n+      { type: \"UpsertNode\", id: \"chunk-L1\", kind: \"chunk\", name: \"a\" },\n+      { type: \"UpsertNode\", id: \"chunk-L12\", kind: \"chunk\", name: \"b\" },\n+    ]);\n+\n+    const reconciled = await reconcileRemovedEntities(\n+      { getPatch, entity }, patch, [\"prev\"], undefined, true,\n+    );\n+\n+    const deleted = reconciled.ops.filter(o => o.type === \"DeleteNode\").map(o => o[\"id\"]);\n+    expect(deleted).toEqual([]);\n+  });\n+\n+  it(\"still deletes chunk nodes outside map mode\", async () => {\n+    const getPatch = vi.fn().mockResolvedValue({\n+      data: { entityIds: [\"file-node\", \"chunk-L10\"], nodeOpCount: 2, edgeOpCount: 0 },\n+    });\n+    const entity = vi.fn().mockResolvedValue({ node: { kind: \"chunk\" }, claims: [], edges: [] });\n+    const patch = patchWith([\n+      { type: \"UpsertNode\", id: \"file-node\", kind: \"file\", name: \"example.ts\" },\n+    ]);\n+\n+    const reconciled = await reconcileRemovedEntities({ getPatch, entity }, patch, [\"prev\"]);\n+\n+    const deleted = reconciled.ops.filter(o => o.type === \"DeleteNode\").map(o => o[\"id\"]);\n+    expect(deleted).toEqual([\"chunk-L10\"]);\n+  });\n+\n+  it(\"leaves chunk-carrying edges alone in map mode\", async () => {\n+    const getPatch = vi.fn().mockResolvedValue({\n+      data: { entityIds: [\"gone\"], nodeOpCount: 1, edgeOpCount: 0 },\n+    });\n+    const entity = vi.fn().mockResolvedValue({\n+      node: { kind: \"function\" },\n+      claims: [],\n+      edges: [\n+        { id: \"contains-chunk\", predicate: \"CONTAINS_CHUNK\", provenance: {} },\n+        { id: \"next-chunk\", predicate: \"NEXT\", provenance: {} },\n+        { id: \"calls-edge\", predicate: \"CALLS\", provenance: {} },\n+      ],\n+    });\n+\n+    const reconciled = await reconcileRemovedEntities(\n+      { getPatch, entity }, patchWith([]), [\"prev\"], undefined, true,\n+    );\n+\n+    const deletedEdges = reconciled.ops.filter(o => o.type === \"DeleteEdge\").map(o => o[\"id\"]);\n+    expect(deletedEdges).toEqual([\"calls-edge\"]);\n+  });\n+\n+  it(\"fails closed when the previous patch has no entity manifest\", async () => {\n+    const getPatch = vi.fn().mockResolvedValue({ data: {} });\n+    const entity = vi.fn();\n+\n+    await expect(\n+      reconcileRemovedEntities({ getPatch, entity }, patchWith([]), [\"previous-patch\"]),\n+    ).rejects.toThrow(\"has no entity manifest\");\n+    expect(entity).not.toHaveBeenCalled();\n+  });\n+});"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 378,
+        "filename": "ix-cli/src/cli/__tests__/loadExistingHashes.test.ts",
+        "status": "modified",
+        "additions": 7,
+        "deletions": 0,
+        "changes": 7,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/d827cc9fa63a203b138d35621057af7c9a21bad0/ix-cli%2Fsrc%2Fcli%2F__tests__%2FloadExistingHashes.test.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/d827cc9fa63a203b138d35621057af7c9a21bad0/ix-cli%2Fsrc%2Fcli%2F__tests__%2FloadExistingHashes.test.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2F__tests__%2FloadExistingHashes.test.ts?ref=d827cc9fa63a203b138d35621057af7c9a21bad0",
+        "patch": "@@ -52,4 +52,11 @@ describe(\"loadExistingHashes — workspace-scoped baseline (Ix#225 gap 3)\", () =\n     const out = await loadExistingHashes(failing, [\"/a.ts\"], a => a, () => \"ws\");\n     expect(out.size).toBe(0);\n   });\n+\n+  it(\"propagates lookup failures when deletion cleanup requires a reliable baseline\", async () => {\n+    const failing = { getSourceHashes: async () => { throw new Error(\"network\"); } };\n+    await expect(\n+      loadExistingHashes(failing, [\"/deleted.ts\"], a => a, () => \"ws\", false, true),\n+    ).rejects.toThrow(\"network\");\n+  });\n });"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 378,
+        "filename": "ix-cli/src/cli/__tests__/stale-workspace.test.ts",
+        "status": "modified",
+        "additions": 85,
+        "deletions": 2,
+        "changes": 87,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/d827cc9fa63a203b138d35621057af7c9a21bad0/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fstale-workspace.test.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/d827cc9fa63a203b138d35621057af7c9a21bad0/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fstale-workspace.test.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fstale-workspace.test.ts?ref=d827cc9fa63a203b138d35621057af7c9a21bad0",
+        "patch": "@@ -3,10 +3,10 @@ import * as fs from \"node:fs\";\n import * as os from \"node:os\";\n import * as path from \"node:path\";\n \n-import { ingestMtimeCachePath } from \"../config.js\";\n+import { ingestMtimeCachePath, saveConfig } from \"../config.js\";\n import { loadIngestBaseline } from \"../ingest-baseline.js\";\n import { persistIngestBaselineIfClean } from \"../commands/ingest.js\";\n-import { detectStaleFiles } from \"../stale.js\";\n+import { detectStaleFiles, isFileStale } from \"../stale.js\";\n \n let home: string;\n let savedHome: string | undefined;\n@@ -117,6 +117,89 @@ describe(\"workspace-scoped staleness\", () => {\n     });\n   });\n \n+  it(\"reports a mapped file that was deleted after ingest\", async () => {\n+    const root = path.join(home, \"deleted-file\");\n+    const filePath = writeSource(root, \"deleted.js\", \"export const value = 1;\\n\");\n+    const ingestedAt = new Date(\"2026-08-09T18:00:00.000Z\");\n+    persistIngestBaselineIfClean(\n+      root,\n+      new Map([[filePath, fs.statSync(filePath).mtimeMs]]),\n+      14,\n+      0,\n+      0,\n+      ingestedAt,\n+    );\n+    saveConfig({\n+      endpoint: \"http://[redacted]8090\",\n+      format: \"text\",\n+      workspaces: [\n+        {\n+          workspace_id: \"dead0001\",\n+          workspace_name: \"deleted-file\",\n+          root_path: root,\n+          default: true,\n+        },\n+      ],\n+    });\n+\n+    fs.unlinkSync(filePath);\n+\n+    expect(detectStaleFiles(root)).toEqual({\n+      lastIngestAt: ingestedAt.toISOString(),\n+      currentRev: 14,\n+      staleFiles: 1,\n+      sampleChangedFiles: [\"deleted.js\"],\n+    });\n+    expect(isFileStale(filePath)).toBe(true);\n+    expect(isFileStale(path.join(root, \"never-mapped.js\"))).toBe(false);\n+  });\n+\n+  it(\"persists an empty baseline after the last mapped file is deleted\", () => {\n+    const root = path.join(home, \"empty-after-delete\");\n+    const filePath = writeSource(root, \"deleted.js\", \"export const value = 1;\\n\");\n+    persistIngestBaselineIfClean(\n+      root,\n+      new Map([[filePath, fs.statSync(filePath).mtimeMs]]),\n+      14,\n+      0,\n+      0,\n+      new Date(\"2026-08-09T18:00:00.000Z\"),\n+    );\n+\n+    const completedAt = new Date(\"2026-08-09T18:01:00.000Z\");\n+    const deletedFiles = new Map([[filePath, [\"caller.js\"]]]);\n+    expect(\n+      persistIngestBaselineIfClean(root, new Map(), 15, 0, 0, completedAt, deletedFiles),\n+    ).toBe(true);\n+\n+    expect(loadIngestBaseline(root)).toEqual({\n+      files: new Map(),\n+      deletedFiles,\n+      currentRev: 15,\n+      lastIngestAt: completedAt.toISOString(),\n+    });\n+  });\n+\n+  it(\"refuses an empty baseline when nothing was deleted\", () => {\n+    // An empty mtime map with no deletions is a discovery failure — an\n+    // over-broad ignore rule, the wrong cwd — and persisting it silently\n+    // discards the baseline, forcing a full re-ingest next run.\n+    const root = path.join(home, \"discovery-failure\");\n+    const filePath = writeSource(root, \"kept.js\", \"export const value = 1;\\n\");\n+    persistIngestBaselineIfClean(\n+      root,\n+      new Map([[filePath, fs.statSync(filePath).mtimeMs]]),\n+      20,\n+      0,\n+      0,\n+      new Date(\"2026-08-10T18:00:00.000Z\"),\n+    );\n+\n+    expect(persistIngestBaselineIfClean(root, new Map(), 21, 0, 0)).toBe(false);\n+    expect(loadIngestBaseline(root)?.files.size).toBe(1);\n+    expect(loadIngestBaseline(root)?.currentRev).toBe(20);\n+  });\n+\n   it(\"uses ingest time for files absent from the mtime cache\", async () => {\n     const root = path.join(home, \"partial-cache\");\n     const mappedFile = writeSource(root, \"mapped.js\", \"export const mapped = true;\\n\");"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 378,
+        "filename": "ix-cli/src/cli/commands/ingest.ts",
+        "status": "modified",
+        "additions": 405,
+        "deletions": 36,
+        "changes": 441,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/d827cc9fa63a203b138d35621057af7c9a21bad0/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fingest.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/d827cc9fa63a203b138d35621057af7c9a21bad0/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fingest.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fingest.ts?ref=d827cc9fa63a203b138d35621057af7c9a21bad0",
+        "patch": "@@ -260,6 +260,184 @@ function stripMapModeOps(patch: GraphPatchPayload): GraphPatchPayload {\n   };\n }\n \n+interface StoredPatchEntities {\n+  nodeIds: string[];\n+}\n+\n+function readStoredPatchEntities(raw: unknown): StoredPatchEntities | null {\n+  const data = (raw as { data?: unknown } | null)?.data as {\n+    entityIds?: unknown;\n+    nodeOpCount?: unknown;\n+    ops?: unknown;\n+  } | undefined;\n+  if (!data) return null;\n+  if (Array.isArray(data.ops)) {\n+    const ops = data.ops as Array<{ type?: unknown; id?: unknown }>;\n+    return {\n+      nodeIds: ops\n+        .filter(op => op.type === 'UpsertNode' || op.type === 'DeleteNode')\n+        .map(op => op.id)\n+        .filter((id): id is string => typeof id === 'string'),\n+    };\n+  }\n+  if (!Array.isArray(data.entityIds)) return null;\n+  if (!Number.isInteger(data.nodeOpCount)) return null;\n+\n+  const nodeCount = data.nodeOpCount as number;\n+  const entityIds = data.entityIds.filter((id): id is string => typeof id === 'string');\n+  if (nodeCount < 0 || entityIds.length < nodeCount) return null;\n+\n+  return {\n+    nodeIds: entityIds.slice(0, nodeCount),\n+  };\n+}\n+\n+async function loadStoredPatchEntities(\n+  client: Pick<IxClient, 'getPatch'>,\n+  patchIds: string[],\n+): Promise<StoredPatchEntities> {\n+  for (const patchId of patchIds) {\n+    try {\n+      const entities = readStoredPatchEntities(await client.getPatch(patchId));\n+      if (entities) return entities;\n+      throw new Error(`Patch ${patchId} has no entity manifest`);\n+    } catch (err) {\n+      if (!String(err).includes('404:')) throw err;\n+    }\n+  }\n+  throw new Error('Previous source patch was not found');\n+}\n+\n+export async function reconcileRemovedEntities(\n+  client: Pick<IxClient, 'getPatch' | 'entity'>,\n+  patch: GraphPatchPayload,\n+  previousPatchIds: string[],\n+  dependentSourceUris?: Set<string>,\n+  // `ix map` does not write chunks: stripMapModeOps drops every chunk UpsertNode\n+  // from the patch. It does NOT drop DeleteNode, and chunk ids hash the chunk's\n+  // start line, so any edit that shifts lines makes every downstream chunk look\n+  // removed. Reconciling without this flag therefore had `ix map` after an\n+  // `ix ingest` delete the file's chunks and never recreate them — the cheaper\n+  // command silently destroying embedding data the expensive one built. Chunks\n+  // are not map mode's to reconcile, so in map mode they are left alone.\n+  mapMode = false,\n+): Promise<GraphPatchPayload> {\n+  const previous = await loadStoredPatchEntities(client, previousPatchIds);\n+  const currentNodeIds = new Set(\n+    patch.ops\n+      .filter(op => op.type === 'UpsertNode')\n+      .map(op => op['id'])\n+      .filter((id): id is string => typeof id === 'string'),\n+  );\n+  const currentEdgeIds = new Set(\n+    patch.ops\n+      .filter(op => op.type === 'UpsertEdge')\n+      .map(op => op['id'])\n+      .filter((id): id is string => typeof id === 'string'),\n+  );\n+  const candidateNodeIds = previous.nodeIds.filter(id => !currentNodeIds.has(id));\n+  const removedNodeIds: string[] = [];\n+  const removedEdgeIds = new Set<string>();\n+  const CHUNK_PREDICATES = new Set(['CONTAINS_CHUNK', 'NEXT']);\n+\n+  for (const nodeId of candidateNodeIds) {\n+    try {\n+      const entity = await client.entity(nodeId);\n+      // The lookup is already being made for the incident edges, so the kind\n+      // costs nothing extra. A node whose kind cannot be read (404 — already\n+      // gone) falls through to the delete, which is a no-op server-side.\n+      if (mapMode && (entity.node as { kind?: unknown } | undefined)?.kind === 'chunk') {\n+        continue;\n+      }\n+      removedNodeIds.push(nodeId);\n+      for (const edge of entity.edges ?? []) {\n+        const edgeRecord = edge as {\n+          id?: unknown;\n+          provenance?: { sourceUri?: unknown; source_uri?: unknown };\n+        };\n+        const edgeId = edgeRecord.id;\n+        const predicate = (edge as { predicate?: unknown }).predicate;\n+        const isChunkEdge = typeof predicate === 'string' && CHUNK_PREDICATES.has(predicate);\n+        if (typeof edgeId === 'string' && !currentEdgeIds.has(edgeId) && !(mapMode && isChunkEdge)) {\n+          removedEdgeIds.add(edgeId);\n+        }\n+        const sourceUri = edgeRecord.provenance?.sourceUri ?? edgeRecord.provenance?.source_uri;\n+        if (\n+          dependentSourceUris &&\n+          typeof sourceUri === 'string' &&\n+          sourceUri !== patch.source.uri\n+        ) {\n+          dependentSourceUris.add(sourceUri);\n+        }\n+      }\n+    } catch (err) {\n+      if (!String(err).includes('404:')) throw err;\n+      // Already absent. Emitting the delete anyway keeps the patch a complete\n+      // statement of intent and costs nothing.\n+      removedNodeIds.push(nodeId);\n+    }\n+  }\n+\n+  const nodeOps = patch.ops.filter(op => op.type === 'UpsertNode' || op.type === 'DeleteNode');\n+  const edgeOps = patch.ops.filter(op => op.type === 'UpsertEdge' || op.type === 'DeleteEdge');\n+  const otherOps = patch.ops.filter(op =>\n+    op.type !== 'UpsertNode' && op.type !== 'DeleteNode' &&\n+    op.type !== 'UpsertEdge' && op.type !== 'DeleteEdge'\n+  );\n+\n+  return {\n+    ...patch,\n+    ops: [\n+      ...removedNodeIds.map(id => ({ type: 'DeleteNode', id })),\n+      ...nodeOps,\n+      ...[...removedEdgeIds].map(id => ({ type: 'DeleteEdge', id })),\n+      ...edgeOps,\n+      ...otherOps,\n+    ],\n+  };\n+}\n+\n+export function patchRequiresPerFileCommit(patch: GraphPatchPayload): boolean {\n+  return patch.ops.some(op => op.type === 'DeleteNode' || op.type === 'DeleteEdge');\n+}\n+\n+export function planDeletedFileRecovery(\n+  projectRoot: string,\n+  filePaths: string[],\n+  deletedFiles: Map<string, string[]>,\n+): {\n+  previousDeletedFiles: Map<string, string[]>;\n+  nextDeletedFiles: Map<string, string[]>;\n+  recreatedPaths: string[];\n+  forceReingestPaths: Set<string>;\n+} {\n+  const previousDeletedFiles = new Map<string, string[]>();\n+  for (const [deletedPath, dependents] of deletedFiles) {\n+    const absolutePath = nodePath.isAbsolute(deletedPath)\n+      ? nodePath.resolve(deletedPath)\n+      : nodePath.resolve(projectRoot, deletedPath);\n+    previousDeletedFiles.set(absolutePath, dependents);\n+  }\n+\n+  const nextDeletedFiles = new Map(previousDeletedFiles);\n+  const filePathSet = new Set(filePaths.map(filePath => nodePath.resolve(filePath)));\n+  const recreatedPaths = [...previousDeletedFiles.keys()].filter(filePath =>\n+    filePathSet.has(filePath)\n+  );\n+  const forceReingestPaths = new Set<string>();\n+  for (const recreatedPath of recreatedPaths) {\n+    for (const dependent of previousDeletedFiles.get(recreatedPath) ?? []) {\n+      const absoluteDependent = nodePath.isAbsolute(dependent)\n+        ? nodePath.resolve(dependent)\n+        : nodePath.resolve(projectRoot, dependent);\n+      if (filePathSet.has(absoluteDependent)) forceReingestPaths.add(absoluteDependent);\n+    }\n+    nextDeletedFiles.delete(recreatedPath);\n+  }\n+\n+  return { previousDeletedFiles, nextDeletedFiles, recreatedPaths, forceReingestPaths };\n+}\n+\n const COMMIT_CONFLICT_RETRY_PATTERNS = [\n   'write-write conflict',\n   'timeout waiting to lock key',\n@@ -306,20 +484,28 @@ async function retryOnConflict<T>(fn: () => Promise<T>, maxRetries: number): Pro\n // Mtime cache — skip readFileSync+sha256 for unchanged files\n // ---------------------------------------------------------------------------\n \n-function loadMtimeCache(projectRoot: string): Map<string, number> {\n-  return loadIngestBaseline(projectRoot)?.files ?? new Map();\n-}\n-\n export function persistIngestBaselineIfClean(\n   projectRoot: string,\n   mtimes: Map<string, number>,\n   currentRev: number,\n   parseErrors: number,\n   commitErrors: number,\n   now?: Date,\n+  deletedFiles: Map<string, string[]> = new Map(),\n ): boolean {\n-  if (!ingestCompletedCleanly(parseErrors, commitErrors) || mtimes.size === 0) return false;\n-  saveIngestBaseline(projectRoot, mtimes, currentRev, now);\n+  if (!ingestCompletedCleanly(parseErrors, commitErrors)) return false;\n+  // An empty mtime map is normally a discovery failure, not an empty repo —\n+  // an over-broad ignore rule, the wrong cwd, a glob that matched nothing —\n+  // and persisting it silently discards the baseline, forcing a full re-ingest\n+  // next run. The original guard rejected every empty map for that reason.\n+  //\n+  // But deleting the last mapped file legitimately produces one, and refusing\n+  // to record that leaves the baseline claiming files that are gone. So the\n+  // guard now asks *why* the map is empty: with deletions recorded this run,\n+  // empty is a real state and is persisted; without them, it is still treated\n+  // as discovery having gone wrong.\n+  if (mtimes.size === 0 && deletedFiles.size === 0) return false;\n+  saveIngestBaseline(projectRoot, mtimes, currentRev, now, deletedFiles);\n   return true;\n }\n \n@@ -480,7 +666,17 @@ export async function ingestFiles(\n   const mapMode = opts.mapMode === true;\n   const trueStart = performance.now();\n \n-  const [{ parseFile, resolveEdges, isGrammarSupported }, { buildPatchWithResolution, fileNodeId, symbolNodeId }, { languageFromPath }] = await loadIngestionModules();\n+  const [\n+    { parseFile, resolveEdges, isGrammarSupported },\n+    {\n+      buildPatchWithResolution,\n+      buildDeletionPatch,\n+      sourcePatchIdCandidates,\n+      fileNodeId,\n+      symbolNodeId,\n+    },\n+    { languageFromPath },\n+  ] = await loadIngestionModules();\n   const moduleLoadMs = Math.round(performance.now() - trueStart);\n \n \n@@ -807,7 +1003,20 @@ export async function ingestFiles(\n     const projectRoot = fs.statSync(resolvedPath).isDirectory() ? resolvedPath : nodePath.dirname(resolvedPath);\n     // A just-migrated workspace (new path-based id) has no nodes under the new id, so\n     // skip the mtime pre-filter and re-ingest everything, exactly like --force.\n-    const mtimeCache  = (opts.force || workspaceMigrated) ? new Map<string, number>() : loadMtimeCache(projectRoot);\n+    const previousBaseline = loadIngestBaseline(projectRoot);\n+    const previousMtimes = previousBaseline?.files ?? new Map<string, number>();\n+    const {\n+      previousDeletedFiles,\n+      nextDeletedFiles,\n+      forceReingestPaths,\n+    } = planDeletedFileRecovery(\n+      projectRoot,\n+      filePaths,\n+      previousBaseline?.deletedFiles ?? new Map(),\n+    );\n+    const mtimeCache = (opts.force || workspaceMigrated)\n+      ? new Map<string, number>()\n+      : new Map(previousMtimes);\n     const currentMtimes = new Map<string, number>();\n \n     // DB-reset guard: if the mtime cache has entries but the server returns no hashes\n@@ -831,7 +1040,7 @@ export async function ingestFiles(\n         if (st.size > MAX_FILE_BYTES) { tooLarge++; progressCurrent++; continue; }\n         const mtime = st.mtimeMs;\n         currentMtimes.set(filePath, mtime);\n-        if (!opts.force && mtimeCache.get(filePath) === mtime) {\n+        if (!opts.force && !forceReingestPaths.has(filePath) && mtimeCache.get(filePath) === mtime) {\n           filesSkipped++;\n           progressCurrent++;   // mtime clean — assume unchanged\n         } else {\n@@ -844,10 +1053,38 @@ export async function ingestFiles(\n       }\n     }\n \n-    // Phase: hash lookup — only needed when mtime-changed files exist.\n+    const deletedPaths = workspaceMigrated\n+      ? []\n+      : [...previousMtimes.keys()].filter(filePath =>\n+          !currentMtimes.has(filePath) && !fs.existsSync(filePath)\n+        );\n+\n+    // Phase: hash lookup — only needed when files changed or were deleted.\n     let knownHashes: Map<string, string>;\n-    if (opts.force || mtimeChangedPaths.length > 0) {\n-      knownHashes = await loadExistingHashes(client, opts.force ? filePaths : mtimeChangedPaths, toWorkspaceRelative, sourceWorkspaceIdOf, debug);\n+    const hashLookupPaths = opts.force\n+      ? [...filePaths, ...deletedPaths]\n+      : [...mtimeChangedPaths, ...deletedPaths];\n+    // Deleting from an unreliable baseline is how data gets lost, so the lookup\n+    // fails closed when deletions are pending — but only the *deletions* need\n+    // that guarantee. Letting the throw escape aborted the entire map over one\n+    // transient blip, taking the ordinary ingest of every changed file with it.\n+    // So catch it here: drop the deletions for this run (they stay in the\n+    // baseline and are retried next time) and let the rest proceed.\n+    if (hashLookupPaths.length > 0) {\n+      try {\n+        knownHashes = await loadExistingHashes(\n+          client,\n+          hashLookupPaths,\n+          toWorkspaceRelative,\n+          sourceWorkspaceIdOf,\n+          debug,\n+          deletedPaths.length > 0,\n+        );\n+      } catch (err) {\n+        if (debug) process.stderr.write(`\\n  [deletion cleanup skipped] hash lookup failed: ${err}\\n`);\n+        deletedPaths.length = 0;\n+        knownHashes = new Map();\n+      }\n       if (debug) process.stderr.write(`\\n  Source hash lookup: ${knownHashes.size} known hashes (${mtimeChangedPaths.length} mtime-changed)\\n`);\n     } else {\n       // All files are mtime-clean — skip server round-trip entirely.\n@@ -912,14 +1149,30 @@ export async function ingestFiles(\n     const commitPreparedPatches = async (\n       preparedPatches: PreparedPatch[],\n       totalFiles: number,\n-      opts?: { updateProgress?: boolean },\n+      opts?: {\n+        updateProgress?: boolean;\n+        onCommitted?: (item: PreparedPatch, rev: number) => void;\n+      },\n     ): Promise<number> => {\n       if (preparedPatches.length === 0) return 0;\n \n       const chunks: PreparedPatch[][] = [];\n-      for (let i = 0; i < preparedPatches.length; i += COMMIT_HTTP_MAX_FILES) {\n-        chunks.push(preparedPatches.slice(i, i + COMMIT_HTTP_MAX_FILES));\n+      let bulkChunk: PreparedPatch[] = [];\n+      const flushBulkChunk = (): void => {\n+        if (bulkChunk.length === 0) return;\n+        chunks.push(bulkChunk);\n+        bulkChunk = [];\n+      };\n+      for (const item of preparedPatches) {\n+        if (patchRequiresPerFileCommit(item.patch)) {\n+          flushBulkChunk();\n+          chunks.push([item]);\n+        } else {\n+          bulkChunk.push(item);\n+          if (bulkChunk.length === COMMIT_HTTP_MAX_FILES) flushBulkChunk();\n+        }\n       }\n+      flushBulkChunk();\n \n       const commitMsPerChunk = new Array<number>(chunks.length).fill(0);\n       let nextChunk = 0;\n@@ -933,24 +1186,9 @@ export async function ingestFiles(\n         const endFile = chunk[chunk.length - 1].fileNumber;\n         const endingPath = nodePath.basename(chunk[chunk.length - 1].filePath);\n         const patches = chunk.map(item => item.patch);\n-\n-        try {\n-          setCurrentWork(`commit ${startFile}-${endFile} of ${totalFiles} ending ${endingPath}`);\n-          const commitStart = performance.now();\n-          const result = await retryOnConflict(() => client.commitPatchBulk(patches), COMMIT_CONFLICT_RETRIES);\n-          const chunkMs = Math.round(performance.now() - commitStart);\n-          commitMsPerChunk[ci] = chunkMs;\n-          timings.bulkCommitMs += chunkMs;\n-          if (result.rev > latestRev) latestRev = result.rev;\n-          patchesApplied += patches.length;\n-        } catch (err) {\n-          if (debug) {\n-            process.stderr.write(\n-              `\\n  [bulk failed, falling back to per-file] files ${startFile}-${endFile} (${patches.length} patches): ${err}\\n`\n-            );\n-          }\n+        const commitIndividually = async (): Promise<void> => {\n           // Chain this chunk's fallback work onto the shared tail so that only one\n-          // fallback loop runs at a time. This prevents concurrent commitPatch\n+          // per-file loop runs at a time. This prevents concurrent commitPatch\n           // transactions from racing on revisions.current (write-write conflict).\n           const prev = fallbackTail;\n           let resolveThis!: () => void;\n@@ -966,6 +1204,7 @@ export async function ingestFiles(\n                 timings.fallbackCommitMs += chunkMs;\n                 if (result.rev > latestRev) latestRev = result.rev;\n                 patchesApplied++;\n+                opts?.onCommitted?.(item, result.rev);\n               } catch (commitErr) {\n                 // Counted apart from parseErrors: a patch that parsed fine and\n                 // failed to commit means the graph is now behind the working\n@@ -983,6 +1222,31 @@ export async function ingestFiles(\n           } finally {\n             resolveThis();\n           }\n+        };\n+\n+        const hasDeletion = patches.some(patchRequiresPerFileCommit);\n+\n+        if (hasDeletion) {\n+          await commitIndividually();\n+        } else {\n+          try {\n+            setCurrentWork(`commit ${startFile}-${endFile} of ${totalFiles} ending ${endingPath}`);\n+            const commitStart = performance.now();\n+            const result = await retryOnConflict(() => client.commitPatchBulk(patches), COMMIT_CONFLICT_RETRIES);\n+            const chunkMs = Math.round(performance.now() - commitStart);\n+            commitMsPerChunk[ci] = chunkMs;\n+            timings.bulkCommitMs += chunkMs;\n+            if (result.rev > latestRev) latestRev = result.rev;\n+            patchesApplied += patches.length;\n+            for (const item of chunk) opts?.onCommitted?.(item, result.rev);\n+          } catch (err) {\n+            if (debug) {\n+              process.stderr.write(\n+                `\\n  [bulk failed, falling back to per-file] files ${startFile}-${endFile} (${patches.length} patches): ${err}\\n`\n+              );\n+            }\n+            await commitIndividually();\n+          }\n         }\n \n         if (opts?.updateProgress) {\n@@ -1038,7 +1302,17 @@ export async function ingestFiles(\n         for (let j = 0; j < batch.length; j++) {\n           const { parsed: p, hash, previousHash } = batch[j];\n           try {\n-            let patch = buildPatchFn!(p, hash, fileWorkspaceId(p.filePath), batchEdgesByFile.get(p.filePath) ?? emptyEdges, previousHash, fileMultiRepo(p.filePath));\n+            const fileWorkspace = fileWorkspaceId(p.filePath);\n+            let patch = buildPatchFn!(p, hash, fileWorkspace, batchEdgesByFile.get(p.filePath) ?? emptyEdges, previousHash, fileMultiRepo(p.filePath));\n+            if (previousHash) {\n+              patch = await reconcileRemovedEntities(\n+                client,\n+                patch,\n+                sourcePatchIdCandidates(p.filePath, previousHash, fileWorkspace),\n+                undefined,\n+                mapMode,\n+              );\n+            }\n             if (mapMode) patch = stripMapModeOps(patch);\n             // source.uri (workspace-relative) and source.workspaceId are set\n             // inside buildPatch; the backend stores both as opaque attributes.\n@@ -1107,7 +1381,17 @@ export async function ingestFiles(\n         for (let j = 0; j < allParsed.length; j++) {\n           const { parsed: p, hash, previousHash } = allParsed[j];\n           try {\n-            let patch = buildPatchFn!(p, hash, fileWorkspaceId(p.filePath), edgesByFile.get(p.filePath) ?? emptyEdges, previousHash, fileMultiRepo(p.filePath));\n+            const fileWorkspace = fileWorkspaceId(p.filePath);\n+            let patch = buildPatchFn!(p, hash, fileWorkspace, edgesByFile.get(p.filePath) ?? emptyEdges, previousHash, fileMultiRepo(p.filePath));\n+            if (previousHash) {\n+              patch = await reconcileRemovedEntities(\n+                client,\n+                patch,\n+                sourcePatchIdCandidates(p.filePath, previousHash, fileWorkspace),\n+                undefined,\n+                mapMode,\n+              );\n+            }\n             if (mapMode) patch = stripMapModeOps(patch);\n             // source.uri and source.workspaceId are set inside buildPatch (see flushBatch).\n             preparedPatches.push(makePreparedPatch(patch, j + 1, p.filePath));\n@@ -1152,7 +1436,11 @@ export async function ingestFiles(\n         try {\n           const bytes = fs.readFileSync(filePath);\n           const hash = sha256(bytes);\n-          if (knownHashes.get(filePath) === hash) { filesSkipped++; progressCurrent++; continue; }\n+          if (!forceReingestPaths.has(filePath) && knownHashes.get(filePath) === hash) {\n+            filesSkipped++;\n+            progressCurrent++;\n+            continue;\n+          }\n           const previousHash = knownHashes.get(filePath);\n           changedPaths.push({ filePath, bytes, hash, previousHash: previousHash !== hash ? previousHash : undefined });\n         } catch (err) {\n@@ -1312,7 +1600,10 @@ export async function ingestFiles(\n               await fh.close();\n             }\n             const hash = sha256(bytes);\n-            if (!opts.force && knownHashes.get(absFilePath) === hash) { filesSkipped++; return; }\n+            if (!opts.force && !forceReingestPaths.has(absFilePath) && knownHashes.get(absFilePath) === hash) {\n+              filesSkipped++;\n+              return;\n+            }\n             const previousHash = knownHashes.get(absFilePath);\n             const sourceText = bytes.toString('utf-8');\n             if (isLikelyMinifiedSource(sourceText)) {\n@@ -1353,6 +1644,80 @@ export async function ingestFiles(\n     // Clear the parse bar\n     if (interval) process.stderr.write('\\r' + ' '.repeat(PROG_LINE_WIDTH) + '\\r');\n \n+    if (deletedPaths.length > 0) {\n+      progressPhase = 'Saving';\n+      progressTotal = deletedPaths.length;\n+      progressCurrent = 0;\n+      const deletedPatches: PreparedPatch[] = [];\n+      const durableDeletedFiles = new Map(previousDeletedFiles);\n+      const pendingDeletionRecovery = new Map<\n+        string,\n+        { absolutePath: string; dependents: string[] }\n+      >();\n+\n+      for (let i = 0; i < deletedPaths.length; i++) {\n+        const absFilePath = deletedPaths[i];\n+        const previousHash = knownHashes.get(absFilePath);\n+        if (!previousHash) {\n+          nextDeletedFiles.set(absFilePath, []);\n+          progressCurrent++;\n+          continue;\n+        }\n+\n+        const relFilePath = toWorkspaceRelative(absFilePath);\n+        const fileWorkspace = sourceWorkspaceIdOf(absFilePath);\n+        const dependentSourceUris = new Set(nextDeletedFiles.get(absFilePath) ?? []);\n+        try {\n+          let patch = buildDeletionPatch(\n+            relFilePath,\n+            previousHash,\n+            previousBaseline?.lastIngestAt ?? String(previousMtimes.get(absFilePath) ?? ''),\n+            fileWorkspace,\n+            [],\n+            fileMultiRepo(relFilePath),\n+          );\n+          patch = await reconcileRemovedEntities(\n+            client,\n+            patch,\n+            sourcePatchIdCandidates(relFilePath, previousHash, fileWorkspace),\n+            dependentSourceUris,\n+            mapMode,\n+          );\n+          if (mapMode) patch = stripMapModeOps(patch);\n+          deletedPatches.push(makePreparedPatch(patch, i + 1, relFilePath));\n+          const dependents = [...dependentSourceUris].sort();\n+          nextDeletedFiles.set(absFilePath, dependents);\n+          pendingDeletionRecovery.set(relFilePath, {\n+            absolutePath: absFilePath,\n+            dependents,\n+          });\n+        } catch (err) {\n+          commitErrors++;\n+          if (debug) process.stderr.write(`\\n  [deletion error] ${relFilePath}: ${err}\\n`);\n+        }\n+        progressCurrent++;\n+      }\n+\n+      if (deletedPatches.length > 0) {\n+        filesChanged += deletedPatches.length;\n+        await commitPreparedPatches(deletedPatches, deletedPaths.length, {\n+          updateProgress: true,\n+          onCommitted: item => {\n+            const recovery = pendingDeletionRecovery.get(item.filePath);\n+            if (!recovery || !previousBaseline) return;\n+            durableDeletedFiles.set(recovery.absolutePath, recovery.dependents);\n+            saveIngestBaseline(\n+              projectRoot,\n+              previousMtimes,\n+              previousBaseline.currentRev,\n+              new Date(previousBaseline.lastIngestAt),\n+              durableDeletedFiles,\n+            );\n+          },\n+        });\n+      }\n+    }\n+\n     const committed = performance.now();\n \n     // Persist mtime cache so next run can skip unchanged files quickly.\n@@ -1368,6 +1733,8 @@ export async function ingestFiles(\n       latestRev,\n       parseErrors,\n       commitErrors,\n+      undefined,\n+      nextDeletedFiles,\n     );\n \n     // Migration cleanup (Ix#225 gap 2): the re-ingest under the new path-based id has\n@@ -1612,6 +1979,7 @@ export async function loadExistingHashes(\n   toRelative: (absPath: string) => string,\n   workspaceIdOf: (absPath: string) => string,\n   debug = false,\n+  throwOnError = false,\n ): Promise<Map<string, string>> {\n   try {\n     // Each file is matched against its OWN workspace's stored hash. The server keys\n@@ -1633,6 +2001,7 @@ export async function loadExistingHashes(\n     return out;\n   } catch (err) {\n     if (debug) process.stderr.write(`\\n  [hash lookup failed] ${err}\\n`);\n+    if (throwOnError) throw err;\n     return new Map();\n   }\n }"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 378,
+        "filename": "ix-cli/src/cli/commands/ingestion-loader.ts",
+        "status": "modified",
+        "additions": 2,
+        "deletions": 0,
+        "changes": 2,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/d827cc9fa63a203b138d35621057af7c9a21bad0/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fingestion-loader.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/d827cc9fa63a203b138d35621057af7c9a21bad0/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fingestion-loader.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fingestion-loader.ts?ref=d827cc9fa63a203b138d35621057af7c9a21bad0",
+        "patch": "@@ -11,6 +11,8 @@ type IngestionModule = {\n type PatchBuilderModule = {\n   buildPatch: (parsed: any, hash: string, workspaceId: string, previousSourceHash?: string) => any;\n   buildPatchWithResolution: (parsed: any, hash: string, workspaceId: string, resolvedEdges: any[], previousSourceHash?: string) => any;\n+  buildDeletionPatch: (filePath: string, previousSourceHash: string, deletionToken: string, workspaceId: string, ops: any[], multiRepo?: any) => any;\n+  sourcePatchIdCandidates: (filePath: string, sourceHash: string, workspaceId: string) => string[];\n   fileNodeId: (workspaceId: string, filePath: string) => string;\n   symbolNodeId: (workspaceId: string, filePath: string, qualifiedKey: string) => string;\n };"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 378,
+        "filename": "ix-cli/src/cli/ingest-baseline.ts",
+        "status": "modified",
+        "additions": 13,
+        "deletions": 1,
+        "changes": 14,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/d827cc9fa63a203b138d35621057af7c9a21bad0/ix-cli%2Fsrc%2Fcli%2Fingest-baseline.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/d827cc9fa63a203b138d35621057af7c9a21bad0/ix-cli%2Fsrc%2Fcli%2Fingest-baseline.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fingest-baseline.ts?ref=d827cc9fa63a203b138d35621057af7c9a21bad0",
+        "patch": "@@ -5,12 +5,14 @@ import { ingestMtimeCachePath } from \"./config.js\";\n interface SerializedIngestBaseline {\n   root: string;\n   files: Record<string, number>;\n+  deletedFiles?: Record<string, string[]>;\n   currentRev?: number;\n   lastIngestAt?: string;\n }\n \n export interface IngestBaseline {\n   files: Map<string, number>;\n+  deletedFiles: Map<string, string[]>;\n   currentRev: number;\n   lastIngestAt: string;\n }\n@@ -25,6 +27,14 @@ export function loadIngestBaseline(projectRoot: string): IngestBaseline | null {\n     for (const [filePath, mtime] of Object.entries(data.files)) {\n       if (Number.isFinite(mtime)) files.set(filePath, mtime);\n     }\n+    const deletedFiles = new Map<string, string[]>();\n+    for (const [filePath, dependents] of Object.entries(data.deletedFiles ?? {})) {\n+      if (!Array.isArray(dependents)) continue;\n+      deletedFiles.set(\n+        filePath,\n+        dependents.filter((dependent): dependent is string => typeof dependent === \"string\"),\n+      );\n+    }\n \n     const parsedTimestamp = data.lastIngestAt ? Date.parse(data.lastIngestAt) : Number.NaN;\n     const lastIngestAt = Number.isFinite(parsedTimestamp)\n@@ -37,7 +47,7 @@ export function loadIngestBaseline(projectRoot: string): IngestBaseline | null {\n         ? data.currentRev\n         : 0;\n \n-    return { files, currentRev, lastIngestAt };\n+    return { files, deletedFiles, currentRev, lastIngestAt };\n   } catch {\n     return null;\n   }\n@@ -48,12 +58,14 @@ export function saveIngestBaseline(\n   mtimes: Map<string, number>,\n   currentRev: number,\n   now: Date = new Date(),\n+  deletedFiles: Map<string, string[]> = new Map(),\n ): void {\n   try {\n     const previousRev = loadIngestBaseline(projectRoot)?.currentRev ?? 0;\n     const data: SerializedIngestBaseline = {\n       root: projectRoot,\n       files: Object.fromEntries(mtimes),\n+      deletedFiles: Object.fromEntries(deletedFiles),\n       currentRev: currentRev > 0 ? currentRev : previousRev,\n       lastIngestAt: now.toISOString(),\n     };"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 378,
+        "filename": "ix-cli/src/cli/stale.ts",
+        "status": "modified",
+        "additions": 17,
+        "deletions": 3,
+        "changes": 20,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/d827cc9fa63a203b138d35621057af7c9a21bad0/ix-cli%2Fsrc%2Fcli%2Fstale.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/d827cc9fa63a203b138d35621057af7c9a21bad0/ix-cli%2Fsrc%2Fcli%2Fstale.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fstale.ts?ref=d827cc9fa63a203b138d35621057af7c9a21bad0",
+        "patch": "@@ -93,6 +93,7 @@ export function detectStaleFiles(\n   }\n \n   const files = collectFiles(workspaceRoot);\n+  const currentFiles = new Set(files.map((filePath) => path.resolve(filePath)));\n   const changedFiles: string[] = [];\n \n   for (const filePath of files) {\n@@ -110,6 +111,15 @@ export function detectStaleFiles(\n     }\n   }\n \n+  for (const ingestedPath of baseline.files.keys()) {\n+    const absolutePath = path.isAbsolute(ingestedPath)\n+      ? path.resolve(ingestedPath)\n+      : path.resolve(workspaceRoot, ingestedPath);\n+    if (!currentFiles.has(absolutePath) && !fs.existsSync(absolutePath)) {\n+      changedFiles.push(path.relative(workspaceRoot, absolutePath));\n+    }\n+  }\n+\n   return {\n     lastIngestAt: baseline.lastIngestAt,\n     currentRev: baseline.currentRev,\n@@ -126,14 +136,18 @@ export function detectStaleFiles(\n  * this used to need was once a backend round-trip per file.\n  */\n export function isFileStale(filePath: string): boolean {\n-  if (!fs.existsSync(filePath)) return false;\n-\n   const workspaceRoot = path.resolve(resolveWorkspaceRoot());\n   const baseline = loadIngestBaseline(workspaceRoot);\n   if (!baseline) return false;\n \n+  const absolutePath = path.isAbsolute(filePath)\n+    ? path.resolve(filePath)\n+    : path.resolve(workspaceRoot, filePath);\n+  if (!fs.existsSync(absolutePath)) {\n+    return baseline.files.has(absolutePath) || baseline.files.has(filePath);\n+  }\n+\n   try {\n-    const absolutePath = path.resolve(filePath);\n     return differsFromIngestBaseline(\n       absolutePath,\n       fs.statSync(absolutePath).mtimeMs,"
+      }
+    ],
+    "commits": [
+      {
+        "sha": "1b2e760d5dfd2cf31f6cf4ba818ed2cd200edcda",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/1b2e760d5dfd2cf31f6cf4ba818ed2cd200edcda",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/1b2e760d5dfd2cf31f6cf4ba818ed2cd200edcda",
+        "author": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "committer": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "message": "fix(ingest): remove stale graph entities",
+        "parents": [
+          {
+            "sha": "5488741155d69a5f03fce41416643ddceca6f8a0",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/5488741155d69a5f03fce41416643ddceca6f8a0"
+          }
+        ],
+        "tree_sha": "ff17df998727fd36075021800329b9072cd57482",
+        "authored_at": "2026-08-10T04:34:09Z",
+        "committed_at": "2026-08-10T20:59:29Z"
+      },
+      {
+        "sha": "16b0d663bab744f9ea5c02341919fff5636756ea",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/16b0d663bab744f9ea5c02341919fff5636756ea",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/16b0d663bab744f9ea5c02341919fff5636756ea",
+        "author": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "committer": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "message": "test(ingest): use portable recovery paths",
+        "parents": [
+          {
+            "sha": "1b2e760d5dfd2cf31f6cf4ba818ed2cd200edcda",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/1b2e760d5dfd2cf31f6cf4ba818ed2cd200edcda"
+          }
+        ],
+        "tree_sha": "8030f15152fa2627aa1254eddf72d14515ddd0a3",
+        "authored_at": "2026-08-10T04:39:47Z",
+        "committed_at": "2026-08-10T20:59:29Z"
+      },
+      {
+        "sha": "d827cc9fa63a203b138d35621057af7c9a21bad0",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/d827cc9fa63a203b138d35621057af7c9a21bad0",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/d827cc9fa63a203b138d35621057af7c9a21bad0",
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "committer": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "message": "fix(ingest): do not let map mode delete the chunks it cannot rewrite\n\nThree fixes on top of the deletion reconciliation.\n\n1. `ix map` was destroying chunk data. stripMapModeOps drops every chunk\n   UpsertNode from the patch but leaves DeleteNode alone, and chunk ids hash\n   the chunk's start line — so any edit that shifts lines makes every\n   downstream chunk look removed. Running `ix map` after an `ix ingest`\n   therefore deleted the file's chunks and never recreated them: the cheap\n   command silently destroying what the expensive one built. Chunks are not\n   map mode's to reconcile, so reconcileRemovedEntities now takes a mapMode\n   flag and leaves chunk nodes and CONTAINS_CHUNK/NEXT edges alone. The kind\n   comes from the entity lookup already being made for incident edges, so it\n   costs nothing extra.\n\n2. Restored the empty-baseline guard, scoped. An empty mtime map is normally\n   a discovery failure — an over-broad ignore rule, the wrong cwd — and\n   persisting it discards the baseline and forces a full re-ingest. Dropping\n   the guard outright to support \"deleted the last file\" made every such\n   failure destructive. It now asks why the map is empty: with deletions\n   recorded, empty is real; without them, discovery is assumed to have gone\n   wrong.\n\n3. Scoped the fail-closed hash lookup. Deleting from an unreliable baseline\n   is how data gets lost, so failing closed there is right — but letting the\n   throw escape aborted the whole map over one transient blip, taking the\n   ordinary ingest of every changed file with it. The deletions are now\n   dropped for that run and retried next time; the rest proceeds.\n\nCo-authored-by: KageBinary <ianjakobhock@gmail.com>",
+        "parents": [
+          {
+            "sha": "16b0d663bab744f9ea5c02341919fff5636756ea",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/16b0d663bab744f9ea5c02341919fff5636756ea"
+          }
+        ],
+        "tree_sha": "541dc740589b90683d2ac8eca9b7ca8ec0f91280",
+        "authored_at": "2026-08-10T21:03:45Z",
+        "committed_at": "2026-08-10T21:03:45Z"
+      }
+    ],
+    "comments": [
+      {
+        "id": 5245266915,
+        "node_id": "IC_kwDORdC75M8AAAABOKRr4w",
+        "repository": "ix-infrastructure/Ix",
+        "parent_type": "PULL_REQUEST",
+        "parent_number": 378,
+        "kind": "PR_COMMENT",
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "body": "Rebased onto `main` — this one had real conflicts, so flagging exactly what I changed while resolving them. Your commit and authorship are intact; the two edits below are the only things that differ from what you pushed.\n\n**`main` changed `isFileStale` out from under this PR.** It is now synchronous and takes only a path — the `IxClient` parameter is gone, because it reads a local baseline file rather than the patch log, and it is called per result on `explain`/`locate`/`read` where the `await` used to cost a backend round-trip per file.\n\nYour version still had the old `async (client, filePath)` shape, so the two collided head-on. I kept **`main`'s signature** and **your behaviour**:\n\n```ts\nexport function isFileStale(filePath: string): boolean {\n  const workspaceRoot = path.resolve(resolveWorkspaceRoot());\n  const baseline = loadIngestBaseline(workspaceRoot);\n  if (!baseline) return false;\n\n  const absolutePath = path.isAbsolute(filePath)\n    ? path.resolve(filePath)\n    : path.resolve(workspaceRoot, filePath);\n  if (!fs.existsSync(absolutePath)) {\n    return baseline.files.has(absolutePath) || baseline.files.has(filePath);\n  }\n  ...\n}\n```\n\nSo your two changes survive — the workspace-relative path resolution, and a deleted-but-mapped file reporting stale instead of the old blanket `if (!fs.existsSync) return false`. That early return was the bug this PR exists to fix, and dropping it is what `main`'s rewrite would otherwise have quietly undone.\n\nThe matching test edits: `stale-workspace.test.ts` dropped the now-unused `IxClient` import and the `noPatchReads` stub, and the three call sites in your new \"reports a mapped file that was deleted after ingest\" case moved to the sync signature.\n\nVerified after the rebase: `npm run typecheck` clean, full `ix-cli` suite **693 passed** (52 files), `patchBuilder.test.ts` passing, lint 0 errors / 38 pre-existing warnings. All four `isFileStale` callers already use the sync form.\n\nThe review feedback above is unchanged — in particular the map-mode chunk deletion, which is still the blocking item.\n",
+        "html_url": "https://github.com/ix-infrastructure/Ix/pull/378#issuecomment-5245266915",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5245266915",
+        "created_at": "2026-08-10T19:56:43Z",
+        "updated_at": "2026-08-10T19:56:43Z",
+        "commit_id": null,
+        "path": null,
+        "line": null,
+        "start_line": null,
+        "side": null,
+        "in_reply_to_id": null,
+        "diff_hunk": null,
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      },
+      {
+        "id": 5245989250,
+        "node_id": "IC_kwDORdC75M8AAAABOK9xgg",
+        "repository": "ix-infrastructure/Ix",
+        "parent_type": "PULL_REQUEST",
+        "parent_number": 378,
+        "kind": "PR_COMMENT",
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "body": "Rebased onto `main` (clean this time — #382/#384/#386/#387 landed since) and pushed fixes for the blocking item and two of the \"please reconsider\" points, as `d827cc9`. Your commits are intact; mine sits on top.\n\n## 1. The blocker — map mode was destroying chunk data\n\n`stripMapModeOps` drops every chunk `UpsertNode` but leaves `DeleteNode` alone, and `chunkId` hashes the chunk's start line. So any edit that shifts lines made every downstream chunk look removed, and `ix map` after an `ix ingest` deleted the file's chunks without recreating them — the cheap command silently destroying what the expensive one built.\n\n`reconcileRemovedEntities` now takes a `mapMode` flag and leaves chunk nodes and `CONTAINS_CHUNK`/`NEXT` edges alone. The kind comes from the `client.entity()` lookup **you were already making** for incident edges, so it costs no extra round trip — that turned out to be the neat part of your design, not something I had to work around.\n\nThree tests: chunks untouched in map mode, still deleted outside it, and chunk-carrying edges spared while a `CALLS` edge on the same node is still removed.\n\n## 2. Empty-baseline guard — restored, but scoped\n\nYou dropped `mtimes.size === 0` so that deleting the last mapped file could persist an empty baseline. That case is real, but the guard was load-bearing for a different one: there is no `filePaths.length === 0` check anywhere in `ingestFiles`, so *any* discovery failure — over-broad ignore rule, wrong cwd — now overwrote a good baseline with an empty one.\n\nIt now asks **why** the map is empty: with deletions recorded this run, empty is a real state and is persisted; without them, discovery is assumed to have gone wrong and the baseline is kept. Your \"persists an empty baseline after the last mapped file is deleted\" test still passes unchanged, and I added its mirror image.\n\n## 3. Fail-closed lookup — kept, narrowed\n\nFailing closed before deleting is right; deleting from an unreliable baseline is how data gets lost. But letting the throw escape aborted the entire map over one transient blip, taking the ordinary ingest of every changed file with it. The deletions are now dropped for that run — they stay in the baseline and retry next time — and the rest proceeds.\n\n## Verification\n\n- `ix-cli`: **710 passed** across 53 files (was 693), typecheck clean, lint 0 errors / 38 pre-existing warnings\n- `core-ingestion`: 279 passed with the same 6 pre-existing failures, no new ones\n\n## Left alone deliberately\n\n- **Per-file round trips.** `sourcePatchIdCandidates` returns 25 ids tried serially, plus one `client.entity()` per removed node. Real, but batching it is a separate change and I did not want to bury the correctness fixes underneath it.\n- **Op ordering.** `DeleteNode` still precedes the trailing `DeleteEdge`s for incident edges. I could not answer from the CLI side whether the backend cascades incident-edge removal on node delete — if it does, those trailing deletes target rows that are already gone. Worth confirming before anyone calls the ordering intentional.\n- **Baseline write amplification.** `onCommitted` rewrites the whole baseline per deleted file. Bounded, and per-file durability is a defensible trade.\n\nI'm happy with this now aside from those. If you'd rather take the round-trip batching yourself, say so and I'll leave it; otherwise I can follow up separately.\n",
+        "html_url": "https://github.com/ix-infrastructure/Ix/pull/378#issuecomment-5245989250",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5245989250",
+        "created_at": "2026-08-10T21:04:20Z",
+        "updated_at": "2026-08-10T21:04:20Z",
+        "commit_id": null,
+        "path": null,
+        "line": null,
+        "start_line": null,
+        "side": null,
+        "in_reply_to_id": null,
+        "diff_hunk": null,
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      }
+    ],
+    "reviews": [
+      {
+        "id": 4899761389,
+        "node_id": "PRR_kwDORdC75M8AAAABJAxs7Q",
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 378,
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "state": "CHANGES_REQUESTED",
+        "body": "Thanks for contributing — and thanks for taking on the hardest of the four. Stale-entity cleanup is a real gap and the overall shape here (compare the previous patch manifest, emit explicit deletions, track dependents so a recreated file heals its callers) is the right one. The tombstone `patchId` derivation is nicely done: deterministic per `(previousHash, deletionToken)` so a retry is idempotent but a later deletion is not, which is exactly the property you want.\n\nThere is one bug I think is a blocker, plus a few things worth reconsidering.\n\n## Blocker — `ix map` after `ix ingest` deletes chunk nodes and never recreates them\n\n`reconcileRemovedEntities` runs **before** `stripMapModeOps`, at both call sites:\n\n```js\npatch = await reconcileRemovedEntities(client, patch, sourcePatchIdCandidates(...));\nif (mapMode) patch = stripMapModeOps(patch);\n```\n\n`stripMapModeOps` filters out chunk `UpsertNode` ops but leaves `DeleteNode` ops untouched. And `chunkId` hashes the start line:\n\n```js\nchunkId: (filePath, chunkKind, name, startLine) =>\n  deterministicId(`${ns}${normalizePath(filePath)}:chunk:${chunkKind}:${name ?? 'file_body'}:${startLine}`)\n```\n\nSo any edit that shifts lines changes the chunk ids. Sequence: user runs `ix ingest` (chunks created), edits a file, runs `ix map`. Reconcile sees the old chunk ids missing from the new patch and emits deletions; the strip then removes the replacement upserts.\n\nI confirmed this on your branch with the real `reconcileRemovedEntities` and a copy of `stripMapModeOps` — previous patch `[file-node, chunk-L1, chunk-L10]`, new patch upserting `[file-node, chunk-L1, chunk-L12]`:\n\n```\nDELETED : [ 'chunk-L10' ]\nUPSERTED: [ 'file-node' ]\n=> chunk nodes deleted but NOT recreated: [ 'chunk-L10' ]\n```\n\nBefore this PR `ix map` simply left chunks alone (stale, but present). Now the cheaper command silently destroys embedding/search data for every file it touches, and only a full `ix ingest` puts it back. Easiest fix is to skip reconciliation entirely in `mapMode`, or to filter chunk-node ids out of `removedNodeIds` when `mapMode` is set — `ix map` never owned that data and shouldn't be deleting it.\n\n## Please reconsider — dropping the `mtimes.size === 0` guard\n\n```js\n- if (!ingestCompletedCleanly(parseErrors, commitErrors) || mtimes.size === 0) return false;\n+ if (!ingestCompletedCleanly(parseErrors, commitErrors)) return false;\n```\n\nI understand why: an emptied repo has to be able to persist an empty baseline. But there is no `filePaths.length === 0` guard anywhere in `ingestFiles`, so *any* run that discovers zero files — an over-broad ignore rule, a bad `cwd`, a discovery glitch — now overwrites a good baseline with an empty one and forces a full re-ingest next time.\n\nThe `!fs.existsSync(filePath)` check on `deletedPaths` is a good safeguard and does stop this from turning into mass deletion, which I was glad to see. But the baseline still gets wiped. Gating on `mtimes.size > 0 || deletedPaths.length > 0` would keep the guard while still covering the case you actually need.\n\n## Please reconsider — hash-lookup failure now aborts the whole map\n\n```js\nknownHashes = await loadExistingHashes(..., deletedPaths.length > 0);\n```\n\nWith any deleted file present, a transient `getSourceHashes` failure throws instead of degrading to an empty map, so one network blip fails the entire ingest rather than just the deletion work. Failing closed on *deletion* is right — deleting from an unreliable baseline is how you lose data. But the scope is wider than the risk. Consider catching it and skipping deletion reconciliation for this run (leaving `deletedFiles` in the baseline so the next run retries) while letting the ordinary ingest proceed.\n\n## Perf — per-file round-trips inside the patch loop\n\n`reconcileRemovedEntities` now runs for every file with a `previousHash`, and it is serial I/O in what used to be a pure-CPU loop:\n\n- `sourcePatchIdCandidates` returns **25** ids (current + 23 `PREVIOUS_EXTRACTORS` + legacy), tried one at a time until one is not a 404. Common case is 1 call, but the first `ix map` after a CLI upgrade walks the list for *every* changed file.\n- then one `client.entity(nodeId)` per removed node, also serial.\n\nA refactor that removes 50 symbols across 20 files pays 50 sequential `entity()` calls on top of the `getPatch` walk. Worth batching, or at least running the candidate probe concurrently.\n\n## Smaller things\n\n- **Op ordering.** `DeleteNode` ops are emitted before the `UpsertEdge` ops, and the `DeleteEdge` ops for incident edges come *after* the `DeleteNode`s. If the backend cascades incident-edge removal on node delete, those trailing `DeleteEdge`s target rows that are already gone — is that a no-op server-side, or an error? Worth confirming, since it decides whether the ordering is load-bearing.\n- **Baseline write amplification.** `onCommitted` calls `saveIngestBaseline` once per committed deletion, rewriting the whole JSON each time. Deleting a directory of 500 files means 500 full rewrites. Durability per-file is a reasonable goal, but a debounce or a single write after the batch would be cheaper.\n- **`readStoredPatchEntities` `data.ops` branch** treats `DeleteNode` ids from a previous patch as live entities. Harmless (they re-delete), but it means a tombstone-follows-tombstone sequence re-emits deletions for already-removed nodes.\n\n## Also\n\nThe branch is currently conflicting with `main` and will need a rebase.\n\nThe test coverage is genuinely good — `planDeletedFileRecovery`, the retry-idempotency assertion on the tombstone id, and the \"fails closed when the previous patch has no entity manifest\" case are all the right things to pin. Once the map-mode chunk issue is sorted I would be happy to take another pass.\n",
+        "html_url": "https://github.com/ix-infrastructure/Ix/pull/378#pullrequestreview-4899761389",
+        "submitted_at": "2026-08-10T18:21:30Z",
+        "commit_id": "3c6006093e850bb00eac179df011e5e3b3c49bf5",
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      },
+      {
+        "id": 4900961342,
+        "node_id": "PRR_kwDORdC75M8AAAABJB68Pg",
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 378,
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "state": "APPROVED",
+        "body": "Blocking items resolved — see the comment above for what I pushed and why. Approving.\n\nVerified after the changes: full `ix-cli` suite green, typecheck clean, lint 0 errors, and `core-ingestion` still at exactly the six pre-existing failures you documented on `origin/main`.",
+        "html_url": "https://github.com/ix-infrastructure/Ix/pull/378#pullrequestreview-4900961342",
+        "submitted_at": "2026-08-10T21:06:28Z",
+        "commit_id": "d827cc9fa63a203b138d35621057af7c9a21bad0",
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      }
+    ],
+    "review_comments": [],
+    "timeline": [
+      {
+        "id": 29202437458,
+        "event": "review_requested",
+        "actor": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "created_at": "2026-08-10T04:37:08Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29202437458"
+      },
+      {
+        "id": 4899761389,
+        "event": "reviewed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": "3c6006093e850bb00eac179df011e5e3b3c49bf5",
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T19:33:04Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": 29243750024,
+        "event": "head_ref_force_pushed",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T19:53:22Z",
+        "commit_id": "442054e7977f08858e3ef8671249befb3776fb6e",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29243750024"
+      },
+      {
+        "id": 5245266915,
+        "event": "commented",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T19:56:43Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5245266915"
+      },
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/1b2e760d5dfd2cf31f6cf4ba818ed2cd200edcda"
+      },
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/16b0d663bab744f9ea5c02341919fff5636756ea"
+      },
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/d827cc9fa63a203b138d35621057af7c9a21bad0"
+      },
+      {
+        "id": 29246754642,
+        "event": "head_ref_force_pushed",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T21:03:55Z",
+        "commit_id": "d827cc9fa63a203b138d35621057af7c9a21bad0",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29246754642"
+      },
+      {
+        "id": 5245989250,
+        "event": "commented",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T21:04:20Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5245989250"
+      },
+      {
+        "id": 4900961342,
+        "event": "reviewed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": "d827cc9fa63a203b138d35621057af7c9a21bad0",
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": 29247185849,
+        "event": "merged",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T21:14:21Z",
+        "commit_id": "b25bf2efe837a29022770bd220c58b2da05bca32",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29247185849"
+      },
+      {
+        "id": 29247185913,
+        "event": "closed",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T21:14:21Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29247185913"
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-12T16:30:46Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-13T19:11:47Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      }
+    ],
+    "source": "OFFICIAL_GITHUB_FACT",
+    "review_threads": [],
+    "review_thread_capture": {
+      "status": "VERIFIED",
+      "source": "GitHub GraphQL API"
+    }
+  },
+  "source_context": {
+    "id": "github:pull_request:ix-infrastructure/Ix#378",
+    "source": {
+      "type": "github_pull_request",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/378",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/378",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T04:37:07Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T21:14:21Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "PR-378",
+    "entity_type": "PULL_REQUEST",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "mirror_scope": "source PR, commits, files, comments, reviews, review comments, and review threads",
+    "related_analysis_types": [
+      "FINDING",
+      "DECISION",
+      "IMPLEMENTATION"
+    ],
+    "review_thread_state": "VERIFIED_GRAPHQL"
   },
   "relationships": [
     {
@@ -44,6 +715,102 @@
       "other_type": "file",
       "other_title": "CLI-HANDOFF/phase-15/FINAL-PR-WORTHINESS-AUDIT.json",
       "other_url": "https://alot1z.github.io/Ix-findings/entities/src-90ab8426282e"
+    },
+    {
+      "direction": "out",
+      "relationship": "FOUND_IN",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "in",
+      "relationship": "AUTHORED",
+      "other": "PERSON-Hiro-Chiba",
+      "other_type": "artifact",
+      "other_title": "Hiro-Chiba",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-hiro-chiba"
+    },
+    {
+      "direction": "out",
+      "relationship": "HEADS_AT",
+      "other": "COMMIT-d827cc9fa63a203b138d35621057af7c9a21bad0",
+      "other_type": "commit",
+      "other_title": "d827cc9fa63a203b138d35621057af7c9a21bad0",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-d827cc9fa63a203b138d35621057af7c9a21bad0"
+    },
+    {
+      "direction": "out",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "COMMIT-1b2e760d5dfd2cf31f6cf4ba818ed2cd200edcda",
+      "other_type": "commit",
+      "other_title": "1b2e760d5dfd2cf31f6cf4ba818ed2cd200edcda",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-1b2e760d5dfd2cf31f6cf4ba818ed2cd200edcda"
+    },
+    {
+      "direction": "out",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "COMMIT-16b0d663bab744f9ea5c02341919fff5636756ea",
+      "other_type": "commit",
+      "other_title": "16b0d663bab744f9ea5c02341919fff5636756ea",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-16b0d663bab744f9ea5c02341919fff5636756ea"
+    },
+    {
+      "direction": "out",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "COMMIT-d827cc9fa63a203b138d35621057af7c9a21bad0",
+      "other_type": "commit",
+      "other_title": "d827cc9fa63a203b138d35621057af7c9a21bad0",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-d827cc9fa63a203b138d35621057af7c9a21bad0"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMENTED_ON",
+      "other": "COMMENT-ix-infrastructure-Ix-pr-378-5245266915",
+      "other_type": "artifact",
+      "other_title": "PR #378 comment 5245266915",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/comment-ix-infrastructure-ix-pr-378-5245266915"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMENTED_ON",
+      "other": "COMMENT-ix-infrastructure-Ix-pr-378-5245989250",
+      "other_type": "artifact",
+      "other_title": "PR #378 comment 5245989250",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/comment-ix-infrastructure-ix-pr-378-5245989250"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_REVIEW",
+      "other": "REVIEW-ix-infrastructure-Ix-pr-378-4899761389",
+      "other_type": "artifact",
+      "other_title": "Review 4899761389 on PR #378",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/review-ix-infrastructure-ix-pr-378-4899761389"
+    },
+    {
+      "direction": "in",
+      "relationship": "REVIEWED_BY",
+      "other": "PERSON-KageBinary",
+      "other_type": "artifact",
+      "other_title": "KageBinary",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-kagebinary"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_REVIEW",
+      "other": "REVIEW-ix-infrastructure-Ix-pr-378-4900961342",
+      "other_type": "artifact",
+      "other_title": "Review 4900961342 on PR #378",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/review-ix-infrastructure-ix-pr-378-4900961342"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGED_BY",
+      "other": "COMMIT-d827cc9fa63a203b138d35621057af7c9a21bad0",
+      "other_type": "commit",
+      "other_title": "d827cc9fa63a203b138d35621057af7c9a21bad0",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-d827cc9fa63a203b138d35621057af7c9a21bad0"
     }
   ]
 }

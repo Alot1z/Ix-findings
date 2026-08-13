@@ -1,0 +1,177 @@
+{
+  "schema_version": "phase-c.incremental-sync.v1",
+  "generated_at": "2026-08-12T10:42:30.430Z",
+  "source": "planning/phase-c/GITHUB-LIVE-CAPTURE.json",
+  "event_types": {
+    "new_commit": {
+      "source_event": "commit observed",
+      "affected_entity_ids": [
+        "COMMIT:<full_sha>",
+        "BRANCH:<repo>:<branch>",
+        "FILE:<repo>:<path>"
+      ],
+      "affected_relationships": [
+        "PARENT",
+        "CHANGES",
+        "HEADS_AT",
+        "CO_CHANGED_WITH"
+      ],
+      "projections": [
+        "entity",
+        "graph",
+        "search",
+        "llm",
+        "routes"
+      ],
+      "validation": [
+        "full_sha",
+        "parent_integrity",
+        "file_url"
+      ]
+    },
+    "new_issue": {
+      "source_event": "issue created",
+      "affected_entity_ids": [
+        "ISSUE:<repo>:<number>",
+        "PERSON:<login>"
+      ],
+      "affected_relationships": [
+        "AUTHORED",
+        "FOUND_IN"
+      ],
+      "projections": [
+        "issue_entity",
+        "graph",
+        "search",
+        "llm",
+        "sitemap"
+      ]
+    },
+    "new_pr": {
+      "source_event": "pull request opened",
+      "affected_entity_ids": [
+        "PR:<repo>:<number>",
+        "PERSON:<login>",
+        "COMMIT:<head_sha>"
+      ],
+      "affected_relationships": [
+        "AUTHORED",
+        "HEADS_AT",
+        "RESPONDS_TO"
+      ],
+      "projections": [
+        "pr_entity",
+        "graph",
+        "search",
+        "llm",
+        "sitemap"
+      ]
+    },
+    "new_comment": {
+      "source_event": "issue/PR comment created",
+      "affected_entity_ids": [
+        "COMMENT:<id>",
+        "ISSUE/PR:<id>",
+        "PERSON:<login>"
+      ],
+      "affected_relationships": [
+        "COMMENTED_ON",
+        "AUTHORED",
+        "REFERENCES"
+      ],
+      "projections": [
+        "commenting_entity",
+        "parent_entity",
+        "graph",
+        "llm"
+      ]
+    },
+    "new_review": {
+      "source_event": "review submitted",
+      "affected_entity_ids": [
+        "REVIEW:<id>",
+        "PR:<id>",
+        "PERSON:<login>"
+      ],
+      "affected_relationships": [
+        "HAS_REVIEW",
+        "REVIEWED_BY"
+      ],
+      "projections": [
+        "pr_entity",
+        "review_entity",
+        "graph",
+        "llm"
+      ]
+    },
+    "changed_pr_head": {
+      "source_event": "PR head SHA changed",
+      "affected_entity_ids": [
+        "PR:<number>",
+        "COMMIT:<old_sha>",
+        "COMMIT:<new_sha>",
+        "FILE:<changed>"
+      ],
+      "affected_relationships": [
+        "HEADS_AT",
+        "HEAD_MOVED_TO",
+        "CHANGES"
+      ],
+      "projections": [
+        "pr_entity",
+        "commit_entities",
+        "graph",
+        "freshness",
+        "search",
+        "llm"
+      ]
+    },
+    "merged_pr": {
+      "source_event": "PR merged",
+      "affected_entity_ids": [
+        "PR:<number>",
+        "COMMIT:<merge_sha>",
+        "ISSUE:<linked>"
+      ],
+      "affected_relationships": [
+        "MERGED_AS",
+        "RESOLVES",
+        "HISTORICAL_STATE"
+      ],
+      "projections": [
+        "pr_entity",
+        "issue_entity",
+        "graph",
+        "timeline",
+        "freshness"
+      ]
+    },
+    "closed_issue": {
+      "source_event": "issue closed/reopened",
+      "affected_entity_ids": [
+        "ISSUE:<number>"
+      ],
+      "affected_relationships": [
+        "STATE_TRANSITION"
+      ],
+      "projections": [
+        "issue_entity",
+        "graph",
+        "timeline",
+        "freshness",
+        "search",
+        "llm"
+      ]
+    }
+  },
+  "execution_contract": [
+    "capture source event read-only",
+    "resolve deterministic entity IDs",
+    "append temporal evidence",
+    "rebuild affected relationships",
+    "regenerate only affected projections",
+    "run link/privacy/graph/LLM validation",
+    "fail closed on missing or conflicting identity"
+  ],
+  "no_hooks_or_webhooks": true
+}

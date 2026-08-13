@@ -1,0 +1,56 @@
+{
+  "schema_version": "ix-findings.retrieval-index.v1",
+  "generated_at": "2026-08-12T22:11:59.806Z",
+  "levels": [
+    {
+      "level": 0,
+      "name": "current-state",
+      "paths": [
+        "planning/CURRENT-STATE.json"
+      ]
+    },
+    {
+      "level": 1,
+      "name": "indexes",
+      "paths": [
+        "planning/phase-f/REPOSITORY-FILE-INDEX.json",
+        "planning/phase-f/SYMBOL-INDEX.json",
+        "planning/phase-f/REPORT-INDEX.json",
+        "planning/PHASE-INDEX.json"
+      ]
+    },
+    {
+      "level": 2,
+      "name": "summaries",
+      "paths": [
+        "planning/phase-f/PHASE-F-SUMMARY.json",
+        "planning/phase-f/PHASE-F-REPORT.md"
+      ]
+    },
+    {
+      "level": 3,
+      "name": "targeted-records",
+      "paths": [
+        "knowledge/entities.json",
+        "knowledge/relationships.json",
+        "knowledge/external-github-mirror.json"
+      ]
+    },
+    {
+      "level": 4,
+      "name": "source-excerpts",
+      "paths": [
+        "planning/phase-f/REPOSITORY-FILE-INDEX.json",
+        "planning/phase-f/SYMBOL-INDEX.json"
+      ]
+    },
+    {
+      "level": 5,
+      "name": "full-source",
+      "paths": [
+        "repository-relative source paths from the file index"
+      ]
+    }
+  ],
+  "query_contract": "INDEX -> TARGETED RECORD -> EXCERPT -> FULL SOURCE ONLY WHEN REQUIRED"
+}

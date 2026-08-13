@@ -1,0 +1,102 @@
+{
+  "id": "FILE-e2670fe535db",
+  "type": "artifact",
+  "title": "ix-cli/src/cli/__tests__/upgrade-compass-stamp.test.ts",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/file-e2670fe535db",
+  "summary": {
+    "id": "FILE-e2670fe535db",
+    "type": "artifact",
+    "title": "ix-cli/src/cli/__tests__/upgrade-compass-stamp.test.ts",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "source_mirror_id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/__tests__/upgrade-compass-stamp.test.ts",
+    "source_type": "github_file",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/blob/3f70e75a7e5cc21cd50eaa01908948e7036aa9f6/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fupgrade-compass-stamp.test.ts",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 391,
+    "filename": "ix-cli/src/cli/__tests__/upgrade-compass-stamp.test.ts",
+    "status": "added",
+    "additions": 173,
+    "deletions": 0,
+    "changes": 173,
+    "blob_url": "https://github.com/ix-infrastructure/Ix/blob/3f70e75a7e5cc21cd50eaa01908948e7036aa9f6/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fupgrade-compass-stamp.test.ts",
+    "raw_url": "https://github.com/ix-infrastructure/Ix/raw/3f70e75a7e5cc21cd50eaa01908948e7036aa9f6/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fupgrade-compass-stamp.test.ts",
+    "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fupgrade-compass-stamp.test.ts?ref=3f70e75a7e5cc21cd50eaa01908948e7036aa9f6",
+    "patch": "@@ -0,0 +1,173 @@\n+import { describe, expect, it } from \"vitest\";\n+\n+import { isNewer, parseCompassStamp, shouldOfferCompassUpgradeFor } from \"../commands/upgrade.js\";\n+\n+/**\n+ * Ix#376. `compass/.version` is written by two producers in two unrelated\n+ * version series — the release workflow stamps the *Ix* version, install.sh and\n+ * the compass-upgrade path stamp the *ix-compass-dist* release — and the stamp\n+ * used to record no way to tell them apart. `isNewer(distLatest, stamp)` then\n+ * compared across series and was correct only while Ix's numbers happened to be\n+ * the larger ones.\n+ */\n+describe(\"parseCompassStamp\", () => {\n+  it(\"reads the release form\", () => {\n+    expect(parseCompassStamp(\"0.9.3+release.7f98724\\n\")).toEqual({\n+      source: \"release\",\n+      version: \"0.9.3\",\n+    });\n+    // install.sh/install.ps1 have no commit to record, so they write the marker\n+    // without one.\n+    expect(parseCompassStamp(\"0.9.3+release\\n\")).toEqual({\n+      source: \"release\",\n+      version: \"0.9.3\",\n+    });\n+  });\n+\n+  it(\"reads a bare number as dist-series\", () => {\n+    // Both the legacy stamp (everything up to v0.9.2, where install.sh wrote the\n+    // dist release — the majority of installs in the wild) and the dist form\n+    // going forward. Reading it as dist keeps those exactly as correct as they\n+    // already were, and needs no marker.\n+    expect(parseCompassStamp(\"0.3.0\")).toEqual({ source: \"dist\", version: \"0.3.0\" });\n+    expect(parseCompassStamp(\" 0.2.0\\n\")).toEqual({ source: \"dist\", version: \"0.2.0\" });\n+  });\n+\n+  it(\"treats build metadata that is not `release` as dist\", () => {\n+    expect(parseCompassStamp(\"0.3.0+dist\")).toEqual({ source: \"dist\", version: \"0.3.0\" });\n+    expect(parseCompassStamp(\"0.3.0+abc123\")).toEqual({ source: \"dist\", version: \"0.3.0\" });\n+  });\n+\n+  it(\"treats an empty or unparseable stamp as absent\", () => {\n+    expect(parseCompassStamp(\"\")).toEqual({ source: \"dist\", version: \"0.0.0\" });\n+    expect(parseCompassStamp(\"   \\n  \")).toEqual({ source: \"dist\", version: \"0.0.0\" });\n+    expect(parseCompassStamp(\"+release\")).toEqual({ source: \"dist\", version: \"0.0.0\" });\n+  });\n+\n+  it(\"tolerates CRLF, which is how a Windows bundle arrives\", () => {\n+    expect(parseCompassStamp(\"0.9.3+release.7f98724\\r\\n\")).toEqual({\n+      source: \"release\",\n+      version: \"0.9.3\",\n+    });\n+  });\n+\n+  it(\"reads only the first line, so a stray second one cannot poison the version\", () => {\n+    expect(parseCompassStamp(\"0.9.3+release.7f98724\\ntrailing junk\\n\")).toEqual({\n+      source: \"release\",\n+      version: \"0.9.3\",\n+    });\n+  });\n+\n+  /**\n+   * The numbers `isNewer` was being handed before the marker existed. It says\n+   * \"upgrade\", which is how a compass built from system-compass main at Ix\n+   * release time would have been replaced by an older dist build.\n+   */\n+  it(\"shows what isNewer alone answers across the two series\", () => {\n+    // The moment ix-compass-dist tags anything above the running Ix version.\n+    expect(isNewer(\"1.0.0\", \"0.9.3\")).toBe(true);\n+  });\n+});\n+\n+/**\n+ * `compass/.version` has readers we cannot upgrade. Every already-shipped CLI\n+ * reads it with `getTrackedVersion` — `readFileSync(...).trim()`, the WHOLE\n+ * file — and hands that straight to `splitVersion`/`isNewer`. The upgrade\n+ * sequence puts the new stamp in front of the old reader: `ix upgrade` swaps in\n+ * the new tree, then the still-running old process continues into its own\n+ * compass block and reads the file it just installed.\n+ *\n+ * A multi-line `key=value` stamp made that blob's major parse as\n+ * `Number(\"source=release\\nix=1\")` = NaN -> 0, so an old CLI saw a 1.x release\n+ * as [0,0,0] and downloaded ix-compass-dist over the newer bundle — Ix#376\n+ * reintroduced by the format change itself. These cases pin the property that\n+ * prevents it: whatever the stamp carries, an old reader must still see a\n+ * version that compares correctly.\n+ */\n+describe(\"legacy readers survive the stamp format\", () => {\n+  // Verbatim getTrackedVersion from the shipped CLI.\n+  const legacyRead = (raw: string) => raw.trim() || \"0.0.0\";\n+\n+  it(\"never offers a dist downgrade to an old CLI, at any release number\", () => {\n+    for (const ix of [\"0.9.3\", \"0.9.4\", \"1.0.0\", \"1.1.0\", \"2.5.3\"]) {\n+      const onDisk = legacyRead(`${ix}+release.7f98724\\n`);\n+      expect(isNewer(\"0.3.0\", onDisk)).toBe(false);\n+    }\n+  });\n+\n+  it(\"keeps the whole stamp on one line\", () => {\n+    // The property the loop above depends on. A second line puts the newline\n+    // inside splitVersion's input and the major becomes NaN -> 0.\n+    const stamp = \"1.0.0+release.7f98724\\n\";\n+    expect(legacyRead(stamp)).not.toContain(\"\\n\");\n+\n+    // What the rejected multi-line form would have done, for contrast.\n+    const multiline = legacyRead(\"source=release\\nix=1.0.0\\ncompass=7f98724\\n\");\n+    expect(isNewer(\"0.3.0\", multiline)).toBe(true);\n+  });\n+\n+  it(\"still lets an old CLI upgrade a genuine dist bundle\", () => {\n+    expect(isNewer(\"0.4.0\", legacyRead(\"0.3.0\\n\"))).toBe(true);\n+  });\n+});\n+\n+/**\n+ * The decision itself, which is what #376 actually changes. Asserting on\n+ * parseCompassStamp alone does not reach it: with these cases absent, deleting\n+ * the `source === \"release\"` branch left all 728 tests green while restoring\n+ * the inversion in full.\n+ */\n+describe(\"shouldOfferCompassUpgradeFor\", () => {\n+  const onDisk = (raw: string) => ({ ...parseCompassStamp(raw), present: true });\n+\n+  it(\"never replaces a release bundle with a dist build\", () => {\n+    // The exact inversion. dist has tagged 1.0.0, above the running Ix version,\n+    // so a bare isNewer() would say yes and downgrade a newer bundled compass.\n+    expect(shouldOfferCompassUpgradeFor(\"1.0.0\", onDisk(\"0.9.3+release.7f98724\"))).toBe(false);\n+\n+    // Still no, even for a dist release far ahead — the series never converge.\n+    expect(shouldOfferCompassUpgradeFor(\"9.9.9\", onDisk(\"0.9.3+release.7f98724\"))).toBe(false);\n+  });\n+\n+  it(\"still compares within the dist series\", () => {\n+    expect(shouldOfferCompassUpgradeFor(\"0.4.0\", onDisk(\"0.3.0\"))).toBe(true);\n+    expect(shouldOfferCompassUpgradeFor(\"0.3.0\", onDisk(\"0.3.0\"))).toBe(false);\n+    expect(shouldOfferCompassUpgradeFor(\"0.2.0\", onDisk(\"0.3.0\"))).toBe(false);\n+  });\n+\n+  it(\"keeps the repair path for a missing or gutted bundle\", () => {\n+    // present=false is what installedCompass() reports when index.html is\n+    // absent. The repair must fire for a *release* bundle too, which is why the\n+    // present check sits ahead of the source check rather than after it —\n+    // reversing them breaks `ix view` permanently (#365/#366).\n+    expect(\n+      shouldOfferCompassUpgradeFor(\"0.3.0\", { source: \"release\", version: \"0.9.3\", present: false }),\n+    ).toBe(true);\n+    expect(\n+      shouldOfferCompassUpgradeFor(\"0.3.0\", { source: \"dist\", version: \"0.3.0\", present: false }),\n+    ).toBe(true);\n+  });\n+\n+  it(\"does not 'repair' a present release bundle whose stamp is damaged\", () => {\n+    // The reason `present` is carried separately instead of being encoded as\n+    // version 0.0.0: a stamp truncated by a full disk or a kill during the\n+    // non-atomic write also parses as 0.0.0. The bundle beside it is intact and\n+    // serving, so replacing it with an older dist build is the #376 downgrade\n+    // reached through a corrupt file instead of a version comparison.\n+    expect(\n+      shouldOfferCompassUpgradeFor(\"0.3.0\", { source: \"release\", version: \"0.0.0\", present: true }),\n+    ).toBe(false);\n+  });\n+\n+  it(\"offers nothing when the dist release is unknown\", () => {\n+    // fetchLatestRelease returned nothing — offline, or the repo moved.\n+    expect(shouldOfferCompassUpgradeFor(undefined, onDisk(\"0.3.0\"))).toBe(false);\n+    expect(shouldOfferCompassUpgradeFor(\"\", onDisk(\"0.3.0\"))).toBe(false);\n+  });\n+\n+  it(\"treats a legacy bare stamp as dist-series, as it always was\", () => {\n+    // Everything shipped up to v0.9.2. install.sh wrote the dist number here,\n+    // which is the majority of installs in the wild.\n+    expect(shouldOfferCompassUpgradeFor(\"0.3.0\", onDisk(\"0.2.0\"))).toBe(true);\n+  });\n+});",
+    "parent_pr": 391
+  },
+  "source_context": {
+    "id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/__tests__/upgrade-compass-stamp.test.ts",
+    "source": {
+      "type": "github_file",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/blob/3f70e75a7e5cc21cd50eaa01908948e7036aa9f6/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fupgrade-compass-stamp.test.ts",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-11T00:07:35Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-11T04:37:01Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "FILE-e2670fe535db",
+    "entity_type": "FILE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#391",
+    "line_precision": "FILE_LEVEL"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-3353000f9b6666f929f52b1d5b5e5248a4e68678",
+      "other_type": "commit",
+      "other_title": "3353000f9b6666f929f52b1d5b5e5248a4e68678",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-3353000f9b6666f929f52b1d5b5e5248a4e68678"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-c4154613a2fdd434c5271f2babc10bcd88ab46b1",
+      "other_type": "commit",
+      "other_title": "c4154613a2fdd434c5271f2babc10bcd88ab46b1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-c4154613a2fdd434c5271f2babc10bcd88ab46b1"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-3f70e75a7e5cc21cd50eaa01908948e7036aa9f6",
+      "other_type": "commit",
+      "other_title": "3f70e75a7e5cc21cd50eaa01908948e7036aa9f6",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-3f70e75a7e5cc21cd50eaa01908948e7036aa9f6"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-af23b558efea953869d03ea655cbb0b3c82123b2",
+      "other_type": "commit",
+      "other_title": "af23b558efea953869d03ea655cbb0b3c82123b2",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-af23b558efea953869d03ea655cbb0b3c82123b2"
+    }
+  ]
+}

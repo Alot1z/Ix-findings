@@ -1,0 +1,130 @@
+{
+  "id": "DIRECTORY-4f5ce22d40f6",
+  "type": "artifact",
+  "title": "ix-cli",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/directory-4f5ce22d40f6",
+  "summary": {
+    "id": "DIRECTORY-4f5ce22d40f6",
+    "type": "artifact",
+    "title": "ix-cli",
+    "status": "CURRENT"
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "PART_OF",
+      "other": "REPO-Alot1z-Ix-remap",
+      "other_type": "repository",
+      "other_title": "Alot1z/Ix-remap",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-alot1z-ix-remap"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "FILE-6f50afdabc7c",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/mcp.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-6f50afdabc7c"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "FILE-bde2f2fa2210",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/mcp/server.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-bde2f2fa2210"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "FILE-f902d0bd7d79",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/mcp/protocol.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f902d0bd7d79"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "FILE-63e24301d4e2",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/mcp/tools.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-63e24301d4e2"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "FILE-79fb8af4d3ea",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/mcp/stdio-main.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-79fb8af4d3ea"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "FILE-1ce7aad92e07",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/mcp/cli-executor.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-1ce7aad92e07"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "FILE-4d5f65181991",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/mcp/types.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-4d5f65181991"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "FILE-0c2771dd53b7",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/mcp-abuse.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-0c2771dd53b7"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "FILE-fdcbe8373815",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/mcp-stdio.integration.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-fdcbe8373815"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "FILE-3020117dc02d",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/mcp-protocol.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3020117dc02d"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "FILE-da220b7b9013",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/mcp-server.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-da220b7b9013"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "FILE-538ae47ee3c6",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/mcp-cli-executor.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-538ae47ee3c6"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "FILE-0a16fac37d72",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/mcp-command.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-0a16fac37d72"
+    }
+  ]
+}

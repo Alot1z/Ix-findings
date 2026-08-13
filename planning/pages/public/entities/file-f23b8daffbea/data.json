@@ -1,0 +1,79 @@
+{
+  "id": "FILE-f23b8daffbea",
+  "type": "artifact",
+  "title": "ix-cli/src/cli/__tests__/map-auto-skip.test.ts",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/file-f23b8daffbea",
+  "summary": {
+    "id": "FILE-f23b8daffbea",
+    "type": "artifact",
+    "title": "ix-cli/src/cli/__tests__/map-auto-skip.test.ts",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/blob/HEAD/ix-cli/src/cli/__tests__/map-auto-skip.test.ts",
+    "source_mirror_id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/__tests__/map-auto-skip.test.ts",
+    "source_type": "github_file",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/blob/8d6be713600302ca22da3981059e7319c050b64b/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fmap-auto-skip.test.ts",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 421,
+    "filename": "ix-cli/src/cli/__tests__/map-auto-skip.test.ts",
+    "status": "modified",
+    "additions": 74,
+    "deletions": 2,
+    "changes": 76,
+    "blob_url": "https://github.com/ix-infrastructure/Ix/blob/8d6be713600302ca22da3981059e7319c050b64b/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fmap-auto-skip.test.ts",
+    "raw_url": "https://github.com/ix-infrastructure/Ix/raw/8d6be713600302ca22da3981059e7319c050b64b/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fmap-auto-skip.test.ts",
+    "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fmap-auto-skip.test.ts?ref=8d6be713600302ca22da3981059e7319c050b64b",
+    "patch": "@@ -1,5 +1,17 @@\n-import { afterEach, describe, expect, it } from 'vitest';\n-import { shouldSkipAutoMap } from '../commands/map.js';\n+import * as fs from 'node:fs';\n+import * as os from 'node:os';\n+import * as path from 'node:path';\n+import { hostname } from 'node:os';\n+import { Command } from 'commander';\n+import { afterEach, describe, expect, it, vi } from 'vitest';\n+import {\n+  applyRequestedMapCoalesceExitCode,\n+  mapModeForIngest,\n+  registerMapCommand,\n+  requestedMapCoalesceExitCode,\n+  shouldSkipAutoMap,\n+} from '../commands/map.js';\n+import { lockPathForTest } from '../single-flight.js';\n \n describe('shouldSkipAutoMap', () => {\n   afterEach(() => { delete process[redacted].IX_AUTO_MAP_CLOUD; });\n@@ -21,3 +33,63 @@ describe('shouldSkipAutoMap', () => {\n     expect(shouldSkipAutoMap({ auto: true, cloudReady: true })).toBe(false);\n   });\n });\n+\n+describe('requestedMapCoalesceExitCode', () => {\n+  it('accepts a private non-zero process exit code', () => {\n+    expect(requestedMapCoalesceExitCode('75')).toBe(75);\n+  });\n+\n+  it.each([undefined, '', '0', '256', '1.5', 'nope'])('ignores invalid value %s', value => {\n+    expect(requestedMapCoalesceExitCode(value)).toBeUndefined();\n+  });\n+\n+  it('applies the requested exit code on the map-lock coalesce path', () => {\n+    let applied: number | undefined;\n+\n+    expect(applyRequestedMapCoalesceExitCode('75', code => { applied = code; })).toBe(true);\n+    expect(applied).toBe(75);\n+  });\n+\n+  it('preserves normal exit behavior when the private option is absent', () => {\n+    const apply = vi.fn();\n+\n+    expect(applyRequestedMapCoalesceExitCode(undefined, apply)).toBe(false);\n+    expect(apply).not.toHaveBeenCalled();\n+  });\n+\n+  it('makes the real map action exit before ingest when its lock is contended', async () => {\n+    const lockDir = fs.mkdtempSync(path.join(os.tmpdir(), 'ix-map-coalesce-'));\n+    const root = path.join(lockDir, 'workspace');\n+    fs.mkdirSync(root);\n+    process[redacted].IX_LOCK_DIR = lockDir;\n+    process[redacted].IX_MAP_COALESCE_EXIT_CODE = '75';\n+    fs.writeFileSync(lockPathForTest(root), JSON.stringify({\n+      pid: process.pid,\n+      host: hostname(),\n+      startedAt: Date.now(),\n+      label: 'held by test',\n+    }));\n+\n+    try {\n+      const program = new Command();\n+      registerMapCommand(program);\n+      await program.parseAsync(['node', 'ix', 'map', root, '--silent']);\n+      expect(process.exitCode).toBe(75);\n+    } finally {\n+      process.exitCode = undefined;\n+      delete process[redacted].IX_LOCK_DIR;\n+      delete process[redacted].IX_MAP_COALESCE_EXIT_CODE;\n+      fs.rmSync(lockDir, { recursive: true, force: true });\n+    }\n+  });\n+});\n+\n+describe('mapModeForIngest', () => {\n+  it('keeps ordinary map ingestion topology-only', () => {\n+    expect(mapModeForIngest(undefined)).toBe(true);\n+  });\n+\n+  it('lets watch request full canonical patches after the map lock is acquired', () => {\n+    expect(mapModeForIngest('1')).toBe(false);\n+  });\n+});",
+    "parent_pr": 421
+  },
+  "source_context": {
+    "id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/__tests__/map-auto-skip.test.ts",
+    "source": {
+      "type": "github_file",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/blob/8d6be713600302ca22da3981059e7319c050b64b/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fmap-auto-skip.test.ts",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-13T19:15:39Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-13T19:15:40Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "FILE-f23b8daffbea",
+    "entity_type": "FILE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#421",
+    "line_precision": "FILE_LEVEL"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-495bd746a37be984d724d310ef2c1e3af97fc82d",
+      "other_type": "commit",
+      "other_title": "495bd746a37be984d724d310ef2c1e3af97fc82d",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-495bd746a37be984d724d310ef2c1e3af97fc82d"
+    }
+  ]
+}

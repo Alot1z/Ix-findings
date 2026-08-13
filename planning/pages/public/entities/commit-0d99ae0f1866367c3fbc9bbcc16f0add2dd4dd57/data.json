@@ -1,0 +1,80 @@
+{
+  "id": "COMMIT-0d99ae0f1866367c3fbc9bbcc16f0add2dd4dd57",
+  "type": "commit",
+  "title": "0d99ae0f1866367c3fbc9bbcc16f0add2dd4dd57",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-0d99ae0f1866367c3fbc9bbcc16f0add2dd4dd57",
+  "summary": {
+    "id": "COMMIT-0d99ae0f1866367c3fbc9bbcc16f0add2dd4dd57",
+    "type": "commit",
+    "title": "0d99ae0f1866367c3fbc9bbcc16f0add2dd4dd57",
+    "status": "HISTORICAL",
+    "author": {
+      "login": "bertolikimberly",
+      "id": 134340724,
+      "type": "User",
+      "html_url": "https://github.com/bertolikimberly"
+    }
+  },
+  "source_snapshot": {
+    "sha": "0d99ae0f1866367c3fbc9bbcc16f0add2dd4dd57",
+    "html_url": "https://github.com/Alot1z/Ix-remap/commit/0d99ae0f1866367c3fbc9bbcc16f0add2dd4dd57",
+    "api_url": "https://api.github.com/repos/Alot1z/Ix-remap/commits/0d99ae0f1866367c3fbc9bbcc16f0add2dd4dd57",
+    "author": {
+      "login": "bertolikimberly",
+      "id": 134340724,
+      "type": "User",
+      "html_url": "https://github.com/bertolikimberly"
+    },
+    "committer": {
+      "login": "bertolikimberly",
+      "id": 134340724,
+      "type": "User",
+      "html_url": "https://github.com/bertolikimberly"
+    },
+    "message": "fix(mcp): harden the stdio server — line-size cap, tree-kill, protocol-abuse matrix (#219)\n\n- Byte-bounded line reader replaces readline: a message over 1 MiB is\n  rejected with -32700 and the reader resyncs at the next newline, so a\n  pathological client can never force unbounded buffering.\n- Reject JSON-RPC batches with a single -32600; validate jsonrpc version\n  and id type per JSON-RPC 2.0.\n- Kill whole process trees on cancel/timeout/overflow/shutdown: children\n  spawn detached (own group on POSIX; taskkill /T on Windows), and the\n  executor tracks live children for disposeAll() on EOF and SIGINT/SIGTERM,\n  so a tool that spawned the indexing backend cannot leak it.\n- 14 new tests: protocol-abuse matrix (oversize, batch, malformed shapes,\n  unknown _meta, concurrent cancels, sequential queue, notification storm,\n  idempotent initialize, partial frame at EOF) + grandchild reaping and\n  disposeAll() orphan-prevention. Full suite 749 passed / 2 skipped.\n\n🤖 Generated with Codebuff\nCo-Authored-By: Codebuff <noreply@codebuff.com>",
+    "parents": [
+      {
+        "sha": "863b3fd513656253536fd398aed62b30526e7ef1",
+        "html_url": "https://github.com/Alot1z/Ix-remap/commit/863b3fd513656253536fd398aed62b30526e7ef1"
+      }
+    ],
+    "tree_sha": "51dac9544d7db85f11e519fb71d709fc88f01d33",
+    "authored_at": "2026-08-11T15:38:07Z",
+    "committed_at": "2026-08-11T15:38:07Z"
+  },
+  "source_context": {
+    "id": "github:commit:Alot1z/Ix-remap@0d99ae0f1866367c3fbc9bbcc16f0add2dd4dd57",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "Alot1z/Ix-remap",
+      "owner": "Alot1z",
+      "url": "https://github.com/Alot1z/Ix-remap/commit/0d99ae0f1866367c3fbc9bbcc16f0add2dd4dd57",
+      "api_url": "https://api.github.com/repos/Alot1z/Ix-remap/commits/0d99ae0f1866367c3fbc9bbcc16f0add2dd4dd57",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-11T15:38:07Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-11T15:38:07Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-0d99ae0f1866367c3fbc9bbcc16f0add2dd4dd57",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:repository:Alot1z/Ix-remap",
+    "capture_kind": "EXPLICIT_SHA_TARGET"
+  },
+  "relationships": []
+}

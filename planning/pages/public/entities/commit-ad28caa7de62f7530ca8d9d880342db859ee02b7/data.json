@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-ad28caa7de62f7530ca8d9d880342db859ee02b7",
+  "type": "commit",
+  "title": "ad28caa7de62f7530ca8d9d880342db859ee02b7",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-ad28caa7de62f7530ca8d9d880342db859ee02b7",
+  "summary": {
+    "id": "COMMIT-ad28caa7de62f7530ca8d9d880342db859ee02b7",
+    "type": "commit",
+    "title": "ad28caa7de62f7530ca8d9d880342db859ee02b7",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/ad28caa7de62f7530ca8d9d880342db859ee02b7",
+    "author": {
+      "name": "Joseph Mikhail",
+      "email": "56614593+josephismikhail@users.noreply.github.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-70136954863f734d929766a7b943249e4b6e8b26",
+      "other_type": "commit",
+      "other_title": "70136954863f734d929766a7b943249e4b6e8b26",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-70136954863f734d929766a7b943249e4b6e8b26"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-d52c3f754033c439cc3b3d095def08d744ede052",
+      "other_type": "commit",
+      "other_title": "d52c3f754033c439cc3b3d095def08d744ede052",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-d52c3f754033c439cc3b3d095def08d744ede052"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2c59b7724786",
+      "other_type": "artifact",
+      "other_title": "core-ingestion/src/index.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2c59b7724786"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-be48d8a188c3",
+      "other_type": "artifact",
+      "other_title": "core-ingestion/src/index.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-be48d8a188c3"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-962a5d04f98c",
+      "other_type": "artifact",
+      "other_title": "core-ingestion/src/index.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-962a5d04f98c"
+    }
+  ]
+}

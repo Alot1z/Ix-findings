@@ -1,0 +1,208 @@
+{
+  "id": "COMMIT-097b7f037abc1117ec073cb39c7fa44c785cc342",
+  "type": "commit",
+  "title": "097b7f037abc1117ec073cb39c7fa44c785cc342",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-097b7f037abc1117ec073cb39c7fa44c785cc342",
+  "summary": {
+    "id": "COMMIT-097b7f037abc1117ec073cb39c7fa44c785cc342",
+    "type": "commit",
+    "title": "097b7f037abc1117ec073cb39c7fa44c785cc342",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/097b7f037abc1117ec073cb39c7fa44c785cc342",
+    "author": {
+      "name": "riley0227",
+      "email": "riley0227@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-cfd898814694ff9525bb6df98fd4d12a44e67a53",
+      "other_type": "commit",
+      "other_title": "cfd898814694ff9525bb6df98fd4d12a44e67a53",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-cfd898814694ff9525bb6df98fd4d12a44e67a53"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-ab467d4bb7dd13481ec52f2b8513d825f1c7cbec",
+      "other_type": "commit",
+      "other_title": "ab467d4bb7dd13481ec52f2b8513d825f1c7cbec",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-ab467d4bb7dd13481ec52f2b8513d825f1c7cbec"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-8511ba3045a6",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/DiffRoutes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-8511ba3045a6"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-1c0420191028",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/EntityRoutes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-1c0420191028"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3b4505b85e83",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/IngestionRoutes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3b4505b85e83"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2d41eae1fea1",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/Routes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2d41eae1fea1"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-b65c702fbc12",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/ArangoGraphQueryApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b65c702fbc12"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3f8d83f0d485",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/GraphQueryApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3f8d83f0d485"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-4b977e0c5370",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/api/RoutesSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-4b977e0c5370"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-996b4dc6a79c",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/DiffRoutes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-996b4dc6a79c"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-172117d3e615",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/EntityRoutes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-172117d3e615"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-8d149133ed1b",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/IngestionRoutes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-8d149133ed1b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-b40158942cff",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/Routes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b40158942cff"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c8947973d6aa",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/ArangoGraphQueryApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c8947973d6aa"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2186ed233b1f",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/GraphQueryApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2186ed233b1f"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3f6c742e488a",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/api/RoutesSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3f6c742e488a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-fa6087a8c575",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/DiffRoutes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-fa6087a8c575"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-30908674208c",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/EntityRoutes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-30908674208c"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-7b1335c5b74b",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/IngestionRoutes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-7b1335c5b74b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-a64d4c665471",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/Routes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-a64d4c665471"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-4de3a54ff174",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/ArangoGraphQueryApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-4de3a54ff174"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-6f1940d00172",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/GraphQueryApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-6f1940d00172"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-d4786d6e545f",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/api/RoutesSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-d4786d6e545f"
+    }
+  ]
+}

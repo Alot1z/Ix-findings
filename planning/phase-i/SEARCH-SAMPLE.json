@@ -1,0 +1,104 @@
+{
+  "schema_version": "ix-findings.search-result.v1",
+  "query": "Phase E",
+  "tokens": [
+    "phase"
+  ],
+  "results": [
+    {
+      "score": 1,
+      "record_id": "BRANCH-fork-ix-mcp",
+      "record_type": "BRANCH",
+      "title": "Alot1z/Ix:feat/ix-mcp",
+      "search_text": "BRANCH-fork-ix-mcp Alot1z/Ix:feat/ix-mcp CURRENT Alot1z/Ix:feat/ix-mcp at 606f18f (Phase 15 audited baseline). Alot1z/Ix:feat/ix-mcp at 606f18f (Phase 15 audited baseline). BRANCH-fork-ix-mcp SRC-90ab8426282e SRC-e83be4caf1c1",
+      "status": "CURRENT",
+      "confidence": "HIGH",
+      "source_refs": [
+        "SRC-90ab8426282e",
+        "SRC-e83be4caf1c1"
+      ],
+      "related_entities": [
+        "SRC-90ab8426282e",
+        "SRC-e83be4caf1c1",
+        "REPO-Alot1z-Ix",
+        "COMMIT-606f18f",
+        "IMPL-MCP-FORK"
+      ]
+    },
+    {
+      "score": 1,
+      "record_id": "COMMIT-0098380f6ba1e6e9813eb357c3d55348b61ef85c",
+      "record_type": "COMMIT",
+      "title": "0098380f6ba1e6e9813eb357c3d55348b61ef85c",
+      "search_text": "COMMIT-0098380f6ba1e6e9813eb357c3d55348b61ef85c 0098380f6ba1e6e9813eb357c3d55348b61ef85c HISTORICAL Phase 7: upstream reconciliation — F-008/F-009 resolved upstream, PR #393 verified, open issues catalogued, Phase 8-10 prompts Alot1z/Ix-findings commit 0098380f6ba1e6e9813eb357c3d55348b61ef85c; 36 changed files; local Git history fact. https://github.com/Alot1z/Ix-findings/commit/0098380f6ba1e6e9813eb357c3d55348b61ef85c COMMIT-0098380f6ba1e6e9813eb357c3d55348b61ef85c planning/phase-c/GIT-INTELLIGENCE.json",
+      "status": "HISTORICAL",
+      "confidence": "HIGH",
+      "source_refs": [
+        "planning/phase-c/GIT-INTELLIGENCE.json"
+      ],
+      "related_entities": [
+        "COMMIT-f4c55a3d79b36e3a36b9ede49511d9a9c5858aa6",
+        "COMMIT-bf1b0e8f7dc46f701b08d727f358bf41f8a9a2fe",
+        "FILE-f1d39d30e1d2",
+        "FILE-3077925f3982",
+        "FILE-2cdb609f6c22",
+        "FILE-6968cb29917b",
+        "FILE-9601e5b6106d",
+        "FILE-7c4f84c4d64d",
+        "FILE-5722c9f01acc",
+        "FILE-068c7dcb8bab",
+        "FILE-dedda7617428",
+        "FILE-a66941a92aac",
+        "FILE-9fe78bc3fe7f",
+        "FILE-2115544d5312",
+        "FILE-8e277066dfb4",
+        "FILE-0d42d58b16c6",
+        "FILE-25d459262ed0",
+        "FILE-5dba9b5643fd",
+        "FILE-a8efaecd811b",
+        "FILE-70dfd592e760",
+        "FILE-b3f5d89bd504",
+        "FILE-6a46808a36b0",
+        "FILE-466dee2a2910",
+        "FILE-8886b8121209",
+        "FILE-0a2b8babd4e7",
+        "FILE-f63e4314f7cb",
+        "FILE-f2024f50bf53",
+        "FILE-30dda9328acb",
+        "FILE-d7dd2257efc5",
+        "FILE-1fad8ce653d6",
+        "FILE-bc8b36bf8704",
+        "FILE-1d80a5c44065",
+        "FILE-a006a8bea210",
+        "FILE-7ec749db8841",
+        "FILE-53371c954cac",
+        "FILE-4afec70101d4",
+        "FILE-b12c5acb5d6c",
+        "FILE-12ee1c334949"
+      ]
+    },
+    {
+      "score": 1,
+      "record_id": "COMMIT-009ef25f0518d3cf419c0f35096b17409db86d0f",
+      "record_type": "COMMIT",
+      "title": "009ef25f0518d3cf419c0f35096b17409db86d0f",
+      "search_text": "COMMIT-009ef25f0518d3cf419c0f35096b17409db86d0f 009ef25f0518d3cf419c0f35096b17409db86d0f HISTORICAL Phase 13: final close-out — master report, terminal audit, ladder closed Alot1z/Ix-findings commit 009ef25f0518d3cf419c0f35096b17409db86d0f; 4 changed files; local Git history fact. https://github.com/Alot1z/Ix-findings/commit/009ef25f0518d3cf419c0f35096b17409db86d0f COMMIT-009ef25f0518d3cf419c0f35096b17409db86d0f planning/phase-c/GIT-INTELLIGENCE.json",
+      "status": "HISTORICAL",
+      "confidence": "HIGH",
+      "source_refs": [
+        "planning/phase-c/GIT-INTELLIGENCE.json"
+      ],
+      "related_entities": [
+        "COMMIT-18600138e418bd37850518a13d94dabc7b135726",
+        "COMMIT-880d6426dd1c0f0d85fbe5c87ba1a16b506bab1a",
+        "FILE-68f3bd0c1113",
+        "FILE-75cd67a438b6",
+        "FILE-35ed383a8b30",
+        "FILE-625e98af58e7"
+      ]
+    }
+  ],
+  "source": "planning/phase-i/SEARCH-INDEX.json",
+  "retrieval": "TOKEN_POSTINGS_ONLY",
+  "external_mutations": 0
+}

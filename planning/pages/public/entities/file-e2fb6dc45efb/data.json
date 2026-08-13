@@ -1,0 +1,94 @@
+{
+  "id": "FILE-e2fb6dc45efb",
+  "type": "artifact",
+  "title": "ix-cli/src/cli/__tests__/llm-tier5.test.ts",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/file-e2fb6dc45efb",
+  "summary": {
+    "id": "FILE-e2fb6dc45efb",
+    "type": "artifact",
+    "title": "ix-cli/src/cli/__tests__/llm-tier5.test.ts",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "source_mirror_id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/__tests__/llm-tier5.test.ts",
+    "source_type": "github_file",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/blob/86f3684c4e4dc77dd0a579eb92863824953a3ce9/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fllm-tier5.test.ts",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 372,
+    "filename": "ix-cli/src/cli/__tests__/llm-tier5.test.ts",
+    "status": "added",
+    "additions": 284,
+    "deletions": 0,
+    "changes": 284,
+    "blob_url": "https://github.com/ix-infrastructure/Ix/blob/86f3684c4e4dc77dd0a579eb92863824953a3ce9/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fllm-tier5.test.ts",
+    "raw_url": "https://github.com/ix-infrastructure/Ix/raw/86f3684c4e4dc77dd0a579eb92863824953a3ce9/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fllm-tier5.test.ts",
+    "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fllm-tier5.test.ts?ref=86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+    "patch": "@@ -0,0 +1,284 @@\n+import { describe, it, expect, vi } from \"vitest\";\n+import { renderExplainLlm, renderExplainRawLlm } from \"../explain/llm.js\";\n+import { renderReadLlm, renderReadAmbiguityLlm, outputResult } from \"../commands/read.js\";\n+import type { ReadResult } from \"../commands/read.js\";\n+import { renderStatusLlm } from \"../commands/status.js\";\n+import { renderDoctorLlm } from \"../commands/doctor.js\";\n+import { renderSavingsLlm } from \"../commands/savings.js\";\n+import type { EntityFacts } from \"../explain/facts.js\";\n+\n+/**\n+ * The commands that advertised `llm` in their help and rendered `text`.\n+ *\n+ * docs/llm-format.md says an unimplemented command routes `--format llm` to\n+ * \"whichever existing format is most compact\", which for all five of these was\n+ * the prose renderer — so agents paid full human-oriented output on the path\n+ * they call most. These tests pin the records, and in particular the two\n+ * properties that are easy to regress: zero counts survive, and a value that\n+ * would break the one-record-per-line invariant gets quoted.\n+ */\n+\n+function facts(over: Partial<EntityFacts> = {}): EntityFacts {\n+  return {\n+    id: \"e1\", name: \"IngestionService\", kind: \"class\",\n+    path: \"src/ingest.ts\",\n+    members: [], memberCount: 0,\n+    callerCount: 0, calleeCount: 0, dependentCount: 0, importerCount: 0,\n+    downstreamDependents: 0, downstreamDepth: 0,\n+    topCallers: [], topDependents: [],\n+    historyLength: 0,\n+    stale: false,\n+    diagnostics: [],\n+    ...over,\n+  } as EntityFacts;\n+}\n+\n+const role = { role: \"service\", confidence: \"high\", reasons: [] } as any;\n+const importance = { level: \"high\", category: \"broad-shared-dependency\", reasons: [] } as any;\n+const rendered = {\n+  explanation: \"PROSE_EXPLANATION\", context: \"PROSE_CONTEXT\",\n+  usedBy: null, whyItMatters: \"PROSE_WHY\", notes: [],\n+};\n+\n+describe(\"explain --format llm\", () => {\n+  it(\"emits the facts, not the prose that was rendered from them\", () => {\n+    const lines = renderExplainLlm(\n+      facts({ callerCount: 12, dependentCount: 40, introducedRev: 7 }),\n+      role, importance, rendered,\n+    );\n+\n+    expect(lines[0]).toBe(\"entity id=e1 name=IngestionService kind=class path=src/ingest.ts rev=7\");\n+    expect(lines).toContain(\"role role=service confidence=high\");\n+    expect(lines).toContain(\"importance level=high category=broad-shared-dependency\");\n+    // The whole point: none of the prose survives. It is a rendering of the\n+    // records above, so an agent that gets the records can drop it.\n+    expect(lines.join(\"\\n\")).not.toContain(\"PROSE_EXPLANATION\");\n+    expect(lines.join(\"\\n\")).not.toContain(\"PROSE_CONTEXT\");\n+    expect(lines.join(\"\\n\")).not.toContain(\"PROSE_WHY\");\n+  });\n+\n+  it(\"keeps zero counts, because 'nothing calls this' is an answer\", () => {\n+    const line = renderExplainLlm(facts(), role, importance, rendered)\n+      .find(l => l.startsWith(\"edges \"));\n+\n+    // llmField drops \"\" but keeps \"0\" — if these were passed as numbers a\n+    // future change to that rule would silently delete the answer.\n+    expect(line).toBe(\"edges callers=0 callees=0 dependents=0 importers=0 members=0 downstream=0 depth=0 history=0\");\n+  });\n+\n+  it(\"marks stale sources and carries diagnostics through\", () => {\n+    const lines = renderExplainLlm(\n+      facts({ stale: true, diagnostics: [{ code: \"stale_source\", message: \"File changed since ingest.\" }] }),\n+      role, importance, rendered,\n+    );\n+\n+    expect(lines[0]).toContain(\"stale=true\");\n+    expect(lines).toContain('diagnostic code=stale_source message=\"File changed since ingest.\"');\n+  });\n+\n+  it(\"quotes a signature so a record never spans two lines\", () => {\n+    const lines = renderExplainLlm(\n+      facts({ signature: \"run(a: string,\\n      b: number): void\" }),\n+      role, importance, rendered,\n+    );\n+\n+    const sig = lines.find(l => l.startsWith(\"signature \"))!;\n+    expect(sig).toContain(\"\\\\n\");\n+    expect(sig.split(\"\\n\")).toHaveLength(1);\n+  });\n+\n+  it(\"renders the --raw dump as records too\", () => {\n+    const lines = renderExplainRawLlm({\n+      id: \"e1\", name: \"verify_token\", kind: \"function\", file: \"src/auth.py\",\n+      calledBy: 3, calls: 1, contains: 0, historyLength: 2,\n+      callList: [{ name: \"decode\", kind: \"function\", resolved: true }],\n+    });\n+\n+    expect(lines[0]).toBe(\"entity id=e1 name=verify_token kind=function path=src/auth.py\");\n+    expect(lines).toContain(\"edges called_by=3 calls=1 contains=0 history=2\");\n+    expect(lines).toContain(\"call name=decode kind=function\");\n+  });\n+});\n+\n+describe(\"read --format llm\", () => {\n+  it(\"drops the per-line gutter and self-delimits the payload\", () => {\n+    const lines = renderReadLlm({\n+      targetType: \"symbol\", path: \"/repo/src/auth.py\",\n+      lineStart: 10, lineEnd: 12,\n+      content: \"def verify():\\n    return True\\n\",\n+      symbol: \"verify\", kind: \"function\",\n+    } as any);\n+\n+    expect(lines[0]).toContain(\"line_start=10\");\n+    expect(lines[0]).toContain(\"symbol=verify\");\n+    // content lines=<n> tells the consumer exactly how many lines follow, so a\n+    // line of source can never be mistaken for another record.\n+    expect(lines[1]).toBe(\"content lines=3\");\n+    expect(lines.slice(2)).toEqual([\"def verify():\", \"    return True\", \"\"]);\n+    // No line number prefixes anywhere.\n+    expect(lines.slice(2).some(l => /^\\s*\\d+ /.test(l))).toBe(false);\n+  });\n+\n+  it(\"lists candidates when the target is ambiguous\", () => {\n+    const lines = renderReadAmbiguityLlm({\n+      targetType: \"ambiguous-symbol\",\n+      candidates: [\n+        { name: \"run\", kind: \"function\", path: \"/repo/a.ts\" },\n+        { name: \"run\", kind: \"method\", path: \"/repo/b.ts\" },\n+      ],\n+    } as any, \"run\");\n+\n+    expect(lines[0]).toBe(\"ambiguous kind=symbol target=run count=2\");\n+    expect(lines[1]).toContain(\"candidate n=1 name=run kind=function\");\n+    expect(lines[lines.length - 1]).toContain(\"--pick\");\n+  });\n+});\n+\n+describe(\"status --format llm\", () => {\n+  it(\"answers 'can I trust the graph' in one field\", () => {\n+    const lines = renderStatusLlm(\"ok\", \"http://[redacted]8090\", {\n+      currentRev: 11, lastIngestAt: \"2026-08-09T12:00:00.000Z\",\n+      staleFiles: 2, sampleChangedFiles: [\"src/a.ts\", \"src/b.ts\"],\n+    });\n+\n+    expect(lines[0]).toContain(\"stale=true\");\n+    expect(lines[0]).toContain(\"stale_files=2\");\n+    // ISO, not \"3h ago\" — the consumer can do its own arithmetic.\n+    expect(lines[0]).toContain(\"last_ingest_at=2026-08-09T12:00:00.000Z\");\n+    expect(lines).toContain(\"changed path=src/a.ts\");\n+  });\n+\n+  it(\"says stale=false rather than omitting it when the graph is current\", () => {\n+    const lines = renderStatusLlm(\"ok\", \"http://[redacted]8090\", {\n+      currentRev: 11, lastIngestAt: null, staleFiles: 0, sampleChangedFiles: [],\n+    });\n+\n+    expect(lines[0]).toContain(\"stale=false\");\n+    expect(lines[0]).toContain(\"stale_files=0\");\n+  });\n+\n+  it(\"omits the staleness fields entirely when there is no baseline to read\", () => {\n+    const lines = renderStatusLlm(\"ok\", \"http://[redacted]8090\", null);\n+\n+    expect(lines).toEqual([\"status backend=ok endpoint=http://[redacted]8090\"]);\n+  });\n+});\n+\n+describe(\"doctor --format llm\", () => {\n+  it(\"prints the detail instead of telling you to re-run for it\", () => {\n+    const lines = renderDoctorLlm([\n+      { name: \"Backend reachable\", ok: true, detail: \"ok\" },\n+      { name: \"Graph schema matches engine\", ok: false, warn: true, detail: \"graph schema v2, expected v3\" },\n+      { name: \"Docker running\", ok: false, detail: \"daemon not up\" },\n+    ], true, true);\n+\n+    expect(lines[0]).toBe(\"doctor healthy=false warnings=true checks=3\");\n+    expect(lines).toContain('check name=\"Backend reachable\" status=ok detail=ok');\n+    expect(lines).toContain('check name=\"Graph schema matches engine\" status=warn detail=\"graph schema v2, expected v3\"');\n+    expect(lines).toContain('check name=\"Docker running\" status=fail detail=\"daemon not up\"');\n+  });\n+\n+  // {ok:true, warn:true} is the only shape the ternary's ordering decides —\n+  // `latest-not-pulled` returns it, and every other combination reads the same\n+  // either way round. Without this row the comment explaining why `ok` must be\n+  // tested first sits above an untested branch.\n+  //\n+  // `ok`, not `warn`, because that is what the glyph line renders for the same\n+  // record (green ✓, not yellow !). The two formats describing one check\n+  // differently is the bug worth guarding; the header still carries\n+  // warnings=true, so nothing is lost.\n+  it(\"agrees with the glyph on a check that passes with a warning\", () => {\n+    const lines = renderDoctorLlm(\n+      [{ name: \"Backend image\", ok: true, warn: true, detail: \"can't verify — :latest not pulled\" }],\n+      false, true,\n+    );\n+\n+    expect(lines[0]).toBe(\"doctor healthy=true warnings=true checks=1\");\n+    expect(lines).toContain('check name=\"Backend image\" status=ok detail=\"can\\'t verify — :latest not pulled\"');\n+  });\n+});\n+\n+describe(\"savings --format llm\", () => {\n+  const data = (over = {}) => ({\n+    commandCount: 10, tokensSaved: 50_000, naiveTokens: 60_000, actualTokens: 10_000,\n+    byCommandType: { explain: { count: 4, saved: 20_000 } },\n+    ...over,\n+  });\n+\n+  it(\"emits one record per scope with the derived money and water\", () => {\n+    const lines = renderSavingsLlm(\n+      { session: data(), lifetime: data() } as any, \"opus\", false,\n+    );\n+\n+    const session = lines.find(l => l.includes(\"name=session\"))!;\n+    expect(session).toContain(\"tokens_saved=50000\");\n+    expect(session).toContain(\"water_saved_ml=100\");\n+    expect(session).toMatch(/money_saved=\\d+\\.\\d{2}/);\n+  });\n+\n+  it(\"gates the per-command breakdown behind --detail, like the other formats\", () => {\n+    const without = renderSavingsLlm({ session: data(), lifetime: data() } as any, \"opus\", false);\n+    const with_ = renderSavingsLlm({ session: data(), lifetime: data() } as any, \"opus\", true);\n+\n+    expect(without.some(l => l.startsWith(\"command \"))).toBe(false);\n+    expect(with_).toContain(\"command scope=session name=explain count=4 tokens_saved=20000\");\n+  });\n+});\n+\n+/**\n+ * The `content lines=<n>` header is only true of render *composed with* print.\n+ * renderReadLlm returns the blank lines correctly; printLlmLines used to drop\n+ * them on the way to stdout, so the count promised more lines than a consumer\n+ * ever received and it ate the following records as source. Asserting on the\n+ * returned array cannot see that — these drive the real print path.\n+ */\n+describe(\"read --format llm content framing\", () => {\n+  function emit(content: string, over: Partial<ReadResult> = {}): string[] {\n+    const out: string[] = [];\n+    const spy = vi.spyOn(console, \"log\").mockImplementation((...a: unknown[]) => {\n+      out.push(a.map(String).join(\" \"));\n+    });\n+    try {\n+      outputResult({\n+        targetType: \"file\", path: \"/repo/src/a.ts\",\n+        lineStart: 1, lineEnd: 1, content, stale: false,\n+        ...over,\n+      } as ReadResult, \"llm\");\n+    } finally {\n+      spy.mockRestore();\n+    }\n+    return out;\n+  }\n+\n+  function framing(content: string): { declared: number; emitted: number } {\n+    const out = emit(content);\n+    const header = out.findIndex(l => l.startsWith(\"content lines=\"));\n+    return {\n+      declared: Number(/content lines=(\\d+)/.exec(out[header])![1]),\n+      emitted: out.length - header - 1,\n+    };\n+  }\n+\n+  it.each([\n+    [\"a blank line in the middle\", \"def verify():\\n\\n    return True\\n\"],\n+    [\"an empty file\", \"\"],\n+    [\"CRLF content\", \"a\\r\\nb\\r\\n\"],\n+    [\"no trailing newline\", \"x\\ny\"],\n+    [\"only blank lines\", \"\\n\\n\\n\"],\n+  ])(\"emits exactly as many lines as it declares: %s\", (_label, content) => {\n+    const { declared, emitted } = framing(content);\n+    expect(emitted).toBe(declared);\n+  });\n+\n+  it(\"keeps the blank line in place rather than closing the gap\", () => {\n+    const out = emit(\"a\\n\\nb\\n\");\n+    expect(out.slice(out.findIndex(l => l.startsWith(\"content lines=\")) + 1))\n+      .toEqual([\"a\", \"\", \"b\", \"\"]);\n+  });\n+\n+  it(\"routes --format llm to records, not the numbered gutter\", () => {\n+    const out = emit(\"x\\ny\");\n+    expect(out[0]).toContain(\"file path=\");\n+    expect(out.some(l => /^\\s*\\d+ /.test(l))).toBe(false);\n+  });\n+});",
+    "parent_pr": 372
+  },
+  "source_context": {
+    "id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/__tests__/llm-tier5.test.ts",
+    "source": {
+      "type": "github_file",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/blob/86f3684c4e4dc77dd0a579eb92863824953a3ce9/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fllm-tier5.test.ts",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T02:54:48Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T16:27:44Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "FILE-e2fb6dc45efb",
+    "entity_type": "FILE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#372",
+    "line_precision": "FILE_LEVEL"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-b7e04e73b7174b87831f4c5d981b5e198f363a75",
+      "other_type": "commit",
+      "other_title": "b7e04e73b7174b87831f4c5d981b5e198f363a75",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b7e04e73b7174b87831f4c5d981b5e198f363a75"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+      "other_type": "commit",
+      "other_title": "86f3684c4e4dc77dd0a579eb92863824953a3ce9",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-86f3684c4e4dc77dd0a579eb92863824953a3ce9"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-ed361190094b2d31c6a51e8df1e23f4cd8daa884",
+      "other_type": "commit",
+      "other_title": "ed361190094b2d31c6a51e8df1e23f4cd8daa884",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-ed361190094b2d31c6a51e8df1e23f4cd8daa884"
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "id": "FILE-3beb51413f86",
+  "type": "artifact",
+  "title": "ix-cli/src/cli/__tests__/ingest-discovery.test.ts",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/file-3beb51413f86",
+  "summary": {
+    "id": "FILE-3beb51413f86",
+    "type": "artifact",
+    "title": "ix-cli/src/cli/__tests__/ingest-discovery.test.ts",
+    "status": "CURRENT",
+    "repository": "Alot1z/Ix-remap",
+    "url": "https://github.com/Alot1z/Ix-remap/blob/HEAD/ix-cli/src/cli/__tests__/ingest-discovery.test.ts"
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-d9b692a22e80d7ec9763b7b93075b1057d1e037b",
+      "other_type": "commit",
+      "other_title": "d9b692a22e80d7ec9763b7b93075b1057d1e037b",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-d9b692a22e80d7ec9763b7b93075b1057d1e037b"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-b19008335a93347abd40252b5e6cbfc4a6325a7e",
+      "other_type": "commit",
+      "other_title": "b19008335a93347abd40252b5e6cbfc4a6325a7e",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b19008335a93347abd40252b5e6cbfc4a6325a7e"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-dbb517b0680bdd3a3a36f5f69268fb725b7729c1",
+      "other_type": "commit",
+      "other_title": "dbb517b0680bdd3a3a36f5f69268fb725b7729c1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-dbb517b0680bdd3a3a36f5f69268fb725b7729c1"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-ad4d477ea1a5a1ef85174acbbc398e6962a7eb57",
+      "other_type": "commit",
+      "other_title": "ad4d477ea1a5a1ef85174acbbc398e6962a7eb57",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-ad4d477ea1a5a1ef85174acbbc398e6962a7eb57"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-d3c62090c1bcbb654445521670332c4c5a224bd5",
+      "other_type": "commit",
+      "other_title": "d3c62090c1bcbb654445521670332c4c5a224bd5",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-d3c62090c1bcbb654445521670332c4c5a224bd5"
+    },
+    {
+      "direction": "in",
+      "relationship": "CO_CHANGED_WITH",
+      "other": "FILE-be48d8a188c3",
+      "other_type": "artifact",
+      "other_title": "core-ingestion/src/index.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-be48d8a188c3"
+    },
+    {
+      "direction": "out",
+      "relationship": "CO_CHANGED_WITH",
+      "other": "FILE-6d783a082e75",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/ingest.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-6d783a082e75"
+    }
+  ]
+}

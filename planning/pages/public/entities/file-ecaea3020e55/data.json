@@ -1,0 +1,126 @@
+{
+  "id": "FILE-ecaea3020e55",
+  "type": "artifact",
+  "title": "ix-cli/src/cli/__tests__/pro-stub-message.test.ts",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/file-ecaea3020e55",
+  "summary": {
+    "id": "FILE-ecaea3020e55",
+    "type": "artifact",
+    "title": "ix-cli/src/cli/__tests__/pro-stub-message.test.ts",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "source_mirror_id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/__tests__/pro-stub-message.test.ts",
+    "source_type": "github_file",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/blob/4eb8d4e04c141e4cf49aaae297b0e89b08f74f43/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fpro-stub-message.test.ts",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 384,
+    "filename": "ix-cli/src/cli/__tests__/pro-stub-message.test.ts",
+    "status": "modified",
+    "additions": 17,
+    "deletions": 0,
+    "changes": 17,
+    "blob_url": "https://github.com/ix-infrastructure/Ix/blob/4eb8d4e04c141e4cf49aaae297b0e89b08f74f43/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fpro-stub-message.test.ts",
+    "raw_url": "https://github.com/ix-infrastructure/Ix/raw/4eb8d4e04c141e4cf49aaae297b0e89b08f74f43/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fpro-stub-message.test.ts",
+    "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fpro-stub-message.test.ts?ref=4eb8d4e04c141e4cf49aaae297b0e89b08f74f43",
+    "patch": "@@ -57,6 +57,7 @@ describe(\"Pro stubs\", () => {\n     [\"truth\", [\"truth\", \"add\", \"Support 100k file repos\"]],\n     [\"truth\", [\"truth\", \"list\", \"--format\", \"json\"]],\n     [\"goal\", [\"goal\", \"create\", \"Support GitHub\", \"--format\", \"json\"]],\n+    [\"goals\", [\"goals\", \"--status\", \"active\", \"--format\", \"json\"]],\n     [\"decide\", [\"decide\", \"Use X\", \"--rationale\", \"because\", \"--affects\", \"Entity\"]],\n     [\"briefing\", [\"briefing\", \"--format\", \"json\"]],\n     [\"decisions\", [\"decisions\", \"--topic\", \"ingestion\", \"--limit\", \"10\"]],\n@@ -71,6 +72,22 @@ describe(\"Pro stubs\", () => {\n     expect(exitCode).toBe(1);\n   });\n \n+  // @ix/pro registers a plural list command alongside each singular manager\n+  // (`bug`/`bugs`, `plan`/`plans`, `task`/`tasks`, `goal`/`goals`). Stubbing only\n+  // the singular is the failure this pins: `ix goals` fell through to commander's\n+  // \"unknown command\" instead of the sentinel above, so an agent told to stop on\n+  // `requires Ix Pro.` saw an unrecognized error and had nothing to match.\n+  it.each([\n+    [\"bug\", \"bugs\"],\n+    [\"plan\", \"plans\"],\n+    [\"task\", \"tasks\"],\n+    [\"goal\", \"goals\"],\n+  ])(\"stubs both %s and %s\", (singular, plural) => {\n+    for (const name of [singular, plural]) {\n+      expect(runStub([name]).err).toContain(`The '${name}' command requires Ix Pro.`);\n+    }\n+  });\n+\n   it(\"emits the message verbatim as CLAUDE.md quotes it\", () => {\n     // Single quotes around the name, trailing period. Agents match on this.\n     expect(runStub([\"decide\", \"Use X\"]).err).toContain(\"The 'decide' command requires Ix Pro.\");",
+    "parent_pr": 384
+  },
+  "source_context": {
+    "id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/__tests__/pro-stub-message.test.ts",
+    "source": {
+      "type": "github_file",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/blob/4eb8d4e04c141e4cf49aaae297b0e89b08f74f43/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fpro-stub-message.test.ts",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T18:34:49Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T19:30:14Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "FILE-ecaea3020e55",
+    "entity_type": "FILE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#384",
+    "line_precision": "FILE_LEVEL"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-4eb8d4e04c141e4cf49aaae297b0e89b08f74f43",
+      "other_type": "commit",
+      "other_title": "4eb8d4e04c141e4cf49aaae297b0e89b08f74f43",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-4eb8d4e04c141e4cf49aaae297b0e89b08f74f43"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-4d35378ea737825bd591df94ee29db92e1596d30",
+      "other_type": "commit",
+      "other_title": "4d35378ea737825bd591df94ee29db92e1596d30",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-4d35378ea737825bd591df94ee29db92e1596d30"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-91269efc54f905ce00fae27d80798271b35ef951",
+      "other_type": "commit",
+      "other_title": "91269efc54f905ce00fae27d80798271b35ef951",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-91269efc54f905ce00fae27d80798271b35ef951"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-89ca55e21672696deb7627cb3e5b1846754707fa",
+      "other_type": "commit",
+      "other_title": "89ca55e21672696deb7627cb3e5b1846754707fa",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-89ca55e21672696deb7627cb3e5b1846754707fa"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-9bc2305cfd929ff34f5547a6230cb20bb7d61079",
+      "other_type": "commit",
+      "other_title": "9bc2305cfd929ff34f5547a6230cb20bb7d61079",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-9bc2305cfd929ff34f5547a6230cb20bb7d61079"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-43a644cce35208113744b9b99de339c86a146b47",
+      "other_type": "commit",
+      "other_title": "43a644cce35208113744b9b99de339c86a146b47",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-43a644cce35208113744b9b99de339c86a146b47"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-cff1288d1c3c7d9596c4d9723712c88f379d26de",
+      "other_type": "commit",
+      "other_title": "cff1288d1c3c7d9596c4d9723712c88f379d26de",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-cff1288d1c3c7d9596c4d9723712c88f379d26de"
+    }
+  ]
+}

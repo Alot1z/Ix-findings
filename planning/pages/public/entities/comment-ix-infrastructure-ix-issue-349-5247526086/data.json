@@ -1,0 +1,102 @@
+{
+  "id": "COMMENT-ix-infrastructure-Ix-issue-349-5247526086",
+  "type": "artifact",
+  "title": "Issue #349 comment 5247526086",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/comment-ix-infrastructure-ix-issue-349-5247526086",
+  "summary": {
+    "id": "COMMENT-ix-infrastructure-Ix-issue-349-5247526086",
+    "type": "artifact",
+    "title": "Issue #349 comment 5247526086",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/issues/349#issuecomment-5247526086",
+    "source_mirror_id": "github:comment:ix-infrastructure/Ix#issue-349-5247526086",
+    "source_type": "github_issue_comment",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/issues/349#issuecomment-5247526086",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5247526086",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "id": 5247526086,
+    "node_id": "IC_kwDORdC75M8AAAABOMbkxg",
+    "repository": "ix-infrastructure/Ix",
+    "parent_type": "ISSUE",
+    "parent_number": 349,
+    "kind": "ISSUE_COMMENT",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "body": "The fix shipped in #352 and is on `main`: the installer's scratch files (`.cli-staging-<pid>.zip` and its pull log) now live under `$IX_HOME`, which comes from `USERPROFILE` in long form, instead of under `TEMP` — taking the script off the 8.3-shortened path the failure was traced to.\n\nDeliberately merged as `Refs #349` rather than `Fixes`, so this stayed open pending a real run. Worth restating what is *not* established, because it affects how the verification should be read: the mechanism was never reproduced. The provider cmdlets this script calls resolve 8.3 segments fine on both 5.1 and 7, and no cmdlet the installer invokes produces the reported error string. The likeliest remaining explanation is that 8.3 alias creation is disabled on that volume while `TEMP` still carries a stale short path — moving off `TEMP` fixes that reading too, which is why it was worth shipping ahead of the diagnosis.\n\n@RMA1313 — if you still have that machine, a plain `irm https://ix-infra.com/install.ps1 | iex` with `TEMP`/`TMP` left at their defaults would settle it.\n\nOne thing this did **not** cover: `ix upgrade` still stages through `os.tmpdir()`, which on Windows is `TEMP` verbatim. If this class of failure is real, it is unfixed there — and would show up as a broken upgrade rather than a broken install.",
+    "html_url": "https://github.com/ix-infrastructure/Ix/issues/349#issuecomment-5247526086",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5247526086",
+    "created_at": "2026-08-11T00:15:59Z",
+    "updated_at": "2026-08-11T00:15:59Z",
+    "commit_id": null,
+    "path": null,
+    "line": null,
+    "start_line": null,
+    "side": null,
+    "in_reply_to_id": null,
+    "diff_hunk": null,
+    "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+    "source": "OFFICIAL_GITHUB_FACT",
+    "parent_issue": 349
+  },
+  "source_context": {
+    "id": "github:comment:ix-infrastructure/Ix#issue-349-5247526086",
+    "source": {
+      "type": "github_issue_comment",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/issues/349#issuecomment-5247526086",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5247526086",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-11T00:15:59Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-11T00:15:59Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMENT-ix-infrastructure-Ix-issue-349-5247526086",
+    "entity_type": "ISSUE_COMMENT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:issue:ix-infrastructure/Ix#349",
+    "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "COMMENTED_ON",
+      "other": "ISSUE-349",
+      "other_type": "issue",
+      "other_title": "Issue #349 — [bug] Windows installer — path with spaces",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/issue-349"
+    },
+    {
+      "direction": "in",
+      "relationship": "AUTHORED",
+      "other": "PERSON-KageBinary",
+      "other_type": "artifact",
+      "other_title": "KageBinary",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-kagebinary"
+    }
+  ]
+}

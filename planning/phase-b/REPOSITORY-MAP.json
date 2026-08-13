@@ -1,0 +1,172 @@
+{
+  "generated_at": "2026-08-12T09:54:35.985Z",
+  "repositories": [
+    {
+      "id": "ORG-ix-infrastructure",
+      "entity_type": "ORGANIZATION",
+      "canonical_name": "ix-infrastructure",
+      "status": "CURRENT",
+      "confidence": "HIGH",
+      "source_refs": [
+        "planning/discovery/PHASE-A-REPORT.json",
+        "planning/discovery/LINK-MANIFEST.json"
+      ],
+      "metadata": {
+        "login": "ix-infrastructure",
+        "url": "https://github.com/ix-infrastructure",
+        "evidence_state": "GITHUB_VERIFIED"
+      },
+      "identity": {
+        "deterministic": true,
+        "key": "ORG-ix-infrastructure"
+      }
+    },
+    {
+      "id": "PERSON-Alot1z",
+      "entity_type": "PERSON",
+      "canonical_name": "Alot1z",
+      "status": "CURRENT",
+      "confidence": "HIGH",
+      "source_refs": [
+        "planning/discovery/PHASE-A-REPORT.json",
+        "planning/discovery/LINK-MANIFEST.json"
+      ],
+      "metadata": {
+        "login": "Alot1z",
+        "github_url": "https://github.com/Alot1z",
+        "github_numeric_id": 16801672,
+        "verified_account": true,
+        "roles": [
+          "AUTHOR",
+          "CONTRIBUTOR"
+        ],
+        "evidence_state": "GITHUB_VERIFIED",
+        "note": "Role assignments remain limited to verified account identity; maintainer/owner status is not inferred."
+      },
+      "identity": {
+        "deterministic": true,
+        "key": "PERSON-Alot1z"
+      }
+    },
+    {
+      "id": "REPO-ix-infrastructure-Ix",
+      "entity_type": "REPOSITORY",
+      "canonical_name": "ix-infrastructure/Ix",
+      "status": "CURRENT",
+      "confidence": "HIGH",
+      "source_refs": [
+        "planning/discovery/PHASE-A-REPORT.json",
+        "planning/discovery/LINK-MANIFEST.json"
+      ],
+      "metadata": {
+        "repository_id": "ix-infrastructure/Ix",
+        "url": "https://github.com/ix-infrastructure/Ix",
+        "role": "upstream",
+        "legacy_aliases": [],
+        "evidence_state": "GITHUB_VERIFIED"
+      },
+      "identity": {
+        "deterministic": true,
+        "key": "REPO-ix-infrastructure-Ix"
+      }
+    },
+    {
+      "id": "REPO-Alot1z-Ix-remap",
+      "entity_type": "REPOSITORY",
+      "canonical_name": "Alot1z/Ix-remap",
+      "status": "CURRENT",
+      "confidence": "HIGH",
+      "source_refs": [
+        "planning/discovery/PHASE-A-REPORT.json",
+        "planning/discovery/LINK-MANIFEST.json"
+      ],
+      "metadata": {
+        "repository_id": "Alot1z/Ix-remap",
+        "url": "https://github.com/Alot1z/Ix-remap",
+        "role": "user fork; GitHub currently resolves the legacy Alot1z/Ix name here",
+        "parent_repository_id": "ix-infrastructure/Ix",
+        "legacy_aliases": [
+          "Alot1z/Ix"
+        ],
+        "evidence_state": "GITHUB_VERIFIED"
+      },
+      "identity": {
+        "deterministic": true,
+        "key": "REPO-Alot1z-Ix-remap"
+      }
+    },
+    {
+      "id": "REPO-Alot1z-Ix-findings",
+      "entity_type": "REPOSITORY",
+      "canonical_name": "Alot1z/Ix-findings",
+      "status": "CURRENT",
+      "confidence": "HIGH",
+      "source_refs": [
+        "planning/discovery/PHASE-A-REPORT.json",
+        "planning/discovery/LINK-MANIFEST.json"
+      ],
+      "metadata": {
+        "repository_id": "Alot1z/Ix-findings",
+        "url": "https://github.com/Alot1z/Ix-findings",
+        "role": "canonical knowledge ledger",
+        "legacy_aliases": [],
+        "evidence_state": "GITHUB_VERIFIED"
+      },
+      "identity": {
+        "deterministic": true,
+        "key": "REPO-Alot1z-Ix-findings"
+      }
+    },
+    {
+      "id": "REPO-ix-infrastructure-ix-compass-dist",
+      "entity_type": "REPOSITORY",
+      "canonical_name": "ix-infrastructure/ix-compass-dist",
+      "status": "CURRENT",
+      "confidence": "HIGH",
+      "source_refs": [
+        "planning/discovery/PHASE-A-REPORT.json",
+        "planning/discovery/LINK-MANIFEST.json"
+      ],
+      "metadata": {
+        "repository_id": "ix-infrastructure/ix-compass-dist",
+        "url": "https://github.com/ix-infrastructure/ix-compass-dist",
+        "role": "distribution repository",
+        "legacy_aliases": [],
+        "evidence_state": "GITHUB_VERIFIED"
+      },
+      "identity": {
+        "deterministic": true,
+        "key": "REPO-ix-infrastructure-ix-compass-dist"
+      }
+    },
+    {
+      "id": "FORK-Alot1z-Ix-remap",
+      "entity_type": "FORK",
+      "canonical_name": "Alot1z/Ix-remap",
+      "status": "CURRENT",
+      "confidence": "HIGH",
+      "source_refs": [
+        "planning/discovery/PHASE-A-REPORT.json",
+        "planning/discovery/LINK-MANIFEST.json"
+      ],
+      "metadata": {
+        "repository_id": "Alot1z/Ix-remap",
+        "fork_url": "https://github.com/Alot1z/Ix-remap",
+        "parent_repository_id": "ix-infrastructure/Ix",
+        "parent_url": "https://github.com/ix-infrastructure/Ix",
+        "evidence_state": "GITHUB_VERIFIED"
+      },
+      "identity": {
+        "deterministic": true,
+        "key": "FORK-Alot1z-Ix-remap"
+      }
+    }
+  ],
+  "aliases": [
+    {
+      "alias": "Alot1z/Ix",
+      "canonical": "Alot1z/Ix-remap",
+      "evidence": "live GitHub API rename/redirect observed in Phase A"
+    }
+  ]
+}

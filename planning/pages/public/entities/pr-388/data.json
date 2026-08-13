@@ -2,25 +2,347 @@
   "id": "PR-388",
   "type": "pr",
   "title": "Ix PR #388",
-  "status": "OPEN",
+  "status": "HISTORICAL",
   "url": "https://alot1z.github.io/Ix-findings/entities/pr-388",
   "summary": {
     "id": "PR-388",
     "type": "pr",
     "title": "Ix PR #388",
-    "status": "OPEN",
+    "status": "HISTORICAL",
     "number": 388,
-    "url": "https://github.com/ix-infrastructure/Ix/pull/388"
+    "url": "https://github.com/ix-infrastructure/Ix/pull/388",
+    "source_mirror_id": "github:pull_request:ix-infrastructure/Ix#388",
+    "source_type": "github_pull_request",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/pull/388",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/388",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "number": 388,
+    "node_id": "PR_kwDORdC75M79NgXT",
+    "title": "chore(brew): update formula for v0.9.2",
+    "body": "Auto-generated: updates Homebrew formula SHA for v0.9.2",
+    "state": "closed",
+    "draft": false,
+    "merged": false,
+    "author": {
+      "login": "github-actions[bot]",
+      "id": 41898282,
+      "type": "Bot",
+      "html_url": "https://github.com/apps/github-actions"
+    },
+    "html_url": "https://github.com/ix-infrastructure/Ix/pull/388",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/388",
+    "head": {
+      "ref": "chore/brew-update-v0.9.2",
+      "sha": "71b8986e1c3164e78275604b76399860fb3313e3",
+      "repo": {
+        "id": 1171307492,
+        "full_name": "ix-infrastructure/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "ix-infrastructure",
+          "id": 256883681,
+          "type": "Organization",
+          "html_url": "https://github.com/ix-infrastructure"
+        },
+        "html_url": "https://github.com/ix-infrastructure/Ix",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": false,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-03-03T04:48:38Z",
+        "updated_at": "2026-08-13T21:51:31Z",
+        "pushed_at": "2026-08-13T19:18:44Z",
+        "topics": [
+          "ai",
+          "ai-memory",
+          "claude-code",
+          "cli",
+          "code-analysis",
+          "code-mapping",
+          "code-memory",
+          "codebase-understanding",
+          "codex",
+          "developer-tools",
+          "llm",
+          "openclaw",
+          "persistent-memory",
+          "program-analysis",
+          "software-architecture",
+          "system-intelligence",
+          "system-mapping"
+        ],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 701,
+        "stargazers_count": 701,
+        "forks_count": 60,
+        "open_issues_count": 6
+      }
+    },
+    "base": {
+      "ref": "main",
+      "sha": "5488741155d69a5f03fce41416643ddceca6f8a0",
+      "repo": {
+        "id": 1171307492,
+        "full_name": "ix-infrastructure/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "ix-infrastructure",
+          "id": 256883681,
+          "type": "Organization",
+          "html_url": "https://github.com/ix-infrastructure"
+        },
+        "html_url": "https://github.com/ix-infrastructure/Ix",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": false,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-03-03T04:48:38Z",
+        "updated_at": "2026-08-13T21:51:31Z",
+        "pushed_at": "2026-08-13T19:18:44Z",
+        "topics": [
+          "ai",
+          "ai-memory",
+          "claude-code",
+          "cli",
+          "code-analysis",
+          "code-mapping",
+          "code-memory",
+          "codebase-understanding",
+          "codex",
+          "developer-tools",
+          "llm",
+          "openclaw",
+          "persistent-memory",
+          "program-analysis",
+          "software-architecture",
+          "system-intelligence",
+          "system-mapping"
+        ],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 701,
+        "stargazers_count": 701,
+        "forks_count": 60,
+        "open_issues_count": 6
+      }
+    },
+    "merge_commit_sha": "9f934ebed00c9c45501413c1115df39cf5f6a928",
+    "merged_at": null,
+    "closed_at": "2026-08-12T16:41:24Z",
+    "created_at": "2026-08-10T20:50:31Z",
+    "updated_at": "2026-08-12T16:41:24Z",
+    "labels": [],
+    "milestone": null,
+    "requested_reviewers": [
+      {
+        "login": "josephismikhail",
+        "id": 56614593,
+        "type": "User",
+        "html_url": "https://github.com/josephismikhail"
+      }
+    ],
+    "requested_teams": [],
+    "commits_count": 1,
+    "changed_files_count": 1,
+    "additions": 2,
+    "deletions": 2,
+    "changed_files": [
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 388,
+        "filename": "Formula/ix.rb",
+        "status": "modified",
+        "additions": 2,
+        "deletions": 2,
+        "changes": 4,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/71b8986e1c3164e78275604b76399860fb3313e3/Formula%2Fix.rb",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/71b8986e1c3164e78275604b76399860fb3313e3/Formula%2Fix.rb",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/Formula%2Fix.rb?ref=71b8986e1c3164e78275604b76399860fb3313e3",
+        "patch": "@@ -1,8 +1,8 @@\n class Ix < Formula\n   desc \"Persistent memory for LLM systems — CLI for the Ix knowledge graph\"\n   homepage \"https://github.com/ix-infrastructure/Ix\"\n-  url \"https://github.com/ix-infrastructure/Ix/archive/refs/tags/v0.9.1.tar.gz\"\n-  sha256 \"9f6c0d6d698c74bfc93c17ba7723656034edcc9b284955d7fec281ae0c80a93a\"\n+  url \"https://github.com/ix-infrastructure/Ix/archive/refs/tags/v0.9.2.tar.gz\"\n+  sha256 \"f6560cb7538bb4b96fdcf90dcddedf3f699450ef91a6788756d4a5e03178dffd\"\n   license \"Apache-2.0\"\n   head \"https://github.com/ix-infrastructure/Ix.git\", branch: \"main\"\n "
+      }
+    ],
+    "commits": [
+      {
+        "sha": "71b8986e1c3164e78275604b76399860fb3313e3",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/71b8986e1c3164e78275604b76399860fb3313e3",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/71b8986e1c3164e78275604b76399860fb3313e3",
+        "author": {
+          "login": "github-actions[bot]",
+          "id": 41898282,
+          "type": "Bot",
+          "html_url": "https://github.com/apps/github-actions"
+        },
+        "committer": {
+          "login": "github-actions[bot]",
+          "id": 41898282,
+          "type": "Bot",
+          "html_url": "https://github.com/apps/github-actions"
+        },
+        "message": "chore(brew): update formula for v0.9.2",
+        "parents": [
+          {
+            "sha": "5488741155d69a5f03fce41416643ddceca6f8a0",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/5488741155d69a5f03fce41416643ddceca6f8a0"
+          }
+        ],
+        "tree_sha": "67b9368148cf8f5cbbe4ffca2e7aa97ccd2a78b5",
+        "authored_at": "2026-08-10T20:50:28Z",
+        "committed_at": "2026-08-10T20:50:28Z"
+      }
+    ],
+    "comments": [
+      {
+        "id": 5269683395,
+        "node_id": "IC_kwDORdC75M8AAAABOhj8ww",
+        "repository": "ix-infrastructure/Ix",
+        "parent_type": "PULL_REQUEST",
+        "parent_number": 388,
+        "kind": "PR_COMMENT",
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "body": "Superseded by #399, which takes the formula straight from v0.9.1 to v0.9.3. Both PRs rewrite the same two lines, so landing this one first would only have created a conflict for no user-visible difference — 0.9.2 was never the version brew installed.",
+        "html_url": "https://github.com/ix-infrastructure/Ix/pull/388#issuecomment-5269683395",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5269683395",
+        "created_at": "2026-08-12T16:41:23Z",
+        "updated_at": "2026-08-12T16:41:23Z",
+        "commit_id": null,
+        "path": null,
+        "line": null,
+        "start_line": null,
+        "side": null,
+        "in_reply_to_id": null,
+        "diff_hunk": null,
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      }
+    ],
+    "reviews": [],
+    "review_comments": [],
+    "timeline": [
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/71b8986e1c3164e78275604b76399860fb3313e3"
+      },
+      {
+        "id": 29246203217,
+        "event": "review_requested",
+        "actor": {
+          "login": "github-actions[bot]",
+          "id": 41898282,
+          "type": "Bot",
+          "html_url": "https://github.com/apps/github-actions"
+        },
+        "created_at": "2026-08-10T20:50:32Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29246203217"
+      },
+      {
+        "id": 5269683395,
+        "event": "commented",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-12T16:41:23Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5269683395"
+      },
+      {
+        "id": 29352793061,
+        "event": "closed",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-12T16:41:24Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29352793061"
+      }
+    ],
+    "source": "OFFICIAL_GITHUB_FACT",
+    "review_threads": [],
+    "review_thread_capture": {
+      "status": "VERIFIED",
+      "source": "GitHub GraphQL API"
+    }
+  },
+  "source_context": {
+    "id": "github:pull_request:ix-infrastructure/Ix#388",
+    "source": {
+      "type": "github_pull_request",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/388",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/388",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T20:50:31Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-12T16:41:24Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "PR-388",
+    "entity_type": "PULL_REQUEST",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "mirror_scope": "source PR, commits, files, comments, reviews, review comments, and review threads",
+    "related_analysis_types": [
+      "FINDING",
+      "DECISION",
+      "IMPLEMENTATION"
+    ],
+    "review_thread_state": "VERIFIED_GRAPHQL"
   },
   "relationships": [
-    {
-      "direction": "out",
-      "relationship": "FOUND_IN",
-      "other": "REPO-ix-infrastructure-Ix",
-      "other_type": "repository",
-      "other_title": "ix-infrastructure/Ix",
-      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
-    },
     {
       "direction": "out",
       "relationship": "HAS_SOURCE",
@@ -36,6 +358,46 @@
       "other_type": "file",
       "other_title": "CLI-HANDOFF/phase-15/FINAL-PR-WORTHINESS-AUDIT.json",
       "other_url": "https://alot1z.github.io/Ix-findings/entities/src-90ab8426282e"
+    },
+    {
+      "direction": "out",
+      "relationship": "FOUND_IN",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "in",
+      "relationship": "AUTHORED",
+      "other": "PERSON-github-actions[bot]",
+      "other_type": "artifact",
+      "other_title": "github-actions[bot]",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-github-actions-bot"
+    },
+    {
+      "direction": "out",
+      "relationship": "HEADS_AT",
+      "other": "COMMIT-71b8986e1c3164e78275604b76399860fb3313e3",
+      "other_type": "commit",
+      "other_title": "71b8986e1c3164e78275604b76399860fb3313e3",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-71b8986e1c3164e78275604b76399860fb3313e3"
+    },
+    {
+      "direction": "out",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "COMMIT-71b8986e1c3164e78275604b76399860fb3313e3",
+      "other_type": "commit",
+      "other_title": "71b8986e1c3164e78275604b76399860fb3313e3",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-71b8986e1c3164e78275604b76399860fb3313e3"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGED_BY",
+      "other": "COMMIT-71b8986e1c3164e78275604b76399860fb3313e3",
+      "other_type": "commit",
+      "other_title": "71b8986e1c3164e78275604b76399860fb3313e3",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-71b8986e1c3164e78275604b76399860fb3313e3"
     }
   ]
 }

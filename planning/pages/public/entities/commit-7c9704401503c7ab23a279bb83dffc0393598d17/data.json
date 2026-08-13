@@ -1,0 +1,328 @@
+{
+  "id": "COMMIT-7c9704401503c7ab23a279bb83dffc0393598d17",
+  "type": "commit",
+  "title": "7c9704401503c7ab23a279bb83dffc0393598d17",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-7c9704401503c7ab23a279bb83dffc0393598d17",
+  "summary": {
+    "id": "COMMIT-7c9704401503c7ab23a279bb83dffc0393598d17",
+    "type": "commit",
+    "title": "7c9704401503c7ab23a279bb83dffc0393598d17",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/7c9704401503c7ab23a279bb83dffc0393598d17",
+    "author": {
+      "name": "Tanner Kocher",
+      "email": "tannertorrey3@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-ac250531b4aff307a0a5a3082b7ffea731d8af9c",
+      "other_type": "commit",
+      "other_title": "ac250531b4aff307a0a5a3082b7ffea731d8af9c",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-ac250531b4aff307a0a5a3082b7ffea731d8af9c"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-524c0926f8ff9fbd20a2e76a9bb28825fa57917b",
+      "other_type": "commit",
+      "other_title": "524c0926f8ff9fbd20a2e76a9bb28825fa57917b",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-524c0926f8ff9fbd20a2e76a9bb28825fa57917b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-95af80e81bec",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/savings.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-95af80e81bec"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3aadd9a277d5",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/help-text.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3aadd9a277d5"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-4e3bf710c74e",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/register/oss.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-4e3bf710c74e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3f05df7612a2",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/client/api.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3f05df7612a2"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-f6682281c190",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/Main.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f6682281c190"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2d41eae1fea1",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/Routes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2d41eae1fea1"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-46065ae17cf3",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/SavingsRoutes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-46065ae17cf3"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-aa4586f48e7f",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/ArangoSchema.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-aa4586f48e7f"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-9dde7b16f296",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/savings/NaiveCostEstimator.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-9dde7b16f296"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-63645454a386",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/savings/SavingsAccumulator.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-63645454a386"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-9e51d94f4396",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/savings/SavingsMiddleware.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-9e51d94f4396"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-4b977e0c5370",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/api/RoutesSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-4b977e0c5370"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-507f5d9f26bf",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/savings.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-507f5d9f26bf"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-6abe844c9ddd",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/help-text.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-6abe844c9ddd"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-6a1dda5bceab",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/register/oss.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-6a1dda5bceab"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-20aa33a5aad3",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/client/api.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-20aa33a5aad3"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-8ae7968f5781",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/Main.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-8ae7968f5781"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-b40158942cff",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/Routes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b40158942cff"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-58cc46256d39",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/SavingsRoutes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-58cc46256d39"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5c0d8309e53e",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/ArangoSchema.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5c0d8309e53e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-7bc725ca0cea",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/savings/NaiveCostEstimator.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-7bc725ca0cea"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-df3bae601fe8",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/savings/SavingsAccumulator.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-df3bae601fe8"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-1038fd032f13",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/savings/SavingsMiddleware.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-1038fd032f13"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3f6c742e488a",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/api/RoutesSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3f6c742e488a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-4d3abeab9ecd",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/savings.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-4d3abeab9ecd"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-384f853ed998",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/help-text.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-384f853ed998"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-d1361ec2e4a1",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/register/oss.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-d1361ec2e4a1"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-f5363913e866",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/client/api.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f5363913e866"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3be87bd80f91",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/Main.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3be87bd80f91"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-a64d4c665471",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/Routes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-a64d4c665471"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-915eab24094e",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/SavingsRoutes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-915eab24094e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ed935eeaae0e",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/ArangoSchema.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ed935eeaae0e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-f8cae6056bc2",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/savings/NaiveCostEstimator.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f8cae6056bc2"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-95dcd32f55fa",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/savings/SavingsAccumulator.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-95dcd32f55fa"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-f55a237d06f2",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/savings/SavingsMiddleware.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f55a237d06f2"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-d4786d6e545f",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/api/RoutesSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-d4786d6e545f"
+    }
+  ]
+}

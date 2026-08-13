@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-8e231612ab3bed3b26139c3d2f9c2c50d7535a52",
+  "type": "commit",
+  "title": "8e231612ab3bed3b26139c3d2f9c2c50d7535a52",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-8e231612ab3bed3b26139c3d2f9c2c50d7535a52",
+  "summary": {
+    "id": "COMMIT-8e231612ab3bed3b26139c3d2f9c2c50d7535a52",
+    "type": "commit",
+    "title": "8e231612ab3bed3b26139c3d2f9c2c50d7535a52",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/8e231612ab3bed3b26139c3d2f9c2c50d7535a52",
+    "author": {
+      "name": "Joseph Mikhail",
+      "email": "jsmikhai@ucsd.edu"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-4af5b55a51e97e2c57c5b9e3f1bbb8e811ad1868",
+      "other_type": "commit",
+      "other_title": "4af5b55a51e97e2c57c5b9e3f1bbb8e811ad1868",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-4af5b55a51e97e2c57c5b9e3f1bbb8e811ad1868"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-89160a4f9e72ab5ca0caf303b2e16170b20550b2",
+      "other_type": "commit",
+      "other_title": "89160a4f9e72ab5ca0caf303b2e16170b20550b2",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-89160a4f9e72ab5ca0caf303b2e16170b20550b2"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-07f14ce9998a",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/ingest.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-07f14ce9998a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-6d783a082e75",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/ingest.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-6d783a082e75"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-52e473712974",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/ingest.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-52e473712974"
+    }
+  ]
+}

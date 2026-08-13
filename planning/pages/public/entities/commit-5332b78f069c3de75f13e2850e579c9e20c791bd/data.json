@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-5332b78f069c3de75f13e2850e579c9e20c791bd",
+  "type": "commit",
+  "title": "5332b78f069c3de75f13e2850e579c9e20c791bd",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-5332b78f069c3de75f13e2850e579c9e20c791bd",
+  "summary": {
+    "id": "COMMIT-5332b78f069c3de75f13e2850e579c9e20c791bd",
+    "type": "commit",
+    "title": "5332b78f069c3de75f13e2850e579c9e20c791bd",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/5332b78f069c3de75f13e2850e579c9e20c791bd",
+    "author": {
+      "name": "riley0227",
+      "email": "riley0227@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-5ba9f34be5cdd247c467088e2faea0de8880b37a",
+      "other_type": "commit",
+      "other_title": "5ba9f34be5cdd247c467088e2faea0de8880b37a",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-5ba9f34be5cdd247c467088e2faea0de8880b37a"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-1c43a4f165945c2d9795a364efda6714c2219994",
+      "other_type": "commit",
+      "other_title": "1c43a4f165945c2d9795a364efda6714c2219994",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-1c43a4f165945c2d9795a364efda6714c2219994"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-9c4408345ece",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/parsers/ScalaParser.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-9c4408345ece"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-63bd9b6e6202",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/parsers/ScalaParser.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-63bd9b6e6202"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5616bedb5527",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/parsers/ScalaParser.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5616bedb5527"
+    }
+  ]
+}

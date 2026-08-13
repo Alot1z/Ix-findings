@@ -1,0 +1,88 @@
+{
+  "id": "COMMIT-28ef2fde6f7f6f7fb06988019773b629c02104b5",
+  "type": "commit",
+  "title": "28ef2fde6f7f6f7fb06988019773b629c02104b5",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-28ef2fde6f7f6f7fb06988019773b629c02104b5",
+  "summary": {
+    "id": "COMMIT-28ef2fde6f7f6f7fb06988019773b629c02104b5",
+    "type": "commit",
+    "title": "28ef2fde6f7f6f7fb06988019773b629c02104b5",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/28ef2fde6f7f6f7fb06988019773b629c02104b5",
+    "author": {
+      "name": "riley0227",
+      "email": "riley0227@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-01a2ee236949ca5fb8ce8f57dfaee01270e6bc83",
+      "other_type": "commit",
+      "other_title": "01a2ee236949ca5fb8ce8f57dfaee01270e6bc83",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-01a2ee236949ca5fb8ce8f57dfaee01270e6bc83"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-edc6567347131fb947979962ad6e166c2d36fc8c",
+      "other_type": "commit",
+      "other_title": "edc6567347131fb947979962ad6e166c2d36fc8c",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-edc6567347131fb947979962ad6e166c2d36fc8c"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-825ef93d2cdd",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/context/RelevanceScorer.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-825ef93d2cdd"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-45be58483331",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/context/RelevanceScorerSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-45be58483331"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-34680357944d",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/context/RelevanceScorer.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-34680357944d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-f95ccc39b514",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/context/RelevanceScorerSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f95ccc39b514"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-22d7c7f79506",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/context/RelevanceScorer.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-22d7c7f79506"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5e7f26bf2a12",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/context/RelevanceScorerSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5e7f26bf2a12"
+    }
+  ]
+}

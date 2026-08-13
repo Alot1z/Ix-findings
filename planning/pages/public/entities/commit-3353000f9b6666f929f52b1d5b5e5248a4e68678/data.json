@@ -1,0 +1,169 @@
+{
+  "id": "COMMIT-3353000f9b6666f929f52b1d5b5e5248a4e68678",
+  "type": "commit",
+  "title": "3353000f9b6666f929f52b1d5b5e5248a4e68678",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-3353000f9b6666f929f52b1d5b5e5248a4e68678",
+  "summary": {
+    "id": "COMMIT-3353000f9b6666f929f52b1d5b5e5248a4e68678",
+    "type": "commit",
+    "title": "3353000f9b6666f929f52b1d5b5e5248a4e68678",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/3353000f9b6666f929f52b1d5b5e5248a4e68678",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "source_mirror_id": "github:commit:ix-infrastructure/Ix@3353000f9b6666f929f52b1d5b5e5248a4e68678",
+    "source_type": "github_commit",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/commit/3353000f9b6666f929f52b1d5b5e5248a4e68678",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/3353000f9b6666f929f52b1d5b5e5248a4e68678",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "sha": "3353000f9b6666f929f52b1d5b5e5248a4e68678",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/3353000f9b6666f929f52b1d5b5e5248a4e68678",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/3353000f9b6666f929f52b1d5b5e5248a4e68678",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "committer": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "message": "fix(upgrade): stop comparing compass versions across two unrelated series\n\n`compass/.version` is written by two producers in two different version series,\nand recorded no way to tell them apart:\n\n  - the release workflow stamps the bundle it ships with the **Ix** version\n    (`0.9.2`), because that bundle is built from system-compass `main` and has no\n    ix-compass-dist release number of its own;\n  - install.sh and the compass-upgrade path stamp the **ix-compass-dist** release\n    they downloaded (`0.3.0`).\n\n`isNewer(compassLatest, compassCurrent)` compared whichever of those happened to\nbe on disk against the dist series. That is correct only while Ix's numbers are\nthe larger ones. The first ix-compass-dist tag above the running Ix version — a\nv1.0.0, or just a v0.9.2 — makes `isNewer` true and replaces a *newer* bundled\ncompass with an older dist build. Same failure as #365/#366, reached from the\nother end.\n\nIt is not only latent. install.sh stamped every install with the latest *dist*\nrelease number regardless of where the compass came from, mislabelling the\nrelease bundle it had just extracted and clobbering the correct stamp the\ntarball carried. A v0.9.x install reads `0.2.0` against a dist latest of\n`0.3.0`, so `ix upgrade` reports an update and would downgrade the bundle.\n\nThe stamp now declares its own provenance and the comparison only runs where it\nmeans something:\n\n    source=release      source=dist\n    ix=0.9.3            version=0.3.0\n    compass=7f98724\n\nA release bundle is never replaced by a dist download — it was built from `main`\nwhen the CLI was cut, so it is at least as new as any dist release published\nbefore it, and one published after arrives with the next Ix release, which\nbundles `main` again. The dist download stays the *repair* path for a missing or\ngutted bundle: that still fires, because `getInstalledCompassVersion()` reports\n`0.0.0` when `index.html` is absent, which no real release number matches.\n\nA bare number is a legacy stamp (everything up to v0.9.2) and reads as\ndist-series — what install.sh wrote, the majority of installs in the wild, and\nno less correct than today. New releases carry the explicit form and are immune.\n\nThe commit is recorded because system-compass's package.json version is not\nmaintained against the dist release series — it read 0.2.0 while dist was on\nv0.3.0 — so the commit is the only reliable identity a bundle has.\n\nBoth installers stop asking ix-compass-dist what it has published. Neither ever\ninstalls from there; `ix upgrade` asks that question, at the one point where it\ncan also tell which series the installed bundle belongs to.\n\nFixes #376",
+    "parents": [
+      {
+        "sha": "ffe21f01268caf6567916da697cd6826358443e2",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/ffe21f01268caf6567916da697cd6826358443e2"
+      }
+    ],
+    "tree_sha": "dc1586d9cae83a30a00285535649d13e6678299b",
+    "authored_at": "2026-08-11T00:06:15Z",
+    "committed_at": "2026-08-11T00:06:15Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@3353000f9b6666f929f52b1d5b5e5248a4e68678",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/3353000f9b6666f929f52b1d5b5e5248a4e68678",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/3353000f9b6666f929f52b1d5b5e5248a4e68678",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-11T00:06:15Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-11T00:06:15Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-3353000f9b6666f929f52b1d5b5e5248a4e68678",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#391"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-ffe21f01268caf6567916da697cd6826358443e2",
+      "other_type": "commit",
+      "other_title": "ffe21f01268caf6567916da697cd6826358443e2",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-ffe21f01268caf6567916da697cd6826358443e2"
+    },
+    {
+      "direction": "in",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "PR-391",
+      "other_type": "pr",
+      "other_title": "Ix PR #391",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-391"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e6f2ba20b90b",
+      "other_type": "artifact",
+      "other_title": ".github/workflows/release.yml",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e6f2ba20b90b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-7a9822e9486a",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/upgrade-compass-stamp-producers.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-7a9822e9486a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e2670fe535db",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/upgrade-compass-stamp.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e2670fe535db"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e559b6bc2060",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/upgrade.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e559b6bc2060"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ca4b1bc98da8",
+      "other_type": "artifact",
+      "other_title": "scripts/install/install.ps1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ca4b1bc98da8"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-eec42651f157",
+      "other_type": "artifact",
+      "other_title": "scripts/install/install.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-eec42651f157"
+    },
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-c4154613a2fdd434c5271f2babc10bcd88ab46b1",
+      "other_type": "commit",
+      "other_title": "c4154613a2fdd434c5271f2babc10bcd88ab46b1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-c4154613a2fdd434c5271f2babc10bcd88ab46b1"
+    }
+  ]
+}

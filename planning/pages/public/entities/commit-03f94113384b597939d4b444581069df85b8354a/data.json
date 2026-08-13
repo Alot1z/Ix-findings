@@ -1,0 +1,163 @@
+{
+  "id": "COMMIT-03f94113384b597939d4b444581069df85b8354a",
+  "type": "commit",
+  "title": "03f94113384b597939d4b444581069df85b8354a",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-03f94113384b597939d4b444581069df85b8354a",
+  "summary": {
+    "id": "COMMIT-03f94113384b597939d4b444581069df85b8354a",
+    "type": "commit",
+    "title": "03f94113384b597939d4b444581069df85b8354a",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/03f94113384b597939d4b444581069df85b8354a",
+    "source_mirror_id": "github:commit:ix-infrastructure/Ix@03f94113384b597939d4b444581069df85b8354a",
+    "source_type": "github_commit",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/commit/03f94113384b597939d4b444581069df85b8354a",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/03f94113384b597939d4b444581069df85b8354a",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "sha": "03f94113384b597939d4b444581069df85b8354a",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/03f94113384b597939d4b444581069df85b8354a",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/03f94113384b597939d4b444581069df85b8354a",
+    "author": {
+      "login": "Hiro-Chiba",
+      "id": 203865699,
+      "type": "User",
+      "html_url": "https://github.com/Hiro-Chiba"
+    },
+    "committer": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "message": "fix(ingest): resolve PHP calls through typed receivers",
+    "parents": [
+      {
+        "sha": "fa1004586b8057c410de826dd3c6da1b0d735853",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/fa1004586b8057c410de826dd3c6da1b0d735853"
+      }
+    ],
+    "tree_sha": "57228f68a8bdf9c029c84cdf850b3dcbb1be384a",
+    "authored_at": "2026-08-10T05:14:35Z",
+    "committed_at": "2026-08-10T19:49:48Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@03f94113384b597939d4b444581069df85b8354a",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/03f94113384b597939d4b444581069df85b8354a",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/03f94113384b597939d4b444581069df85b8354a",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T19:49:48Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T19:49:48Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-03f94113384b597939d4b444581069df85b8354a",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#382"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-9c74d47d1cd0faa86ef381a8888c450872675f7a",
+      "other_type": "commit",
+      "other_title": "9c74d47d1cd0faa86ef381a8888c450872675f7a",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-9c74d47d1cd0faa86ef381a8888c450872675f7a"
+    },
+    {
+      "direction": "out",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-fa1004586b8057c410de826dd3c6da1b0d735853",
+      "other_type": "commit",
+      "other_title": "fa1004586b8057c410de826dd3c6da1b0d735853",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-fa1004586b8057c410de826dd3c6da1b0d735853"
+    },
+    {
+      "direction": "in",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "PR-382",
+      "other_type": "pr",
+      "other_title": "Ix PR #382",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-382"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-fc7755aa9355",
+      "other_type": "artifact",
+      "other_title": "core-ingestion/src/__tests__/queries.php.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-fc7755aa9355"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ef1941ef1542",
+      "other_type": "artifact",
+      "other_title": "core-ingestion/src/__tests__/resolveEdges.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ef1941ef1542"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2c59b7724786",
+      "other_type": "artifact",
+      "other_title": "core-ingestion/src/index.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2c59b7724786"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-0a0245b39a66",
+      "other_type": "artifact",
+      "other_title": "core-ingestion/src/queries.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-0a0245b39a66"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-831b42b21847",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/ingest-discovery.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-831b42b21847"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-07f14ce9998a",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/ingest.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-07f14ce9998a"
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "id": "FILE-a9ca73b79656",
+  "type": "artifact",
+  "title": "memory-layer/src/main/scala/ix/memory/context/ConfidenceScorer.scala",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/file-a9ca73b79656",
+  "summary": {
+    "id": "FILE-a9ca73b79656",
+    "type": "artifact",
+    "title": "memory-layer/src/main/scala/ix/memory/context/ConfidenceScorer.scala",
+    "status": "CURRENT",
+    "repository": "Alot1z/Ix-remap",
+    "url": "https://github.com/Alot1z/Ix-remap/blob/HEAD/memory-layer/src/main/scala/ix/memory/context/ConfidenceScorer.scala"
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-bc62830d855dd0ad00bb34af97ea05ddaac57448",
+      "other_type": "commit",
+      "other_title": "bc62830d855dd0ad00bb34af97ea05ddaac57448",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-bc62830d855dd0ad00bb34af97ea05ddaac57448"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-1b9c34f97883132adbb6bd7dd79e3662b3ffb7fe",
+      "other_type": "commit",
+      "other_title": "1b9c34f97883132adbb6bd7dd79e3662b3ffb7fe",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-1b9c34f97883132adbb6bd7dd79e3662b3ffb7fe"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-96b4a2bd689694e257c6074d41d219e988339661",
+      "other_type": "commit",
+      "other_title": "96b4a2bd689694e257c6074d41d219e988339661",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-96b4a2bd689694e257c6074d41d219e988339661"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-c4a3c234f78969c80832ada452b08c9213ec38aa",
+      "other_type": "commit",
+      "other_title": "c4a3c234f78969c80832ada452b08c9213ec38aa",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-c4a3c234f78969c80832ada452b08c9213ec38aa"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-9bb79bced65f1f5f421e3fb65e2f0a42e6ba7a51",
+      "other_type": "commit",
+      "other_title": "9bb79bced65f1f5f421e3fb65e2f0a42e6ba7a51",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-9bb79bced65f1f5f421e3fb65e2f0a42e6ba7a51"
+    },
+    {
+      "direction": "out",
+      "relationship": "CO_CHANGED_WITH",
+      "other": "FILE-d1b8d4b91afe",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/context/ContextService.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-d1b8d4b91afe"
+    },
+    {
+      "direction": "out",
+      "relationship": "CO_CHANGED_WITH",
+      "other": "FILE-09059c1143fc",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/context/ContextServiceSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-09059c1143fc"
+    }
+  ]
+}

@@ -1,0 +1,424 @@
+{
+  "id": "COMMIT-adcf972be0c2417fc77be960fe881bea5903baac",
+  "type": "commit",
+  "title": "adcf972be0c2417fc77be960fe881bea5903baac",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-adcf972be0c2417fc77be960fe881bea5903baac",
+  "summary": {
+    "id": "COMMIT-adcf972be0c2417fc77be960fe881bea5903baac",
+    "type": "commit",
+    "title": "adcf972be0c2417fc77be960fe881bea5903baac",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/adcf972be0c2417fc77be960fe881bea5903baac",
+    "author": {
+      "name": "josephismikhail",
+      "email": "56614593+josephismikhail@users.noreply.github.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-bc62830d855dd0ad00bb34af97ea05ddaac57448",
+      "other_type": "commit",
+      "other_title": "bc62830d855dd0ad00bb34af97ea05ddaac57448",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-bc62830d855dd0ad00bb34af97ea05ddaac57448"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-3996214f130e816bef8bc5b9b71a43385ec6b203",
+      "other_type": "commit",
+      "other_title": "3996214f130e816bef8bc5b9b71a43385ec6b203",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-3996214f130e816bef8bc5b9b71a43385ec6b203"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-b91e524a2c8f",
+      "other_type": "artifact",
+      "other_title": "core-ingestion/src/__tests__/queries.json.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b91e524a2c8f"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2c59b7724786",
+      "other_type": "artifact",
+      "other_title": "core-ingestion/src/index.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2c59b7724786"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-652868571c65",
+      "other_type": "artifact",
+      "other_title": "core-ingestion/src/languages.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-652868571c65"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-0a0245b39a66",
+      "other_type": "artifact",
+      "other_title": "core-ingestion/src/queries.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-0a0245b39a66"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-29743d3a9ad0",
+      "other_type": "artifact",
+      "other_title": "ix-cli/package-lock.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-29743d3a9ad0"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5901fb7ec2f7",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/hierarchy.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5901fb7ec2f7"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-b7b55a8b1ab0",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/trace-path.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b7b55a8b1ab0"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-07f14ce9998a",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/ingest.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-07f14ce9998a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-cb71aa87c3b9",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/locate.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-cb71aa87c3b9"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ccd792737179",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/overview.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ccd792737179"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ca5cbc36c0be",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/search.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ca5cbc36c0be"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-948fec23429d",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/trace.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-948fec23429d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ec4ef19b7bf1",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/hierarchy.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ec4ef19b7bf1"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-f5618e56b09d",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/map/MapGraphBuilder.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f5618e56b09d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c540ea78fa25",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/map/MapService.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c540ea78fa25"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-9b3a2f521637",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/map/MapServiceScopeSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-9b3a2f521637"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-b98c74c9ee51",
+      "other_type": "artifact",
+      "other_title": "core-ingestion/src/__tests__/queries.json.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b98c74c9ee51"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-be48d8a188c3",
+      "other_type": "artifact",
+      "other_title": "core-ingestion/src/index.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-be48d8a188c3"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5d6b12083613",
+      "other_type": "artifact",
+      "other_title": "core-ingestion/src/languages.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5d6b12083613"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-f084d921fc94",
+      "other_type": "artifact",
+      "other_title": "core-ingestion/src/queries.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f084d921fc94"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ede241e680be",
+      "other_type": "artifact",
+      "other_title": "ix-cli/package-lock.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ede241e680be"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-45feece5fe52",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/hierarchy.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-45feece5fe52"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-64ee16b894fb",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/trace-path.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-64ee16b894fb"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-6d783a082e75",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/ingest.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-6d783a082e75"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-d56e0a75836a",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/locate.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-d56e0a75836a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-55e56d66594d",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/overview.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-55e56d66594d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e2709cb52aaf",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/search.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e2709cb52aaf"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c0fc14554348",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/trace.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c0fc14554348"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-168927159bb6",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/hierarchy.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-168927159bb6"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-fb4219f0e3b4",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/map/MapGraphBuilder.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-fb4219f0e3b4"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-f782e49f771e",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/map/MapService.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f782e49f771e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5861d1bf612c",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/map/MapServiceScopeSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5861d1bf612c"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c997ef650200",
+      "other_type": "artifact",
+      "other_title": "core-ingestion/src/__tests__/queries.json.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c997ef650200"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-962a5d04f98c",
+      "other_type": "artifact",
+      "other_title": "core-ingestion/src/index.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-962a5d04f98c"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-13f15347cafe",
+      "other_type": "artifact",
+      "other_title": "core-ingestion/src/languages.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-13f15347cafe"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-b8fddfa45b97",
+      "other_type": "artifact",
+      "other_title": "core-ingestion/src/queries.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b8fddfa45b97"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-d596ef326b1e",
+      "other_type": "artifact",
+      "other_title": "ix-cli/package-lock.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-d596ef326b1e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-40effe1026dd",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/hierarchy.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-40effe1026dd"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2088c06ccff1",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/trace-path.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2088c06ccff1"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-52e473712974",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/ingest.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-52e473712974"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-f098a69fe264",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/locate.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f098a69fe264"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-090f93bff283",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/overview.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-090f93bff283"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-a87a36d7819b",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/search.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-a87a36d7819b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-baabd761fba7",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/trace.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-baabd761fba7"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-fb94405b3615",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/hierarchy.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-fb94405b3615"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ab75308a02da",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/map/MapGraphBuilder.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ab75308a02da"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-474226c201ee",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/map/MapService.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-474226c201ee"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3957378030ce",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/map/MapServiceScopeSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3957378030ce"
+    }
+  ]
+}

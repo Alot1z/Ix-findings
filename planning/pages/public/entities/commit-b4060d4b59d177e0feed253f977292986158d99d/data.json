@@ -1,0 +1,88 @@
+{
+  "id": "COMMIT-b4060d4b59d177e0feed253f977292986158d99d",
+  "type": "commit",
+  "title": "b4060d4b59d177e0feed253f977292986158d99d",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-b4060d4b59d177e0feed253f977292986158d99d",
+  "summary": {
+    "id": "COMMIT-b4060d4b59d177e0feed253f977292986158d99d",
+    "type": "commit",
+    "title": "b4060d4b59d177e0feed253f977292986158d99d",
+    "status": "CURRENT",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    }
+  },
+  "source_snapshot": {
+    "sha": "b4060d4b59d177e0feed253f977292986158d99d",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/b4060d4b59d177e0feed253f977292986158d99d",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/b4060d4b59d177e0feed253f977292986158d99d",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "committer": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "message": "fix(view): scope the remap to the workspace, and serialise it\n\nFollow-up to the review of this PR. The guard itself held against every\nprobe I could think of — Origin: null, file://, data:, userinfo tricks,\ntrailing-dot Host, short-form IPv4, absolute-form request lines, path\ntraversal, percent-encoding — so what follows is about what happens\n*after* a request is allowed through.\n\n**The remap mapped the server's cwd.** `ix view start` spawns the\ndetached server with no cwd option, so it inherits wherever it was\nlaunched, and remap ran `ix map .` there. `--all` deliberately does not\nrequire the cwd to be a workspace (view.ts opts out of resolveWorkspaceId\nentirely), and CLAUDE.md documents `ix view start --all --no-open` as the\nnormal invocation — so starting it from a home directory turned one click\ninto an ingest of the whole of it. The workspace root is now resolved by\n`ix view start`, by the same lookup that produces the x-ix-workspace\nheader, and baked into the script; an unscoped view answers 409 instead\nof falling back to the cwd.\n\nThat reach was not limited to the button. The Origin check accepted any\nloopback hostname on any port, and a simple POST needs no preflight, so\nany page served on another localhost port could trigger it. Origin must\nnow match this server's port too.\n\n**Nothing serialised the maps.** execFile is asynchronous: 12 concurrent\nPOSTs started 12 concurrent `ix map` runs over the same workspace,\nmeasured. The client's in-flight flag is per-tab, so two tabs were enough.\nOne at a time now, 409 while busy.\n\n**MAP_MAIN is baked in rather than re-derived.** `resolve(DIST, \"..\",\n\"..\")` only yields IX_HOME for the installed layout; findCompassDist's\ndev branch returns a repo path, from which the same arithmetic lands on a\nfile that never exists. It now comes from this module's own location at\ngeneration time, which holds for both. The IX_VIEW_MAP_MAIN seam is\nhonoured only under NODE_ENV=test, so a shipped install cannot be\nredirected to an arbitrary script through the environment.\n\n`--silent` and an explicit maxBuffer: nothing reads that stdout, and the\ndefault 1 MiB makes Node SIGTERM the child mid-map, surfacing as a 500\nrather than as the truncation it is. Reachable only if the output ever\ngrows with the repo — today the tree render is capped at --max-items and\ningest prints a fixed summary — but the map does not need to render at\nall. The request body is drained rather than left open for the map's\nduration.\n\nTwo in bootstrap.sh, both pre-existing:\n\n- The backticks in the docker warning were command substitutions, not\n  quoting. The failure path re-ran `ix docker start`, then ran `ix doctor`\n  and `ix status`, spliced their stdout into the message, and left the\n  user with the command names stripped out of the advice.\n- is_windows() had dropped MSYSTEM along with WSL_DISTRO_NAME, which the\n  comment justified only for WSL. Restored; the WSL fix is untouched.\n\nTests move to src/cli/__tests__/ — tsconfig is include: [\"src\"], so at\ntheir old path CI never type-checked them. They no longer leak a temp\ndirectory per run or write a marker into the package root, and replacing\nthe server now awaits the old child's exit rather than re-binding the\nport under it. 10 -> 13 tests; the three new ones each fail against a\nmutant of the guard they cover.\n\n735 tests pass; typecheck, lint and knip clean.",
+    "parents": [
+      {
+        "sha": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/a6a47267af21a49d6942ee6e07e18d1d0a82517b"
+      }
+    ],
+    "tree_sha": "077aaf86b5b6e0952df39b3c850a7b433f3b96d1",
+    "authored_at": "2026-08-12T16:15:12Z",
+    "committed_at": "2026-08-12T16:15:12Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@b4060d4b59d177e0feed253f977292986158d99d",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/b4060d4b59d177e0feed253f977292986158d99d",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/b4060d4b59d177e0feed253f977292986158d99d",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-12T16:15:12Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-12T16:15:12Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-b4060d4b59d177e0feed253f977292986158d99d",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#393"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGED_BY",
+      "other": "PR-393",
+      "other_type": "pr",
+      "other_title": "Ix PR #393",
+      "other_url": "https://alot1z.github.io/Ix-findings/prs/393/tests"
+    }
+  ]
+}

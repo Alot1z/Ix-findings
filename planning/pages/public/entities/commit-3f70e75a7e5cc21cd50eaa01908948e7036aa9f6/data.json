@@ -1,0 +1,177 @@
+{
+  "id": "COMMIT-3f70e75a7e5cc21cd50eaa01908948e7036aa9f6",
+  "type": "commit",
+  "title": "3f70e75a7e5cc21cd50eaa01908948e7036aa9f6",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-3f70e75a7e5cc21cd50eaa01908948e7036aa9f6",
+  "summary": {
+    "id": "COMMIT-3f70e75a7e5cc21cd50eaa01908948e7036aa9f6",
+    "type": "commit",
+    "title": "3f70e75a7e5cc21cd50eaa01908948e7036aa9f6",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/3f70e75a7e5cc21cd50eaa01908948e7036aa9f6",
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "source_mirror_id": "github:commit:ix-infrastructure/Ix@3f70e75a7e5cc21cd50eaa01908948e7036aa9f6",
+    "source_type": "github_commit",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/commit/3f70e75a7e5cc21cd50eaa01908948e7036aa9f6",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/3f70e75a7e5cc21cd50eaa01908948e7036aa9f6",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "sha": "3f70e75a7e5cc21cd50eaa01908948e7036aa9f6",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/3f70e75a7e5cc21cd50eaa01908948e7036aa9f6",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/3f70e75a7e5cc21cd50eaa01908948e7036aa9f6",
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "committer": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "message": "fix(upgrade): keep the compass stamp readable by already-shipped CLIs\n\nThe key=value stamp is unreadable by every CLI already in the wild, and the\nshipped CLI is exactly what reads it during the upgrade that installs it:\n`ix upgrade` swaps in the new tree, then the still-running old process\ncontinues into its own compass block and reads the file it just wrote.\n\nThat reader is getTrackedVersion — readFileSync(...).trim(), the whole file —\nfeeding splitVersion. Measured against origin/main's own isNewer:\n\n  dist 0.3.0 vs \"source=release\\nix=0.9.4\\n...\"  -> false  (garbled print)\n  dist 0.3.0 vs \"source=release\\nix=1.0.0\\n...\"  -> TRUE\n  dist 0.3.0 vs \"source=release\\nix=1.1.0\\n...\"  -> TRUE\n\nThe major parses as NaN -> 0, so at the first 1.x release every older CLI\ndownloads ix-compass-dist over the newer bundle it just installed — #376\nreintroduced by the format change itself.\n\nProvenance now rides in semver build metadata on one line:\n\n  0.9.3+release.7f98724     release bundle\n  0.3.0                     dist download (bare, as it has always been)\n\nsplitVersion already drops everything after `+`, so old CLIs read 0.9.3 and\nbehave exactly as they do today.\n\nAlso from the same review:\n\n- `present` (index.html on disk) replaces version \"0.0.0\" as the repair\n  trigger. 0.0.0 is also what a stamp truncated by a full disk parses to, and\n  repairing on that downgrades an intact release bundle.\n- install.sh only stamps when it actually extracted the tarball. The block\n  runs even when the install was skipped, where the compass on disk can be an\n  unstamped *dist* bundle — labelling that `+release` froze it against every\n  future compass update. When we did extract, the tarball's own stamp has\n  already landed and repairs a mislabelled install.\n- New producer drift test: reads release.yml, install.sh and install.ps1,\n  renders each stamp literal and pushes it through the real parser. Three\n  producers in three languages with no compile-time link to the reader is how\n  this class of bug keeps happening. Verified non-vacuous — restoring the\n  multi-line form fails both properties.\n\n744 green. bash -n / sh -n clean, release.yml parses, install.ps1 parses.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>",
+    "parents": [
+      {
+        "sha": "c4154613a2fdd434c5271f2babc10bcd88ab46b1",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/c4154613a2fdd434c5271f2babc10bcd88ab46b1"
+      }
+    ],
+    "tree_sha": "2ad2d1d45f1174d0d8792b9fbba192242486112f",
+    "authored_at": "2026-08-11T04:22:28Z",
+    "committed_at": "2026-08-11T04:22:28Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@3f70e75a7e5cc21cd50eaa01908948e7036aa9f6",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/3f70e75a7e5cc21cd50eaa01908948e7036aa9f6",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/3f70e75a7e5cc21cd50eaa01908948e7036aa9f6",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-11T04:22:28Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-11T04:22:28Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-3f70e75a7e5cc21cd50eaa01908948e7036aa9f6",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#391"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-c4154613a2fdd434c5271f2babc10bcd88ab46b1",
+      "other_type": "commit",
+      "other_title": "c4154613a2fdd434c5271f2babc10bcd88ab46b1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-c4154613a2fdd434c5271f2babc10bcd88ab46b1"
+    },
+    {
+      "direction": "in",
+      "relationship": "HEADS_AT",
+      "other": "PR-391",
+      "other_type": "pr",
+      "other_title": "Ix PR #391",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-391"
+    },
+    {
+      "direction": "in",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "PR-391",
+      "other_type": "pr",
+      "other_title": "Ix PR #391",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-391"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e6f2ba20b90b",
+      "other_type": "artifact",
+      "other_title": ".github/workflows/release.yml",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e6f2ba20b90b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-7a9822e9486a",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/upgrade-compass-stamp-producers.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-7a9822e9486a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e2670fe535db",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/upgrade-compass-stamp.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e2670fe535db"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e559b6bc2060",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/upgrade.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e559b6bc2060"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ca4b1bc98da8",
+      "other_type": "artifact",
+      "other_title": "scripts/install/install.ps1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ca4b1bc98da8"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-eec42651f157",
+      "other_type": "artifact",
+      "other_title": "scripts/install/install.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-eec42651f157"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGED_BY",
+      "other": "PR-391",
+      "other_type": "pr",
+      "other_title": "Ix PR #391",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-391"
+    }
+  ]
+}

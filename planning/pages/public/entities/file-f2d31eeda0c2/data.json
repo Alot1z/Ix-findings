@@ -1,0 +1,76 @@
+{
+  "id": "FILE-f2d31eeda0c2",
+  "type": "artifact",
+  "title": "memory-layer/src/main/scala/ix/memory/ingestion/Fingerprint.scala",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/file-f2d31eeda0c2",
+  "summary": {
+    "id": "FILE-f2d31eeda0c2",
+    "type": "artifact",
+    "title": "memory-layer/src/main/scala/ix/memory/ingestion/Fingerprint.scala",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/blob/HEAD/memory-layer/src/main/scala/ix/memory/ingestion/Fingerprint.scala"
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-befde2c38786251239dd93a6adbdadcfe5e5877b",
+      "other_type": "commit",
+      "other_title": "befde2c38786251239dd93a6adbdadcfe5e5877b",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-befde2c38786251239dd93a6adbdadcfe5e5877b"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-246d46f49d892544792fd3d006c9b01dd163d2e5",
+      "other_type": "commit",
+      "other_title": "246d46f49d892544792fd3d006c9b01dd163d2e5",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-246d46f49d892544792fd3d006c9b01dd163d2e5"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-143a20d1084498dfa93f21934fe42e3087f0e0af",
+      "other_type": "commit",
+      "other_title": "143a20d1084498dfa93f21934fe42e3087f0e0af",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-143a20d1084498dfa93f21934fe42e3087f0e0af"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-270c743738990843f992d43809ef30f549f4d648",
+      "other_type": "commit",
+      "other_title": "270c743738990843f992d43809ef30f549f4d648",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-270c743738990843f992d43809ef30f549f4d648"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-69bc7c0f40ed81974f5f24f779f984d4eb27d3b0",
+      "other_type": "commit",
+      "other_title": "69bc7c0f40ed81974f5f24f779f984d4eb27d3b0",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-69bc7c0f40ed81974f5f24f779f984d4eb27d3b0"
+    },
+    {
+      "direction": "out",
+      "relationship": "CO_CHANGED_WITH",
+      "other": "FILE-89789e1c91cf",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/GraphPatchBuilder.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-89789e1c91cf"
+    },
+    {
+      "direction": "out",
+      "relationship": "CO_CHANGED_WITH",
+      "other": "FILE-b4a279da755f",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/ParseResult.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b4a279da755f"
+    }
+  ]
+}

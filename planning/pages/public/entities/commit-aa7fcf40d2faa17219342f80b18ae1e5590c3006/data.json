@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-aa7fcf40d2faa17219342f80b18ae1e5590c3006",
+  "type": "commit",
+  "title": "aa7fcf40d2faa17219342f80b18ae1e5590c3006",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-aa7fcf40d2faa17219342f80b18ae1e5590c3006",
+  "summary": {
+    "id": "COMMIT-aa7fcf40d2faa17219342f80b18ae1e5590c3006",
+    "type": "commit",
+    "title": "aa7fcf40d2faa17219342f80b18ae1e5590c3006",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/aa7fcf40d2faa17219342f80b18ae1e5590c3006",
+    "author": {
+      "name": "riley0227",
+      "email": "riley0227@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-7f56b65eeb699951f0660e3021e8bac324463b31",
+      "other_type": "commit",
+      "other_title": "7f56b65eeb699951f0660e3021e8bac324463b31",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-7f56b65eeb699951f0660e3021e8bac324463b31"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-fe0837b17e2ef3df24c9648d0dc33d43053bc5dd",
+      "other_type": "commit",
+      "other_title": "fe0837b17e2ef3df24c9648d0dc33d43053bc5dd",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-fe0837b17e2ef3df24c9648d0dc33d43053bc5dd"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3b4505b85e83",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/IngestionRoutes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3b4505b85e83"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-8d149133ed1b",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/IngestionRoutes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-8d149133ed1b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-7b1335c5b74b",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/IngestionRoutes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-7b1335c5b74b"
+    }
+  ]
+}

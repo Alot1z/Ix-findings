@@ -1,0 +1,169 @@
+{
+  "id": "COMMIT-72c0b850681618a7a12a3d1ce1b8c90f0c26a7d3",
+  "type": "commit",
+  "title": "72c0b850681618a7a12a3d1ce1b8c90f0c26a7d3",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-72c0b850681618a7a12a3d1ce1b8c90f0c26a7d3",
+  "summary": {
+    "id": "COMMIT-72c0b850681618a7a12a3d1ce1b8c90f0c26a7d3",
+    "type": "commit",
+    "title": "72c0b850681618a7a12a3d1ce1b8c90f0c26a7d3",
+    "status": "CURRENT",
+    "source_mirror_id": "github:commit:ix-infrastructure/Ix@72c0b850681618a7a12a3d1ce1b8c90f0c26a7d3",
+    "source_type": "github_commit",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/commit/72c0b850681618a7a12a3d1ce1b8c90f0c26a7d3",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/72c0b850681618a7a12a3d1ce1b8c90f0c26a7d3",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "sha": "72c0b850681618a7a12a3d1ce1b8c90f0c26a7d3",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/72c0b850681618a7a12a3d1ce1b8c90f0c26a7d3",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/72c0b850681618a7a12a3d1ce1b8c90f0c26a7d3",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "committer": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "message": "fix(view): say when -p was not honoured, and show the URL in status\n\nFollow-up to #358, which stopped the already-running branch printing an\nunreachable URL built from the port just requested. It reports the real\nport now, but says nothing about the request, so `ix view -p 19124`\nagainst a server on 19123 prints a correct URL for a port nobody asked\nfor and never mentions the flag was ignored — you find out by noticing\nthe number changed.\n\nWarns on the mismatch instead, keyed on whether -p was typed rather than\nwhether it differs from 8080: comparing against the default would stay\nsilent for someone who explicitly passed `-p 8080` to a server running\nelsewhere, which is the case they typed the flag to find out about, and\nwould nag anyone who typed nothing at all.\n\n`ix view status` also prints the URL now. The port is recorded as of\n#358, so status can finally answer the question people run it to ask. It\nstays silent rather than guessing for an instance old enough to have\nneither a port file nor a server script to recover one from.\n\nThe decision is pulled out as a pure function — inline in the command\naction it could only be exercised by launching a detached server.",
+    "parents": [
+      {
+        "sha": "3c49cc243654aae428cfc4b8802f0b3a99de56a4",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/3c49cc243654aae428cfc4b8802f0b3a99de56a4"
+      }
+    ],
+    "tree_sha": "e19849ec0da513d7620afaa747280ed54050bc9a",
+    "authored_at": "2026-08-09T21:25:32Z",
+    "committed_at": "2026-08-09T21:25:32Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@72c0b850681618a7a12a3d1ce1b8c90f0c26a7d3",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/72c0b850681618a7a12a3d1ce1b8c90f0c26a7d3",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/72c0b850681618a7a12a3d1ce1b8c90f0c26a7d3",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-09T21:25:32Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-09T21:25:32Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-72c0b850681618a7a12a3d1ce1b8c90f0c26a7d3",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#362"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "POINTS_TO",
+      "other": "BRANCH-7631c59c2c05",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:fix/view-port-mismatch-warning",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-7631c59c2c05"
+    },
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449",
+      "other_type": "commit",
+      "other_title": "95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449"
+    },
+    {
+      "direction": "out",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-3c49cc243654aae428cfc4b8802f0b3a99de56a4",
+      "other_type": "commit",
+      "other_title": "3c49cc243654aae428cfc4b8802f0b3a99de56a4",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-3c49cc243654aae428cfc4b8802f0b3a99de56a4"
+    },
+    {
+      "direction": "in",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "PR-362",
+      "other_type": "pr",
+      "other_title": "Ix PR #362",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-362"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-69e78392d02c",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/view-running-port.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-69e78392d02c"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-201d35c8a82e",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/view.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-201d35c8a82e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2ae81119c917",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/view-running-port.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2ae81119c917"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-035edca4e0b3",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/view.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-035edca4e0b3"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-fd56d086cb2f",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/view-running-port.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-fd56d086cb2f"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-00889d6a5373",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/view.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-00889d6a5373"
+    }
+  ]
+}

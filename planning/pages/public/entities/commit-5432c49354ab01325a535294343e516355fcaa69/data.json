@@ -1,0 +1,131 @@
+{
+  "id": "COMMIT-5432c49354ab01325a535294343e516355fcaa69",
+  "type": "commit",
+  "title": "5432c49354ab01325a535294343e516355fcaa69",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-5432c49354ab01325a535294343e516355fcaa69",
+  "summary": {
+    "id": "COMMIT-5432c49354ab01325a535294343e516355fcaa69",
+    "type": "commit",
+    "title": "5432c49354ab01325a535294343e516355fcaa69",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/5432c49354ab01325a535294343e516355fcaa69",
+    "source_mirror_id": "github:commit:ix-infrastructure/Ix@5432c49354ab01325a535294343e516355fcaa69",
+    "source_type": "github_commit",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/commit/5432c49354ab01325a535294343e516355fcaa69",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/5432c49354ab01325a535294343e516355fcaa69",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "sha": "5432c49354ab01325a535294343e516355fcaa69",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/5432c49354ab01325a535294343e516355fcaa69",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/5432c49354ab01325a535294343e516355fcaa69",
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "committer": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "message": "fix(upgrade): bound the sweep's new reach into IX_HOME\n\nMoving the download scratch under IX_HOME put it inside sweepUpgradeOrphans'\nrange, and hoisting the sweep above the download made its destructive half\nrun on upgrades that install nothing. Two consequences, both new:\n\n**A failed download could delete the only working compass.**\ncleanupCompassSwap:615 tests `index.html` rather than a bare existsSync, and\nits comment says why: a compass/ holding only a .version is a real state, and\na bare existsSync \"would call that 'back in place' and drop a backup the\ncaller had just told the user to go and rescue\". recover() used exactly that\nbare test, so the two disagreed on precisely that state — recover declined to\nrestore over the husk, then the loop deleted the backup. Preserved by the\nswap's cleanup, destroyed by the sweep. On main this only fired after a\nsuccessful download; above the download, an offline `ix upgrade` was enough.\n\nrecover() now takes the file that proves the thing is real — index.html for\nthe compass, dist/cli/main.js for the install — so the two agree.\n\n**A concurrent `ix upgrade` deleted the first run's in-flight download.**\nThe scratch used to live in os.tmpdir() where no sweep could match it; under\nIX_HOME it was collectable for the whole 300s curl timeout. A second terminal,\nor bootstrap.sh re-running `ix upgrade` when it finds compass missing, would\nremove the archive mid-download — and on POSIX the unlink is silent and curl\nstill exits 0, so the victim fails at the extract on a download it completed.\n\nDownload directories now carry their pid (`.cli-download-<pid>-<rand>`) and\nthe sweep skips one whose process is still addressable. Unparseable names are\ntreated as dead so the pre-pid naming stays collectable. Downloads only —\nstaging/backup carry no pid and their reclaim behaviour is left alone.\n\nAlso: the two bare rmSync calls become rmQuiet. rmQuiet exists because Windows\nrmSync does not retry and \"an AV or indexer handle ... is enough to throw\" —\nand this PR moves those directories from TEMP into the user profile, where\nscanning and indexing are the norm. The compass one runs on the success path,\nwhere a throw skips writeCache and leaves the update notice firing for the\nversion just installed.\n\nSix new cases, each verified against its bug: reverting recover() to the bare\nexistsSync fails two, and removing the live-pid guard fails another.\n\n732 green, lint clean.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>",
+    "parents": [
+      {
+        "sha": "a4b1da988ea8e3bacb9457da67ff4fa4c3a1117d",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/a4b1da988ea8e3bacb9457da67ff4fa4c3a1117d"
+      }
+    ],
+    "tree_sha": "28c4500fdbdb452c6779b6f177a6d4768341db97",
+    "authored_at": "2026-08-11T04:26:43Z",
+    "committed_at": "2026-08-11T04:37:06Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@5432c49354ab01325a535294343e516355fcaa69",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/5432c49354ab01325a535294343e516355fcaa69",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/5432c49354ab01325a535294343e516355fcaa69",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-11T04:37:06Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-11T04:37:06Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-5432c49354ab01325a535294343e516355fcaa69",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#392"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-b4d9c0038b4595b0562f9dc2e8ef457511112d29",
+      "other_type": "commit",
+      "other_title": "b4d9c0038b4595b0562f9dc2e8ef457511112d29",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b4d9c0038b4595b0562f9dc2e8ef457511112d29"
+    },
+    {
+      "direction": "out",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-a4b1da988ea8e3bacb9457da67ff4fa4c3a1117d",
+      "other_type": "commit",
+      "other_title": "a4b1da988ea8e3bacb9457da67ff4fa4c3a1117d",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-a4b1da988ea8e3bacb9457da67ff4fa4c3a1117d"
+    },
+    {
+      "direction": "in",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "PR-392",
+      "other_type": "pr",
+      "other_title": "Ix PR #392",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-392"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-8fd3c7d3cd9b",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/upgrade-archive-shape.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-8fd3c7d3cd9b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e559b6bc2060",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/upgrade.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e559b6bc2060"
+    }
+  ]
+}

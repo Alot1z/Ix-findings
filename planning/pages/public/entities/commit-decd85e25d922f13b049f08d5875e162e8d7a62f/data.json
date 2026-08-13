@@ -1,0 +1,186 @@
+{
+  "id": "COMMIT-decd85e25d922f13b049f08d5875e162e8d7a62f",
+  "type": "commit",
+  "title": "decd85e25d922f13b049f08d5875e162e8d7a62f",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-decd85e25d922f13b049f08d5875e162e8d7a62f",
+  "summary": {
+    "id": "COMMIT-decd85e25d922f13b049f08d5875e162e8d7a62f",
+    "type": "commit",
+    "title": "decd85e25d922f13b049f08d5875e162e8d7a62f",
+    "status": "CURRENT"
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "POINTS_TO",
+      "other": "BRANCH-200e59bdf0c1",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:fix/progress-frames-non-tty",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-200e59bdf0c1"
+    },
+    {
+      "direction": "in",
+      "relationship": "POINTS_TO",
+      "other": "BRANCH-13b10674e695",
+      "other_type": "branch",
+      "other_title": "ix-infrastructure/Ix:fix/progress-frames-non-tty",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-13b10674e695"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-01308e6c4a64231e7fcf6f545af1d350a52c68c0",
+      "other_type": "commit",
+      "other_title": "01308e6c4a64231e7fcf6f545af1d350a52c68c0",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-01308e6c4a64231e7fcf6f545af1d350a52c68c0"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-eab1e6b82a55",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/progress-tty.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-eab1e6b82a55"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-07f14ce9998a",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/ingest.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-07f14ce9998a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-336ca35483f0",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/map.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-336ca35483f0"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e59da9df2529",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/reset.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e59da9df2529"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e559b6bc2060",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/upgrade.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e559b6bc2060"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-a79aee674cf5",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/stderr.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-a79aee674cf5"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-d18a45d76c16",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/progress-tty.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-d18a45d76c16"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-6d783a082e75",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/ingest.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-6d783a082e75"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2457891d64fa",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/map.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2457891d64fa"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-b855b865abd0",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/reset.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b855b865abd0"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5335f7460d14",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/upgrade.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5335f7460d14"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2ff4cffdcf56",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/stderr.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2ff4cffdcf56"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-1f8d1005c1f8",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/progress-tty.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-1f8d1005c1f8"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-52e473712974",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/ingest.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-52e473712974"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-99ec40e9efdb",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/map.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-99ec40e9efdb"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ae5e77d1149c",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/reset.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ae5e77d1149c"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3d4b7b10ad9e",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/upgrade.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3d4b7b10ad9e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e51036089ab8",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/stderr.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e51036089ab8"
+    }
+  ]
+}

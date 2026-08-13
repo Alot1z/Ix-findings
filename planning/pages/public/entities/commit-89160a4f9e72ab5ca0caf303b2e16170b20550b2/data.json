@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-89160a4f9e72ab5ca0caf303b2e16170b20550b2",
+  "type": "commit",
+  "title": "89160a4f9e72ab5ca0caf303b2e16170b20550b2",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-89160a4f9e72ab5ca0caf303b2e16170b20550b2",
+  "summary": {
+    "id": "COMMIT-89160a4f9e72ab5ca0caf303b2e16170b20550b2",
+    "type": "commit",
+    "title": "89160a4f9e72ab5ca0caf303b2e16170b20550b2",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/89160a4f9e72ab5ca0caf303b2e16170b20550b2",
+    "author": {
+      "name": "Joseph Mikhail",
+      "email": "jsmikhai@ucsd.edu"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-8e231612ab3bed3b26139c3d2f9c2c50d7535a52",
+      "other_type": "commit",
+      "other_title": "8e231612ab3bed3b26139c3d2f9c2c50d7535a52",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-8e231612ab3bed3b26139c3d2f9c2c50d7535a52"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-3e3fb8cecf727699f69fafbebb97e27310a26465",
+      "other_type": "commit",
+      "other_title": "3e3fb8cecf727699f69fafbebb97e27310a26465",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-3e3fb8cecf727699f69fafbebb97e27310a26465"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-47ea08db02a7",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/model/Node.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-47ea08db02a7"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3b83e0cbad7e",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/model/Node.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3b83e0cbad7e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5b1fe43005ba",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/model/Node.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5b1fe43005ba"
+    }
+  ]
+}

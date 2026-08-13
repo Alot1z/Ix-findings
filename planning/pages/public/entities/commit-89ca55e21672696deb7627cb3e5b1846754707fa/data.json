@@ -1,0 +1,161 @@
+{
+  "id": "COMMIT-89ca55e21672696deb7627cb3e5b1846754707fa",
+  "type": "commit",
+  "title": "89ca55e21672696deb7627cb3e5b1846754707fa",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-89ca55e21672696deb7627cb3e5b1846754707fa",
+  "summary": {
+    "id": "COMMIT-89ca55e21672696deb7627cb3e5b1846754707fa",
+    "type": "commit",
+    "title": "89ca55e21672696deb7627cb3e5b1846754707fa",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/89ca55e21672696deb7627cb3e5b1846754707fa",
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "source_mirror_id": "github:commit:ix-infrastructure/Ix@89ca55e21672696deb7627cb3e5b1846754707fa",
+    "source_type": "github_commit",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/commit/89ca55e21672696deb7627cb3e5b1846754707fa",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/89ca55e21672696deb7627cb3e5b1846754707fa",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "sha": "89ca55e21672696deb7627cb3e5b1846754707fa",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/89ca55e21672696deb7627cb3e5b1846754707fa",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/89ca55e21672696deb7627cb3e5b1846754707fa",
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "committer": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "message": "test(cli): pin that oss.ts registers patches, not just that it is unstubbed\n\nThe new stub test asserts `patches` is absent from PRO_COMMANDS. That is half\nthe fix: delete the `registerPatchesCommand(program)` call from `oss.ts` and\nthat test still passes while `ix patches` becomes commander's \"unknown\ncommand\" — which is where #371 started.\n\nVerified by removing the registration: the suite stayed green before this\ncommit, and fails on it after.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>",
+    "parents": [
+      {
+        "sha": "91269efc54f905ce00fae27d80798271b35ef951",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/91269efc54f905ce00fae27d80798271b35ef951"
+      }
+    ],
+    "tree_sha": "ca7133aab8c60dfeefd749e0e01e238fa60903b0",
+    "authored_at": "2026-08-11T03:13:10Z",
+    "committed_at": "2026-08-11T03:13:10Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@89ca55e21672696deb7627cb3e5b1846754707fa",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/89ca55e21672696deb7627cb3e5b1846754707fa",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/89ca55e21672696deb7627cb3e5b1846754707fa",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-11T03:13:10Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-11T03:13:10Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-89ca55e21672696deb7627cb3e5b1846754707fa",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#390"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-91269efc54f905ce00fae27d80798271b35ef951",
+      "other_type": "commit",
+      "other_title": "91269efc54f905ce00fae27d80798271b35ef951",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-91269efc54f905ce00fae27d80798271b35ef951"
+    },
+    {
+      "direction": "in",
+      "relationship": "HEADS_AT",
+      "other": "PR-390",
+      "other_type": "pr",
+      "other_title": "Ix PR #390",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-390"
+    },
+    {
+      "direction": "in",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "PR-390",
+      "other_type": "pr",
+      "other_title": "Ix PR #390",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-390"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3a5de4be99c9",
+      "other_type": "artifact",
+      "other_title": "CLAUDE.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3a5de4be99c9"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ecaea3020e55",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/pro-stub-message.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ecaea3020e55"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-6fd1015954e3",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/patches.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-6fd1015954e3"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-4e3bf710c74e",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/register/oss.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-4e3bf710c74e"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGED_BY",
+      "other": "PR-390",
+      "other_type": "pr",
+      "other_title": "Ix PR #390",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-390"
+    }
+  ]
+}

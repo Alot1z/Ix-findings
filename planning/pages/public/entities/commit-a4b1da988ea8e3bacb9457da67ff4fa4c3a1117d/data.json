@@ -1,0 +1,137 @@
+{
+  "id": "COMMIT-a4b1da988ea8e3bacb9457da67ff4fa4c3a1117d",
+  "type": "commit",
+  "title": "a4b1da988ea8e3bacb9457da67ff4fa4c3a1117d",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-a4b1da988ea8e3bacb9457da67ff4fa4c3a1117d",
+  "summary": {
+    "id": "COMMIT-a4b1da988ea8e3bacb9457da67ff4fa4c3a1117d",
+    "type": "commit",
+    "title": "a4b1da988ea8e3bacb9457da67ff4fa4c3a1117d",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/a4b1da988ea8e3bacb9457da67ff4fa4c3a1117d",
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "source_mirror_id": "github:commit:ix-infrastructure/Ix@a4b1da988ea8e3bacb9457da67ff4fa4c3a1117d",
+    "source_type": "github_commit",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/commit/a4b1da988ea8e3bacb9457da67ff4fa4c3a1117d",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/a4b1da988ea8e3bacb9457da67ff4fa4c3a1117d",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "sha": "a4b1da988ea8e3bacb9457da67ff4fa4c3a1117d",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/a4b1da988ea8e3bacb9457da67ff4fa4c3a1117d",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/a4b1da988ea8e3bacb9457da67ff4fa4c3a1117d",
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "committer": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "message": "fix(upgrade): make the sweep-before-download order structural, not a comment\n\nThe PR notes the sweep call had to move above the download and says there is\nnow a test for it. There was not: the two new cases pin which prefixes the\nsweep reclaims, but the ordering lived inline in the command action where no\ntest could reach it. Moving the call back below the download — which breaks\nevery upgrade on every platform, since the sweep then deletes the archive it\nis about to extract — left all 724 tests passing.\n\nBoth call sites now go through `prepareDownloadDir()`, which does mkdir,\nsweep, mkdtemp in that order and is directly testable. Three cases cover it:\nan earlier run's scratch is reclaimed while the new one survives, an\ninterrupted install is restored before any download happens, and IX_HOME is\ncreated when a manual install never did. Inverting the order inside the\nhelper fails all three.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>",
+    "parents": [
+      {
+        "sha": "e0064cf8c88eb91bda5888f7a825c45e503a899f",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/e0064cf8c88eb91bda5888f7a825c45e503a899f"
+      }
+    ],
+    "tree_sha": "adda3767b751e33ccb5e5e2222fdc6ad55598380",
+    "authored_at": "2026-08-11T03:13:30Z",
+    "committed_at": "2026-08-11T04:37:06Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@a4b1da988ea8e3bacb9457da67ff4fa4c3a1117d",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/a4b1da988ea8e3bacb9457da67ff4fa4c3a1117d",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/a4b1da988ea8e3bacb9457da67ff4fa4c3a1117d",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-11T04:37:06Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-11T04:37:06Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-a4b1da988ea8e3bacb9457da67ff4fa4c3a1117d",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#392"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-e0064cf8c88eb91bda5888f7a825c45e503a899f",
+      "other_type": "commit",
+      "other_title": "e0064cf8c88eb91bda5888f7a825c45e503a899f",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-e0064cf8c88eb91bda5888f7a825c45e503a899f"
+    },
+    {
+      "direction": "in",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "PR-392",
+      "other_type": "pr",
+      "other_title": "Ix PR #392",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-392"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-8fd3c7d3cd9b",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/upgrade-archive-shape.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-8fd3c7d3cd9b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e559b6bc2060",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/upgrade.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e559b6bc2060"
+    },
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-5432c49354ab01325a535294343e516355fcaa69",
+      "other_type": "commit",
+      "other_title": "5432c49354ab01325a535294343e516355fcaa69",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-5432c49354ab01325a535294343e516355fcaa69"
+    }
+  ]
+}

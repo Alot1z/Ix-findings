@@ -1,0 +1,88 @@
+{
+  "id": "COMMIT-21fc2aee94704219d2f71e75830185322e67cd39",
+  "type": "commit",
+  "title": "21fc2aee94704219d2f71e75830185322e67cd39",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-21fc2aee94704219d2f71e75830185322e67cd39",
+  "summary": {
+    "id": "COMMIT-21fc2aee94704219d2f71e75830185322e67cd39",
+    "type": "commit",
+    "title": "21fc2aee94704219d2f71e75830185322e67cd39",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/21fc2aee94704219d2f71e75830185322e67cd39",
+    "author": {
+      "name": "riley0227",
+      "email": "riley0227@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-0ceeda0cb03fa133227511f4f38ad2e8861c0f3d",
+      "other_type": "commit",
+      "other_title": "0ceeda0cb03fa133227511f4f38ad2e8861c0f3d",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-0ceeda0cb03fa133227511f4f38ad2e8861c0f3d"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-c27ef9023b5c002bcaedebb60e299d08dc89479b",
+      "other_type": "commit",
+      "other_title": "c27ef9023b5c002bcaedebb60e299d08dc89479b",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-c27ef9023b5c002bcaedebb60e299d08dc89479b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3959802ba28e",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/github-auth.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3959802ba28e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3db422d7a823",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/github/auth.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3db422d7a823"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-46cc22c6c7d5",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/github-auth.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-46cc22c6c7d5"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-38b1a3885448",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/github/auth.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-38b1a3885448"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-8c6e413ed482",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/github-auth.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-8c6e413ed482"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-19b1e97dd87a",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/github/auth.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-19b1e97dd87a"
+    }
+  ]
+}

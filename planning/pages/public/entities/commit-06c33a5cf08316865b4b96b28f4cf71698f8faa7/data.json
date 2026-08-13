@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-06c33a5cf08316865b4b96b28f4cf71698f8faa7",
+  "type": "commit",
+  "title": "06c33a5cf08316865b4b96b28f4cf71698f8faa7",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-06c33a5cf08316865b4b96b28f4cf71698f8faa7",
+  "summary": {
+    "id": "COMMIT-06c33a5cf08316865b4b96b28f4cf71698f8faa7",
+    "type": "commit",
+    "title": "06c33a5cf08316865b4b96b28f4cf71698f8faa7",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/06c33a5cf08316865b4b96b28f4cf71698f8faa7",
+    "author": {
+      "name": "Joseph Mikhail",
+      "email": "jsmikhai@ucsd.edu"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-75b524c9d771d5ff3f41810a299bd1214149a444",
+      "other_type": "commit",
+      "other_title": "75b524c9d771d5ff3f41810a299bd1214149a444",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-75b524c9d771d5ff3f41810a299bd1214149a444"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-b69a44af5b668ec4df8d50ec4aa941d9b7c55f78",
+      "other_type": "commit",
+      "other_title": "b69a44af5b668ec4df8d50ec4aa941d9b7c55f78",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b69a44af5b668ec4df8d50ec4aa941d9b7c55f78"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-336ca35483f0",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/map.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-336ca35483f0"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2457891d64fa",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/map.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2457891d64fa"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-99ec40e9efdb",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/map.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-99ec40e9efdb"
+    }
+  ]
+}

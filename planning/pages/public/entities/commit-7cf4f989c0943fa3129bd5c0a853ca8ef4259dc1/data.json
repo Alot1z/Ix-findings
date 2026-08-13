@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-7cf4f989c0943fa3129bd5c0a853ca8ef4259dc1",
+  "type": "commit",
+  "title": "7cf4f989c0943fa3129bd5c0a853ca8ef4259dc1",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-7cf4f989c0943fa3129bd5c0a853ca8ef4259dc1",
+  "summary": {
+    "id": "COMMIT-7cf4f989c0943fa3129bd5c0a853ca8ef4259dc1",
+    "type": "commit",
+    "title": "7cf4f989c0943fa3129bd5c0a853ca8ef4259dc1",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/7cf4f989c0943fa3129bd5c0a853ca8ef4259dc1",
+    "author": {
+      "name": "Joseph Mikhail",
+      "email": "56614593+josephismikhail@users.noreply.github.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-8689968e03b7336db653a1cba8dd347a52335049",
+      "other_type": "commit",
+      "other_title": "8689968e03b7336db653a1cba8dd347a52335049",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-8689968e03b7336db653a1cba8dd347a52335049"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-ddf5cff54bce5ab993abdddd3e80a9cbba54ddf9",
+      "other_type": "commit",
+      "other_title": "ddf5cff54bce5ab993abdddd3e80a9cbba54ddf9",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-ddf5cff54bce5ab993abdddd3e80a9cbba54ddf9"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-80404f8b8c1c",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/bootstrap-migration.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-80404f8b8c1c"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-462b3880d5c5",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/bootstrap-migration.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-462b3880d5c5"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ae94577778c3",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/bootstrap-migration.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ae94577778c3"
+    }
+  ]
+}

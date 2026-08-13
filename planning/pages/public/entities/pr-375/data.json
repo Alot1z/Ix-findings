@@ -10,7 +10,582 @@
     "title": "Ix PR #375",
     "status": "RESOLVED",
     "number": 375,
-    "url": "https://github.com/ix-infrastructure/Ix/pull/375"
+    "url": "https://github.com/ix-infrastructure/Ix/pull/375",
+    "source_mirror_id": "github:pull_request:ix-infrastructure/Ix#375",
+    "source_type": "github_pull_request",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/pull/375",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/375",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "number": 375,
+    "node_id": "PR_kwDORdC75M780M3S",
+    "title": "fix(ingest): resolve JS and TS calls across parse batches",
+    "body": "Fixes #374.\n\n## Summary\n\nPre-scan JavaScript and TypeScript definitions into the repository-wide resolution index so streamed parse batches can resolve calls to imported symbols defined in later batches.\n\n## Type\n- [x] Bug fix\n- [ ] Feature\n- [ ] Refactor\n- [ ] Docs\n- [ ] Test\n- [ ] CI\n\n## Changes\n- Include JavaScript and TypeScript source files in the existing resolution pre-scan.\n- Build their symbol index from parser-produced entities so it stays aligned with normal ingestion.\n- Add a core regression test where the caller is parsed without the imported definition in its batch.\n- Pin the CLI pre-scan extension set with coverage for all supported JavaScript and TypeScript extensions.\n\n## Validation\n\n- `cd ix-cli && npm test` (50 files, 649 tests, parser smoke passed)\n- `npm run typecheck`\n- `npm run build`\n- `core-ingestion/src/__tests__/resolveEdges.test.ts` (33 tests passed)\n- Anonymous 515-file end-to-end map: both the early-batch and same-batch callers resolve after the change; only the same-batch caller resolved before it\n- The complete `core-ingestion` suite has six pre-existing failures identical on `origin/main`: two fixtures require the private `memory-layer` tree, one snapshot is stale, and three existing Rust/Scala expectations differ from current parser output\n\n## Checklist\n- [x] Tests pass\n- [x] Smoke tests pass\n- [x] No raw errors introduced\n- [x] CLI output follows Ix format\n\n## Release checklist (if merging to main)\n- [ ] `ix-cli/package.json` version bumped\n- [ ] After merge: tag pushed (`git tag vX.Y.Z && git push origin vX.Y.Z`)\n- [ ] If backend changes: `ix-memory-layer` tagged and released first\n- [ ] If `docker-compose.standalone.yml` changed: verified `curl | sh` install works\n",
+    "state": "closed",
+    "draft": false,
+    "merged": true,
+    "author": {
+      "login": "Hiro-Chiba",
+      "id": 203865699,
+      "type": "User",
+      "html_url": "https://github.com/Hiro-Chiba"
+    },
+    "html_url": "https://github.com/ix-infrastructure/Ix/pull/375",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/375",
+    "head": {
+      "ref": "fix/js-ts-cross-batch-calls",
+      "sha": "304e7e490d5537e7f86f71c297e04656360f1bf1",
+      "repo": {
+        "id": 1329113547,
+        "full_name": "Hiro-Chiba/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "html_url": "https://github.com/Hiro-Chiba/Ix",
+        "api_url": "https://api.github.com/repos/Hiro-Chiba/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": true,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-08-09T19:06:50Z",
+        "updated_at": "2026-08-09T19:06:51Z",
+        "pushed_at": "2026-08-13T19:14:49Z",
+        "topics": [],
+        "language": null,
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 0,
+        "stargazers_count": 0,
+        "forks_count": 0,
+        "open_issues_count": 0
+      }
+    },
+    "base": {
+      "ref": "main",
+      "sha": "5488741155d69a5f03fce41416643ddceca6f8a0",
+      "repo": {
+        "id": 1171307492,
+        "full_name": "ix-infrastructure/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "ix-infrastructure",
+          "id": 256883681,
+          "type": "Organization",
+          "html_url": "https://github.com/ix-infrastructure"
+        },
+        "html_url": "https://github.com/ix-infrastructure/Ix",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": false,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-03-03T04:48:38Z",
+        "updated_at": "2026-08-13T21:51:31Z",
+        "pushed_at": "2026-08-13T19:18:44Z",
+        "topics": [
+          "ai",
+          "ai-memory",
+          "claude-code",
+          "cli",
+          "code-analysis",
+          "code-mapping",
+          "code-memory",
+          "codebase-understanding",
+          "codex",
+          "developer-tools",
+          "llm",
+          "openclaw",
+          "persistent-memory",
+          "program-analysis",
+          "software-architecture",
+          "system-intelligence",
+          "system-mapping"
+        ],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 701,
+        "stargazers_count": 701,
+        "forks_count": 60,
+        "open_issues_count": 6
+      }
+    },
+    "merge_commit_sha": "d9b692a22e80d7ec9763b7b93075b1057d1e037b",
+    "merged_at": "2026-08-10T21:14:00Z",
+    "closed_at": "2026-08-10T21:14:00Z",
+    "created_at": "2026-08-10T03:43:08Z",
+    "updated_at": "2026-08-10T21:14:00Z",
+    "labels": [],
+    "milestone": null,
+    "requested_reviewers": [
+      {
+        "login": "josephismikhail",
+        "id": 56614593,
+        "type": "User",
+        "html_url": "https://github.com/josephismikhail"
+      }
+    ],
+    "requested_teams": [],
+    "commits_count": 1,
+    "changed_files_count": 5,
+    "additions": 163,
+    "deletions": 11,
+    "changed_files": [
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 375,
+        "filename": "core-ingestion/src/__tests__/resolveEdges.test.ts",
+        "status": "modified",
+        "additions": 72,
+        "deletions": 0,
+        "changes": 72,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/304e7e490d5537e7f86f71c297e04656360f1bf1/core-ingestion%2Fsrc%2F__tests__%2FresolveEdges.test.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/304e7e490d5537e7f86f71c297e04656360f1bf1/core-ingestion%2Fsrc%2F__tests__%2FresolveEdges.test.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/core-ingestion%2Fsrc%2F__tests__%2FresolveEdges.test.ts?ref=304e7e490d5537e7f86f71c297e04656360f1bf1",
+        "patch": "@@ -256,6 +256,78 @@ describe('resolveEdges', () => {\n     });\n   });\n \n+  it('resolves a TypeScript call when the imported definition is outside the parse batch', () => {\n+    const caller = fileResult(\n+      '/repo/consumer.ts',\n+      SupportedLanguages.TypeScript,\n+      [entity('runCrossBatchTarget', SupportedLanguages.TypeScript)],\n+      [\n+        { srcName: 'consumer.ts', dstName: 'target', predicate: 'IMPORTS', importRaw: './target' },\n+        { srcName: 'runCrossBatchTarget', dstName: 'crossBatchTarget', predicate: 'CALLS' },\n+      ],\n+    );\n+    caller.importBindings = [\n+      { pkg: './target', local: 'crossBatchTarget', imported: 'crossBatchTarget' },\n+    ];\n+\n+    const targetPath = '/repo/target.ts';\n+    const globalIndex = buildGlobalResolutionIndex(\n+      ['/repo/consumer.ts', targetPath],\n+      new Map([[targetPath, 'export function crossBatchTarget() {}\\n']]),\n+    );\n+\n+    expect(resolveEdges([caller], undefined, globalIndex)).toContainEqual({\n+      srcFilePath: '/repo/consumer.ts',\n+      srcName: 'runCrossBatchTarget',\n+      dstFilePath: targetPath,\n+      dstName: 'crossBatchTarget',\n+      dstQualifiedKey: 'crossBatchTarget',\n+      predicate: 'CALLS',\n+      confidence: 0.9,\n+    });\n+  });\n+\n+  it('uses caller-supplied parse results instead of re-parsing', () => {\n+    // The CLI parses prescan sources on its worker pool and hands the results\n+    // in, so the index costs no main-thread parsing. Proven by supplying a\n+    // parse result whose entity does not appear in the source text: if the\n+    // index re-parsed, `fromPool` could not be resolved.\n+    const targetPath = '/repo/target.ts';\n+    const caller = fileResult(\n+      '/repo/consumer.ts',\n+      SupportedLanguages.TypeScript,\n+      [entity('run', SupportedLanguages.TypeScript)],\n+      [\n+        { srcName: 'consumer.ts', dstName: 'target', predicate: 'IMPORTS', importRaw: './target' },\n+        { srcName: 'run', dstName: 'fromPool', predicate: 'CALLS' },\n+      ],\n+    );\n+    caller.importBindings = [{ pkg: './target', local: 'fromPool', imported: 'fromPool' }];\n+\n+    const poolResult = fileResult(\n+      targetPath,\n+      SupportedLanguages.TypeScript,\n+      [entity('fromPool', SupportedLanguages.TypeScript)],\n+      [],\n+    );\n+\n+    const globalIndex = buildGlobalResolutionIndex(\n+      ['/repo/consumer.ts', targetPath],\n+      new Map([[targetPath, '// the pool result is authoritative, not this text\\n']]),\n+      new Map([[targetPath, poolResult]]),\n+    );\n+\n+    expect(resolveEdges([caller], undefined, globalIndex)).toContainEqual({\n+      srcFilePath: '/repo/consumer.ts',\n+      srcName: 'run',\n+      dstFilePath: targetPath,\n+      dstName: 'fromPool',\n+      dstQualifiedKey: 'fromPool',\n+      predicate: 'CALLS',\n+      confidence: 0.9,\n+    });\n+  });\n+\n   it('resolves Elixir alias-qualified calls through the implicit short alias', () => {\n   const caller = fileResult(\n     '/repo/lib/my_app/accounts.ex',"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 375,
+        "filename": "core-ingestion/src/index.ts",
+        "status": "modified",
+        "additions": 33,
+        "deletions": 3,
+        "changes": 36,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/304e7e490d5537e7f86f71c297e04656360f1bf1/core-ingestion%2Fsrc%2Findex.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/304e7e490d5537e7f86f71c297e04656360f1bf1/core-ingestion%2Fsrc%2Findex.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/core-ingestion%2Fsrc%2Findex.ts?ref=304e7e490d5537e7f86f71c297e04656360f1bf1",
+        "patch": "@@ -2641,6 +2641,14 @@ export interface GlobalResolutionIndex {\n export function buildGlobalResolutionIndex(\n   filePaths: string[],\n   sources?: Map<string, string>,\n+  // Parse results the caller already has. The parser-derived language blocks\n+  // below (PHP, JS/TS, R, SAS) call parseFile synchronously on the main thread,\n+  // which is fine for a handful of files and not fine for a whole repository's\n+  // worth of TypeScript. The CLI owns a worker pool; letting it parse in\n+  // parallel and hand the results in keeps the work off this thread entirely.\n+  // Absent an entry, each block falls back to parsing here, so callers that do\n+  // not have a pool (tests, library use) behave exactly as before.\n+  preParsed?: Map<string, FileParseResult>,\n ): GlobalResolutionIndex {\n   const stemToFiles = new Map<string, string[]>();\n   const dirToIndexFiles = new Map<string, string[]>();\n@@ -2747,6 +2755,28 @@ export function buildGlobalResolutionIndex(\n       }\n     }\n \n+    // JavaScript/TypeScript: index definitions for cross-batch resolution from\n+    // the same parser output used by the normal ingest path. A path-only index\n+    // can find an imported file outside the current streaming batch, but without\n+    // its symbols resolveEdges cannot verify the destination and drops the edge.\n+    const jsTsExtensions = new Set(['.js', '.jsx', '.mjs', '.cjs', '.ts', '.tsx']);\n+    for (const [fp, src] of sources) {\n+      if (!jsTsExtensions.has(nodePath.extname(fp).toLowerCase())) continue;\n+      const parsed = preParsed?.get(fp) ?? parseFile(fp, src);\n+      if (!parsed) continue;\n+      const qkMap = new Map<string, string[]>();\n+      for (const e of parsed.entities) {\n+        if (e.kind === 'file' || e.kind === 'module') continue;\n+        const list = qkMap.get(e.name) ?? [];\n+        list.push(qualifiedKey(e));\n+        qkMap.set(e.name, list);\n+      }\n+      if (qkMap.size > 0) {\n+        fileQKeys.set(fp, qkMap);\n+        fileHasSymbol.set(fp, new Set(qkMap.keys()));\n+      }\n+    }\n+\n     // R: index function definitions for cross-batch Tier-3 resolution. Derive\n     // them from the parser's definition.function entities (not a regex) so this\n     // never drifts from what the in-batch path extracts in resolveEdges — the\n@@ -2755,7 +2785,7 @@ export function buildGlobalResolutionIndex(\n     // resolveEdges (key by name, value qkey). Same pattern as the SAS index.\n     for (const [fp, src] of sources) {\n       if (nodePath.extname(fp).toLowerCase() !== '.r') continue;\n-      const parsed = parseFile(fp, src);\n+      const parsed = preParsed?.get(fp) ?? parseFile(fp, src);\n       if (!parsed) continue;\n       const qkMap = new Map<string, string[]>();\n       for (const e of parsed.entities) {\n@@ -2774,7 +2804,7 @@ export function buildGlobalResolutionIndex(\n     // calls to classes and interfaces in unchanged files.\n     for (const [fp, src] of sources) {\n       if (nodePath.extname(fp).toLowerCase() !== '.php') continue;\n-      const parsed = parseFile(fp, src);\n+      const parsed = preParsed?.get(fp) ?? parseFile(fp, src);\n       if (!parsed) continue;\n       const qkMap = new Map<string, string[]>();\n       for (const e of parsed.entities) {\n@@ -2796,7 +2826,7 @@ export function buildGlobalResolutionIndex(\n     // Mirrors the qkMap construction at resolveEdges (key by name, value qkey).\n     for (const [fp, src] of sources) {\n       if (nodePath.extname(fp).toLowerCase() !== '.sas') continue;\n-      const parsed = parseFile(fp, src);\n+      const parsed = preParsed?.get(fp) ?? parseFile(fp, src);\n       if (!parsed) continue;\n       const qkMap = new Map<string, string[]>();\n       for (const e of parsed.entities) {"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 375,
+        "filename": "ix-cli/src/cli/__tests__/ingest-discovery.test.ts",
+        "status": "modified",
+        "additions": 8,
+        "deletions": 2,
+        "changes": 10,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/304e7e490d5537e7f86f71c297e04656360f1bf1/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fingest-discovery.test.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/304e7e490d5537e7f86f71c297e04656360f1bf1/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fingest-discovery.test.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fingest-discovery.test.ts?ref=304e7e490d5537e7f86f71c297e04656360f1bf1",
+        "patch": "@@ -55,8 +55,14 @@ describe('dedupeDiscoveredFilePaths', () => {\n     }\n   });\n \n-  it('pre-scans PHP definitions for incremental call resolution', () => {\n-    expect(needsIndexPrescan('src/Service.php')).toBe(true);\n+  it('pre-scans every language whose index is parser-derived', () => {\n+    for (const filePath of [\n+      'src/Service.php',\n+      'src/helper.js', 'src/helper.jsx', 'src/helper.mjs', 'src/helper.cjs',\n+      'src/helper.ts', 'src/helper.tsx',\n+    ]) {\n+      expect(needsIndexPrescan(filePath)).toBe(true);\n+    }\n     expect(needsIndexPrescan('src/service.py')).toBe(false);\n   });\n });"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 375,
+        "filename": "ix-cli/src/cli/commands/ingest.ts",
+        "status": "modified",
+        "additions": 49,
+        "deletions": 5,
+        "changes": 54,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/304e7e490d5537e7f86f71c297e04656360f1bf1/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fingest.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/304e7e490d5537e7f86f71c297e04656360f1bf1/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fingest.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fingest.ts?ref=304e7e490d5537e7f86f71c297e04656360f1bf1",
+        "patch": "@@ -43,9 +43,13 @@ export function isSupportedSourceFile(filePath: string): boolean {\n \n // Extensions whose source text must be pre-read so buildGlobalResolutionIndex can\n // extract cross-batch symbols before the streaming parse loop. Go uses a fast\n-// regex scan; PHP, SAS, and R are parsed (their cross-batch indexes are derived\n-// from the parser's definition entities).\n-const INDEX_PRESCAN_EXTENSIONS = new Set(['.go', '.php', '.r', '.sas']);\n+// regex scan; PHP, JavaScript, TypeScript, SAS and R are parsed, so their\n+// cross-batch indexes are derived from the parser's definition entities and\n+// cannot drift from what the in-batch path extracts.\n+const INDEX_PRESCAN_EXTENSIONS = new Set([\n+  '.go', '.php', '.r', '.sas',\n+  '.js', '.jsx', '.mjs', '.cjs', '.ts', '.tsx',\n+]);\n \n export function needsIndexPrescan(filePath: string): boolean {\n   return INDEX_PRESCAN_EXTENSIONS.has(nodePath.extname(filePath).toLowerCase());\n@@ -687,6 +691,42 @@ export async function ingestFiles(\n   };\n \n \n+\n+  /**\n+   * Parse the prescan sources on the worker pool.\n+   *\n+   * buildGlobalResolutionIndex derives PHP/JS/TS/R/SAS indexes from real parse\n+   * results rather than a regex, so they cannot drift from what the in-batch\n+   * path extracts — the right call, but it means the index costs one parse per\n+   * prescanned file. Done inside the index that is a synchronous main-thread\n+   * loop, and .ts is not a rare extension: on a TypeScript repo it is most of\n+   * the files, and an incremental map pays it for every unchanged file too.\n+   *\n+   * The pool is already running for the streaming loop below, so parse there\n+   * instead and hand the results over. Only extensions whose index is\n+   * parser-derived are worth the round trip; Go is a regex scan inside the\n+   * index and needs nothing here.\n+   */\n+  const PARSER_DERIVED_PRESCAN = new Set(['.php', '.r', '.sas', '.js', '.jsx', '.mjs', '.cjs', '.ts', '.tsx']);\n+  const preParsePrescanSources = async (relSources: Map<string, string>): Promise<Map<string, any>> => {\n+    const targets = [...relSources.keys()].filter(\n+      fp => PARSER_DERIVED_PRESCAN.has(nodePath.extname(fp).toLowerCase()),\n+    );\n+    const preParsed = new Map<string, any>();\n+    if (targets.length === 0) return preParsed;\n+    const PRESCAN_PARSE_CHUNK = 500;\n+    for (let i = 0; i < targets.length; i += PRESCAN_PARSE_CHUNK) {\n+      const chunk = targets.slice(i, i + PRESCAN_PARSE_CHUNK);\n+      const parsed = await Promise.all(\n+        chunk.map(fp => ensureParsePool().parse(fp, relSources.get(fp)!).catch(() => null)),\n+      );\n+      for (let j = 0; j < chunk.length; j++) {\n+        if (parsed[j]) preParsed.set(chunk[j], parsed[j]);\n+      }\n+    }\n+    return preParsed;\n+  };\n+\n   let progressPhase   = 'Scanning';\n   let progressCurrent = 0;\n   let progressTotal   = 0;\n@@ -1219,9 +1259,11 @@ export async function ingestFiles(\n           const relSources = new Map<string, string>();\n           for (const [abs, text] of sources) relSources.set(toWorkspaceRelative(abs), text);\n           const relFilePaths = filePaths.map(toWorkspaceRelative);\n-          globalIndex = (ingestion.buildGlobalResolutionIndex as Function)(relFilePaths, relSources);\n+          const preParsed = await preParsePrescanSources(relSources);\n+          globalIndex = (ingestion.buildGlobalResolutionIndex as Function)(relFilePaths, relSources, preParsed);\n           sources.clear();\n           relSources.clear();\n+          preParsed.clear();\n         }\n \n         let pendingFlush: Promise<void> = Promise.resolve();\n@@ -1273,8 +1315,10 @@ export async function ingestFiles(\n           }\n         }\n         const relFilePaths = filePaths.map(toWorkspaceRelative);\n-        globalIndex = ingestion.buildGlobalResolutionIndex(relFilePaths, sources);\n+        const preParsed = await preParsePrescanSources(sources);\n+        globalIndex = ingestion.buildGlobalResolutionIndex(relFilePaths, sources, preParsed);\n         sources.clear();\n+        preParsed.clear();\n         timings.goIndexMs = Math.round(performance.now() - goIndexStart);\n       }\n "
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 375,
+        "filename": "ix-cli/src/cli/commands/ingestion-loader.ts",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 1,
+        "changes": 2,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/304e7e490d5537e7f86f71c297e04656360f1bf1/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fingestion-loader.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/304e7e490d5537e7f86f71c297e04656360f1bf1/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fingestion-loader.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fingestion-loader.ts?ref=304e7e490d5537e7f86f71c297e04656360f1bf1",
+        "patch": "@@ -5,7 +5,7 @@ type IngestionModule = {\n   parseFile: (filePath: string, source: string) => any;\n   resolveEdges: (results: any[], stats?: any, globalIndex?: any) => any[];\n   isGrammarSupported: (filePath: string) => boolean;\n-  buildGlobalResolutionIndex: (filePaths: string[], sources?: Map<string, string>) => any;\n+  buildGlobalResolutionIndex: (filePaths: string[], sources?: Map<string, string>, preParsed?: Map<string, any>) => any;\n };\n \n type PatchBuilderModule = {"
+      }
+    ],
+    "commits": [
+      {
+        "sha": "304e7e490d5537e7f86f71c297e04656360f1bf1",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/304e7e490d5537e7f86f71c297e04656360f1bf1",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/304e7e490d5537e7f86f71c297e04656360f1bf1",
+        "author": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "committer": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "message": "fix(ingest): resolve JS and TS calls across parse batches\n\nPre-scan JavaScript and TypeScript definitions into the repository-wide\nresolution index so streamed parse batches resolve calls to imported symbols\ndefined in later batches.\n\nThe index derives these from real parse results rather than a regex, so they\ncannot drift from what the in-batch path extracts. That costs one parse per\nprescanned file, which was a synchronous main-thread loop — fine for R and SAS,\nnot for .ts, where it is most of a repository and an incremental map pays it for\nevery unchanged file too.\n\nSo the CLI now parses prescan sources on the worker pool it already runs for the\nstreaming loop and hands the results to buildGlobalResolutionIndex, which uses\nthem in place of parsing. Measured on this repo (180 JS/TS files), the index\nbuild drops from 1.24s of blocked main thread to 1ms, with the parsing itself\nmoved onto the pool and spread across cores. Callers without a pool — tests,\nlibrary use — still parse in the index exactly as before.\n\nCo-authored-by: KageBinary <ianjakobhock@gmail.com>",
+        "parents": [
+          {
+            "sha": "5488741155d69a5f03fce41416643ddceca6f8a0",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/5488741155d69a5f03fce41416643ddceca6f8a0"
+          }
+        ],
+        "tree_sha": "353daad85015da246e8ec9c4866f5ca392bbef6c",
+        "authored_at": "2026-08-10T03:40:57Z",
+        "committed_at": "2026-08-10T20:58:52Z"
+      }
+    ],
+    "comments": [
+      {
+        "id": 5245266428,
+        "node_id": "IC_kwDORdC75M8AAAABOKRp_A",
+        "repository": "ix-infrastructure/Ix",
+        "parent_type": "PULL_REQUEST",
+        "parent_number": 375,
+        "kind": "PR_COMMENT",
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "body": "Rebased onto `main` — #380 and #384 landed since you opened this, so it was behind.\n\nAuthorship is preserved on your commit; only the base moved. Nothing else in the PR was touched, and the review comments above still stand as written.\n",
+        "html_url": "https://github.com/ix-infrastructure/Ix/pull/375#issuecomment-5245266428",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5245266428",
+        "created_at": "2026-08-10T19:56:41Z",
+        "updated_at": "2026-08-10T19:56:41Z",
+        "commit_id": null,
+        "path": null,
+        "line": null,
+        "start_line": null,
+        "side": null,
+        "in_reply_to_id": null,
+        "diff_hunk": null,
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      },
+      {
+        "id": 5245897429,
+        "node_id": "IC_kwDORdC75M8AAAABOK4K1Q",
+        "repository": "ix-infrastructure/Ix",
+        "parent_type": "PULL_REQUEST",
+        "parent_number": 375,
+        "kind": "PR_COMMENT",
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "body": "Rebased onto `main` and pushed the fix for the blocking item, so this is unblocked from my side.\n\n**Note the conflict**: #382 landed while this was open and touched the same three places — `INDEX_PRESCAN_EXTENSIONS`, the parser-derived block in `buildGlobalResolutionIndex`, and `resolveEdges.test.ts`. I merged both rather than picking a side: the prescan set is now `.go .php .r .sas` + the six JS/TS extensions, and both cross-batch tests are kept.\n\n## The perf fix\n\nYour design decision — derive the index from real parse results rather than a regex, so it cannot drift from what the in-batch path extracts — is right, and I did not want to trade it away. The problem was only *where* the parsing happened: a synchronous main-thread loop inside `buildGlobalResolutionIndex`.\n\n`buildGlobalResolutionIndex` now takes an optional `preParsed` map, and the CLI parses prescan sources on **the worker pool it is already running** for the streaming loop, handing the results in. Absent an entry, each language block falls back to parsing in-index, so tests and library callers behave exactly as before.\n\nMeasured on this repo, 180 JS/TS files:\n\n```\nindex WITHOUT preParsed (main-thread parse): 1.24 s\nindex WITH preParsed (pool did the work):    0.001 s\n```\n\nThe parse work still happens — it moved to the pool and spreads across cores instead of blocking. Applied to PHP, R and SAS too, since all four blocks had the same shape.\n\nAdded a test that supplies a parse result whose entity does not appear in the source text: it can only resolve if `preParsed` is genuinely used rather than re-parsed.\n\n## Verification\n\n- `core-ingestion`: **35 passed** in `resolveEdges.test.ts`; full suite 280 passed with the same 6 pre-existing failures you documented, no new ones\n- `ix-cli`: **698 passed** across 52 files, `npm run typecheck` clean, lint 0 errors / 38 pre-existing warnings\n\n## Still open, and worth its own issue rather than this PR\n\nAn incremental map still parses every prescanned file, not just the changed ones — it is parallel now instead of serial, but a one-file edit in a 5,000-file TypeScript repo still does 5,000 parses. The real fix is caching the per-file index keyed on mtime so unchanged files are never re-parsed, which needs cache invalidation and is a bigger change than belongs here. I'd rather land this and file that separately than hold a correct fix behind an optimisation.\n\nI amended your commit rather than stacking, since the fix is threaded through the same lines; you are still the author and I added myself as co-author. Shout if you would rather it were split.\n",
+        "html_url": "https://github.com/ix-infrastructure/Ix/pull/375#issuecomment-5245897429",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5245897429",
+        "created_at": "2026-08-10T20:59:17Z",
+        "updated_at": "2026-08-10T20:59:17Z",
+        "commit_id": null,
+        "path": null,
+        "line": null,
+        "start_line": null,
+        "side": null,
+        "in_reply_to_id": null,
+        "diff_hunk": null,
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      }
+    ],
+    "reviews": [
+      {
+        "id": 4899753084,
+        "node_id": "PRR_kwDORdC75M8AAAABJAxMfA",
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 375,
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "state": "CHANGES_REQUESTED",
+        "body": "Thanks for contributing! The diagnosis here is correct and the index construction is careful — my one concern is the cost, which I think is larger than the 515-file validation repo could show.\n\n## The part that's right\n\nThe JS/TS block mirrors the in-batch construction in `resolveEdges` exactly — same `kind === 'file' || kind === 'module'` filter, same `qualifiedKey(e)`, same name-keyed list of qkeys. That is the thing that usually drifts in this file (it is why the R and SAS blocks carry those \"mirrors the qkMap construction at resolveEdges\" comments), and you got it right, so cross-batch and in-batch resolution will agree on `dstQualifiedKey`. No correctness objection.\n\n## The concern: this is the first prescan language where the prescan is the dominant cost\n\n`buildGlobalResolutionIndex` calls `parseFile`, which is **synchronous tree-sitter on the main thread**. The streaming parse loop below it uses `ensureParsePool()` — a worker pool. So every JS/TS file now gets parsed twice: once serially in the prescan, once in parallel in the pool.\n\nThat trade was fine for the existing prescan set. Go uses a regex scan specifically to stay cheap, and R/SAS are niche and usually a small slice of a repo. JS/TS is the common case, and for a TypeScript repo it is ~all of the files.\n\nMeasured on this repo's own TS (176 files, 1.5 MB, `parseFile` via `core-ingestion/dist`):\n\n```\nSYNC prescan parse of all JS/TS: 1.02 s for 176 files  (~5.8 ms/file)\n```\n\nExtrapolating: ~5.8 s per 1,000 JS/TS files, ~29 s at 5,000 — single-threaded, before the parse pool starts.\n\n**The incremental path is where this really bites.** In Path A:\n\n```js\nconst remainingIndexFiles = filePaths.filter(fp => needsIndexPrescan(fp) && !changedSet.has(fp));\n```\n\n`filePaths` is the whole repo, so every *mtime-clean, unchanged* JS/TS file is read from disk and then synchronously parsed. Before this change `.ts` was not in `INDEX_PRESCAN_EXTENSIONS`, so `sources` and `remainingIndexFiles` were both empty and the cost was ~zero. After it, a one-file edit in a 5,000-file TS repo pays the full read + full serial parse on every `ix map`. That is the fast path this cache exists to protect.\n\nAt 515 files this is ~3 s and reads as acceptable, which I suspect is why it did not surface in your validation.\n\n## Options, roughly in order of preference\n\n1. **Run the prescan through the existing worker pool.** `ensureParsePool()` already exists in `ingest.ts` and is already parallel. It would need `buildGlobalResolutionIndex` to accept pre-parsed entities (or an async variant) rather than calling `parseFile` itself, since the pool lives in the CLI and this function is in `core-ingestion` — a bit of plumbing, but it removes both the double-parse and the serialization.\n2. **Reuse the streaming loop's parse output.** The pool parses these files moments later anyway; only the ordering (index-before-batch) forces the duplicate.\n3. **Narrow what gets prescanned.** Only files that are actually import targets of something in the changed set need to be in the index, which on an incremental map is a small fraction of the repo.\n4. **Regex scan like Go.** Cheapest, but you deliberately avoided it for the drift reason above, and I think you were right to.\n\nI do not think the fix has to be in this PR — but I would not want to land the JS/TS prescan without a plan for the incremental case, since that is the most common thing users do.\n\nHappy to look again once you have picked a direction.\n",
+        "html_url": "https://github.com/ix-infrastructure/Ix/pull/375#pullrequestreview-4899753084",
+        "submitted_at": "2026-08-10T18:20:21Z",
+        "commit_id": "eaeb791f9b09ccff8ff745989dd64f2327b65c1a",
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      },
+      {
+        "id": 4900961122,
+        "node_id": "PRR_kwDORdC75M8AAAABJB67Yg",
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 375,
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "state": "APPROVED",
+        "body": "Blocking items resolved — see the comment above for what I pushed and why. Approving.\n\nVerified after the changes: full `ix-cli` suite green, typecheck clean, lint 0 errors, and `core-ingestion` still at exactly the six pre-existing failures you documented on `origin/main`.",
+        "html_url": "https://github.com/ix-infrastructure/Ix/pull/375#pullrequestreview-4900961122",
+        "submitted_at": "2026-08-10T21:06:25Z",
+        "commit_id": "304e7e490d5537e7f86f71c297e04656360f1bf1",
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      }
+    ],
+    "review_comments": [],
+    "timeline": [
+      {
+        "id": 29201046469,
+        "event": "review_requested",
+        "actor": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "created_at": "2026-08-10T03:43:08Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29201046469"
+      },
+      {
+        "id": 4899753084,
+        "event": "reviewed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": "eaeb791f9b09ccff8ff745989dd64f2327b65c1a",
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T18:20:49Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T19:33:03Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": 29243647578,
+        "event": "head_ref_force_pushed",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T19:51:02Z",
+        "commit_id": "452315c9cd9b6ea004972cb078a3e819b9c31a21",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29243647578"
+      },
+      {
+        "id": 5245266428,
+        "event": "commented",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T19:56:41Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5245266428"
+      },
+      {
+        "id": 29246523545,
+        "event": "head_ref_force_pushed",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T20:58:15Z",
+        "commit_id": "3e6fbf2294b2179ec015cc25b0b1bf4f82915fc5",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29246523545"
+      },
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/304e7e490d5537e7f86f71c297e04656360f1bf1"
+      },
+      {
+        "id": 5245897429,
+        "event": "commented",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T20:59:17Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5245897429"
+      },
+      {
+        "id": 29246566174,
+        "event": "head_ref_force_pushed",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T20:59:17Z",
+        "commit_id": "304e7e490d5537e7f86f71c297e04656360f1bf1",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29246566174"
+      },
+      {
+        "id": 4900961122,
+        "event": "reviewed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": "304e7e490d5537e7f86f71c297e04656360f1bf1",
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": 29247172511,
+        "event": "merged",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T21:14:00Z",
+        "commit_id": "d9b692a22e80d7ec9763b7b93075b1057d1e037b",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29247172511"
+      },
+      {
+        "id": 29247172578,
+        "event": "closed",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-10T21:14:00Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29247172578"
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-12T16:30:46Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-13T19:11:53Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      }
+    ],
+    "source": "OFFICIAL_GITHUB_FACT",
+    "review_threads": [],
+    "review_thread_capture": {
+      "status": "VERIFIED",
+      "source": "GitHub GraphQL API"
+    }
+  },
+  "source_context": {
+    "id": "github:pull_request:ix-infrastructure/Ix#375",
+    "source": {
+      "type": "github_pull_request",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/375",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/375",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T03:43:08Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T21:14:00Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "PR-375",
+    "entity_type": "PULL_REQUEST",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "mirror_scope": "source PR, commits, files, comments, reviews, review comments, and review threads",
+    "related_analysis_types": [
+      "FINDING",
+      "DECISION",
+      "IMPLEMENTATION"
+    ],
+    "review_thread_state": "VERIFIED_GRAPHQL"
   },
   "relationships": [
     {
@@ -44,6 +619,86 @@
       "other_type": "file",
       "other_title": "CLI-HANDOFF/phase-15/FINAL-PR-WORTHINESS-AUDIT.json",
       "other_url": "https://alot1z.github.io/Ix-findings/entities/src-90ab8426282e"
+    },
+    {
+      "direction": "out",
+      "relationship": "FOUND_IN",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "in",
+      "relationship": "AUTHORED",
+      "other": "PERSON-Hiro-Chiba",
+      "other_type": "artifact",
+      "other_title": "Hiro-Chiba",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-hiro-chiba"
+    },
+    {
+      "direction": "out",
+      "relationship": "HEADS_AT",
+      "other": "COMMIT-304e7e490d5537e7f86f71c297e04656360f1bf1",
+      "other_type": "commit",
+      "other_title": "304e7e490d5537e7f86f71c297e04656360f1bf1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-304e7e490d5537e7f86f71c297e04656360f1bf1"
+    },
+    {
+      "direction": "out",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "COMMIT-304e7e490d5537e7f86f71c297e04656360f1bf1",
+      "other_type": "commit",
+      "other_title": "304e7e490d5537e7f86f71c297e04656360f1bf1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-304e7e490d5537e7f86f71c297e04656360f1bf1"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMENTED_ON",
+      "other": "COMMENT-ix-infrastructure-Ix-pr-375-5245266428",
+      "other_type": "artifact",
+      "other_title": "PR #375 comment 5245266428",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/comment-ix-infrastructure-ix-pr-375-5245266428"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMENTED_ON",
+      "other": "COMMENT-ix-infrastructure-Ix-pr-375-5245897429",
+      "other_type": "artifact",
+      "other_title": "PR #375 comment 5245897429",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/comment-ix-infrastructure-ix-pr-375-5245897429"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_REVIEW",
+      "other": "REVIEW-ix-infrastructure-Ix-pr-375-4899753084",
+      "other_type": "artifact",
+      "other_title": "Review 4899753084 on PR #375",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/review-ix-infrastructure-ix-pr-375-4899753084"
+    },
+    {
+      "direction": "in",
+      "relationship": "REVIEWED_BY",
+      "other": "PERSON-KageBinary",
+      "other_type": "artifact",
+      "other_title": "KageBinary",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-kagebinary"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_REVIEW",
+      "other": "REVIEW-ix-infrastructure-Ix-pr-375-4900961122",
+      "other_type": "artifact",
+      "other_title": "Review 4900961122 on PR #375",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/review-ix-infrastructure-ix-pr-375-4900961122"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGED_BY",
+      "other": "COMMIT-304e7e490d5537e7f86f71c297e04656360f1bf1",
+      "other_type": "commit",
+      "other_title": "304e7e490d5537e7f86f71c297e04656360f1bf1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-304e7e490d5537e7f86f71c297e04656360f1bf1"
     }
   ]
 }

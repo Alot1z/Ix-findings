@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-7a8e4bd4ce1080af4d78573d93b4f1f4651bd6e0",
+  "type": "commit",
+  "title": "7a8e4bd4ce1080af4d78573d93b4f1f4651bd6e0",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-7a8e4bd4ce1080af4d78573d93b4f1f4651bd6e0",
+  "summary": {
+    "id": "COMMIT-7a8e4bd4ce1080af4d78573d93b4f1f4651bd6e0",
+    "type": "commit",
+    "title": "7a8e4bd4ce1080af4d78573d93b4f1f4651bd6e0",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/7a8e4bd4ce1080af4d78573d93b4f1f4651bd6e0",
+    "author": {
+      "name": "riley0227",
+      "email": "riley0227@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-b3dc26251224671fe1f0dbf21872223c5a593ee0",
+      "other_type": "commit",
+      "other_title": "b3dc26251224671fe1f0dbf21872223c5a593ee0",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b3dc26251224671fe1f0dbf21872223c5a593ee0"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-3480aff98e9a64446d616f2954be9b547c6db4c0",
+      "other_type": "commit",
+      "other_title": "3480aff98e9a64446d616f2954be9b547c6db4c0",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-3480aff98e9a64446d616f2954be9b547c6db4c0"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-1eb9393a4540",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/BulkWriteApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-1eb9393a4540"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-cc30c10b2f7a",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/BulkWriteApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-cc30c10b2f7a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-8fe8197934db",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/BulkWriteApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-8fe8197934db"
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "id": "FILE-04ef1773eadf",
+  "type": "artifact",
+  "title": "skills/ix/references/output-formats.md",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/file-04ef1773eadf",
+  "summary": {
+    "id": "FILE-04ef1773eadf",
+    "type": "artifact",
+    "title": "skills/ix/references/output-formats.md",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "source_mirror_id": "github:file:ix-infrastructure/Ix:skills/ix/references/output-formats.md",
+    "source_type": "github_file",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/blob/0c9087c4292254472174b02475d094359c88c055/skills%2Fix%2Freferences%2Foutput-formats.md",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 368,
+    "filename": "skills/ix/references/output-formats.md",
+    "status": "added",
+    "additions": 50,
+    "deletions": 0,
+    "changes": 50,
+    "blob_url": "https://github.com/ix-infrastructure/Ix/blob/0c9087c4292254472174b02475d094359c88c055/skills%2Fix%2Freferences%2Foutput-formats.md",
+    "raw_url": "https://github.com/ix-infrastructure/Ix/raw/0c9087c4292254472174b02475d094359c88c055/skills%2Fix%2Freferences%2Foutput-formats.md",
+    "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/skills%2Fix%2Freferences%2Foutput-formats.md?ref=0c9087c4292254472174b02475d094359c88c055",
+    "patch": "@@ -0,0 +1,50 @@\n+# Output Formats & Pro Features\n+\n+## Output formats\n+\n+Query commands accept `--format text|json|llm`:\n+\n+- **`--format llm`** — use when reading the result yourself. Token-minimal,\n+  newline-delimited (`key=value`, one record per line). Smallest output.\n+- **`--format json`** — use when chaining results between commands or pulling a\n+  specific field out of a response.\n+- **`--format text`** — human-oriented tables and trees.\n+\n+### Commands that accept `--format` but route `llm` to `text`\n+\n+`explain`, `read`, `status`, and the deprecated `query` do not implement `llm`\n+and fall back to human-oriented text without an error. Use `--format json` on\n+those if the output needs to be parsed. Everywhere else, `llm` behaves as\n+documented.\n+\n+### Commands with no `--format` at all\n+\n+`config`, `init`, `reset`, `upgrade`, `view`, `watch`. (`ingest` does accept\n+`--format`, despite being an action command.)\n+\n+## Pro features\n+\n+Commands marked **[Pro]** require Ix Pro (server-side). The **Planning** and\n+**Workflows** sections of the CLI are entirely Pro-only — including `plan`,\n+`plans`, `task`, `tasks`, and `workflow`.\n+\n+If any Pro command prints `The '<name>' command requires Ix Pro.`, this install\n+does not have them — skip that step, do not retry it, and do not mention it\n+again for the rest of the session. Nothing outside those marks is Pro-gated.\n+\n+Pro-only surface: `plan`, `plans`, `task`, `tasks`, `workflow`, `decide`,\n+`decisions`, `goal`, `truth`, `bug`, `bugs`, `briefing`, `patches`.\n+\n+### Semantic boundaries (Pro record types)\n+\n+- **decision** — a choice between alternatives, with rationale. Use `ix decide`.\n+- **bug** — something broken, missing, or incorrect. Use `ix bug create`.\n+- **task/plan** — intended work and sequencing. Use `ix plan` / `ix plan task`.\n+\n+## Confidence scores\n+\n+Ix returns confidence scores with results. When data has low confidence:\n+\n+- Mention the uncertainty to the user.\n+- Suggest re-running `ix map` to refresh the graph.\n+- Never present low-confidence data as established fact.",
+    "parent_pr": 368
+  },
+  "source_context": {
+    "id": "github:file:ix-infrastructure/Ix:skills/ix/references/output-formats.md",
+    "source": {
+      "type": "github_file",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/blob/0c9087c4292254472174b02475d094359c88c055/skills%2Fix%2Freferences%2Foutput-formats.md",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T00:15:22Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T03:58:43Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "FILE-04ef1773eadf",
+    "entity_type": "FILE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#368",
+    "line_precision": "FILE_LEVEL"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+      "other_type": "commit",
+      "other_title": "b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b038c46117c26e17ff7f3dc8edd4c4f5083f79f6"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-0c9087c4292254472174b02475d094359c88c055",
+      "other_type": "commit",
+      "other_title": "0c9087c4292254472174b02475d094359c88c055",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-0c9087c4292254472174b02475d094359c88c055"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-6a1e7e178b905745c12f9faebe0a56f91c8ffb0c",
+      "other_type": "commit",
+      "other_title": "6a1e7e178b905745c12f9faebe0a56f91c8ffb0c",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-6a1e7e178b905745c12f9faebe0a56f91c8ffb0c"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-2157158446a74d3d2303f818dc4f3f4e3758432c",
+      "other_type": "commit",
+      "other_title": "2157158446a74d3d2303f818dc4f3f4e3758432c",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-2157158446a74d3d2303f818dc4f3f4e3758432c"
+    }
+  ]
+}

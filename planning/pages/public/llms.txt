@@ -33,4 +33,20 @@ Entity indexes:
 - https://alot1z.github.io/Ix-findings/routes.json
 - https://alot1z.github.io/Ix-findings/search.json
 
-Traversal: start at llms-full.txt or graph.json, resolve any entity id to its canonical URL, and follow relationships (finding → evidence → file → commit → PR → issue) as machine-readable links.
+Categories (one physical page per knowledge view):
+- https://alot1z.github.io/Ix-findings/findings/ — Findings
+- https://alot1z.github.io/Ix-findings/evidence/ — Evidence
+- https://alot1z.github.io/Ix-findings/repositories/ — Repositories
+- https://alot1z.github.io/Ix-findings/commits/ — Commits
+- https://alot1z.github.io/Ix-findings/prs/ — Pull Requests
+- https://alot1z.github.io/Ix-findings/timeline/ — Timeline
+- https://alot1z.github.io/Ix-findings/phases/ — Phases
+- https://alot1z.github.io/Ix-findings/decisions/ — Decisions
+- https://alot1z.github.io/Ix-findings/suggestions/ — Suggestions
+- https://alot1z.github.io/Ix-findings/map/ — Investigation Map
+- https://alot1z.github.io/Ix-findings/contributions/ — Contributions
+- https://alot1z.github.io/Ix-findings/files/ — verified file references
+- https://alot1z.github.io/Ix-findings/issues/ — open issues
+- https://alot1z.github.io/Ix-findings/entities/ — full entity index
+
+Traversal: start at llms-full.txt or graph.json, resolve any entity id to its canonical URL, and follow relationships (finding → evidence → file → commit → PR → issue) as machine-readable links. Category pages cross-link their entities; every page is in sitemap.xml.

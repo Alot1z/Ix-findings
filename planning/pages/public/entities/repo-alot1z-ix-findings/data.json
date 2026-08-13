@@ -1,0 +1,163 @@
+{
+  "id": "REPO-Alot1z-Ix-findings",
+  "type": "repository",
+  "title": "Alot1z/Ix-findings",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/repo-alot1z-ix-findings",
+  "summary": {
+    "id": "REPO-Alot1z-Ix-findings",
+    "type": "repository",
+    "title": "Alot1z/Ix-findings",
+    "status": "CURRENT",
+    "url": "https://github.com/Alot1z/Ix-findings",
+    "source_mirror_id": "github:repository:Alot1z/Ix-findings",
+    "source_type": "github_repository",
+    "source_repository": "Alot1z/Ix-findings",
+    "source_url": "https://github.com/Alot1z/Ix-findings",
+    "source_api_url": "https://api.github.com/repos/Alot1z/Ix-findings",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "id": 1329949394,
+    "full_name": "Alot1z/Ix-findings",
+    "name": "Ix-findings",
+    "owner": {
+      "login": "Alot1z",
+      "id": 16801672,
+      "type": "User",
+      "html_url": "https://github.com/Alot1z"
+    },
+    "html_url": "https://github.com/Alot1z/Ix-findings",
+    "api_url": "https://api.github.com/repos/Alot1z/Ix-findings",
+    "description": "Investigation ledger for Ix / Compass findings — evidence, graph, provenance, and contribution planning",
+    "visibility": "public",
+    "default_branch": "master",
+    "private": false,
+    "fork": false,
+    "parent": null,
+    "source": null,
+    "created_at": "2026-08-10T15:04:54Z",
+    "updated_at": "2026-08-12T08:32:54Z",
+    "pushed_at": "2026-08-12T08:32:50Z",
+    "topics": [],
+    "language": "HTML",
+    "license": null,
+    "watchers_count": 0,
+    "stargazers_count": 0,
+    "forks_count": 0,
+    "open_issues_count": 0,
+    "head": {
+      "sha": "309329a3dd733694bed967655436d5d8dcc352f2",
+      "html_url": "https://github.com/Alot1z/Ix-findings/commit/309329a3dd733694bed967655436d5d8dcc352f2",
+      "api_url": "https://api.github.com/repos/Alot1z/Ix-findings/commits/309329a3dd733694bed967655436d5d8dcc352f2",
+      "author": {
+        "login": "bertolikimberly",
+        "id": 134340724,
+        "type": "User",
+        "html_url": "https://github.com/bertolikimberly"
+      },
+      "committer": {
+        "login": "bertolikimberly",
+        "id": 134340724,
+        "type": "User",
+        "html_url": "https://github.com/bertolikimberly"
+      },
+      "message": "feat(pages): physical category pages, dead-link validation, and live smoke-test\n\nAdd physical static pages for every knowledge category (findings, evidence,\nrepositories, commits, PRs, issues, timeline, phases, decisions, suggestions,\nfiles, map, contributions) so production URLs return HTTP 200 instead of 404.\n\nWire window.IX_VIEW in sections.js to render SPA views on category pages.\nConvert root sidebar category buttons to physical links. Add KNOWLEDGE\nCATEGORIES grid to overview. Fix entity index relative-link generation\n(double-directory prefix for section/issue entities).\n\nAdd dead-link and placeholder token checks to validate-public.mjs. Add\nverify-live.mjs production smoke-test script and a verify job after Pages\ndeploy in the workflow.",
+      "parents": [
+        {
+          "sha": "7ef9a23585f2326f0b42aba2aaca2e30a702946d",
+          "html_url": "https://github.com/Alot1z/Ix-findings/commit/7ef9a23585f2326f0b42aba2aaca2e30a702946d"
+        }
+      ],
+      "tree_sha": "ad43d613681b5001cf166559d1407c0dff2c6590",
+      "authored_at": "2026-08-12T08:32:40Z",
+      "committed_at": "2026-08-12T08:32:40Z"
+    },
+    "branches": [
+      {
+        "name": "master",
+        "protected": false,
+        "sha": "309329a3dd733694bed967655436d5d8dcc352f2",
+        "url": null
+      }
+    ],
+    "tags": [],
+    "releases": []
+  },
+  "source_context": {
+    "id": "github:repository:Alot1z/Ix-findings",
+    "source": {
+      "type": "github_repository",
+      "authority": "GITHUB",
+      "repository": "Alot1z/Ix-findings",
+      "owner": "Alot1z",
+      "url": "https://github.com/Alot1z/Ix-findings",
+      "api_url": "https://api.github.com/repos/Alot1z/Ix-findings",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-13T22:23:39.068Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-12T08:32:54Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "REPO-Alot1z-Ix-findings",
+    "entity_type": "REPOSITORY",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "mirror_scope": "repository metadata, refs, releases",
+    "source_capture": "REST"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CLONES",
+      "other": "CLONE-E-E-github-repos-Ix-findings",
+      "other_type": "artifact",
+      "other_title": "CLONE-E-E-github-repos-Ix-findings",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/clone-e-e-github-repos-ix-findings"
+    },
+    {
+      "direction": "in",
+      "relationship": "POINTS_TO",
+      "other": "REMOTE-86b0c8294553",
+      "other_type": "artifact",
+      "other_title": "[redacted]E-github-repos/Ix-findings:origin",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/remote-86b0c8294553"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-2cd7bd4ddbe0",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-findings:master",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-2cd7bd4ddbe0"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-b073c32575d2",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-findings:HEAD",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-b073c32575d2"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-21aabdc75476",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-findings:master",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-21aabdc75476"
+    }
+  ]
+}

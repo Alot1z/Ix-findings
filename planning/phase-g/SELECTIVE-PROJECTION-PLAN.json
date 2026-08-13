@@ -1,0 +1,55 @@
+{
+  "schema_version": "phase-g.selective-projection-plan.v1",
+  "generated_at": "2026-08-12T14:12:37.073Z",
+  "source": "LOCAL_CANONICAL_MODEL_AND_SYNC_RECEIPT",
+  "source_event": {
+    "event_id": "phase-d-representative-4a873acc3b6b",
+    "event_type": "changed_pr_head",
+    "object": {
+      "entity_id": "PR-358",
+      "kind": "PULL_REQUEST",
+      "previous_head": null,
+      "current_head": "1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+      "previous_state": null,
+      "current_state": "closed",
+      "status": "HISTORICAL"
+    }
+  },
+  "affected_entity_ids": [
+    "COMMIT-1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+    "PR-358"
+  ],
+  "affected_relationship_types": [
+    "CHANGES",
+    "HEADS_AT",
+    "HEAD_MOVED_TO"
+  ],
+  "affected_routes": [
+    "/entities/commit-1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+    "/entities/pr-358"
+  ],
+  "affected_indexes": [
+    "/entities.json",
+    "/graph.json",
+    "/llms-full.txt",
+    "/llms.txt",
+    "/routes.json",
+    "/search.json",
+    "/sitemap.xml",
+    "/timeline.json"
+  ],
+  "affected_files": [
+    "planning/pages/public/entities/commit-1b9a761fc2db7087b5bad37f07119f8f6a3467aa/data.json",
+    "planning/pages/public/entities/commit-1b9a761fc2db7087b5bad37f07119f8f6a3467aa/index.html",
+    "planning/pages/public/entities/pr-358/data.json",
+    "planning/pages/public/entities/pr-358/index.html"
+  ],
+  "unaffected_file_count": 9840,
+  "projection_file_count": 9844,
+  "full_rebuild": false,
+  "deterministic": true,
+  "analysis_layer_only": true,
+  "external_mutations": 0,
+  "reuse_policy": "Reuse unchanged projection files by content hash; regenerate only affected pages and indexes after a canonical projection writer is provided.",
+  "limitation": "The existing build-public.mjs now skips byte-identical writes, while this planner computes event scope; entity-level selective generation is not yet wired into the canonical projection writer."
+}

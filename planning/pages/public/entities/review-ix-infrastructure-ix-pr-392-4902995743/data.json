@@ -1,0 +1,85 @@
+{
+  "id": "REVIEW-ix-infrastructure-Ix-pr-392-4902995743",
+  "type": "artifact",
+  "title": "Review 4902995743 on PR #392",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/review-ix-infrastructure-ix-pr-392-4902995743",
+  "summary": {
+    "id": "REVIEW-ix-infrastructure-Ix-pr-392-4902995743",
+    "type": "artifact",
+    "title": "Review 4902995743 on PR #392",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/pull/392#pullrequestreview-4902995743",
+    "source_mirror_id": "github:review:ix-infrastructure/Ix#pr-392-4902995743",
+    "source_type": "github_review",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/pull/392#pullrequestreview-4902995743",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "id": 4902995743,
+    "node_id": "PRR_kwDORdC75M8AAAABJD3HHw",
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 392,
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "state": "APPROVED",
+    "body": "Addressed in 5432c49 and b4d9c00, and rebased onto main now that #391 has landed.\n\n**The data-loss path.** `recover()` now takes the file that proves the thing is real — `index.html` for the compass, `cli/dist/cli/main.js` for the install — so it applies the same test `cleanupCompassSwap` already applies. The two no longer disagree about a husk, so a torn swap restores the backup instead of the sweep deleting it. Verified: reverting to the bare `existsSync` fails two of the new cases.\n\n**The concurrency window.** Download directories carry their pid (`.cli-download-<pid>-<rand>`) and the sweep skips one whose process is still addressable — `process.kill(pid, 0)`, treating EPERM as live. Unparseable names are treated as dead so the pre-pid naming stays collectable, and the guard is scoped to download prefixes so staging/backup reclaim behaviour is untouched. Verified: removing the guard fails the live-process case.\n\n**The two bare `rmSync` calls** are now `rmQuiet`, which is the whole reason that helper exists — and this PR is what moves those directories from TEMP into the user profile.\n\n**One more, found while composing the two PRs** (b4d9c00): both sweep calls sit behind \"something needs updating\", and #391 tightened the compass gate to skip release-bundled compasses — which is every install from v0.9.3 on. So on a healthy current install neither would fire and nothing would ever be reclaimed, which defeats the reason for sweeping the downloads at all. There is now one unconditional sweep at the top of a real `ix upgrade`; the calls inside `prepareDownloadDir` stay, since that is where the ordering invariant lives.\n\n753 green on the rebased result, lint clean.\n\n**Still open, and deliberately not resolved here:** whether #349 is space-driven or short-path-driven. The scratch now sits under `[local-path] 10\\.ix\\...`, which contains the space, where the TEMP path it replaces did not. `Refs #349` is the right framing until someone reproduces it — worth keeping the issue open rather than closing it on this.",
+    "html_url": "https://github.com/ix-infrastructure/Ix/pull/392#pullrequestreview-4902995743",
+    "submitted_at": "2026-08-11T04:46:19Z",
+    "commit_id": "b4d9c0038b4595b0562f9dc2e8ef457511112d29",
+    "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+    "source": "OFFICIAL_GITHUB_FACT",
+    "parent_pr": 392
+  },
+  "source_context": {
+    "id": "github:review:ix-infrastructure/Ix#pr-392-4902995743",
+    "source": {
+      "type": "github_review",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/392#pullrequestreview-4902995743",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-11T04:46:19Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-11T04:46:19Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "REVIEW-ix-infrastructure-Ix-pr-392-4902995743",
+    "entity_type": "REVIEW",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#392",
+    "review_thread_state": "VERIFIED_GRAPHQL_NO_ASSOCIATED_THREAD_DATA"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "HAS_REVIEW",
+      "other": "PR-392",
+      "other_type": "pr",
+      "other_title": "Ix PR #392",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-392"
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "id": "COMMIT-43f2b27dfb7ad604a5316d7c50414bde511187a8",
+  "type": "commit",
+  "title": "43f2b27dfb7ad604a5316d7c50414bde511187a8",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-43f2b27dfb7ad604a5316d7c50414bde511187a8",
+  "summary": {
+    "id": "COMMIT-43f2b27dfb7ad604a5316d7c50414bde511187a8",
+    "type": "commit",
+    "title": "43f2b27dfb7ad604a5316d7c50414bde511187a8",
+    "status": "HISTORICAL",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    }
+  },
+  "source_snapshot": {
+    "sha": "43f2b27dfb7ad604a5316d7c50414bde511187a8",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/43f2b27dfb7ad604a5316d7c50414bde511187a8",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/43f2b27dfb7ad604a5316d7c50414bde511187a8",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "committer": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "message": "fix(mcp): stop exporting six symbols nothing imports\n\nThe dead-code gate (knip) rejected the branch. `resolveLauncher`,\n`cursorConfigPath`, `opencodeConfigPath` and `MAX_OUTPUT_BYTES` are used\nonly inside their own module, and server.ts re-exported `runCurrentIx`\nand `IxRunResult`, which no caller takes from there — tests import\n`runCurrentIx` from runner.js directly. Only `IxRunner` is genuinely\nconsumed through server.js, so the re-export narrows to that.\n\nLint passes locally either way; knip is the check that catches this, and\nit does not run as part of `npm run lint`.",
+    "parents": [
+      {
+        "sha": "f347aeff4373fe8fac9ef66e5d9bc7a0821e3477",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/f347aeff4373fe8fac9ef66e5d9bc7a0821e3477"
+      }
+    ],
+    "tree_sha": "e0753f92b0e713afeda1bde4297682cd659b8457",
+    "authored_at": "2026-08-12T15:25:36Z",
+    "committed_at": "2026-08-12T15:25:36Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@43f2b27dfb7ad604a5316d7c50414bde511187a8",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/43f2b27dfb7ad604a5316d7c50414bde511187a8",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/43f2b27dfb7ad604a5316d7c50414bde511187a8",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-12T15:25:36Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-12T15:25:36Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-43f2b27dfb7ad604a5316d7c50414bde511187a8",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#397"
+  },
+  "relationships": []
+}

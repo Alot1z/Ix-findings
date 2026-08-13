@@ -52,7 +52,7 @@ function nodeFor(entity) {
     title: entity.canonical_name,
     status: entity.status,
   };
-  for (const key of ["category", "phase", "repository", "number", "url", "author", "commit", "merged_at", "disposition", "evidence_refs"]) {
+  for (const key of ["category", "phase", "repository", "number", "url", "author", "commit", "merged_at", "disposition", "evidence_refs", "source_mirror_id", "source_type", "source_repository", "source_url", "source_api_url", "source_is_authoritative", "analysis_layer"]) {
     if (metadata[key] !== undefined) node[key] = metadata[key];
   }
   if (entity.entity_type === "FINDING") {
@@ -188,6 +188,7 @@ export function createLegacyUiData(root) {
   const timelines = readJson(join(knowledge, "timelines.json"));
   const tests = readJson(join(knowledge, "tests.json"));
   const sections = readJson(join(knowledge, "sections.json"));
+  const externalMirror = readJson(join(knowledge, "external-github-mirror.json"));
   const entities = new Map(entitiesArray.map(entity => [entity.canonical_id, entity]));
   const byType = type => entitiesArray.filter(entity => entity.entity_type === type);
   const generated = manifest.generated_at || "UNKNOWN";
@@ -246,6 +247,7 @@ export function createLegacyUiData(root) {
     phases: byType("PHASE").map(phaseFor),
     timeline: timelines,
     graph,
+    externalMirror,
     repos: byType("REPOSITORY").map(repositoryFields),
     branches: byType("BRANCH").map(entity => ({ ...entity.metadata, branch: entity.metadata?.branch, repo: entity.metadata?.repo, sha: entity.metadata?.sha, note: entity.deep_summary })),
     commits: byType("COMMIT").map(entity => ({ ...entity.metadata, sha: entity.metadata?.sha || entity.canonical_name, msg: entity.metadata?.msg || entity.human_summary })),

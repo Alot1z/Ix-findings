@@ -140,4 +140,58 @@ const mainGuard = compareFreshness({
 assert.equal(mainGuard.gate, "PASS");
 assert.equal(mainGuard.stale_count, 0);
 
-console.log("freshness-gate tests passed: fresh state passes; head, PR, and issue drift fail closed; degraded baseline fallback passes; superseded-commit staleness fails closed (open-PR and fork-branch heads); upstream-main repo guard holds");
+// Purged-SHA hygiene: a physically purged commit must never appear in a
+// live/current position — live entity metadata, non-HISTORICAL relationships,
+// live capture heads/file refs, or a non-HISTORICAL COMMIT entity. Labeled
+// provenance (historical_sha, HISTORICAL status, HISTORICAL relationships) is
+// deliberately exempt.
+const purgeLive = { ...liveForSuperseded };
+const purgeDirtyBase = {
+  ...canonical,
+  purgedShas: ["deadbeef", "deadbeef0123456789"],
+  entities: [
+    { canonical_id: "COMMIT-deadbeef", entity_type: "COMMIT", status: "CURRENT", metadata: { sha: "deadbeef" }, human_summary: "ok", deep_summary: "" },
+  ],
+  relationships: [
+    { relationship_id: "REL-PURGED", from: "PR-1", to: "COMMIT-deadbeef", type: "CHANGED_BY", status: "CURRENT" },
+  ],
+  liveCaptureImplementations: [{ id: "impl-x", files: [{ path: "x.ts", commit: "deadbeef" }] }],
+  liveCapturePRs: [{ number: 1, head_sha: "deadbeef" }],
+  liveCaptureForkBranches: { "Alot1z/Ix": { "feat/x": "deadbeef" } },
+};
+const purgeDirty = compareFreshness(purgeDirtyBase, purgeLive, snapshot);
+assert.equal(purgeDirty.gate, "STALE");
+assert.ok(purgeDirty.checks.some(check => check.id.startsWith("purged-sha:") && !check.ok));
+
+// Every exemption holds at once: provenance keys, HISTORICAL entity status,
+// HISTORICAL relationship, and no live-capture references → PASS.
+const purgeClean = compareFreshness({
+  ...canonical,
+  purgedShas: ["deadbeef"],
+  entities: [
+    { canonical_id: "COMMIT-deadbeef", entity_type: "COMMIT", status: "HISTORICAL", metadata: { historical_sha: "deadbeef", superseded_at: "2026-08-11" }, human_summary: "removed commit deadbeef (historical)", deep_summary: "" },
+  ],
+  relationships: [
+    { relationship_id: "REL-1", from: "PR-1", to: "COMMIT-deadbeef", type: "CHANGED_BY", status: "HISTORICAL" },
+  ],
+  liveCaptureImplementations: [],
+  liveCapturePRs: [],
+  liveCaptureForkBranches: {},
+}, purgeLive, snapshot);
+assert.equal(purgeClean.gate, "PASS");
+assert.equal(purgeClean.stale_count, 0);
+
+// A purged SHA in a live entity's summary (non-provenance position) fails.
+const purgeSummary = compareFreshness({
+  ...purgeDirtyBase,
+  entities: [{ canonical_id: "FINDING-X", entity_type: "FINDING", status: "CURRENT", metadata: {}, human_summary: "introduced in deadbeef", deep_summary: "" }],
+}, purgeLive, snapshot);
+assert.equal(purgeSummary.gate, "STALE");
+assert.ok(purgeSummary.checks.some(check => check.id === "purged-sha:entity:FINDING-X:summary" && !check.ok));
+
+// No purged SHAs configured → the audit is inert (no checks emitted).
+const noPurge = compareFreshness({ ...purgeDirtyBase, purgedShas: [] }, purgeLive, snapshot);
+assert.equal(noPurge.gate, "PASS");
+assert.equal(noPurge.checks.some(check => check.id.startsWith("purged-sha:")), false);
+
+console.log("freshness-gate tests passed: fresh state passes; head, PR, and issue drift fail closed; degraded baseline fallback passes; superseded-commit staleness fails closed (open-PR and fork-branch heads); upstream-main repo guard holds; purged-SHA hygiene fails closed (live metadata, summaries, CURRENT relationships, live capture heads/file refs, non-HISTORICAL COMMIT entities) with provenance/HISTORICAL exemptions and inert-when-unconfigured");

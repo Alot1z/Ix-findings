@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-01d2c185c565f10f703ae587051950e625943102",
+  "type": "commit",
+  "title": "01d2c185c565f10f703ae587051950e625943102",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-01d2c185c565f10f703ae587051950e625943102",
+  "summary": {
+    "id": "COMMIT-01d2c185c565f10f703ae587051950e625943102",
+    "type": "commit",
+    "title": "01d2c185c565f10f703ae587051950e625943102",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/01d2c185c565f10f703ae587051950e625943102",
+    "author": {
+      "name": "Tanner Kocher",
+      "email": "tannertorrey3@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-91a1ad4d8a6618712db8a9689761d6549081b290",
+      "other_type": "commit",
+      "other_title": "91a1ad4d8a6618712db8a9689761d6549081b290",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-91a1ad4d8a6618712db8a9689761d6549081b290"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-f622c19dc63bdf2a72e70c69e73ca7666466f301",
+      "other_type": "commit",
+      "other_title": "f622c19dc63bdf2a72e70c69e73ca7666466f301",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-f622c19dc63bdf2a72e70c69e73ca7666466f301"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3c0deca01227",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/smell/SmellService.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3c0deca01227"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5657c01421a6",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/smell/SmellService.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5657c01421a6"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-231773578975",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/smell/SmellService.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-231773578975"
+    }
+  ]
+}

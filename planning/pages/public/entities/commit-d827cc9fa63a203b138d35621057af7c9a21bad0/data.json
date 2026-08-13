@@ -1,0 +1,201 @@
+{
+  "id": "COMMIT-d827cc9fa63a203b138d35621057af7c9a21bad0",
+  "type": "commit",
+  "title": "d827cc9fa63a203b138d35621057af7c9a21bad0",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-d827cc9fa63a203b138d35621057af7c9a21bad0",
+  "summary": {
+    "id": "COMMIT-d827cc9fa63a203b138d35621057af7c9a21bad0",
+    "type": "commit",
+    "title": "d827cc9fa63a203b138d35621057af7c9a21bad0",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/d827cc9fa63a203b138d35621057af7c9a21bad0",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "source_mirror_id": "github:commit:ix-infrastructure/Ix@d827cc9fa63a203b138d35621057af7c9a21bad0",
+    "source_type": "github_commit",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/commit/d827cc9fa63a203b138d35621057af7c9a21bad0",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/d827cc9fa63a203b138d35621057af7c9a21bad0",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "sha": "d827cc9fa63a203b138d35621057af7c9a21bad0",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/d827cc9fa63a203b138d35621057af7c9a21bad0",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/d827cc9fa63a203b138d35621057af7c9a21bad0",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "committer": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "message": "fix(ingest): do not let map mode delete the chunks it cannot rewrite\n\nThree fixes on top of the deletion reconciliation.\n\n1. `ix map` was destroying chunk data. stripMapModeOps drops every chunk\n   UpsertNode from the patch but leaves DeleteNode alone, and chunk ids hash\n   the chunk's start line — so any edit that shifts lines makes every\n   downstream chunk look removed. Running `ix map` after an `ix ingest`\n   therefore deleted the file's chunks and never recreated them: the cheap\n   command silently destroying what the expensive one built. Chunks are not\n   map mode's to reconcile, so reconcileRemovedEntities now takes a mapMode\n   flag and leaves chunk nodes and CONTAINS_CHUNK/NEXT edges alone. The kind\n   comes from the entity lookup already being made for incident edges, so it\n   costs nothing extra.\n\n2. Restored the empty-baseline guard, scoped. An empty mtime map is normally\n   a discovery failure — an over-broad ignore rule, the wrong cwd — and\n   persisting it discards the baseline and forces a full re-ingest. Dropping\n   the guard outright to support \"deleted the last file\" made every such\n   failure destructive. It now asks why the map is empty: with deletions\n   recorded, empty is real; without them, discovery is assumed to have gone\n   wrong.\n\n3. Scoped the fail-closed hash lookup. Deleting from an unreliable baseline\n   is how data gets lost, so failing closed there is right — but letting the\n   throw escape aborted the whole map over one transient blip, taking the\n   ordinary ingest of every changed file with it. The deletions are now\n   dropped for that run and retried next time; the rest proceeds.\n\nCo-authored-by: KageBinary <ianjakobhock@gmail.com>",
+    "parents": [
+      {
+        "sha": "16b0d663bab744f9ea5c02341919fff5636756ea",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/16b0d663bab744f9ea5c02341919fff5636756ea"
+      }
+    ],
+    "tree_sha": "541dc740589b90683d2ac8eca9b7ca8ec0f91280",
+    "authored_at": "2026-08-10T21:03:45Z",
+    "committed_at": "2026-08-10T21:03:45Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@d827cc9fa63a203b138d35621057af7c9a21bad0",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/d827cc9fa63a203b138d35621057af7c9a21bad0",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/d827cc9fa63a203b138d35621057af7c9a21bad0",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T21:03:45Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T21:03:45Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-d827cc9fa63a203b138d35621057af7c9a21bad0",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#378"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "COMMIT_IN_REPOSITORY",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-16b0d663bab744f9ea5c02341919fff5636756ea",
+      "other_type": "commit",
+      "other_title": "16b0d663bab744f9ea5c02341919fff5636756ea",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-16b0d663bab744f9ea5c02341919fff5636756ea"
+    },
+    {
+      "direction": "in",
+      "relationship": "HEADS_AT",
+      "other": "PR-378",
+      "other_type": "pr",
+      "other_title": "Ix PR #378",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-378"
+    },
+    {
+      "direction": "in",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "PR-378",
+      "other_type": "pr",
+      "other_title": "Ix PR #378",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-378"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-a44cc86423b5",
+      "other_type": "artifact",
+      "other_title": "core-ingestion/src/__tests__/patchBuilder.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-a44cc86423b5"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-9dfdf2ebc360",
+      "other_type": "artifact",
+      "other_title": "core-ingestion/src/patch-builder.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-9dfdf2ebc360"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-719695410a9b",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/ingest-reconcile.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-719695410a9b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-b36337cff7a1",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/loadExistingHashes.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b36337cff7a1"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-650da18e9cd9",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/stale-workspace.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-650da18e9cd9"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-07f14ce9998a",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/ingest.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-07f14ce9998a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-65e1406e6c81",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/ingestion-loader.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-65e1406e6c81"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-56dc219369f6",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/ingest-baseline.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-56dc219369f6"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e02ec31e059b",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/stale.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e02ec31e059b"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGED_BY",
+      "other": "PR-378",
+      "other_type": "pr",
+      "other_title": "Ix PR #378",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-378"
+    }
+  ]
+}

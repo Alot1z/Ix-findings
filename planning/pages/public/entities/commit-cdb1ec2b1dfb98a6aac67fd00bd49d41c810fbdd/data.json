@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-cdb1ec2b1dfb98a6aac67fd00bd49d41c810fbdd",
+  "type": "commit",
+  "title": "cdb1ec2b1dfb98a6aac67fd00bd49d41c810fbdd",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-cdb1ec2b1dfb98a6aac67fd00bd49d41c810fbdd",
+  "summary": {
+    "id": "COMMIT-cdb1ec2b1dfb98a6aac67fd00bd49d41c810fbdd",
+    "type": "commit",
+    "title": "cdb1ec2b1dfb98a6aac67fd00bd49d41c810fbdd",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/cdb1ec2b1dfb98a6aac67fd00bd49d41c810fbdd",
+    "author": {
+      "name": "Tanner Kocher",
+      "email": "tannertorrey3@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-39d7a25915269f76e982a07f9bf6926c8975563c",
+      "other_type": "commit",
+      "other_title": "39d7a25915269f76e982a07f9bf6926c8975563c",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-39d7a25915269f76e982a07f9bf6926c8975563c"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-5285e78c57f7adc50aae77cb57338827d64b8c84",
+      "other_type": "commit",
+      "other_title": "5285e78c57f7adc50aae77cb57338827d64b8c84",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-5285e78c57f7adc50aae77cb57338827d64b8c84"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-cd98b1572b9c",
+      "other_type": "artifact",
+      "other_title": "Formula/ix.rb",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-cd98b1572b9c"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-a12074782c47",
+      "other_type": "artifact",
+      "other_title": "Formula/ix.rb",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-a12074782c47"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-f5daaba6e07e",
+      "other_type": "artifact",
+      "other_title": "Formula/ix.rb",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f5daaba6e07e"
+    }
+  ]
+}

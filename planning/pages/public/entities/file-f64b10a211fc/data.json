@@ -1,0 +1,159 @@
+{
+  "id": "FILE-f64b10a211fc",
+  "type": "artifact",
+  "title": "ix-cli/src/mcp/server.ts",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/file-f64b10a211fc",
+  "summary": {
+    "id": "FILE-f64b10a211fc",
+    "type": "artifact",
+    "title": "ix-cli/src/mcp/server.ts",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/blob/HEAD/ix-cli/src/mcp/server.ts",
+    "source_mirror_id": "github:file:ix-infrastructure/Ix:ix-cli/src/mcp/server.ts",
+    "source_type": "github_file",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/blob/2be2c25f63dca94116bfb299e5037e293b840aa9/ix-cli%2Fsrc%2Fmcp%2Fserver.ts",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 397,
+    "filename": "ix-cli/src/mcp/server.ts",
+    "status": "added",
+    "additions": 470,
+    "deletions": 0,
+    "changes": 470,
+    "blob_url": "https://github.com/ix-infrastructure/Ix/blob/2be2c25f63dca94116bfb299e5037e293b840aa9/ix-cli%2Fsrc%2Fmcp%2Fserver.ts",
+    "raw_url": "https://github.com/ix-infrastructure/Ix/raw/2be2c25f63dca94116bfb299e5037e293b840aa9/ix-cli%2Fsrc%2Fmcp%2Fserver.ts",
+    "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fmcp%2Fserver.ts?ref=2be2c25f63dca94116bfb299e5037e293b840aa9",
+    "patch": "@@ -0,0 +1,470 @@\n+import { McpServer } from \"@modelcontextprotocol/sdk/server/mcp.js\";\n+import { StdioServerTransport } from \"@modelcontextprotocol/sdk/server/stdio.js\";\n+import type { CallToolResult } from \"@modelcontextprotocol/sdk/types.js\";\n+import { z } from \"zod\";\n+\n+import {\n+  createProtocolStdout,\n+  DEFAULT_TIMEOUT_MS,\n+  detectPro,\n+  resolveDefaultRunner,\n+  type IxRunner,\n+} from \"./runner.js\";\n+\n+export type { IxRunner } from \"./runner.js\";\n+\n+/**\n+ * Tools every install can run.\n+ *\n+ * This set is the union of what the per-host Ix plugins expose, minus three\n+ * deliberate drops: `ix_query` is the deprecated command the CLI docs tell\n+ * agents not to use, and `ix_neighbors` / `ix_docs_tool` are convenience\n+ * composites of `ix_callers` + `ix_callees` + `ix_depends` and of\n+ * `ix_overview`, all of which are here individually.\n+ */\n+export const IX_MCP_OSS_TOOL_NAMES = [\n+  \"ix_health\",\n+  \"ix_locate\",\n+  \"ix_text\",\n+  \"ix_impact\",\n+  \"ix_map\",\n+  \"ix_overview\",\n+  \"ix_read\",\n+  \"ix_diff\",\n+  \"ix_callers\",\n+  \"ix_callees\",\n+  \"ix_imported_by\",\n+  \"ix_imports\",\n+  \"ix_depends\",\n+  \"ix_trace\",\n+  \"ix_explain\",\n+  \"ix_rank\",\n+  \"ix_inventory\",\n+  \"ix_smells\",\n+  \"ix_stats\",\n+  \"ix_subsystems\",\n+  \"ix_history\",\n+  \"ix_ingest\",\n+] as const;\n+\n+/**\n+ * Tools that need Ix Pro.\n+ *\n+ * Advertised only when the Pro package actually loads. Listing them\n+ * unconditionally — as this server did for `ix_briefing` and `ix_decisions` —\n+ * hands an OSS agent tools whose every call returns \"requires Ix Pro\", which it\n+ * cannot tell apart from a real failure.\n+ */\n+export const IX_MCP_PRO_TOOL_NAMES = [\"ix_briefing\", \"ix_decisions\", \"ix_decide\"] as const;\n+\n+/** Every tool this server can serve, across both tiers. */\n+export const IX_MCP_TOOL_NAMES = [...IX_MCP_OSS_TOOL_NAMES, ...IX_MCP_PRO_TOOL_NAMES] as const;\n+\n+interface CreateServerOptions {\n+  version?: string;\n+  runIx?: IxRunner;\n+  /** Advertise the Pro tools. Resolved by {@link detectPro} at startup. */\n+  proAvailable?: boolean;\n+}\n+\n+type ToolInput = Record<string, unknown>;\n+\n+export function createIxMcpServer(options: CreateServerOptions = {}): McpServer {\n+  const version = options.version ?? \"0.0.0\";\n+\n+  // Built on first use, not here: constructing the default runner takes over\n+  // process.stdout and process.exit, which a caller supplying its own runner\n+  // (every test, and any embedder) must not have done to it.\n+  let fallback: IxRunner | undefined;\n+  const runIx: IxRunner =\n+    options.runIx ??\n+    ((args, timeoutMs) =>\n+      (fallback ??= resolveDefaultRunner({ version, redirectIdleStdout: true }))(args, timeoutMs));\n+\n+  const server = new McpServer({\n+    name: \"ix-memory\",\n+    version,\n+  });\n+\n+  registerTool(server, \"ix_health\", \"Check Ix backend and graph readiness\", {}, async () =>\n+    runFormatted(runIx, \"ix_health\", [\"status\"]),\n+  );\n+  registerTool(\n+    server,\n+    \"ix_locate\",\n+    \"Resolve a symbol to its canonical graph-backed target\",\n+    { symbol: z.string().min(1) },\n+    async (input) => runFormatted(runIx, \"ix_locate\", [\"locate\", stringArg(input, \"symbol\")]),\n+  );\n+  registerTool(\n+    server,\n+    \"ix_text\",\n+    \"Search text across the indexed repository and return ranked hits\",\n+    {\n+      pattern: z.string().min(1),\n+      limit: z.number().int().min(1).max(100).default(20),\n+      path: z.string().min(1).optional(),\n+      language: z.string().min(1).optional(),\n+    },\n+    async (input) => {\n+      const args = [\n+        \"text\",\n+        stringArg(input, \"pattern\"),\n+        \"--limit\",\n+        numberArg(input, \"limit\").toString(),\n+      ];\n+      pushOption(args, \"--path\", input.path);\n+      pushOption(args, \"--language\", input.language);\n+      return runFormatted(runIx, \"ix_text\", args);\n+    },\n+  );\n+  registerTool(\n+    server,\n+    \"ix_impact\",\n+    \"Analyze the blast radius and risk of changing a symbol or file\",\n+    { target: z.string().min(1) },\n+    async (input) => runFormatted(runIx, \"ix_impact\", [\"impact\", stringArg(input, \"target\")]),\n+  );\n+  registerTool(\n+    server,\n+    \"ix_map\",\n+    \"Ingest one path or refresh the full workspace architecture map\",\n+    { file: z.string().min(1).optional() },\n+    async (input) => {\n+      const args = [\"map\"];\n+      if (typeof input.file === \"string\") args.push(input.file);\n+      return runJson(runIx, \"ix_map\", args, 120_000);\n+    },\n+  );\n+  registerTool(\n+    server,\n+    \"ix_overview\",\n+    \"Return the structural overview of a symbol, file, or subsystem\",\n+    { target: z.string().min(1) },\n+    async (input) => runFormatted(runIx, \"ix_overview\", [\"overview\", stringArg(input, \"target\")]),\n+  );\n+  registerTool(\n+    server,\n+    \"ix_read\",\n+    \"Read graph-bounded source for a symbol or indexed file\",\n+    { symbol: z.string().min(1) },\n+    async (input) => runFormatted(runIx, \"ix_read\", [\"read\", stringArg(input, \"symbol\")]),\n+  );\n+  registerTool(\n+    server,\n+    \"ix_diff\",\n+    \"Show the structural diff between two graph revisions\",\n+    {\n+      from_rev: z.number().int().nonnegative(),\n+      to_rev: z.number().int().nonnegative(),\n+      target: z.string().min(1).optional(),\n+      summary: z.boolean().default(false),\n+    },\n+    async (input) => {\n+      const args = [\n+        \"diff\",\n+        numberArg(input, \"from_rev\").toString(),\n+        numberArg(input, \"to_rev\").toString(),\n+      ];\n+      if (typeof input.target === \"string\") args.push(input.target);\n+      if (input.summary === true) args.push(\"--summary\");\n+      return runFormatted(runIx, \"ix_diff\", args);\n+    },\n+  );\n+  registerSymbolTool(server, runIx, \"ix_callers\", \"List incoming call edges\", \"callers\");\n+  registerSymbolTool(server, runIx, \"ix_callees\", \"List outgoing call edges\", \"callees\");\n+  registerSymbolTool(server, runIx, \"ix_imported_by\", \"List incoming import edges\", \"imported-by\");\n+  registerSymbolTool(server, runIx, \"ix_imports\", \"List outgoing import edges\", \"imports\");\n+  registerTool(\n+    server,\n+    \"ix_depends\",\n+    \"Show downstream dependencies to a bounded depth\",\n+    {\n+      symbol: z.string().min(1),\n+      depth: z.number().int().min(1).max(5).default(2),\n+    },\n+    async (input) =>\n+      runFormatted(runIx, \"ix_depends\", [\n+        \"depends\",\n+        stringArg(input, \"symbol\"),\n+        \"--depth\",\n+        numberArg(input, \"depth\").toString(),\n+      ]),\n+  );\n+  registerTool(\n+    server,\n+    \"ix_trace\",\n+    \"Trace execution paths through a symbol\",\n+    {\n+      symbol: z.string().min(1),\n+      to: z.string().min(1).optional(),\n+    },\n+    async (input) => {\n+      const args = [\"trace\", stringArg(input, \"symbol\")];\n+      pushOption(args, \"--to\", input.to);\n+      return runFormatted(runIx, \"ix_trace\", args);\n+    },\n+  );\n+  registerSymbolTool(\n+    server,\n+    runIx,\n+    \"ix_explain\",\n+    \"Explain a symbol using graph evidence\",\n+    \"explain\",\n+  );\n+  registerTool(\n+    server,\n+    \"ix_rank\",\n+    \"Rank graph entities by importance or connectivity\",\n+    {\n+      by: z.string().min(1).default(\"dependents\"),\n+      kind: z.string().min(1).default(\"class\"),\n+      top: z.number().int().min(1).max(100).default(10),\n+      path: z.string().min(1).optional(),\n+    },\n+    async (input) => {\n+      const args = [\n+        \"rank\",\n+        \"--by\",\n+        stringArg(input, \"by\"),\n+        \"--kind\",\n+        stringArg(input, \"kind\"),\n+        \"--top\",\n+        numberArg(input, \"top\").toString(),\n+      ];\n+      pushOption(args, \"--path\", input.path);\n+      return runFormatted(runIx, \"ix_rank\", args);\n+    },\n+  );\n+  registerTool(\n+    server,\n+    \"ix_inventory\",\n+    \"List graph entities within a repository path\",\n+    {\n+      path: z.string().min(1),\n+      kind: z.string().min(1).default(\"file\"),\n+    },\n+    async (input) =>\n+      runFormatted(runIx, \"ix_inventory\", [\n+        \"inventory\",\n+        \"--kind\",\n+        stringArg(input, \"kind\"),\n+        \"--path\",\n+        stringArg(input, \"path\"),\n+      ]),\n+  );\n+  registerTool(\n+    server,\n+    \"ix_smells\",\n+    \"Detect graph-backed architecture smells\",\n+    {\n+      path: z.string().min(1).optional(),\n+      limit: z.number().int().min(1).max(500).default(50),\n+    },\n+    async (input) => runSmells(runIx, input),\n+  );\n+  registerTool(server, \"ix_stats\", \"Return graph-wide statistics\", {}, async () =>\n+    runFormatted(runIx, \"ix_stats\", [\"stats\"]),\n+  );\n+  registerTool(server, \"ix_subsystems\", \"List graph-derived subsystems\", {}, async () =>\n+    runFormatted(runIx, \"ix_subsystems\", [\"subsystems\"]),\n+  );\n+  registerTool(\n+    server,\n+    \"ix_history\",\n+    \"Show provenance and patch history for a file or symbol\",\n+    { target: z.string().min(1) },\n+    async (input) => runFormatted(runIx, \"ix_history\", [\"history\", stringArg(input, \"target\")]),\n+  );\n+  registerTool(\n+    server,\n+    \"ix_ingest\",\n+    \"Ingest a path, or issues/PRs/commits from a GitHub repository, into the graph\",\n+    {\n+      path: z.string().min(1).optional(),\n+      github: z.string().min(1).optional().describe(\"owner/repo\"),\n+      limit: z.number().int().min(1).max(500).default(50),\n+      since: z.string().min(1).optional().describe(\"ISO 8601 date\"),\n+    },\n+    async (input) => {\n+      const args = [\"ingest\"];\n+      if (typeof input.path === \"string\") args.push(input.path);\n+      pushOption(args, \"--github\", input.github);\n+      pushOption(args, \"--since\", input.since);\n+      if (typeof input.github === \"string\") args.push(\"--limit\", numberArg(input, \"limit\").toString());\n+      // Ingestion walks the tree or pages a GitHub API, so it gets the same\n+      // headroom as ix_map rather than the default read timeout.\n+      return runJson(runIx, \"ix_ingest\", args, 120_000);\n+    },\n+  );\n+\n+  if (options.proAvailable) {\n+    registerTool(server, \"ix_briefing\", \"Load the Ix Pro session briefing\", {}, async () =>\n+      runJson(runIx, \"ix_briefing\", [\"briefing\"]),\n+    );\n+    registerTool(\n+      server,\n+      \"ix_decisions\",\n+      \"List Ix Pro architecture decisions, optionally scoped to a path\",\n+      { path: z.string().min(1).optional() },\n+      async (input) => {\n+        const args = [\"decisions\"];\n+        pushOption(args, \"--path\", input.path);\n+        return runJson(runIx, \"ix_decisions\", args);\n+      },\n+    );\n+    registerTool(\n+      server,\n+      \"ix_decide\",\n+      \"Record an architecture decision with its rationale\",\n+      {\n+        title: z.string().min(1),\n+        rationale: z.string().min(1),\n+        affects: z.string().min(1).optional().describe(\"entity the decision affects\"),\n+      },\n+      async (input) => {\n+        const args = [\"decide\", stringArg(input, \"title\"), \"--rationale\", stringArg(input, \"rationale\")];\n+        pushOption(args, \"--affects\", input.affects);\n+        return runJson(runIx, \"ix_decide\", args);\n+      },\n+    );\n+  }\n+\n+  return server;\n+}\n+\n+export async function startIxMcpServer(version = \"0.0.0\"): Promise<void> {\n+  const server = createIxMcpServer({ version, proAvailable: await detectPro() });\n+  // A dedicated handle on fd 1 rather than process.stdout, which the in-process\n+  // runner patches to capture command output.\n+  await server.connect(new StdioServerTransport(process.stdin, createProtocolStdout()));\n+}\n+\n+function registerSymbolTool(\n+  server: McpServer,\n+  runIx: IxRunner,\n+  name: string,\n+  description: string,\n+  command: string,\n+): void {\n+  registerTool(server, name, description, { symbol: z.string().min(1) }, async (input) =>\n+    runFormatted(runIx, name, [command, stringArg(input, \"symbol\")]),\n+  );\n+}\n+\n+function registerTool(\n+  server: McpServer,\n+  name: string,\n+  description: string,\n+  inputSchema: z.ZodRawShape,\n+  handler: (input: ToolInput) => Promise<CallToolResult>,\n+): void {\n+  server.registerTool(name, { description, inputSchema }, async (input) =>\n+    handler(input as ToolInput),\n+  );\n+}\n+\n+async function runFormatted(\n+  runIx: IxRunner,\n+  tool: string,\n+  args: string[],\n+  timeoutMs = DEFAULT_TIMEOUT_MS,\n+): Promise<CallToolResult> {\n+  return runCommand(runIx, tool, [...args, \"--format\", \"llm\"], timeoutMs);\n+}\n+\n+async function runJson(\n+  runIx: IxRunner,\n+  tool: string,\n+  args: string[],\n+  timeoutMs = DEFAULT_TIMEOUT_MS,\n+): Promise<CallToolResult> {\n+  return runCommand(runIx, tool, [...args, \"--format\", \"json\"], timeoutMs);\n+}\n+\n+async function runCommand(\n+  runIx: IxRunner,\n+  tool: string,\n+  args: string[],\n+  timeoutMs: number,\n+): Promise<CallToolResult> {\n+  const result = await runIx(args, timeoutMs);\n+  if (!result.ok) {\n+    const detail =\n+      result.stderr.trim() ||\n+      result.stdout.trim() ||\n+      `${args.slice(0, 2).join(\" \")} failed without output`;\n+    return textResult(JSON.stringify({ error: detail, tool }), true);\n+  }\n+\n+  return textResult(result.stdout.trim() || \"{}\");\n+}\n+\n+async function runSmells(runIx: IxRunner, input: ToolInput): Promise<CallToolResult> {\n+  const result = await runIx([\"smells\", \"--format\", \"json\"], DEFAULT_TIMEOUT_MS);\n+  if (!result.ok) {\n+    const detail = result.stderr.trim() || result.stdout.trim() || \"smells failed without output\";\n+    return textResult(JSON.stringify({ error: detail, tool: \"ix_smells\" }), true);\n+  }\n+\n+  const parsed = parseJsonOutput(result.stdout);\n+  if (!isRecord(parsed) || !Array.isArray(parsed.candidates)) {\n+    return textResult(result.stdout.trim() || \"{}\");\n+  }\n+\n+  const path = typeof input.path === \"string\" ? normalizePath(input.path) : null;\n+  const limit = numberArg(input, \"limit\");\n+  const candidates = parsed.candidates\n+    .filter((candidate) => {\n+      if (path === null || !isRecord(candidate) || typeof candidate.file !== \"string\") {\n+        return path === null;\n+      }\n+      const file = normalizePath(candidate.file);\n+      return file === path || file.startsWith(`${path}/`);\n+    })\n+    .slice(0, limit);\n+\n+  return textResult(JSON.stringify({ ...parsed, count: candidates.length, candidates }, null, 2));\n+}\n+\n+function textResult(text: string, isError = false): CallToolResult {\n+  return {\n+    content: [{ type: \"text\", text }],\n+    ...(isError ? { isError: true } : {}),\n+  };\n+}\n+\n+function stringArg(input: ToolInput, key: string): string {\n+  return input[key] as string;\n+}\n+\n+function numberArg(input: ToolInput, key: string): number {\n+  return input[key] as number;\n+}\n+\n+function pushOption(args: string[], flag: string, value: unknown): void {\n+  if (typeof value === \"string\" && value.length > 0) {\n+    args.push(flag, value);\n+  }\n+}\n+\n+function parseJsonOutput(output: string): unknown {\n+  const text = output.trim();\n+  for (let index = 0; index < text.length; index += 1) {\n+    if (text[index] !== \"{\" && text[index] !== \"[\") continue;\n+    try {\n+      return JSON.parse(text.slice(index));\n+    } catch {\n+      // A startup notice can contain punctuation before the actual JSON body.\n+    }\n+  }\n+  return null;\n+}\n+\n+function isRecord(value: unknown): value is Record<string, unknown> {\n+  return value !== null && typeof value === \"object\" && !Array.isArray(value);\n+}\n+\n+function normalizePath(value: string): string {\n+  return value.replaceAll(\"\\\\\", \"/\").replace(/^\\.\\//, \"\").replace(/\\/$/, \"\");\n+}",
+    "parent_pr": 397
+  },
+  "source_context": {
+    "id": "github:file:ix-infrastructure/Ix:ix-cli/src/mcp/server.ts",
+    "source": {
+      "type": "github_file",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/blob/2be2c25f63dca94116bfb299e5037e293b840aa9/ix-cli%2Fsrc%2Fmcp%2Fserver.ts",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-12T15:23:12Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-12T16:26:44Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "FILE-f64b10a211fc",
+    "entity_type": "FILE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#397",
+    "line_precision": "FILE_LEVEL"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-65eb0287c032cce90b6c5c9768337257fdddc823",
+      "other_type": "commit",
+      "other_title": "65eb0287c032cce90b6c5c9768337257fdddc823",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-65eb0287c032cce90b6c5c9768337257fdddc823"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-3e343567965f7fee2d3fbf0f68959c7077b2f7c4",
+      "other_type": "commit",
+      "other_title": "3e343567965f7fee2d3fbf0f68959c7077b2f7c4",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-3e343567965f7fee2d3fbf0f68959c7077b2f7c4"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-ece523c7fe280832e4ad5cada2be6f359584d9a0",
+      "other_type": "commit",
+      "other_title": "ece523c7fe280832e4ad5cada2be6f359584d9a0",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-ece523c7fe280832e4ad5cada2be6f359584d9a0"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-07b92ebe517e63c63e107d3953451bd4485df341",
+      "other_type": "commit",
+      "other_title": "07b92ebe517e63c63e107d3953451bd4485df341",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-07b92ebe517e63c63e107d3953451bd4485df341"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-0d597f492d441a38b5923a0e8a0b03d990551804",
+      "other_type": "commit",
+      "other_title": "0d597f492d441a38b5923a0e8a0b03d990551804",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-0d597f492d441a38b5923a0e8a0b03d990551804"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-6f3bc7ac006333f0948fb573051ef186f7568eda",
+      "other_type": "commit",
+      "other_title": "6f3bc7ac006333f0948fb573051ef186f7568eda",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-6f3bc7ac006333f0948fb573051ef186f7568eda"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-1c453fbda2314c36ecb9eb12c4bc35b74fb9a676",
+      "other_type": "commit",
+      "other_title": "1c453fbda2314c36ecb9eb12c4bc35b74fb9a676",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-1c453fbda2314c36ecb9eb12c4bc35b74fb9a676"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-6964737da421a05d18d2a231130624bc1774057e",
+      "other_type": "commit",
+      "other_title": "6964737da421a05d18d2a231130624bc1774057e",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-6964737da421a05d18d2a231130624bc1774057e"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-9145e55f9dfff09667c6cbd647e509cee2a948f9",
+      "other_type": "commit",
+      "other_title": "9145e55f9dfff09667c6cbd647e509cee2a948f9",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-9145e55f9dfff09667c6cbd647e509cee2a948f9"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-93a781f370768f7fab1b6f220c7f501acd1ecad6",
+      "other_type": "commit",
+      "other_title": "93a781f370768f7fab1b6f220c7f501acd1ecad6",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-93a781f370768f7fab1b6f220c7f501acd1ecad6"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-1ff520c7bd5392a06c291b70fa0abdb5a6a51ded",
+      "other_type": "commit",
+      "other_title": "1ff520c7bd5392a06c291b70fa0abdb5a6a51ded",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-1ff520c7bd5392a06c291b70fa0abdb5a6a51ded"
+    }
+  ]
+}

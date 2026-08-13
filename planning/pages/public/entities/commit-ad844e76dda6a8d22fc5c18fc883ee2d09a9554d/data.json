@@ -1,0 +1,88 @@
+{
+  "id": "COMMIT-ad844e76dda6a8d22fc5c18fc883ee2d09a9554d",
+  "type": "commit",
+  "title": "ad844e76dda6a8d22fc5c18fc883ee2d09a9554d",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-ad844e76dda6a8d22fc5c18fc883ee2d09a9554d",
+  "summary": {
+    "id": "COMMIT-ad844e76dda6a8d22fc5c18fc883ee2d09a9554d",
+    "type": "commit",
+    "title": "ad844e76dda6a8d22fc5c18fc883ee2d09a9554d",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/ad844e76dda6a8d22fc5c18fc883ee2d09a9554d",
+    "author": {
+      "name": "Joseph Mikhail",
+      "email": "jsmikhai@ucsd.edu"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-d9a360f28d0f1e5392aa10e06f32f281b4152e0d",
+      "other_type": "commit",
+      "other_title": "d9a360f28d0f1e5392aa10e06f32f281b4152e0d",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-d9a360f28d0f1e5392aa10e06f32f281b4152e0d"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-105829b28827cb9eee9a54686c09b5aa0b13ea4f",
+      "other_type": "commit",
+      "other_title": "105829b28827cb9eee9a54686c09b5aa0b13ea4f",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-105829b28827cb9eee9a54686c09b5aa0b13ea4f"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-1ed6a2188c73",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/depends.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-1ed6a2188c73"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-948fec23429d",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/trace.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-948fec23429d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-955430e5690c",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/depends.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-955430e5690c"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c0fc14554348",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/trace.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c0fc14554348"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c6d6b61ca2b2",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/depends.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c6d6b61ca2b2"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-baabd761fba7",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/trace.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-baabd761fba7"
+    }
+  ]
+}

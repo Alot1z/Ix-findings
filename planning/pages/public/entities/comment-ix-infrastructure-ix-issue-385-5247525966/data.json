@@ -1,0 +1,102 @@
+{
+  "id": "COMMENT-ix-infrastructure-Ix-issue-385-5247525966",
+  "type": "artifact",
+  "title": "Issue #385 comment 5247525966",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/comment-ix-infrastructure-ix-issue-385-5247525966",
+  "summary": {
+    "id": "COMMENT-ix-infrastructure-Ix-issue-385-5247525966",
+    "type": "artifact",
+    "title": "Issue #385 comment 5247525966",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/issues/385#issuecomment-5247525966",
+    "source_mirror_id": "github:comment:ix-infrastructure/Ix#issue-385-5247525966",
+    "source_type": "github_issue_comment",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/issues/385#issuecomment-5247525966",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5247525966",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "id": 5247525966,
+    "node_id": "IC_kwDORdC75M8AAAABOMbkTg",
+    "repository": "ix-infrastructure/Ix",
+    "parent_type": "ISSUE",
+    "parent_number": 385,
+    "kind": "ISSUE_COMMENT",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "body": "Status check, since three separate changes touch this and it is not obvious from the outside which of them closes it.\n\n**The forward path is complete.** Traced end to end on `main`:\n\n- the release archive carries `ix.cmd` at its top level (`release.yml:309`), so the file the shim targets is genuinely in the tarball;\n- `install.ps1` collapses that top level into a flat `$IX_HOME\\cli\\`, which is why `%~dp0..\\cli\\ix.cmd` resolves (#346, v0.9.0);\n- `ix upgrade` re-derives the same layout — `soleChildDir(installDir) ?? installDir` (`upgrade.ts:1026`) — and `refreshLaunchers()` rewrites `bin\\ix.cmd` to match, flat or nested, on every upgrade.\n\nSo an upgrade **from v0.9.0 or later** rewrites the shim to a target that exists.\n\n**What cannot be fixed forward** is the population this was reported from: `ix upgrade` is executed by the version being upgraded *from*, so nothing shipped today reaches a v0.8.1 install. #386 is the recovery for exactly that — the launcher now checks its target before invoking it and prints the reinstall command, because once broken, `ix doctor` is as unreachable as `ix`.\n\n**What is still missing is a Windows run.** Every piece above is asserted by tests and has never been executed by `cmd.exe` — #386 shipped as `Refs`, not `Fixes`, for that reason. This wants:\n\n1. a v0.9.1 → v0.9.2 upgrade, confirming `ix --version` still works afterwards, and\n2. a deliberately broken `bin\\ix.cmd` (point it at a nonexistent target), confirming the recovery message prints rather than the raw `is not recognized` error.\n\nThat is what should close this, not another patch. Same standing requirement as #349 and #383.",
+    "html_url": "https://github.com/ix-infrastructure/Ix/issues/385#issuecomment-5247525966",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5247525966",
+    "created_at": "2026-08-11T00:15:58Z",
+    "updated_at": "2026-08-11T00:15:58Z",
+    "commit_id": null,
+    "path": null,
+    "line": null,
+    "start_line": null,
+    "side": null,
+    "in_reply_to_id": null,
+    "diff_hunk": null,
+    "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+    "source": "OFFICIAL_GITHUB_FACT",
+    "parent_issue": 385
+  },
+  "source_context": {
+    "id": "github:comment:ix-infrastructure/Ix#issue-385-5247525966",
+    "source": {
+      "type": "github_issue_comment",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/issues/385#issuecomment-5247525966",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5247525966",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-11T00:15:58Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-11T00:15:58Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMENT-ix-infrastructure-Ix-issue-385-5247525966",
+    "entity_type": "ISSUE_COMMENT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:issue:ix-infrastructure/Ix#385",
+    "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "COMMENTED_ON",
+      "other": "ISSUE-385",
+      "other_type": "issue",
+      "other_title": "Ix issue #385",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/issue-385"
+    },
+    {
+      "direction": "in",
+      "relationship": "AUTHORED",
+      "other": "PERSON-KageBinary",
+      "other_type": "artifact",
+      "other_title": "KageBinary",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-kagebinary"
+    }
+  ]
+}

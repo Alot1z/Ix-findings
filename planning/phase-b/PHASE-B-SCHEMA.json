@@ -1,0 +1,58 @@
+{
+  "schema_version": "phase-b-identity-1",
+  "canonical_source": "knowledge/",
+  "entity_types": [
+    "ORGANIZATION",
+    "PERSON",
+    "REPOSITORY",
+    "FORK",
+    "CLONE",
+    "WORKTREE",
+    "REMOTE",
+    "BRANCH",
+    "COMMIT",
+    "FILE",
+    "DIRECTORY",
+    "SYMBOL"
+  ],
+  "relationship_types": [
+    "FORK_OF",
+    "CLONES",
+    "WORKTREE_OF",
+    "POINTS_TO",
+    "BELONGS_TO",
+    "CHECKS_OUT",
+    "PART_OF",
+    "DEFINED_IN"
+  ],
+  "required_identity_fields": [
+    "id",
+    "entity_type",
+    "canonical_name",
+    "status",
+    "confidence",
+    "source_refs",
+    "identity"
+  ],
+  "temporal_statuses": [
+    "CURRENT",
+    "HISTORICAL",
+    "STALE",
+    "SUPERSEDED",
+    "RESOLVED",
+    "CONTRADICTED",
+    "UNKNOWN",
+    "BLOCKED"
+  ],
+  "evidence_states": [
+    "VERIFIED",
+    "INFERRED",
+    "HYPOTHESIS",
+    "UNKNOWN",
+    "SOURCE_DIRECT",
+    "GITHUB_VERIFIED",
+    "DERIVED",
+    "UNVERIFIED"
+  ],
+  "privacy_boundary": "absolute local paths are internal only"
+}

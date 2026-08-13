@@ -1,0 +1,88 @@
+{
+  "id": "COMMIT-89136ecb8c1f8d3df860d8fa1d3369ddc1d071f0",
+  "type": "commit",
+  "title": "89136ecb8c1f8d3df860d8fa1d3369ddc1d071f0",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-89136ecb8c1f8d3df860d8fa1d3369ddc1d071f0",
+  "summary": {
+    "id": "COMMIT-89136ecb8c1f8d3df860d8fa1d3369ddc1d071f0",
+    "type": "commit",
+    "title": "89136ecb8c1f8d3df860d8fa1d3369ddc1d071f0",
+    "status": "CURRENT",
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    }
+  },
+  "source_snapshot": {
+    "sha": "89136ecb8c1f8d3df860d8fa1d3369ddc1d071f0",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/89136ecb8c1f8d3df860d8fa1d3369ddc1d071f0",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/89136ecb8c1f8d3df860d8fa1d3369ddc1d071f0",
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "committer": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "message": "fix(mcp): keep toArgv internal to satisfy the dead-code check\n\nIt has no caller outside server.ts, and knip fails the build on an export\nwith none.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>",
+    "parents": [
+      {
+        "sha": "ec9fb328b26b9848ccba4d3e9d27feac8fa50596",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/ec9fb328b26b9848ccba4d3e9d27feac8fa50596"
+      }
+    ],
+    "tree_sha": "b3a8d933f8a0e5fe4d3f0b11ebf8b9957d08dbd8",
+    "authored_at": "2026-08-12T17:20:26Z",
+    "committed_at": "2026-08-12T17:20:26Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@89136ecb8c1f8d3df860d8fa1d3369ddc1d071f0",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/89136ecb8c1f8d3df860d8fa1d3369ddc1d071f0",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/89136ecb8c1f8d3df860d8fa1d3369ddc1d071f0",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-12T17:20:26Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-12T17:20:26Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-89136ecb8c1f8d3df860d8fa1d3369ddc1d071f0",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#400"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGED_BY",
+      "other": "PR-400",
+      "other_type": "pr",
+      "other_title": "Ix PR #400",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-400"
+    }
+  ]
+}

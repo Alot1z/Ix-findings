@@ -1,0 +1,184 @@
+{
+  "id": "ISSUE-383",
+  "type": "issue",
+  "title": "Ix issue #383",
+  "status": "RESOLVED",
+  "url": "https://alot1z.github.io/Ix-findings/entities/issue-383",
+  "summary": {
+    "id": "ISSUE-383",
+    "type": "issue",
+    "title": "Ix issue #383",
+    "status": "RESOLVED",
+    "number": 383,
+    "url": "https://github.com/ix-infrastructure/Ix/issues/383",
+    "source_mirror_id": "github:issue:ix-infrastructure/Ix#383",
+    "source_type": "github_issue",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/issues/383",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/383",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "number": 383,
+    "node_id": "I_kwDORdC75M8AAAABMGiRiQ",
+    "title": "[bug] Codex hooks and CLI subprocess calls fail on native Windows",
+    "body": "## Description\n\nThe official Ix Codex integration installs on native Windows, and the Ix CLI/backend work, but the installed Codex hooks cannot execute. This prevents automatic context injection and graph refresh unless users patch the installed integration locally.\n\nThere appear to be two independent Windows process-launching problems:\n\n1. The generated Codex hook commands use `/bin/sh -lc ...`. Native Windows does not provide `/bin/sh`.\n2. The installed Python integration invokes `ix` with calls such as `subprocess.run([\"ix\", ...])` / `Popen([\"ix\", ...])`. On Windows, the installed command is `ix.cmd`. Python's Windows `CreateProcess` cannot execute a `.cmd` file directly without a command shell, so these calls fail with `WinError 2`, even though `shutil.which(\"ix\")` resolves `ix.CMD` and the same command works interactively in PowerShell.\n\n## Steps to reproduce\n\n1. Install Ix on Windows using the official PowerShell installer.\n2. Install the official Codex integration/plugin.\n3. Confirm that Ix itself works:\n\n   ```powershell\n   ix status --format json\n   ```\n\n4. Start Codex with hooks enabled and perform an action that should trigger an Ix hook.\n5. Alternatively, run a minimal Python probe:\n\n   ```python\n   import shutil\n   import subprocess\n\n   print(shutil.which(\"ix\"))  # resolves ...\\ix.CMD\n   subprocess.run([\"ix\", \"status\", \"--format\", \"json\"], check=True)\n   ```\n\n## Expected behavior\n\nThe official Codex integration should work on native Windows without modifying installed Ix/plugin files:\n\n- hook commands should use a platform-compatible launcher;\n- Python subprocess calls should launch the Windows CLI correctly;\n- automatic Ix context injection and graph refresh should operate after installation.\n\n## Actual behavior\n\n- hook commands referencing `/bin/sh` cannot start on native Windows;\n- direct Python subprocess calls to `ix` fail with `FileNotFoundError: [WinError 2]`;\n- the CLI itself works normally when invoked from PowerShell as `ix`.\n\n## Environment\n\n- OS: Windows 11 Home, 10.0.26200\n- PowerShell: 7.6.3\n- Node.js: 22.23.0\n- Python: 3.14.4\n- Codex CLI: 0.147.0\n- Ix: 0.9.1\n- Ix Codex plugin: 2.4.0\n\n## Request\n\nPlease make the generated Codex integration platform-aware so native Windows users can use the official hooks without local patches. Keeping generated/installed plugin files unmodified is important because local edits are overwritten or may conflict with future Ix updates.",
+    "state": "closed",
+    "state_reason": "completed",
+    "author": {
+      "login": "tept-creator",
+      "id": 183206484,
+      "type": "User",
+      "html_url": "https://github.com/tept-creator"
+    },
+    "html_url": "https://github.com/ix-infrastructure/Ix/issues/383",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/383",
+    "labels": [],
+    "milestone": null,
+    "created_at": "2026-08-10T06:01:50Z",
+    "updated_at": "2026-08-13T14:45:04Z",
+    "closed_at": "2026-08-13T14:45:04Z",
+    "comments_count": 2,
+    "locked": false,
+    "comments": [
+      {
+        "id": 5247516593,
+        "node_id": "IC_kwDORdC75M8AAAABOMa_sQ",
+        "repository": "ix-infrastructure/Ix",
+        "parent_type": "ISSUE",
+        "parent_number": 383,
+        "kind": "ISSUE_COMMENT",
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "body": "Both causes are now covered, in the plugin repo — mirrored there as ix-codex-plugin#22, because GitHub closing keywords do not work across repositories and this issue would otherwise never auto-close.\n\n| cause | fix |\n|---|---|\n| `/bin/sh -lc` in all five `hooks.json` commands | ix-codex-plugin#20 |\n| `subprocess` not consulting `PATHEXT` for `ix.CMD` | ix-codex-plugin#19 |\n\nWorth being explicit that **neither alone is enough**: #19's fix lives inside `common.py`, and until #20 lands the hook process never starts, so that code never runs. #19's own description scopes it to \"the half that breaks the CLI\" — it is the half that is unreachable without the other.\n\nLeaving this open. Neither PR has been run on real Windows; both were written and tested on Linux, where the changed paths are no-ops or unit-tested in isolation. @tept-creator — a confirmation from a real Windows box after both merge is what should close this.",
+        "html_url": "https://github.com/ix-infrastructure/Ix/issues/383#issuecomment-5247516593",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5247516593",
+        "created_at": "2026-08-11T00:14:37Z",
+        "updated_at": "2026-08-11T00:14:37Z",
+        "commit_id": null,
+        "path": null,
+        "line": null,
+        "start_line": null,
+        "side": null,
+        "in_reply_to_id": null,
+        "diff_hunk": null,
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      },
+      {
+        "id": 5281943673,
+        "node_id": "IC_kwDORdC75M8AAAABOtQQeQ",
+        "repository": "ix-infrastructure/Ix",
+        "parent_type": "ISSUE",
+        "parent_number": 383,
+        "kind": "ISSUE_COMMENT",
+        "author": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "body": "Verified end to end on native Windows on 2026-08-13. Closing as fixed.\n\nEnvironment:\n- Windows 11 Home, build 26200\n- PowerShell 7.6.4\n- Python 3.14.7\n- Ix 0.9.3 (`[local-path]\n- ix-codex-plugin 2.4.1 at current `main` commit `6bcdeb1689b23e60bd1059e494a4b032e6f87889`\n\nVerification:\n\n1. Ran the focused Windows suites on Windows itself: 40 tests passed (`test_ix_argv_resolution` and `test_windows_hook_launch`; one POSIX-only case skipped).\n2. Installed the official integration with `install.ps1 --repo <spaced path> --hooks --mode copy --force` into `...\\Issue 383 Target`.\n3. Confirmed the installed `hooks.json` rewrote all five `/bin/sh` commands to the absolute native Python executable plus `_launch.py`; both paths were correctly quoted and there were no `/bin/sh` references left.\n4. Executed every installed command through native `cmd.exe`, from a nested working directory so `_launch.py` had to locate the project hooks:\n   - SessionStart: exit 0\n   - UserPromptSubmit: exit 0\n   - PreToolUse: exit 0\n   - PostToolUse: exit 0\n   - Stop: exit 0 (`{\"continue\": true}`)\n5. Imported the installed `common.py` and called its real `run_command([\"ix\", \"--version\"])`. It resolved the bare command to `[local-path] launched it successfully, and returned `0.9.3` with exit 0.\n\nThat exercises both required halves on native Windows: #20's shell-free launcher and #19's PATHEXT-aware `.CMD` subprocess resolution, including the background-map launcher path reached by Stop. The original hook launch failure and `WinError 2` are resolved.",
+        "html_url": "https://github.com/ix-infrastructure/Ix/issues/383#issuecomment-5281943673",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5281943673",
+        "created_at": "2026-08-13T14:45:03Z",
+        "updated_at": "2026-08-13T14:45:03Z",
+        "commit_id": null,
+        "path": null,
+        "line": null,
+        "start_line": null,
+        "side": null,
+        "in_reply_to_id": null,
+        "diff_hunk": null,
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      }
+    ],
+    "source": "OFFICIAL_GITHUB_FACT"
+  },
+  "source_context": {
+    "id": "github:issue:ix-infrastructure/Ix#383",
+    "source": {
+      "type": "github_issue",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/issues/383",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/383",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T06:01:50Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-13T14:45:04Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "ISSUE-383",
+    "entity_type": "ISSUE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "mirror_scope": "source issue plus captured comments",
+    "related_analysis_types": [
+      "FINDING",
+      "DECISION",
+      "IMPLEMENTATION"
+    ]
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-2a5998452c1a",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/manifest.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-2a5998452c1a"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-90ab8426282e",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-15/FINAL-PR-WORTHINESS-AUDIT.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-90ab8426282e"
+    },
+    {
+      "direction": "out",
+      "relationship": "FOUND_IN",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "in",
+      "relationship": "AUTHORED",
+      "other": "PERSON-tept-creator",
+      "other_type": "artifact",
+      "other_title": "tept-creator",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-tept-creator"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMENTED_ON",
+      "other": "COMMENT-ix-infrastructure-Ix-issue-383-5247516593",
+      "other_type": "artifact",
+      "other_title": "Issue #383 comment 5247516593",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/comment-ix-infrastructure-ix-issue-383-5247516593"
+    }
+  ]
+}

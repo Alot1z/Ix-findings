@@ -1,0 +1,88 @@
+{
+  "id": "COMMIT-0ceeda0cb03fa133227511f4f38ad2e8861c0f3d",
+  "type": "commit",
+  "title": "0ceeda0cb03fa133227511f4f38ad2e8861c0f3d",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-0ceeda0cb03fa133227511f4f38ad2e8861c0f3d",
+  "summary": {
+    "id": "COMMIT-0ceeda0cb03fa133227511f4f38ad2e8861c0f3d",
+    "type": "commit",
+    "title": "0ceeda0cb03fa133227511f4f38ad2e8861c0f3d",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/0ceeda0cb03fa133227511f4f38ad2e8861c0f3d",
+    "author": {
+      "name": "riley0227",
+      "email": "riley0227@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-f7034a6e5daf8be6726fd8071e79455c89ddddfb",
+      "other_type": "commit",
+      "other_title": "f7034a6e5daf8be6726fd8071e79455c89ddddfb",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-f7034a6e5daf8be6726fd8071e79455c89ddddfb"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-21fc2aee94704219d2f71e75830185322e67cd39",
+      "other_type": "commit",
+      "other_title": "21fc2aee94704219d2f71e75830185322e67cd39",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-21fc2aee94704219d2f71e75830185322e67cd39"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-53834e7aa7b8",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/github-fetch.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-53834e7aa7b8"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ad39287ddbea",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/github/fetch.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ad39287ddbea"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e1325240701e",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/github-fetch.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e1325240701e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-b1f97092d449",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/github/fetch.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b1f97092d449"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-396ff920685d",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/github-fetch.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-396ff920685d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-42d67cd28b19",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/github/fetch.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-42d67cd28b19"
+    }
+  ]
+}

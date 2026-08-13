@@ -292,9 +292,9 @@ function renderWorktrees(){
   const ws=typeof WORKTREES==='object'&&!Array.isArray(WORKTREES)?Object.entries(WORKTREES).map(([k,v])=>({name:k,...(typeof v==='object'?v:{sha:v})})):[];
   if(!ws.length){
     const entries=[
-      {name:'primary',path:'E:/E-github-repos/Ix',branch:'feat/ix-agent-skill',sha:'b038c46',dirty:14,note:'PROTECTED — active development'},
-      {name:'remap',path:'E:/E-github-repos/Ix-remap',branch:'feat/ix-remap-hardening',sha:'c021b52',ahead:1,dirty:0,note:'Pushed to fork — PR-ready'},
-      {name:'test',path:'E:/E-github-repos/Ix-test',branch:'detached HEAD',sha:'c4f8fea',dirty:0,note:'Clean test baseline — 646/648 passed'}
+      {name:'primary',path:'<IX_REPO>',branch:'feat/ix-agent-skill',sha:'b038c46',dirty:14,note:'PROTECTED — active development'},
+      {name:'remap',path:'<IX_REPO>/Ix-remap',branch:'feat/ix-remap-hardening',sha:'c021b52',ahead:1,dirty:0,note:'Pushed to fork — PR-ready'},
+      {name:'test',path:'<IX_REPO>/Ix-test',branch:'detached HEAD',sha:'c4f8fea',dirty:0,note:'Clean test baseline — 646/648 passed'}
     ];
     entries.forEach(w=>{
       const card=el('div','card');

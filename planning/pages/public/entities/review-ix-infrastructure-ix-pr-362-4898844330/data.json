@@ -1,0 +1,85 @@
+{
+  "id": "REVIEW-ix-infrastructure-Ix-pr-362-4898844330",
+  "type": "artifact",
+  "title": "Review 4898844330 on PR #362",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/review-ix-infrastructure-ix-pr-362-4898844330",
+  "summary": {
+    "id": "REVIEW-ix-infrastructure-Ix-pr-362-4898844330",
+    "type": "artifact",
+    "title": "Review 4898844330 on PR #362",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/pull/362#pullrequestreview-4898844330",
+    "source_mirror_id": "github:review:ix-infrastructure/Ix#pr-362-4898844330",
+    "source_type": "github_review",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/pull/362#pullrequestreview-4898844330",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "id": 4898844330,
+    "node_id": "PRR_kwDORdC75M8AAAABI_5uqg",
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 362,
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "state": "APPROVED",
+    "body": "Two independent review passes (one on your commit, one on my follow-up). Merging.\n\n**Your `getOptionValueSource` approach checks out empirically, not just by reading.** Against the installed commander 15.0.0 source: `.default()` stamps `'default'` (`command.js:679`), the argv path stamps `'cli'` (`:713`), and `'env'` is only registered when `[redacted]()` is used (`:719`) — which this isn't. 12 argv orderings probed, and every genuinely typed `-p` returns `cli`, including `--port=19124`, `-p19124`, `-p` after the subcommand, and the `-p 8080` case your comment calls out. `main.ts` does no argv rewriting and no config layer supplies a port, so the source is only ever `cli` or `default`. The warning cannot silently never fire.\n\n**The wiring is genuinely tested**, which was my main worry given the extracted-pure-function shape. `runView` builds a real `new Command()`, calls the production `registerViewCommand`, and parses real argv — nothing stubs commander or the option source. Forcing the source comparison to fail breaks a test:\n`× says the requested port was not honoured — expected '[ok] Visualizer is already running (P…' to contain 'You asked for port 19124'`\nAll five load-bearing lines mutation-checked; each kills exactly the test that claims it.\n\n**I pushed one commit.** `ix view` and `ix view status` disagreed in precisely the state that motivated #358: with a live PID and no recoverable port, `ix view` printed the advisory and a recovery command, `status` printed the PID line and stopped. Not a #358 regression — neither guesses a URL, and `readRunningPort` funnels everything through `parsePort`, so a corrupt port file yields `null`, never a bad port. But silence is the wrong answer for someone who ran `status` *for* the URL, and it was unpinned: the old assertion was only `not.toContain(\"http://localhost\")`, which the advisory satisfies too, so it could have drifted either way.\n\n`status` now routes through `runningInstanceLines` so the two branches cannot drift. It takes no `-p`, so the mismatch branch is unreachable from there — `portWasRequested: false` means the `0` is never read, confirmed against every reachable `runningPort` value. The old assertion is retained, not replaced. Bug restored: `× says the port is unknown from status instead of printing nothing`, exactly one failure, so nothing else depended on the silence.\n\nOne cosmetic thing I left alone: when the port and scope advisories both fire, they print two recovery commands that each silently undo the other's intent (one drops `--all`, the other drops `-p`). Uncommon state, and worth a follow-up rather than widening this PR.",
+    "html_url": "https://github.com/ix-infrastructure/Ix/pull/362#pullrequestreview-4898844330",
+    "submitted_at": "2026-08-10T16:23:59Z",
+    "commit_id": "95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449",
+    "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+    "source": "OFFICIAL_GITHUB_FACT",
+    "parent_pr": 362
+  },
+  "source_context": {
+    "id": "github:review:ix-infrastructure/Ix#pr-362-4898844330",
+    "source": {
+      "type": "github_review",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/362#pullrequestreview-4898844330",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T16:23:59Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T16:23:59Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "REVIEW-ix-infrastructure-Ix-pr-362-4898844330",
+    "entity_type": "REVIEW",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#362",
+    "review_thread_state": "VERIFIED_GRAPHQL_NO_ASSOCIATED_THREAD_DATA"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "HAS_REVIEW",
+      "other": "PR-362",
+      "other_type": "pr",
+      "other_title": "Ix PR #362",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-362"
+    }
+  ]
+}

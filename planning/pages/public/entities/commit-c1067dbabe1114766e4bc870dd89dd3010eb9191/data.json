@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-c1067dbabe1114766e4bc870dd89dd3010eb9191",
+  "type": "commit",
+  "title": "c1067dbabe1114766e4bc870dd89dd3010eb9191",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-c1067dbabe1114766e4bc870dd89dd3010eb9191",
+  "summary": {
+    "id": "COMMIT-c1067dbabe1114766e4bc870dd89dd3010eb9191",
+    "type": "commit",
+    "title": "c1067dbabe1114766e4bc870dd89dd3010eb9191",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/c1067dbabe1114766e4bc870dd89dd3010eb9191",
+    "author": {
+      "name": "Tanner Kocher",
+      "email": "tannertorrey3@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-5e51aed3b0ecd6e368c15c13378c7d4e41d421a8",
+      "other_type": "commit",
+      "other_title": "5e51aed3b0ecd6e368c15c13378c7d4e41d421a8",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-5e51aed3b0ecd6e368c15c13378c7d4e41d421a8"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-c5febf0ff958061ac97ef99a38dfcb64b002524b",
+      "other_type": "commit",
+      "other_title": "c5febf0ff958061ac97ef99a38dfcb64b002524b",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-c5febf0ff958061ac97ef99a38dfcb64b002524b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-9b3a2f521637",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/map/MapServiceScopeSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-9b3a2f521637"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5861d1bf612c",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/map/MapServiceScopeSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5861d1bf612c"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3957378030ce",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/map/MapServiceScopeSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3957378030ce"
+    }
+  ]
+}

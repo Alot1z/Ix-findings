@@ -1,0 +1,102 @@
+{
+  "id": "COMMENT-ix-infrastructure-Ix-pr-378-5245266915",
+  "type": "artifact",
+  "title": "PR #378 comment 5245266915",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/comment-ix-infrastructure-ix-pr-378-5245266915",
+  "summary": {
+    "id": "COMMENT-ix-infrastructure-Ix-pr-378-5245266915",
+    "type": "artifact",
+    "title": "PR #378 comment 5245266915",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/pull/378#issuecomment-5245266915",
+    "source_mirror_id": "github:comment:ix-infrastructure/Ix#pr-378-5245266915",
+    "source_type": "github_pr_comment",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/pull/378#issuecomment-5245266915",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5245266915",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "id": 5245266915,
+    "node_id": "IC_kwDORdC75M8AAAABOKRr4w",
+    "repository": "ix-infrastructure/Ix",
+    "parent_type": "PULL_REQUEST",
+    "parent_number": 378,
+    "kind": "PR_COMMENT",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "body": "Rebased onto `main` — this one had real conflicts, so flagging exactly what I changed while resolving them. Your commit and authorship are intact; the two edits below are the only things that differ from what you pushed.\n\n**`main` changed `isFileStale` out from under this PR.** It is now synchronous and takes only a path — the `IxClient` parameter is gone, because it reads a local baseline file rather than the patch log, and it is called per result on `explain`/`locate`/`read` where the `await` used to cost a backend round-trip per file.\n\nYour version still had the old `async (client, filePath)` shape, so the two collided head-on. I kept **`main`'s signature** and **your behaviour**:\n\n```ts\nexport function isFileStale(filePath: string): boolean {\n  const workspaceRoot = path.resolve(resolveWorkspaceRoot());\n  const baseline = loadIngestBaseline(workspaceRoot);\n  if (!baseline) return false;\n\n  const absolutePath = path.isAbsolute(filePath)\n    ? path.resolve(filePath)\n    : path.resolve(workspaceRoot, filePath);\n  if (!fs.existsSync(absolutePath)) {\n    return baseline.files.has(absolutePath) || baseline.files.has(filePath);\n  }\n  ...\n}\n```\n\nSo your two changes survive — the workspace-relative path resolution, and a deleted-but-mapped file reporting stale instead of the old blanket `if (!fs.existsSync) return false`. That early return was the bug this PR exists to fix, and dropping it is what `main`'s rewrite would otherwise have quietly undone.\n\nThe matching test edits: `stale-workspace.test.ts` dropped the now-unused `IxClient` import and the `noPatchReads` stub, and the three call sites in your new \"reports a mapped file that was deleted after ingest\" case moved to the sync signature.\n\nVerified after the rebase: `npm run typecheck` clean, full `ix-cli` suite **693 passed** (52 files), `patchBuilder.test.ts` passing, lint 0 errors / 38 pre-existing warnings. All four `isFileStale` callers already use the sync form.\n\nThe review feedback above is unchanged — in particular the map-mode chunk deletion, which is still the blocking item.\n",
+    "html_url": "https://github.com/ix-infrastructure/Ix/pull/378#issuecomment-5245266915",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5245266915",
+    "created_at": "2026-08-10T19:56:43Z",
+    "updated_at": "2026-08-10T19:56:43Z",
+    "commit_id": null,
+    "path": null,
+    "line": null,
+    "start_line": null,
+    "side": null,
+    "in_reply_to_id": null,
+    "diff_hunk": null,
+    "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+    "source": "OFFICIAL_GITHUB_FACT",
+    "parent_pr": 378
+  },
+  "source_context": {
+    "id": "github:comment:ix-infrastructure/Ix#pr-378-5245266915",
+    "source": {
+      "type": "github_pr_comment",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/378#issuecomment-5245266915",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5245266915",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T19:56:43Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T19:56:43Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMENT-ix-infrastructure-Ix-pr-378-5245266915",
+    "entity_type": "PR_COMMENT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#378",
+    "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "COMMENTED_ON",
+      "other": "PR-378",
+      "other_type": "pr",
+      "other_title": "Ix PR #378",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-378"
+    },
+    {
+      "direction": "in",
+      "relationship": "AUTHORED",
+      "other": "PERSON-KageBinary",
+      "other_type": "artifact",
+      "other_title": "KageBinary",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-kagebinary"
+    }
+  ]
+}

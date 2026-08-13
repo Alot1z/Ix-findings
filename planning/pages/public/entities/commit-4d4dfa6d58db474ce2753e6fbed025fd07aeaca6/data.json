@@ -1,0 +1,712 @@
+{
+  "id": "COMMIT-4d4dfa6d58db474ce2753e6fbed025fd07aeaca6",
+  "type": "commit",
+  "title": "4d4dfa6d58db474ce2753e6fbed025fd07aeaca6",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-4d4dfa6d58db474ce2753e6fbed025fd07aeaca6",
+  "summary": {
+    "id": "COMMIT-4d4dfa6d58db474ce2753e6fbed025fd07aeaca6",
+    "type": "commit",
+    "title": "4d4dfa6d58db474ce2753e6fbed025fd07aeaca6",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/4d4dfa6d58db474ce2753e6fbed025fd07aeaca6",
+    "author": {
+      "name": "kagebinary",
+      "email": "ianjakobhock@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-8454640adfbd18361336d97b4d058781820b0477",
+      "other_type": "commit",
+      "other_title": "8454640adfbd18361336d97b4d058781820b0477",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-8454640adfbd18361336d97b4d058781820b0477"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-b2d9e2dd85229750380d29109c52516286738431",
+      "other_type": "commit",
+      "other_title": "b2d9e2dd85229750380d29109c52516286738431",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b2d9e2dd85229750380d29109c52516286738431"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3a5de4be99c9",
+      "other_type": "artifact",
+      "other_title": "CLAUDE.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3a5de4be99c9"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-f7b121596666",
+      "other_type": "artifact",
+      "other_title": "docs/plans/2026-03-25-large-repo-ingest-perf.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f7b121596666"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c34a5132807a",
+      "other_type": "artifact",
+      "other_title": "docs/plans/2026-03-25-large-repo-map-followup.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c34a5132807a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-07f14ce9998a",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/ingest.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-07f14ce9998a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-336ca35483f0",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/map.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-336ca35483f0"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e59da9df2529",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/reset.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e59da9df2529"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3f05df7612a2",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/client/api.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3f05df7612a2"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2f6a0fba54ee",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/client/types.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2f6a0fba54ee"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-9c2a221fb7b3",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/.claude-plugin/plugin.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-9c2a221fb7b3"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-6fc55a797c9d",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-6fc55a797c9d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-58987a0a922d",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/hooks/hooks.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-58987a0a922d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c88e65f29a04",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/hooks/ix-bash.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c88e65f29a04"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-a19f1e5b4d08",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/hooks/ix-briefing.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-a19f1e5b4d08"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-eb8dbacc2446",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/hooks/ix-ingest.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-eb8dbacc2446"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-6e9972c27127",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/hooks/ix-map.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-6e9972c27127"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-1018d3c1a1ad",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/hooks/ix-read.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-1018d3c1a1ad"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-854f9ffac451",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/install.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-854f9ffac451"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-7d213fdca6eb",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/uninstall.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-7d213fdca6eb"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-94552451409b",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/BulkPatchCommitRoutes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-94552451409b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2f0fe0297dac",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/MapEncoder.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2f0fe0297dac"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-931d02a4934d",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/MapRoutes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-931d02a4934d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-df1e7d902151",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/PatchCommitRoutes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-df1e7d902151"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-eb17227ab589",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/ArangoClient.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-eb17227ab589"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-aa4586f48e7f",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/ArangoSchema.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-aa4586f48e7f"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-1eb9393a4540",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/BulkWriteApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-1eb9393a4540"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-f5618e56b09d",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/map/MapGraphBuilder.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f5618e56b09d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c540ea78fa25",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/map/MapService.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c540ea78fa25"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-9b3a2f521637",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/map/MapServiceScopeSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-9b3a2f521637"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-fff4841506bd",
+      "other_type": "artifact",
+      "other_title": "CLAUDE.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-fff4841506bd"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c9806ee8201d",
+      "other_type": "artifact",
+      "other_title": "docs/plans/2026-03-25-large-repo-ingest-perf.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c9806ee8201d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e8fd532a2eae",
+      "other_type": "artifact",
+      "other_title": "docs/plans/2026-03-25-large-repo-map-followup.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e8fd532a2eae"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-6d783a082e75",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/ingest.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-6d783a082e75"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2457891d64fa",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/map.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2457891d64fa"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-b855b865abd0",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/reset.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b855b865abd0"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-20aa33a5aad3",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/client/api.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-20aa33a5aad3"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c1af9b2b9d37",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/client/types.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c1af9b2b9d37"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-9ebbeeb7b6c6",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/.claude-plugin/plugin.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-9ebbeeb7b6c6"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-7c923dd35c1d",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-7c923dd35c1d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-aaf826e521cf",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/hooks/hooks.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-aaf826e521cf"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-1c4def80f6c9",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/hooks/ix-bash.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-1c4def80f6c9"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2d1052abc710",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/hooks/ix-briefing.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2d1052abc710"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-a2b4cfa20cde",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/hooks/ix-ingest.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-a2b4cfa20cde"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2cb272ee6d4e",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/hooks/ix-map.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2cb272ee6d4e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3c018cdf4ec7",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/hooks/ix-read.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3c018cdf4ec7"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-f9d9b5cc7121",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/install.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f9d9b5cc7121"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-b7bdd5056f2e",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/uninstall.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b7bdd5056f2e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-a4968c38429d",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/BulkPatchCommitRoutes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-a4968c38429d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3835ce9d836b",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/MapEncoder.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3835ce9d836b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-eb9c95520323",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/MapRoutes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-eb9c95520323"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c694557a1208",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/PatchCommitRoutes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c694557a1208"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c3b5d94e1cfc",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/ArangoClient.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c3b5d94e1cfc"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5c0d8309e53e",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/ArangoSchema.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5c0d8309e53e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-cc30c10b2f7a",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/BulkWriteApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-cc30c10b2f7a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-fb4219f0e3b4",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/map/MapGraphBuilder.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-fb4219f0e3b4"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-f782e49f771e",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/map/MapService.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f782e49f771e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5861d1bf612c",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/map/MapServiceScopeSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5861d1bf612c"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2835a38f417b",
+      "other_type": "artifact",
+      "other_title": "CLAUDE.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2835a38f417b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-bc989dc0082b",
+      "other_type": "artifact",
+      "other_title": "docs/plans/2026-03-25-large-repo-ingest-perf.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-bc989dc0082b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-51f27b0e24e7",
+      "other_type": "artifact",
+      "other_title": "docs/plans/2026-03-25-large-repo-map-followup.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-51f27b0e24e7"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-52e473712974",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/ingest.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-52e473712974"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-99ec40e9efdb",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/map.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-99ec40e9efdb"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ae5e77d1149c",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/reset.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ae5e77d1149c"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-f5363913e866",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/client/api.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f5363913e866"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-09849138738c",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/client/types.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-09849138738c"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-17a386c1afa6",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/.claude-plugin/plugin.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-17a386c1afa6"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-eeb35e3a2644",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-eeb35e3a2644"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-991f6cdcfeee",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/hooks/hooks.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-991f6cdcfeee"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ed0872141d57",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/hooks/ix-bash.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ed0872141d57"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-4b3d2a03d332",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/hooks/ix-briefing.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-4b3d2a03d332"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-a64a6709ee3d",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/hooks/ix-ingest.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-a64a6709ee3d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-32f65c7253c2",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/hooks/ix-map.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-32f65c7253c2"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-d54f9f8355a4",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/hooks/ix-read.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-d54f9f8355a4"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-41a58703a2df",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/install.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-41a58703a2df"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e6d2b95d16b2",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/uninstall.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e6d2b95d16b2"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-b6f2220add28",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/BulkPatchCommitRoutes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b6f2220add28"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-8e31dd8f584b",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/MapEncoder.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-8e31dd8f584b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-9c13b8a2261f",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/MapRoutes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-9c13b8a2261f"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-b378acee1d8e",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/api/PatchCommitRoutes.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b378acee1d8e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-99dfb8c5ff43",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/ArangoClient.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-99dfb8c5ff43"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ed935eeaae0e",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/ArangoSchema.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ed935eeaae0e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-8fe8197934db",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/BulkWriteApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-8fe8197934db"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ab75308a02da",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/map/MapGraphBuilder.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ab75308a02da"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-474226c201ee",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/map/MapService.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-474226c201ee"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3957378030ce",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/map/MapServiceScopeSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3957378030ce"
+    }
+  ]
+}

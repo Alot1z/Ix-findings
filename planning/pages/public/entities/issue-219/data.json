@@ -1,0 +1,176 @@
+{
+  "id": "ISSUE-219",
+  "type": "issue",
+  "title": "Ix issue #219",
+  "status": "RESOLVED",
+  "url": "https://alot1z.github.io/Ix-findings/entities/issue-219",
+  "summary": {
+    "id": "ISSUE-219",
+    "type": "issue",
+    "title": "Ix issue #219",
+    "status": "RESOLVED",
+    "number": 219,
+    "source_mirror_id": "github:issue:ix-infrastructure/Ix#219",
+    "source_type": "github_issue",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/issues/219",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/219",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "number": 219,
+    "node_id": "I_kwDORdC75M8AAAABDdBVqA",
+    "title": "Add ix mcp subcommand: expose ix as a local MCP server",
+    "body": "## Summary\n\nAdd an `ix mcp` subcommand that runs ix as a local Model Context Protocol (MCP) server. Exposes a curated set of read + write tools to MCP-aware AI clients (Claude Code, Cursor, OpenCode, etc.) so the model can invoke ix operations directly without going through shell subprocess invocations.\n\nThis is **orthogonal to and complementary with `--format llm` (#206)**, not a replacement. `--format llm` shrinks the output payload; MCP changes how the call is made and discovered. Tool handlers internally render with the same compact format defined in #206.\n\n## Motivation\n\nToday, AI agents invoke ix via shell:\n- ix-claude-plugin hooks shell out to `ix text`, `ix overview`, etc. and inject results as `additionalContext`.\n- Skills under `skills/` instruct the model to run `ix <cmd> --format json` in its reasoning, which Claude Code executes as a `Bash` tool call.\n\nThis is fine but has friction:\n- **Model has to know about ix.** The CLAUDE.md routing table is ~3-4 KB of context loaded into every session teaching the model what commands exist.\n- **Shell escaping is fragile.** See #196 — multi-line patterns and backslash escapes blew up because the hook concatenated shell strings. MCP passes args as structured JSON; this class of bug disappears.\n- **Per-invocation overhead.** Each shell call spawns a Node process (~50-200 ms before any actual work). For fast commands (`ix locate`, `ix entity`) startup dominates. A long-lived MCP server amortizes this.\n- **No tool discovery.** Adding a new command requires updating CLAUDE.md prose. With MCP, tool schemas are auto-discovered at session start.\n\nMCP solves the *transport + discovery* problem. `--format llm` solves the *payload size* problem. Both stack: a session that uses both gets the byte savings of `--format llm` on tool responses plus the discovery and shell-escape wins of MCP.\n\n## Where the code lives\n\n`ix mcp` subcommand inside `ix-cli`. Considered alternatives:\n\n| | Approach | Verdict |\n|---|---|---|\n| ix-cli subcommand (this proposal) | New `ix mcp` in this repo | OK. Single source of truth, reuses existing handlers + renderers, no version skew, works for every MCP client |\n| Plugin-side wrapper in ix-claude-plugin | Plugin ships an MCP server that shells out to `ix` per call | Rejected. Reimplements logic, doesn't help other AI tools, per-call subprocess cost |\n| Standalone `ix-mcp` repo | New repo, depends on the @ix/client package | Rejected. Three-repo coordination burden, separate release cadence |\n\nFiles (new):\n- `ix-cli/src/cli/commands/mcp.ts` — registers `ix mcp` subcommand\n- `ix-cli/src/mcp/server.ts` — MCP server boilerplate (uses `@modelcontextprotocol/sdk`)\n- `ix-cli/src/mcp/tools/index.ts` — tool registry\n- `ix-cli/src/mcp/tools/<command>.ts` — one file per tool, exposes the tool's JSON schema and wraps the existing CLI handler\n- `ix-cli/src/mcp/format.ts` — shared response formatter, delegates to the `--format llm` renderers\n- `docs/mcp.md` — user-facing setup guide\n\n## Transport\n\n**stdio only in v1.** Client spawns `ix mcp` as a subprocess; JSON-RPC over stdin/stdout. SSE/HTTP transports add lifecycle and security surface we don't need. If a remote use case appears, that is a v3 addition with explicit auth design.\n\n## Tool catalog (v1 — 28 tools)\n\nTools map roughly 1:1 to CLI commands the model already invokes per CLAUDE.md routing. Naming is flat (`search`, `locate`, etc.); MCP clients namespace by server name (e.g., `ix:search` in Claude Code).\n\n### Read tools — navigate (10)\n`search`, `locate`, `explain`, `read`, `entity`, `overview`, `inventory`, `rank`, `stats`, `text`\n\n### Read tools — relationships (6)\n`callers`, `callees`, `contains`, `imports`, `imported_by`, `depends`\n\n### Read tools — structural analysis (3)\n`smells`, `subsystems`, `impact`\n\n### Read tools — history & decisions (4)\n`history`, `decisions`, `conflicts`, `briefing`\n\n### Write tools (5, Pro-gated)\n`decide`, `bug_create`, `bug_update`, `goal_create`, `plan_create`\n\nWrite tools are annotated as destructive in their MCP descriptions so clients (Claude Code, Cursor) can apply per-call confirmation policies.\n\n### Deliberately not in v1\n- `map`, `ingest` — expensive (seconds to minutes); defer to v2 with explicit time-cost annotations\n- `docker`, `instance`, `status`, `doctor`, `upgrade`, `view`, `reset`, `config`, `savings` — ops/admin, not model-invoked\n- `query` — deprecated per CLAUDE.md\n- `diff`, `patches` — niche; add when explicit demand appears\n- Workflow-aggregated tools (`investigate`, `audit`, `discover`) — see v2 below\n\n## User controls (toggling tools and the server)\n\nUsers should be able to constrain what the MCP server exposes without editing every plugin manifest that registers it. v1 ships four layers of control, each addressing a different threat model:\n\n### 1. Server kill switch\n- Env: `IX_MCP_ENABLED=false`\n- Config: `mcp.enabled: false` in `~/.ix/config`\n- When disabled, `ix mcp` exits immediately with a clear stderr message. The MCP client treats this as server-not-available and falls back to whatever the model would do without ix tools.\n- Use case: user doesn't want MCP at all, even if a plugin registers it.\n\n### 2. Read-only mode\n- Flag: `ix mcp --read-only`\n- Env: `IX_MCP_READ_ONLY=1`\n- Disables all 5 write tools (`decide`, `bug_create`, `bug_update`, `goal_create`, `plan_create`). Server still advertises the 23 read tools.\n- Use case: CI runs, sandboxed contexts, demos, untrusted-model paths, \"I want navigation but no state mutations.\"\n\n### 3. Per-tool allowlist / blocklist\n- `ix mcp --enable-tools search,locate,overview` — explicit allowlist (most restrictive)\n- `ix mcp --disable-tools decide,read` — blocklist (more common)\n- Env equivalents: `IX_MCP_ENABLED_TOOLS`, `IX_MCP_DISABLED_TOOLS`\n- Same values readable from `~/.ix/config` so users don't repeat them per session\n- Allowlist wins if both are set (warn at startup).\n- Use case: lock down to a known-good subset; reduce session-context cost from tool descriptions.\n\n### 4. Per-call confirmation (client-side)\nWrite tools are annotated as `destructive` in MCP tool metadata. Compatible clients (Claude Code, Cursor) honor the annotation and prompt the user before each call. The server just emits the annotation; the actual prompt policy lives with the client.\n- Use case: \"I'm OK with this tool existing but want explicit consent each time.\"\n\n### Defaults\nAll four default to permissive: server enabled, full toolset, no filter, destructive annotation present (so client-side confirmation kicks in for writes). Users opt into restriction.\n\n## Tool response format\n\nEach tool returns `--format llm`-style text by default, optionally JSON if the caller passes `format: \"json\"` in its args. Internally, tool handlers call the same renderers Ix#206 ships. The MCP layer adds no per-call rendering; it just selects which renderer to invoke.\n\nThis is why **Ix#206 (`--format llm`) must land first**. The MCP server's reason for existing token-wise is to deliver compact responses; if `--format llm` isn't ready, the MCP server has nothing to render with.\n\n## Config and auth\n\nReuse the existing CLI mechanisms with no new surface:\n- Env: `IX_ENDPOINT`, `IX_ORG_ID`, `IX_HOME`, `IX_DEBUG`\n- Files: `~/.ix/config`, workspace `.ix/config`\n- The MCP server is the same logical client as `ix` CLI; same `IxClient`, same `getEndpoint`.\n\nThe server probes backend health and schema version at startup (same as today's CLI commands).\n\n## State and caching\n\nV1: stateless. Each tool call hits the backend. No in-process cache.\n\nV2 follow-up: TTL cache for read-heavy reads (`entity`, `overview`, `read`) that don't change mid-session. Per-tool TTLs.\n\n## Build / install impact\n\n- New dependency: `@modelcontextprotocol/sdk` (~50 KB minified, no native bindings)\n- Bundle size of `ix` increases marginally; no install-script changes\n- `ix mcp` is discoverable via `ix --help` so users find it the same way they find other subcommands\n\n## Test strategy\n\n- **Unit:** per-tool handler tests with mocked `IxClient`, assert schema validation and response shape\n- **Integration:** spin up `ix mcp` as a subprocess in a vitest test, drive it with the MCP client SDK, assert tool list + call responses against running memory-layer\n- **Manual:** Claude Code and Cursor sessions with the server registered; verify auto-discovery, tool execution, error paths\n\n## Adopter-side work\n\nTracked in ix-infrastructure/ix-claude-plugin#22 (analogous to plugin#21 for `--format llm`). Scope on the plugin side:\n- `.claude-plugin/plugin.json` gets an `mcpServers.ix` entry pointing at `ix mcp`\n- Skills under `skills/` migrate from `ix <cmd> --format json` invocations to `ix:<tool>` MCP tool calls where the call is model-invoked\n- Hooks under `hooks/` stay on CLI; they fire on shell events, not model events, so MCP doesn't help them\n\nOther adopters (ix-cursor-plugin, ix-codex-plugin, ix-opencode-plugin, ix-gemini-plugin) get analogous adoption issues filed in their respective repos.\n\n## Decisions locked in\n\n- **Subcommand name:** `ix mcp`\n- **Transport:** stdio only in v1\n- **Code home:** ix-cli subcommand (Option A from the alternatives table)\n- **Tool naming:** flat names (`search`, `subsystems`, ...); MCP clients namespace by server\n- **Response format:** delegates to `--format llm` renderers from Ix#206; not a separate format\n- **Config:** reuses existing `IxClient`/env/config files, no new mechanism\n- **State:** stateless v1; caching deferred to v2\n- **User controls:** four-layer model (server kill switch, read-only mode, per-tool allow/blocklist, MCP-annotated destructive flag for client-side confirmation). All default to permissive.\n- **Per-call confirmation:** server emits the `destructive` annotation on write tools; the actual per-call prompt policy lives with the MCP client.\n\n## Out of scope for v1 (named explicitly so they don't sneak in)\n\n- Workflow-aggregated tools (`investigate`, `audit`, etc.); design once we have v1 usage data\n- Streaming responses\n- Result caching\n- `map`, `ingest`, or any expensive/destructive operation\n- SSE / remote transport\n- Server-side rate limiting or per-session metrics\n- Auth beyond the existing IxClient mechanism\n\n## Open questions\n\n1. **Write tools in v1?** Currently planned to ship 5 write tools (`decide`, `bug_create`, etc.) annotated as destructive so clients can prompt; the new `--read-only` flag lets users disable them per-session. Alternative: defer all write tools to v2 and keep v1 purely read-only. Trade-off: read-only v1 ships sooner with smaller surface; write-included v1 means skills don't need to fall back to CLI for the write paths.\n2. **Tool description length budget.** Every tool description is permanent session context. Cap at ~150 chars/tool? At 28 tools that is a 4 KB ceiling.\n3. **Subcommand visibility:** should `ix mcp` show up in `ix --help`? Lean yes; discoverability beats hiding.\n\n## Dependencies and sequencing\n\nHard prerequisite: **Ix#206 (`--format llm`) must land first**, at least Tier 1 renderers. MCP tool responses depend on having compact renderers to call into. Once `--format llm` PR 1 ships, MCP work can begin.\n\n## v2 / v3 follow-ups (not this issue)\n\n- v2: workflow-aggregated tools, result caching, streaming for large responses, `map`/`ingest` exposure\n- v3: SSE/HTTP transport for remote scenarios, MCP \"resources\" exposure (graph nodes as resources), subscribe-style updates\n\n",
+    "state": "closed",
+    "state_reason": "completed",
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "html_url": "https://github.com/ix-infrastructure/Ix/issues/219",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/219",
+    "labels": [
+      "enhancement"
+    ],
+    "milestone": null,
+    "created_at": "2026-05-26T19:00:11Z",
+    "updated_at": "2026-08-12T16:26:45Z",
+    "closed_at": "2026-08-12T16:26:45Z",
+    "comments_count": 0,
+    "locked": false,
+    "comments": [],
+    "source": "OFFICIAL_GITHUB_FACT"
+  },
+  "source_context": {
+    "id": "github:issue:ix-infrastructure/Ix#219",
+    "source": {
+      "type": "github_issue",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/issues/219",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/219",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-05-26T19:00:11Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-12T16:26:45Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "ISSUE-219",
+    "entity_type": "ISSUE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "mirror_scope": "source issue plus captured comments",
+    "related_analysis_types": [
+      "FINDING",
+      "DECISION",
+      "IMPLEMENTATION"
+    ]
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-2366433a9090",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-15/ISSUE-RECONCILIATION.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-2366433a9090"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-90ab8426282e",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-15/FINAL-PR-WORTHINESS-AUDIT.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-90ab8426282e"
+    },
+    {
+      "direction": "in",
+      "relationship": "RELATED_TO_ISSUE",
+      "other": "IMPL-MCP-FORK",
+      "other_type": "artifact",
+      "other_title": "ix mcp fork implementation",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/impl-mcp-fork"
+    },
+    {
+      "direction": "in",
+      "relationship": "DOCUMENTS_ISSUE",
+      "other": "SECTION-mcp",
+      "other_type": "artifact",
+      "other_title": "MCP implementation",
+      "other_url": "https://alot1z.github.io/Ix-findings/mcp"
+    },
+    {
+      "direction": "in",
+      "relationship": "DOCUMENTS_ISSUE",
+      "other": "SECTION-mcp_implementation",
+      "other_type": "artifact",
+      "other_title": "MCP implementation",
+      "other_url": "https://alot1z.github.io/Ix-findings/mcp/implementation"
+    },
+    {
+      "direction": "in",
+      "relationship": "DOCUMENTS_ISSUE",
+      "other": "SECTION-mcp_stdio",
+      "other_type": "artifact",
+      "other_title": "MCP stdio server",
+      "other_url": "https://alot1z.github.io/Ix-findings/mcp/implementation/stdio"
+    },
+    {
+      "direction": "in",
+      "relationship": "DOCUMENTS_ISSUE",
+      "other": "SECTION-mcp_tools",
+      "other_type": "artifact",
+      "other_title": "MCP tools",
+      "other_url": "https://alot1z.github.io/Ix-findings/mcp/implementation/tools"
+    },
+    {
+      "direction": "in",
+      "relationship": "DOCUMENTS_ISSUE",
+      "other": "SECTION-mcp_security",
+      "other_type": "artifact",
+      "other_title": "MCP security",
+      "other_url": "https://alot1z.github.io/Ix-findings/mcp/security"
+    },
+    {
+      "direction": "in",
+      "relationship": "DOCUMENTS_ISSUE",
+      "other": "SECTION-mcp_tests",
+      "other_type": "artifact",
+      "other_title": "MCP tests",
+      "other_url": "https://alot1z.github.io/Ix-findings/mcp/tests"
+    },
+    {
+      "direction": "out",
+      "relationship": "FOUND_IN",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "in",
+      "relationship": "AUTHORED",
+      "other": "PERSON-josephismikhail",
+      "other_type": "artifact",
+      "other_title": "josephismikhail",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-josephismikhail"
+    }
+  ]
+}

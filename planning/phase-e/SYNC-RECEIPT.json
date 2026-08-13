@@ -1,0 +1,50 @@
+{
+  "schema_version": "phase-e.sync-receipt.v1",
+  "source": "GITHUB",
+  "snapshot_before": "2026-08-12T10:42:30.430Z",
+  "snapshot_after": "2026-08-12T13:07:16.090Z",
+  "synchronization": {
+    "source": "GITHUB",
+    "watermark": "2026-08-12T13:07:16.090Z",
+    "cursor": "fa6ad7b0ff52734685ff7425b08ec240837751fa",
+    "verified_at": "2026-08-12T13:07:16.090Z",
+    "external_mutations": 0
+  },
+  "objects_added": 0,
+  "objects_updated": 0,
+  "objects_removed": 0,
+  "schema_enrichments": 4,
+  "state_changes": 0,
+  "comments_added": 0,
+  "comments_updated": 0,
+  "reviews_added": 0,
+  "reviews_updated": 0,
+  "thread_resolved": 0,
+  "thread_unresolved": 0,
+  "pr_heads_changed": 0,
+  "commits_added": 0,
+  "files_changed": 0,
+  "branches_moved": 0,
+  "releases_changed": 0,
+  "affected_entities": [
+    "REPO-Alot1z-Ix",
+    "REPO-Alot1z-Ix-findings",
+    "REPO-Alot1z-Ix-remap",
+    "REPO-ix-infrastructure-Ix"
+  ],
+  "affected_relationships": [
+    "BRANCHES",
+    "RELEASES"
+  ],
+  "affected_routes": [],
+  "affected_llm_records": [
+    "REPO-Alot1z-Ix",
+    "REPO-Alot1z-Ix-findings",
+    "REPO-Alot1z-Ix-remap",
+    "REPO-ix-infrastructure-Ix"
+  ],
+  "full_rebuild": false,
+  "projection_note": "The existing deterministic static generator was run to refresh projections; the sync planner selected no source-semantic page rebuild because the live source diff contained only metadata enrichment.",
+  "validation": "PASS",
+  "external_mutations": 0
+}

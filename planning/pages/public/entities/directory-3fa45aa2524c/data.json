@@ -1,0 +1,42 @@
+{
+  "id": "DIRECTORY-3fa45aa2524c",
+  "type": "artifact",
+  "title": "ix-cli",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/directory-3fa45aa2524c",
+  "summary": {
+    "id": "DIRECTORY-3fa45aa2524c",
+    "type": "artifact",
+    "title": "ix-cli",
+    "status": "CURRENT"
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "PART_OF",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "FILE-c352e2bf972d",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/view.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c352e2bf972d"
+    },
+    {
+      "direction": "in",
+      "relationship": "PART_OF",
+      "other": "FILE-957f06ccc738",
+      "other_type": "artifact",
+      "other_title": "ix-cli/test/view-server.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-957f06ccc738"
+    }
+  ]
+}

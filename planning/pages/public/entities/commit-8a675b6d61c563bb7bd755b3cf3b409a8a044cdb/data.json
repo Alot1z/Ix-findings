@@ -1,0 +1,88 @@
+{
+  "id": "COMMIT-8a675b6d61c563bb7bd755b3cf3b409a8a044cdb",
+  "type": "commit",
+  "title": "8a675b6d61c563bb7bd755b3cf3b409a8a044cdb",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-8a675b6d61c563bb7bd755b3cf3b409a8a044cdb",
+  "summary": {
+    "id": "COMMIT-8a675b6d61c563bb7bd755b3cf3b409a8a044cdb",
+    "type": "commit",
+    "title": "8a675b6d61c563bb7bd755b3cf3b409a8a044cdb",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/8a675b6d61c563bb7bd755b3cf3b409a8a044cdb",
+    "author": {
+      "name": "riley0227",
+      "email": "riley0227@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-c4e66e25e6575904b503efe36acd71d3c998a1d3",
+      "other_type": "commit",
+      "other_title": "c4e66e25e6575904b503efe36acd71d3c998a1d3",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-c4e66e25e6575904b503efe36acd71d3c998a1d3"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-944e57c5c4e95ac09a4a5408c1edd7798154d02d",
+      "other_type": "commit",
+      "other_title": "944e57c5c4e95ac09a4a5408c1edd7798154d02d",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-944e57c5c4e95ac09a4a5408c1edd7798154d02d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-b65c702fbc12",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/ArangoGraphQueryApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b65c702fbc12"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-aa4586f48e7f",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/ArangoSchema.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-aa4586f48e7f"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c8947973d6aa",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/ArangoGraphQueryApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c8947973d6aa"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5c0d8309e53e",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/ArangoSchema.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5c0d8309e53e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-4de3a54ff174",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/ArangoGraphQueryApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-4de3a54ff174"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ed935eeaae0e",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/ArangoSchema.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ed935eeaae0e"
+    }
+  ]
+}

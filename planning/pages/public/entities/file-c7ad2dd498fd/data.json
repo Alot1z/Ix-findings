@@ -1,0 +1,79 @@
+{
+  "id": "FILE-c7ad2dd498fd",
+  "type": "artifact",
+  "title": "ix-cli/src/cli/single-flight.ts",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/file-c7ad2dd498fd",
+  "summary": {
+    "id": "FILE-c7ad2dd498fd",
+    "type": "artifact",
+    "title": "ix-cli/src/cli/single-flight.ts",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/blob/HEAD/ix-cli/src/cli/single-flight.ts",
+    "source_mirror_id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/single-flight.ts",
+    "source_type": "github_file",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/blob/89136ecb8c1f8d3df860d8fa1d3369ddc1d071f0/ix-cli%2Fsrc%2Fcli%2Fsingle-flight.ts",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 400,
+    "filename": "ix-cli/src/cli/single-flight.ts",
+    "status": "modified",
+    "additions": 31,
+    "deletions": 2,
+    "changes": 33,
+    "blob_url": "https://github.com/ix-infrastructure/Ix/blob/89136ecb8c1f8d3df860d8fa1d3369ddc1d071f0/ix-cli%2Fsrc%2Fcli%2Fsingle-flight.ts",
+    "raw_url": "https://github.com/ix-infrastructure/Ix/raw/89136ecb8c1f8d3df860d8fa1d3369ddc1d071f0/ix-cli%2Fsrc%2Fcli%2Fsingle-flight.ts",
+    "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fsingle-flight.ts?ref=89136ecb8c1f8d3df860d8fa1d3369ddc1d071f0",
+    "patch": "@@ -126,22 +126,51 @@ export function acquireMapLock(workspaceRoot: string, label: string): LockHandle\n   return null; // a live holder owns it — caller should coalesce\n }\n \n+// Locks this process still holds. `ix mcp` runs commands in-process, so \"the\n+// process exits\" is no longer the end of a command — see releaseHeldLocks.\n+const held = new Set<() => void>();\n+\n function makeHandle(path: string): LockHandle {\n   let released = false;\n   const release = (): void => {\n     if (released) return;\n     released = true;\n+    held.delete(release);\n+    // Both listeners are removed with the lock. A long-lived process that maps\n+    // repeatedly would otherwise accumulate one set per map and trip Node's\n+    // max-listeners warning.\n+    process.off(\"exit\", release);\n+    process.off(\"SIGINT\", onSigint);\n+    process.off(\"SIGTERM\", onSigterm);\n     try { rmSync(path, { force: true }); } catch { /* best effort */ }\n   };\n+  const onSigint = (): void => { release(); process.exit(130); };\n+  const onSigterm = (): void => { release(); process.exit(143); };\n+\n+  held.add(release);\n   // Release on normal exit and on the common termination signals so a killed\n   // map (hook timeout, Ctrl-C) does not leave a lock that blocks the next run\n   // until it ages out.\n   process.once(\"exit\", release);\n-  process.once(\"SIGINT\", () => { release(); process.exit(130); });\n-  process.once(\"SIGTERM\", () => { release(); process.exit(143); });\n+  process.once(\"SIGINT\", onSigint);\n+  process.once(\"SIGTERM\", onSigterm);\n   return { release };\n }\n \n+/**\n+ * Release every lock this process still holds.\n+ *\n+ * `ix map` takes its lock and leaves it to process exit, which was the end of\n+ * the command until `ix mcp` began running commands in-process. There, the\n+ * holder PID is the server's own and stays alive, so the lock never reads as\n+ * stale: the first ix_map works and every later one coalesces into an empty\n+ * success while the graph is never refreshed. The MCP runner calls this when a\n+ * command finishes, restoring the boundary the process used to provide.\n+ */\n+export function releaseHeldLocks(): void {\n+  for (const release of [...held]) release();\n+}\n+\n // ── Test-only surface ──────────────────────────────────────────────────────\n // Exported for unit tests; not part of the public CLI API.\n export function lockPathForTest(workspaceRoot: string): string {",
+    "parent_pr": 400
+  },
+  "source_context": {
+    "id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/single-flight.ts",
+    "source": {
+      "type": "github_file",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/blob/89136ecb8c1f8d3df860d8fa1d3369ddc1d071f0/ix-cli%2Fsrc%2Fcli%2Fsingle-flight.ts",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-12T17:17:47Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-12T21:45:51Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "FILE-c7ad2dd498fd",
+    "entity_type": "FILE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#400",
+    "line_precision": "FILE_LEVEL"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-495bd746a37be984d724d310ef2c1e3af97fc82d",
+      "other_type": "commit",
+      "other_title": "495bd746a37be984d724d310ef2c1e3af97fc82d",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-495bd746a37be984d724d310ef2c1e3af97fc82d"
+    }
+  ]
+}

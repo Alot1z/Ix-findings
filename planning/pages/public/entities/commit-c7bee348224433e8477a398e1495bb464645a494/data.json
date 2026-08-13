@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-c7bee348224433e8477a398e1495bb464645a494",
+  "type": "commit",
+  "title": "c7bee348224433e8477a398e1495bb464645a494",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-c7bee348224433e8477a398e1495bb464645a494",
+  "summary": {
+    "id": "COMMIT-c7bee348224433e8477a398e1495bb464645a494",
+    "type": "commit",
+    "title": "c7bee348224433e8477a398e1495bb464645a494",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/c7bee348224433e8477a398e1495bb464645a494",
+    "author": {
+      "name": "Tanner Kocher",
+      "email": "tannertorrey3@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-498679a7010d2530a8a5c595d34b5156214e2874",
+      "other_type": "commit",
+      "other_title": "498679a7010d2530a8a5c595d34b5156214e2874",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-498679a7010d2530a8a5c595d34b5156214e2874"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-ac250531b4aff307a0a5a3082b7ffea731d8af9c",
+      "other_type": "commit",
+      "other_title": "ac250531b4aff307a0a5a3082b7ffea731d8af9c",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-ac250531b4aff307a0a5a3082b7ffea731d8af9c"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e559b6bc2060",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/upgrade.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e559b6bc2060"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5335f7460d14",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/upgrade.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5335f7460d14"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3d4b7b10ad9e",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/upgrade.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3d4b7b10ad9e"
+    }
+  ]
+}

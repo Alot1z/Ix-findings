@@ -1,0 +1,88 @@
+{
+  "id": "COMMIT-3b56b1a868b18e0adf254001e6569cc0b311f20b",
+  "type": "commit",
+  "title": "3b56b1a868b18e0adf254001e6569cc0b311f20b",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-3b56b1a868b18e0adf254001e6569cc0b311f20b",
+  "summary": {
+    "id": "COMMIT-3b56b1a868b18e0adf254001e6569cc0b311f20b",
+    "type": "commit",
+    "title": "3b56b1a868b18e0adf254001e6569cc0b311f20b",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/3b56b1a868b18e0adf254001e6569cc0b311f20b",
+    "author": {
+      "name": "riley0227",
+      "email": "riley0227@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-8bb61e7a6cdba996f8bc371c4fd2fc7ec5caf20b",
+      "other_type": "commit",
+      "other_title": "8bb61e7a6cdba996f8bc371c4fd2fc7ec5caf20b",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-8bb61e7a6cdba996f8bc371c4fd2fc7ec5caf20b"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-062add6afb75dcbba403d80349a45a9229ca9d31",
+      "other_type": "commit",
+      "other_title": "062add6afb75dcbba403d80349a45a9229ca9d31",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-062add6afb75dcbba403d80349a45a9229ca9d31"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-9c4408345ece",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/parsers/ScalaParser.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-9c4408345ece"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2191d17ce8e9",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/ingestion/parsers/ScalaParserSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2191d17ce8e9"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-63bd9b6e6202",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/parsers/ScalaParser.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-63bd9b6e6202"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3ae8235155ef",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/ingestion/parsers/ScalaParserSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3ae8235155ef"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5616bedb5527",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/ingestion/parsers/ScalaParser.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5616bedb5527"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-02e7bf657b17",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/ingestion/parsers/ScalaParserSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-02e7bf657b17"
+    }
+  ]
+}

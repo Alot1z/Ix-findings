@@ -1,0 +1,102 @@
+{
+  "id": "COMMENT-ix-infrastructure-Ix-pr-375-5245266428",
+  "type": "artifact",
+  "title": "PR #375 comment 5245266428",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/comment-ix-infrastructure-ix-pr-375-5245266428",
+  "summary": {
+    "id": "COMMENT-ix-infrastructure-Ix-pr-375-5245266428",
+    "type": "artifact",
+    "title": "PR #375 comment 5245266428",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/pull/375#issuecomment-5245266428",
+    "source_mirror_id": "github:comment:ix-infrastructure/Ix#pr-375-5245266428",
+    "source_type": "github_pr_comment",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/pull/375#issuecomment-5245266428",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5245266428",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "id": 5245266428,
+    "node_id": "IC_kwDORdC75M8AAAABOKRp_A",
+    "repository": "ix-infrastructure/Ix",
+    "parent_type": "PULL_REQUEST",
+    "parent_number": 375,
+    "kind": "PR_COMMENT",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "body": "Rebased onto `main` — #380 and #384 landed since you opened this, so it was behind.\n\nAuthorship is preserved on your commit; only the base moved. Nothing else in the PR was touched, and the review comments above still stand as written.\n",
+    "html_url": "https://github.com/ix-infrastructure/Ix/pull/375#issuecomment-5245266428",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5245266428",
+    "created_at": "2026-08-10T19:56:41Z",
+    "updated_at": "2026-08-10T19:56:41Z",
+    "commit_id": null,
+    "path": null,
+    "line": null,
+    "start_line": null,
+    "side": null,
+    "in_reply_to_id": null,
+    "diff_hunk": null,
+    "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+    "source": "OFFICIAL_GITHUB_FACT",
+    "parent_pr": 375
+  },
+  "source_context": {
+    "id": "github:comment:ix-infrastructure/Ix#pr-375-5245266428",
+    "source": {
+      "type": "github_pr_comment",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/375#issuecomment-5245266428",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5245266428",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T19:56:41Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T19:56:41Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMENT-ix-infrastructure-Ix-pr-375-5245266428",
+    "entity_type": "PR_COMMENT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#375",
+    "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "COMMENTED_ON",
+      "other": "PR-375",
+      "other_type": "pr",
+      "other_title": "Ix PR #375",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-375"
+    },
+    {
+      "direction": "in",
+      "relationship": "AUTHORED",
+      "other": "PERSON-KageBinary",
+      "other_type": "artifact",
+      "other_title": "KageBinary",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-kagebinary"
+    }
+  ]
+}

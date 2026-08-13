@@ -10,7 +10,416 @@
     "title": "Ix PR #358",
     "status": "RESOLVED",
     "number": 358,
-    "url": "https://github.com/ix-infrastructure/Ix/pull/358"
+    "url": "https://github.com/ix-infrastructure/Ix/pull/358",
+    "source_mirror_id": "github:pull_request:ix-infrastructure/Ix#358",
+    "source_type": "github_pull_request",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/pull/358",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/358",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "number": 358,
+    "node_id": "PR_kwDORdC75M78trxi",
+    "title": "fix(view): report the running visualizer port",
+    "body": "Fixes #355.\n\n## Summary\n\nPersist the visualizer's launch port and report that port when `ix view start` finds an existing process, instead of formatting an unreachable URL from the new invocation's `-p` value.\n\n## Type\n- [x] Bug fix\n- [ ] Feature\n- [ ] Refactor\n- [ ] Docs\n- [ ] Test\n- [ ] CI\n\n## Changes\n- Store the launch port alongside the existing PID and scope state.\n- Recover the port from the generated server script for processes started by an older CLI.\n- Avoid printing a guessed URL when legacy state cannot reveal the port.\n- Remove PID, scope, and port state together for stale processes and `ix view stop`.\n\n## Validation\n\n- `cd ix-cli && npm test` (48 files, 631 tests, parser smoke passed)\n- `npm run typecheck`\n- `npm run build`\n- Targeted Vitest, ESLint, Prettier, and `git diff --check`\n- Real-process smoke test: started on 19123, repeated start with 19124 reported 19123, and stop removed all state files\n\n## Checklist\n- [x] Tests pass\n- [x] Smoke tests pass\n- [x] No raw errors introduced\n- [x] CLI output follows Ix format\n\n## Release checklist (if merging to main)\n- [ ] `ix-cli/package.json` version bumped\n- [ ] After merge: tag pushed (`git tag vX.Y.Z && git push origin vX.Y.Z`)\n- [ ] If backend changes: `ix-memory-layer` tagged and released first\n- [ ] If `docker-compose.standalone.yml` changed: verified `curl | sh` install works\n",
+    "state": "closed",
+    "draft": false,
+    "merged": true,
+    "author": {
+      "login": "Hiro-Chiba",
+      "id": 203865699,
+      "type": "User",
+      "html_url": "https://github.com/Hiro-Chiba"
+    },
+    "html_url": "https://github.com/ix-infrastructure/Ix/pull/358",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/358",
+    "head": {
+      "ref": "fix/view-running-port",
+      "sha": "1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+      "repo": {
+        "id": 1329113547,
+        "full_name": "Hiro-Chiba/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "html_url": "https://github.com/Hiro-Chiba/Ix",
+        "api_url": "https://api.github.com/repos/Hiro-Chiba/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": true,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-08-09T19:06:50Z",
+        "updated_at": "2026-08-09T19:06:51Z",
+        "pushed_at": "2026-08-13T19:14:49Z",
+        "topics": [],
+        "language": null,
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 0,
+        "stargazers_count": 0,
+        "forks_count": 0,
+        "open_issues_count": 0
+      }
+    },
+    "base": {
+      "ref": "main",
+      "sha": "01308e6c4a64231e7fcf6f545af1d350a52c68c0",
+      "repo": {
+        "id": 1171307492,
+        "full_name": "ix-infrastructure/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "ix-infrastructure",
+          "id": 256883681,
+          "type": "Organization",
+          "html_url": "https://github.com/ix-infrastructure"
+        },
+        "html_url": "https://github.com/ix-infrastructure/Ix",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": false,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-03-03T04:48:38Z",
+        "updated_at": "2026-08-13T21:51:31Z",
+        "pushed_at": "2026-08-13T19:18:44Z",
+        "topics": [
+          "ai",
+          "ai-memory",
+          "claude-code",
+          "cli",
+          "code-analysis",
+          "code-mapping",
+          "code-memory",
+          "codebase-understanding",
+          "codex",
+          "developer-tools",
+          "llm",
+          "openclaw",
+          "persistent-memory",
+          "program-analysis",
+          "software-architecture",
+          "system-intelligence",
+          "system-mapping"
+        ],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 701,
+        "stargazers_count": 701,
+        "forks_count": 60,
+        "open_issues_count": 6
+      }
+    },
+    "merge_commit_sha": "87cd9c0a8e0c64e267b5d71dc83a87c36d2de767",
+    "merged_at": "2026-08-09T21:18:51Z",
+    "closed_at": "2026-08-09T21:18:51Z",
+    "created_at": "2026-08-09T19:12:46Z",
+    "updated_at": "2026-08-09T21:18:51Z",
+    "labels": [],
+    "milestone": null,
+    "requested_reviewers": [
+      {
+        "login": "josephismikhail",
+        "id": 56614593,
+        "type": "User",
+        "html_url": "https://github.com/josephismikhail"
+      }
+    ],
+    "requested_teams": [],
+    "commits_count": 1,
+    "changed_files_count": 2,
+    "additions": 214,
+    "deletions": 13,
+    "changed_files": [
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 358,
+        "filename": "ix-cli/src/cli/__tests__/view-running-port.test.ts",
+        "status": "added",
+        "additions": 153,
+        "deletions": 0,
+        "changes": 153,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/1b9a761fc2db7087b5bad37f07119f8f6a3467aa/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fview-running-port.test.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/1b9a761fc2db7087b5bad37f07119f8f6a3467aa/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fview-running-port.test.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fview-running-port.test.ts?ref=1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+        "patch": "@@ -0,0 +1,153 @@\n+import { EventEmitter } from \"node:events\";\n+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from \"node:fs\";\n+import { tmpdir } from \"node:os\";\n+import { join } from \"node:path\";\n+import { Command } from \"commander\";\n+import { afterEach, beforeEach, describe, expect, it, vi } from \"vitest\";\n+\n+const mocks = vi.hoisted(() => ({\n+  execSync: vi.fn(),\n+  spawn: vi.fn(),\n+  createConnection: vi.fn(),\n+}));\n+\n+vi.mock(\"child_process\", () => ({\n+  execSync: mocks.execSync,\n+  spawn: mocks.spawn,\n+}));\n+\n+vi.mock(\"net\", () => ({\n+  createConnection: mocks.createConnection,\n+}));\n+\n+let ixHome: string;\n+let originalIxHome: string | undefined;\n+\n+const pidFile = () => join(ixHome, \"compass.pid\");\n+const scopeFile = () => join(ixHome, \"compass.scope\");\n+const portFile = () => join(ixHome, \"compass.port\");\n+const serverScriptFile = () => join(ixHome, \"tmp\", \"compass-server.js\");\n+\n+beforeEach(() => {\n+  vi.resetModules();\n+  vi.clearAllMocks();\n+\n+  originalIxHome = process[redacted].IX_HOME;\n+  ixHome = mkdtempSync(join(tmpdir(), \"ix-view-port-test-\"));\n+  process[redacted].IX_HOME = ixHome;\n+\n+  const compassDir = join(ixHome, \"cli\", \"compass\");\n+  mkdirSync(compassDir, { recursive: true });\n+  writeFileSync(join(compassDir, \"index.html\"), \"<!doctype html>\");\n+\n+  mocks.spawn.mockReturnValue({ pid: 4242, unref: vi.fn() });\n+  mocks.createConnection.mockImplementation(() => {\n+    const connection = new EventEmitter();\n+    queueMicrotask(() => connection.emit(\"error\", new Error(\"not listening\")));\n+    return connection;\n+  });\n+});\n+\n+afterEach(() => {\n+  vi.restoreAllMocks();\n+  rmSync(ixHome, { recursive: true, force: true });\n+  if (originalIxHome === undefined) {\n+    delete process[redacted].IX_HOME;\n+  } else {\n+    process[redacted].IX_HOME = originalIxHome;\n+  }\n+});\n+\n+async function runView(args: string[]): Promise<string> {\n+  const { registerViewCommand } = await import(\"../commands/view.js\");\n+  const program = new Command();\n+  program.name(\"ix\").exitOverride();\n+  registerViewCommand(program);\n+\n+  const output: string[] = [];\n+  const log = vi.spyOn(console, \"log\").mockImplementation((...values: unknown[]) => {\n+    output.push(values.join(\" \"));\n+  });\n+  try {\n+    await program.parseAsync([\"node\", \"ix\", \"view\", ...args]);\n+  } finally {\n+    log.mockRestore();\n+  }\n+  return output.join(\"\\n\");\n+}\n+\n+function seedRunningState(port?: number): void {\n+  writeFileSync(pidFile(), \"4242\");\n+  writeFileSync(scopeFile(), \"*all*\");\n+  if (port !== undefined) writeFileSync(portFile(), String(port));\n+}\n+\n+describe(\"view running port state\", () => {\n+  it(\"persists the port used to launch the visualizer\", async () => {\n+    const output = await runView([\"-p\", \"19123\", \"start\", \"--no-open\", \"--all\"]);\n+\n+    expect(readFileSync(portFile(), \"utf-8\")).toBe(\"19123\");\n+    expect(output).toContain(\"http://[redacted]19123\");\n+  });\n+\n+  it(\"reports the persisted port instead of a new requested port\", async () => {\n+    seedRunningState(19123);\n+    vi.spyOn(process, \"kill\").mockReturnValue(true);\n+\n+    const output = await runView([\"-p\", \"19124\", \"start\", \"--no-open\", \"--all\"]);\n+\n+    expect(output).toContain(\"Visualizer is already running (PID 4242)\");\n+    expect(output).toContain(\"http://[redacted]19123\");\n+    expect(output).not.toContain(\"http://[redacted]19124\");\n+    expect(mocks.spawn).not.toHaveBeenCalled();\n+  });\n+\n+  it(\"recovers the running port from a pre-port-file server script\", async () => {\n+    seedRunningState();\n+    mkdirSync(join(ixHome, \"tmp\"), { recursive: true });\n+    writeFileSync(serverScriptFile(), \"const PORT = 19123;\\n\");\n+    vi.spyOn(process, \"kill\").mockReturnValue(true);\n+\n+    const output = await runView([\"-p\", \"19124\", \"start\", \"--no-open\", \"--all\"]);\n+\n+    expect(output).toContain(\"http://[redacted]19123\");\n+    expect(readFileSync(portFile(), \"utf-8\")).toBe(\"19123\");\n+  });\n+\n+  it(\"does not print a requested port when legacy state cannot reveal the real one\", async () => {\n+    seedRunningState();\n+    vi.spyOn(process, \"kill\").mockReturnValue(true);\n+\n+    const output = await runView([\"-p\", \"19124\", \"start\", \"--no-open\", \"--all\"]);\n+\n+    expect(output).toContain(\"The running visualizer's port is unknown.\");\n+    expect(output).not.toContain(\"http://[redacted]19124\");\n+  });\n+\n+  it(\"removes port and scope state with a stale PID\", async () => {\n+    seedRunningState(19123);\n+    vi.spyOn(process, \"kill\").mockImplementation(() => {\n+      throw Object.assign(new Error(\"no such process\"), { code: \"ESRCH\" });\n+    });\n+\n+    const output = await runView([\"status\"]);\n+\n+    expect(output).toContain(\"Visualizer is not running.\");\n+    expect(existsSync(pidFile())).toBe(false);\n+    expect(existsSync(scopeFile())).toBe(false);\n+    expect(existsSync(portFile())).toBe(false);\n+  });\n+\n+  it(\"removes persisted state when the visualizer stops\", async () => {\n+    seedRunningState(19123);\n+    const kill = vi.spyOn(process, \"kill\").mockReturnValue(true);\n+\n+    const output = await runView([\"stop\"]);\n+\n+    expect(output).toContain(\"Visualizer stopped (PID 4242)\");\n+    expect(kill).toHaveBeenCalledWith(4242, \"SIGTERM\");\n+    expect(existsSync(pidFile())).toBe(false);\n+    expect(existsSync(scopeFile())).toBe(false);\n+    expect(existsSync(portFile())).toBe(false);\n+  });\n+});"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 358,
+        "filename": "ix-cli/src/cli/commands/view.ts",
+        "status": "modified",
+        "additions": 61,
+        "deletions": 13,
+        "changes": 74,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/1b9a761fc2db7087b5bad37f07119f8f6a3467aa/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fview.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/1b9a761fc2db7087b5bad37f07119f8f6a3467aa/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fview.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fview.ts?ref=1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+        "patch": "@@ -22,6 +22,8 @@ const PID_FILE = join(IX_HOME, \"compass.pid\");\n // `ix view` launched from a different workspace can warn instead of silently showing the\n // already-running (differently-scoped) instance.\n const SCOPE_FILE = join(IX_HOME, \"compass.scope\");\n+const PORT_FILE = join(IX_HOME, \"compass.port\");\n+const SERVER_SCRIPT_FILE = join(IX_HOME, \"tmp\", \"compass-server.js\");\n const BACKEND_URL = \"http://[redacted]8090\";\n \n /** Resolve the compass dist directory — installed path first, then dev fallback. */\n@@ -38,18 +40,59 @@ function findCompassDist(): string | null {\n   return null;\n }\n \n+function removeCompassState(): void {\n+  for (const path of [PID_FILE, SCOPE_FILE, PORT_FILE]) {\n+    try { unlinkSync(path); } catch { /* ignore */ }\n+  }\n+}\n+\n+function parsePort(value: string): number | null {\n+  const port = Number(value.trim());\n+  return Number.isInteger(port) && port >= 1 && port <= 65535 ? port : null;\n+}\n+\n+/** Read the persisted port, falling back to the server script written by older releases. */\n+function readRunningPort(): number | null {\n+  if (existsSync(PORT_FILE)) {\n+    try {\n+      const port = parsePort(readFileSync(PORT_FILE, \"utf-8\"));\n+      if (port !== null) return port;\n+    } catch {\n+      // Fall through to the legacy server script.\n+    }\n+  }\n+\n+  if (!existsSync(SERVER_SCRIPT_FILE)) return null;\n+  try {\n+    const match = readFileSync(SERVER_SCRIPT_FILE, \"utf-8\").match(/^const PORT = (\\d+);$/m);\n+    const port = match?.[1] ? parsePort(match[1]) : null;\n+    if (port !== null) {\n+      // Best-effort migration for a visualizer started before compass.port existed.\n+      try { writeFileSync(PORT_FILE, String(port)); } catch { /* ignore */ }\n+    }\n+    return port;\n+  } catch {\n+    return null;\n+  }\n+}\n+\n /** Read PID from file and check if the process is alive. */\n function readAlivePid(): number | null {\n-  if (!existsSync(PID_FILE)) return null;\n-  const pid = parseInt(readFileSync(PID_FILE, \"utf-8\").trim(), 10);\n-  if (isNaN(pid)) return null;\n+  if (!existsSync(PID_FILE)) {\n+    removeCompassState();\n+    return null;\n+  }\n+  const pid = Number(readFileSync(PID_FILE, \"utf-8\").trim());\n+  if (!Number.isInteger(pid) || pid <= 0) {\n+    removeCompassState();\n+    return null;\n+  }\n   try {\n     process.kill(pid, 0); // signal 0 = existence check\n     return pid;\n   } catch {\n     // Stale PID file\n-    try { unlinkSync(PID_FILE); } catch { /* ignore */ }\n-    try { unlinkSync(SCOPE_FILE); } catch { /* ignore */ }\n+    removeCompassState();\n     return null;\n   }\n }\n@@ -243,7 +286,13 @@ export function registerViewCommand(program: Command): void {\n       const existing = readAlivePid();\n       if (existing) {\n         console.log(`[ok] Visualizer is already running (PID ${existing})`);\n-        console.log(`  http://[redacted]${port}`);\n+        const runningPort = readRunningPort();\n+        if (runningPort !== null) {\n+          console.log(`  http://[redacted]${runningPort}`);\n+        } else {\n+          console.log(\"[!] The running visualizer's port is unknown.\");\n+          console.log(\"    Run 'ix view stop' then 'ix view' to restart it.\");\n+        }\n         // The running instance has a fixed scope (baked at launch). If this directory\n         // maps to a different workspace, say so rather than silently showing the old one.\n         const runningKey = existsSync(SCOPE_FILE) ? readFileSync(SCOPE_FILE, \"utf-8\").trim() : null;\n@@ -282,13 +331,12 @@ export function registerViewCommand(program: Command): void {\n       }\n \n       // Write server script to temp location\n-      const scriptDir = join(IX_HOME, \"tmp\");\n+      const scriptDir = dirname(SERVER_SCRIPT_FILE);\n       mkdirSync(scriptDir, { recursive: true });\n-      const scriptPath = join(scriptDir, \"compass-server.js\");\n-      writeFileSync(scriptPath, serverScript(distDir, port, workspaceId, systemId));\n+      writeFileSync(SERVER_SCRIPT_FILE, serverScript(distDir, port, workspaceId, systemId));\n \n       // Spawn detached process\n-      const child = spawn(\"node\", [scriptPath], {\n+      const child = spawn(\"node\", [SERVER_SCRIPT_FILE], {\n         detached: true,\n         stdio: \"ignore\",\n       });\n@@ -299,10 +347,11 @@ export function registerViewCommand(program: Command): void {\n         process.exit(1);\n       }\n \n-      // Save PID + the scope it was launched with (for the mismatch warning above).\n+      // Save PID, scope, and port for subsequent start/status/stop commands.\n       mkdirSync(dirname(PID_FILE), { recursive: true });\n       writeFileSync(PID_FILE, String(child.pid));\n       writeFileSync(SCOPE_FILE, scopeKey);\n+      writeFileSync(PORT_FILE, String(port));\n \n       const url = `http://[redacted]${port}`;\n       console.log(`[ok] Visualizer started (PID ${child.pid})`);\n@@ -336,8 +385,7 @@ export function registerViewCommand(program: Command): void {\n         // Already dead\n       }\n \n-      try { unlinkSync(PID_FILE); } catch { /* ignore */ }\n-      try { unlinkSync(SCOPE_FILE); } catch { /* ignore */ }\n+      removeCompassState();\n       console.log(`[ok] Visualizer stopped (PID ${pid})`);\n     });\n "
+      }
+    ],
+    "commits": [
+      {
+        "sha": "1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+        "author": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "committer": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "message": "fix: report the running visualizer port",
+        "parents": [
+          {
+            "sha": "01308e6c4a64231e7fcf6f545af1d350a52c68c0",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/01308e6c4a64231e7fcf6f545af1d350a52c68c0"
+          }
+        ],
+        "tree_sha": "65eb8b7e9b346f5691aed4b6912772f974f575ca",
+        "authored_at": "2026-08-09T19:05:27Z",
+        "committed_at": "2026-08-09T19:05:27Z"
+      }
+    ],
+    "comments": [],
+    "reviews": [
+      {
+        "id": 4892590196,
+        "node_id": "PRR_kwDORdC75M8AAAABI58AdA",
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 358,
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "state": "APPROVED",
+        "body": "Reviewed and verified locally (fork PRs don't get a CI run here): `tsc --noEmit` clean, `eslint src` clean, full suite green (631 tests), merges onto `main` alongside #356/#359 with no conflicts.\n\nPicking this over my own #360, and the deciding factor is the legacy recovery — parsing `const PORT = N;` out of the old `compass-server.js` and migrating it into the port file means anyone with a visualizer already running when they upgrade gets a real answer instead of being told to restart. Mine just gave up in that case. `removeCompassState()` and the `pid <= 0` hardening in `readAlivePid` are both improvements on what was there.\n\nThe tests are the other reason: driving the real command against a temp `IX_HOME` with `spawn`/`net` mocked, asserting output *and* file state, catches wiring mistakes that my pure-function tests would have sailed straight past.\n\nTwo small things from #360 I will port as a follow-up rather than block on:\n\n1. When `-p` does not match the running port, say so. Right now the correct URL prints but the user never learns their `-p` was ignored — worth using `getOptionValueSource(\"port\")` so an explicit `-p 8080` warns and a bare `ix view` stays quiet.\n2. `ix view status` could print the URL now that the port is recorded.",
+        "html_url": "https://github.com/ix-infrastructure/Ix/pull/358#pullrequestreview-4892590196",
+        "submitted_at": "2026-08-09T21:17:45Z",
+        "commit_id": "1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      }
+    ],
+    "review_comments": [],
+    "timeline": [
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/1b9a761fc2db7087b5bad37f07119f8f6a3467aa"
+      },
+      {
+        "id": 29190377583,
+        "event": "review_requested",
+        "actor": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "created_at": "2026-08-09T19:12:47Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29190377583"
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-09T21:16:51Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": 4892590196,
+        "event": "reviewed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": "1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": 29192803155,
+        "event": "merged",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-09T21:18:51Z",
+        "commit_id": "87cd9c0a8e0c64e267b5d71dc83a87c36d2de767",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29192803155"
+      },
+      {
+        "id": 29192803185,
+        "event": "closed",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-09T21:18:51Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29192803185"
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-09T21:19:48Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-09T21:19:59Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-09T21:25:50Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": 29202454231,
+        "event": "referenced",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-10T04:37:46Z",
+        "commit_id": "95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29202454231"
+      },
+      {
+        "id": 29234253156,
+        "event": "referenced",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-10T16:24:04Z",
+        "commit_id": "e117b6d29d9b3929d4442d7a336f8425a6dedede",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29234253156"
+      }
+    ],
+    "source": "OFFICIAL_GITHUB_FACT",
+    "review_threads": [],
+    "review_thread_capture": {
+      "status": "VERIFIED",
+      "source": "GitHub GraphQL API"
+    }
+  },
+  "source_context": {
+    "id": "github:pull_request:ix-infrastructure/Ix#358",
+    "source": {
+      "type": "github_pull_request",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/358",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/358",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-09T19:12:46Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-09T21:18:51Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "PR-358",
+    "entity_type": "PULL_REQUEST",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "mirror_scope": "source PR, commits, files, comments, reviews, review comments, and review threads",
+    "related_analysis_types": [
+      "FINDING",
+      "DECISION",
+      "IMPLEMENTATION"
+    ],
+    "review_thread_state": "VERIFIED_GRAPHQL"
   },
   "relationships": [
     {
@@ -28,6 +437,62 @@
       "other_type": "file",
       "other_title": "CLI-HANDOFF/phase-15/FINAL-PR-WORTHINESS-AUDIT.json",
       "other_url": "https://alot1z.github.io/Ix-findings/entities/src-90ab8426282e"
+    },
+    {
+      "direction": "out",
+      "relationship": "FOUND_IN",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "in",
+      "relationship": "AUTHORED",
+      "other": "PERSON-Hiro-Chiba",
+      "other_type": "artifact",
+      "other_title": "Hiro-Chiba",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-hiro-chiba"
+    },
+    {
+      "direction": "out",
+      "relationship": "HEADS_AT",
+      "other": "COMMIT-1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+      "other_type": "commit",
+      "other_title": "1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-1b9a761fc2db7087b5bad37f07119f8f6a3467aa"
+    },
+    {
+      "direction": "out",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "COMMIT-1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+      "other_type": "commit",
+      "other_title": "1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-1b9a761fc2db7087b5bad37f07119f8f6a3467aa"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_REVIEW",
+      "other": "REVIEW-ix-infrastructure-Ix-pr-358-4892590196",
+      "other_type": "artifact",
+      "other_title": "Review 4892590196 on PR #358",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/review-ix-infrastructure-ix-pr-358-4892590196"
+    },
+    {
+      "direction": "in",
+      "relationship": "REVIEWED_BY",
+      "other": "PERSON-KageBinary",
+      "other_type": "artifact",
+      "other_title": "KageBinary",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-kagebinary"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGED_BY",
+      "other": "COMMIT-1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+      "other_type": "commit",
+      "other_title": "1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-1b9a761fc2db7087b5bad37f07119f8f6a3467aa"
     }
   ]
 }

@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-d2bf8c51b32d4fca6cc60f047763c94990ab4e96",
+  "type": "commit",
+  "title": "d2bf8c51b32d4fca6cc60f047763c94990ab4e96",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-d2bf8c51b32d4fca6cc60f047763c94990ab4e96",
+  "summary": {
+    "id": "COMMIT-d2bf8c51b32d4fca6cc60f047763c94990ab4e96",
+    "type": "commit",
+    "title": "d2bf8c51b32d4fca6cc60f047763c94990ab4e96",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/d2bf8c51b32d4fca6cc60f047763c94990ab4e96",
+    "author": {
+      "name": "riley0227",
+      "email": "riley0227@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-58958dbb054c2d1d75e223de73704cea0682915e",
+      "other_type": "commit",
+      "other_title": "58958dbb054c2d1d75e223de73704cea0682915e",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-58958dbb054c2d1d75e223de73704cea0682915e"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-bf328682a3218baf246cc3f17428e0044bc1a404",
+      "other_type": "commit",
+      "other_title": "bf328682a3218baf246cc3f17428e0044bc1a404",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-bf328682a3218baf246cc3f17428e0044bc1a404"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-854f9ffac451",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/install.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-854f9ffac451"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-f9d9b5cc7121",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/install.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f9d9b5cc7121"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-41a58703a2df",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/install.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-41a58703a2df"
+    }
+  ]
+}

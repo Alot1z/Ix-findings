@@ -26,42 +26,44 @@
   <div id="layout">
     <nav id="sidebar" aria-label="Views">
       <div class="nav-group-label">Explore</div>
-      <button class="nav-item" data-view="overview">✳ Overview</button>
-      <button class="nav-item active" data-view="map">⌗ Investigation Map</button>
-      <button class="nav-item" data-view="timeline">◷ Timeline</button>
+      <button class="nav-item active" data-view="overview" data-nav-key="overview">✳ Overview</button>
+      <a class="nav-item" data-nav-key="map" href="map">⌗ Investigation Map</a>
+      <a class="nav-item" data-nav-key="timeline" href="timeline">◷ Timeline</a>
       <button class="nav-group-label">Repositories</button>
-      <button class="nav-item" data-view="repos">▤ Repositories</button>
+      <a class="nav-item" data-nav-key="repositories" href="repositories">▤ Repositories</a>
       <button class="nav-item" data-view="worktrees">⛏ Worktrees</button>
       <button class="nav-item" data-view="branches">⑂ Branches</button>
-      <button class="nav-item" data-view="commits">◉ Commits</button>
+      <a class="nav-item" data-nav-key="commits" href="commits">◉ Commits</a>
       <button class="nav-item" data-view="releases">⬡ Releases</button>
       <div class="nav-group-label">Knowledge</div>
-      <button class="nav-item" data-view="findings">✦ Findings</button>
-      <button class="nav-item" data-view="evidence">◈ Evidence</button>
+      <a class="nav-item" data-nav-key="findings" href="findings">✦ Findings</a>
+      <a class="nav-item" data-nav-key="evidence" href="evidence">◈ Evidence</a>
       <button class="nav-item" data-view="tests">✓ Tests</button>
       <button class="nav-item" data-view="compass">◐ Compass History</button>
-      <button class="nav-item" data-view="phases">⛁ Phase Explorer</button>
+      <a class="nav-item" data-nav-key="phases" href="phases">⛁ Phase Explorer</a>
       <div class="nav-group-label">GitHub</div>
-      <button class="nav-item" data-view="prs">⇄ Pull Requests</button>
-      <button class="nav-item" data-view="issues">⚠ Issues</button>
+      <a class="nav-item" data-nav-key="prs" href="prs">⇄ Pull Requests</a>
+      <a class="nav-item" data-nav-key="issues" href="issues">⚠ Issues</a>
       <div class="nav-group-label">Decision</div>
-      <button class="nav-item" data-view="contributions">⚡ Contributions</button>
-      <button class="nav-item" data-view="suggestions">✎ Suggestions</button>
-      <button class="nav-item" data-view="decisions">◈ Decisions</button>
+      <a class="nav-item" data-nav-key="contributions" href="contributions">⚡ Contributions</a>
+      <a class="nav-item" data-nav-key="suggestions" href="suggestions">✎ Suggestions</a>
+      <a class="nav-item" data-nav-key="decisions" href="decisions">◈ Decisions</a>
+      <a class="nav-item" data-nav-key="files" href="files">▤ Files</a>
+      <a class="nav-item" data-nav-key="entities" href="entities">◈ Entities</a>
       <button class="nav-item" data-view="stale">⚠ Stale Claims</button>
       <div class="nav-group-label">System-Compass</div>
       <button class="nav-item" data-view="syscompass">◐ System-Compass</button>
       <button class="nav-item" data-view="security">🛡 Security</button>
       <div class="nav-group-label">LLM / Corpus</div>
-      <a class="nav-item" href="llms.txt">llms.txt — entry point</a>
-      <a class="nav-item" href="llms-full.txt">llms-full.txt — full corpus</a>
-      <a class="nav-item" href="graph.json">graph.json</a>
-      <a class="nav-item" href="entities.json">entities.json</a>
-      <a class="nav-item" href="search.json">search.json</a>
-      <a class="nav-item" href="routes.json">routes.json</a>
-      <a class="nav-item" href="sitemap.xml">sitemap.xml</a>
+      <a class="nav-item" data-nav-key="llm" href="llms.txt">llms.txt — entry point</a>
+      <a class="nav-item" data-nav-key="llm" href="llms-full.txt">llms-full.txt — full corpus</a>
+      <a class="nav-item" data-nav-key="llm" href="graph.json">graph.json</a>
+      <a class="nav-item" data-nav-key="llm" href="entities.json">entities.json</a>
+      <a class="nav-item" data-nav-key="llm" href="search.json">search.json</a>
+      <a class="nav-item" data-nav-key="llm" href="routes.json">routes.json</a>
+      <a class="nav-item" data-nav-key="llm" href="sitemap.xml">sitemap.xml</a>
       <div class="nav-group-label">About</div>
-      <button class="nav-item" data-view="about">ℹ About</button>
+      <button class="nav-item" data-view="about" data-nav-key="about">ℹ About</button>
     </nav>
 
     <main id="view">

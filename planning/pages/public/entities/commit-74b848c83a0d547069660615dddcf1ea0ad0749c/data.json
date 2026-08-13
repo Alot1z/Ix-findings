@@ -1,0 +1,80 @@
+{
+  "id": "COMMIT-74b848c83a0d547069660615dddcf1ea0ad0749c",
+  "type": "commit",
+  "title": "74b848c83a0d547069660615dddcf1ea0ad0749c",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-74b848c83a0d547069660615dddcf1ea0ad0749c",
+  "summary": {
+    "id": "COMMIT-74b848c83a0d547069660615dddcf1ea0ad0749c",
+    "type": "commit",
+    "title": "74b848c83a0d547069660615dddcf1ea0ad0749c",
+    "status": "HISTORICAL",
+    "author": {
+      "login": "bertolikimberly",
+      "id": 134340724,
+      "type": "User",
+      "html_url": "https://github.com/bertolikimberly"
+    }
+  },
+  "source_snapshot": {
+    "sha": "74b848c83a0d547069660615dddcf1ea0ad0749c",
+    "html_url": "https://github.com/Alot1z/Ix-remap/commit/74b848c83a0d547069660615dddcf1ea0ad0749c",
+    "api_url": "https://api.github.com/repos/Alot1z/Ix-remap/commits/74b848c83a0d547069660615dddcf1ea0ad0749c",
+    "author": {
+      "login": "bertolikimberly",
+      "id": 134340724,
+      "type": "User",
+      "html_url": "https://github.com/bertolikimberly"
+    },
+    "committer": {
+      "login": "bertolikimberly",
+      "id": 134340724,
+      "type": "User",
+      "html_url": "https://github.com/bertolikimberly"
+    },
+    "message": "feat(mcp): add ix mcp subcommand exposing the code graph as MCP tools (#219)\r\n\r\nRuns a dual-era MCP stdio server (2026-07-28 stateless + 2025-06-18\r\ninitialize handshake) exposing seven read-only tools bound to\r\nmap/status/explain/trace/impact/search/rank and reusing --format llm.\r\nTool arguments are validated against per-tool JSON schemas and executed\r\nvia the F-010 execFile pattern (no shell, hard timeout, kill on\r\nnotifications/cancelled). Registered in oss.ts with a regression guard\r\nmirroring the F-009 discipline (89ca55e); no Pro stub can shadow it.\r\nThe remap write tool is intentionally absent — /__ix/remap does not\r\nexist on this base (added by the unmerged hardening PR).\r\n\r\n34 new tests: protocol/validation units, in-memory dual-era session,\r\nregistration guard, and a real-process stdio integration test.",
+    "parents": [
+      {
+        "sha": "5488741155d69a5f03fce41416643ddceca6f8a0",
+        "html_url": "https://github.com/Alot1z/Ix-remap/commit/5488741155d69a5f03fce41416643ddceca6f8a0"
+      }
+    ],
+    "tree_sha": "3f060084403df962e7a1fa372ab8dffdc09e1418",
+    "authored_at": "2026-08-11T15:17:54Z",
+    "committed_at": "2026-08-11T15:17:54Z"
+  },
+  "source_context": {
+    "id": "github:commit:Alot1z/Ix-remap@74b848c83a0d547069660615dddcf1ea0ad0749c",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "Alot1z/Ix-remap",
+      "owner": "Alot1z",
+      "url": "https://github.com/Alot1z/Ix-remap/commit/74b848c83a0d547069660615dddcf1ea0ad0749c",
+      "api_url": "https://api.github.com/repos/Alot1z/Ix-remap/commits/74b848c83a0d547069660615dddcf1ea0ad0749c",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-11T15:17:54Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-11T15:17:54Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-74b848c83a0d547069660615dddcf1ea0ad0749c",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:repository:Alot1z/Ix-remap",
+    "capture_kind": "EXPLICIT_SHA_TARGET"
+  },
+  "relationships": []
+}

@@ -1,0 +1,134 @@
+{
+  "id": "FILE-56dc219369f6",
+  "type": "artifact",
+  "title": "ix-cli/src/cli/ingest-baseline.ts",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/file-56dc219369f6",
+  "summary": {
+    "id": "FILE-56dc219369f6",
+    "type": "artifact",
+    "title": "ix-cli/src/cli/ingest-baseline.ts",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "source_mirror_id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/ingest-baseline.ts",
+    "source_type": "github_file",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/blob/d827cc9fa63a203b138d35621057af7c9a21bad0/ix-cli%2Fsrc%2Fcli%2Fingest-baseline.ts",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 378,
+    "filename": "ix-cli/src/cli/ingest-baseline.ts",
+    "status": "modified",
+    "additions": 13,
+    "deletions": 1,
+    "changes": 14,
+    "blob_url": "https://github.com/ix-infrastructure/Ix/blob/d827cc9fa63a203b138d35621057af7c9a21bad0/ix-cli%2Fsrc%2Fcli%2Fingest-baseline.ts",
+    "raw_url": "https://github.com/ix-infrastructure/Ix/raw/d827cc9fa63a203b138d35621057af7c9a21bad0/ix-cli%2Fsrc%2Fcli%2Fingest-baseline.ts",
+    "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fingest-baseline.ts?ref=d827cc9fa63a203b138d35621057af7c9a21bad0",
+    "patch": "@@ -5,12 +5,14 @@ import { ingestMtimeCachePath } from \"./config.js\";\n interface SerializedIngestBaseline {\n   root: string;\n   files: Record<string, number>;\n+  deletedFiles?: Record<string, string[]>;\n   currentRev?: number;\n   lastIngestAt?: string;\n }\n \n export interface IngestBaseline {\n   files: Map<string, number>;\n+  deletedFiles: Map<string, string[]>;\n   currentRev: number;\n   lastIngestAt: string;\n }\n@@ -25,6 +27,14 @@ export function loadIngestBaseline(projectRoot: string): IngestBaseline | null {\n     for (const [filePath, mtime] of Object.entries(data.files)) {\n       if (Number.isFinite(mtime)) files.set(filePath, mtime);\n     }\n+    const deletedFiles = new Map<string, string[]>();\n+    for (const [filePath, dependents] of Object.entries(data.deletedFiles ?? {})) {\n+      if (!Array.isArray(dependents)) continue;\n+      deletedFiles.set(\n+        filePath,\n+        dependents.filter((dependent): dependent is string => typeof dependent === \"string\"),\n+      );\n+    }\n \n     const parsedTimestamp = data.lastIngestAt ? Date.parse(data.lastIngestAt) : Number.NaN;\n     const lastIngestAt = Number.isFinite(parsedTimestamp)\n@@ -37,7 +47,7 @@ export function loadIngestBaseline(projectRoot: string): IngestBaseline | null {\n         ? data.currentRev\n         : 0;\n \n-    return { files, currentRev, lastIngestAt };\n+    return { files, deletedFiles, currentRev, lastIngestAt };\n   } catch {\n     return null;\n   }\n@@ -48,12 +58,14 @@ export function saveIngestBaseline(\n   mtimes: Map<string, number>,\n   currentRev: number,\n   now: Date = new Date(),\n+  deletedFiles: Map<string, string[]> = new Map(),\n ): void {\n   try {\n     const previousRev = loadIngestBaseline(projectRoot)?.currentRev ?? 0;\n     const data: SerializedIngestBaseline = {\n       root: projectRoot,\n       files: Object.fromEntries(mtimes),\n+      deletedFiles: Object.fromEntries(deletedFiles),\n       currentRev: currentRev > 0 ? currentRev : previousRev,\n       lastIngestAt: now.toISOString(),\n     };",
+    "parent_pr": 378
+  },
+  "source_context": {
+    "id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/ingest-baseline.ts",
+    "source": {
+      "type": "github_file",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/blob/d827cc9fa63a203b138d35621057af7c9a21bad0/ix-cli%2Fsrc%2Fcli%2Fingest-baseline.ts",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T04:37:07Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T21:14:21Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "FILE-56dc219369f6",
+    "entity_type": "FILE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#378",
+    "line_precision": "FILE_LEVEL"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-1b2e760d5dfd2cf31f6cf4ba818ed2cd200edcda",
+      "other_type": "commit",
+      "other_title": "1b2e760d5dfd2cf31f6cf4ba818ed2cd200edcda",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-1b2e760d5dfd2cf31f6cf4ba818ed2cd200edcda"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-16b0d663bab744f9ea5c02341919fff5636756ea",
+      "other_type": "commit",
+      "other_title": "16b0d663bab744f9ea5c02341919fff5636756ea",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-16b0d663bab744f9ea5c02341919fff5636756ea"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-d827cc9fa63a203b138d35621057af7c9a21bad0",
+      "other_type": "commit",
+      "other_title": "d827cc9fa63a203b138d35621057af7c9a21bad0",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-d827cc9fa63a203b138d35621057af7c9a21bad0"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-7a815573e4388e77b8b7af4c1ba0376a8bd36e25",
+      "other_type": "commit",
+      "other_title": "7a815573e4388e77b8b7af4c1ba0376a8bd36e25",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-7a815573e4388e77b8b7af4c1ba0376a8bd36e25"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-0d8032910c45408d8684a0e6f95198ee223b647c",
+      "other_type": "commit",
+      "other_title": "0d8032910c45408d8684a0e6f95198ee223b647c",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-0d8032910c45408d8684a0e6f95198ee223b647c"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-ffe21f01268caf6567916da697cd6826358443e2",
+      "other_type": "commit",
+      "other_title": "ffe21f01268caf6567916da697cd6826358443e2",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-ffe21f01268caf6567916da697cd6826358443e2"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-b25bf2efe837a29022770bd220c58b2da05bca32",
+      "other_type": "commit",
+      "other_title": "b25bf2efe837a29022770bd220c58b2da05bca32",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-b25bf2efe837a29022770bd220c58b2da05bca32"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-ebeee6ce5eb7baa15f519b4879b26d9bd461dc14",
+      "other_type": "commit",
+      "other_title": "ebeee6ce5eb7baa15f519b4879b26d9bd461dc14",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-ebeee6ce5eb7baa15f519b4879b26d9bd461dc14"
+    }
+  ]
+}

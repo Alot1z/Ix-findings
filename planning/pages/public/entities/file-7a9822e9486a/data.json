@@ -1,0 +1,102 @@
+{
+  "id": "FILE-7a9822e9486a",
+  "type": "artifact",
+  "title": "ix-cli/src/cli/__tests__/upgrade-compass-stamp-producers.test.ts",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/file-7a9822e9486a",
+  "summary": {
+    "id": "FILE-7a9822e9486a",
+    "type": "artifact",
+    "title": "ix-cli/src/cli/__tests__/upgrade-compass-stamp-producers.test.ts",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "source_mirror_id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/__tests__/upgrade-compass-stamp-producers.test.ts",
+    "source_type": "github_file",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/blob/3f70e75a7e5cc21cd50eaa01908948e7036aa9f6/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fupgrade-compass-stamp-producers.test.ts",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 391,
+    "filename": "ix-cli/src/cli/__tests__/upgrade-compass-stamp-producers.test.ts",
+    "status": "added",
+    "additions": 94,
+    "deletions": 0,
+    "changes": 94,
+    "blob_url": "https://github.com/ix-infrastructure/Ix/blob/3f70e75a7e5cc21cd50eaa01908948e7036aa9f6/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fupgrade-compass-stamp-producers.test.ts",
+    "raw_url": "https://github.com/ix-infrastructure/Ix/raw/3f70e75a7e5cc21cd50eaa01908948e7036aa9f6/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fupgrade-compass-stamp-producers.test.ts",
+    "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fupgrade-compass-stamp-producers.test.ts?ref=3f70e75a7e5cc21cd50eaa01908948e7036aa9f6",
+    "patch": "@@ -0,0 +1,94 @@\n+import { describe, expect, it } from \"vitest\";\n+import { readFileSync } from \"node:fs\";\n+import { dirname, join } from \"node:path\";\n+import { fileURLToPath } from \"node:url\";\n+\n+import { parseCompassStamp } from \"../commands/upgrade.js\";\n+\n+/**\n+ * `compass/.version` has three producers and one reader, in different languages,\n+ * none of which import each other:\n+ *\n+ *   .github/workflows/release.yml   the bundle shipped inside a release tarball\n+ *   scripts/install/install.sh      a tarball that predates the stamp\n+ *   scripts/install/install.ps1     the same, on Windows\n+ *   parseCompassStamp()             the reader, in this package\n+ *\n+ * Nothing else couples them. The producers are shell/YAML string literals, so a\n+ * change there typecheks nowhere and no unit test touching only the reader can\n+ * notice — which is exactly how #376 happened in the first place, and how the\n+ * multi-line `key=value` shape nearly shipped.\n+ *\n+ * These cases read the real files and push the literal each one writes through\n+ * the real parser. Two properties matter:\n+ *\n+ *  1. **It parses as a release bundle.** A producer that loses its `+release`\n+ *     marker silently re-labels its bundle dist-series, and `ix upgrade` will\n+ *     downgrade it to an older ix-compass-dist build.\n+ *  2. **It stays on ONE line.** Every already-shipped CLI reads this file with\n+ *     `readFileSync(...).trim()` — the whole file — and feeds it to\n+ *     `splitVersion`. A second line makes the major parse as NaN -> 0, so an old\n+ *     CLI sees a 1.x release as [0,0,0] and replaces the newer bundle it just\n+ *     installed with ix-compass-dist. The reader we control cannot fix that;\n+ *     only the producers can, by never writing a second line.\n+ */\n+const REPO_ROOT = join(dirname(fileURLToPath(import.meta.url)), \"..\", \"..\", \"..\", \"..\");\n+const read = (p: string) => readFileSync(join(REPO_ROOT, p), \"utf-8\");\n+\n+/** What the producer's format literal renders to for a given version. */\n+const SAMPLE_VERSION = \"1.4.2\";\n+const SAMPLE_SHA = \"7f98724\";\n+\n+describe(\"compass .version producers agree with parseCompassStamp\", () => {\n+  const cases: { name: string; file: string; render: (src: string) => string }[] = [\n+    {\n+      name: \"release.yml (release tarball)\",\n+      file: \".github/workflows/release.yml\",\n+      render: (src) => {\n+        // printf '%s+release.%s\\n' \"$VERSION\" \"${COMPASS_SHA:-unknown}\"\n+        const m = src.match(/printf\\s+'([^']*)'\\s*[local-path]s*\\n?\\s*\"\\$VERSION\"\\s+\"\\$\\{COMPASS_SHA[^}]*\\}\"/);\n+        expect(m, \"release.yml no longer writes the stamp with a recognisable printf\").toBeTruthy();\n+        return m![1]!.replace(/\\\\n/g, \"\\n\").replace(\"%s\", SAMPLE_VERSION).replace(\"%s\", SAMPLE_SHA);\n+      },\n+    },\n+    {\n+      name: \"install.sh\",\n+      file: \"scripts/install/install.sh\",\n+      render: (src) => {\n+        // printf '%s+release\\n' \"$VERSION\" > \".../compass/.version\"\n+        const m = src.match(/printf\\s+'([^']*)'\\s+\"\\$VERSION\"\\s*>\\s*\"[^\"]*compass\\/\\.version\"/);\n+        expect(m, \"install.sh no longer writes the stamp with a recognisable printf\").toBeTruthy();\n+        return m![1]!.replace(/\\\\n/g, \"\\n\").replace(\"%s\", SAMPLE_VERSION);\n+      },\n+    },\n+    {\n+      name: \"install.ps1\",\n+      file: \"scripts/install/install.ps1\",\n+      render: (src) => {\n+        // [System.IO.File]::WriteAllText($CompassStamp, \"$Version+release`n\")\n+        const m = src.match(/WriteAllText\\(\\$CompassStamp,\\s*\"([^\"]*)\"\\)/);\n+        expect(m, \"install.ps1 no longer writes the stamp with a recognisable WriteAllText\").toBeTruthy();\n+        // PowerShell escapes: backtick-n is a newline; $Version interpolates.\n+        return m![1]!.replace(/`n/g, \"\\n\").replace(\"$Version\", SAMPLE_VERSION);\n+      },\n+    },\n+  ];\n+\n+  for (const { name, file, render } of cases) {\n+    it(`${name} writes a stamp the reader classifies as release`, () => {\n+      const stamp = render(read(file));\n+      expect(parseCompassStamp(stamp)).toEqual({ source: \"release\", version: SAMPLE_VERSION });\n+    });\n+\n+    it(`${name} writes exactly one line`, () => {\n+      const stamp = render(read(file));\n+      // A trailing newline is fine; an interior one is the regression.\n+      expect(stamp.trimEnd()).not.toContain(\"\\n\");\n+\n+      // And the property that actually protects old CLIs: their whole-file read\n+      // must still compare as the Ix version, never as 0.\n+      const asShippedCliReadsIt = stamp.trim();\n+      expect(asShippedCliReadsIt.split(\"+\")[0]).toBe(SAMPLE_VERSION);\n+    });\n+  }\n+});",
+    "parent_pr": 391
+  },
+  "source_context": {
+    "id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/__tests__/upgrade-compass-stamp-producers.test.ts",
+    "source": {
+      "type": "github_file",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/blob/3f70e75a7e5cc21cd50eaa01908948e7036aa9f6/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fupgrade-compass-stamp-producers.test.ts",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-11T00:07:35Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-11T04:37:01Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "FILE-7a9822e9486a",
+    "entity_type": "FILE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#391",
+    "line_precision": "FILE_LEVEL"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-3353000f9b6666f929f52b1d5b5e5248a4e68678",
+      "other_type": "commit",
+      "other_title": "3353000f9b6666f929f52b1d5b5e5248a4e68678",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-3353000f9b6666f929f52b1d5b5e5248a4e68678"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-c4154613a2fdd434c5271f2babc10bcd88ab46b1",
+      "other_type": "commit",
+      "other_title": "c4154613a2fdd434c5271f2babc10bcd88ab46b1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-c4154613a2fdd434c5271f2babc10bcd88ab46b1"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-3f70e75a7e5cc21cd50eaa01908948e7036aa9f6",
+      "other_type": "commit",
+      "other_title": "3f70e75a7e5cc21cd50eaa01908948e7036aa9f6",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-3f70e75a7e5cc21cd50eaa01908948e7036aa9f6"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-af23b558efea953869d03ea655cbb0b3c82123b2",
+      "other_type": "commit",
+      "other_title": "af23b558efea953869d03ea655cbb0b3c82123b2",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-af23b558efea953869d03ea655cbb0b3c82123b2"
+    }
+  ]
+}

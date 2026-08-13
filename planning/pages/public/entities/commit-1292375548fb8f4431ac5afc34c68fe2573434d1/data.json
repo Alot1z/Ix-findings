@@ -1,0 +1,114 @@
+{
+  "id": "COMMIT-1292375548fb8f4431ac5afc34c68fe2573434d1",
+  "type": "commit",
+  "title": "1292375548fb8f4431ac5afc34c68fe2573434d1",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-1292375548fb8f4431ac5afc34c68fe2573434d1",
+  "summary": {
+    "id": "COMMIT-1292375548fb8f4431ac5afc34c68fe2573434d1",
+    "type": "commit",
+    "title": "1292375548fb8f4431ac5afc34c68fe2573434d1",
+    "status": "CURRENT"
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "POINTS_TO",
+      "other": "BRANCH-f4db1f1bb8b1",
+      "other_type": "branch",
+      "other_title": "ix-infrastructure/Ix:HEAD",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-f4db1f1bb8b1"
+    },
+    {
+      "direction": "in",
+      "relationship": "POINTS_TO",
+      "other": "BRANCH-a456acb6ef82",
+      "other_type": "branch",
+      "other_title": "ix-infrastructure/Ix:main",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-a456acb6ef82"
+    },
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-13e96bacc648ee979f35e2874cd8aa2004f920e1",
+      "other_type": "commit",
+      "other_title": "13e96bacc648ee979f35e2874cd8aa2004f920e1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-13e96bacc648ee979f35e2874cd8aa2004f920e1"
+    },
+    {
+      "direction": "out",
+      "relationship": "HEAD_MOVED_TO",
+      "other": "COMMIT-fa6ad7b0ff52734685ff7425b08ec240837751fa",
+      "other_type": "commit",
+      "other_title": "fa6ad7b0ff52734685ff7425b08ec240837751fa",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-fa6ad7b0ff52734685ff7425b08ec240837751fa"
+    },
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-7e28e05e36e8f890e8f8a9a6ba7a7ff8c6ea18b8",
+      "other_type": "commit",
+      "other_title": "7e28e05e36e8f890e8f8a9a6ba7a7ff8c6ea18b8",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-7e28e05e36e8f890e8f8a9a6ba7a7ff8c6ea18b8"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-af23b558efea953869d03ea655cbb0b3c82123b2",
+      "other_type": "commit",
+      "other_title": "af23b558efea953869d03ea655cbb0b3c82123b2",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-af23b558efea953869d03ea655cbb0b3c82123b2"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-8fd3c7d3cd9b",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/upgrade-archive-shape.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-8fd3c7d3cd9b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e559b6bc2060",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/upgrade.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e559b6bc2060"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-0bd9434f2b1d",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/upgrade-archive-shape.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-0bd9434f2b1d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5335f7460d14",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/upgrade.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5335f7460d14"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-8e90deead14d",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/upgrade-archive-shape.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-8e90deead14d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3d4b7b10ad9e",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/upgrade.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3d4b7b10ad9e"
+    }
+  ]
+}

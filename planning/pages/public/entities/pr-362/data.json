@@ -10,7 +10,449 @@
     "title": "Ix PR #362",
     "status": "RESOLVED",
     "number": 362,
-    "url": "https://github.com/ix-infrastructure/Ix/pull/362"
+    "url": "https://github.com/ix-infrastructure/Ix/pull/362",
+    "source_mirror_id": "github:pull_request:ix-infrastructure/Ix#362",
+    "source_type": "github_pull_request",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/pull/362",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/362",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "number": 362,
+    "node_id": "PR_kwDORdC75M78vUHJ",
+    "title": "fix(view): say when -p was not honoured, and show the URL in status",
+    "body": "Follow-up to #358 (thanks @Hiro-Chiba), picking up the two pieces I flagged when closing #360.\n\n## `-p` is still silently ignored\n\n#358 fixed the real bug — the already-running branch printed an unreachable URL built from the port just requested. It reports the running port now, but says nothing about the request:\n\n```\n$ ix view -p 19124 start\n[ok] Visualizer is already running (PID 65764)\n  http://[redacted]19123\n```\n\nThe URL is right. But you asked for 19124, got 19123, and nothing said so — you find out by noticing the number changed. Now:\n\n```\n[ok] Visualizer is already running (PID 65764)\n  http://[redacted]19123\n[!] You asked for port 19124, but it is serving on 19123.\n    Run 'ix view stop' then 'ix view -p 19124' to move it.\n```\n\nKeyed on whether `-p` was **typed** (`getOptionValueSource(\"port\") === \"cli\"`), not on whether it differs from 8080. Comparing against the default would stay silent for someone who explicitly passed `-p 8080` to a server running elsewhere — exactly the case they typed the flag to find out about — and would nag anyone who typed nothing.\n\n## `status` can answer its own question now\n\nThe port is recorded as of #358, so:\n\n```\n$ ix view status\n[ok] Visualizer is running (PID 65764)\n  http://[redacted]19123\n```\n\nSilent rather than guessing for an instance old enough to have neither a port file nor a server script to recover one from — a confidently wrong URL is what #358 removed and this must not reintroduce it through the warning path.\n\n## Tests\n\nExtends #358's `view-running-port.test.ts` rather than adding a competing file: five more cases through their `runView` harness (mismatch warns, no-flag stays quiet, status shows the URL, status stays silent when unknown), plus three unit cases on the extracted `runningInstanceLines`.\n\nFull suite green — 647 tests, `tsc --noEmit` clean, `eslint src` clean.",
+    "state": "closed",
+    "draft": false,
+    "merged": true,
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "html_url": "https://github.com/ix-infrastructure/Ix/pull/362",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/362",
+    "head": {
+      "ref": "fix/view-port-mismatch-warning",
+      "sha": "95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449",
+      "repo": {
+        "id": 1171307492,
+        "full_name": "ix-infrastructure/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "ix-infrastructure",
+          "id": 256883681,
+          "type": "Organization",
+          "html_url": "https://github.com/ix-infrastructure"
+        },
+        "html_url": "https://github.com/ix-infrastructure/Ix",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": false,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-03-03T04:48:38Z",
+        "updated_at": "2026-08-13T21:51:31Z",
+        "pushed_at": "2026-08-13T19:18:44Z",
+        "topics": [
+          "ai",
+          "ai-memory",
+          "claude-code",
+          "cli",
+          "code-analysis",
+          "code-mapping",
+          "code-memory",
+          "codebase-understanding",
+          "codex",
+          "developer-tools",
+          "llm",
+          "openclaw",
+          "persistent-memory",
+          "program-analysis",
+          "software-architecture",
+          "system-intelligence",
+          "system-mapping"
+        ],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 701,
+        "stargazers_count": 701,
+        "forks_count": 60,
+        "open_issues_count": 6
+      }
+    },
+    "base": {
+      "ref": "main",
+      "sha": "3c49cc243654aae428cfc4b8802f0b3a99de56a4",
+      "repo": {
+        "id": 1171307492,
+        "full_name": "ix-infrastructure/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "ix-infrastructure",
+          "id": 256883681,
+          "type": "Organization",
+          "html_url": "https://github.com/ix-infrastructure"
+        },
+        "html_url": "https://github.com/ix-infrastructure/Ix",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": false,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-03-03T04:48:38Z",
+        "updated_at": "2026-08-13T21:51:31Z",
+        "pushed_at": "2026-08-13T19:18:44Z",
+        "topics": [
+          "ai",
+          "ai-memory",
+          "claude-code",
+          "cli",
+          "code-analysis",
+          "code-mapping",
+          "code-memory",
+          "codebase-understanding",
+          "codex",
+          "developer-tools",
+          "llm",
+          "openclaw",
+          "persistent-memory",
+          "program-analysis",
+          "software-architecture",
+          "system-intelligence",
+          "system-mapping"
+        ],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 701,
+        "stargazers_count": 701,
+        "forks_count": 60,
+        "open_issues_count": 6
+      }
+    },
+    "merge_commit_sha": "e117b6d29d9b3929d4442d7a336f8425a6dedede",
+    "merged_at": "2026-08-10T16:24:03Z",
+    "closed_at": "2026-08-10T16:24:03Z",
+    "created_at": "2026-08-09T21:25:49Z",
+    "updated_at": "2026-08-10T16:24:05Z",
+    "labels": [],
+    "milestone": null,
+    "requested_reviewers": [],
+    "requested_teams": [],
+    "commits_count": 2,
+    "changed_files_count": 2,
+    "additions": 117,
+    "deletions": 6,
+    "changed_files": [
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 362,
+        "filename": "ix-cli/src/cli/__tests__/view-running-port.test.ts",
+        "status": "modified",
+        "additions": 68,
+        "deletions": 0,
+        "changes": 68,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fview-running-port.test.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fview-running-port.test.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fview-running-port.test.ts?ref=95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449",
+        "patch": "@@ -150,4 +150,72 @@ describe(\"view running port state\", () => {\n     expect(existsSync(scopeFile())).toBe(false);\n     expect(existsSync(portFile())).toBe(false);\n   });\n+\n+  it(\"says the requested port was not honoured\", async () => {\n+    seedRunningState(19123);\n+    vi.spyOn(process, \"kill\").mockReturnValue(true);\n+\n+    const output = await runView([\"-p\", \"19124\", \"start\", \"--no-open\", \"--all\"]);\n+\n+    // Printing only the correct URL leaves the user believing -p moved the\n+    // server. It did not, and the difference is one digit.\n+    expect(output).toContain(\"You asked for port 19124\");\n+    expect(output).toContain(\"it is serving on 19123\");\n+  });\n+\n+  it(\"stays quiet when no port was asked for\", async () => {\n+    seedRunningState(19123);\n+    vi.spyOn(process, \"kill\").mockReturnValue(true);\n+\n+    const output = await runView([\"start\", \"--no-open\", \"--all\"]);\n+\n+    expect(output).toContain(\"http://[redacted]19123\");\n+    expect(output).not.toContain(\"You asked for port\");\n+  });\n+\n+  it(\"reports the URL from status\", async () => {\n+    seedRunningState(19123);\n+    vi.spyOn(process, \"kill\").mockReturnValue(true);\n+\n+    expect(await runView([\"status\"])).toContain(\"http://[redacted]19123\");\n+  });\n+\n+  it(\"says the port is unknown from status instead of printing nothing\", async () => {\n+    seedRunningState();\n+    vi.spyOn(process, \"kill\").mockReturnValue(true);\n+\n+    const output = await runView([\"status\"]);\n+\n+    // Still no guessed URL — that is the bug #358 removed. But silence left\n+    // someone who ran status *for* the URL with nothing to act on, while\n+    // `ix view` in the identical state told them how to recover.\n+    expect(output).not.toContain(\"http://localhost\");\n+    expect(output).toContain(\"unknown\");\n+    expect(output).toContain(\"ix view stop\");\n+  });\n+});\n+\n+describe(\"runningInstanceLines\", () => {\n+  it(\"never builds a URL from the requested port\", async () => {\n+    const { runningInstanceLines } = await import(\"../commands/view.js\");\n+    const lines = runningInstanceLines(19123, 19124, true);\n+\n+    expect(lines[0]).toBe(\"  http://[redacted]19123\");\n+    expect(lines.some(l => l.includes(\"http://[redacted]19124\"))).toBe(false);\n+  });\n+\n+  it(\"does not warn when the running port is the one that was asked for\", async () => {\n+    const { runningInstanceLines } = await import(\"../commands/view.js\");\n+    expect(runningInstanceLines(8080, 8080, true)).toEqual([\"  http://[redacted]8080\"]);\n+  });\n+\n+  it(\"admits it does not know rather than guessing\", async () => {\n+    const { runningInstanceLines } = await import(\"../commands/view.js\");\n+    const lines = runningInstanceLines(null, 8080, true);\n+\n+    // A confidently wrong URL is the bug #358 removed; do not reintroduce it\n+    // through the warning path.\n+    expect(lines.some(l => l.includes(\"http://localhost\"))).toBe(false);\n+    expect(lines.join(\"\\n\")).toContain(\"unknown\");\n+  });\n });"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 362,
+        "filename": "ix-cli/src/cli/commands/view.ts",
+        "status": "modified",
+        "additions": 49,
+        "deletions": 6,
+        "changes": 55,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fview.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fview.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fview.ts?ref=95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449",
+        "patch": "@@ -76,6 +76,38 @@ function readRunningPort(): number | null {\n   }\n }\n \n+/**\n+ * What to print under \"already running\", given where it is actually serving.\n+ *\n+ * #358 made this branch report the running port instead of echoing back the one\n+ * just requested, which fixed the unreachable URL. It stayed silent about the\n+ * request itself though, so `ix view -p 19124` against a server on 19123 prints\n+ * a correct URL for a port you did not ask for and never says the flag was\n+ * ignored — you find out by noticing the number changed.\n+ *\n+ * Pure, because the decision is all this is, and inline in a command action it\n+ * could only be exercised by launching a detached server.\n+ */\n+export function runningInstanceLines(\n+  runningPort: number | null,\n+  requestedPort: number,\n+  portWasRequested: boolean,\n+): string[] {\n+  if (runningPort === null) {\n+    return [\n+      \"[!] The running visualizer's port is unknown.\",\n+      \"    Run 'ix view stop' then 'ix view' to restart it.\",\n+    ];\n+  }\n+\n+  const lines = [`  http://[redacted]${runningPort}`];\n+  if (portWasRequested && runningPort !== requestedPort) {\n+    lines.push(`[!] You asked for port ${requestedPort}, but it is serving on ${runningPort}.`);\n+    lines.push(`    Run 'ix view stop' then 'ix view -p ${requestedPort}' to move it.`);\n+  }\n+  return lines;\n+}\n+\n /** Read PID from file and check if the process is alive. */\n function readAlivePid(): number | null {\n   if (!existsSync(PID_FILE)) {\n@@ -241,6 +273,11 @@ export function registerViewCommand(program: Command): void {\n         console.error(\"[error] Invalid port number.\");\n         process.exit(1);\n       }\n+      // Whether -p was typed, not whether it differs from 8080. Comparing against\n+      // the default instead would stay silent for someone who explicitly passed\n+      // `-p 8080` to a server running elsewhere — the exact case they typed the\n+      // flag to find out about — and would nag anyone who typed nothing.\n+      const portWasRequested = view.getOptionValueSource(\"port\") === \"cli\";\n \n       // Resolve the workspace this visualizer is scoped to. The proxy stamps it as\n       // X-Ix-Workspace on every /v1 call so Compass isolates by workspace without any\n@@ -286,12 +323,8 @@ export function registerViewCommand(program: Command): void {\n       const existing = readAlivePid();\n       if (existing) {\n         console.log(`[ok] Visualizer is already running (PID ${existing})`);\n-        const runningPort = readRunningPort();\n-        if (runningPort !== null) {\n-          console.log(`  http://[redacted]${runningPort}`);\n-        } else {\n-          console.log(\"[!] The running visualizer's port is unknown.\");\n-          console.log(\"    Run 'ix view stop' then 'ix view' to restart it.\");\n+        for (const line of runningInstanceLines(readRunningPort(), port, portWasRequested)) {\n+          console.log(line);\n         }\n         // The running instance has a fixed scope (baked at launch). If this directory\n         // maps to a different workspace, say so rather than silently showing the old one.\n@@ -396,6 +429,16 @@ export function registerViewCommand(program: Command): void {\n       const pid = readAlivePid();\n       if (pid) {\n         console.log(`[ok] Visualizer is running (PID ${pid})`);\n+        // Now that the port is recorded, status can answer the question people\n+        // actually run it to answer. Shares runningInstanceLines with the\n+        // already-running branch above so the two cannot drift: an instance\n+        // started before the port file existed still has no port to report, and\n+        // saying so beats printing nothing to someone who ran status *for* the\n+        // URL. Never guessed either way — a confidently wrong URL is #358.\n+        // `status` takes no -p, so the mismatch branch cannot fire here.\n+        for (const line of runningInstanceLines(readRunningPort(), 0, false)) {\n+          console.log(line);\n+        }\n       } else {\n         console.log(\"[--] Visualizer is not running.\");\n         console.log(\"  Run 'ix view' to start it.\");"
+      }
+    ],
+    "commits": [
+      {
+        "sha": "72c0b850681618a7a12a3d1ce1b8c90f0c26a7d3",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/72c0b850681618a7a12a3d1ce1b8c90f0c26a7d3",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/72c0b850681618a7a12a3d1ce1b8c90f0c26a7d3",
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "committer": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "message": "fix(view): say when -p was not honoured, and show the URL in status\n\nFollow-up to #358, which stopped the already-running branch printing an\nunreachable URL built from the port just requested. It reports the real\nport now, but says nothing about the request, so `ix view -p 19124`\nagainst a server on 19123 prints a correct URL for a port nobody asked\nfor and never mentions the flag was ignored — you find out by noticing\nthe number changed.\n\nWarns on the mismatch instead, keyed on whether -p was typed rather than\nwhether it differs from 8080: comparing against the default would stay\nsilent for someone who explicitly passed `-p 8080` to a server running\nelsewhere, which is the case they typed the flag to find out about, and\nwould nag anyone who typed nothing at all.\n\n`ix view status` also prints the URL now. The port is recorded as of\n#358, so status can finally answer the question people run it to ask. It\nstays silent rather than guessing for an instance old enough to have\nneither a port file nor a server script to recover one from.\n\nThe decision is pulled out as a pure function — inline in the command\naction it could only be exercised by launching a detached server.",
+        "parents": [
+          {
+            "sha": "3c49cc243654aae428cfc4b8802f0b3a99de56a4",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/3c49cc243654aae428cfc4b8802f0b3a99de56a4"
+          }
+        ],
+        "tree_sha": "e19849ec0da513d7620afaa747280ed54050bc9a",
+        "authored_at": "2026-08-09T21:25:32Z",
+        "committed_at": "2026-08-09T21:25:32Z"
+      },
+      {
+        "sha": "95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449",
+        "author": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "committer": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "message": "fix(view): say the port is unknown from status, not nothing\n\nReview follow-up. `ix view` and `ix view status` disagreed in exactly the\nstate that motivated #358: with a live PID but no recoverable port, `ix view`\nprinted the \"port is unknown\" advisory and told you how to recover, while\n`status` printed the PID line and stopped.\n\nNeither guessed a URL, so this was never a #358 regression -- but silence is\nthe wrong answer for someone who ran `status` *for* the URL, and it was also\nunpinned: the existing test only asserted the absence of \"http://localhost\",\nwhich the advisory satisfies too, so the behaviour could drift either way.\n\nRoute status through runningInstanceLines so the two branches cannot drift.\n`status` takes no -p, so the mismatch branch is unreachable from here.\n\nConfirmed non-vacuous: with the old two-line form restored, the new test fails\non \"expected '[ok] Visualizer is running (PID 4242)' to contain 'unknown'\".\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>\nClaude-Session: https://claude.ai/code/session_01PZhcNcCtFQ6Bz2XMDpJPJS",
+        "parents": [
+          {
+            "sha": "72c0b850681618a7a12a3d1ce1b8c90f0c26a7d3",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/72c0b850681618a7a12a3d1ce1b8c90f0c26a7d3"
+          }
+        ],
+        "tree_sha": "a03effeb9092cd9e5d9e7a3ec3048e1fb5571625",
+        "authored_at": "2026-08-10T04:37:43Z",
+        "committed_at": "2026-08-10T04:37:43Z"
+      }
+    ],
+    "comments": [],
+    "reviews": [
+      {
+        "id": 4893362967,
+        "node_id": "PRR_kwDORdC75M8AAAABI6rLFw",
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 362,
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "state": "COMMENTED",
+        "body": "Extracting `runningInstanceLines` as a pure function is the right move — inline in the command action this branch could only be exercised by launching a detached server, which is why the gap survived #358 in the first place.\n\n`getOptionValueSource(\"port\") === \"cli\"` is the correct predicate, and the comment explains why the obvious alternative is wrong in *both* directions: comparing against the default stays silent for someone who explicitly typed `-p 8080` against a server running elsewhere (exactly the case they typed the flag to discover), and nags anyone who typed nothing.\n\nThe `runningPort === null` test earns its place — asserting that no `http://localhost` appears at all is a direct regression guard on the confidently-wrong URL #358 removed. Easy to reintroduce that through a new warning path; now it fails loudly.\n\n`status` reporting the URL is the small one that will get used the most.\n\nAll checks green. Approving.\n",
+        "html_url": "https://github.com/ix-infrastructure/Ix/pull/362#pullrequestreview-4893362967",
+        "submitted_at": "2026-08-10T02:45:41Z",
+        "commit_id": "72c0b850681618a7a12a3d1ce1b8c90f0c26a7d3",
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      },
+      {
+        "id": 4898844330,
+        "node_id": "PRR_kwDORdC75M8AAAABI_5uqg",
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 362,
+        "author": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "state": "APPROVED",
+        "body": "Two independent review passes (one on your commit, one on my follow-up). Merging.\n\n**Your `getOptionValueSource` approach checks out empirically, not just by reading.** Against the installed commander 15.0.0 source: `.default()` stamps `'default'` (`command.js:679`), the argv path stamps `'cli'` (`:713`), and `'env'` is only registered when `[redacted]()` is used (`:719`) — which this isn't. 12 argv orderings probed, and every genuinely typed `-p` returns `cli`, including `--port=19124`, `-p19124`, `-p` after the subcommand, and the `-p 8080` case your comment calls out. `main.ts` does no argv rewriting and no config layer supplies a port, so the source is only ever `cli` or `default`. The warning cannot silently never fire.\n\n**The wiring is genuinely tested**, which was my main worry given the extracted-pure-function shape. `runView` builds a real `new Command()`, calls the production `registerViewCommand`, and parses real argv — nothing stubs commander or the option source. Forcing the source comparison to fail breaks a test:\n`× says the requested port was not honoured — expected '[ok] Visualizer is already running (P…' to contain 'You asked for port 19124'`\nAll five load-bearing lines mutation-checked; each kills exactly the test that claims it.\n\n**I pushed one commit.** `ix view` and `ix view status` disagreed in precisely the state that motivated #358: with a live PID and no recoverable port, `ix view` printed the advisory and a recovery command, `status` printed the PID line and stopped. Not a #358 regression — neither guesses a URL, and `readRunningPort` funnels everything through `parsePort`, so a corrupt port file yields `null`, never a bad port. But silence is the wrong answer for someone who ran `status` *for* the URL, and it was unpinned: the old assertion was only `not.toContain(\"http://localhost\")`, which the advisory satisfies too, so it could have drifted either way.\n\n`status` now routes through `runningInstanceLines` so the two branches cannot drift. It takes no `-p`, so the mismatch branch is unreachable from there — `portWasRequested: false` means the `0` is never read, confirmed against every reachable `runningPort` value. The old assertion is retained, not replaced. Bug restored: `× says the port is unknown from status instead of printing nothing`, exactly one failure, so nothing else depended on the silence.\n\nOne cosmetic thing I left alone: when the port and scope advisories both fire, they print two recovery commands that each silently undo the other's intent (one drops `--all`, the other drops `-p`). Uncommon state, and worth a follow-up rather than widening this PR.",
+        "html_url": "https://github.com/ix-infrastructure/Ix/pull/362#pullrequestreview-4898844330",
+        "submitted_at": "2026-08-10T16:23:59Z",
+        "commit_id": "95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449",
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      }
+    ],
+    "review_comments": [],
+    "timeline": [
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/72c0b850681618a7a12a3d1ce1b8c90f0c26a7d3"
+      },
+      {
+        "id": 29192930819,
+        "event": "review_requested",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-09T21:25:50Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29192930819"
+      },
+      {
+        "id": 29192930943,
+        "event": "mentioned",
+        "actor": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "created_at": "2026-08-09T21:25:51Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29192930943"
+      },
+      {
+        "id": 29192930964,
+        "event": "subscribed",
+        "actor": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "created_at": "2026-08-09T21:25:51Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29192930964"
+      },
+      {
+        "id": 4893362967,
+        "event": "reviewed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": "72c0b850681618a7a12a3d1ce1b8c90f0c26a7d3",
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449"
+      },
+      {
+        "id": 4898844330,
+        "event": "reviewed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": "95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449",
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": 29234251790,
+        "event": "merged",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-10T16:24:03Z",
+        "commit_id": "e117b6d29d9b3929d4442d7a336f8425a6dedede",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29234251790"
+      },
+      {
+        "id": 29234251937,
+        "event": "closed",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-10T16:24:03Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29234251937"
+      },
+      {
+        "id": 29234253518,
+        "event": "head_ref_deleted",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-10T16:24:05Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29234253518"
+      }
+    ],
+    "source": "OFFICIAL_GITHUB_FACT",
+    "review_threads": [],
+    "review_thread_capture": {
+      "status": "VERIFIED",
+      "source": "GitHub GraphQL API"
+    }
+  },
+  "source_context": {
+    "id": "github:pull_request:ix-infrastructure/Ix#362",
+    "source": {
+      "type": "github_pull_request",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/362",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/362",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-09T21:25:49Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T16:24:05Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "PR-362",
+    "entity_type": "PULL_REQUEST",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "mirror_scope": "source PR, commits, files, comments, reviews, review comments, and review threads",
+    "related_analysis_types": [
+      "FINDING",
+      "DECISION",
+      "IMPLEMENTATION"
+    ],
+    "review_thread_state": "VERIFIED_GRAPHQL"
   },
   "relationships": [
     {
@@ -28,6 +470,86 @@
       "other_type": "file",
       "other_title": "CLI-HANDOFF/phase-15/FINAL-PR-WORTHINESS-AUDIT.json",
       "other_url": "https://alot1z.github.io/Ix-findings/entities/src-90ab8426282e"
+    },
+    {
+      "direction": "out",
+      "relationship": "FOUND_IN",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "in",
+      "relationship": "AUTHORED",
+      "other": "PERSON-KageBinary",
+      "other_type": "artifact",
+      "other_title": "KageBinary",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-kagebinary"
+    },
+    {
+      "direction": "out",
+      "relationship": "HEADS_AT",
+      "other": "COMMIT-95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449",
+      "other_type": "commit",
+      "other_title": "95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449"
+    },
+    {
+      "direction": "out",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "COMMIT-72c0b850681618a7a12a3d1ce1b8c90f0c26a7d3",
+      "other_type": "commit",
+      "other_title": "72c0b850681618a7a12a3d1ce1b8c90f0c26a7d3",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-72c0b850681618a7a12a3d1ce1b8c90f0c26a7d3"
+    },
+    {
+      "direction": "out",
+      "relationship": "INCLUDES_COMMIT",
+      "other": "COMMIT-95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449",
+      "other_type": "commit",
+      "other_title": "95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_REVIEW",
+      "other": "REVIEW-ix-infrastructure-Ix-pr-362-4893362967",
+      "other_type": "artifact",
+      "other_title": "Review 4893362967 on PR #362",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/review-ix-infrastructure-ix-pr-362-4893362967"
+    },
+    {
+      "direction": "in",
+      "relationship": "REVIEWED_BY",
+      "other": "PERSON-KageBinary",
+      "other_type": "artifact",
+      "other_title": "KageBinary",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-kagebinary"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_REVIEW",
+      "other": "REVIEW-ix-infrastructure-Ix-pr-362-4898844330",
+      "other_type": "artifact",
+      "other_title": "Review 4898844330 on PR #362",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/review-ix-infrastructure-ix-pr-362-4898844330"
+    },
+    {
+      "direction": "in",
+      "relationship": "REVIEWED_BY",
+      "other": "PERSON-josephismikhail",
+      "other_type": "artifact",
+      "other_title": "josephismikhail",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-josephismikhail"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGED_BY",
+      "other": "COMMIT-95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449",
+      "other_type": "commit",
+      "other_title": "95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-95d76b96d0c1b6c0a9a03102d6bf93aa7c7e4449"
     }
   ]
 }

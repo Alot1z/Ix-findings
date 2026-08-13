@@ -1,0 +1,438 @@
+{
+  "id": "FILE-167332b6ad95",
+  "type": "artifact",
+  "title": "ix-cli/package.json",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/file-167332b6ad95",
+  "summary": {
+    "id": "FILE-167332b6ad95",
+    "type": "artifact",
+    "title": "ix-cli/package.json",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "source_mirror_id": "github:file:ix-infrastructure/Ix:ix-cli/package.json",
+    "source_type": "github_file",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/blob/94328d82bc6738f4900d5aff51b406bf6c934e73/ix-cli%2Fpackage.json",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 387,
+    "filename": "ix-cli/package.json",
+    "status": "modified",
+    "additions": 1,
+    "deletions": 1,
+    "changes": 2,
+    "blob_url": "https://github.com/ix-infrastructure/Ix/blob/94328d82bc6738f4900d5aff51b406bf6c934e73/ix-cli%2Fpackage.json",
+    "raw_url": "https://github.com/ix-infrastructure/Ix/raw/94328d82bc6738f4900d5aff51b406bf6c934e73/ix-cli%2Fpackage.json",
+    "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fpackage.json?ref=94328d82bc6738f4900d5aff51b406bf6c934e73",
+    "patch": "@@ -1,6 +1,6 @@\n {\n   \"name\": \"@ix/cli\",\n-  \"version\": \"0.6.1\",\n+  \"version\": \"0.9.2\",\n   \"type\": \"module\",\n   \"description\": \"Ix Memory — Persistent Memory for LLM Systems\",\n   \"main\": \"dist/index.js\",",
+    "parent_pr": 387
+  },
+  "source_context": {
+    "id": "github:file:ix-infrastructure/Ix:ix-cli/package.json",
+    "source": {
+      "type": "github_file",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/blob/94328d82bc6738f4900d5aff51b406bf6c934e73/ix-cli%2Fpackage.json",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T20:44:19Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T20:46:17Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "FILE-167332b6ad95",
+    "entity_type": "FILE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#387",
+    "line_precision": "FILE_LEVEL"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-94328d82bc6738f4900d5aff51b406bf6c934e73",
+      "other_type": "commit",
+      "other_title": "94328d82bc6738f4900d5aff51b406bf6c934e73",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-94328d82bc6738f4900d5aff51b406bf6c934e73"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-5488741155d69a5f03fce41416643ddceca6f8a0",
+      "other_type": "commit",
+      "other_title": "5488741155d69a5f03fce41416643ddceca6f8a0",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-5488741155d69a5f03fce41416643ddceca6f8a0"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-c4f8fea3916c87e83167bdfaaee945159f64ad0f",
+      "other_type": "commit",
+      "other_title": "c4f8fea3916c87e83167bdfaaee945159f64ad0f",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-c4f8fea3916c87e83167bdfaaee945159f64ad0f"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-ac13473469361dbb07a1104cb9a89c77d0482229",
+      "other_type": "commit",
+      "other_title": "ac13473469361dbb07a1104cb9a89c77d0482229",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-ac13473469361dbb07a1104cb9a89c77d0482229"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-8f2c509beb2c21b2867978ad811df6c3f4faac69",
+      "other_type": "commit",
+      "other_title": "8f2c509beb2c21b2867978ad811df6c3f4faac69",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-8f2c509beb2c21b2867978ad811df6c3f4faac69"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-37d85b5388b354b69930c918de3e627d2a42ec81",
+      "other_type": "commit",
+      "other_title": "37d85b5388b354b69930c918de3e627d2a42ec81",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-37d85b5388b354b69930c918de3e627d2a42ec81"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-00acf08fb93b0719af53b24f91462fbe29b1eeca",
+      "other_type": "commit",
+      "other_title": "00acf08fb93b0719af53b24f91462fbe29b1eeca",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-00acf08fb93b0719af53b24f91462fbe29b1eeca"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-8495f17b0c4a5dad71750dc05b71ccd799324350",
+      "other_type": "commit",
+      "other_title": "8495f17b0c4a5dad71750dc05b71ccd799324350",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-8495f17b0c4a5dad71750dc05b71ccd799324350"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-ba4dbce4d16e741a4453ef5921897e6e74ae0529",
+      "other_type": "commit",
+      "other_title": "ba4dbce4d16e741a4453ef5921897e6e74ae0529",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-ba4dbce4d16e741a4453ef5921897e6e74ae0529"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-27d69ccb02f14f639ee775d051bbbdb1c7ff02f1",
+      "other_type": "commit",
+      "other_title": "27d69ccb02f14f639ee775d051bbbdb1c7ff02f1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-27d69ccb02f14f639ee775d051bbbdb1c7ff02f1"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-06b7f273d0d0cf0660ddd29a857e07d32f6f7b71",
+      "other_type": "commit",
+      "other_title": "06b7f273d0d0cf0660ddd29a857e07d32f6f7b71",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-06b7f273d0d0cf0660ddd29a857e07d32f6f7b71"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-2c93631cb80bcfc32f4da1e555f91cd2bdfb3aed",
+      "other_type": "commit",
+      "other_title": "2c93631cb80bcfc32f4da1e555f91cd2bdfb3aed",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-2c93631cb80bcfc32f4da1e555f91cd2bdfb3aed"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-dcfb6bc32bf54c9fb9a8026f2ba7a24364564eeb",
+      "other_type": "commit",
+      "other_title": "dcfb6bc32bf54c9fb9a8026f2ba7a24364564eeb",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-dcfb6bc32bf54c9fb9a8026f2ba7a24364564eeb"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-2b80c420b9700cd887e855c48ef4dd4a82f9369a",
+      "other_type": "commit",
+      "other_title": "2b80c420b9700cd887e855c48ef4dd4a82f9369a",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-2b80c420b9700cd887e855c48ef4dd4a82f9369a"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-815cec26a498b957ea668123c2ecc46ca344dda2",
+      "other_type": "commit",
+      "other_title": "815cec26a498b957ea668123c2ecc46ca344dda2",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-815cec26a498b957ea668123c2ecc46ca344dda2"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-da149f78c381e8d99dc1d65ad0bb60b2b63fc50c",
+      "other_type": "commit",
+      "other_title": "da149f78c381e8d99dc1d65ad0bb60b2b63fc50c",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-da149f78c381e8d99dc1d65ad0bb60b2b63fc50c"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-bc02305046bf34e606b21862139cc3422d101a34",
+      "other_type": "commit",
+      "other_title": "bc02305046bf34e606b21862139cc3422d101a34",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-bc02305046bf34e606b21862139cc3422d101a34"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-51ebcac90c399d1e8d35adc019c14b6b07fd722e",
+      "other_type": "commit",
+      "other_title": "51ebcac90c399d1e8d35adc019c14b6b07fd722e",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-51ebcac90c399d1e8d35adc019c14b6b07fd722e"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-f1341dbc0591432990b5979be5caae6f790e18fd",
+      "other_type": "commit",
+      "other_title": "f1341dbc0591432990b5979be5caae6f790e18fd",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-f1341dbc0591432990b5979be5caae6f790e18fd"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-6ab8141d2df95d585146d49392582d1b7b8bbdf3",
+      "other_type": "commit",
+      "other_title": "6ab8141d2df95d585146d49392582d1b7b8bbdf3",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-6ab8141d2df95d585146d49392582d1b7b8bbdf3"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-41b26e6128ab4539710bffa35da6661d95211e97",
+      "other_type": "commit",
+      "other_title": "41b26e6128ab4539710bffa35da6661d95211e97",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-41b26e6128ab4539710bffa35da6661d95211e97"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-5285e78c57f7adc50aae77cb57338827d64b8c84",
+      "other_type": "commit",
+      "other_title": "5285e78c57f7adc50aae77cb57338827d64b8c84",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-5285e78c57f7adc50aae77cb57338827d64b8c84"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-6ed2f6858ca36ab1469d1d9d2e25e9c11877d2c6",
+      "other_type": "commit",
+      "other_title": "6ed2f6858ca36ab1469d1d9d2e25e9c11877d2c6",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-6ed2f6858ca36ab1469d1d9d2e25e9c11877d2c6"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-92b40676c9290e1df9c002b3cda939106e544d37",
+      "other_type": "commit",
+      "other_title": "92b40676c9290e1df9c002b3cda939106e544d37",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-92b40676c9290e1df9c002b3cda939106e544d37"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-2899199fe7b3a91f34047576d7e7f74a69169f74",
+      "other_type": "commit",
+      "other_title": "2899199fe7b3a91f34047576d7e7f74a69169f74",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-2899199fe7b3a91f34047576d7e7f74a69169f74"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-43966484140dbb19da68e21f10b7f726eb038a18",
+      "other_type": "commit",
+      "other_title": "43966484140dbb19da68e21f10b7f726eb038a18",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-43966484140dbb19da68e21f10b7f726eb038a18"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-34a9a95cc0350c2efc6de28bbedc90ac99aa2c57",
+      "other_type": "commit",
+      "other_title": "34a9a95cc0350c2efc6de28bbedc90ac99aa2c57",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-34a9a95cc0350c2efc6de28bbedc90ac99aa2c57"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-4baa10fa7220ced5805596d2a80004face33b178",
+      "other_type": "commit",
+      "other_title": "4baa10fa7220ced5805596d2a80004face33b178",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-4baa10fa7220ced5805596d2a80004face33b178"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-3e9a4c8329145cb731a23f388bec26fcbc7702bc",
+      "other_type": "commit",
+      "other_title": "3e9a4c8329145cb731a23f388bec26fcbc7702bc",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-3e9a4c8329145cb731a23f388bec26fcbc7702bc"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-0f8c44f46d49dc857ec08307badb6568ae079720",
+      "other_type": "commit",
+      "other_title": "0f8c44f46d49dc857ec08307badb6568ae079720",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-0f8c44f46d49dc857ec08307badb6568ae079720"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-232a429d2d07e754d61286986d1513d2d880d774",
+      "other_type": "commit",
+      "other_title": "232a429d2d07e754d61286986d1513d2d880d774",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-232a429d2d07e754d61286986d1513d2d880d774"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-7261d6d7c9f0ccbf129967550835918332b15097",
+      "other_type": "commit",
+      "other_title": "7261d6d7c9f0ccbf129967550835918332b15097",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-7261d6d7c9f0ccbf129967550835918332b15097"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-013e96296499d444b8b9fd3e68bae118fbec081e",
+      "other_type": "commit",
+      "other_title": "013e96296499d444b8b9fd3e68bae118fbec081e",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-013e96296499d444b8b9fd3e68bae118fbec081e"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-76ab10d89c5ddb4acb635554d13e76a8d672df9c",
+      "other_type": "commit",
+      "other_title": "76ab10d89c5ddb4acb635554d13e76a8d672df9c",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-76ab10d89c5ddb4acb635554d13e76a8d672df9c"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-771b07fb31aa97cf99a29e138575eb856551af5c",
+      "other_type": "commit",
+      "other_title": "771b07fb31aa97cf99a29e138575eb856551af5c",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-771b07fb31aa97cf99a29e138575eb856551af5c"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-c4dfc53e303d72422f35a16b268a891dd3708a73",
+      "other_type": "commit",
+      "other_title": "c4dfc53e303d72422f35a16b268a891dd3708a73",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-c4dfc53e303d72422f35a16b268a891dd3708a73"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-270c743738990843f992d43809ef30f549f4d648",
+      "other_type": "commit",
+      "other_title": "270c743738990843f992d43809ef30f549f4d648",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-270c743738990843f992d43809ef30f549f4d648"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-65eb0287c032cce90b6c5c9768337257fdddc823",
+      "other_type": "commit",
+      "other_title": "65eb0287c032cce90b6c5c9768337257fdddc823",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-65eb0287c032cce90b6c5c9768337257fdddc823"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-c850a9adb6eded99a19590e76239181ab54e9aec",
+      "other_type": "commit",
+      "other_title": "c850a9adb6eded99a19590e76239181ab54e9aec",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-c850a9adb6eded99a19590e76239181ab54e9aec"
+    },
+    {
+      "direction": "in",
+      "relationship": "CO_CHANGED_WITH",
+      "other": "FILE-29743d3a9ad0",
+      "other_type": "artifact",
+      "other_title": "ix-cli/package-lock.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-29743d3a9ad0"
+    },
+    {
+      "direction": "in",
+      "relationship": "CO_CHANGED_WITH",
+      "other": "FILE-bbbba2af7455",
+      "other_type": "artifact",
+      "other_title": "README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-bbbba2af7455"
+    },
+    {
+      "direction": "out",
+      "relationship": "CO_CHANGED_WITH",
+      "other": "FILE-451b37ef714a",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/main.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-451b37ef714a"
+    },
+    {
+      "direction": "in",
+      "relationship": "CO_CHANGED_WITH",
+      "other": "FILE-af80a30c339f",
+      "other_type": "artifact",
+      "other_title": ".release-please-manifest.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-af80a30c339f"
+    },
+    {
+      "direction": "in",
+      "relationship": "CO_CHANGED_WITH",
+      "other": "FILE-f12cd232d3a7",
+      "other_type": "artifact",
+      "other_title": "CHANGELOG.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f12cd232d3a7"
+    },
+    {
+      "direction": "out",
+      "relationship": "CO_CHANGED_WITH",
+      "other": "FILE-130258cb51fd",
+      "other_type": "artifact",
+      "other_title": "package-lock.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-130258cb51fd"
+    },
+    {
+      "direction": "out",
+      "relationship": "CO_CHANGED_WITH",
+      "other": "FILE-cba9ce04f35b",
+      "other_type": "artifact",
+      "other_title": "package.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-cba9ce04f35b"
+    }
+  ]
+}

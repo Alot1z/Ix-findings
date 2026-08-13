@@ -1,0 +1,79 @@
+{
+  "id": "COMMIT-f808b819174e8b414982393024b3829a536fe8cd",
+  "type": "commit",
+  "title": "f808b819174e8b414982393024b3829a536fe8cd",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-f808b819174e8b414982393024b3829a536fe8cd",
+  "summary": {
+    "id": "COMMIT-f808b819174e8b414982393024b3829a536fe8cd",
+    "type": "commit",
+    "title": "f808b819174e8b414982393024b3829a536fe8cd",
+    "status": "HISTORICAL",
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    }
+  },
+  "source_snapshot": {
+    "sha": "f808b819174e8b414982393024b3829a536fe8cd",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/f808b819174e8b414982393024b3829a536fe8cd",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/f808b819174e8b414982393024b3829a536fe8cd",
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "committer": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "message": "test(mcp): scope the UNC staleness case to Windows\n\nA UNC path is a network location only on Windows, where stat fails on an\nunreachable one with something other than ENOENT — which is the whole point of\nthe assertion. Everywhere else those backslashes are ordinary filename\ncharacters, the path really is absent, and `stale` is the right answer, so the\ntest failed on both Linux runners and both macOS runners while passing on\nWindows where it was written. Confirmed against Linux directly rather than by\nanother CI round-trip.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>",
+    "parents": [
+      {
+        "sha": "ce651134107f248683db254bd9c4aee605afd88b",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/ce651134107f248683db254bd9c4aee605afd88b"
+      }
+    ],
+    "tree_sha": "7773d3a8396df914ed0dbc780b871bc572c5e7e1",
+    "authored_at": "2026-08-12T18:15:07Z",
+    "committed_at": "2026-08-12T18:15:07Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@f808b819174e8b414982393024b3829a536fe8cd",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/f808b819174e8b414982393024b3829a536fe8cd",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/f808b819174e8b414982393024b3829a536fe8cd",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-12T18:15:07Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-12T18:15:07Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-f808b819174e8b414982393024b3829a536fe8cd",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#401"
+  },
+  "relationships": []
+}

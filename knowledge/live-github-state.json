@@ -1,88 +1,152 @@
 {
-  "captured_at": "2026-08-11T21:11:00Z",
-  "capture_note": "PR #393 head is a6a4726 again (the AGENTS.md cherry-pick d676a94 was removed from the branch, so implementation head == PR head). Added fork_branches with live-verified heads for Alot1z/Ix branches: main 7e28e05, feat/ix-mcp 603e51f, feat/ix-remap-hardening a6a4726, feat/ix-agent-skill 30f28b3. Upstream head unchanged; PR #388/#395 heads unchanged.",
-  "source": "read-only GitHub API via gh api",
+  "captured_at": "2026-08-13T22:23:39.068Z",
+  "capture_note": "Phase C read-only GitHub refresh. Full collaboration records are in knowledge/github-collaboration.json and planning/phase-c/*.json; this file is the compact freshness baseline.",
+  "source": "read-only GitHub REST API via supplied token",
   "upstream": {
     "repository": "ix-infrastructure/Ix",
     "default_branch": "main",
-    "head_sha": "1292375548fb8f4431ac5afc34c68fe2573434d1",
-    "head_sha_short": "1292375548fb"
+    "head_sha": "ab823e34b9ec8679dcf0df4b4ec5725207e2a88d",
+    "head_sha_short": "ab823e34b9ec"
   },
   "fork_branches": {
     "Alot1z/Ix": {
-      "main": "7e28e05e36e8f890e8f8a9a6ba7a7ff8c6ea18b8",
+      "chore/brew-update-v0.9.1": "23fdc9ab76fa2fd3fb487ed1e12cf0e36cfeb800",
+      "chore/raise-node-floor-to-22": "0bc722d25997f3e49e4529389958f1b877b926db",
+      "copilot/research-open-source-contribution": "ff7df414e165779f72e9dd121b3f48c2f55b9350",
+      "feat/ix-agent-context": "815afeac0b1fcdff7d140c74a093e52375da1bab",
+      "feat/ix-agent-skill": "30f28b3c7f2771a7003af83b5be618a7913d447a",
       "feat/ix-mcp": "603e51f7f877bb59677516be08ee83ef30e562a8",
-      "feat/ix-remap-hardening": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
-      "feat/ix-agent-skill": "30f28b3c7f2771a7003af83b5be618a7913d447a"
+      "feat/ix-mcp-enrichment": "8e348d8f081cccdd2fb6b75941c5e9a777b459ad",
+      "feat/ix-remap-hardening": "b4060d4b59d177e0feed253f977292986158d99d",
+      "feat/remote-runner-and-create-client": "f4259b7d1ede45e8ae62e42407ac2e184c92ca0f",
+      "fix/installer-docker-autoinstall-noop": "4475d240b3a9bae0618626c9b1f5d73c8883c167",
+      "fix/installer-ghcr-denied-diagnostics": "14eb3506160bf7aabba9ea6261a714dff02e39f6",
+      "fix/prerequisites-not-a-pip-manifest": "7054d5fc3fb98a987b0cba4e78efad1db4bff1af",
+      "fix/progress-frames-non-tty": "decd85e25d922f13b049f08d5875e162e8d7a62f",
+      "fix/release-prerelease-handling": "77e8a5ecd079c12b6921ac2a0273153f580cd92b",
+      "fix/stamp-bundled-compass-version": "83c4308b5d1c7f70fd1294350474890c3549ea04",
+      "fix/status-workspace-scoped-patch": "1e590250a4ab70da9c4016b3faa52bf2be5749c6",
+      "fix/view-port-mismatch-warning": "72c0b850681618a7a12a3d1ce1b8c90f0c26a7d3",
+      "fix/view-reports-running-port": "c5357aa6965aa0a88706c49005a4d70b58aec41a",
+      "fix/windows-short-temp-path": "e3b591c3b0507b0440d6891dab2f1bcd1457f970",
+      "fix/windows-tar-cygpath-pairing": "f434f9d0bc5027a5d3033df35caed7a8c2c84fc8",
+      "fix/workspace-id-yaml-numeric-coercion": "80b429f2ce398eb3bf9e842cdf7b4d35dc34286d",
+      "main": "7e28e05e36e8f890e8f8a9a6ba7a7ff8c6ea18b8",
+      "old-dev": "f771abffab3d7104550a593746a2d7cdffd7d088",
+      "refactor/core-ingestion-cloud-architecture": "480915b643a705bb7ac8be6fe353ed34b007e7f2",
+      "refactor/stale-drop-dead-client": "2f68cccb28440f2679e838decc40866cd5d98f34"
     }
   },
   "open_issues": [
     {
-      "number": 219,
-      "title": "Add ix mcp subcommand: expose ix as a local MCP server",
+      "number": 420,
+      "title": "[bug] ix watch bypasses canonical ingestion and leaves stale graph data",
       "state": "open",
-      "user": "josephismikhail",
-      "url": "https://github.com/ix-infrastructure/Ix/issues/219",
-      "labels": [
-        "enhancement"
-      ]
+      "state_reason": null,
+      "user": "Hiro-Chiba",
+      "url": "https://github.com/ix-infrastructure/Ix/issues/420",
+      "labels": [],
+      "updated_at": "2026-08-13T19:15:09Z",
+      "closed_at": null,
+      "comments_count": 0
     },
     {
-      "number": 349,
-      "title": "[bug] Windows installer — path with spaces",
+      "number": 413,
+      "title": "[bug] ix config set fails when ~/.ix does not exist",
       "state": "open",
-      "user": "RMA1313",
-      "url": "https://github.com/ix-infrastructure/Ix/issues/349",
-      "labels": [
-        "bug"
-      ]
-    },
-    {
-      "number": 383,
-      "title": "[bug] Codex hooks and CLI subprocess calls fail on native Windows",
-      "state": "open",
-      "user": "tept-creator",
-      "url": "https://github.com/ix-infrastructure/Ix/issues/383"
-    },
-    {
-      "number": 385,
-      "title": "[bug] ix upgrade breaks Windows CLI when upgrading from 0.8.1 to 0.9.1",
-      "state": "open",
-      "user": "RMA1313",
-      "url": "https://github.com/ix-infrastructure/Ix/issues/385",
-      "labels": [
-        "bug"
-      ]
+      "state_reason": null,
+      "user": "Hiro-Chiba",
+      "url": "https://github.com/ix-infrastructure/Ix/issues/413",
+      "labels": [],
+      "updated_at": "2026-08-13T18:56:58Z",
+      "closed_at": null,
+      "comments_count": 0
     }
   ],
   "open_pull_requests": [
     {
-      "number": 388,
-      "title": "chore(brew): update formula for v0.9.2",
+      "number": 423,
+      "title": "feat(agent): unify Ix context, provenance, and investigation workflows for agents",
       "state": "open",
-      "user": "github-actions[bot]",
-      "url": "https://github.com/ix-infrastructure/Ix/pull/388"
-    },
-    {
-      "number": 393,
-      "title": "feat(view): real /__ix/remap endpoint with loopback guard; fix WSL bootstrap",
-      "state": "open",
+      "draft": false,
+      "merged": false,
       "user": "Alot1z",
-      "url": "https://github.com/ix-infrastructure/Ix/pull/393",
-      "head_ref": "feat/ix-remap-hardening",
-      "head_sha": "a6a47267af21a49d6942ee6e07e18d1d0a82517b",
-      "head_repo": "Alot1z/Ix"
+      "url": "https://github.com/ix-infrastructure/Ix/pull/423",
+      "head_ref": "feat/ix-agent-context",
+      "head_sha": "815afeac0b1fcdff7d140c74a093e52375da1bab",
+      "head_repo": "Alot1z/Ix-remap",
+      "base_ref": "main",
+      "base_sha": "ab823e34b9ec8679dcf0df4b4ec5725207e2a88d",
+      "merge_sha": "00af9832c7c1798a677ba7aefdb6d07625cc672f",
+      "merged_at": null,
+      "updated_at": "2026-08-13T22:16:13Z",
+      "related_issue": null,
+      "comments_count": 0,
+      "reviews_count": 1,
+      "review_comments_count": 1
     },
     {
-      "number": 395,
-      "title": "test(upgrade): cover an IX_HOME containing a space",
+      "number": 422,
+      "title": "feat(mcp): enrich Ix MCP tools with structured outputs, semantic annotations, and stronger agent interoperability",
       "state": "open",
-      "user": "KageBinary",
-      "url": "https://github.com/ix-infrastructure/Ix/pull/395",
-      "head_ref": "test/ix-home-with-space",
-      "head_sha": "13e96bacc648ee979f35e2874cd8aa2004f920e1",
-      "head_repo": "Alot1z/Ix",
-      "related_issue": 349
+      "draft": false,
+      "merged": false,
+      "user": "Alot1z",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/422",
+      "head_ref": "feat/ix-mcp-enrichment",
+      "head_sha": "8e348d8f081cccdd2fb6b75941c5e9a777b459ad",
+      "head_repo": "Alot1z/Ix-remap",
+      "base_ref": "main",
+      "base_sha": "ab823e34b9ec8679dcf0df4b4ec5725207e2a88d",
+      "merge_sha": "36bf9e05b81a5a7a5fa98fe3e5beea51c64e509a",
+      "merged_at": null,
+      "updated_at": "2026-08-13T22:11:22Z",
+      "related_issue": null,
+      "comments_count": 0,
+      "reviews_count": 0,
+      "review_comments_count": 0
+    },
+    {
+      "number": 421,
+      "title": "fix(watch): refresh through canonical map ingestion",
+      "state": "open",
+      "draft": false,
+      "merged": false,
+      "user": "Hiro-Chiba",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/421",
+      "head_ref": "fix/watch-canonical-ingest",
+      "head_sha": "8d6be713600302ca22da3981059e7319c050b64b",
+      "head_repo": "Hiro-Chiba/Ix",
+      "base_ref": "main",
+      "base_sha": "ab823e34b9ec8679dcf0df4b4ec5725207e2a88d",
+      "merge_sha": "80071ebc27b1e476124dbb6097c7573001d230f0",
+      "merged_at": null,
+      "updated_at": "2026-08-13T19:15:40Z",
+      "related_issue": null,
+      "comments_count": 0,
+      "reviews_count": 0,
+      "review_comments_count": 0
+    },
+    {
+      "number": 414,
+      "title": "fix(config): create Ix home before saving config",
+      "state": "open",
+      "draft": false,
+      "merged": false,
+      "user": "Hiro-Chiba",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/414",
+      "head_ref": "fix/config-set-fresh-home",
+      "head_sha": "43bf9ead431a8c5afc43345de886074382df2d51",
+      "head_repo": "Hiro-Chiba/Ix",
+      "base_ref": "main",
+      "base_sha": "ab823e34b9ec8679dcf0df4b4ec5725207e2a88d",
+      "merge_sha": "cfde89d34cb062477e90057fd4f8ed397b2b4b0b",
+      "merged_at": null,
+      "updated_at": "2026-08-13T18:57:16Z",
+      "related_issue": null,
+      "comments_count": 0,
+      "reviews_count": 0,
+      "review_comments_count": 0
     }
   ],
   "implementations": [
@@ -373,5 +437,13 @@
         "Phase 15 remaining: descendant cleanup proof, bounded concurrency"
       ]
     }
-  ]
+  ],
+  "collaboration_capture": {
+    "issue_count": 11,
+    "pull_request_count": 28,
+    "comment_count": 23,
+    "review_count": 24,
+    "review_comment_count": 3,
+    "review_threads": "UNKNOWN"
+  }
 }

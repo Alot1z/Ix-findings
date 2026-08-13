@@ -10,7 +10,77 @@
     "title": "Ix issue #376",
     "status": "RESOLVED",
     "number": 376,
-    "url": "https://github.com/ix-infrastructure/Ix/issues/376"
+    "url": "https://github.com/ix-infrastructure/Ix/issues/376",
+    "source_mirror_id": "github:issue:ix-infrastructure/Ix#376",
+    "source_type": "github_issue",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/issues/376",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/376",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "number": 376,
+    "node_id": "I_kwDORdC75M8AAAABMF7WNg",
+    "title": "ix upgrade compares two unrelated version series to decide if Compass is stale",
+    "body": "The bundled Compass is stamped with the **Ix** version; `ix-compass-dist` releases use their **own** series. `isNewer` compares them directly, so the check is only accidentally correct.\n\nVerified on the shipped v0.9.1 linux tarball:\n\n```\ncompass/.version = 0.9.1          # the Ix version, not a compass version\n```\n\nand the latest `ix-compass-dist` release is **v0.3.0** (2026-08-09).\n\n`upgrade.ts` does `isNewer(compassLatest, compassCurrent)` — `isNewer(\"0.3.0\", \"0.9.1\")` → `false`, so nothing happens and `ix view` keeps the correct bundled build. That is the right outcome, but only because Ix's numbers currently happen to be larger.\n\n**The moment `ix-compass-dist` tags anything above the running Ix version** — v1.0.0, or just v0.9.2 — `isNewer` returns true and `ix upgrade` replaces a correct, newer bundled Compass with the dist build. That is the same failure v0.9.1 just fixed (#365/#366), reached by a different route: there the stamp was missing so `current` read as `none`; here the stamp is present but denominated in the wrong series.\n\nOptions:\n- Stamp the bundle with the **compass** version the release was built from (v0.3.0 was built from `system-compass@7f98724`), so both sides of the comparison are the same series.\n- Or stamp the source commit and compare identity rather than order — the question is really \"is the installed bundle the one this CLI shipped with\", not \"is it numerically older\".\n\nEither way, `getInstalledCompassVersion` and `writeCache(compassLatest)` should not be feeding two different numbering schemes into one `isNewer`.",
+    "state": "closed",
+    "state_reason": "completed",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "html_url": "https://github.com/ix-infrastructure/Ix/issues/376",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/376",
+    "labels": [],
+    "milestone": null,
+    "created_at": "2026-08-10T04:04:01Z",
+    "updated_at": "2026-08-11T04:36:51Z",
+    "closed_at": "2026-08-11T04:36:51Z",
+    "comments_count": 0,
+    "locked": false,
+    "comments": [],
+    "source": "OFFICIAL_GITHUB_FACT"
+  },
+  "source_context": {
+    "id": "github:issue:ix-infrastructure/Ix#376",
+    "source": {
+      "type": "github_issue",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/issues/376",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/376",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T04:04:01Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-11T04:36:51Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "ISSUE-376",
+    "entity_type": "ISSUE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "mirror_scope": "source issue plus captured comments",
+    "related_analysis_types": [
+      "FINDING",
+      "DECISION",
+      "IMPLEMENTATION"
+    ]
   },
   "relationships": [
     {
@@ -44,6 +114,22 @@
       "other_type": "file",
       "other_title": "CLI-HANDOFF/phase-15/FINAL-PR-WORTHINESS-AUDIT.json",
       "other_url": "https://alot1z.github.io/Ix-findings/entities/src-90ab8426282e"
+    },
+    {
+      "direction": "out",
+      "relationship": "FOUND_IN",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "in",
+      "relationship": "AUTHORED",
+      "other": "PERSON-KageBinary",
+      "other_type": "artifact",
+      "other_title": "KageBinary",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-kagebinary"
     }
   ]
 }

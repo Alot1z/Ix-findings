@@ -11,6 +11,9 @@
     "status": "CURRENT",
     "url": "https://github.com/ix-infrastructure/ix-compass-dist"
   },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
   "relationships": [
     {
       "direction": "out",
@@ -19,6 +22,46 @@
       "other_type": "file",
       "other_title": "CLI-HANDOFF/manifest.json",
       "other_url": "https://alot1z.github.io/Ix-findings/entities/src-2a5998452c1a"
+    },
+    {
+      "direction": "in",
+      "relationship": "CLONES",
+      "other": "CLONE-E-E-github-repos-ix-compass-dist",
+      "other_type": "artifact",
+      "other_title": "CLONE-E-E-github-repos-ix-compass-dist",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/clone-e-e-github-repos-ix-compass-dist"
+    },
+    {
+      "direction": "in",
+      "relationship": "POINTS_TO",
+      "other": "REMOTE-0042f09e97a1",
+      "other_type": "artifact",
+      "other_title": "[redacted]E-github-repos/ix-compass-dist:origin",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/remote-0042f09e97a1"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-98369d67f623",
+      "other_type": "branch",
+      "other_title": "ix-infrastructure/ix-compass-dist:main",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-98369d67f623"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-023b1e68603f",
+      "other_type": "branch",
+      "other_title": "ix-infrastructure/ix-compass-dist:HEAD",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-023b1e68603f"
+    },
+    {
+      "direction": "in",
+      "relationship": "BELONGS_TO",
+      "other": "BRANCH-4e79eb8dc644",
+      "other_type": "branch",
+      "other_title": "ix-infrastructure/ix-compass-dist:main",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-4e79eb8dc644"
     }
   ]
 }

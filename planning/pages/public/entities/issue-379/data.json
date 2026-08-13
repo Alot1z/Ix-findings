@@ -10,7 +10,106 @@
     "title": "Ix issue #379",
     "status": "RESOLVED",
     "number": 379,
-    "url": "https://github.com/ix-infrastructure/Ix/issues/379"
+    "url": "https://github.com/ix-infrastructure/Ix/issues/379",
+    "source_mirror_id": "github:issue:ix-infrastructure/Ix#379",
+    "source_type": "github_issue",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/issues/379",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/379",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "number": 379,
+    "node_id": "I_kwDORdC75M8AAAABMGJiGQ",
+    "title": "[bug] --kind silently selects among duplicate same-kind symbols",
+    "body": "## Description\n\nPassing `--kind` can silently select the first result when multiple exact-name candidates have the same requested kind. Because resolution completes before ambiguity handling, an accompanying `--pick` is ignored as well.\n\n## Steps to reproduce\n1. Create two TypeScript files that each export a class named `DuplicateService`.\n2. Give the first class one member and the second class two members so the selected target is observable.\n3. Run `ix map . --silent`.\n4. Run `ix impact DuplicateService --kind class --format json`.\n5. Run `ix impact DuplicateService --kind class --pick 2 --format json`.\n\n## Expected behavior\n\n`--kind class` should filter out other kinds but remain ambiguous when multiple classes still match. Adding `--pick 2` should select the second class.\n\n## Actual behavior\n\nBoth commands silently select the first class and report one member. The second command ignores `--pick 2`.\n\nWithout `--kind`, the same fixture correctly reports both candidates:\n\n```text\nAmbiguous symbol \"DuplicateService\":\n  1. class ... DuplicateService in src/alpha/DuplicateService.ts\n  2. class ... DuplicateService in src/beta/DuplicateService.ts\n```\n\n## CLI output\n\n```json\n{\n  \"resolvedTarget\": {\n    \"kind\": \"class\",\n    \"name\": \"DuplicateService\"\n  },\n  \"summary\": {\n    \"members\": 1\n  }\n}\n```\n\nThe output remains the same with `--kind class --pick 2`, although the second class has two members.\n\n## Environment\n- OS: macOS 26.6.1\n- Node: 26.7.0\n- Ix version: 0.9.1 and current `main`\n",
+    "state": "closed",
+    "state_reason": "completed",
+    "author": {
+      "login": "Hiro-Chiba",
+      "id": 203865699,
+      "type": "User",
+      "html_url": "https://github.com/Hiro-Chiba"
+    },
+    "html_url": "https://github.com/ix-infrastructure/Ix/issues/379",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/379",
+    "labels": [],
+    "milestone": null,
+    "created_at": "2026-08-10T04:48:26Z",
+    "updated_at": "2026-08-10T19:49:17Z",
+    "closed_at": "2026-08-10T19:49:17Z",
+    "comments_count": 1,
+    "locked": false,
+    "comments": [
+      {
+        "id": 5245019300,
+        "node_id": "IC_kwDORdC75M8AAAABOKCkpA",
+        "repository": "ix-infrastructure/Ix",
+        "parent_type": "ISSUE",
+        "parent_number": 379,
+        "kind": "ISSUE_COMMENT",
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "body": "Thank you for the issue. You framed the underlying principle exactly right: `--kind` is a *filter*, not a *tiebreaker*, and silently analysing the wrong symbol is worse than asking which one was meant.\n\nTracked by **#380**, which is approved and carries `Fixes #379`, so this will close automatically when it lands.\n",
+        "html_url": "https://github.com/ix-infrastructure/Ix/issues/379#issuecomment-5245019300",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5245019300",
+        "created_at": "2026-08-10T19:33:06Z",
+        "updated_at": "2026-08-10T19:33:06Z",
+        "commit_id": null,
+        "path": null,
+        "line": null,
+        "start_line": null,
+        "side": null,
+        "in_reply_to_id": null,
+        "diff_hunk": null,
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      }
+    ],
+    "source": "OFFICIAL_GITHUB_FACT"
+  },
+  "source_context": {
+    "id": "github:issue:ix-infrastructure/Ix#379",
+    "source": {
+      "type": "github_issue",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/issues/379",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/379",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T04:48:26Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T19:49:17Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "ISSUE-379",
+    "entity_type": "ISSUE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "mirror_scope": "source issue plus captured comments",
+    "related_analysis_types": [
+      "FINDING",
+      "DECISION",
+      "IMPLEMENTATION"
+    ]
   },
   "relationships": [
     {
@@ -44,6 +143,30 @@
       "other_type": "file",
       "other_title": "CLI-HANDOFF/phase-15/FINAL-PR-WORTHINESS-AUDIT.json",
       "other_url": "https://alot1z.github.io/Ix-findings/entities/src-90ab8426282e"
+    },
+    {
+      "direction": "out",
+      "relationship": "FOUND_IN",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "in",
+      "relationship": "AUTHORED",
+      "other": "PERSON-Hiro-Chiba",
+      "other_type": "artifact",
+      "other_title": "Hiro-Chiba",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-hiro-chiba"
+    },
+    {
+      "direction": "in",
+      "relationship": "COMMENTED_ON",
+      "other": "COMMENT-ix-infrastructure-Ix-issue-379-5245019300",
+      "other_type": "artifact",
+      "other_title": "Issue #379 comment 5245019300",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/comment-ix-infrastructure-ix-issue-379-5245019300"
     }
   ]
 }

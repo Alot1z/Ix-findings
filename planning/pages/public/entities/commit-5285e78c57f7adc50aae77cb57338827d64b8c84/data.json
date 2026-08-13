@@ -1,0 +1,88 @@
+{
+  "id": "COMMIT-5285e78c57f7adc50aae77cb57338827d64b8c84",
+  "type": "commit",
+  "title": "5285e78c57f7adc50aae77cb57338827d64b8c84",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-5285e78c57f7adc50aae77cb57338827d64b8c84",
+  "summary": {
+    "id": "COMMIT-5285e78c57f7adc50aae77cb57338827d64b8c84",
+    "type": "commit",
+    "title": "5285e78c57f7adc50aae77cb57338827d64b8c84",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/5285e78c57f7adc50aae77cb57338827d64b8c84",
+    "author": {
+      "name": "Tanner Kocher",
+      "email": "tannertorrey3@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-cdb1ec2b1dfb98a6aac67fd00bd49d41c810fbdd",
+      "other_type": "commit",
+      "other_title": "cdb1ec2b1dfb98a6aac67fd00bd49d41c810fbdd",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-cdb1ec2b1dfb98a6aac67fd00bd49d41c810fbdd"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-391bfae7280eabc3503d84dab07b5c693a96aaa2",
+      "other_type": "commit",
+      "other_title": "391bfae7280eabc3503d84dab07b5c693a96aaa2",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-391bfae7280eabc3503d84dab07b5c693a96aaa2"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-167332b6ad95",
+      "other_type": "artifact",
+      "other_title": "ix-cli/package.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-167332b6ad95"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e559b6bc2060",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/upgrade.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e559b6bc2060"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3410e74f825b",
+      "other_type": "artifact",
+      "other_title": "ix-cli/package.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3410e74f825b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5335f7460d14",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/upgrade.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5335f7460d14"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-a3c787dda247",
+      "other_type": "artifact",
+      "other_title": "ix-cli/package.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-a3c787dda247"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3d4b7b10ad9e",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/upgrade.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3d4b7b10ad9e"
+    }
+  ]
+}

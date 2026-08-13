@@ -1,0 +1,102 @@
+{
+  "id": "COMMENT-ix-infrastructure-Ix-issue-377-5245018777",
+  "type": "artifact",
+  "title": "Issue #377 comment 5245018777",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/comment-ix-infrastructure-ix-issue-377-5245018777",
+  "summary": {
+    "id": "COMMENT-ix-infrastructure-Ix-issue-377-5245018777",
+    "type": "artifact",
+    "title": "Issue #377 comment 5245018777",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/issues/377#issuecomment-5245018777",
+    "source_mirror_id": "github:comment:ix-infrastructure/Ix#issue-377-5245018777",
+    "source_type": "github_issue_comment",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/issues/377#issuecomment-5245018777",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5245018777",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "id": 5245018777,
+    "node_id": "IC_kwDORdC75M8AAAABOKCimQ",
+    "repository": "ix-infrastructure/Ix",
+    "parent_type": "ISSUE",
+    "parent_number": 377,
+    "kind": "ISSUE_COMMENT",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "body": "Thank you for the issue — this is a real gap, and one that quietly corrupts the graph rather than failing loudly, which makes it worth more than its size suggests.\n\nTracked by **#378**, which is open with review comments and currently conflicting with `main`. It carries `Fixes #377`, so this will close automatically when that lands.\n\nThe approach is right (compare the previous patch manifest, emit explicit deletions, track dependents so a recreated file heals its callers). The blocking item on the PR is that `reconcileRemovedEntities` runs before `stripMapModeOps`, which means `ix map` after `ix ingest` deletes chunk nodes it never recreates — reproduced on the branch. Detail on the PR.\n",
+    "html_url": "https://github.com/ix-infrastructure/Ix/issues/377#issuecomment-5245018777",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5245018777",
+    "created_at": "2026-08-10T19:33:03Z",
+    "updated_at": "2026-08-10T19:33:03Z",
+    "commit_id": null,
+    "path": null,
+    "line": null,
+    "start_line": null,
+    "side": null,
+    "in_reply_to_id": null,
+    "diff_hunk": null,
+    "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+    "source": "OFFICIAL_GITHUB_FACT",
+    "parent_issue": 377
+  },
+  "source_context": {
+    "id": "github:comment:ix-infrastructure/Ix#issue-377-5245018777",
+    "source": {
+      "type": "github_issue_comment",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/issues/377#issuecomment-5245018777",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5245018777",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T19:33:03Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T19:33:03Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMENT-ix-infrastructure-Ix-issue-377-5245018777",
+    "entity_type": "ISSUE_COMMENT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:issue:ix-infrastructure/Ix#377",
+    "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "COMMENTED_ON",
+      "other": "ISSUE-377",
+      "other_type": "issue",
+      "other_title": "Ix issue #377",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/issue-377"
+    },
+    {
+      "direction": "in",
+      "relationship": "AUTHORED",
+      "other": "PERSON-KageBinary",
+      "other_type": "artifact",
+      "other_title": "KageBinary",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-kagebinary"
+    }
+  ]
+}

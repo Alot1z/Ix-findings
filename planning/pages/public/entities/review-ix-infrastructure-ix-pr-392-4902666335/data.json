@@ -1,0 +1,85 @@
+{
+  "id": "REVIEW-ix-infrastructure-Ix-pr-392-4902666335",
+  "type": "artifact",
+  "title": "Review 4902666335 on PR #392",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/review-ix-infrastructure-ix-pr-392-4902666335",
+  "summary": {
+    "id": "REVIEW-ix-infrastructure-Ix-pr-392-4902666335",
+    "type": "artifact",
+    "title": "Review 4902666335 on PR #392",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/pull/392#pullrequestreview-4902666335",
+    "source_mirror_id": "github:review:ix-infrastructure/Ix#pr-392-4902666335",
+    "source_type": "github_review",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/pull/392#pullrequestreview-4902666335",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "id": 4902666335,
+    "node_id": "PRR_kwDORdC75M8AAAABJDjAXw",
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 392,
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "state": "APPROVED",
+    "body": "Taking the upgrade path off TEMP is right, and the reasoning for `-download-` over `-backup-` is correct — `recover()` renames the newest `.cli-backup-*` over the install directory, so an archive must never match that prefix.\n\n**One gap, fixed in c8754ba.** The PR calls the sweep-above-download move \"the part I nearly broke\" and says \"there is now a test for it\". There wasn't. The two new cases pin *which prefixes the sweep reclaims*, which is what makes the ordering matter, but not the ordering itself — that lived inline in the command action where no test reaches it. I moved the call back below the download and all 724 tests passed, on a change that breaks every upgrade on every platform because the sweep then deletes the archive it is about to extract.\n\nBoth call sites now go through `prepareDownloadDir(ixHome, installDir, prefix)`, which does mkdir → sweep → mkdtemp. The order is inside one testable function instead of duplicated across two sites as a comment. Three cases: an earlier run's scratch is reclaimed while the one just created survives, an interrupted install is restored before any download happens, and IX_HOME is created when a manual install never did. Inverting the order inside the helper fails all three.\n\nWorth noting the compass branch got the same treatment, so it no longer sweeps and then separately mkdirs — one shape on both paths.\n\n727 green, lint clean.",
+    "html_url": "https://github.com/ix-infrastructure/Ix/pull/392#pullrequestreview-4902666335",
+    "submitted_at": "2026-08-11T03:14:33Z",
+    "commit_id": "c8754ba18918bc0c7a5f76c87605ed0df0d26c82",
+    "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+    "source": "OFFICIAL_GITHUB_FACT",
+    "parent_pr": 392
+  },
+  "source_context": {
+    "id": "github:review:ix-infrastructure/Ix#pr-392-4902666335",
+    "source": {
+      "type": "github_review",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/392#pullrequestreview-4902666335",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-11T03:14:33Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-11T03:14:33Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "REVIEW-ix-infrastructure-Ix-pr-392-4902666335",
+    "entity_type": "REVIEW",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#392",
+    "review_thread_state": "VERIFIED_GRAPHQL_NO_ASSOCIATED_THREAD_DATA"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "HAS_REVIEW",
+      "other": "PR-392",
+      "other_type": "pr",
+      "other_title": "Ix PR #392",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-392"
+    }
+  ]
+}

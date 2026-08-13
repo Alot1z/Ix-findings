@@ -1,0 +1,88 @@
+{
+  "id": "COMMIT-f73028274d996b9dfa1129e03be68325c5c8ecc0",
+  "type": "commit",
+  "title": "f73028274d996b9dfa1129e03be68325c5c8ecc0",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-f73028274d996b9dfa1129e03be68325c5c8ecc0",
+  "summary": {
+    "id": "COMMIT-f73028274d996b9dfa1129e03be68325c5c8ecc0",
+    "type": "commit",
+    "title": "f73028274d996b9dfa1129e03be68325c5c8ecc0",
+    "status": "CURRENT",
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    }
+  },
+  "source_snapshot": {
+    "sha": "f73028274d996b9dfa1129e03be68325c5c8ecc0",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/f73028274d996b9dfa1129e03be68325c5c8ecc0",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/f73028274d996b9dfa1129e03be68325c5c8ecc0",
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "committer": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "message": "revert(mcp): drop the remove-then-add force repair\n\nA sixth review reproduced, against the real `claude` and `codex` binaries, that\nthe previous commit's `--force` repair can destroy a third-party registration:\n`remove` runs, `add` then fails, and the user's server is gone with no backup\nand no message saying so. It emptied a seeded `config.toml` — env secret and\nall — and a seeded `.claude.json`. The trigger used was an npm prefix containing\n`%`, which `run()` deliberately refuses, but any add failure does it: a `\"` in\nthe path, a host CLI error, the 20s timeout, Ctrl-C between the two spawns. I\nhit a real transient of that class during the review itself.\n\nThe behaviour it replaced was a *bug* — `--force` was inert for Claude Code —\nbut a safe one: it reported `failed` and left the config untouched. Trading a\nsafe failure for a destructive one is worse, and fixing it properly needs the\nexisting definition captured and restored, which is its own change with its own\nrisks. It was never one of the fifteen findings this branch exists to fix, so\nit goes back out rather than getting a seventh iteration here.\n\nThe same review also found the remedy this branch documents for the CLI-listed\nhosts does not work: `outcomeFor` returns `already-registered` for `ours`\nwhatever `--force` says, so a moved launcher there is not repairable through\n`ix mcp install` at all. The user has to clear the name with the host's own\ncommand first. The README and the code comment now say that instead of\npromising `--force`.\n\nAlso dropped: the test asserting the removed listing-staleness, which passed\nwith the feature present or absent — it called `classifyListing` with one\nargument, while the removed mechanism was driven by a second. A test that\ncannot fail is worse than no test, and the behaviour it aimed at is not\nobservable at the seams this module exposes.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>",
+    "parents": [
+      {
+        "sha": "b80c6455c4947d88b2d4d3449787a779bcbcbbb8",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/b80c6455c4947d88b2d4d3449787a779bcbcbbb8"
+      }
+    ],
+    "tree_sha": "1e73ea6e11a68f9d41ce9e11371d6b29a498f31f",
+    "authored_at": "2026-08-12T21:40:27Z",
+    "committed_at": "2026-08-12T21:40:27Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@f73028274d996b9dfa1129e03be68325c5c8ecc0",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/f73028274d996b9dfa1129e03be68325c5c8ecc0",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/f73028274d996b9dfa1129e03be68325c5c8ecc0",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-12T21:40:27Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-12T21:40:27Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-f73028274d996b9dfa1129e03be68325c5c8ecc0",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#401"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGED_BY",
+      "other": "PR-401",
+      "other_type": "pr",
+      "other_title": "Ix PR #401",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-401"
+    }
+  ]
+}

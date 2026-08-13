@@ -1,0 +1,127 @@
+{
+  "id": "FILE-c41d5ac36e24",
+  "type": "artifact",
+  "title": "ix-cli/src/cli/__tests__/help-coverage.test.ts",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/file-c41d5ac36e24",
+  "summary": {
+    "id": "FILE-c41d5ac36e24",
+    "type": "artifact",
+    "title": "ix-cli/src/cli/__tests__/help-coverage.test.ts",
+    "status": "CURRENT",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/blob/HEAD/ix-cli/src/cli/__tests__/help-coverage.test.ts",
+    "source_mirror_id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/__tests__/help-coverage.test.ts",
+    "source_type": "github_file",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/blob/2be2c25f63dca94116bfb299e5037e293b840aa9/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fhelp-coverage.test.ts",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 397,
+    "filename": "ix-cli/src/cli/__tests__/help-coverage.test.ts",
+    "status": "modified",
+    "additions": 1,
+    "deletions": 0,
+    "changes": 1,
+    "blob_url": "https://github.com/ix-infrastructure/Ix/blob/2be2c25f63dca94116bfb299e5037e293b840aa9/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fhelp-coverage.test.ts",
+    "raw_url": "https://github.com/ix-infrastructure/Ix/raw/2be2c25f63dca94116bfb299e5037e293b840aa9/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fhelp-coverage.test.ts",
+    "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fhelp-coverage.test.ts?ref=2be2c25f63dca94116bfb299e5037e293b840aa9",
+    "patch": "@@ -16,6 +16,7 @@ const REQUIRED_COMMANDS = [\n   \"search\", \"locate\", \"explain\", \"impact\", \"overview\", \"watch\",\n   \"read\", \"inventory\", \"rank\", \"history\", \"diff\", \"smells\", \"subsystems\",\n   \"map\", \"trace\", \"status\", \"stats\", \"doctor\", \"docker\",\n+  \"mcp\",\n ];\n \n describe(\"help coverage\", () => {",
+    "parent_pr": 397
+  },
+  "source_context": {
+    "id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/__tests__/help-coverage.test.ts",
+    "source": {
+      "type": "github_file",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/blob/2be2c25f63dca94116bfb299e5037e293b840aa9/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fhelp-coverage.test.ts",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-12T15:23:12Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-12T16:26:44Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "FILE-c41d5ac36e24",
+    "entity_type": "FILE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#397",
+    "line_precision": "FILE_LEVEL"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-e85a5c85a3376a1120aa66075181a485cb669d36",
+      "other_type": "commit",
+      "other_title": "e85a5c85a3376a1120aa66075181a485cb669d36",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-e85a5c85a3376a1120aa66075181a485cb669d36"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-befde2c38786251239dd93a6adbdadcfe5e5877b",
+      "other_type": "commit",
+      "other_title": "befde2c38786251239dd93a6adbdadcfe5e5877b",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-befde2c38786251239dd93a6adbdadcfe5e5877b"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-7dff1e4500e61bad116b9ddfc82a21d1e1172d5d",
+      "other_type": "commit",
+      "other_title": "7dff1e4500e61bad116b9ddfc82a21d1e1172d5d",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-7dff1e4500e61bad116b9ddfc82a21d1e1172d5d"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-402301a456c3c75cbe98f2500e830e717ac4d24d",
+      "other_type": "commit",
+      "other_title": "402301a456c3c75cbe98f2500e830e717ac4d24d",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-402301a456c3c75cbe98f2500e830e717ac4d24d"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-76ab10d89c5ddb4acb635554d13e76a8d672df9c",
+      "other_type": "commit",
+      "other_title": "76ab10d89c5ddb4acb635554d13e76a8d672df9c",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-76ab10d89c5ddb4acb635554d13e76a8d672df9c"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-51781ea5d0694ad2eda4635ff31b38c131c2b1b8",
+      "other_type": "commit",
+      "other_title": "51781ea5d0694ad2eda4635ff31b38c131c2b1b8",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-51781ea5d0694ad2eda4635ff31b38c131c2b1b8"
+    },
+    {
+      "direction": "in",
+      "relationship": "CHANGES",
+      "other": "COMMIT-d00b5fc17635bb019620598c2f2bcf6bc85228be",
+      "other_type": "commit",
+      "other_title": "d00b5fc17635bb019620598c2f2bcf6bc85228be",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-d00b5fc17635bb019620598c2f2bcf6bc85228be"
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-b20ff170dc5b9bef9ee7924b3361b907cb8a6aae",
+  "type": "commit",
+  "title": "b20ff170dc5b9bef9ee7924b3361b907cb8a6aae",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-b20ff170dc5b9bef9ee7924b3361b907cb8a6aae",
+  "summary": {
+    "id": "COMMIT-b20ff170dc5b9bef9ee7924b3361b907cb8a6aae",
+    "type": "commit",
+    "title": "b20ff170dc5b9bef9ee7924b3361b907cb8a6aae",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/b20ff170dc5b9bef9ee7924b3361b907cb8a6aae",
+    "author": {
+      "name": "Joseph Mikhail",
+      "email": "56614593+josephismikhail@users.noreply.github.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-ad4d477ea1a5a1ef85174acbbc398e6962a7eb57",
+      "other_type": "commit",
+      "other_title": "ad4d477ea1a5a1ef85174acbbc398e6962a7eb57",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-ad4d477ea1a5a1ef85174acbbc398e6962a7eb57"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-89e8127456e24cbecaf6886a312d56a1514ae0c5",
+      "other_type": "commit",
+      "other_title": "89e8127456e24cbecaf6886a312d56a1514ae0c5",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-89e8127456e24cbecaf6886a312d56a1514ae0c5"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-201d35c8a82e",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/view.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-201d35c8a82e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-035edca4e0b3",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/view.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-035edca4e0b3"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-00889d6a5373",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/view.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-00889d6a5373"
+    }
+  ]
+}

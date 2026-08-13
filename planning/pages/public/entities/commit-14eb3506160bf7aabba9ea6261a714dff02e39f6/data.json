@@ -1,0 +1,114 @@
+{
+  "id": "COMMIT-14eb3506160bf7aabba9ea6261a714dff02e39f6",
+  "type": "commit",
+  "title": "14eb3506160bf7aabba9ea6261a714dff02e39f6",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-14eb3506160bf7aabba9ea6261a714dff02e39f6",
+  "summary": {
+    "id": "COMMIT-14eb3506160bf7aabba9ea6261a714dff02e39f6",
+    "type": "commit",
+    "title": "14eb3506160bf7aabba9ea6261a714dff02e39f6",
+    "status": "CURRENT"
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "POINTS_TO",
+      "other": "BRANCH-99d75ec2efeb",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:fix/installer-ghcr-denied-diagnostics",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-99d75ec2efeb"
+    },
+    {
+      "direction": "in",
+      "relationship": "POINTS_TO",
+      "other": "BRANCH-e7864f53946e",
+      "other_type": "branch",
+      "other_title": "ix-infrastructure/Ix:fix/installer-ghcr-denied-diagnostics",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-e7864f53946e"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-0a2da73ea04cabb108636b96071688bb0674b7b6",
+      "other_type": "commit",
+      "other_title": "0a2da73ea04cabb108636b96071688bb0674b7b6",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-0a2da73ea04cabb108636b96071688bb0674b7b6"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ca4b1bc98da8",
+      "other_type": "artifact",
+      "other_title": "scripts/install/install.ps1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ca4b1bc98da8"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-eec42651f157",
+      "other_type": "artifact",
+      "other_title": "scripts/install/install.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-eec42651f157"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-7b8b47728303",
+      "other_type": "artifact",
+      "other_title": "scripts/install/uninstall.ps1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-7b8b47728303"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-85dbebf6023a",
+      "other_type": "artifact",
+      "other_title": "scripts/install/install.ps1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-85dbebf6023a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-17675c476570",
+      "other_type": "artifact",
+      "other_title": "scripts/install/install.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-17675c476570"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-a69aae375ad6",
+      "other_type": "artifact",
+      "other_title": "scripts/install/uninstall.ps1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-a69aae375ad6"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-9558933a8e77",
+      "other_type": "artifact",
+      "other_title": "scripts/install/install.ps1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-9558933a8e77"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-d2a064cfaffd",
+      "other_type": "artifact",
+      "other_title": "scripts/install/install.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-d2a064cfaffd"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-7c0fbaaf56a2",
+      "other_type": "artifact",
+      "other_title": "scripts/install/uninstall.ps1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-7c0fbaaf56a2"
+    }
+  ]
+}

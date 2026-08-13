@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-1ff10e265221b33cc13ff2749af0217c5e709fb4",
+  "type": "commit",
+  "title": "1ff10e265221b33cc13ff2749af0217c5e709fb4",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-1ff10e265221b33cc13ff2749af0217c5e709fb4",
+  "summary": {
+    "id": "COMMIT-1ff10e265221b33cc13ff2749af0217c5e709fb4",
+    "type": "commit",
+    "title": "1ff10e265221b33cc13ff2749af0217c5e709fb4",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/1ff10e265221b33cc13ff2749af0217c5e709fb4",
+    "author": {
+      "name": "Tanner Kocher",
+      "email": "tannertorrey3@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-9b03b641e8bd234e8d588f6d300cce83581ec540",
+      "other_type": "commit",
+      "other_title": "9b03b641e8bd234e8d588f6d300cce83581ec540",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-9b03b641e8bd234e8d588f6d300cce83581ec540"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-5a44d947e9f7dc0548612b2e72a549d2b6b2b197",
+      "other_type": "commit",
+      "other_title": "5a44d947e9f7dc0548612b2e72a549d2b6b2b197",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-5a44d947e9f7dc0548612b2e72a549d2b6b2b197"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-eec42651f157",
+      "other_type": "artifact",
+      "other_title": "scripts/install/install.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-eec42651f157"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-17675c476570",
+      "other_type": "artifact",
+      "other_title": "scripts/install/install.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-17675c476570"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-d2a064cfaffd",
+      "other_type": "artifact",
+      "other_title": "scripts/install/install.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-d2a064cfaffd"
+    }
+  ]
+}

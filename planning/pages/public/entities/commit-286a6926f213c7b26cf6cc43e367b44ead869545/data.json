@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-286a6926f213c7b26cf6cc43e367b44ead869545",
+  "type": "commit",
+  "title": "286a6926f213c7b26cf6cc43e367b44ead869545",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-286a6926f213c7b26cf6cc43e367b44ead869545",
+  "summary": {
+    "id": "COMMIT-286a6926f213c7b26cf6cc43e367b44ead869545",
+    "type": "commit",
+    "title": "286a6926f213c7b26cf6cc43e367b44ead869545",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/286a6926f213c7b26cf6cc43e367b44ead869545",
+    "author": {
+      "name": "Tanner Kocher",
+      "email": "tannertorrey3@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-248de15e1bdb7fc95e8f237af0fb6add8d2b6323",
+      "other_type": "commit",
+      "other_title": "248de15e1bdb7fc95e8f237af0fb6add8d2b6323",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-248de15e1bdb7fc95e8f237af0fb6add8d2b6323"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-a924e1500292e4f983083f2bf46fe4f089a62c64",
+      "other_type": "commit",
+      "other_title": "a924e1500292e4f983083f2bf46fe4f089a62c64",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-a924e1500292e4f983083f2bf46fe4f089a62c64"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-536de682ef22",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/watch.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-536de682ef22"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-80d39e413913",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/watch.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-80d39e413913"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-4f2217c3b354",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/watch.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-4f2217c3b354"
+    }
+  ]
+}

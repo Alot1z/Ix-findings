@@ -1,0 +1,1072 @@
+{
+  "id": "COMMIT-ac9f00f114d18c18f5624d2b65b8ab7d386fa197",
+  "type": "commit",
+  "title": "ac9f00f114d18c18f5624d2b65b8ab7d386fa197",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-ac9f00f114d18c18f5624d2b65b8ab7d386fa197",
+  "summary": {
+    "id": "COMMIT-ac9f00f114d18c18f5624d2b65b8ab7d386fa197",
+    "type": "commit",
+    "title": "ac9f00f114d18c18f5624d2b65b8ab7d386fa197",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/ac9f00f114d18c18f5624d2b65b8ab7d386fa197",
+    "author": {
+      "name": "Riley Thompson",
+      "email": "riley0227@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-55a637e9f05fbd61831b37b8a16e139a06213c0e",
+      "other_type": "commit",
+      "other_title": "55a637e9f05fbd61831b37b8a16e139a06213c0e",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-55a637e9f05fbd61831b37b8a16e139a06213c0e"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-c843e197280805bff471f700f4a6de39e80af8e6",
+      "other_type": "commit",
+      "other_title": "c843e197280805bff471f700f4a6de39e80af8e6",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-c843e197280805bff471f700f4a6de39e80af8e6"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-f728450c95f6",
+      "other_type": "artifact",
+      "other_title": ".github/workflows/ci.yml",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f728450c95f6"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5a277ec7eb68",
+      "other_type": "artifact",
+      "other_title": ".github/workflows/release-please.yml",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5a277ec7eb68"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e6f2ba20b90b",
+      "other_type": "artifact",
+      "other_title": ".github/workflows/release.yml",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e6f2ba20b90b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-af80a30c339f",
+      "other_type": "artifact",
+      "other_title": ".release-please-manifest.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-af80a30c339f"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-44df79e2f221",
+      "other_type": "artifact",
+      "other_title": "CONTRIBUTING.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-44df79e2f221"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-bbbba2af7455",
+      "other_type": "artifact",
+      "other_title": "README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-bbbba2af7455"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5f9beee23892",
+      "other_type": "artifact",
+      "other_title": "docker-compose.standalone.yml",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5f9beee23892"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5c9530f601d8",
+      "other_type": "artifact",
+      "other_title": "homebrew/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5c9530f601d8"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ed628e017fc7",
+      "other_type": "artifact",
+      "other_title": "homebrew/ix.rb",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ed628e017fc7"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-fffe95453091",
+      "other_type": "artifact",
+      "other_title": "install.ps1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-fffe95453091"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-957865d2c5a7",
+      "other_type": "artifact",
+      "other_title": "install.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-957865d2c5a7"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-d5470c39f819",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/goal-truth-separation.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-d5470c39f819"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3f32b2fa8105",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/docker.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3f32b2fa8105"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-451b37ef714a",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/main.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-451b37ef714a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-6fc55a797c9d",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-6fc55a797c9d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-854f9ffac451",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/install.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-854f9ffac451"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-7d213fdca6eb",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/uninstall.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-7d213fdca6eb"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-6366fcc1197b",
+      "other_type": "artifact",
+      "other_title": "ix-smoke-test.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-6366fcc1197b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-7d118a3c47ed",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/context/ConflictDetector.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-7d118a3c47ed"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-a38b46412476",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/ArangoGraphWriteApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-a38b46412476"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-bc1952f84425",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/ClaimLifecycleSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-bc1952f84425"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-37e9545b6f5d",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/EndToEndSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-37e9545b6f5d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-6e836b14fa24",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/QueryUsefulnessSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-6e836b14fa24"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-4b977e0c5370",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/api/RoutesSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-4b977e0c5370"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-94c312c76cbd",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/conflict/ConflictDetectorSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-94c312c76cbd"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-06a5f9c3374c",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/context/ContextServiceSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-06a5f9c3374c"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ac8af227bc89",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/db/ArangoClientSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ac8af227bc89"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-b0d8f00fcba4",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/db/GraphQueryApiSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b0d8f00fcba4"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-fba2d78414f6",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/db/GraphWriteApiSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-fba2d78414f6"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-21487125577f",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/ingestion/LargeRepoIngestionSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-21487125577f"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-017842939af6",
+      "other_type": "artifact",
+      "other_title": "release-please-config.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-017842939af6"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-f99ec033d239",
+      "other_type": "artifact",
+      "other_title": "scripts/backend.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f99ec033d239"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-30ccf7216f24",
+      "other_type": "artifact",
+      "other_title": "scripts/build-cli.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-30ccf7216f24"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5a8cbdd23d1f",
+      "other_type": "artifact",
+      "other_title": "scripts/connect.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5a8cbdd23d1f"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-bc681048543c",
+      "other_type": "artifact",
+      "other_title": "scripts/disconnect.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-bc681048543c"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-685e096efcf3",
+      "other_type": "artifact",
+      "other_title": "scripts/ingest.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-685e096efcf3"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-637a97ac013b",
+      "other_type": "artifact",
+      "other_title": "scripts/init-project.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-637a97ac013b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-558fc11506b2",
+      "other_type": "artifact",
+      "other_title": "scripts/install-mcp.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-558fc11506b2"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-1c0a8365170e",
+      "other_type": "artifact",
+      "other_title": "scripts/release.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-1c0a8365170e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-dedb31b8e087",
+      "other_type": "artifact",
+      "other_title": "setup.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-dedb31b8e087"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-dc9e2a63053c",
+      "other_type": "artifact",
+      "other_title": "shutdown.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-dc9e2a63053c"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-113641c142c3",
+      "other_type": "artifact",
+      "other_title": "uninstall.ps1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-113641c142c3"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3e2494874787",
+      "other_type": "artifact",
+      "other_title": "uninstall.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3e2494874787"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-b6de6ee5402b",
+      "other_type": "artifact",
+      "other_title": ".github/workflows/ci.yml",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b6de6ee5402b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-7e1a01e1e49f",
+      "other_type": "artifact",
+      "other_title": ".github/workflows/release-please.yml",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-7e1a01e1e49f"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-d2f38a57606b",
+      "other_type": "artifact",
+      "other_title": ".github/workflows/release.yml",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-d2f38a57606b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-57f4344a3d88",
+      "other_type": "artifact",
+      "other_title": ".release-please-manifest.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-57f4344a3d88"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-71a3cd738be6",
+      "other_type": "artifact",
+      "other_title": "CONTRIBUTING.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-71a3cd738be6"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e8908de8605e",
+      "other_type": "artifact",
+      "other_title": "README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e8908de8605e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-b77a34f5340e",
+      "other_type": "artifact",
+      "other_title": "docker-compose.standalone.yml",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b77a34f5340e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-a78ecff51ec3",
+      "other_type": "artifact",
+      "other_title": "homebrew/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-a78ecff51ec3"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c2bc4fa34c21",
+      "other_type": "artifact",
+      "other_title": "homebrew/ix.rb",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c2bc4fa34c21"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ce65939403dc",
+      "other_type": "artifact",
+      "other_title": "install.ps1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ce65939403dc"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-f0184194bfc0",
+      "other_type": "artifact",
+      "other_title": "install.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f0184194bfc0"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-71f13785ded0",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/goal-truth-separation.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-71f13785ded0"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-14647b08544f",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/docker.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-14647b08544f"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-65cc8f779a87",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/main.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-65cc8f779a87"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-7c923dd35c1d",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-7c923dd35c1d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-f9d9b5cc7121",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/install.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-f9d9b5cc7121"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-b7bdd5056f2e",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/uninstall.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b7bdd5056f2e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c5db388a3755",
+      "other_type": "artifact",
+      "other_title": "ix-smoke-test.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c5db388a3755"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-6e5c357ab99d",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/context/ConflictDetector.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-6e5c357ab99d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-a7b1555e2594",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/ArangoGraphWriteApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-a7b1555e2594"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-627096be9a54",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/ClaimLifecycleSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-627096be9a54"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-898740cb8ff7",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/EndToEndSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-898740cb8ff7"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-93d2e120e8c2",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/QueryUsefulnessSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-93d2e120e8c2"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3f6c742e488a",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/api/RoutesSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3f6c742e488a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-551176b680e8",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/conflict/ConflictDetectorSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-551176b680e8"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-09059c1143fc",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/context/ContextServiceSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-09059c1143fc"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-758f55bf4e9b",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/db/ArangoClientSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-758f55bf4e9b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-04d8ca2fd59d",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/db/GraphQueryApiSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-04d8ca2fd59d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-712524967e7e",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/db/GraphWriteApiSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-712524967e7e"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2694782a68f6",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/ingestion/LargeRepoIngestionSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2694782a68f6"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-242a08ab24f9",
+      "other_type": "artifact",
+      "other_title": "release-please-config.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-242a08ab24f9"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-7cb6d2b29ac5",
+      "other_type": "artifact",
+      "other_title": "scripts/backend.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-7cb6d2b29ac5"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-fc3cbe56001a",
+      "other_type": "artifact",
+      "other_title": "scripts/build-cli.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-fc3cbe56001a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-6a418631fc3f",
+      "other_type": "artifact",
+      "other_title": "scripts/connect.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-6a418631fc3f"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-de5a0d60f9bc",
+      "other_type": "artifact",
+      "other_title": "scripts/disconnect.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-de5a0d60f9bc"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-10038e6a68eb",
+      "other_type": "artifact",
+      "other_title": "scripts/ingest.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-10038e6a68eb"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-96c5b0cf8b01",
+      "other_type": "artifact",
+      "other_title": "scripts/init-project.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-96c5b0cf8b01"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-d0a848b268e7",
+      "other_type": "artifact",
+      "other_title": "scripts/install-mcp.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-d0a848b268e7"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-a57dd3f26803",
+      "other_type": "artifact",
+      "other_title": "scripts/release.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-a57dd3f26803"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-32c932a52300",
+      "other_type": "artifact",
+      "other_title": "setup.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-32c932a52300"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-a3fab7e424dd",
+      "other_type": "artifact",
+      "other_title": "shutdown.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-a3fab7e424dd"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ee6f4bbf86dc",
+      "other_type": "artifact",
+      "other_title": "uninstall.ps1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ee6f4bbf86dc"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c99068671a33",
+      "other_type": "artifact",
+      "other_title": "uninstall.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c99068671a33"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-a9d9314bfb2a",
+      "other_type": "artifact",
+      "other_title": ".github/workflows/ci.yml",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-a9d9314bfb2a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e3c203269c2f",
+      "other_type": "artifact",
+      "other_title": ".github/workflows/release-please.yml",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e3c203269c2f"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c0bc8e5fa2fa",
+      "other_type": "artifact",
+      "other_title": ".github/workflows/release.yml",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c0bc8e5fa2fa"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-4319512aea1a",
+      "other_type": "artifact",
+      "other_title": ".release-please-manifest.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-4319512aea1a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-1e5596015de4",
+      "other_type": "artifact",
+      "other_title": "CONTRIBUTING.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-1e5596015de4"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-5f3219818935",
+      "other_type": "artifact",
+      "other_title": "README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-5f3219818935"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3a8e790cb2fa",
+      "other_type": "artifact",
+      "other_title": "docker-compose.standalone.yml",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3a8e790cb2fa"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-9fa73a67e80c",
+      "other_type": "artifact",
+      "other_title": "homebrew/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-9fa73a67e80c"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2b1a96a3549a",
+      "other_type": "artifact",
+      "other_title": "homebrew/ix.rb",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2b1a96a3549a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-eff66e1549b1",
+      "other_type": "artifact",
+      "other_title": "install.ps1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-eff66e1549b1"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-af7b5878b148",
+      "other_type": "artifact",
+      "other_title": "install.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-af7b5878b148"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-fe0d9bec0df0",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/__tests__/goal-truth-separation.test.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-fe0d9bec0df0"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-513ed4e9f05c",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/commands/docker.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-513ed4e9f05c"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-a9c615c7707c",
+      "other_type": "artifact",
+      "other_title": "ix-cli/src/cli/main.ts",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-a9c615c7707c"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-eeb35e3a2644",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/README.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-eeb35e3a2644"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-41a58703a2df",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/install.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-41a58703a2df"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e6d2b95d16b2",
+      "other_type": "artifact",
+      "other_title": "ix-plugin/uninstall.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e6d2b95d16b2"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3c956c9ae1dd",
+      "other_type": "artifact",
+      "other_title": "ix-smoke-test.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3c956c9ae1dd"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-262a2a2071e2",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/context/ConflictDetector.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-262a2a2071e2"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-aea01a9e1722",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/db/ArangoGraphWriteApi.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-aea01a9e1722"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-a02d2fb2da07",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/ClaimLifecycleSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-a02d2fb2da07"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-fb0b0eee182b",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/EndToEndSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-fb0b0eee182b"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-428e44e7ed45",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/QueryUsefulnessSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-428e44e7ed45"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-d4786d6e545f",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/api/RoutesSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-d4786d6e545f"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e31870c38ab6",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/conflict/ConflictDetectorSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e31870c38ab6"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-b7727058d34d",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/context/ContextServiceSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-b7727058d34d"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-493d5cabc394",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/db/ArangoClientSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-493d5cabc394"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-763e0b9902f6",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/db/GraphQueryApiSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-763e0b9902f6"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-665c8903411f",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/db/GraphWriteApiSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-665c8903411f"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-8e73bd836a8a",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/test/scala/ix/memory/ingestion/LargeRepoIngestionSpec.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-8e73bd836a8a"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-9c543fda4b33",
+      "other_type": "artifact",
+      "other_title": "release-please-config.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-9c543fda4b33"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-8181d51fa076",
+      "other_type": "artifact",
+      "other_title": "scripts/backend.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-8181d51fa076"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3d558af97e80",
+      "other_type": "artifact",
+      "other_title": "scripts/build-cli.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3d558af97e80"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-be53c01ce9f7",
+      "other_type": "artifact",
+      "other_title": "scripts/connect.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-be53c01ce9f7"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ad0b8eee0a65",
+      "other_type": "artifact",
+      "other_title": "scripts/disconnect.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ad0b8eee0a65"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c92835a8e0e9",
+      "other_type": "artifact",
+      "other_title": "scripts/ingest.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c92835a8e0e9"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3f04b1fec045",
+      "other_type": "artifact",
+      "other_title": "scripts/init-project.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3f04b1fec045"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e169984949bf",
+      "other_type": "artifact",
+      "other_title": "scripts/install-mcp.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e169984949bf"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-3702810888a4",
+      "other_type": "artifact",
+      "other_title": "scripts/release.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-3702810888a4"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-7dd81430908f",
+      "other_type": "artifact",
+      "other_title": "setup.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-7dd81430908f"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-92cdde260698",
+      "other_type": "artifact",
+      "other_title": "shutdown.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-92cdde260698"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-2c87a2f9a6f7",
+      "other_type": "artifact",
+      "other_title": "uninstall.ps1",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-2c87a2f9a6f7"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-667844a3f8c0",
+      "other_type": "artifact",
+      "other_title": "uninstall.sh",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-667844a3f8c0"
+    }
+  ]
+}

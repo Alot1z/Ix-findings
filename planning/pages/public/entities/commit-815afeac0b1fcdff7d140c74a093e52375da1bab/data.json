@@ -1,0 +1,89 @@
+{
+  "id": "COMMIT-815afeac0b1fcdff7d140c74a093e52375da1bab",
+  "type": "commit",
+  "title": "815afeac0b1fcdff7d140c74a093e52375da1bab",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-815afeac0b1fcdff7d140c74a093e52375da1bab",
+  "summary": {
+    "id": "COMMIT-815afeac0b1fcdff7d140c74a093e52375da1bab",
+    "type": "commit",
+    "title": "815afeac0b1fcdff7d140c74a093e52375da1bab",
+    "status": "CURRENT",
+    "source_mirror_id": "github:commit:ix-infrastructure/Ix@815afeac0b1fcdff7d140c74a093e52375da1bab",
+    "source_type": "github_commit",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/commit/815afeac0b1fcdff7d140c74a093e52375da1bab",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/815afeac0b1fcdff7d140c74a093e52375da1bab",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "sha": "815afeac0b1fcdff7d140c74a093e52375da1bab",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/815afeac0b1fcdff7d140c74a093e52375da1bab",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/815afeac0b1fcdff7d140c74a093e52375da1bab",
+    "author": {
+      "login": "Alot1z",
+      "id": 16801672,
+      "type": "User",
+      "html_url": "https://github.com/Alot1z"
+    },
+    "committer": {
+      "login": "Alot1z",
+      "id": 16801672,
+      "type": "User",
+      "html_url": "https://github.com/Alot1z"
+    },
+    "message": "feat(context): expose ix_context over MCP and support JSON export\n\nAdd the ix_context MCP tool with bounded budget parameters\n(--max-entities/--max-relationships/--max-evidence) and optional\nhistorical --as-of-rev, wired through the same argv isolation and\njson formatting as the other JSON-backed tools. The context command\nalso gains --out <path> to write the bundle to a file, so evidence\nbundles can be exported for review or storage.\n\nThe MCP catalog now lists ix_context for OSS installs; Pro-only\ntool gating is unchanged.",
+    "parents": [
+      {
+        "sha": "99b8940b2d70cfa10ce99854bc52e5c8f54c3cb8",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/99b8940b2d70cfa10ce99854bc52e5c8f54c3cb8"
+      }
+    ],
+    "tree_sha": "7a6bd2ef561372cc732c6869be88bdecb3fc965c",
+    "authored_at": "2026-08-13T22:13:11Z",
+    "committed_at": "2026-08-13T22:13:11Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@815afeac0b1fcdff7d140c74a093e52375da1bab",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/815afeac0b1fcdff7d140c74a093e52375da1bab",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/815afeac0b1fcdff7d140c74a093e52375da1bab",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-13T22:13:11Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-13T22:13:11Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-815afeac0b1fcdff7d140c74a093e52375da1bab",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#423"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGED_BY",
+      "other": "PR-423",
+      "other_type": "pr",
+      "other_title": "Ix PR #423",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-423"
+    }
+  ]
+}

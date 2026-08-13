@@ -1,0 +1,64 @@
+{
+  "id": "COMMIT-7b811e05a67e6fa482c5f791fb5ab824bd4ec8ee",
+  "type": "commit",
+  "title": "7b811e05a67e6fa482c5f791fb5ab824bd4ec8ee",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-7b811e05a67e6fa482c5f791fb5ab824bd4ec8ee",
+  "summary": {
+    "id": "COMMIT-7b811e05a67e6fa482c5f791fb5ab824bd4ec8ee",
+    "type": "commit",
+    "title": "7b811e05a67e6fa482c5f791fb5ab824bd4ec8ee",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/commit/7b811e05a67e6fa482c5f791fb5ab824bd4ec8ee",
+    "author": {
+      "name": "Tanner Kocher",
+      "email": "tannertorrey3@gmail.com"
+    }
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "PARENT",
+      "other": "COMMIT-a48d2e2349f7edb059ec143598d88c72a0b02488",
+      "other_type": "commit",
+      "other_title": "a48d2e2349f7edb059ec143598d88c72a0b02488",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-a48d2e2349f7edb059ec143598d88c72a0b02488"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-498679a7010d2530a8a5c595d34b5156214e2874",
+      "other_type": "commit",
+      "other_title": "498679a7010d2530a8a5c595d34b5156214e2874",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-498679a7010d2530a8a5c595d34b5156214e2874"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-63645454a386",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/savings/SavingsAccumulator.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-63645454a386"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-df3bae601fe8",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/savings/SavingsAccumulator.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-df3bae601fe8"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-95dcd32f55fa",
+      "other_type": "artifact",
+      "other_title": "memory-layer/src/main/scala/ix/memory/savings/SavingsAccumulator.scala",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-95dcd32f55fa"
+    }
+  ]
+}

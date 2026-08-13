@@ -1,0 +1,85 @@
+{
+  "id": "REVIEW-ix-infrastructure-Ix-pr-373-4898709257",
+  "type": "artifact",
+  "title": "Review 4898709257 on PR #373",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/review-ix-infrastructure-ix-pr-373-4898709257",
+  "summary": {
+    "id": "REVIEW-ix-infrastructure-Ix-pr-373-4898709257",
+    "type": "artifact",
+    "title": "Review 4898709257 on PR #373",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/pull/373#pullrequestreview-4898709257",
+    "source_mirror_id": "github:review:ix-infrastructure/Ix#pr-373-4898709257",
+    "source_type": "github_review",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/pull/373#pullrequestreview-4898709257",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "id": 4898709257,
+    "node_id": "PRR_kwDORdC75M8AAAABI_xfCQ",
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 373,
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "state": "APPROVED",
+    "body": "Two independent review passes (one on your commit, one on my follow-up). Merging.\n\n**Your change is correct and complete.** `chore` is in `pr-title.yml`'s type list, and there is no `scopes`/`requireScope`/`subjectPattern` config that could reject the title for a different reason — verified against the action source at the pinned SHA, where all four of those checks are strictly opt-in. `grep` for `brew:` repo-wide returns only the comment itself, the tap is this repo (no `--repo` on `gh pr create`, `Formula/ix.rb` lives here), and nothing parses commit subjects — no commitlint, no `.github/release.yml`, and the only consumer (`github/transform.ts:141`) takes the subject as a display string. `bash -n` clean, YAML re-parses, one argv element with the parens intact.\n\n**I pushed one commit** correcting the comment, because it lands as permanent in-repo documentation and three claims in it did not hold:\n\n- *\"every release\"* — `pr-title.yml` arrived in #282 on 2026-06-08. Nine of the eleven formula PRs (#38→#268, latest 2026-06-05) predate it. Only #364 and #367 were ever in scope.\n- *\"failed on arrival\"* — it does not run on arrival. The PR is opened by `github-actions[bot]`, so its `pull_request` runs land in `action_required`. On #364 the title check **never ran at all** — there was no red X. Direct evidence on #367: runs `created_at 23:16:07`, `run_started_at 03:05:05` — queued 3h49m awaiting approval.\n- *\"written off as noise each time\"* — n=1, and it wasn't written off; you renamed it and it went green 94 seconds later. That manual rename is the toil this removes, and it's the stronger argument.\n\nThe comment now also records the approval hold, since that is what actually blocks the formula PR and this doesn't fix it.\n\nTwo things I got slightly wrong in my own commit message, for the record: the rename was 94 seconds after the red X (3h50m after opening), not \"within six minutes\" — six minutes is the rename→merge gap. And the ruleset carries `required_approving_review_count: 1` as well as the workflow-approval hold, so there are two holds, not one. Neither affects the landed comment.",
+    "html_url": "https://github.com/ix-infrastructure/Ix/pull/373#pullrequestreview-4898709257",
+    "submitted_at": "2026-08-10T16:07:18Z",
+    "commit_id": "d785e1ad2740e56ef712b432c7b328125c5f4599",
+    "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+    "source": "OFFICIAL_GITHUB_FACT",
+    "parent_pr": 373
+  },
+  "source_context": {
+    "id": "github:review:ix-infrastructure/Ix#pr-373-4898709257",
+    "source": {
+      "type": "github_review",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/373#pullrequestreview-4898709257",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T16:07:18Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T16:07:18Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "REVIEW-ix-infrastructure-Ix-pr-373-4898709257",
+    "entity_type": "REVIEW",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#373",
+    "review_thread_state": "VERIFIED_GRAPHQL_NO_ASSOCIATED_THREAD_DATA"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "HAS_REVIEW",
+      "other": "PR-373",
+      "other_type": "pr",
+      "other_title": "Ix PR #373",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-373"
+    }
+  ]
+}

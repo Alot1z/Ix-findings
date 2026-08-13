@@ -1,0 +1,102 @@
+{
+  "id": "COMMENT-ix-infrastructure-Ix-pr-368-5235488710",
+  "type": "artifact",
+  "title": "PR #368 comment 5235488710",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/comment-ix-infrastructure-ix-pr-368-5235488710",
+  "summary": {
+    "id": "COMMENT-ix-infrastructure-Ix-pr-368-5235488710",
+    "type": "artifact",
+    "title": "PR #368 comment 5235488710",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/pull/368#issuecomment-5235488710",
+    "source_mirror_id": "github:comment:ix-infrastructure/Ix#pr-368-5235488710",
+    "source_type": "github_pr_comment",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/pull/368#issuecomment-5235488710",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5235488710",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "id": 5235488710,
+    "node_id": "IC_kwDORdC75M8AAAABOA83xg",
+    "repository": "ix-infrastructure/Ix",
+    "parent_type": "PULL_REQUEST",
+    "parent_number": 368,
+    "kind": "PR_COMMENT",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "body": "Pushed the fixes to this branch rather than sending you round another loop — everything below is on `0c9087c`, and the original commit is untouched underneath it so nothing you wrote is lost.\n\n**Scoped it to the two pieces that belong in this repo:** the `ix` skill and the API reference. The API docs I would have taken as-is; they hold up (39 paths, 13 schemas, every path grounded in the backend routes).\n\n**Moved out**, because the layer was wrong rather than the code:\n\n- `skills/ix/scripts/compass-patch/` — the reasons are in the commit message, but the short version is that this repo owns `view.ts`, so patching its *compiled* output is fighting the build, and `fit-view.js` was writing the exact two inline styles React drives from `snappedZoom`/`snappedPan`.\n- `upstream/compass-fit-view/` — nothing here builds React.\n\n**Both are worth landing in `system-compass`, and I would review that PR.** The F-key fit view is genuinely new there — Compass binds `0` for reset-zoom and nothing binds `F`. Your `upstream/` port is most of the work already. What I would drop is the auto-frame-on-load: Compass #57 fixed the empty-first-paint upstream and it ships in v0.9.1, so that part is solved. The F key is not.\n\n**Two bugs found while testing your scripts, both fixed here:**\n\n- `version_ge` in `bootstrap.sh` was inverted. `sort -C` succeeds when input is *already ordered*, so want-then-got asks \"is want <= got\" — the `-r` asked the reverse. Node 22.22.2 against a floor of 22 printed \"Ix requires Node >= 22\", and Node 18 passed silently. I hit it dry-running your bootstrap on this machine. Checked across 22.22.2 / 24 / 22.0.0 / 20.11.1 / 18.4.0.\n- `install-skill.sh` `rm -rf`d the destination unconditionally. `ix` is a short name, and a hand-written skill that happened to share it went without a prompt or a backup. It now refuses unless the destination carries `name: ix`, with `--force` to override. Tested all four paths: clean install, re-install, squatted name, and `--force`.\n\nAlso: `[redacted]/jacob/...` out of CLAUDE.md, the two gitignored paths out of its layout table, `/dist/` anchored, and the `POST /__ix/remap` section in the API docs now says what actually happens (falls through to the SPA handler, returns index.html with a 200) rather than describing the patched behaviour.\n\n**Kept, with credit:** the global-`ix reset` warning and `registerPatchesCommand` never being registered. The second is now #371 — a good catch, it had been sitting there unnoticed because `patches` is in `PRO_COMMANDS`, so OSS users get \"requires Ix Pro\" instead of an unknown-command error.\n\nRe-reviewing now. Thanks for a genuinely careful first contribution — the fact that everything in your description checked out when I ran it is not the norm.",
+    "html_url": "https://github.com/ix-infrastructure/Ix/pull/368#issuecomment-5235488710",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5235488710",
+    "created_at": "2026-08-10T03:17:29Z",
+    "updated_at": "2026-08-10T03:17:29Z",
+    "commit_id": null,
+    "path": null,
+    "line": null,
+    "start_line": null,
+    "side": null,
+    "in_reply_to_id": null,
+    "diff_hunk": null,
+    "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+    "source": "OFFICIAL_GITHUB_FACT",
+    "parent_pr": 368
+  },
+  "source_context": {
+    "id": "github:comment:ix-infrastructure/Ix#pr-368-5235488710",
+    "source": {
+      "type": "github_pr_comment",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/368#issuecomment-5235488710",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5235488710",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T03:17:29Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T03:17:29Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMENT-ix-infrastructure-Ix-pr-368-5235488710",
+    "entity_type": "PR_COMMENT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#368",
+    "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "COMMENTED_ON",
+      "other": "PR-368",
+      "other_type": "pr",
+      "other_title": "Ix PR #368",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-368"
+    },
+    {
+      "direction": "in",
+      "relationship": "AUTHORED",
+      "other": "PERSON-KageBinary",
+      "other_type": "artifact",
+      "other_title": "KageBinary",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-kagebinary"
+    }
+  ]
+}

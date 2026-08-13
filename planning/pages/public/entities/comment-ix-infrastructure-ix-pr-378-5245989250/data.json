@@ -1,0 +1,102 @@
+{
+  "id": "COMMENT-ix-infrastructure-Ix-pr-378-5245989250",
+  "type": "artifact",
+  "title": "PR #378 comment 5245989250",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/comment-ix-infrastructure-ix-pr-378-5245989250",
+  "summary": {
+    "id": "COMMENT-ix-infrastructure-Ix-pr-378-5245989250",
+    "type": "artifact",
+    "title": "PR #378 comment 5245989250",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/pull/378#issuecomment-5245989250",
+    "source_mirror_id": "github:comment:ix-infrastructure/Ix#pr-378-5245989250",
+    "source_type": "github_pr_comment",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/pull/378#issuecomment-5245989250",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5245989250",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "id": 5245989250,
+    "node_id": "IC_kwDORdC75M8AAAABOK9xgg",
+    "repository": "ix-infrastructure/Ix",
+    "parent_type": "PULL_REQUEST",
+    "parent_number": 378,
+    "kind": "PR_COMMENT",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "body": "Rebased onto `main` (clean this time — #382/#384/#386/#387 landed since) and pushed fixes for the blocking item and two of the \"please reconsider\" points, as `d827cc9`. Your commits are intact; mine sits on top.\n\n## 1. The blocker — map mode was destroying chunk data\n\n`stripMapModeOps` drops every chunk `UpsertNode` but leaves `DeleteNode` alone, and `chunkId` hashes the chunk's start line. So any edit that shifts lines made every downstream chunk look removed, and `ix map` after an `ix ingest` deleted the file's chunks without recreating them — the cheap command silently destroying what the expensive one built.\n\n`reconcileRemovedEntities` now takes a `mapMode` flag and leaves chunk nodes and `CONTAINS_CHUNK`/`NEXT` edges alone. The kind comes from the `client.entity()` lookup **you were already making** for incident edges, so it costs no extra round trip — that turned out to be the neat part of your design, not something I had to work around.\n\nThree tests: chunks untouched in map mode, still deleted outside it, and chunk-carrying edges spared while a `CALLS` edge on the same node is still removed.\n\n## 2. Empty-baseline guard — restored, but scoped\n\nYou dropped `mtimes.size === 0` so that deleting the last mapped file could persist an empty baseline. That case is real, but the guard was load-bearing for a different one: there is no `filePaths.length === 0` check anywhere in `ingestFiles`, so *any* discovery failure — over-broad ignore rule, wrong cwd — now overwrote a good baseline with an empty one.\n\nIt now asks **why** the map is empty: with deletions recorded this run, empty is a real state and is persisted; without them, discovery is assumed to have gone wrong and the baseline is kept. Your \"persists an empty baseline after the last mapped file is deleted\" test still passes unchanged, and I added its mirror image.\n\n## 3. Fail-closed lookup — kept, narrowed\n\nFailing closed before deleting is right; deleting from an unreliable baseline is how data gets lost. But letting the throw escape aborted the entire map over one transient blip, taking the ordinary ingest of every changed file with it. The deletions are now dropped for that run — they stay in the baseline and retry next time — and the rest proceeds.\n\n## Verification\n\n- `ix-cli`: **710 passed** across 53 files (was 693), typecheck clean, lint 0 errors / 38 pre-existing warnings\n- `core-ingestion`: 279 passed with the same 6 pre-existing failures, no new ones\n\n## Left alone deliberately\n\n- **Per-file round trips.** `sourcePatchIdCandidates` returns 25 ids tried serially, plus one `client.entity()` per removed node. Real, but batching it is a separate change and I did not want to bury the correctness fixes underneath it.\n- **Op ordering.** `DeleteNode` still precedes the trailing `DeleteEdge`s for incident edges. I could not answer from the CLI side whether the backend cascades incident-edge removal on node delete — if it does, those trailing deletes target rows that are already gone. Worth confirming before anyone calls the ordering intentional.\n- **Baseline write amplification.** `onCommitted` rewrites the whole baseline per deleted file. Bounded, and per-file durability is a defensible trade.\n\nI'm happy with this now aside from those. If you'd rather take the round-trip batching yourself, say so and I'll leave it; otherwise I can follow up separately.\n",
+    "html_url": "https://github.com/ix-infrastructure/Ix/pull/378#issuecomment-5245989250",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5245989250",
+    "created_at": "2026-08-10T21:04:20Z",
+    "updated_at": "2026-08-10T21:04:20Z",
+    "commit_id": null,
+    "path": null,
+    "line": null,
+    "start_line": null,
+    "side": null,
+    "in_reply_to_id": null,
+    "diff_hunk": null,
+    "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+    "source": "OFFICIAL_GITHUB_FACT",
+    "parent_pr": 378
+  },
+  "source_context": {
+    "id": "github:comment:ix-infrastructure/Ix#pr-378-5245989250",
+    "source": {
+      "type": "github_pr_comment",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/378#issuecomment-5245989250",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5245989250",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-10T21:04:20Z",
+      "last_fetched": "2026-08-13T22:23:39.068Z",
+      "last_verified": "2026-08-13T22:23:39.068Z",
+      "source_updated_at": "2026-08-10T21:04:20Z",
+      "snapshot_version": "2026-08-13T22:23:39.068Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMENT-ix-infrastructure-Ix-pr-378-5245989250",
+    "entity_type": "PR_COMMENT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#378",
+    "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "COMMENTED_ON",
+      "other": "PR-378",
+      "other_type": "pr",
+      "other_title": "Ix PR #378",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-378"
+    },
+    {
+      "direction": "in",
+      "relationship": "AUTHORED",
+      "other": "PERSON-KageBinary",
+      "other_type": "artifact",
+      "other_title": "KageBinary",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/person-kagebinary"
+    }
+  ]
+}

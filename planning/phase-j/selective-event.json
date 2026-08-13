@@ -1,0 +1,38 @@
+{
+  "schema_version": "phase-j.selective-event.v1",
+  "event_id": "PR-393-MERGED-2026-08-12",
+  "event_type": "SOURCE_STATE_CHANGED",
+  "source": "GITHUB",
+  "snapshot_after": "2026-08-12T21:01:51.218Z",
+  "snapshot_before": "2026-08-12T13:07:16.090Z",
+  "object": {
+    "entity_id": "PR-393",
+    "kind": "PULL_REQUEST",
+    "repository": "ix-infrastructure/Ix",
+    "url": "https://github.com/ix-infrastructure/Ix/pull/393"
+  },
+  "affected_entities": [
+    "PR-393",
+    "REVIEW_THREAD-9ba046485ccc",
+    "FILE-655981dd6e0a",
+    "COMMIT-b4060d4b59d177e0feed253f977292986158d99d",
+    "COMMIT-a6a47267af21a49d6942ee6e07e18d1d0a82517b"
+  ],
+  "affected_routes": [
+    "/prs/393",
+    "/prs/393/conversation",
+    "/prs/393/comments",
+    "/prs/393/reviews",
+    "/prs/393/review-threads",
+    "/prs/393/files",
+    "/prs/393/commits",
+    "/prs/393/timeline",
+    "/prs/393/analysis",
+    "/prs/393/relationships"
+  ],
+  "affected_relationship_types": ["HEADS_AT", "CHANGED_BY", "DISCUSSED_BY", "REVIEWED_BY", "CONTAINS", "CHANGED"],
+  "analysis_affected": true,
+  "full_rebuild": false,
+  "external_mutations": 0,
+  "source_authority": "GITHUB"
+}

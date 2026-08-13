@@ -1,0 +1,39 @@
+{
+  "generated_at": "2026-08-12T11:57:27.404Z",
+  "canonical_entities": 3614,
+  "canonical_relationships": 13535,
+  "routes": 3628,
+  "public_graph_entities": 3614,
+  "public_graph_relationships": 13535,
+  "llm_full_exists": true,
+  "generated_files_present": [
+    {
+      "file": "planning/pages/public/routes.json",
+      "present": true
+    },
+    {
+      "file": "planning/pages/public/graph.json",
+      "present": true
+    },
+    {
+      "file": "planning/pages/public/data/data.js",
+      "present": true
+    },
+    {
+      "file": "planning/pages/public/llms-full.txt",
+      "present": true
+    },
+    {
+      "file": "planning/pages/public/sitemap.xml",
+      "present": true
+    }
+  ],
+  "canonical_shell": {
+    "root": "planning/wiki/index.html",
+    "generator": "planning/pages/build-public.mjs",
+    "deep_shell_reuses_root": true
+  },
+  "sidebar_group_count": 8,
+  "deep_sidebar_group_count": 8,
+  "status": "PASS"
+}

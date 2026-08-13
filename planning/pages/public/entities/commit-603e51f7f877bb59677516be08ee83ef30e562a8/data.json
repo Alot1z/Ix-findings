@@ -1,0 +1,66 @@
+{
+  "id": "COMMIT-603e51f7f877bb59677516be08ee83ef30e562a8",
+  "type": "commit",
+  "title": "603e51f7f877bb59677516be08ee83ef30e562a8",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-603e51f7f877bb59677516be08ee83ef30e562a8",
+  "summary": {
+    "id": "COMMIT-603e51f7f877bb59677516be08ee83ef30e562a8",
+    "type": "commit",
+    "title": "603e51f7f877bb59677516be08ee83ef30e562a8",
+    "status": "CURRENT"
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "POINTS_TO",
+      "other": "BRANCH-7e70f9cc3273",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:feat/ix-mcp",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-7e70f9cc3273"
+    },
+    {
+      "direction": "in",
+      "relationship": "POINTS_TO",
+      "other": "BRANCH-7ddcbabbe202",
+      "other_type": "branch",
+      "other_title": "Alot1z/Ix-remap:feat/ix-mcp",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-7ddcbabbe202"
+    },
+    {
+      "direction": "out",
+      "relationship": "PARENT",
+      "other": "COMMIT-606f18f7ca1a69f4b8ede7c27c1079b024297856",
+      "other_type": "commit",
+      "other_title": "606f18f7ca1a69f4b8ede7c27c1079b024297856",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-606f18f7ca1a69f4b8ede7c27c1079b024297856"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-ec332d189999",
+      "other_type": "artifact",
+      "other_title": "AGENTS.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-ec332d189999"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-e6d8d9bef065",
+      "other_type": "artifact",
+      "other_title": "AGENTS.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-e6d8d9bef065"
+    },
+    {
+      "direction": "out",
+      "relationship": "CHANGES",
+      "other": "FILE-c8b90a417691",
+      "other_type": "artifact",
+      "other_title": "AGENTS.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/file-c8b90a417691"
+    }
+  ]
+}
