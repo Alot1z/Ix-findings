@@ -35,7 +35,19 @@ const INDEXES = [
 const checks = [];
 const expect = (pathname, fn, label) => checks.push({ pathname, fn, label });
 
-expect("/", (r) => r.status === 200 && r.text.includes("Knowledge Explorer") && r.text.includes("KNOWLEDGE CATEGORIES"), "root renders explorer + categories");
+// The root is the single-page explorer shell: it must carry the global
+// sidebar (the information-architecture contract shared by every page) plus
+// at least one category group, so category navigation is present without
+// depending on a literal heading that the generator may not emit.
+expect(
+  "/",
+  (r) =>
+    r.status === 200 &&
+    r.text.includes('id="sidebar"') &&
+    r.text.includes('aria-label="Views"') &&
+    r.text.includes("nav-group-label"),
+  "root renders explorer + global sidebar",
+);
 for (const p of CATEGORY_PATHS) expect(p, (r) => r.status === 200, "category " + p);
 for (const p of DEEP_PATHS) expect(p, (r) => r.status === 200, "deep page " + p);
 for (const p of LLM_ENDPOINTS) expect(p, (r) => r.status === 200, "llm endpoint " + p);
