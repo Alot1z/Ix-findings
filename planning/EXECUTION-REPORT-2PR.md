@@ -2,90 +2,167 @@
 
 Generated: 2026-08-14 · Executed per `C:\tmp\ix-findings-tmp\new-plan#2.md` via parasite-skill routing
 
-## 1. Applicable repository rules
+## 1. Repository Rules
 
-- `AGENTS.md` in **Ix / Ix-remap / Ix-mcp / Ix-test / Ix-findings** (identical copies read on disk):
+- `AGENTS.md` read in **Ix / Ix-remap / Ix-findings** (identical policy text on disk):
   - No attribution footers ever (no `Generated with`, `Co-Authored-By`, `AI:` lines).
   - GitHub write policy: no upstream pushes; no GitHub writes without explicit per-action authorization; PR/issue comments are technical navigation only.
   - Verification before claims: run the repo's own checks; never fabricate filenames/symbols/commits.
-- **Conflicts/adaptations:** the plan explicitly authorized pushing to `Alot1z/Ix-remap` and opening the two PRs (not merging/approving/commenting). That satisfies the write-policy authorization. Ix-findings was left uncommitted (its generated tree is a prior-phase dirty state; no push without separate authorization).
+- **Authorization boundaries:**
+  - The plan explicitly authorizes: push to `Alot1z/Ix-remap`, open/maintain PR 422 and PR 423 against `ix-infrastructure/Ix`, update PR descriptions. No merge/approve/close/react/comment.
+  - Ix-findings publication is a SEPARATE authorization boundary. The user explicitly authorized the Ix-findings deployment (commit regenerated evidence site on `master`, push to origin, re-verify URLs). This was executed as the only Ix-findings GitHub write.
+- **Local-only policy:** no `AGENTS.md` changes were made anywhere; nothing local/policy entered either PR.
 
-## 2. Ix-remap synchronization
+## 2. Verification Before Writes
 
-- Fork: `Alot1z/Ix-remap` (parent `ix-infrastructure/Ix`); `fork` remote corrected from the dead `Alot1z/Ix.git` to `Alot1z/Ix-remap.git`.
-- Upstream `main` = `ab823e34`; both feature branches are based on it.
-- Branches pushed and current:
-  - `feat/ix-mcp-enrichment` @ `8e348d8` (3 commits)
-  - `feat/ix-agent-context` @ `e22d233` (4 commits)
+- Verified live state of both PRs before any write (metadata, body, commits, files, reviews, review threads, CI, CodeQL annotations).
+- Re-read every target file in the worktrees before editing (`context.ts`, `server.ts`, tests, docs).
+- Re-verified fork remotes (`origin` = upstream Ix, `fork` = `Alot1z/Ix-remap`); no dead `Alot1z/Ix` remote used.
+- No file was modified without reading its current contents; no stale patch applied.
 
-## 3. Ix-findings synchronization
+## 3. Fork Synchronization
 
-- HEAD `309329a` (pages + machine corpus). Large uncommitted generated tree from prior phases preserved untouched.
-- Refreshed read-only capture (token `githubfixed-new.token`) → mirror `237` records (was 189) → canonical graph `3654` entities / `13570` relationships → public projection `3899` routes.
-- **`validate-public.mjs`: VALIDATION PASSED** (freshness gate green, no dead internal links, no secrets, routes complete).
+- Upstream `main` = `ab823e34`; fork feature branches based on it (verified via `merge-base` and PR base SHA).
+- Branches pushed to `Alot1z/Ix-remap` and current:
+  - `feat/ix-mcp-enrichment` @ `45af1cb2` (4 commits)
+  - `feat/ix-agent-context` @ `0c4c89fc` (7 commits)
+- Historical MCP work preserved (see §6). No destructive reset, no branch deletion, no force-push over unrelated work.
+- Local `AGENTS.md` remains local only.
 
-## 4. Historical MCP work (5 commits)
+## 4. Live PR 422 State
 
-All five SHAs verified live on `Alot1z/Ix-remap` (HTTP 200) and mirrored/entity-paged in Ix-findings:
-`74b848c8`, `0d99ae0f`, `869b64df`, `36c7c7ec`, `1a5b0b93` → `/entities/commit-<sha>` routes. They are NOT in upstream main (verified via `merge-base --is-ancestor`); upstream implemented MCP independently via #397→#400→#401. Both PRs link them neutrally ("Earlier MCP implementation and hardening work in the Alot1z/Ix-remap development fork").
+- **URL:** https://github.com/ix-infrastructure/Ix/pull/422
+- **Title:** `feat(mcp): enrich Ix MCP tools with structured outputs, semantic annotations, and stronger agent interoperability`
+- **State:** open · **mergeable:** true (`mergeable_state: blocked` = upstream CI pending, not a conflict)
+- **Base:** `main` @ `ab823e34` · **Head:** `feat/ix-mcp-enrichment` @ `45af1cb2` · **4 commits, +320/−6, 4 files**
+  - `838e7a3` feat(mcp): annotate MCP tools with semantic hints
+  - `978a093` feat(mcp): expose structured output for JSON-backed tools
+  - `8e348d8` docs(mcp): document structured results and tool annotations
+  - `45af1cb` feat(mcp): advertise a truthful title annotation for every tool
+- **Files:** `docs/mcp-plugin-consolidation.md`, `src/mcp/server.ts`, `__tests__/mcp-annotations.test.ts`, `__tests__/mcp-structured-output.test.ts`
+- **Reviews/threads:** none (0 reviews, 0 issue comments, 0 review threads).
+- **CI:** `CI Passed` success · `CodeQL` success · `CodeQL (javascript-typescript)` success · `Lint & Typecheck` success · all platforms green.
+- **Implementation:** type-checked annotation table keyed by `IX_MCP_TOOL_NAMES` (adding a tool without classification is a type error); every tool carries a truthful non-empty `title`; structured `outputSchema` + `structuredContent` for `ix_map`/`ix_ingest`/`ix_smells`; Pro tools (`ix_briefing`/`ix_decisions`/`ix_decide`) intentionally unchanged (private `@ix/pro` shapes unverifiable here).
+- **Validation:** full suite **865 tests pass** (locally re-run), typecheck clean, lint 0 errors.
 
-## 5. PR 1 — MCP enrichment (PR #422)
+## 5. Live PR 423 State
 
-- Branch `feat/ix-mcp-enrichment` @ `8e348d8`, 3 commits, +308/−6, 4 files.
-- **Tool annotations** (`readOnlyHint`/`destructiveHint`/`idempotentHint`/`openWorldHint`/`title`) via a type-checked lookup keyed by `IX_MCP_TOOL_NAMES` — adding a tool without classification fails the build.
-- **Structured output** (`outputSchema` + `structuredContent`) for `ix_map`, `ix_ingest`, `ix_smells`; Pro tools intentionally unchanged (unverifiable shapes in private `@ix/pro`).
+- **URL:** https://github.com/ix-infrastructure/Ix/pull/423
+- **Title:** `feat(agent): unify Ix context, provenance, and investigation workflows for agents`
+- **State:** open · **mergeable:** true (`mergeable_state: blocked` = upstream CI pending)
+- **Base:** `main` @ `ab823e34` · **Head:** `feat/ix-agent-context` @ `0c4c89fc` · **7 commits, +1444/−3, 9 files**
+  - `99b8940` feat(context): deterministic bounded context bundles via `ix context`
+  - `815afea` feat(context): expose ix_context over MCP and support JSON export
+  - `aa3b4ea` docs(agent): document the ix context command in skills
+  - `e22d233` feat(context): resumable investigation state with deltas
+  - `c8ec21e` fix(context): harden ix context correctness and MCP contract
+  - `b1decee` fix(context): remove TOCTOU race in --out write and guard EISDIR check
+  - `0c4c89f` fix(context): resolve CodeQL findings on bundle persistence paths
+- **Files:** `commands/context.ts` (+795), `context-bundle-schema.ts` (+40, new shared zod contract), `mcp/server.ts` (+76/−3), `register/oss.ts`, tests (`context.test.ts`, `context-investigation.test.ts`, `mcp.test.ts`), `skills/ix/SKILL.md`, `skills/ix/references/commands.md`
+- **Reviews:** 4 automated CodeQL-bot comments (historical scans; latest scan on head `0c4c89f` clean). No human reviews.
+- **CodeQL:** on the current head, `CodeQL (javascript-typescript)` = **completed success, 0 annotations**; `CodeQL` success; `CI Passed` success; `Lint & Typecheck` success.
+- **Remediation (commit `0c4c89f`):** the two findings on the PR's own code were real — a fs-race **failure** (`--out` check-then-write TOCTOU) and two "network data written to file" warnings. Fixed with atomic temp+rename writes (matching the existing `config.ts` writer) and schema validation of the network-derived bundle against the shared versioned `ix-context-bundle/1` zod schema before every write (`--out` and investigation persistence). Prior suppression comments (wrong rule id) removed. The 3 `api.ts` "file data in outbound request" warnings are pre-existing on upstream `main` and not introduced by this PR.
+- **Validation:** full suite **875 tests pass** (locally re-run), typecheck clean, lint 0 errors.
+
+## 6. Historical MCP (5 SHAs)
+
+All five verified live on `Alot1z/Ix-remap` (HTTP 200), author Alot1z, NOT in upstream `main`, mirrored and entity-paged in Ix-findings (`/entities/commit-<sha>`), and linked neutrally in both PR bodies:
+
+| SHA | Ix-findings entity URL |
+| --- | --- |
+| 74b848c83a0d547069660615dddcf1ea0ad0749c | https://alot1z.github.io/Ix-findings/entities/commit-74b848c83a0d547069660615dddcf1ea0ad0749c |
+| 0d99ae0f1866367c3fbc9bbcc16f0add2dd4dd57 | https://alot1z.github.io/Ix-findings/entities/commit-0d99ae0f1866367c3fbc9bbcc16f0add2dd4dd57 |
+| 869b64df3357a8370c4c85c9a1fa2b553b899e24 | https://alot1z.github.io/Ix-findings/entities/commit-869b64df3357a8370c4c85c9a1fa2b553b899e24 |
+| 36c7c7eccd8068d48df4f61394b42a3ffa62483c | https://alot1z.github.io/Ix-findings/entities/commit-36c7c7eccd8068d48df4f61394b42a3ffa62483c |
+| 1a5b0b93c9e8871610370c0f36212be8f6cf6980 | https://alot1z.github.io/Ix-findings/entities/commit-1a5b0b93c9e8871610370c0f36212be8f6cf6980 |
+
+Wording used (both PRs): "Earlier MCP implementation and hardening work in the `Alot1z/Ix-remap` development fork:" — no ranking, no "superseded", no judgment. Neutral navigation to the upstream lineage (#397, #400, #401) without tagging individuals.
+
+## 7. PR 1 — Technical Report
+
+- Annotations: `readOnlyHint`/`destructiveHint`/`idempotentHint`/`openWorldHint`/`title`, type-checked via the catalog-keyed table; read-only tools are idempotent, mutating tools destructive/non-idempotent, `ix_ingest` open-world.
+- Structured output: `outputSchema` + `structuredContent` for the three JSON-backed OSS tools, shapes verified against actual emitters; SDK validates at runtime.
+- SDK: official `@modelcontextprotocol/sdk` (1.30.0 verified); no custom protocol layer.
+- Lifecycle/security preserved: argv isolation (`--flag=value`, `--`), orphan bookkeeping, scope-cache invalidation, single-flight locks, output caps, Pro gating — unchanged from #400/#401.
+- Tests: annotation classification + title truthfulness + structured-output contract; full suite 865 green.
 - Docs: `docs/mcp-plugin-consolidation.md` extended.
-- Tests: `mcp-annotations.test.ts`, `mcp-structured-output.test.ts`; full suite **864 pass**, typecheck + lint clean.
-- Architecture unchanged: argv isolation, orphan bookkeeping, scope-cache invalidation, single-flight locks, output caps, Pro gating all retained from #400/#401.
+- Exact diff: +320/−6 across 4 files (see §4).
 
-## 6. PR 2 — Agent context (PR #423)
+## 8. PR 2 — Technical Report
 
-- Branch `feat/ix-agent-context` @ `e22d233`, 4 commits, +1089, 8 files.
-- `ix context <target>`: deterministic bounded bundle composing the existing resolver, fact collector, `/v1/context` (claims/decisions/conflicts/intents), and provenance API. Explicit truncation metadata; freshness classification; `text|json|llm` + `--out`; `--as-of-rev`.
-- Resumable investigation state: `--save/--resume/--diff` under `~/.ix/investigations` (schema `ix-investigation/1`, sanitized ids, refuses malformed state).
-- `ix_context` MCP tool with bounded budget params.
-- Tests: `context.test.ts` (4), `context-investigation.test.ts` (4), `mcp.test.ts` (15); full suite **866 pass**, lint/typecheck clean.
+- Command semantics: `ix context [target]` — target optional so `--resume <id>` / `--diff <id>` work without one; normal path still requires a target.
+- Deterministic context: stable tier ranking with id tiebreaker; claims/decisions/conflicts/intents ordered deterministically; identical input ⇒ identical output apart from declared `generatedAt`.
+- Budgets: `--max-entities`/`--max-relationships`/`--max-evidence`/`--max-chars` with explicit truncation metadata; `maxChars` enforced against the exact serialized evidence size.
+- Provenance/freshness: provenance API fields preserved; freshness classification never presents revision-specific evidence as current.
+- Investigation: versioned `ix-investigation/1` under `~/.ix/investigations`; injective id encoding (no collisions, no traversal); save/resume/diff; saved revision+depth preserved for `--diff` unless overridden; malformed/unknown-schema files refused.
+- Security: `--out` refuses directories; both write paths schema-validate then atomic-write (CodeQL findings resolved, see §5).
+- MCP: `ix_context` with budgets incl. `max_chars`, `structuredContent` + stable shared `outputSchema`; unparseable output is an MCP error; CLI/MCP contract parity tested.
+- Reference-derived: deterministic context selection / bounded bundles (Freebuff-style), schema-validated persistence (DeepSeek-Harness-style construct-validate-publish) — implemented Ix-natively over existing primitives, no new engine.
+- Exact diff: +1444/−3 across 9 files (see §5).
 
-## 7. Ix-findings evidence system
+## 9. Ix-findings Canonical Model
 
-- Canonical sources + generated artifacts regenerated (entities/relationships/mirror/live-state/wiki/public).
-- PR 397/400/401 mirrored with deep pages (`/prs/397|400|401/{conversation,files,commits,timeline,analysis,relationships,...}`).
-- Historical commits as entity pages; MCP section pages (`/mcp`, `/mcp/implementation`, `/mcp/security`, `/mcp/tests`).
-- Base-path: relative asset refs; GitHub Pages JSON-LD absolute URLs; link validation passes.
+- Mirror: **237** GitHub records (was 189) — added upstream PRs **#397/#400/#401** and the **5 historical fork commits**, captured read-only from the live API.
+- Canonical graph: **3,654 entities / 13,570 relationships** (recomputed; prior baseline 3,614/13,535 — delta recorded, not silently overwritten).
+- All PRs reconciled to fresh live state (RESOLVED/merged, no stale OPEN baselines); freshness gate passes.
 
-## 8. External research transformation
+## 10. Ix-findings Site Rework
 
-- Freebuff-style patterns (dynamic tool discovery, capability isolation, structured result preservation, deterministic context compaction) translated to Ix-native: annotations + structuredContent + deterministic tier ranking. No copied code/structure.
-- DeepSeek-Harness-style patterns (stable tool identity, atomic generation swap, deterministic cleanup) translated to: type-checked tool catalog + versioned investigation schema. No runtime dependency or repository coupling.
+- Canonical data → generator → public projection (generated HTML is never canonical).
+- Public routes: **3,899**; base path `/Ix-findings/` centralized; global sidebar contract applied on all page depths (no reduced `../` navigation).
+- New live sections: `/mcp`, `/mcp/implementation`, `/mcp/security`, `/mcp/tests`; PR pages `/prs/397|400|401|422|423/…` (conversation, comments, reviews, files, commits, timeline, analysis, relationships); entity pages for all 5 historical commits.
+- Machine corpus (`llms.txt`, `llms-full.txt`, graph.json, entities.json, search.json, routes.json, sitemap.xml) regenerated from canonical data.
 
-## 9. Regression validation (#400/#401 classes)
+## 11. Sidebar Validation
 
-- The merged upstream hardening (#400/#401) is preserved; PR 1 extends without re-architecting. Targeted tests (`mcp-runner.test.ts`, 23 tests) continue to cover timeout leakage, orphan lifecycle, exitCode contamination, scope-cache invalidation, single-flight lock ownership — all green in the full suite.
+- Verified the global nav contract is served on representative routes including `/`, `/mcp/`, `/mcp/implementation/`, `/prs/397/…`, `/entities/commit-…/` (sidebar present, complete, canonical links, no depth-sensitive globals). Live spot-check of deep pages returns 200.
 
-## 10. Deterministic context validation
+## 12. Public Validation
 
-- `context.test.ts` proves identical-input determinism (timestamp excluded), tier ordering with id tiebreak, budget enforcement with truncation counts, staleness classification.
-- `context-investigation.test.ts` proves save/resume round-trip, refusal of malformed state, deterministic deltas, freshness change surfacing.
+- `node planning/pages/validate-public.mjs` → **VALIDATION PASSED** (freshness gate green, no dead internal links, no secrets, routes complete).
+- Route count 3,899; entity count 3,654; relationship count 13,570; graph/search consistent.
+- Live deployment: Ix-findings `master` pushed (explicit authorization) → GitHub Pages redeployed (`c0a38607`, success). **Every URL cited in both PR bodies verified live (HTTP 200)** including `/prs/422/analysis`, `/prs/423/analysis`, `/prs/397/conversation`, the five `/entities/commit-…` pages, and the `/mcp` section.
 
-## 11. Full validation
+## 13. Historical Evidence
 
-- PR 1: `npm test` 864 pass · typecheck clean · lint 0 errors.
-- PR 2: `npm test` 866 pass · typecheck clean · lint 0 errors.
-- Ix-findings: `validate-public.mjs` PASSED; live smoke via local server (index/pr397/commit-74b848c8/mcp all 200).
+- Five commit URLs: see §6 (all live, all linked in both PRs).
+- PR/issue lineage: #219 (tracking) → historical fork work → #397 → #400 → #401 → PR #422 / PR #423; upstream PRs captured as first-class entities with `/prs/` pages.
+- Revision-pinned: commit pages are SHA-pinned; freshness classification distinguishes current vs historical.
 
-## 12. P2 follow-ups
+## 14. Freebuff Research
 
-- Pro-tool structured schemas once `@ix/pro` shapes can be verified.
-- GraphQL review-thread state for PRs 397/400/401 (currently UNKNOWN for those).
-- Ix-findings Pages deployment of the new PR/commit deep pages (local build validated; push requires authorization).
-- Investigation-state expiry/GC for `~/.ix/investigations`.
-- MCP `task` semantics evaluation for long-running tools.
+Adopted (transformed, not copied): **deterministic bounded context construction** and **structured tool results**.
+- Source mechanism: context gathering → relevant files → bounded context; structured result preservation across stages.
+- Corresponding Ix problem: agents stitched disconnected graph results by hand; MCP returned only text.
+- Invariant: identical input ⇒ identical bounded bundle; structured results preserved end-to-end.
+- Ix-native implementation: `ix context` bundle composing existing resolver/facts/context/provenance; `outputSchema`+`structuredContent` (PR 1) and shared zod contract (PR 2).
+- Tests: determinism, tier ordering, budget/truncation, structuredContent contract. Validation: full suites green.
+- Maintenance assessment: no new engine; small, composable additions over existing primitives. No runtime dependency on Freebuff.
 
-## 13. PR links
+## 15. DeepSeek Harness Research
 
-- PR 422: https://github.com/ix-infrastructure/Ix/pull/422 (MCP) — mergeable, CI queued.
-- PR 423: https://github.com/ix-infrastructure/Ix/pull/423 (Agent context) — mergeable, CI queued.
+Adopted (transformed, not copied): **construct → validate → publish** state discipline and **contract probes**.
+- Source mechanism: reproducible probes; explicit contracts; state preservation across generations.
+- Corresponding Ix problem: network-derived bundles written to disk unvalidated; MCP/CLI contract drift risk.
+- Invariant: never expose or persist half-validated state; one versioned contract for CLI and MCP.
+- Ix-native implementation: shared `ix-context-bundle/1` zod schema used as both the MCP output schema and the pre-write validation gate; atomic writes so a partial file is never visible.
+- Tests: malformed-bundle refusal; structuredContent round-trip; unparseable-output error. Validation: CodeQL clean, suites green.
+- Maintenance assessment: one schema module, two consumers; no runtime dependency on DeepSeek Harness.
 
-## 14. Verification summary
+## 16. P2 Follow-ups
 
-All checks green: identity (Alot1z noreply), no secrets in diffs, no upstream mutation, no attribution footers, live links verified, PRs open and mergeable.
+- Ix-findings: deeper `/context` and `/provenance` topical pages (currently entity-level only); sidebar/active-state snapshot test across all 3,899 routes.
+- PR 2: MCP `--kind`/`--path`/`--pick` exposure for `ix_context` if agent demand justifies it; investigation export to a portable bundle file (currently `--out` covers bundle, not investigation state).
+- PR 1: interop probes against the official Python/Go MCP clients on Windows; performance measurement of subprocess vs in-process execution if MCP latency becomes a concern.
+- The 3 pre-existing `api.ts` "file data in outbound request" warnings on upstream `main` are outside both PRs' scope.
+
+## 17. Authorization-Sensitive State
+
+- **Completed (authorized):** push to `Alot1z/Ix-remap` (both branches); open/maintain PR 422 and PR 423; update PR titles/bodies; commit + push Ix-findings `master` (explicit per-action authorization); all local implementation, testing, and validation.
+- **Not done (per plan constraints):** no merge, no approve, no close, no reactions, no PR/issue comments, no upstream pushes, no modification of upstream branches.
+- **Deferred (needs separate authorization, not requested):** nothing currently outstanding on Ix-findings; future publication of any new generated content would again require explicit per-action authorization.
+- **Blocked:** none. Ix runtime backend verification remains environment-dependent (Docker) but does not affect these PRs' static validation.
+
+---
+
+Final status: both PRs open and mergeable with green CI/CodeQL; all PR-cited URLs verified live; Ix-findings deployed and validated; historical work preserved; no unauthorized GitHub writes.
