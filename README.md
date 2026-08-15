@@ -3,7 +3,7 @@
 Investigation, forensic audit, and contribution workspace for the
 [Ix](https://github.com/ix-infrastructure/Ix) / Compass ecosystem.
 
-**→ [Knowledge Explorer (live)](https://alot1z.github.io/Ix-findings/)** ← interactive graph, 15 findings, 30 evidence items, 165-node investigation map.
+**→ [Knowledge Explorer (live)](https://alot1z.github.io/Ix-findings/)** ← interactive graph, 21 findings, 30 evidence items, 165-node investigation map (PR-audit era added 2026-08-15).
 
 **Initiated:** 2026-08-10 · **Latest phase:** 14 (independent forensic audit, 2026-08-11)
 

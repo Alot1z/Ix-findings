@@ -1,6 +1,6 @@
 {
   "version": "2.0.0",
-  "generated": "2026-08-10",
+  "generated": "2026-08-15",
   "note": "F-### IDs are the planning-layer canonical IDs; ixf_id is the 1:1 alias used by the earlier ledger (manifests/findings-index.json). Evidence classes: A=source, B=artifact/runtime, C=reconstruction, D=inference.",
   "findings": [
     {
@@ -489,6 +489,174 @@
       "related_prs": [],
       "related_suggestions": [],
       "recommendation": "Sync fork main when convenient"
+    },
+    {
+      "id": "F-014",
+      "ixf_id": "IXF-014",
+      "title": "#446 global↔namespace PHP scope-boundary regression (C6/C8/D/E)",
+      "repository": "ix-infrastructure/Ix",
+      "subsystem": "core-ingestion (PHP resolution)",
+      "first_phase": "pr-audit-2026-08-15",
+      "latest_phase": "pr-audit-2026-08-15",
+      "evidence_class": "A",
+      "confidence": "high",
+      "status": "FIXED_FORK",
+      "severity": "high",
+      "affected_versions": [
+        "PR #446 head 83b9be4"
+      ],
+      "evidence_refs": [
+        "E-PR446-SCOPE"
+      ],
+      "reproduction": "global `use Vendor\\Thing;` + `namespace A { class Thing {} ... }` emits CALLS @0.9 to Vendor/Thing.php; also block-use→global (C8), decoy (D), unbraced (E). base 043bc68 emits no edge.",
+      "related_files": [
+        "planning/findings/PR-AUDIT-2026-08-15.md"
+      ],
+      "related_issues": [],
+      "related_prs": [
+        "#446"
+      ],
+      "related_suggestions": [],
+      "recommendation": "Fork commit 0a7d97f (fix/446-namespace-scope-boundary) adds parser-level phpMixedScope guard; ready for maintainer cherry-pick."
+    },
+    {
+      "id": "F-015",
+      "ixf_id": "IXF-015",
+      "title": "#446 C7 — block-scoped `use` leaking into global code (pre-existing)",
+      "repository": "ix-infrastructure/Ix",
+      "subsystem": "core-ingestion (PHP resolution)",
+      "first_phase": "pr-audit-2026-08-15",
+      "latest_phase": "pr-audit-2026-08-15",
+      "evidence_class": "A",
+      "confidence": "high",
+      "status": "PRE_EXISTING",
+      "severity": "medium",
+      "affected_versions": [
+        "043bc68 (base), 83b9be4, 0a7d97f"
+      ],
+      "evidence_refs": [],
+      "reproduction": "`namespace A { use Vendor\\Thing; }` + global code declaring nothing, calling Thing() → wrong edge at 0.9 via legacy stem fallback on base AND PR head.",
+      "related_files": [
+        "planning/findings/PR-AUDIT-2026-08-15.md"
+      ],
+      "related_issues": [],
+      "related_prs": [
+        "#446"
+      ],
+      "related_suggestions": [],
+      "recommendation": "Not a #446 regression; fixing requires namespace-aware bare-name fallback. Documented as known limitation, deliberately excluded from 0a7d97f."
+    },
+    {
+      "id": "F-016",
+      "ixf_id": "IXF-016",
+      "title": "#443 renamed-import fallback binds to provider members (X1/X3)",
+      "repository": "ix-infrastructure/Ix",
+      "subsystem": "core-ingestion (TS/JS resolution)",
+      "first_phase": "pr-audit-2026-08-15",
+      "latest_phase": "pr-audit-2026-08-15",
+      "evidence_class": "A",
+      "confidence": "high",
+      "status": "FIXED_FORK",
+      "severity": "high",
+      "affected_versions": [
+        "PR #443 head eab1075"
+      ],
+      "evidence_refs": [],
+      "reproduction": "`import { Base as LocalBase } from \"./m\"` where m.ts has only `export class M { Base() {} }` → EXTENDS @0.9 qk=M.Base; base fef671c emits nothing. eab1075's 'default' guard does not cover other member names.",
+      "related_files": [
+        "planning/findings/PR-AUDIT-2026-08-15.md"
+      ],
+      "related_issues": [],
+      "related_prs": [
+        "#443",
+        "#434"
+      ],
+      "related_suggestions": [],
+      "recommendation": "Fork commit cba11a3 (fix/443-renamed-import-member-guard) requires a plain qualified key in the fallback; ready for maintainer cherry-pick."
+    },
+    {
+      "id": "F-017",
+      "ixf_id": "IXF-017",
+      "title": "#445 configured-binding path binds to provider members (Y1)",
+      "repository": "ix-infrastructure/Ix",
+      "subsystem": "core-ingestion (tsconfig module resolution)",
+      "first_phase": "pr-audit-2026-08-15",
+      "latest_phase": "pr-audit-2026-08-15",
+      "evidence_class": "A",
+      "confidence": "high",
+      "status": "FIXED_FORK",
+      "severity": "high",
+      "affected_versions": [
+        "PR #445 head adc97c1"
+      ],
+      "evidence_refs": [],
+      "reproduction": "configured mapping @core→worker.ts + `import { Base as LocalBase } from \"@core\"` where worker.ts has only `export class W { Base() {} }` → EXTENDS @0.9 qk=W.Base; base emits nothing.",
+      "related_files": [
+        "planning/findings/PR-AUDIT-2026-08-15.md"
+      ],
+      "related_issues": [],
+      "related_prs": [
+        "#445"
+      ],
+      "related_suggestions": [],
+      "recommendation": "Fork commit f9274cc (fix/445-renamed-import-member-guard) applies the same plain-key requirement to the configured path; ready for maintainer cherry-pick."
+    },
+    {
+      "id": "F-018",
+      "ixf_id": "IXF-018",
+      "title": "#446 parser-level phpNamespaceBlocks guard (upstream implementation)",
+      "repository": "ix-infrastructure/Ix",
+      "subsystem": "core-ingestion (PHP resolution)",
+      "first_phase": "pr-audit-2026-08-15",
+      "latest_phase": "pr-audit-2026-08-15",
+      "evidence_class": "A",
+      "confidence": "high",
+      "status": "UPSTREAM_PR",
+      "severity": "informational",
+      "affected_versions": [
+        "83b9be4"
+      ],
+      "evidence_refs": [],
+      "reproduction": "Counts namespace_definition nodes on the existing single walk; covers same-name braced blocks and use-only blocks (entity-side guard could not).",
+      "related_files": [
+        "planning/findings/PR-AUDIT-2026-08-15.md"
+      ],
+      "related_issues": [],
+      "related_prs": [
+        "#446",
+        "#442"
+      ],
+      "related_suggestions": [],
+      "recommendation": "Already upstream in #446 at 83b9be4; our fork validation fixtures live in Alot1z/Ix-remap validation/php-multi-namespace-guard/."
+    },
+    {
+      "id": "N-003",
+      "ixf_id": "IXF-018",
+      "title": "#444 MCP output-cap and #447 discovery confinement — audited, no defect",
+      "repository": "ix-infrastructure/Ix",
+      "subsystem": "ix-cli (mcp runner / ingest discovery)",
+      "first_phase": "pr-audit-2026-08-15",
+      "latest_phase": "pr-audit-2026-08-15",
+      "evidence_class": "A",
+      "confidence": "medium",
+      "status": "AUDITED",
+      "severity": "informational",
+      "affected_versions": [
+        "1f49d9f",
+        "6233b49"
+      ],
+      "evidence_refs": [],
+      "reproduction": "#444: truncation→failure semantics, bounded 2KiB failure detail, reason preserved when cap pre-fired — coherent; own suites pass. #447: path-segment containment on canonical paths with canonicalized root; in-tree symlinks kept; single-file ingest deliberately exempt — own suite passes (8 passed / 3 win32-skips).",
+      "related_files": [
+        "planning/findings/PR-AUDIT-2026-08-15.md"
+      ],
+      "related_issues": [],
+      "related_prs": [
+        "#444",
+        "#447"
+      ],
+      "related_suggestions": [],
+      "recommendation": "No corrective commit. #445 informational: TS paths tie-break / .js→.ts preference divergences are contrived; non-relative `extends` not followed is a documented conservative scope reduction."
     }
   ]
 }

@@ -165,3 +165,35 @@ never upgraded by repetition. Machine-readable: `registry.json`.
 - **Never upgraded:** F-006's mechanism stayed C even though three agents reproduced the symptom (repetition does not upgrade class).
 - **Severity legend:** P0 critical / P1 high / P2 medium / P3 low / n/a informational.
 - **Statuses:** REPRODUCED · VERIFIED · CONFIRMED · REPRODUCED_LIVE · OBSERVED · OPEN · PR_READY · PR_OPEN · IN_REMAP_PR · IN_PR_393 · RESOLVED_UPSTREAM.
+
+---
+
+## PR-audit findings (2026-08-15) — see `PR-AUDIT-2026-08-15.md` for evidence
+
+## F-014 — #446 global↔namespace PHP scope-boundary regression (C6/C8/D/E)
+- **Repository:** ix-infrastructure/Ix · **Subsystem:** core-ingestion (PHP resolution)
+- **Evidence class:** A · **Confidence:** high · **Status:** FIXED_FORK · **Severity:** high
+- **Reproduction:** global `use` + namespace block declaring its own symbol → wrong CALLS @0.9 to the vendor file; base emits nothing
+- **Fix:** fork `0a7d97f` (phpMixedScope parser-level guard) — 113/113 relevant tests
+
+## F-015 — #446 C7 block-scoped use → global code (pre-existing)
+- **Status:** PRE_EXISTING (base 043bc68, 83b9be4, 0a7d97f identical) · **Severity:** medium
+- **Recommendation:** documented limitation; excluded from 0a7d97f deliberately
+
+## F-016 — #443 renamed-import fallback binds to provider members (X1/X3)
+- **Evidence class:** A · **Status:** FIXED_FORK · **Severity:** high
+- **Reproduction:** `import { Base as LocalBase }` + provider method `M.Base` → EXTENDS @0.9; base emits nothing
+- **Fix:** fork `cba11a3` (plain-qualified-key requirement) — 70/70 resolveEdges
+
+## F-017 — #445 configured-binding path binds to provider members (Y1)
+- **Evidence class:** A · **Status:** FIXED_FORK · **Severity:** high
+- **Reproduction:** configured mapping + renamed EXTENDS to method `W.Base` → EXTENDS @0.9; base emits nothing
+- **Fix:** fork `f9274cc` (same plain-key guard on the configured path) — 72/72 resolveEdges
+
+## F-018 — #446 parser-level phpNamespaceBlocks guard (upstream)
+- **Status:** UPSTREAM_PR (in #446 at 83b9be4) · **Severity:** informational
+- **Reproduction:** counts namespace_definition nodes on the existing walk; covers same-name and use-only blocks
+
+## N-003 — #444 / #447 audited, no defect
+- **Status:** AUDITED · **Severity:** informational
+- #444: truncation→failure + bounded failure-reason preservation coherent; #447: path-segment containment sound
