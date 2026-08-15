@@ -657,6 +657,34 @@
       ],
       "related_suggestions": [],
       "recommendation": "No corrective commit. #445 informational: TS paths tie-break / .js→.ts preference divergences are contrived; non-relative `extends` not followed is a documented conservative scope reduction."
+    },
+    {
+      "id": "F-019",
+      "ixf_id": "IXF-020",
+      "title": "#446 FQCN index drops same-line sibling PHP types (false negative)",
+      "repository": "ix-infrastructure/Ix",
+      "subsystem": "core-ingestion (PHP namespace resolution)",
+      "first_phase": "pr-audit-2026-08-15",
+      "latest_phase": "pr-audit-2026-08-15",
+      "evidence_class": "A",
+      "confidence": "high",
+      "status": "FIXED_FORK",
+      "severity": "medium",
+      "affected_versions": [
+        "PR #446 head 83b9be4",
+        "fork fix 0a7d97f"
+      ],
+      "evidence_refs": [],
+      "reproduction": "`<?php namespace Vendor\\Package; class A {} class B {}` (two classes on ONE line) + consumer `use Vendor\\Package\\B; class C { function make() { new B(); } }` -> base 043bc68 emits IMPORTS @0.9 to /repo/Vendor/Package/B.php; head (FQCN map drops container-carrying B) emits NONE. Multi-line control resolves @0.9 on both. Root cause: findEnclosing's inclusive line ranges falsely nest B inside A (same-line sibling), and phpTypeFqcn's `entity.container` guard (introduced with the #446 FQCN machinery, absent in base) drops the legitimately-top-level PHP type from the index.",
+      "related_files": [
+        "planning/findings/PR-AUDIT-2026-08-15.md"
+      ],
+      "related_issues": [],
+      "related_prs": [
+        "#446"
+      ],
+      "related_suggestions": [],
+      "recommendation": "Fork commit f577492 (fix/446-namespace-scope-boundary, parent 0a7d97f) drops the container exclusion in phpTypeFqcn and ambiguousPhpTypeNames — PHP types (class/interface/trait/enum) can never nest, so a container on one is always a same-line artifact. Regression tests fail-before/pass-after; resolveEdges+queries.php+patchBuilder 115/115, tsc clean. Ready for maintainer cherry-pick. Note: the second-order sweep's 'FQCN path immune by construction' claim was about member-binding (false positives); this is a false negative on a different axis."
     }
   ]
 }
