@@ -685,6 +685,60 @@
       ],
       "related_suggestions": [],
       "recommendation": "Fork commit f577492 (fix/446-namespace-scope-boundary, parent 0a7d97f) drops the container exclusion in phpTypeFqcn and ambiguousPhpTypeNames — PHP types (class/interface/trait/enum) can never nest, so a container on one is always a same-line artifact. Regression tests fail-before/pass-after; resolveEdges+queries.php+patchBuilder 115/115, tsc clean. Ready for maintainer cherry-pick. Note: the second-order sweep's 'FQCN path immune by construction' claim was about member-binding (false positives); this is a false negative on a different axis. Cross-batch verification (three-state matrix, base 043bc68 / PR 83b9be4 / fixed f577492): the same-line and three-on-line cases drop to NONE in BOTH the in-batch and cross-batch (buildGlobalResolutionIndex -> resolveEdges globalIndex) paths on 83b9be4, and f577492 restores IMPORTS @0.9 on all six cells — the fix is sufficient for every phpFqcnToTypes producer (global builder, resolveEdges merge) and the importedPhpType consumer, all of which share phpTypeFqcn. CLI builds the global index per run in memory (ingest.ts) — no serialized cache. Nested-class (invalid PHP) case captures no entity and is identical on PR and fixed."
+    },
+    {
+      "id": "F-020",
+      "ixf_id": "IXF-021",
+      "title": "Single-character symbol names lose CALLS/REFERENCES edges (all languages)",
+      "repository": "ix-infrastructure/Ix",
+      "subsystem": "core-ingestion (query layer / relationship extraction)",
+      "first_phase": "pr-audit-2026-08-15",
+      "latest_phase": "pr-audit-2026-08-15",
+      "evidence_class": "A",
+      "confidence": "high",
+      "status": "OPEN",
+      "severity": "low",
+      "affected_versions": [
+        "043bc68",
+        "83b9be4",
+        "f577492"
+      ],
+      "evidence_refs": [],
+      "reproduction": "`<?php use Vendor\\Package\\B; function run(B $b): void { new B(); }` emits ONLY an IMPORTS edge; the typed-parameter REFERENCES and constructor CALLS are absent. Replacing the name with `User` or `AB` emits IMPORTS+REFERENCES+CALLS. Identical on base 043bc68 and head f577492 (pre-existing). Root cause: generic length guards in core-ingestion/src/index.ts — line ~2643 `if (!callee || callee.length <= 1) continue;` (CALLS) and line ~2843 `if (!typeName || TYPE_BUILTINS.has(typeName) || typeName.length <= 1) continue;` (REFERENCES).",
+      "related_files": [
+        "planning/findings/PR-AUDIT-2026-08-15.md"
+      ],
+      "related_issues": [],
+      "related_prs": [],
+      "related_suggestions": [],
+      "recommendation": "No code change in #446 scope (pre-existing, base==head). The length guard is a deliberate noise filter (e.g. minified code, `_()`); relaxing it is a per-language/per-context design decision with broad test impact. Recorded for a future query-layer pass."
+    },
+    {
+      "id": "F-021",
+      "ixf_id": "IXF-022",
+      "title": "PHP grouped `use Vendor\\{A, B};` captures zero IMPORTS",
+      "repository": "ix-infrastructure/Ix",
+      "subsystem": "core-ingestion (PHP query / import resolution)",
+      "first_phase": "pr-audit-2026-08-15",
+      "latest_phase": "pr-audit-2026-08-15",
+      "evidence_class": "A",
+      "confidence": "high",
+      "status": "OPEN",
+      "severity": "medium",
+      "affected_versions": [
+        "043bc68",
+        "83b9be4",
+        "f577492"
+      ],
+      "evidence_refs": [],
+      "reproduction": "`<?php use Vendor\\Package\\{A, B}; function run() { new B(); }` produces ZERO IMPORTS relationships (imports=[]) and no edges on all three states (base/PR/fixed). The comma-separated multi-clause form `use Vendor\\Package\\A, Vendor\\Package\\B;` is captured correctly. Root cause: the PHP use query (queries.ts, namespace_use_declaration capture ~line 1033) is an anchored alternation over the clause's first named child `(qualified_name) (name)`; the grouped form's clause starts with a namespace_use_group node, so nothing matches and the whole statement is invisible to import resolution.",
+      "related_files": [
+        "planning/findings/PR-AUDIT-2026-08-15.md"
+      ],
+      "related_issues": [],
+      "related_prs": [],
+      "related_suggestions": [],
+      "recommendation": "No code change in #446 scope (pre-existing query-layer gap, base==head). A follow-up query fix should also capture namespace_use_group members so grouped imports resolve like multi-clause ones."
     }
   ]
 }
