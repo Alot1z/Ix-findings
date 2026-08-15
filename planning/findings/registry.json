@@ -572,7 +572,7 @@
         "#434"
       ],
       "related_suggestions": [],
-      "recommendation": "Fork commit cba11a3 (fix/443-renamed-import-member-guard) requires a plain qualified key in the fallback; ready for maintainer cherry-pick."
+      "recommendation": "Fork commit cba11a3 (fix/443-renamed-import-member-guard) requires a plain qualified key in the fallback; ready for maintainer cherry-pick. Second-order sweep 2026-08-15: no other PR-introduced member-binding path; PHP FQCN path immune by construction; legacy stem-path member-binding is pre-existing (base==head verified)."
     },
     {
       "id": "F-017",
@@ -599,7 +599,7 @@
         "#445"
       ],
       "related_suggestions": [],
-      "recommendation": "Fork commit f9274cc (fix/445-renamed-import-member-guard) applies the same plain-key requirement to the configured path; ready for maintainer cherry-pick."
+      "recommendation": "Fork commit f9274cc (fix/445-renamed-import-member-guard) applies the same plain-key requirement to the configured path; ready for maintainer cherry-pick. Second-order sweep 2026-08-15: no other PR-introduced member-binding path; PHP FQCN path immune by construction; legacy stem-path member-binding is pre-existing (base==head verified)."
     },
     {
       "id": "F-018",
