@@ -21,11 +21,19 @@ contribution packet is self-contained. Nothing is fabricated.
 | **Master Report** | [`planning/final/MASTER-REPORT.md`](planning/final/MASTER-REPORT.md) |
 | **Latest Phase Report** | [`CLI-HANDOFF/phase-14/PHASE-14-REPORT.md`](CLI-HANDOFF/phase-14/PHASE-14-REPORT.md) |
 | **Contribution Inventory** | [`CLI-HANDOFF/phase-12/CONTRIBUTION-INVENTORY.md`](CLI-HANDOFF/phase-12/CONTRIBUTION-INVENTORY.md) |
+| **Environment Knowledge** | [`knowledge.md`](knowledge.md) — durable domain knowledge (2026-08-16) |
+| **Workflow Governance** | [`AGENTS.md`](AGENTS.md) — mandatory contribution lifecycle |
+| **PR-Audit Report (2026-08-15)** | [`planning/findings/PR-AUDIT-2026-08-15.md`](planning/findings/PR-AUDIT-2026-08-15.md) — F-014..F-021 |
+| **Finding Registry** | [`planning/findings/registry.json`](planning/findings/registry.json) — 24 records (F-001..F-021, N-001..N-003) |
 | **Upstream (Ix)** | [ix-infrastructure/Ix](https://github.com/ix-infrastructure/Ix) |
 | **Upstream PRs** | [#393 remap](https://github.com/ix-infrastructure/Ix/pull/393) · [#395 space-in-path](https://github.com/ix-infrastructure/Ix/pull/395) · [#388 brew](https://github.com/ix-infrastructure/Ix/pull/388) |
 | **Fork (MCP)** | [`Alot1z/Ix:feat/ix-mcp`](https://github.com/Alot1z/Ix/tree/feat/ix-mcp) (PR-ready, awaiting user go-ahead) |
 
 ## Findings (15 total · Phase 14 audit)
+
+> The table below reflects the Phase-14 audit. The current registry
+> (`planning/findings/registry.json`) holds **24 records** through the
+> 2026-08-15/16 PR-audit era (F-014..F-021, N-003) — see the PR-audit report.
 
 | ID | Title | Evidence | Status |
 |----|-------|----------|--------|
