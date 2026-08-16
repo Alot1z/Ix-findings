@@ -35,3 +35,117 @@ line, then the body. No footer block, no attribution, no tool branding.
 - Do not fabricate filenames, symbols, line numbers, commits, or relationships.
   If exact references cannot be verified, say so explicitly.
 - Preserve existing UI design; data and routing changes only.
+
+## Contribution workflow (mandatory lifecycle)
+
+For every candidate finding/fix, run the full lifecycle — no step may be
+silently skipped:
+
+```
+DISCOVER → RECOVER CONTEXT → CHECK LIVE UPSTREAM → SEARCH DUPLICATES
+→ REPRODUCE → CLASSIFY → ASSESS PR-WORTHINESS → ADVERSARIAL TEST
+→ VERIFY COMMIT → PUBLISH FORK → VERIFY REMOTE → UPDATE FINDINGS
+→ CHECK PR COMMUNICATION → COMMENT OR OPEN PR → VERIFY COMMUNICATION
+→ FINAL REPORT
+```
+
+See `knowledge.md` for the classification vocabulary and the durable domain
+knowledge behind each gate.
+
+## Live-upstream gate
+
+- Re-fetch `origin` and re-query the GitHub API **before every decision**.
+  A SHA from an old audit is a hypothesis, never current truth.
+- Determine, per relevant PR: state, head, base, source branch, commits,
+  comments, reviews, linked issues, competing PRs, merged fixes, superseding
+  work.
+- If the bug was fixed upstream or another PR owns it since the last check:
+  STOP and record the new classification.
+
+## Duplicate detection
+
+- Search open PRs, closed/merged PRs, issues, commits, branches, PR comments,
+  review comments, and the findings registry — using multiple signals
+  (symbols, function names, test names, reproducer shape, SHAs), never only
+  the commit message.
+- Never create a duplicate contribution, comment, or PR.
+- If an equivalent fix exists upstream or is being fixed by an active PR,
+  record the relationship and do not publish competing work.
+
+## Classification discipline
+
+Classify every finding as exactly one of: CURRENT REGRESSION · CURRENT
+PRE-EXISTING BUG · HISTORICAL REGRESSION ALREADY FIXED · DUPLICATE ·
+ALREADY BEING FIXED · FALSE POSITIVE · INFORMATIONAL · LOW VALUE / NOT
+WORTH CONTRIBUTING · NEW ADDITIVE BUG.
+
+A historical regression that no longer exists upstream must never be
+presented as live. A technically correct commit is not publishable unless
+the bug is current AND maintainer-worthy.
+
+## Tool honesty
+
+- Classify every tool: AVAILABLE / PARTIALLY AVAILABLE / UNAVAILABLE.
+- Never claim an agent ran when it did not; never claim RavelScope or graph
+  evidence that was not produced; never convert an environmental failure
+  into a PASS; never present a manually applied methodology as an
+  independent subagent execution.
+- When a tool is unavailable, use the strongest available alternative and
+  document the substitution explicitly.
+
+## Findings-database safety (surgical edits only)
+
+- Preserve IDs; never renumber; never create duplicate IDs.
+- Insert fields/records surgically. Do NOT reserialize the registry, do not
+  change line endings (`planning/findings/registry.json` is CRLF), do not
+  create formatting churn.
+- Verify JSON parses and IDs remain unique after every edit.
+- Keep documentation commits separate from code commits.
+
+## Comment governance
+
+- Inspect the ENTIRE current PR conversation before posting. If the finding
+  or corrective SHA was already surfaced, do NOT post a duplicate comment.
+- Comments must carry genuine technical value (a bug with evidence, a
+  reproduction, a test gap, a concrete improvement). No bookkeeping,
+  supersession records, provenance locks, or status notes.
+- Prefer the smallest number of clear comments: if several verified fixes
+  belong to one PR, one well-structured comment may carry them all.
+- Never claim a fork commit is already part of the upstream PR.
+- Use collaborator language — findings are advisory, the maintainer decides.
+
+## PR creation
+
+- Open a new upstream PR only for an independent, live, meaningful, verified
+  bug with no duplicate and no competing fix, and when no existing open PR
+  is the correct ownership target.
+- If the bug belongs to an existing open PR, publish the verified fork
+  commit and comment on that PR instead — never open a duplicate PR merely
+  for visibility.
+- Verify the PR after creation: number, URL, base, head SHA, ancestry, body.
+
+## GitHub safety
+
+- Never force-push. Never rewrite history. Never amend a published commit.
+- Never modify an upstream source branch directly. Never push to upstream
+  `ix-infrastructure/Ix`.
+- Verify every remote write independently (`ls-remote`, `gh api`).
+- After every write, confirm upstream source branches are unchanged.
+
+## Authorization
+
+- The controlling workflow may grant full authorization for the lifecycle
+  (publish fork commits, update this ledger, post missing comments, open
+  warranted PRs). When it does, execute — do not ask "should I publish?".
+- Stop only when: the contribution is unsafe, the issue is not actionable,
+  required evidence cannot be obtained, a required tool genuinely does not
+  exist, or the platform blocks the action. When blocked, complete every
+  remaining safe step and report the exact blocker.
+
+## Final report
+
+End every lifecycle with a report covering: verdict per finding, live
+upstream state, bug verification, adversarial verification, tool
+availability, exact test counts (PASS/FAIL/SKIPPED/ENVIRONMENTAL),
+commits, findings changes, publication, communication, and the final
+safety confirmation.
