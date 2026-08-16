@@ -193,3 +193,46 @@ NEW ADDITIVE BUG.
 - Durable lessons from `AI-ENGINEERING-STATE.md` (execution-logic correction,
   commit-target rule, duplicate-fix doctrine, collaborator role) are
   consolidated into this file and `AGENTS.md`.
+- **2026-08-16:** `planning/AI-ENGINEERING-STATE.md` (blob `2126d26c`) and a
+  new `planning/README.md` were restored onto fork `main` (the agent system
+  persists session state to that path; its absence broke handoffs). The
+  57-file `planning/audit/` tree stays historical on `clean-rebuild`.
+
+## 10. Knowledge graph maintenance (Ix-findings)
+
+The `knowledge/` directory is the canonical machine-readable knowledge layer;
+`planning/pages/public/` and `planning/wiki/data/` are derived from it.
+
+- **Regenerate:** `node knowledge/build-knowledge.mjs` then
+  `node planning/wiki/build-data.mjs && node planning/pages/build-public.mjs`.
+- **Validate:** `node planning/pages/validate-public.mjs`;
+  freshness gate: `node knowledge/freshness-gate.mjs` (fails when a
+  manifest-era commit entity is CURRENT but superseded by the live head).
+- **Tracked:** both source data (`knowledge/*.json`) and derived output
+  (`planning/pages/public/`, `planning/wiki/data/`) are committed; CI watches
+  `knowledge/` so knowledge-layer changes validate and deploy.
+- **Discipline:** regenerate only with a clear reason; inspect the diff for
+  unrelated churn; commit derived data in its own commit. `live-github-state.json`
+  is captured live — regenerating rewrites it, so a refresh is a real state
+  change, not a no-op. Do not commit regenerated output you did not generate
+  and verify.
+- As of 2026-08-16 an uncommitted regeneration (49 files, +6855/−2431)
+  from a prior session sits in the working tree; a dedicated refresh commit
+  is a valid follow-up once its diff is reviewed for unrelated churn.
+
+## 11. Agent system (Ix-remap fork)
+
+Fork `main` carries `.agents/`: 13 specialist agents (`agents/`), 5 workflow
+prompts (`prompts/`), 5 skills (`skills/`). Responsibilities: archaeology,
+commit/contribution mining, PR review, security, git, test audit, upstream
+audit, findings review, final review, session closeout, orchestration.
+
+- `ix-orchestrator` owns the end-to-end session cycle and handoff format.
+- `ix-contribution-lifecycle` (added 2026-08-16) is the deterministic
+  DISCOVER → … → FINAL REPORT pipeline; invoke it instead of reconstructing
+  the workflow. `AGENTS.md` (this repo) remains the mandatory rules layer;
+  `knowledge.md` the context layer.
+- Skills persist session state to `planning/AI-ENGINEERING-STATE.md`
+  (restored 2026-08-16); findings evidence lives here in the registry.
+- Agent upgrades follow the self-upgrade rule: evidence-based, minimal,
+  isolated commits, reversible, non-destructive.
