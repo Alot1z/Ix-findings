@@ -236,3 +236,45 @@ audit, findings review, final review, session closeout, orchestration.
   (restored 2026-08-16); findings evidence lives here in the registry.
 - Agent upgrades follow the self-upgrade rule: evidence-based, minimal,
   isolated commits, reversible, non-destructive.
+- **Agent-system registry:** `Alot1z/Ix-remap` `.agents/README.md` is the
+  authoritative inventory (agent | responsibility | inputs | outputs | skills |
+  writes | upstream access) — overlap and stale agents are mechanically
+  discoverable from it. Update it in the same commit as any agent change.
+
+## 12. Governance hierarchy
+
+```
+Ix-remap
+├── AGENTS.md               ← how this repository operates (fork constraints)
+├── knowledge.md            ← fork live-state + contribution register
+├── .agents/                ← agent implementations, prompts, skills (+README registry)
+│   ├── agents/  (13 specialists)
+│   ├── prompts/ (5 workflows)
+│   └── skills/  (5 skills incl. ix-contribution-lifecycle)
+└── planning/               ← session state (AI-ENGINEERING-STATE.md) + index
+
+Ix-findings
+├── AGENTS.md               ← evidence/contribution governance (mandatory rules)
+├── knowledge.md            ← institutional/domain knowledge (this file)
+├── README.md               ← discovery links
+├── planning/findings/      ← authoritative findings state (registry.json + audit report)
+└── knowledge/              ← derived knowledge graph (source + derived output)
+```
+
+## 13. Knowledge freshness taxonomy
+
+Every statement in `knowledge.md` (and in fork docs) belongs to one class —
+label uncertain claims and re-verify before relying on them:
+
+| Class | Meaning | Re-verify before use? |
+|---|---|---|
+| Durable invariant | Product/architecture fact that does not change (e.g. `ix reset` is global) | No |
+| Historical fact | Recorded event, decision, or state (e.g. PR #393 merged 2026-08-12) | No — cite the SHA/date |
+| Current state | Live upstream/fork state (heads, open PRs, findings status) | YES — always re-fetch |
+| Derived state | Output of a build (knowledge graph, pages) | YES — regenerate + validate |
+| Temporary session state | In-progress session notes | Not durable — belongs in session files |
+| Deprecated | Superseded guidance | Remove or mark deprecated explicitly |
+
+The biggest failure mode is **current state aging into historical fact** — a
+snapshot that was true yesterday is a hypothesis today. Re-check with `gh` /
+`git fetch` before every decision (mandatory live-upstream gate in `AGENTS.md`).

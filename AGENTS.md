@@ -52,6 +52,21 @@ DISCOVER → RECOVER CONTEXT → CHECK LIVE UPSTREAM → SEARCH DUPLICATES
 See `knowledge.md` for the classification vocabulary and the durable domain
 knowledge behind each gate.
 
+### Workflow state machine
+
+Track every candidate through explicit states; terminal states end the lane:
+
+```text
+DISCOVERED → LIVE_STATE_VERIFIED → DUPLICATE_CHECKED → REPRODUCED →
+ADVERSARIAL_TESTED → PR_WORTHINESS_DECIDED → CONTRIBUTION_TARGET_SELECTED →
+FORK_COMMIT_VERIFIED → PUBLISHED → COMMUNICATION_VERIFIED →
+FINDING_DOCUMENTED → FINAL_REPORT
+```
+
+Terminal states: ALREADY_FIXED · DUPLICATE · ALREADY_BEING_FIXED ·
+FALSE_POSITIVE · LOW_VALUE · UNSAFE · BLOCKED. A candidate in a terminal
+state is not published and is recorded with its classification.
+
 ## Live-upstream gate
 
 - Re-fetch `origin` and re-query the GitHub API **before every decision**.
@@ -93,6 +108,23 @@ the bug is current AND maintainer-worthy.
 - When a tool is unavailable, use the strongest available alternative and
   document the substitution explicitly.
 
+### Tool discovery (before declaring unavailability)
+
+Before saying a tool is unavailable, actually look for it: binaries, scripts,
+package scripts, `.agents/`, skills, MCP/tool configuration, repository docs,
+env vars, `gh`, `git`, the Ix CLI, RavelScope, test runners. Then classify
+with the full taxonomy:
+
+```text
+NOT DISCOVERED            (not searched for yet — search before classifying)
+UNAVAILABLE               (searched, genuinely absent)
+AVAILABLE                 (present and working)
+AVAILABLE BUT BROKEN      (present, fails to run — report the failure)
+AVAILABLE BUT NOT APPLICABLE (present but the wrong tool for this task)
+```
+
+A tool may only be reported UNAVAILABLE after a discovery pass has been made.
+
 ## Findings-database safety (surgical edits only)
 
 - Preserve IDs; never renumber; never create duplicate IDs.
@@ -101,6 +133,65 @@ the bug is current AND maintainer-worthy.
   create formatting churn.
 - Verify JSON parses and IDs remain unique after every edit.
 - Keep documentation commits separate from code commits.
+
+### Evidence provenance contract
+
+Every claim recorded in a finding or report must be traceable to:
+
+```text
+SOURCE · COMMAND/TOOL · DATE · REPOSITORY · COMMIT/PR/SHA · RESULT · CONFIDENCE
+```
+
+If any element cannot be provided, the claim is labeled with the missing
+element and its confidence is downgraded accordingly. Never assert a fact
+whose SOURCE and SHA are unknown.
+
+## Authorization (standing execution authorization)
+
+- The controlling workflow may grant full authorization for the lifecycle
+  (publish fork commits, update this ledger, post missing comments, open
+  warranted PRs). When it does, execute — do not ask "should I publish?".
+- **Permission-asking is a failure mode.** Do not ask for permission to
+  perform an operation already covered by the standing authorization. For
+  every requested operation, decide, not ask:
+
+```text
+Is this within standing authorization?
+  YES → execute
+  NO → does it violate a hard boundary (upstream branch, force-push,
+        history rewrite, amend, duplicate contribution)?
+        YES → STOP, report
+        NO → is it a routine lifecycle-adjacent step?
+             YES → execute with the gates' evidence
+             NO → request per-action authorization once, then continue
+```
+
+- Stop only when: the contribution is unsafe, the issue is not actionable,
+  required evidence cannot be obtained, a required tool genuinely does not
+  exist, or the platform blocks the action. When blocked, complete every
+  remaining safe step and report the exact blocker.
+
+## Self-upgrade governance
+
+Agents may improve the agent system itself (prompts, skills, knowledge,
+governance, checklists) when the workflow repeatedly hits a problem. Follow:
+
+```text
+OBSERVE → EVIDENCE → PROPOSE → CHECK CONFLICTS → MINIMAL CHANGE →
+VALIDATE → COMMIT → DOCUMENT
+```
+
+Requirements:
+- Evidence-based: a discovered gap, not a preference.
+- Conflict check: no contradiction with existing governance; update the
+  affected registry/README in the same commit.
+- Minimal and isolated: its own commit, never mixed with code/ledger changes.
+- Reversible and documented: a plain revertible commit; the rationale in the
+  commit body and, where relevant, the session state file.
+- **An agent may not rewrite governance merely because it prefers a
+  different workflow** — changes must fix a demonstrated failure.
+- Never silently rewrite historical evidence, session records, or the
+  findings registry.
 
 ## Comment governance
 
@@ -131,16 +222,6 @@ the bug is current AND maintainer-worthy.
   `ix-infrastructure/Ix`.
 - Verify every remote write independently (`ls-remote`, `gh api`).
 - After every write, confirm upstream source branches are unchanged.
-
-## Authorization
-
-- The controlling workflow may grant full authorization for the lifecycle
-  (publish fork commits, update this ledger, post missing comments, open
-  warranted PRs). When it does, execute — do not ask "should I publish?".
-- Stop only when: the contribution is unsafe, the issue is not actionable,
-  required evidence cannot be obtained, a required tool genuinely does not
-  exist, or the platform blocks the action. When blocked, complete every
-  remaining safe step and report the exact blocker.
 
 ## Final report
 
