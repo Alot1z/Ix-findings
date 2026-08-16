@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-13T22:23:39.068Z",
+  "generated_at": "2026-08-16T08:59:39.836Z",
   "source": "GitHub REST API, read-only, authenticated account metadata only",
   "reviews": [
     {
@@ -440,10 +440,10 @@
       "source": "OFFICIAL_GITHUB_FACT"
     },
     {
-      "id": 4932091186,
-      "node_id": "PRR_kwDORdC75M8AAAABJfm9Mg",
+      "id": 4937498621,
+      "node_id": "PRR_kwDORdC75M8AAAABJkw__Q",
       "repository": "ix-infrastructure/Ix",
-      "pr_number": 423,
+      "pr_number": 440,
       "author": {
         "login": "github-advanced-security[bot]",
         "id": 62310815,
@@ -452,9 +452,28 @@
       },
       "state": "COMMENTED",
       "body": "",
-      "html_url": "https://github.com/ix-infrastructure/Ix/pull/423#pullrequestreview-4932091186",
-      "submitted_at": "2026-08-13T22:16:13Z",
-      "commit_id": "815afeac0b1fcdff7d140c74a093e52375da1bab",
+      "html_url": "https://github.com/ix-infrastructure/Ix/pull/440#pullrequestreview-4937498621",
+      "submitted_at": "2026-08-14T13:20:51Z",
+      "commit_id": "7d834235b99d6d2eccc2e638385368ebdb1de795",
+      "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+      "source": "OFFICIAL_GITHUB_FACT"
+    },
+    {
+      "id": 4937502514,
+      "node_id": "PRR_kwDORdC75M8AAAABJkxPMg",
+      "repository": "ix-infrastructure/Ix",
+      "pr_number": 442,
+      "author": {
+        "login": "github-advanced-security[bot]",
+        "id": 62310815,
+        "type": "Bot",
+        "html_url": "https://github.com/apps/github-advanced-security"
+      },
+      "state": "COMMENTED",
+      "body": "",
+      "html_url": "https://github.com/ix-infrastructure/Ix/pull/442#pullrequestreview-4937502514",
+      "submitted_at": "2026-08-14T13:21:18Z",
+      "commit_id": "ea79b11596f3ef42532364cde14b98779f8959e2",
       "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
       "source": "OFFICIAL_GITHUB_FACT"
     }
@@ -517,11 +536,11 @@
       "source": "OFFICIAL_GITHUB_FACT"
     },
     {
-      "id": 3779528504,
-      "node_id": "PRRC_kwDORdC75M7hRwc4",
+      "id": 3783948167,
+      "node_id": "PRRC_kwDORdC75M7hineH",
       "repository": "ix-infrastructure/Ix",
       "parent_type": "PULL_REQUEST",
-      "parent_number": 423,
+      "parent_number": 440,
       "kind": "REVIEW_COMMENT",
       "author": {
         "login": "github-advanced-security[bot]",
@@ -529,24 +548,52 @@
         "type": "Bot",
         "html_url": "https://github.com/apps/github-advanced-security"
       },
-      "body": "## CodeQL / Network data written to file\n\nWrite to file system depends on [Untrusted data](1).\nWrite to file system depends on [Untrusted data](2).\n\n[Show more details](https://github.com/ix-infrastructure/Ix/security/code-scanning/53)",
-      "html_url": "https://github.com/ix-infrastructure/Ix/pull/423#discussion_r3779528504",
-      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/comments/3779528504",
-      "created_at": "2026-08-13T22:16:13Z",
-      "updated_at": "2026-08-13T22:16:13Z",
-      "commit_id": "815afeac0b1fcdff7d140c74a093e52375da1bab",
-      "path": "ix-cli/src/cli/commands/context.ts",
-      "line": 165,
+      "body": "## CodeQL / Incomplete string escaping or encoding\n\nThis replaces only the first occurrence of \"*\".\n\n[Show more details](https://github.com/ix-infrastructure/Ix/security/code-scanning/61)",
+      "html_url": "https://github.com/ix-infrastructure/Ix/pull/440#discussion_r3783948167",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/comments/3783948167",
+      "created_at": "2026-08-14T13:20:51Z",
+      "updated_at": "2026-08-14T13:20:51Z",
+      "commit_id": "7d834235b99d6d2eccc2e638385368ebdb1de795",
+      "path": "ix-cli/src/cli/ts-module-resolution.ts",
+      "line": null,
       "start_line": null,
       "side": "RIGHT",
       "in_reply_to_id": null,
-      "diff_hunk": "@@ -0,0 +1,495 @@\n+import type { Command } from \"commander\";\n+\n+import { IxClient } from \"../../client/api.js\";\n+import type {\n+  ConflictReport,\n+  DecisionReport,\n+  GraphNode,\n+  IntentReport,\n+  StructuredContext,\n+} from \"../../client/types.js\";\n+import { getEndpoint } from \"../config.js\";\n+import { collectFacts, type EntityFacts } from \"../explain/facts.js\";\n+import { printLlmLines } from \"../llm.js\";\n+import { resolveFileOrEntity } from \"../resolve.js\";\n+import { renderNote, renderSection, renderWarning } from \"../ui.js\";\n+\n+/**\n+ * Schema version for the deterministic bundle shape. Bump only on a breaking\n+ * shape change, never per run.\n+ */\n+const BUNDLE_SCHEMA = \"ix-context-bundle/1\";\n+\n+interface ContextOptions {\n+  kind?: string;\n+  path?: string;\n+  pick?: string;\n+  depth?: string;\n+  asOfRev?: string;\n+  maxEntities?: string;\n+  maxRelationships?: string;\n+  maxEvidence?: string;\n+  maxChars?: string;\n+  out?: string;\n+  format: string;\n+}\n+\n+/** Stable evidence kinds, ordered by relevance tier (lower is more relevant). */\n+type EvidenceKind =\n+  | \"target\"\n+  | \"structural\"\n+  | \"claim\"\n+  | \"decision\"\n+  | \"conflict\"\n+  | \"intent\"\n+  | \"relationship\"\n+  | \"provenance\";\n+\n+interface EvidenceItem {\n+  id: string;\n+  kind: EvidenceKind;\n+  source: string;\n+  title: string;\n+  /** Deterministic relevance score: tier plus a stable tiebreaker. */\n+  score: number;\n+  reason: string;\n+  refs: string[];\n+}\n+\n+interface ContextBundle {\n+  schema: typeof BUNDLE_SCHEMA;\n+  /** The one explicitly declared time-dependent field. */\n+  generatedAt: string;\n+  target: { id: string; name: string; kind: string; resolutionMode: string };\n+  entities: Array<{ id: string; name: string; kind: string; path?: string; stale: boolean }>;\n+  relationships: Array<{ src: string; dst: string; predicate: string }>;\n+  claims: Array<{ id: string; entityId: string; statement: string; status: string }>;\n+  decisions: DecisionReport[];\n+  conflicts: ConflictReport[];\n+  intents: IntentReport[];\n+  provenance: {\n+    sourceUri?: string;\n+    sourceHash?: string;\n+    extractor?: string;\n+    sourceType?: string;\n+    observedAt?: string;\n+    introducedRev?: number;\n+    historyLength: number;\n+    stale: boolean;\n+  };\n+  freshness: { stale: boolean; classification: \"current\" | \"stale\" | \"unverified\" };\n+  evidence: EvidenceItem[];\n+  budgets: { maxEntities: number; maxRelationships: number; maxEvidence: number; maxChars: number };\n+  truncation: {\n+    entitiesTruncated: number;\n+    relationshipsTruncated: number;\n+    evidenceTruncated: number;\n+    charactersTruncated: number;\n+  };\n+  metadata: {\n+    asOfRev?: number;\n+    depth?: string;\n+    rankingRule: \"deterministic-tier\";\n+  };\n+}\n+\n+/**\n+ * Build a bounded, deterministic context bundle for one target.\n+ *\n+ * This composes Ix's existing intelligence rather than re-deriving it: the\n+ * target is resolved through the same resolver as `ix explain`, structural\n+ * facts come from the same collector, and claims/conflicts/decisions/intents\n+ * come from the same `/v1/context` service. The only new thing here is the\n+ * bundling, budgeting, and deterministic ranking.\n+ */\n+export function registerContextCommand(program: Command): void {\n+  program\n+    .command(\"context <target>\")\n+    .description(\"Build a bounded, deterministic context bundle for a symbol, file, or entity\")\n+    .option(\"--kind <kind>\", \"Filter target entity by kind\")\n+    .option(\"--path <path>\", \"Prefer symbols from files matching this path substring\")\n+    .option(\"--pick <n>\", \"Pick Nth candidate from ambiguous results (1-based)\")\n+    .option(\"--depth <depth>\", \"Context-graph expansion depth\")\n+    .option(\"--as-of-rev <n>\", \"Historical context as of a graph revision\")\n+    .option(\"--max-entities <n>\", \"Maximum entities in the bundle\", \"50\")\n+    .option(\"--max-relationships <n>\", \"Maximum relationships in the bundle\", \"100\")\n+    .option(\"--max-evidence <n>\", \"Maximum evidence items in the bundle\", \"25\")\n+    .option(\"--max-chars <n>\", \"Maximum characters of evidence output\", \"12000\")\n+    .option(\"--format <fmt>\", \"Output format (text|json|llm)\", \"text\")\n+    .option(\"--out <path>\", \"Write the JSON bundle to this file instead of stdout\")\n+    .addHelpText(\n+      \"after\",\n+      \"\\nExamples:\\n  ix context IngestionService\\n  ix context src/main.ts --format json\\n  ix context Widget --max-entities 20 --max-evidence 10\",\n+    )\n+    .action(async (target: string, opts: ContextOptions) => {\n+      const client = new IxClient(getEndpoint());\n+\n+      const resolved = await resolveFileOrEntity(client, target, {\n+        kind: opts.kind,\n+        path: opts.path,\n+        pick: opts.pick ? parseInt(opts.pick, 10) : undefined,\n+      });\n+      if (!resolved) return;\n+\n+      const asOfRev = opts.asOfRev ? parseInt(opts.asOfRev, 10) : undefined;\n+      const maxEntities = clampInt(opts.maxEntities, 1, 500, 50);\n+      const maxRelationships = clampInt(opts.maxRelationships, 1, 1000, 100);\n+      const maxEvidence = clampInt(opts.maxEvidence, 1, 200, 25);\n+      const maxChars = clampInt(opts.maxChars, 1000, 1_000_000, 12_000);\n+\n+      const [facts, context, provenance] = await Promise.all([\n+        collectFacts(client, resolved.id, resolved.name, resolved.kind),\n+        client.query(resolved.name, {\n+          asOfRev,\n+          depth: opts.depth,\n+        }),\n+        client.provenance(resolved.id),\n+      ]);\n+\n+      const bundle = buildBundle({\n+        resolved,\n+        facts,\n+        context,\n+        provenance,\n+        asOfRev,\n+        depth: opts.depth,\n+        budgets: { maxEntities, maxRelationships, maxEvidence, maxChars },\n+      });\n+\n+      if (opts.out && opts.format !== \"json\") {\n+        renderWarning(\"--out writes JSON; ignoring --format and forcing json.\");\n+      }\n+      const out = opts.out;\n+      if (out) {\n+        const fs = await import(\"node:fs\");\n+        fs.writeFileSync(out, JSON.stringify(bundle, null, 2) + \"\\n\");",
+      "diff_hunk": "@@ -0,0 +1,315 @@\n+import * as fs from \"node:fs\";\n+import * as nodePath from \"node:path\";\n+\n+interface PathRule {\n+  pattern: string;\n+  targets: string[];\n+  baseDir: string;\n+}\n+\n+interface LoadedConfig {\n+  dir: string;\n+  baseUrl?: string;\n+  paths: PathRule[];\n+}\n+\n+export type TypeScriptModuleResolver = (\n+  sourcePath: string,\n+  specifier: string,\n+  kind?: \"runtime\" | \"types\",\n+) => string[] | undefined;\n+\n+const SOURCE_SUFFIXES = [\".ts\", \".tsx\", \".d.ts\", \".js\", \".jsx\", \".mjs\", \".cjs\"];\n+\n+function normalizePath(value: string): string {\n+  return nodePath.posix.normalize(value.replace(/\\\\/g, \"/\"));\n+}\n+\n+function isWithinDir(filePath: string, dir: string): boolean {\n+  return dir === \".\" || filePath === dir || filePath.startsWith(`${dir}/`);\n+}\n+\n+function toggleFirstAsciiCase(value: string): string | undefined {\n+  const index = value.search(/[A-Za-z]/);\n+  if (index === -1) return undefined;\n+  const char = value[index];\n+  const toggled = char === char.toLowerCase() ? char.toUpperCase() : char.toLowerCase();\n+  return value.slice(0, index) + toggled + value.slice(index + 1);\n+}\n+\n+function isCaseSensitiveFilesystem(workspaceRoot: string, absoluteFilePaths: string[]): boolean {\n+  for (const candidate of [...absoluteFilePaths, workspaceRoot]) {\n+    const basename = nodePath.basename(candidate);\n+    const toggled = toggleFirstAsciiCase(basename);\n+    if (!toggled || toggled === basename) continue;\n+    const alternate = nodePath.join(nodePath.dirname(candidate), toggled);\n+    try {\n+      return fs.realpathSync.native(candidate) !== fs.realpathSync.native(alternate);\n+    } catch {\n+      return true;\n+    }\n+  }\n+  return true;\n+}\n+\n+function parseJsonc(text: string): unknown {\n+  let output = \"\";\n+  let inString = false;\n+  let escaped = false;\n+  let lineComment = false;\n+  let blockComment = false;\n+\n+  for (let i = 0; i < text.length; i += 1) {\n+    const char = text[i];\n+    const next = text[i + 1];\n+    if (lineComment) {\n+      if (char === \"\\n\") {\n+        lineComment = false;\n+        output += char;\n+      } else {\n+        output += \" \";\n+      }\n+      continue;\n+    }\n+    if (blockComment) {\n+      if (char === \"*\" && next === \"/\") {\n+        output += \"  \";\n+        blockComment = false;\n+        i += 1;\n+      } else {\n+        output += char === \"\\n\" ? \"\\n\" : \" \";\n+      }\n+      continue;\n+    }\n+    if (inString) {\n+      output += char;\n+      if (escaped) escaped = false;\n+      else if (char === \"\\\\\") escaped = true;\n+      else if (char === '\"') inString = false;\n+      continue;\n+    }\n+    if (char === '\"') {\n+      inString = true;\n+      output += char;\n+    } else if (char === \"/\" && next === \"/\") {\n+      lineComment = true;\n+      output += \"  \";\n+      i += 1;\n+    } else if (char === \"/\" && next === \"*\") {\n+      blockComment = true;\n+      output += \"  \";\n+      i += 1;\n+    } else {\n+      output += char;\n+    }\n+  }\n+\n+  let normalized = \"\";\n+  inString = false;\n+  escaped = false;\n+  for (let i = 0; i < output.length; i += 1) {\n+    const char = output[i];\n+    if (inString) {\n+      normalized += char;\n+      if (escaped) escaped = false;\n+      else if (char === \"\\\\\") escaped = true;\n+      else if (char === '\"') inString = false;\n+      continue;\n+    }\n+    if (char === '\"') {\n+      inString = true;\n+      normalized += char;\n+      continue;\n+    }\n+    if (char === \",\") {\n+      let next = i + 1;\n+      while (/\\s/.test(output[next] ?? \"\")) next += 1;\n+      if (output[next] === \"}\" || output[next] === \"]\") continue;\n+    }\n+    normalized += char;\n+  }\n+\n+  return JSON.parse(normalized);\n+}\n+\n+function readObject(filePath: string): Record<string, unknown> | undefined {\n+  try {\n+    const parsed = parseJsonc(fs.readFileSync(filePath, \"utf8\"));\n+    return parsed && typeof parsed === \"object\" && !Array.isArray(parsed)\n+      ? (parsed as Record<string, unknown>)\n+      : undefined;\n+  } catch {\n+    return undefined;\n+  }\n+}\n+\n+function resolveExtends(configPath: string, value: unknown): string | undefined {\n+  if (typeof value !== \"string\" || !value.startsWith(\".\")) return undefined;\n+  const unresolved = nodePath.resolve(nodePath.dirname(configPath), value);\n+  const candidates = [unresolved, `${unresolved}.json`, nodePath.join(unresolved, \"tsconfig.json\")];\n+  return candidates.find((candidate) => fs.existsSync(candidate));\n+}\n+\n+function loadConfig(\n+  workspaceRoot: string,\n+  configPath: string,\n+  cache: Map<string, LoadedConfig | undefined>,\n+  loading = new Set<string>(),\n+): LoadedConfig | undefined {\n+  const absoluteConfig = nodePath.resolve(configPath);\n+  if (cache.has(absoluteConfig)) return cache.get(absoluteConfig);\n+  if (loading.has(absoluteConfig)) return undefined;\n+  loading.add(absoluteConfig);\n+\n+  const raw = readObject(absoluteConfig);\n+  if (!raw) {\n+    cache.set(absoluteConfig, undefined);\n+    loading.delete(absoluteConfig);\n+    return undefined;\n+  }\n+\n+  const parentPath = resolveExtends(absoluteConfig, raw.extends);\n+  const parent = parentPath ? loadConfig(workspaceRoot, parentPath, cache, loading) : undefined;\n+  const configDir = nodePath.dirname(absoluteConfig);\n+  const compilerOptions =\n+    raw.compilerOptions && typeof raw.compilerOptions === \"object\"\n+      ? (raw.compilerOptions as Record<string, unknown>)\n+      : {};\n+  const ownBaseUrl =\n+    typeof compilerOptions.baseUrl === \"string\"\n+      ? nodePath.resolve(configDir, compilerOptions.baseUrl)\n+      : undefined;\n+  const baseUrl = ownBaseUrl ?? parent?.baseUrl;\n+  let paths = parent?.paths ?? [];\n+  if (compilerOptions.paths && typeof compilerOptions.paths === \"object\") {\n+    const pathBase = baseUrl ?? configDir;\n+    paths = Object.entries(compilerOptions.paths as Record<string, unknown>)\n+      .filter(\n+        (entry): entry is [string, string[]] =>\n+          Array.isArray(entry[1]) && entry[1].every((target) => typeof target === \"string\"),\n+      )\n+      .map(([pattern, targets]) => ({ pattern, targets, baseDir: pathBase }))\n+      .sort((a, b) => {\n+        const aStar = a.pattern.indexOf(\"*\");\n+        const bStar = b.pattern.indexOf(\"*\");\n+        if (aStar === -1 || bStar === -1) return aStar === -1 ? -1 : 1;\n+        return bStar - aStar;\n+      });\n+  }\n+\n+  const relativeDir = normalizePath(nodePath.relative(workspaceRoot, configDir) || \".\");\n+  const loaded = { dir: relativeDir, baseUrl, paths };\n+  cache.set(absoluteConfig, loaded);\n+  loading.delete(absoluteConfig);\n+  return loaded;\n+}\n+\n+function matchPathPattern(pattern: string, specifier: string): string | undefined {\n+  const star = pattern.indexOf(\"*\");\n+  if (star === -1) return pattern === specifier ? \"\" : undefined;\n+  if (pattern.indexOf(\"*\", star + 1) !== -1) return undefined;\n+  const prefix = pattern.slice(0, star);\n+  const suffix = pattern.slice(star + 1);\n+  return specifier.startsWith(prefix) && specifier.endsWith(suffix)\n+    ? specifier.slice(prefix.length, specifier.length - suffix.length)\n+    : undefined;\n+}\n+\n+export function createTypeScriptModuleResolver(\n+  workspaceRoot: string,\n+  absoluteFilePaths: string[],\n+  options: { caseSensitive?: boolean } = {},\n+): TypeScriptModuleResolver {\n+  const root = nodePath.resolve(workspaceRoot);\n+  const caseSensitive =\n+    options.caseSensitive ?? isCaseSensitiveFilesystem(root, absoluteFilePaths);\n+  const pathKey = (value: string): string => {\n+    const normalized = normalizePath(value);\n+    return caseSensitive ? normalized : normalized.toLowerCase();\n+  };\n+  const indexed = new Map(\n+    absoluteFilePaths.map((filePath) => {\n+      const relativePath = normalizePath(nodePath.relative(root, nodePath.resolve(filePath)));\n+      return [pathKey(relativePath), relativePath];\n+    }),\n+  );\n+\n+  const resolveCandidate = (\n+    absoluteTarget: string,\n+    sourcePath: string,\n+    kind: \"runtime\" | \"types\",\n+  ): string[] => {\n+    const relativeTarget = normalizePath(nodePath.relative(root, absoluteTarget));\n+    const extension = nodePath.posix.extname(relativeTarget).toLowerCase();\n+    const base = extension ? relativeTarget.slice(0, -extension.length) : relativeTarget;\n+    const sourceExtension = nodePath.posix.extname(normalizePath(sourcePath)).toLowerCase();\n+    const preferJavaScript = [\".js\", \".jsx\", \".mjs\", \".cjs\"].includes(sourceExtension);\n+    const extensionlessSuffixes =\n+      kind === \"types\"\n+        ? SOURCE_SUFFIXES\n+        : preferJavaScript\n+          ? [\".js\", \".jsx\", \".mjs\", \".cjs\", \".ts\", \".tsx\", \".d.ts\"]\n+          : [\".ts\", \".tsx\", \".js\", \".jsx\", \".d.ts\", \".mjs\", \".cjs\"];\n+    const candidates =\n+      extension === \".js\"\n+        ? kind === \"types\"\n+          ? [base + \".ts\", base + \".tsx\", base + \".d.ts\", relativeTarget, base + \".jsx\"]\n+          : preferJavaScript\n+            ? [relativeTarget, base + \".jsx\", base + \".ts\", base + \".tsx\", base + \".d.ts\"]\n+            : [base + \".ts\", base + \".tsx\", relativeTarget, base + \".jsx\", base + \".d.ts\"]\n+        : extension === \".jsx\"\n+          ? kind === \"types\"\n+            ? [base + \".tsx\", base + \".d.ts\", relativeTarget]\n+            : preferJavaScript\n+              ? [relativeTarget, base + \".tsx\", base + \".d.ts\"]\n+              : [base + \".tsx\", relativeTarget, base + \".d.ts\"]\n+          : extension\n+            ? [relativeTarget]\n+            : [\n+                ...extensionlessSuffixes.map((suffix) => relativeTarget + suffix),\n+                ...extensionlessSuffixes.map((suffix) =>\n+                  nodePath.posix.join(relativeTarget, \"index\" + suffix),\n+                ),\n+              ];\n+    const match = candidates.map((candidate) => indexed.get(pathKey(candidate))).find(Boolean);\n+    return match ? [match] : [];\n+  };\n+\n+  const configCache = new Map<string, LoadedConfig | undefined>();\n+  const configs = absoluteFilePaths\n+    .filter((filePath) => /(?:^|[/\\\\])(?:tsconfig|jsconfig)\\.json$/i.test(filePath))\n+    .map((filePath) => loadConfig(root, filePath, configCache))\n+    .filter((config): config is LoadedConfig => config !== undefined)\n+    .sort((a, b) => b.dir.length - a.dir.length);\n+\n+  return (sourcePath: string, rawSpecifier: string, kind = \"runtime\"): string[] | undefined => {\n+    const specifier = rawSpecifier.split(/[?#]/, 1)[0];\n+    if (!specifier || specifier.startsWith(\".\") || specifier.startsWith(\"/\")) return undefined;\n+    const normalizedSource = normalizePath(sourcePath);\n+    const config = configs.find((candidate) => isWithinDir(normalizedSource, candidate.dir));\n+    if (config) {\n+      for (const rule of config.paths) {\n+        const star = matchPathPattern(rule.pattern, specifier);\n+        if (star === undefined) continue;\n+        for (const target of rule.targets) {\n+          const matches = resolveCandidate(\n+            nodePath.resolve(rule.baseDir, target.replace(\"*\", star)),",
+      "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+      "source": "OFFICIAL_GITHUB_FACT"
+    },
+    {
+      "id": 3783951926,
+      "node_id": "PRRC_kwDORdC75M7hioY2",
+      "repository": "ix-infrastructure/Ix",
+      "parent_type": "PULL_REQUEST",
+      "parent_number": 442,
+      "kind": "REVIEW_COMMENT",
+      "author": {
+        "login": "github-advanced-security[bot]",
+        "id": 62310815,
+        "type": "Bot",
+        "html_url": "https://github.com/apps/github-advanced-security"
+      },
+      "body": "## CodeQL / Polynomial regular expression used on uncontrolled data\n\nThis [regular expression](1) that depends on [library input](2) may run slow on strings with many repetitions of '\\\\'.\nThis [regular expression](1) that depends on [library input](3) may run slow on strings with many repetitions of '\\\\'.\n\n[Show more details](https://github.com/ix-infrastructure/Ix/security/code-scanning/62)",
+      "html_url": "https://github.com/ix-infrastructure/Ix/pull/442#discussion_r3783951926",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/comments/3783951926",
+      "created_at": "2026-08-14T13:21:18Z",
+      "updated_at": "2026-08-14T13:21:18Z",
+      "commit_id": "ea79b11596f3ef42532364cde14b98779f8959e2",
+      "path": "core-ingestion/src/index.ts",
+      "line": null,
+      "start_line": null,
+      "side": "RIGHT",
+      "in_reply_to_id": null,
+      "diff_hunk": "@@ -2815,6 +2874,28 @@\n   return e.container ? `${e.container}.${e.name}` : e.name;\n }\n \n+const PHP_TYPE_KINDS = new Set(['class', 'interface', 'trait', 'enum']);\n+\n+function phpTypeFqcn(entity: ParsedEntity): string | undefined {\n+  if (entity.language !== SupportedLanguages.PHP || !PHP_TYPE_KINDS.has(entity.kind) || entity.container) {\n+    return undefined;\n+  }\n+  const namespace = entity.packageScope?.replace(/^\\\\+|\\\\+$/g, '');",
       "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
       "source": "OFFICIAL_GITHUB_FACT"
     }
   ],
-  "count": 24,
-  "review_comment_count": 3,
+  "count": 25,
+  "review_comment_count": 4,
   "review_threads": {
     "status": "UNKNOWN",
     "reason": "REST capture includes review comments but not GraphQL resolved/unresolved thread state"

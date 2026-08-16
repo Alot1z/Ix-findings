@@ -1,0 +1,89 @@
+{
+  "id": "COMMIT-033181fb5747e0db4303d99653a19ac08b160267",
+  "type": "commit",
+  "title": "033181fb5747e0db4303d99653a19ac08b160267",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-033181fb5747e0db4303d99653a19ac08b160267",
+  "summary": {
+    "id": "COMMIT-033181fb5747e0db4303d99653a19ac08b160267",
+    "type": "commit",
+    "title": "033181fb5747e0db4303d99653a19ac08b160267",
+    "status": "CURRENT",
+    "source_mirror_id": "github:commit:ix-infrastructure/Ix@033181fb5747e0db4303d99653a19ac08b160267",
+    "source_type": "github_commit",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/commit/033181fb5747e0db4303d99653a19ac08b160267",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/033181fb5747e0db4303d99653a19ac08b160267",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "sha": "033181fb5747e0db4303d99653a19ac08b160267",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/033181fb5747e0db4303d99653a19ac08b160267",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/033181fb5747e0db4303d99653a19ac08b160267",
+    "author": {
+      "login": "Hiro-Chiba",
+      "id": 203865699,
+      "type": "User",
+      "html_url": "https://github.com/Hiro-Chiba"
+    },
+    "committer": {
+      "login": "Hiro-Chiba",
+      "id": 203865699,
+      "type": "User",
+      "html_url": "https://github.com/Hiro-Chiba"
+    },
+    "message": "fix(mcp): cap thrown error output",
+    "parents": [
+      {
+        "sha": "5e2bdcfa5ae678cd134e86ee744e3ec67d8b0b0c",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/5e2bdcfa5ae678cd134e86ee744e3ec67d8b0b0c"
+      }
+    ],
+    "tree_sha": "66c7626cf75c3d6014ad5dfc3e0173aa59c58373",
+    "authored_at": "2026-08-14T13:10:59Z",
+    "committed_at": "2026-08-14T13:10:59Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@033181fb5747e0db4303d99653a19ac08b160267",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/033181fb5747e0db4303d99653a19ac08b160267",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/033181fb5747e0db4303d99653a19ac08b160267",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-14T13:10:59Z",
+      "last_fetched": "2026-08-16T08:59:39.836Z",
+      "last_verified": "2026-08-16T08:59:39.836Z",
+      "source_updated_at": "2026-08-14T13:10:59Z",
+      "snapshot_version": "2026-08-16T08:59:39.836Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-033181fb5747e0db4303d99653a19ac08b160267",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#436"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGED_BY",
+      "other": "PR-436",
+      "other_type": "pr",
+      "other_title": "Ix PR #436",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-436"
+    }
+  ]
+}

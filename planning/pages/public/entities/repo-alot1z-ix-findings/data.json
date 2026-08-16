@@ -38,8 +38,8 @@
     "parent": null,
     "source": null,
     "created_at": "2026-08-10T15:04:54Z",
-    "updated_at": "2026-08-12T08:32:54Z",
-    "pushed_at": "2026-08-12T08:32:50Z",
+    "updated_at": "2026-08-16T08:48:01Z",
+    "pushed_at": "2026-08-16T08:47:38Z",
     "topics": [],
     "language": "HTML",
     "license": null,
@@ -48,37 +48,37 @@
     "forks_count": 0,
     "open_issues_count": 0,
     "head": {
-      "sha": "309329a3dd733694bed967655436d5d8dcc352f2",
-      "html_url": "https://github.com/Alot1z/Ix-findings/commit/309329a3dd733694bed967655436d5d8dcc352f2",
-      "api_url": "https://api.github.com/repos/Alot1z/Ix-findings/commits/309329a3dd733694bed967655436d5d8dcc352f2",
+      "sha": "2e0bb243e188a3b3d0ac5faebe2963e98df403fd",
+      "html_url": "https://github.com/Alot1z/Ix-findings/commit/2e0bb243e188a3b3d0ac5faebe2963e98df403fd",
+      "api_url": "https://api.github.com/repos/Alot1z/Ix-findings/commits/2e0bb243e188a3b3d0ac5faebe2963e98df403fd",
       "author": {
-        "login": "bertolikimberly",
-        "id": 134340724,
+        "login": "Alot1z",
+        "id": 16801672,
         "type": "User",
-        "html_url": "https://github.com/bertolikimberly"
+        "html_url": "https://github.com/Alot1z"
       },
       "committer": {
-        "login": "bertolikimberly",
-        "id": 134340724,
+        "login": "Alot1z",
+        "id": 16801672,
         "type": "User",
-        "html_url": "https://github.com/bertolikimberly"
+        "html_url": "https://github.com/Alot1z"
       },
-      "message": "feat(pages): physical category pages, dead-link validation, and live smoke-test\n\nAdd physical static pages for every knowledge category (findings, evidence,\nrepositories, commits, PRs, issues, timeline, phases, decisions, suggestions,\nfiles, map, contributions) so production URLs return HTTP 200 instead of 404.\n\nWire window.IX_VIEW in sections.js to render SPA views on category pages.\nConvert root sidebar category buttons to physical links. Add KNOWLEDGE\nCATEGORIES grid to overview. Fix entity index relative-link generation\n(double-directory prefix for section/issue entities).\n\nAdd dead-link and placeholder token checks to validate-public.mjs. Add\nverify-live.mjs production smoke-test script and a verify job after Pages\ndeploy in the workflow.",
+      "message": "docs: document knowledge-graph maintenance and the fork agent system\n\nAdd sections to knowledge.md: knowledge-graph regeneration/validation\nworkflow (tracked vs derived, freshness gate, live-state capture, the\nuncommitted regeneration awaiting review), and the fork .agents/ inventory\nwith the new contribution-lifecycle skill. Update the recovery map with the\n2026-08-16 planning/ restore on fork main.",
       "parents": [
         {
-          "sha": "7ef9a23585f2326f0b42aba2aaca2e30a702946d",
-          "html_url": "https://github.com/Alot1z/Ix-findings/commit/7ef9a23585f2326f0b42aba2aaca2e30a702946d"
+          "sha": "7a50531c81b8e746ea8df737164fb470cb1c5802",
+          "html_url": "https://github.com/Alot1z/Ix-findings/commit/7a50531c81b8e746ea8df737164fb470cb1c5802"
         }
       ],
-      "tree_sha": "ad43d613681b5001cf166559d1407c0dff2c6590",
-      "authored_at": "2026-08-12T08:32:40Z",
-      "committed_at": "2026-08-12T08:32:40Z"
+      "tree_sha": "5d0354ebeff676f44146d94dab85e40c10d3b684",
+      "authored_at": "2026-08-16T08:47:38Z",
+      "committed_at": "2026-08-16T08:47:38Z"
     },
     "branches": [
       {
         "name": "master",
         "protected": false,
-        "sha": "309329a3dd733694bed967655436d5d8dcc352f2",
+        "sha": "2e0bb243e188a3b3d0ac5faebe2963e98df403fd",
         "url": null
       }
     ],
@@ -98,11 +98,11 @@
       "url_precision": "OBJECT"
     },
     "freshness": {
-      "first_seen": "2026-08-13T22:23:39.068Z",
-      "last_fetched": "2026-08-13T22:23:39.068Z",
-      "last_verified": "2026-08-13T22:23:39.068Z",
-      "source_updated_at": "2026-08-12T08:32:54Z",
-      "snapshot_version": "2026-08-13T22:23:39.068Z"
+      "first_seen": "2026-08-16T08:59:39.836Z",
+      "last_fetched": "2026-08-16T08:59:39.836Z",
+      "last_verified": "2026-08-16T08:59:39.836Z",
+      "source_updated_at": "2026-08-16T08:48:01Z",
+      "snapshot_version": "2026-08-16T08:59:39.836Z"
     }
   },
   "ix_findings_analysis": {

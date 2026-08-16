@@ -1,0 +1,638 @@
+{
+  "id": "PR-442",
+  "type": "pr",
+  "title": "Ix PR #442",
+  "status": "OPEN",
+  "url": "https://alot1z.github.io/Ix-findings/entities/pr-442",
+  "summary": {
+    "id": "PR-442",
+    "type": "pr",
+    "title": "Ix PR #442",
+    "status": "OPEN",
+    "number": 442,
+    "url": "https://github.com/ix-infrastructure/Ix/pull/442",
+    "source_mirror_id": "github:pull_request:ix-infrastructure/Ix#442",
+    "source_type": "github_pull_request",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/pull/442",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/442",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "number": 442,
+    "node_id": "PR_kwDORdC75M7_HNYV",
+    "title": "fix(php): resolve imports by namespace",
+    "body": "Fixes #441\n\n## Summary\n\nResolve explicit PHP type imports by their declared namespace instead of a repository-wide short-name match.\n\n## Type\n- [x] Bug fix\n- [ ] Feature\n- [ ] Refactor\n- [ ] Docs\n- [ ] Test\n- [ ] CI\n\n## Changes\n- Preserve semicolon, braced, and global PHP namespace scope on parsed type entities.\n- Build case-insensitive fully qualified indexes for PHP classes, interfaces, traits, and enums across batches.\n- Resolve explicit type imports through their exact fully qualified name without changing function and constant import behavior.\n- Distinguish constructor, function, member, and static calls through edge resolution and patch construction.\n- Leave aliased and grouped PHP import parsing outside this change.\n\n## Validation\n\n- Focused PHP parser and resolution tests: 103 passed, 1 skipped.\n- Ix CLI tests: 928 passed, 1 skipped, including parser smoke tests.\n- Typecheck, build, lint, and `git diff --check` passed.\n- The unrelated core baseline still has six pre-existing failures involving unavailable fixtures and existing snapshots.\n\n## Checklist\n- [x] Tests pass\n- [x] Smoke tests pass\n- [x] No raw errors introduced\n- [x] CLI output follows Ix format\n\n## Release checklist (if merging to main)\n- [ ] `ix-cli/package.json` version bumped\n- [ ] After merge: tag pushed (`git tag vX.Y.Z && git push origin vX.Y.Z`)\n- [ ] If backend changes: `ix-memory-layer` tagged and released first\n- [ ] If `docker-compose.standalone.yml` changed: verified `curl | sh` install works\n",
+    "state": "open",
+    "draft": false,
+    "merged": false,
+    "author": {
+      "login": "Hiro-Chiba",
+      "id": 203865699,
+      "type": "User",
+      "html_url": "https://github.com/Hiro-Chiba"
+    },
+    "html_url": "https://github.com/ix-infrastructure/Ix/pull/442",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/442",
+    "head": {
+      "ref": "fix/php-namespace-resolution",
+      "sha": "83079ff3dca7d516cc5818dcf81a28f479ea56cd",
+      "repo": {
+        "id": 1329113547,
+        "full_name": "Hiro-Chiba/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "html_url": "https://github.com/Hiro-Chiba/Ix",
+        "api_url": "https://api.github.com/repos/Hiro-Chiba/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": true,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-08-09T19:06:50Z",
+        "updated_at": "2026-08-09T19:06:51Z",
+        "pushed_at": "2026-08-14T13:24:21Z",
+        "topics": [],
+        "language": null,
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 0,
+        "stargazers_count": 0,
+        "forks_count": 0,
+        "open_issues_count": 0
+      }
+    },
+    "base": {
+      "ref": "main",
+      "sha": "fef671cca4e922d5e473d99739adee77d9134c20",
+      "repo": {
+        "id": 1171307492,
+        "full_name": "ix-infrastructure/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "ix-infrastructure",
+          "id": 256883681,
+          "type": "Organization",
+          "html_url": "https://github.com/ix-infrastructure"
+        },
+        "html_url": "https://github.com/ix-infrastructure/Ix",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": false,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-03-03T04:48:38Z",
+        "updated_at": "2026-08-16T08:00:03Z",
+        "pushed_at": "2026-08-15T06:01:03Z",
+        "topics": [
+          "ai",
+          "ai-memory",
+          "claude-code",
+          "cli",
+          "code-analysis",
+          "code-mapping",
+          "code-memory",
+          "codebase-understanding",
+          "codex",
+          "developer-tools",
+          "llm",
+          "openclaw",
+          "persistent-memory",
+          "program-analysis",
+          "software-architecture",
+          "system-intelligence",
+          "system-mapping"
+        ],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 731,
+        "stargazers_count": 731,
+        "forks_count": 61,
+        "open_issues_count": 16
+      }
+    },
+    "merge_commit_sha": "fb6f3a2dac80d6663dc45246a791b04966bdb030",
+    "merged_at": null,
+    "closed_at": null,
+    "created_at": "2026-08-14T13:19:52Z",
+    "updated_at": "2026-08-15T00:19:04Z",
+    "labels": [],
+    "milestone": null,
+    "requested_reviewers": [
+      {
+        "login": "josephismikhail",
+        "id": 56614593,
+        "type": "User",
+        "html_url": "https://github.com/josephismikhail"
+      }
+    ],
+    "requested_teams": [],
+    "commits_count": 2,
+    "changed_files_count": 6,
+    "additions": 672,
+    "deletions": 29,
+    "changed_files": [
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 442,
+        "filename": "core-ingestion/src/__tests__/patchBuilder.resolution.test.ts",
+        "status": "modified",
+        "additions": 26,
+        "deletions": 0,
+        "changes": 26,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/83079ff3dca7d516cc5818dcf81a28f479ea56cd/core-ingestion%2Fsrc%2F__tests__%2FpatchBuilder.resolution.test.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/83079ff3dca7d516cc5818dcf81a28f479ea56cd/core-ingestion%2Fsrc%2F__tests__%2FpatchBuilder.resolution.test.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/core-ingestion%2Fsrc%2F__tests__%2FpatchBuilder.resolution.test.ts?ref=83079ff3dca7d516cc5818dcf81a28f479ea56cd",
+        "patch": "@@ -109,6 +109,32 @@ describe('buildPatchWithResolution', () => {\n     }));\n   });\n \n+  it('keeps same-named PHP constructor and function calls distinct', () => {\n+    const consumer = parseFile(\n+      '/repo/Consumer.php',\n+      `<?php\n+use Vendor[local-path]\\Helper;\n+function Helper(): void {}\n+function run(): void { new Helper(); Helper(); }\n+      `,\n+    )!;\n+    const provider = parseFile(\n+      '/repo/Vendor/Package/Helper.php',\n+      '<?php namespace Vendor\\\\Package; class Helper {}',\n+    )!;\n+    const resolved = resolveEdges([consumer, provider]);\n+    const patch = buildPatchWithResolution(consumer, 'hash', '', resolved);\n+    const callEdges = patch.ops.filter(op => op.type === 'UpsertEdge' && op.predicate === 'CALLS');\n+\n+    expect(callEdges).toHaveLength(2);\n+    expect(callEdges).toContainEqual(expect.objectContaining({\n+      dst: nodeId('/repo/Vendor/Package/Helper.php', 'Helper'),\n+    }));\n+    expect(callEdges).toContainEqual(expect.objectContaining({\n+      dst: nodeId('/repo/Consumer.php', 'Helper'),\n+    }));\n+  });\n+\n   it('materialises external stub node for unresolved :: package calls', () => {\n     const file = '/repo/model.R';\n     const externalNodeId = nodeId('external://dplyr', 'dplyr::filter');"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 442,
+        "filename": "core-ingestion/src/__tests__/queries.php.test.ts",
+        "status": "modified",
+        "additions": 91,
+        "deletions": 10,
+        "changes": 101,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/83079ff3dca7d516cc5818dcf81a28f479ea56cd/core-ingestion%2Fsrc%2F__tests__%2Fqueries.php.test.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/83079ff3dca7d516cc5818dcf81a28f479ea56cd/core-ingestion%2Fsrc%2F__tests__%2Fqueries.php.test.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/core-ingestion%2Fsrc%2F__tests__%2Fqueries.php.test.ts?ref=83079ff3dca7d516cc5818dcf81a28f479ea56cd",
+        "patch": "@@ -22,6 +22,83 @@ use Vendor[local-path]\\DomainService;\n     });\n   });\n \n+  it('records PHP namespace scope for semicolon and braced declarations', () => {\n+    const result = parseFile(\n+      '/repo/Types.php',\n+      `<?php\n+namespace First\\\\Space;\n+class FirstType {}\n+namespace Second\\\\Space;\n+class SecondType {}\n+      `,\n+    );\n+    const braced = parseFile(\n+      '/repo/Braced.php',\n+      `<?php\n+namespace Vendor\\\\Package { class User {} }\n+namespace { class GlobalThing {} }\n+      `,\n+    );\n+\n+    expect(result?.entities.find(entity => entity.name === 'FirstType')?.packageScope).toBe('First\\\\Space');\n+    expect(result?.entities.find(entity => entity.name === 'SecondType')?.packageScope).toBe('Second\\\\Space');\n+    expect(braced?.entities.find(entity => entity.name === 'User')?.packageScope).toBe('Vendor\\\\Package');\n+    expect(braced?.entities.find(entity => entity.name === 'GlobalThing')?.packageScope).toBe('');\n+  });\n+\n+  it('distinguishes function and constant imports from class imports', () => {\n+    const result = parseFile(\n+      '/repo/Imports.php',\n+      `<?php\n+use Vendor[local-path]\\User;\n+use function Vendor[local-path]\\helper;\n+use const Vendor[local-path]\\FLAG;\n+      `,\n+    );\n+\n+    expect(result?.relationships.filter(rel => rel.predicate === 'IMPORTS')).toEqual([\n+      {\n+        srcName: 'Imports.php',\n+        dstName: 'User',\n+        predicate: 'IMPORTS',\n+        importRaw: 'Vendor[local-path]\\User',\n+      },\n+      {\n+        srcName: 'Imports.php',\n+        dstName: 'helper',\n+        predicate: 'IMPORTS',\n+        importRaw: 'Vendor[local-path]\\helper',\n+        importKind: 'function',\n+      },\n+      {\n+        srcName: 'Imports.php',\n+        dstName: 'FLAG',\n+        predicate: 'IMPORTS',\n+        importRaw: 'Vendor[local-path]\\FLAG',\n+        importKind: 'const',\n+      },\n+    ]);\n+  });\n+\n+  it('distinguishes PHP constructors from function and member calls', () => {\n+    const result = parseFile(\n+      '/repo/Calls.php',\n+      `<?php\n+function run(Service $service): void {\n+    new Service();\n+    helper();\n+    $service->execute();\n+}\n+      `,\n+    );\n+\n+    expect(result?.relationships.filter(rel => rel.predicate === 'CALLS')).toEqual([\n+      { srcName: 'run', dstName: 'Service', predicate: 'CALLS', phpCallKind: 'constructor' },\n+      { srcName: 'run', dstName: 'helper', predicate: 'CALLS', phpCallKind: 'function' },\n+      { srcName: 'run', dstName: 'Service.execute', predicate: 'CALLS', phpCallKind: 'member' },\n+    ]);\n+  });\n+\n   it('resolves calls through typed properties and method parameters', () => {\n     const result = parseFile(\n       '/repo/UseCase.php',\n@@ -62,22 +139,24 @@ final class UseCase\n     expect(result).not.toBeNull();\n     expect(result!.relationships).toEqual(\n       expect.arrayContaining([\n-        { srcName: 'UseCase.create', dstName: 'DomainService.create', predicate: 'CALLS' },\n-        { srcName: 'UseCase.create', dstName: 'Repository.create', predicate: 'CALLS' },\n-        { srcName: 'UseCase.create', dstName: 'AuditLogger.write', predicate: 'CALLS' },\n-        { srcName: 'UseCase.create', dstName: 'Logger.write', predicate: 'CALLS' },\n-        { srcName: 'UseCase.create', dstName: 'UseCase.finish', predicate: 'CALLS' },\n+        { srcName: 'UseCase.create', dstName: 'DomainService.create', predicate: 'CALLS', phpCallKind: 'member' },\n+        { srcName: 'UseCase.create', dstName: 'Repository.create', predicate: 'CALLS', phpCallKind: 'member' },\n+        { srcName: 'UseCase.create', dstName: 'AuditLogger.write', predicate: 'CALLS', phpCallKind: 'member' },\n+        { srcName: 'UseCase.create', dstName: 'Logger.write', predicate: 'CALLS', phpCallKind: 'member' },\n+        { srcName: 'UseCase.create', dstName: 'UseCase.finish', predicate: 'CALLS', phpCallKind: 'member' },\n       ]),\n     );\n     expect(result!.relationships).not.toContainEqual({\n       srcName: 'UseCase.create',\n       dstName: 'create',\n       predicate: 'CALLS',\n+      phpCallKind: 'member',\n     });\n     expect(result!.relationships).not.toContainEqual({\n       srcName: 'UseCase.create',\n       dstName: 'UseCase.create',\n       predicate: 'CALLS',\n+      phpCallKind: 'member',\n     });\n   });\n \n@@ -97,6 +176,7 @@ function run($service): void\n       srcName: 'run',\n       dstName: 'create',\n       predicate: 'CALLS',\n+      phpCallKind: 'member',\n     });\n   });\n \n@@ -125,9 +205,9 @@ final class Nullable\n     expect(result).not.toBeNull();\n     expect(result!.relationships).toEqual(\n       expect.arrayContaining([\n-        { srcName: 'Nullable.run', dstName: 'Service.create', predicate: 'CALLS' },\n-        { srcName: 'Nullable.run', dstName: 'Repository.find', predicate: 'CALLS' },\n-        { srcName: 'Nullable.run', dstName: 'Logger.write', predicate: 'CALLS' },\n+        { srcName: 'Nullable.run', dstName: 'Service.create', predicate: 'CALLS', phpCallKind: 'member' },\n+        { srcName: 'Nullable.run', dstName: 'Repository.find', predicate: 'CALLS', phpCallKind: 'member' },\n+        { srcName: 'Nullable.run', dstName: 'Logger.write', predicate: 'CALLS', phpCallKind: 'member' },\n       ]),\n     );\n   });\n@@ -149,8 +229,8 @@ function run(Service $service, ?Logger $logger): void\n     expect(result).not.toBeNull();\n     expect(result!.relationships).toEqual(\n       expect.arrayContaining([\n-        { srcName: 'run', dstName: 'Service.create', predicate: 'CALLS' },\n-        { srcName: 'run', dstName: 'Logger.write', predicate: 'CALLS' },\n+        { srcName: 'run', dstName: 'Service.create', predicate: 'CALLS', phpCallKind: 'member' },\n+        { srcName: 'run', dstName: 'Logger.write', predicate: 'CALLS', phpCallKind: 'member' },\n       ]),\n     );\n   });\n@@ -176,6 +256,7 @@ final class Union\n       srcName: 'Union.run',\n       dstName: 'create',\n       predicate: 'CALLS',\n+      phpCallKind: 'member',\n     });\n   });\n });"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 442,
+        "filename": "core-ingestion/src/__tests__/resolveEdges.test.ts",
+        "status": "modified",
+        "additions": 284,
+        "deletions": 1,
+        "changes": 285,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/83079ff3dca7d516cc5818dcf81a28f479ea56cd/core-ingestion%2Fsrc%2F__tests__%2FresolveEdges.test.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/83079ff3dca7d516cc5818dcf81a28f479ea56cd/core-ingestion%2Fsrc%2F__tests__%2FresolveEdges.test.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/core-ingestion%2Fsrc%2F__tests__%2FresolveEdges.test.ts?ref=83079ff3dca7d516cc5818dcf81a28f479ea56cd",
+        "patch": "@@ -240,7 +240,7 @@ describe('resolveEdges', () => {\n       new Map([\n         [\n           targetPath,\n-          '<?php interface DomainService { public function create(): void; }',\n+          '<?php namespace App\\\\Contracts; interface DomainService { public function create(): void; }',\n         ],\n       ]),\n     );\n@@ -256,6 +256,289 @@ describe('resolveEdges', () => {\n     });\n   });\n \n+  it('does not resolve an imported PHP class to the same name in another namespace', () => {\n+    const consumer = parseFile(\n+      '/repo/Consumer.php',\n+      `<?php\n+use Vendor[local-path]\\User;\n+function run(User $user): void { new User(); $user->save(); }\n+      `,\n+    )!;\n+    const wrong = parseFile(\n+      '/repo/App/User.php',\n+      `<?php\n+namespace App;\n+class User { public function save(): void {} }\n+      `,\n+    )!;\n+\n+    expect(resolveEdges([consumer, wrong])).toEqual([]);\n+  });\n+\n+  it('normalizes repeated namespace separators without regex backtracking', () => {\n+    const provider = parseFile(\n+      '/repo/src/Vendor/User.php',\n+      '<?php namespace Vendor\\\\Package; class User {}',\n+    )!;\n+    const entity = provider.entities.find((candidate) => candidate.name === 'User')!;\n+    entity.packageScope = `${'\\\\'.repeat(4096)}Vendor\\\\Package${'\\\\'.repeat(4096)}`;\n+    const consumer = parseFile(\n+      '/repo/src/Consumer.php',\n+      '<?php use Vendor[local-path]\\User; function run(User $user): void { new User(); }',\n+    )!;\n+\n+    const edges = resolveEdges([consumer, provider]).filter(\n+      (edge) => edge.dstFilePath === '/repo/src/Vendor/User.php',\n+    );\n+\n+    expect(edges).toHaveLength(3);\n+  });\n+\n+  it('resolves PHP class imports, references, and calls by exact FQCN', () => {\n+    const consumer = parseFile(\n+      '/repo/Consumer.php',\n+      `<?php\n+use Vendor[local-path]\\User;\n+function run(User $user): void { new User(); $user->save(); }\n+      `,\n+    )!;\n+    const intended = parseFile(\n+      '/repo/Vendor/Package/User.php',\n+      `<?php\n+namespace Vendor\\\\Package;\n+class User { public function save(): void {} }\n+      `,\n+    )!;\n+    const wrong = parseFile(\n+      '/repo/App/User.php',\n+      `<?php\n+namespace App;\n+class User { public function save(): void {} }\n+      `,\n+    )!;\n+\n+    const resolved = resolveEdges([consumer, intended, wrong]);\n+    expect(resolved).toContainEqual({\n+      srcFilePath: '/repo/Consumer.php',\n+      srcName: 'Consumer.php',\n+      dstFilePath: '/repo/Vendor/Package/User.php',\n+      dstName: 'User',\n+      dstQualifiedKey: 'User.php',\n+      predicate: 'IMPORTS',\n+      confidence: 0.9,\n+    });\n+    expect(resolved).toContainEqual(expect.objectContaining({\n+      srcFilePath: '/repo/Consumer.php',\n+      dstFilePath: '/repo/Vendor/Package/User.php',\n+      dstName: 'User',\n+      dstQualifiedKey: 'User',\n+      predicate: 'REFERENCES',\n+      confidence: 0.9,\n+    }));\n+    expect(resolved).toContainEqual(expect.objectContaining({\n+      srcFilePath: '/repo/Consumer.php',\n+      dstFilePath: '/repo/Vendor/Package/User.php',\n+      dstName: 'User',\n+      dstQualifiedKey: 'User',\n+      predicate: 'CALLS',\n+      confidence: 0.9,\n+    }));\n+    expect(resolved).toContainEqual(expect.objectContaining({\n+      srcFilePath: '/repo/Consumer.php',\n+      dstFilePath: '/repo/Vendor/Package/User.php',\n+      dstName: 'User.save',\n+      dstQualifiedKey: 'User.save',\n+      predicate: 'CALLS',\n+      confidence: 0.9,\n+    }));\n+    expect(resolved.some(edge => edge.dstFilePath === '/repo/App/User.php')).toBe(false);\n+  });\n+\n+  it('resolves PHP class names case-insensitively', () => {\n+    const consumer = parseFile(\n+      '/repo/Consumer.php',\n+      `<?php\n+use vendor[local-path]\\USER;\n+function run(user $user): void { new user(); $user->save(); }\n+      `,\n+    )!;\n+    const provider = parseFile(\n+      '/repo/Vendor/Package/User.php',\n+      `<?php\n+namespace Vendor\\\\Package;\n+class User { public function save(): void {} }\n+      `,\n+    )!;\n+\n+    const resolved = resolveEdges([consumer, provider]);\n+    expect(resolved.filter(edge => edge.dstFilePath === '/repo/Vendor/Package/User.php')).toHaveLength(4);\n+  });\n+\n+  it('keeps PHP function and constant imports on their existing resolution path', () => {\n+    const consumer = parseFile(\n+      '/repo/Consumer.php',\n+      `<?php\n+use function Vendor[local-path]\\helper;\n+use const Vendor[local-path]\\FLAG;\n+function run(): void { helper(); }\n+      `,\n+    )!;\n+    const helper = parseFile(\n+      '/repo/Vendor/Package/helper.php',\n+      `<?php\n+namespace Vendor\\\\Package;\n+function helper(): void {}\n+      `,\n+    )!;\n+    const flag = parseFile('/repo/Vendor/Package/FLAG.php', '<?php const FLAG = 1;')!;\n+\n+    const resolved = resolveEdges([consumer, helper, flag]);\n+    expect(resolved).toContainEqual(expect.objectContaining({\n+      dstFilePath: '/repo/Vendor/Package/helper.php',\n+      predicate: 'IMPORTS',\n+      confidence: 0.9,\n+    }));\n+    expect(resolved).toContainEqual(expect.objectContaining({\n+      dstFilePath: '/repo/Vendor/Package/helper.php',\n+      predicate: 'CALLS',\n+      confidence: 0.9,\n+    }));\n+    expect(resolved).toContainEqual(expect.objectContaining({\n+      dstFilePath: '/repo/Vendor/Package/FLAG.php',\n+      predicate: 'IMPORTS',\n+      confidence: 0.9,\n+    }));\n+  });\n+\n+  it('does not treat a namespaced function as an imported class provider', () => {\n+    const consumer = parseFile(\n+      '/repo/Consumer.php',\n+      `<?php\n+use Vendor[local-path]\\User;\n+function run(): void { new User(); }\n+      `,\n+    )!;\n+    const functionOnly = parseFile(\n+      '/repo/Vendor/Package/User.php',\n+      `<?php\n+namespace Vendor\\\\Package;\n+function User(): void {}\n+      `,\n+    )!;\n+\n+    expect(resolveEdges([consumer, functionOnly])).toEqual([]);\n+  });\n+\n+  it('does not resolve a same-named PHP function call as an imported constructor', () => {\n+    const consumer = parseFile(\n+      '/repo/Consumer.php',\n+      `<?php\n+use Vendor[local-path]\\Helper;\n+function Helper(): void {}\n+function run(): void { Helper(); }\n+      `,\n+    )!;\n+    const provider = parseFile(\n+      '/repo/Vendor/Package/Helper.php',\n+      '<?php namespace Vendor\\\\Package; class Helper {}',\n+    )!;\n+\n+    const resolved = resolveEdges([consumer, provider]);\n+    expect(resolved.some(edge =>\n+      edge.predicate === 'CALLS' && edge.dstFilePath === '/repo/Vendor/Package/Helper.php'\n+    )).toBe(false);\n+  });\n+\n+  it('keeps a same-named PHP function import separate from a class import', () => {\n+    const consumer = parseFile(\n+      '/repo/Consumer.php',\n+      `<?php\n+use Vendor[local-path]\\Helper;\n+use function Other\\\\helper;\n+function run(): void { helper(); }\n+      `,\n+    )!;\n+    const typeProvider = parseFile(\n+      '/repo/Vendor/Package/Helper.php',\n+      '<?php namespace Vendor\\\\Package; class Helper {}',\n+    )!;\n+    const functionProvider = parseFile(\n+      '/repo/Other/helper.php',\n+      '<?php namespace Other; function helper(): void {}',\n+    )!;\n+\n+    const resolved = resolveEdges([consumer, typeProvider, functionProvider]);\n+    expect(resolved.filter(edge => edge.dstFilePath === '/repo/Other/helper.php')).toHaveLength(2);\n+    expect(resolved.some(edge =>\n+      edge.predicate === 'CALLS' && edge.dstFilePath === '/repo/Vendor/Package/Helper.php'\n+    )).toBe(false);\n+  });\n+\n+  it('resolves a PHP import from the global namespace exactly', () => {\n+    const consumer = parseFile(\n+      '/repo/Consumer.php',\n+      `<?php\n+namespace App;\n+use GlobalUser;\n+function run(GlobalUser $user): void { new GlobalUser(); $user->save(); }\n+      `,\n+    )!;\n+    const intended = parseFile(\n+      '/repo/GlobalUser.php',\n+      '<?php class GlobalUser { public function save(): void {} }',\n+    )!;\n+    const wrong = parseFile(\n+      '/repo/Other/GlobalUser.php',\n+      '<?php namespace Other; class GlobalUser { public function save(): void {} }',\n+    )!;\n+\n+    const resolved = resolveEdges([consumer, intended, wrong]);\n+    expect(resolved.filter(edge => edge.dstFilePath === '/repo/GlobalUser.php')).toHaveLength(4);\n+    expect(resolved.some(edge => edge.dstFilePath === '/repo/Other/GlobalUser.php')).toBe(false);\n+  });\n+\n+  it('does not exact-resolve duplicate PHP type names within one file', () => {\n+    const consumer = parseFile(\n+      '/repo/Consumer.php',\n+      '<?php use Vendor[local-path]\\User; function run(): void { new User(); }',\n+    )!;\n+    const provider = parseFile(\n+      '/repo/Types.php',\n+      `<?php\n+namespace Vendor\\\\Package { class User {} }\n+namespace Other { class User {} }\n+      `,\n+    )!;\n+\n+    expect(resolveEdges([consumer, provider])).toEqual([]);\n+  });\n+\n+  it('does not exact-resolve conflicting PHP imports scoped to different namespaces', () => {\n+    const consumer = parseFile(\n+      '/repo/Consumer.php',\n+      `<?php\n+namespace First {\n+    use Vendor[local-path]\\User;\n+    function run(User $user): void { new User(); $user->save(); }\n+}\n+namespace Second {\n+    use Vendor[local-path]\\User;\n+    function execute(User $user): void { new User(); $user->save(); }\n+}\n+      `,\n+    )!;\n+    const first = parseFile(\n+      '/repo/Vendor/One/User.php',\n+      '<?php namespace Vendor\\\\One; class User { public function save(): void {} }',\n+    )!;\n+    const second = parseFile(\n+      '/repo/Vendor/Two/User.php',\n+      '<?php namespace Vendor\\\\Two; class User { public function save(): void {} }',\n+    )!;\n+\n+    expect(resolveEdges([consumer, first, second])).toEqual([]);\n+  });\n+\n   it('resolves a TypeScript call when the imported definition is outside the parse batch', () => {\n     const caller = fileResult(\n       '/repo/consumer.ts',"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 442,
+        "filename": "core-ingestion/src/index.ts",
+        "status": "modified",
+        "additions": 249,
+        "deletions": 11,
+        "changes": 260,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/83079ff3dca7d516cc5818dcf81a28f479ea56cd/core-ingestion%2Fsrc%2Findex.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/83079ff3dca7d516cc5818dcf81a28f479ea56cd/core-ingestion%2Fsrc%2Findex.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/core-ingestion%2Fsrc%2Findex.ts?ref=83079ff3dca7d516cc5818dcf81a28f479ea56cd",
+        "patch": "@@ -134,12 +134,9 @@ export interface ParsedEntity {\n   /** Direct enclosing class/interface/trait, if any (undefined for file-level entities). */\n   container?: string;\n   /**\n-   * Package name for languages that group entities into namespaces (currently\n-   * Go only). Used by downstream layers to prefix qualifiedName so the symbol\n-   * table indexes entities under their fully-qualified path. Without this,\n-   * bare-name resolution at edge-resolver collides between packages (e.g.\n-   * kubernetes has 191 distinct `addKnownTypes` functions, one per API group)\n-   * and CALL targets are picked non-deterministically.\n+   * Package or namespace name for languages that group entities. Used by\n+   * downstream resolution to distinguish identically named declarations and\n+   * index entities under their fully-qualified path.\n    */\n   packageScope?: string;\n }\n@@ -172,6 +169,12 @@ export interface ParsedRelationship {\n   // that happens to flatten to the same stem (\"core\"). Absent on non-import rels\n   // and on dotted/symbol imports where dstName is already the full identifier.\n   importRaw?: string;\n+  /** PHP namespace import category. Absent for all other languages. */\n+  importKind?: 'type' | 'function' | 'const';\n+  /** PHP aliases need binding metadata before exact FQCN resolution is safe. */\n+  importAliased?: boolean;\n+  /** PHP call shape used to distinguish constructors from same-named functions. */\n+  phpCallKind?: 'constructor' | 'function' | 'member' | 'static';\n   /**\n    * JS/TS only: whether this identifier use is lexically bound to its matching\n    * import. False means a parameter or local declaration shadows that import.\n@@ -1983,6 +1986,23 @@ function unwrapRustCfgMacros(source: string): string {\n // Main parse function\n // ---------------------------------------------------------------------------\n \n+function phpNamespaceForNode(rootNode: any, node: any): string | undefined {\n+  for (let current = node.parent; current; current = current.parent) {\n+    if (current.type === 'namespace_definition') {\n+      return current.childForFieldName?.('name')?.text?.replace(/\\s+/g, '') ?? '';\n+    }\n+  }\n+\n+  let active: string | undefined;\n+  for (let i = 0; i < rootNode.namedChildCount; i++) {\n+    const child = rootNode.namedChild(i);\n+    if (!child || child.startIndex >= node.startIndex) break;\n+    if (child.type !== 'namespace_definition' || child.childForFieldName?.('body')) continue;\n+    active = child.childForFieldName?.('name')?.text?.replace(/\\s+/g, '') ?? '';\n+  }\n+  return active;\n+}\n+\n export function parseFile(filePath: string, source: string): FileParseResult | null {\n   const language = detectLanguageForSource(filePath, source);\n   if (!language) return null;\n@@ -2198,7 +2218,11 @@ export function parseFile(filePath: string, source: string): FileParseResult | n\n           lineEnd,\n           language,\n           container: effectiveContainer,\n-          packageScope: goPackage,\n+          packageScope: goPackage ?? (\n+            language === SupportedLanguages.PHP\n+              ? phpNamespaceForNode(tree.rootNode, defNode)\n+              : undefined\n+          ),\n         });\n \n         pendingChunks.push({\n@@ -2456,8 +2480,26 @@ export function parseFile(filePath: string, source: string): FileParseResult | n\n           // Preserve the raw specifier (./core vs @nestjs/core) for the multi-repo\n           // dependency gate; modName remains the flattened stem used everywhere else.\n           const importRaw = unwrapImportSpecifier(importSource.node.text);\n+          const importNode = match.captures.find((c: any) => c.name === 'import')?.node;\n+          const phpImportText = language === SupportedLanguages.PHP ? importNode?.text ?? '' : '';\n+          const importKind = language === SupportedLanguages.PHP\n+            ? /^use\\s+function\\b/i.test(phpImportText)\n+              ? 'function' as const\n+              : /^use\\s+const\\b/i.test(phpImportText)\n+                ? 'const' as const\n+                : undefined\n+            : undefined;\n           entities.push({ name: modName, kind: 'module', lineStart: importSource.node.startPosition.row + 1, lineEnd: importSource.node.startPosition.row + 1, language });\n-          relationships.push({ srcName: fileName, dstName: modName, predicate: 'IMPORTS', importRaw });\n+          relationships.push({\n+            srcName: fileName,\n+            dstName: modName,\n+            predicate: 'IMPORTS',\n+            importRaw,\n+            ...(importKind ? { importKind } : {}),\n+            ...(language === SupportedLanguages.PHP && /\\s+as\\s+/i.test(phpImportText)\n+              ? { importAliased: true }\n+              : {}),\n+          });\n         }\n         continue;\n       }\n@@ -2490,6 +2532,16 @@ export function parseFile(filePath: string, source: string): FileParseResult | n\n       if (callName) {\n         const callee = callName.node.text;\n         if (!callee || callee.length <= 1) continue;\n+        const phpCallKind = language === SupportedLanguages.PHP\n+          ? callName.node.parent?.type === 'object_creation_expression'\n+            ? 'constructor' as const\n+            : callName.node.parent?.type === 'member_call_expression' ||\n+                callName.node.parent?.type === 'nullsafe_member_call_expression'\n+              ? 'member' as const\n+              : callName.node.parent?.type === 'scoped_call_expression'\n+                ? 'static' as const\n+                : 'function' as const\n+          : undefined;\n \n         // If a _qualifier capture is present (field_expression / stable_identifier\n         // patterns like NodeKind.Decision, or Python attribute calls like\n@@ -2662,9 +2714,15 @@ export function parseFile(filePath: string, source: string): FileParseResult | n\n           recordJsTsImportUse('CALLS', caller, effectiveCallee, callName.node, callee);\n         }\n \n-        if (!seen.has(effectiveCallee)) {\n-          seen.add(effectiveCallee);\n-          relationships.push({ srcName: caller, dstName: effectiveCallee, predicate: 'CALLS' });\n+        const callKey = phpCallKind ? `${phpCallKind}:${effectiveCallee}` : effectiveCallee;\n+        if (!seen.has(callKey)) {\n+          seen.add(callKey);\n+          relationships.push({\n+            srcName: caller,\n+            dstName: effectiveCallee,\n+            predicate: 'CALLS',\n+            ...(phpCallKind ? { phpCallKind } : {}),\n+          });\n         }\n         continue;\n       }\n@@ -2804,6 +2862,7 @@ export interface ResolvedEdge {\n   dstQualifiedKey: string;      // qualified key used for nodeId in the defining file\n   predicate: string;            // \"CALLS\" | \"EXTENDS\"\n   confidence: number;           // 0.9 import-scoped | 0.8 transitive | 0.5 global\n+  phpCallKind?: ParsedRelationship['phpCallKind'];\n }\n \n // ---------------------------------------------------------------------------\n@@ -2815,6 +2874,37 @@ function qualifiedKey(e: ParsedEntity): string {\n   return e.container ? `${e.container}.${e.name}` : e.name;\n }\n \n+const PHP_TYPE_KINDS = new Set(['class', 'interface', 'trait', 'enum']);\n+\n+function trimPhpNamespace(namespace: string | undefined): string {\n+  if (!namespace) return '';\n+  let start = 0;\n+  let end = namespace.length;\n+  while (start < end && namespace.charCodeAt(start) === 92) start++;\n+  while (end > start && namespace.charCodeAt(end - 1) === 92) end--;\n+  return namespace.slice(start, end);\n+}\n+\n+function phpTypeFqcn(entity: ParsedEntity): string | undefined {\n+  if (entity.language !== SupportedLanguages.PHP || !PHP_TYPE_KINDS.has(entity.kind) || entity.container) {\n+    return undefined;\n+  }\n+  const namespace = trimPhpNamespace(entity.packageScope);\n+  return `${namespace ? `${namespace}\\\\` : ''}${entity.name}`.toLowerCase();\n+}\n+\n+function ambiguousPhpTypeNames(entities: ParsedEntity[]): Set<string> {\n+  const counts = new Map<string, number>();\n+  for (const entity of entities) {\n+    if (entity.language !== SupportedLanguages.PHP || !PHP_TYPE_KINDS.has(entity.kind) || entity.container) {\n+      continue;\n+    }\n+    const name = entity.name.toLowerCase();\n+    counts.set(name, (counts.get(name) ?? 0) + 1);\n+  }\n+  return new Set([...counts].filter(([, count]) => count > 1).map(([name]) => name));\n+}\n+\n /**\n  * Given a file's qualified-key map and a plain callee name, return the single\n  * unambiguous qualified key, or null if the name maps to 0 or >1 entities.\n@@ -2831,6 +2921,24 @@ function bestQKey(\n   return qks.length === 1 ? qks[0] : null;\n }\n \n+function bestPhpQKey(\n+  fileQKeys: Map<string, Map<string, string[]>>,\n+  filePath: string,\n+  plainName: string,\n+  preferredQKey?: string,\n+): string | null {\n+  const qks = [...new Set(\n+    [...(fileQKeys.get(filePath) ?? [])]\n+      .filter(([name]) => name.toLowerCase() === plainName.toLowerCase())\n+      .flatMap(([, keys]) => keys),\n+  )];\n+  if (preferredQKey) {\n+    const preferred = qks.find(key => key.toLowerCase() === preferredQKey.toLowerCase());\n+    if (preferred) return preferred;\n+  }\n+  return qks.length === 1 ? qks[0] : null;\n+}\n+\n // ---------------------------------------------------------------------------\n // Global resolution index — pre-scan for cross-batch edge resolution\n // ---------------------------------------------------------------------------\n@@ -2845,6 +2953,7 @@ export interface GlobalResolutionIndex {\n   packageToFiles:   Map<string, string[]>;\n   goPkgDirToFiles:  Map<string, string[]>;\n   goPkgPathToFiles: Map<string, string[]>;\n+  phpFqcnToTypes?:  Map<string, Array<{ filePath: string; typeName: string }>>;\n }\n \n /**\n@@ -2869,6 +2978,7 @@ export function buildGlobalResolutionIndex(\n   const packageToFiles = new Map<string, string[]>();\n   const goPkgDirToFiles = new Map<string, string[]>();\n   const goPkgPathToFiles = new Map<string, string[]>();\n+  const phpFqcnToTypes = new Map<string, Array<{ filePath: string; typeName: string }>>();\n \n   for (const fp of filePaths) {\n     const ext = nodePath.extname(fp);\n@@ -3025,11 +3135,20 @@ export function buildGlobalResolutionIndex(\n       const parsed = preParsed?.get(fp) ?? parseFile(fp, src);\n       if (!parsed) continue;\n       const qkMap = new Map<string, string[]>();\n+      const ambiguousTypes = ambiguousPhpTypeNames(parsed.entities);\n       for (const e of parsed.entities) {\n         if (e.kind === 'file' || e.kind === 'module') continue;\n         const list = qkMap.get(e.name) ?? [];\n         list.push(qualifiedKey(e));\n         qkMap.set(e.name, list);\n+        const fqcn = phpTypeFqcn(e);\n+        if (fqcn && !ambiguousTypes.has(e.name.toLowerCase())) {\n+          const entries = phpFqcnToTypes.get(fqcn) ?? [];\n+          if (!entries.some(entry => entry.filePath === fp && entry.typeName === e.name)) {\n+            entries.push({ filePath: fp, typeName: e.name });\n+          }\n+          phpFqcnToTypes.set(fqcn, entries);\n+        }\n       }\n       if (qkMap.size > 0) {\n         fileQKeys.set(fp, qkMap);\n@@ -3078,6 +3197,7 @@ export function buildGlobalResolutionIndex(\n     packageToFiles,\n     goPkgDirToFiles,\n     goPkgPathToFiles,\n+    phpFqcnToTypes,\n   };\n }\n \n@@ -3202,6 +3322,26 @@ export function resolveEdges(\n       if (!m.has(b.local)) m.set(b.local, b.imported);\n     }\n   }\n+  const phpFqcnImportsByLocal = new Map<string, Map<string, string | null>>();\n+  for (const result of results) {\n+    if (result.language !== SupportedLanguages.PHP) continue;\n+    for (const rel of result.relationships) {\n+      if (\n+        rel.predicate !== 'IMPORTS' ||\n+        rel.importKind === 'function' ||\n+        rel.importKind === 'const' ||\n+        rel.importAliased ||\n+        typeof rel.importRaw !== 'string'\n+      ) continue;\n+      const fqcn = rel.importRaw.replace(/^\\\\+/, '').toLowerCase();\n+      const local = fqcn.split('\\\\').pop();\n+      if (!local) continue;\n+      const imports = phpFqcnImportsByLocal.get(result.filePath) ?? new Map<string, string | null>();\n+      if (!imports.has(local)) imports.set(local, fqcn);\n+      else if (imports.get(local) !== fqcn) imports.set(local, null);\n+      phpFqcnImportsByLocal.set(result.filePath, imports);\n+    }\n+  }\n   // Cross-repo dependency graph: repo R depends on repo D when any file in R\n   // imports a module published by D. Built from the raw IMPORTS relationships.\n   const repoOf = opts?.repoOf;\n@@ -3339,6 +3479,24 @@ export function resolveEdges(\n     fileHasSymbol.set(fp, new Set(qkMap.keys()));\n   }\n \n+  const phpFqcnToTypes = new Map<string, Array<{ filePath: string; typeName: string }>>();\n+  for (const [fqcn, entries] of globalIndex?.phpFqcnToTypes ?? []) {\n+    phpFqcnToTypes.set(fqcn, [...entries]);\n+  }\n+  for (const result of results) {\n+    if (result.language !== SupportedLanguages.PHP) continue;\n+    const ambiguousTypes = ambiguousPhpTypeNames(result.entities);\n+    for (const entity of result.entities) {\n+      const fqcn = phpTypeFqcn(entity);\n+      if (!fqcn || ambiguousTypes.has(entity.name.toLowerCase())) continue;\n+      const entries = phpFqcnToTypes.get(fqcn) ?? [];\n+      if (!entries.some(entry => entry.filePath === result.filePath && entry.typeName === entity.name)) {\n+        entries.push({ filePath: result.filePath, typeName: entity.name });\n+      }\n+      phpFqcnToTypes.set(fqcn, entries);\n+    }\n+  }\n+\n   // resultsByPath: O(1) lookup replacing results.find() in transitive import loop\n   const resultsByPath = new Map<string, FileParseResult>(results.map(r => [r.filePath, r]));\n \n@@ -3847,6 +4005,28 @@ export function resolveEdges(\n     );\n   }\n \n+  function importedPhpType(srcFilePath: string, rel: ParsedRelationship): {\n+    entries: Array<{ filePath: string; typeName: string }>;\n+    memberName?: string;\n+  } | undefined {\n+    if (rel.predicate === 'IMPORTS' && (rel.importKind === 'function' || rel.importKind === 'const')) {\n+      return undefined;\n+    }\n+    const parts = rel.dstName.split('.');\n+    if (rel.predicate === 'CALLS' && parts.length === 1 && rel.phpCallKind !== 'constructor') {\n+      return undefined;\n+    }\n+    const imports = phpFqcnImportsByLocal.get(srcFilePath);\n+    const local = parts[0].toLowerCase();\n+    if (!imports?.has(local)) return undefined;\n+    const fqcn = imports.get(local);\n+    if (!fqcn) return { entries: [] };\n+    return {\n+      entries: phpFqcnToTypes.get(fqcn) ?? [],\n+      memberName: parts.length > 1 ? parts[parts.length - 1] : undefined,\n+    };\n+  }\n+\n   const resolved: ResolvedEdge[] = [];\n \n   for (const result of results) {\n@@ -3860,6 +4040,13 @@ export function resolveEdges(\n     for (const rel of result.relationships) {\n       if (rel.predicate !== 'IMPORTS') continue;\n       if (pythonHasRelativeModuleImport && rel.importRaw === undefined) continue;\n+      const phpType = srcLanguage === SupportedLanguages.PHP\n+        ? importedPhpType(srcFilePath, rel)\n+        : undefined;\n+      if (phpType) {\n+        for (const entry of phpType.entries) importedFilePaths.add(entry.filePath);\n+        continue;\n+      }\n       for (const fp of resolveImportTargets(srcFilePath, srcLanguage, rel.dstName, rel.importRaw)) {\n         importedFilePaths.add(fp);\n       }\n@@ -3888,6 +4075,27 @@ export function resolveEdges(\n       // name (\"ClaimId\"), find files registered under that package, then find\n       // the one that defines the entity.\n       if (rel.predicate === 'IMPORTS') {\n+        const phpType = srcLanguage === SupportedLanguages.PHP\n+          ? importedPhpType(srcFilePath, rel)\n+          : undefined;\n+        if (phpType) {\n+          if (phpType.entries.length === 1) {\n+            const fp = phpType.entries[0].filePath;\n+            resolved.push({\n+              srcFilePath,\n+              srcName: rel.srcName,\n+              dstFilePath: fp,\n+              dstName: rel.dstName,\n+              dstQualifiedKey: fileEntityName(fp),\n+              predicate: 'IMPORTS',\n+              confidence: 0.9,\n+            });\n+            stats.resolvedImport++;\n+          } else if (phpType.entries.length > 1) {\n+            stats.skippedAmbiguous++;\n+          }\n+          continue;\n+        }\n         if (result.language === SupportedLanguages.Scala || result.language === SupportedLanguages.Java) {\n           const dstName = rel.dstName;\n           const lastDot = dstName.lastIndexOf('.');\n@@ -3959,6 +4167,36 @@ export function resolveEdges(\n         // fall through to Tier 1b → Tier 2 → Tier 3 below\n       }\n \n+      const phpType = srcLanguage === SupportedLanguages.PHP\n+        ? importedPhpType(srcFilePath, rel)\n+        : undefined;\n+      if (phpType) {\n+        if (phpType.entries.length === 1) {\n+          const entry = phpType.entries[0];\n+          const plainName = phpType.memberName ?? entry.typeName;\n+          const preferredQKey = phpType.memberName\n+            ? `${entry.typeName}.${phpType.memberName}`\n+            : entry.typeName;\n+          const dstQualifiedKey = bestPhpQKey(fileQKeys, entry.filePath, plainName, preferredQKey);\n+          if (dstQualifiedKey !== null) {\n+            resolved.push({\n+              srcFilePath,\n+              srcName: rel.srcName,\n+              dstFilePath: entry.filePath,\n+              dstName: rel.dstName,\n+              dstQualifiedKey,\n+              predicate: rel.predicate,\n+              confidence: 0.9,\n+              ...(rel.phpCallKind ? { phpCallKind: rel.phpCallKind } : {}),\n+            });\n+            stats.resolvedQualifier++;\n+          }\n+        } else if (phpType.entries.length > 1) {\n+          stats.skippedAmbiguous++;\n+        }\n+        continue;\n+      }\n+\n       const origDstName = rel.dstName;\n       // Z: resolve a renamed-import call by the provider's public symbol, but keep the\n       // ORIGINAL local name on the emitted edge (buildPatchWithResolution maps the edge"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 442,
+        "filename": "core-ingestion/src/patch-builder.ts",
+        "status": "modified",
+        "additions": 21,
+        "deletions": 6,
+        "changes": 27,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/83079ff3dca7d516cc5818dcf81a28f479ea56cd/core-ingestion%2Fsrc%2Fpatch-builder.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/83079ff3dca7d516cc5818dcf81a28f479ea56cd/core-ingestion%2Fsrc%2Fpatch-builder.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/core-ingestion%2Fsrc%2Fpatch-builder.ts?ref=83079ff3dca7d516cc5818dcf81a28f479ea56cd",
+        "patch": "@@ -478,7 +478,8 @@ export function buildPatchWithResolution(\n   const edgeResolution = new Map<string, { dstFilePath: string; dstQualifiedKey: string }>();\n   for (const edge of resolvedEdges) {\n     if (edge.srcFilePath !== result.filePath) continue;\n-    edgeResolution.set(`${edge.srcName}:${edge.predicate}:${edge.dstName}`, {\n+    const callKind = edge.phpCallKind ? `:${edge.phpCallKind}` : '';\n+    edgeResolution.set(`${edge.srcName}:${edge.predicate}:${edge.dstName}${callKind}`, {\n       dstFilePath: edge.dstFilePath,\n       dstQualifiedKey: edge.dstQualifiedKey,\n     });\n@@ -616,19 +617,30 @@ export function buildPatchWithResolution(\n   }\n \n   const seenExternalNodes2 = new Set<string>();\n+  const relationshipShapeCounts = new Map<string, number>();\n+  for (const relationship of relationships) {\n+    const key = `${relationship.srcName}:${relationship.predicate}:${relationship.dstName}`;\n+    relationshipShapeCounts.set(key, (relationshipShapeCounts.get(key) ?? 0) + 1);\n+  }\n   for (const r of relationships) {\n     const srcKey = resolveKey(r.srcName);\n     const dstKey = r.predicate === 'CONTAINS'\n       ? resolveKey(r.dstName, r.srcName)\n       : resolveKey(r.dstName);\n \n     let dstNodeId: string;\n-    const resolutionKey = `${r.srcName}:${r.predicate}:${r.dstName}`;\n-\n-    if (edgeResolution.has(resolutionKey)) {\n+    const baseResolutionKey = `${r.srcName}:${r.predicate}:${r.dstName}`;\n+    const resolutionKey = r.phpCallKind\n+      ? `${baseResolutionKey}:${r.phpCallKind}`\n+      : baseResolutionKey;\n+    const matchedResolutionKey = edgeResolution.has(resolutionKey)\n+      ? resolutionKey\n+      : baseResolutionKey;\n+\n+    if (edgeResolution.has(matchedResolutionKey)) {\n       // Cross-file resolved — use the defining file's nodeId, in the dst repo's\n       // workspace namespace (matters only for cross-repo edges in a co-ingest).\n-      const { dstFilePath, dstQualifiedKey } = edgeResolution.get(resolutionKey)!;\n+      const { dstFilePath, dstQualifiedKey } = edgeResolution.get(matchedResolutionKey)!;\n       dstNodeId = dstNodeIdInRepo(dstFilePath, dstQualifiedKey);\n     } else if (r.predicate === 'CALLS' && dstKey.includes('::') && !allQKeys2.has(dstKey)) {\n       const sep = dstKey.indexOf('::');\n@@ -650,9 +662,12 @@ export function buildPatchWithResolution(\n       dstNodeId = nodeId(idPath, dstKey);\n     }\n \n+    const edgeDstKey = r.phpCallKind && (relationshipShapeCounts.get(baseResolutionKey) ?? 0) > 1\n+      ? `${dstKey}:${r.phpCallKind}`\n+      : dstKey;\n     ops.push({\n       type: 'UpsertEdge',\n-      id: edgeId(idPath, srcKey, dstKey, r.predicate),\n+      id: edgeId(idPath, srcKey, edgeDstKey, r.predicate),\n       src: nodeId(idPath, srcKey),\n       dst: dstNodeId,\n       predicate: r.predicate,"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 442,
+        "filename": "core-ingestion/src/queries.ts",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 1,
+        "changes": 2,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/83079ff3dca7d516cc5818dcf81a28f479ea56cd/core-ingestion%2Fsrc%2Fqueries.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/83079ff3dca7d516cc5818dcf81a28f479ea56cd/core-ingestion%2Fsrc%2Fqueries.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/core-ingestion%2Fsrc%2Fqueries.ts?ref=83079ff3dca7d516cc5818dcf81a28f479ea56cd",
+        "patch": "@@ -1028,7 +1028,7 @@ export const PHP_QUERIES = `\n ; Simple: use App[local-path]\\User;\n (namespace_use_declaration\n   (namespace_use_clause\n-    (qualified_name) @import.source)) @import\n+    [(qualified_name) (name)] @import.source)) @import\n \n ; ── Function/method calls ────────────────────────────────────────────────────\n ; Regular function call: foo()"
+      }
+    ],
+    "commits": [
+      {
+        "sha": "ea79b11596f3ef42532364cde14b98779f8959e2",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/ea79b11596f3ef42532364cde14b98779f8959e2",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/ea79b11596f3ef42532364cde14b98779f8959e2",
+        "author": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "committer": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "message": "fix(php): resolve imports by namespace",
+        "parents": [
+          {
+            "sha": "fef671cca4e922d5e473d99739adee77d9134c20",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/fef671cca4e922d5e473d99739adee77d9134c20"
+          }
+        ],
+        "tree_sha": "c577c2aa0ee354445df921aadd1d49c5d70d4f46",
+        "authored_at": "2026-08-14T13:11:34Z",
+        "committed_at": "2026-08-14T13:11:34Z"
+      },
+      {
+        "sha": "83079ff3dca7d516cc5818dcf81a28f479ea56cd",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/83079ff3dca7d516cc5818dcf81a28f479ea56cd",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/83079ff3dca7d516cc5818dcf81a28f479ea56cd",
+        "author": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "committer": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "message": "fix(php): bound namespace trimming",
+        "parents": [
+          {
+            "sha": "ea79b11596f3ef42532364cde14b98779f8959e2",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/ea79b11596f3ef42532364cde14b98779f8959e2"
+          }
+        ],
+        "tree_sha": "d1fd625c6d6dea4e14b2749be965759caf4b5e6b",
+        "authored_at": "2026-08-14T13:24:09Z",
+        "committed_at": "2026-08-14T13:24:09Z"
+      }
+    ],
+    "comments": [
+      {
+        "id": 5295706742,
+        "node_id": "IC_kwDORdC75M8AAAABO6YSdg",
+        "repository": "ix-infrastructure/Ix",
+        "parent_type": "PULL_REQUEST",
+        "parent_number": 442,
+        "kind": "PR_COMMENT",
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "body": "Reviewed. The FQCN indexing is a real improvement and the `trimPhpNamespace` rewrite in `83079ff` correctly kills the flagged ReDoS — that CodeQL alert is **stale** and can be dismissed after a re-scan.\n\nBlocking issue: widening the capture to `[(qualified_name) (name)]` also captures the alias, because in `namespace_use_clause` the alias is a direct `(name)` sibling. `use Vendor[local-path]\\User as Admin;` therefore emits an `IMPORTS` edge to an unrelated `Admin` class the file never imports, and promotes the wrong short-name matches from 0.5 to **0.9** — the opposite of what this PR is for.\n\nTwo related clause-scoping bugs: `importAliased` is computed from the whole statement, so one alias in a comma-separated `use` disables FQCN resolution for every clause; and that same unanchored `/[local-path]\\s+/` is a second instance of the ReDoS class CodeQL missed (~3.7s on a `use` padded with 100k spaces, which is valid PHP).\n\nAll three fixed by one root-cause change — scope to the clause: **Hiro-Chiba/Ix#3**.",
+        "html_url": "https://github.com/ix-infrastructure/Ix/pull/442#issuecomment-5295706742",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5295706742",
+        "created_at": "2026-08-14T16:29:23Z",
+        "updated_at": "2026-08-14T16:29:23Z",
+        "commit_id": null,
+        "path": null,
+        "line": null,
+        "start_line": null,
+        "side": null,
+        "in_reply_to_id": null,
+        "diff_hunk": null,
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      },
+      {
+        "id": 5296782687,
+        "node_id": "IC_kwDORdC75M8AAAABO7Z9Xw",
+        "repository": "ix-infrastructure/Ix",
+        "parent_type": "PULL_REQUEST",
+        "parent_number": 442,
+        "kind": "PR_COMMENT",
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "body": "Added a second commit to **Hiro-Chiba/Ix#3** covering two further regressions I measured against main rather than inferred:\n\n**1. A `use` leaks across braced namespace blocks.** `phpFqcnImportsByLocal` is keyed by file, but a `use` is scoped to its namespace block:\n\n```php\nnamespace A { use Vendor[local-path]\\Thing; function run(Thing $t) {...} }\nnamespace B { class Thing {} function go(Thing $t) {...} }\n```\n\n`go()` resolved to `Vendor/Package/Thing.php` at 0.9 although `B` declares its own `Thing` two lines up. main emits no edge for `go` at all. One namespace per file is the PSR-12 norm, so the index now skips a multi-block file rather than mis-resolve it — restoring main's behaviour exactly for that shape.\n\n**2. Duplicate CALLS edges reach the graph.** `phpCallKind` splits the per-file dedup key, so `log()` and `Logger::log()` survive as two relationships. When both resolve to the same member, patch-builder salts the edge id by call kind and emits two `UpsertEdge` ops with identical `src`/`dst`/`predicate` but different ids — and the dedup downstream keys on id, so both commit. Measured: main 1 op, this branch 2. The salt still applies when the two kinds resolve to *different* nodes, which is what it's for.",
+        "html_url": "https://github.com/ix-infrastructure/Ix/pull/442#issuecomment-5296782687",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5296782687",
+        "created_at": "2026-08-14T18:26:02Z",
+        "updated_at": "2026-08-14T18:26:02Z",
+        "commit_id": null,
+        "path": null,
+        "line": null,
+        "start_line": null,
+        "side": null,
+        "in_reply_to_id": null,
+        "diff_hunk": null,
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      },
+      {
+        "id": 5297797082,
+        "node_id": "IC_kwDORdC75M8AAAABO8X32g",
+        "repository": "ix-infrastructure/Ix",
+        "parent_type": "PULL_REQUEST",
+        "parent_number": 442,
+        "kind": "PR_COMMENT",
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "body": "Update on how this lands: **#446** now carries your commits plus the review fixes, targeting `main` directly. It's up for review by @josephismikhail.\n\nNo action needed from you. Your commits keep their authorship on that branch, and it will be merged with a merge commit rather than a squash so that stays true — when it lands, this PR closes as *merged*. The follow-up PR I'd opened into your fork is closed as superseded.\n\nThe reasoning for each fix is in this thread above and in #446's description.",
+        "html_url": "https://github.com/ix-infrastructure/Ix/pull/442#issuecomment-5297797082",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5297797082",
+        "created_at": "2026-08-14T20:20:52Z",
+        "updated_at": "2026-08-14T20:20:52Z",
+        "commit_id": null,
+        "path": null,
+        "line": null,
+        "start_line": null,
+        "side": null,
+        "in_reply_to_id": null,
+        "diff_hunk": null,
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      }
+    ],
+    "reviews": [
+      {
+        "id": 4937502514,
+        "node_id": "PRR_kwDORdC75M8AAAABJkxPMg",
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 442,
+        "author": {
+          "login": "github-advanced-security[bot]",
+          "id": 62310815,
+          "type": "Bot",
+          "html_url": "https://github.com/apps/github-advanced-security"
+        },
+        "state": "COMMENTED",
+        "body": "",
+        "html_url": "https://github.com/ix-infrastructure/Ix/pull/442#pullrequestreview-4937502514",
+        "submitted_at": "2026-08-14T13:21:18Z",
+        "commit_id": "ea79b11596f3ef42532364cde14b98779f8959e2",
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      }
+    ],
+    "review_comments": [
+      {
+        "id": 3783951926,
+        "node_id": "PRRC_kwDORdC75M7hioY2",
+        "repository": "ix-infrastructure/Ix",
+        "parent_type": "PULL_REQUEST",
+        "parent_number": 442,
+        "kind": "REVIEW_COMMENT",
+        "author": {
+          "login": "github-advanced-security[bot]",
+          "id": 62310815,
+          "type": "Bot",
+          "html_url": "https://github.com/apps/github-advanced-security"
+        },
+        "body": "## CodeQL / Polynomial regular expression used on uncontrolled data\n\nThis [regular expression](1) that depends on [library input](2) may run slow on strings with many repetitions of '\\\\'.\nThis [regular expression](1) that depends on [library input](3) may run slow on strings with many repetitions of '\\\\'.\n\n[Show more details](https://github.com/ix-infrastructure/Ix/security/code-scanning/62)",
+        "html_url": "https://github.com/ix-infrastructure/Ix/pull/442#discussion_r3783951926",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/comments/3783951926",
+        "created_at": "2026-08-14T13:21:18Z",
+        "updated_at": "2026-08-14T13:21:18Z",
+        "commit_id": "ea79b11596f3ef42532364cde14b98779f8959e2",
+        "path": "core-ingestion/src/index.ts",
+        "line": null,
+        "start_line": null,
+        "side": "RIGHT",
+        "in_reply_to_id": null,
+        "diff_hunk": "@@ -2815,6 +2874,28 @@\n   return e.container ? `${e.container}.${e.name}` : e.name;\n }\n \n+const PHP_TYPE_KINDS = new Set(['class', 'interface', 'trait', 'enum']);\n+\n+function phpTypeFqcn(entity: ParsedEntity): string | undefined {\n+  if (entity.language !== SupportedLanguages.PHP || !PHP_TYPE_KINDS.has(entity.kind) || entity.container) {\n+    return undefined;\n+  }\n+  const namespace = entity.packageScope?.replace(/^[local-path]\\+$/g, '');",
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      }
+    ],
+    "timeline": [
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/ea79b11596f3ef42532364cde14b98779f8959e2"
+      },
+      {
+        "id": 29459790585,
+        "event": "review_requested",
+        "actor": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "created_at": "2026-08-14T13:19:53Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29459790585"
+      },
+      {
+        "id": 4937502514,
+        "event": "reviewed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": "ea79b11596f3ef42532364cde14b98779f8959e2",
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/83079ff3dca7d516cc5818dcf81a28f479ea56cd"
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-14T16:28:56Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": 5295706742,
+        "event": "commented",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-14T16:29:23Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5295706742"
+      },
+      {
+        "id": 5296782687,
+        "event": "commented",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-14T18:26:02Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5296782687"
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-14T20:19:06Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": 5297797082,
+        "event": "commented",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-14T20:20:52Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5297797082"
+      },
+      {
+        "id": 29479140497,
+        "event": "mentioned",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-14T20:20:54Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29479140497"
+      },
+      {
+        "id": 29479140533,
+        "event": "subscribed",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-14T20:20:54Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29479140533"
+      }
+    ],
+    "source": "OFFICIAL_GITHUB_FACT",
+    "review_threads": [],
+    "review_thread_capture": {
+      "status": "UNKNOWN",
+      "source": "GitHub GraphQL API"
+    }
+  },
+  "source_context": {
+    "id": "github:pull_request:ix-infrastructure/Ix#442",
+    "source": {
+      "type": "github_pull_request",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/442",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/442",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-14T13:19:52Z",
+      "last_fetched": "2026-08-16T08:59:39.836Z",
+      "last_verified": "2026-08-16T08:59:39.836Z",
+      "source_updated_at": "2026-08-15T00:19:04Z",
+      "snapshot_version": "2026-08-16T08:59:39.836Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "PR-442",
+    "entity_type": "PULL_REQUEST",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "mirror_scope": "source PR, commits, files, comments, reviews, review comments, and review threads",
+    "related_analysis_types": [
+      "FINDING",
+      "DECISION",
+      "IMPLEMENTATION"
+    ],
+    "review_thread_state": "UNKNOWN"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "CHANGED_BY",
+      "other": "COMMIT-83079ff3dca7d516cc5818dcf81a28f479ea56cd",
+      "other_type": "commit",
+      "other_title": "83079ff3dca7d516cc5818dcf81a28f479ea56cd",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-83079ff3dca7d516cc5818dcf81a28f479ea56cd"
+    },
+    {
+      "direction": "out",
+      "relationship": "FOUND_IN",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "in",
+      "relationship": "RELATED_TO_PR",
+      "other": "F-018",
+      "other_type": "finding",
+      "other_title": "#446 parser-level phpNamespaceBlocks guard (upstream implementation)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-018"
+    }
+  ]
+}

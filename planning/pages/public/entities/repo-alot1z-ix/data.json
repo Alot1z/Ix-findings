@@ -38,8 +38,8 @@
     "parent": "ix-infrastructure/Ix",
     "source": "ix-infrastructure/Ix",
     "created_at": "2026-08-10T00:14:10Z",
-    "updated_at": "2026-08-11T21:00:15Z",
-    "pushed_at": "2026-08-13T22:14:28Z",
+    "updated_at": "2026-08-16T08:48:07Z",
+    "pushed_at": "2026-08-16T08:47:16Z",
     "topics": [],
     "language": "TypeScript",
     "license": {
@@ -52,31 +52,31 @@
     "forks_count": 0,
     "open_issues_count": 0,
     "head": {
-      "sha": "7e28e05e36e8f890e8f8a9a6ba7a7ff8c6ea18b8",
-      "html_url": "https://github.com/Alot1z/Ix-remap/commit/7e28e05e36e8f890e8f8a9a6ba7a7ff8c6ea18b8",
-      "api_url": "https://api.github.com/repos/Alot1z/Ix-remap/commits/7e28e05e36e8f890e8f8a9a6ba7a7ff8c6ea18b8",
+      "sha": "b33b8da9005030cc16a624f1eef052622c36ef15",
+      "html_url": "https://github.com/Alot1z/Ix-remap/commit/b33b8da9005030cc16a624f1eef052622c36ef15",
+      "api_url": "https://api.github.com/repos/Alot1z/Ix-remap/commits/b33b8da9005030cc16a624f1eef052622c36ef15",
       "author": {
-        "login": "bertolikimberly",
-        "id": 134340724,
+        "login": "Alot1z",
+        "id": 16801672,
         "type": "User",
-        "html_url": "https://github.com/bertolikimberly"
+        "html_url": "https://github.com/Alot1z"
       },
       "committer": {
-        "login": "bertolikimberly",
-        "id": 134340724,
+        "login": "Alot1z",
+        "id": 16801672,
         "type": "User",
-        "html_url": "https://github.com/bertolikimberly"
+        "html_url": "https://github.com/Alot1z"
       },
-      "message": "docs: ban attribution footers in this repo (AGENTS.md)",
+      "message": "feat(agents): add reusable contribution-lifecycle skill\n\nAdd .agents/skills/ix-contribution-lifecycle.md — the deterministic\nDISCOVER→FINAL-REPORT pipeline (live upstream, duplicates, reproduction,\nclassification, adversarial testing, fork publication, findings update,\ncomment/PR decision, verification) so agents invoke the procedure instead of\nreconstructing it. Align ix-pr-review's posting constraint with the\nworkflow-authorization governance.",
       "parents": [
         {
-          "sha": "1292375548fb8f4431ac5afc34c68fe2573434d1",
-          "html_url": "https://github.com/Alot1z/Ix-remap/commit/1292375548fb8f4431ac5afc34c68fe2573434d1"
+          "sha": "38aebb4195d395458c4b78883bfe2667ced3a037",
+          "html_url": "https://github.com/Alot1z/Ix-remap/commit/38aebb4195d395458c4b78883bfe2667ced3a037"
         }
       ],
-      "tree_sha": "4fdb01246556bb97a6c33128b7b85db8db4af84c",
-      "authored_at": "2026-08-11T19:08:07Z",
-      "committed_at": "2026-08-11T19:11:27Z"
+      "tree_sha": "d2fcd9c9b16b94b3e1249e2bf1b369ebfc1f7626",
+      "authored_at": "2026-08-16T08:47:12Z",
+      "committed_at": "2026-08-16T08:47:12Z"
     },
     "branches": [
       {
@@ -92,6 +92,12 @@
         "url": null
       },
       {
+        "name": "clean/php-namespace-validation",
+        "protected": false,
+        "sha": "6a50e6cb2ab0790f0c594962f89e59ca6464dd70",
+        "url": null
+      },
+      {
         "name": "copilot/research-open-source-contribution",
         "protected": false,
         "sha": "ff7df414e165779f72e9dd121b3f48c2f55b9350",
@@ -100,7 +106,7 @@
       {
         "name": "feat/ix-agent-context",
         "protected": false,
-        "sha": "815afeac0b1fcdff7d140c74a093e52375da1bab",
+        "sha": "aaa49914f7911841c1c08db170fd50e4c0bb809a",
         "url": null
       },
       {
@@ -118,7 +124,7 @@
       {
         "name": "feat/ix-mcp-enrichment",
         "protected": false,
-        "sha": "8e348d8f081cccdd2fb6b75941c5e9a777b459ad",
+        "sha": "6313fbe5db80d6d19b8bcc569ff2798bf5eedc7c",
         "url": null
       },
       {
@@ -143,6 +149,12 @@
         "name": "fix/installer-ghcr-denied-diagnostics",
         "protected": false,
         "sha": "14eb3506160bf7aabba9ea6261a714dff02e39f6",
+        "url": null
+      },
+      {
+        "name": "fix/php-grouped-use-imports",
+        "protected": false,
+        "sha": "5efd8f185e2f284551000486433d4233b2fe704a",
         "url": null
       },
       {
@@ -206,9 +218,39 @@
         "url": null
       },
       {
+        "name": "fix/425-mcp-truncation-success-flag",
+        "protected": false,
+        "sha": "edffddb7c40432d1118880c32f9dcf5d0d0f9e16",
+        "url": null
+      },
+      {
+        "name": "fix/443-renamed-import-member-guard",
+        "protected": false,
+        "sha": "cba11a3363b1fbe57819381f05490d2f395674cd",
+        "url": null
+      },
+      {
+        "name": "fix/445-renamed-import-member-guard",
+        "protected": false,
+        "sha": "f9274cc0870c65a496a5b983c814d9fed6a65c0f",
+        "url": null
+      },
+      {
+        "name": "fix/446-multi-namespace-guard",
+        "protected": false,
+        "sha": "0701040e89a6ed12717429734914cfb35f239239",
+        "url": null
+      },
+      {
+        "name": "fix/446-namespace-scope-boundary",
+        "protected": false,
+        "sha": "f577492219d9b0546df8996d6679784e3c465b99",
+        "url": null
+      },
+      {
         "name": "main",
         "protected": false,
-        "sha": "7e28e05e36e8f890e8f8a9a6ba7a7ff8c6ea18b8",
+        "sha": "b33b8da9005030cc16a624f1eef052622c36ef15",
         "url": null
       },
       {
@@ -227,6 +269,12 @@
         "name": "refactor/stale-drop-dead-client",
         "protected": false,
         "sha": "2f68cccb28440f2679e838decc40866cd5d98f34",
+        "url": null
+      },
+      {
+        "name": "update/agent-system-collaborator-role",
+        "protected": false,
+        "sha": "f73587f5b8401ee6bd3b1abfe192ae14964dd98a",
         "url": null
       }
     ],
@@ -377,11 +425,11 @@
       "url_precision": "OBJECT"
     },
     "freshness": {
-      "first_seen": "2026-08-13T22:23:39.068Z",
-      "last_fetched": "2026-08-13T22:23:39.068Z",
-      "last_verified": "2026-08-13T22:23:39.068Z",
-      "source_updated_at": "2026-08-11T21:00:15Z",
-      "snapshot_version": "2026-08-13T22:23:39.068Z"
+      "first_seen": "2026-08-16T08:59:39.836Z",
+      "last_fetched": "2026-08-16T08:59:39.836Z",
+      "last_verified": "2026-08-16T08:59:39.836Z",
+      "source_updated_at": "2026-08-16T08:48:07Z",
+      "snapshot_version": "2026-08-16T08:59:39.836Z"
     }
   },
   "ix_findings_analysis": {

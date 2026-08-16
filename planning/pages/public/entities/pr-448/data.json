@@ -1,0 +1,349 @@
+{
+  "id": "PR-448",
+  "type": "pr",
+  "title": "Ix PR #448",
+  "status": "OPEN",
+  "url": "https://alot1z.github.io/Ix-findings/entities/pr-448",
+  "summary": {
+    "id": "PR-448",
+    "type": "pr",
+    "title": "Ix PR #448",
+    "status": "OPEN",
+    "number": 448,
+    "url": "https://github.com/ix-infrastructure/Ix/pull/448",
+    "source_mirror_id": "github:pull_request:ix-infrastructure/Ix#448",
+    "source_type": "github_pull_request",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/pull/448",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/448",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "number": 448,
+    "node_id": "PR_kwDORdC75M7_m2ft",
+    "title": "fix(php): capture grouped use imports",
+    "body": "## Summary\n\nPHP grouped `use` statements — `use Vendor\\Package\\{A, B};`, plus the `use function` / `use const` variants — never produced `IMPORTS` relationships, so calls like `new A()` through a grouped import went unresolved.\n\n## Bug\n\nThe PHP query only matched `(namespace_use_clause (qualified_name) @import.source)`. A grouped `use` has a different tree-sitter shape: the shared prefix is a separate `namespace_name` and each member is a bare `(namespace_use_clause (name))` under a `namespace_use_group`. Because neither matched, every member import was silently dropped:\n\n```php\nuse Vendor\\Contracts\\{DomainService, Repo};\n$svc = new DomainService(); // resolves to nothing\n```\n\nwhile the comma-separated equivalent `use Vendor\\Contracts\\DomainService, Vendor\\Contracts\\Repo;` resolves correctly — a real gap, not a theoretical one.\n\n## Fix\n\n- **`core-ingestion/src/queries.ts`** — add a grouped-use pattern capturing the shared prefix as `@import.prefix` and each member clause as `@import.clause`.\n- **`core-ingestion/src/index.ts`** — rebuild each member's FQCN from prefix + the clause's **first** `name` child. A second `name` child is an `as` alias (`{DomainService as DS, ...}`) and must never become an import. The emitted `modName`/`importRaw` match the single-clause form, so grouped imports resolve exactly like their comma-separated equivalents.\n\n## Regression tests\n\n- per-member capture for `{DomainService, Repo}`\n- alias exclusion for `{DomainService as DS, Repo}`\n- end-to-end resolution of a grouped import through `resolveEdges`\n\nAll three fail on `main` and pass after the fix.\n\n## Verification\n\n- New tests: fail-before on `main` (3 failures), pass-after\n- `queries.php` + `resolveEdges` + `patchBuilder.resolution`: 86/86 pass\n- `tsc --noEmit` clean, `git diff --check` clean\n- Full suite: only pre-existing SAS/environmental failures, identical on pristine `main`\n- No duplicate PR, issue, or upstream commit found for grouped PHP use handling\n\n## Relationship to existing PRs\n\nIndependent of #446 (PHP namespace resolution) — that PR does not touch the use-import query. This fix is based on current `main` (`043bc68`).\n",
+    "state": "open",
+    "draft": false,
+    "merged": false,
+    "author": {
+      "login": "Alot1z",
+      "id": 16801672,
+      "type": "User",
+      "html_url": "https://github.com/Alot1z"
+    },
+    "html_url": "https://github.com/ix-infrastructure/Ix/pull/448",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/448",
+    "head": {
+      "ref": "fix/php-grouped-use-imports",
+      "sha": "5efd8f185e2f284551000486433d4233b2fe704a",
+      "repo": {
+        "id": 1329286389,
+        "full_name": "Alot1z/Ix-remap",
+        "name": "Ix-remap",
+        "owner": {
+          "login": "Alot1z",
+          "id": 16801672,
+          "type": "User",
+          "html_url": "https://github.com/Alot1z"
+        },
+        "html_url": "https://github.com/Alot1z/Ix-remap",
+        "api_url": "https://api.github.com/repos/Alot1z/Ix-remap",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": true,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-08-10T00:14:10Z",
+        "updated_at": "2026-08-16T08:48:07Z",
+        "pushed_at": "2026-08-16T08:47:16Z",
+        "topics": [],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 0,
+        "stargazers_count": 0,
+        "forks_count": 0,
+        "open_issues_count": 0
+      }
+    },
+    "base": {
+      "ref": "main",
+      "sha": "043bc68f0fb7ddba736ee1490614cb3c68f8f819",
+      "repo": {
+        "id": 1171307492,
+        "full_name": "ix-infrastructure/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "ix-infrastructure",
+          "id": 256883681,
+          "type": "Organization",
+          "html_url": "https://github.com/ix-infrastructure"
+        },
+        "html_url": "https://github.com/ix-infrastructure/Ix",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": false,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-03-03T04:48:38Z",
+        "updated_at": "2026-08-16T08:00:03Z",
+        "pushed_at": "2026-08-15T06:01:03Z",
+        "topics": [
+          "ai",
+          "ai-memory",
+          "claude-code",
+          "cli",
+          "code-analysis",
+          "code-mapping",
+          "code-memory",
+          "codebase-understanding",
+          "codex",
+          "developer-tools",
+          "llm",
+          "openclaw",
+          "persistent-memory",
+          "program-analysis",
+          "software-architecture",
+          "system-intelligence",
+          "system-mapping"
+        ],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 731,
+        "stargazers_count": 731,
+        "forks_count": 61,
+        "open_issues_count": 16
+      }
+    },
+    "merge_commit_sha": "71b4a3e18331ec770c3a943726898e5b9b76bf9d",
+    "merged_at": null,
+    "closed_at": null,
+    "created_at": "2026-08-16T01:20:35Z",
+    "updated_at": "2026-08-16T01:20:37Z",
+    "labels": [],
+    "milestone": null,
+    "requested_reviewers": [
+      {
+        "login": "josephismikhail",
+        "id": 56614593,
+        "type": "User",
+        "html_url": "https://github.com/josephismikhail"
+      }
+    ],
+    "requested_teams": [],
+    "commits_count": 1,
+    "changed_files_count": 4,
+    "additions": 113,
+    "deletions": 0,
+    "changed_files": [
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 448,
+        "filename": "core-ingestion/src/__tests__/queries.php.test.ts",
+        "status": "modified",
+        "additions": 52,
+        "deletions": 0,
+        "changes": 52,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/5efd8f185e2f284551000486433d4233b2fe704a/core-ingestion%2Fsrc%2F__tests__%2Fqueries.php.test.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/5efd8f185e2f284551000486433d4233b2fe704a/core-ingestion%2Fsrc%2F__tests__%2Fqueries.php.test.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/core-ingestion%2Fsrc%2F__tests__%2Fqueries.php.test.ts?ref=5efd8f185e2f284551000486433d4233b2fe704a",
+        "patch": "@@ -22,6 +22,58 @@ use Vendor[local-path]\\DomainService;\n     });\n   });\n \n+  it('captures every member of a grouped namespace use', () => {\n+    const result = parseFile(\n+      '/repo/UseCase.php',\n+      `<?php\n+namespace App;\n+\n+use Vendor[local-path]\\{DomainService, Repo};\n+      `,\n+    );\n+\n+    expect(result).not.toBeNull();\n+    expect(result!.relationships).toContainEqual({\n+      srcName: 'UseCase.php',\n+      dstName: 'DomainService',\n+      predicate: 'IMPORTS',\n+      importRaw: 'Vendor[local-path]\\DomainService',\n+    });\n+    expect(result!.relationships).toContainEqual({\n+      srcName: 'UseCase.php',\n+      dstName: 'Repo',\n+      predicate: 'IMPORTS',\n+      importRaw: 'Vendor[local-path]\\Repo',\n+    });\n+  });\n+\n+  it('captures grouped use members with the shared prefix, never the alias', () => {\n+    const result = parseFile(\n+      '/repo/UseCase.php',\n+      `<?php\n+namespace App;\n+\n+use Vendor[local-path]\\{DomainService as DS, Repo};\n+      `,\n+    );\n+\n+    expect(result).not.toBeNull();\n+    expect(result!.relationships).toContainEqual({\n+      srcName: 'UseCase.php',\n+      dstName: 'DomainService',\n+      predicate: 'IMPORTS',\n+      importRaw: 'Vendor[local-path]\\DomainService',\n+    });\n+    expect(result!.relationships).toContainEqual({\n+      srcName: 'UseCase.php',\n+      dstName: 'Repo',\n+      predicate: 'IMPORTS',\n+      importRaw: 'Vendor[local-path]\\Repo',\n+    });\n+    // The `as DS` alias is a local name, never an imported symbol.\n+    expect(result!.relationships.filter((r) => r.predicate === 'IMPORTS' && r.dstName === 'DS')).toEqual([]);\n+  });\n+\n   it('resolves calls through typed properties and method parameters', () => {\n     const result = parseFile(\n       '/repo/UseCase.php',"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 448,
+        "filename": "core-ingestion/src/__tests__/resolveEdges.test.ts",
+        "status": "modified",
+        "additions": 30,
+        "deletions": 0,
+        "changes": 30,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/5efd8f185e2f284551000486433d4233b2fe704a/core-ingestion%2Fsrc%2F__tests__%2FresolveEdges.test.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/5efd8f185e2f284551000486433d4233b2fe704a/core-ingestion%2Fsrc%2F__tests__%2FresolveEdges.test.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/core-ingestion%2Fsrc%2F__tests__%2FresolveEdges.test.ts?ref=5efd8f185e2f284551000486433d4233b2fe704a",
+        "patch": "@@ -256,6 +256,36 @@ describe('resolveEdges', () => {\n     });\n   });\n \n+  it('resolves imports from a grouped PHP use statement', () => {\n+    const consumer = parseFile(\n+      '/repo/UseCase.php',\n+      `<?php\n+namespace App;\n+\n+use Vendor[local-path]\\{DomainService, Repo};\n+\n+final class UseCase\n+{\n+    public function make(): void\n+    {\n+        $svc = new DomainService();\n+    }\n+}\n+      `,\n+    )!;\n+    const provider = parseFile(\n+      '/repo/DomainService.php',\n+      '<?php namespace Vendor\\\\Contracts; class DomainService {}',\n+    )!;\n+\n+    const resolved = resolveEdges([consumer, provider]);\n+    expect(\n+      resolved.filter(\n+        (e) => e.predicate === 'IMPORTS' && e.dstFilePath === '/repo/DomainService.php',\n+      ),\n+    ).toHaveLength(1);\n+  });\n+\n   it('resolves a TypeScript call when the imported definition is outside the parse batch', () => {\n     const caller = fileResult(\n       '/repo/consumer.ts',"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 448,
+        "filename": "core-ingestion/src/index.ts",
+        "status": "modified",
+        "additions": 21,
+        "deletions": 0,
+        "changes": 21,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/5efd8f185e2f284551000486433d4233b2fe704a/core-ingestion%2Fsrc%2Findex.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/5efd8f185e2f284551000486433d4233b2fe704a/core-ingestion%2Fsrc%2Findex.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/core-ingestion%2Fsrc%2Findex.ts?ref=5efd8f185e2f284551000486433d4233b2fe704a",
+        "patch": "@@ -2419,6 +2419,27 @@ export function parseFile(filePath: string, source: string): FileParseResult | n\n         continue;\n       }\n \n+      // PHP grouped use: `use Vendor\\Package\\{A, B};` (also `use function` /\n+      // `use const`). Each member is its own namespace_use_clause under the\n+      // group; the shared prefix arrives via @import.prefix. The clause's FIRST\n+      // name child is the imported symbol (a second one is an `as` alias and\n+      // must never become an import), so rebuild the FQCN from prefix + first\n+      // name, matching the single-clause form's modName/importRaw shape.\n+      const phpGroupPrefix = match.captures.find((c: any) => c.name === 'import.prefix')?.node.text;\n+      const phpGroupClauses = match.captures.filter((c: any) => c.name === 'import.clause');\n+      if (language === SupportedLanguages.PHP && phpGroupClauses.length > 0) {\n+        for (const clause of phpGroupClauses) {\n+          const firstName = clause.node.namedChildren.find((c: any) => c.type === 'name');\n+          if (!firstName) continue;\n+          const fqcn = phpGroupPrefix ? `${phpGroupPrefix}\\\\${firstName.text}` : firstName.text;\n+          const modName = normalizeCapturedImport(fqcn, language);\n+          const importRaw = unwrapImportSpecifier(fqcn);\n+          entities.push({ name: modName, kind: 'module', lineStart: firstName.startPosition.row + 1, lineEnd: firstName.startPosition.row + 1, language });\n+          relationships.push({ srcName: fileName, dstName: modName, predicate: 'IMPORTS', importRaw });\n+        }\n+        continue;\n+      }\n+\n       // Import captures (JS/TS/Python path-based)\n       const importSource = match.captures.find((c: any) => c.name === 'import.source');\n       if (importSource) {"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 448,
+        "filename": "core-ingestion/src/queries.ts",
+        "status": "modified",
+        "additions": 10,
+        "deletions": 0,
+        "changes": 10,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/5efd8f185e2f284551000486433d4233b2fe704a/core-ingestion%2Fsrc%2Fqueries.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/5efd8f185e2f284551000486433d4233b2fe704a/core-ingestion%2Fsrc%2Fqueries.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/core-ingestion%2Fsrc%2Fqueries.ts?ref=5efd8f185e2f284551000486433d4233b2fe704a",
+        "patch": "@@ -1030,6 +1030,16 @@ export const PHP_QUERIES = `\n   (namespace_use_clause\n     (qualified_name) @import.source)) @import\n \n+; Grouped: use App[local-path]\\{User, Repo};\n+; The shared prefix is a namespace_name; each member is its own\n+; namespace_use_clause carrying the bare member name (and optionally an\n+; 'as' alias). The clause is captured whole so the handler can take the\n+; FIRST name child as the imported symbol and skip the alias.\n+(namespace_use_declaration\n+  (namespace_name) @import.prefix\n+  (namespace_use_group\n+    (namespace_use_clause) @import.clause)) @import\n+\n ; ── Function/method calls ────────────────────────────────────────────────────\n ; Regular function call: foo()\n (function_call_expression"
+      }
+    ],
+    "commits": [
+      {
+        "sha": "5efd8f185e2f284551000486433d4233b2fe704a",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/5efd8f185e2f284551000486433d4233b2fe704a",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/5efd8f185e2f284551000486433d4233b2fe704a",
+        "author": {
+          "login": "Alot1z",
+          "id": 16801672,
+          "type": "User",
+          "html_url": "https://github.com/Alot1z"
+        },
+        "committer": {
+          "login": "Alot1z",
+          "id": 16801672,
+          "type": "User",
+          "html_url": "https://github.com/Alot1z"
+        },
+        "message": "fix(php): capture grouped use imports\n\n`use Vendor\\Package\\{A, B};` (and the `use function` / `use const`\nvariants) never produced IMPORTS relationships: the PHP query only\nmatched `namespace_use_clause (qualified_name)`, but a group's shared\nprefix is a separate `namespace_name` and each member is a bare\n`namespace_use_clause (name)` — so every member import was silently\ndropped and calls like `new A()` went unresolved.\n\nAdd a grouped-use pattern that captures the prefix (`@import.prefix`)\nand each member clause (`@import.clause`), and rebuild each FQCN from\nprefix + the clause's FIRST name child (a second name child is an `as`\nalias and must never become an import). The emitted modName/importRaw\nmatch the single-clause form, so grouped imports resolve exactly like\ntheir comma-separated equivalents.\n\nRegression tests: per-member capture, alias exclusion, and end-to-end\nresolution of a grouped import. Fail-before verified on main.",
+        "parents": [
+          {
+            "sha": "043bc68f0fb7ddba736ee1490614cb3c68f8f819",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/043bc68f0fb7ddba736ee1490614cb3c68f8f819"
+          }
+        ],
+        "tree_sha": "dff158e2adf7ded63b76929a1d8ea4d8343dafe1",
+        "authored_at": "2026-08-16T01:20:04Z",
+        "committed_at": "2026-08-16T01:20:04Z"
+      }
+    ],
+    "comments": [],
+    "reviews": [],
+    "review_comments": [],
+    "timeline": [
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/5efd8f185e2f284551000486433d4233b2fe704a"
+      },
+      {
+        "id": 29512155349,
+        "event": "review_requested",
+        "actor": {
+          "login": "Alot1z",
+          "id": 16801672,
+          "type": "User",
+          "html_url": "https://github.com/Alot1z"
+        },
+        "created_at": "2026-08-16T01:20:37Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29512155349"
+      },
+      {
+        "id": 29518399695,
+        "event": "referenced",
+        "actor": {
+          "login": "Alot1z",
+          "id": 16801672,
+          "type": "User",
+          "html_url": "https://github.com/Alot1z"
+        },
+        "created_at": "2026-08-16T08:33:29Z",
+        "commit_id": "03c601e18138f865c3b0351bcd158986b96714f0",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29518399695"
+      }
+    ],
+    "source": "OFFICIAL_GITHUB_FACT",
+    "review_threads": [],
+    "review_thread_capture": {
+      "status": "UNKNOWN",
+      "source": "GitHub GraphQL API"
+    }
+  },
+  "source_context": {
+    "id": "github:pull_request:ix-infrastructure/Ix#448",
+    "source": {
+      "type": "github_pull_request",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/448",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/448",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-16T01:20:35Z",
+      "last_fetched": "2026-08-16T08:59:39.836Z",
+      "last_verified": "2026-08-16T08:59:39.836Z",
+      "source_updated_at": "2026-08-16T01:20:37Z",
+      "snapshot_version": "2026-08-16T08:59:39.836Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "PR-448",
+    "entity_type": "PULL_REQUEST",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "mirror_scope": "source PR, commits, files, comments, reviews, review comments, and review threads",
+    "related_analysis_types": [
+      "FINDING",
+      "DECISION",
+      "IMPLEMENTATION"
+    ],
+    "review_thread_state": "UNKNOWN"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "CHANGED_BY",
+      "other": "COMMIT-5efd8f185e2f284551000486433d4233b2fe704a",
+      "other_type": "commit",
+      "other_title": "5efd8f185e2f284551000486433d4233b2fe704a",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-5efd8f185e2f284551000486433d4233b2fe704a"
+    },
+    {
+      "direction": "out",
+      "relationship": "FOUND_IN",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "in",
+      "relationship": "RELATED_TO_PR",
+      "other": "F-021",
+      "other_type": "finding",
+      "other_title": "PHP grouped `use Vendor\\{A, B};` captures zero IMPORTS",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-021"
+    }
+  ]
+}

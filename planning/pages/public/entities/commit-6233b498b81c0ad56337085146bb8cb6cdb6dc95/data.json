@@ -1,0 +1,89 @@
+{
+  "id": "COMMIT-6233b498b81c0ad56337085146bb8cb6cdb6dc95",
+  "type": "commit",
+  "title": "6233b498b81c0ad56337085146bb8cb6cdb6dc95",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-6233b498b81c0ad56337085146bb8cb6cdb6dc95",
+  "summary": {
+    "id": "COMMIT-6233b498b81c0ad56337085146bb8cb6cdb6dc95",
+    "type": "commit",
+    "title": "6233b498b81c0ad56337085146bb8cb6cdb6dc95",
+    "status": "CURRENT",
+    "source_mirror_id": "github:commit:ix-infrastructure/Ix@6233b498b81c0ad56337085146bb8cb6cdb6dc95",
+    "source_type": "github_commit",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/commit/6233b498b81c0ad56337085146bb8cb6cdb6dc95",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/6233b498b81c0ad56337085146bb8cb6cdb6dc95",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "sha": "6233b498b81c0ad56337085146bb8cb6cdb6dc95",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/6233b498b81c0ad56337085146bb8cb6cdb6dc95",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/6233b498b81c0ad56337085146bb8cb6cdb6dc95",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "committer": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "message": "fix(ingest): confine discovered files to the directory being ingested\n\nDiscovery resolves symlinks, so a repository could name files outside\nitself. `git ls-files` reports a committed symlink as an ordinary entry\nand the `statSync` behind it describes the *target*, so a repo shipping\n\n    src/notes.ts -> ~/.ssh/id_rsa\n\nhad that file discovered, read, parsed into the graph, and sent to the\nconfigured endpoint. `ix ingest --github owner/repo` runs this over\nrepositories nobody has read, which makes repository contents attacker\ninput. The added test asserts the escape reaches discovery before\nasserting it is dropped, so it cannot pass by discovering nothing.\n\n`walkFiles` was never the hole: readdir Dirents describe the link itself,\nso `isFile()` is false for a symlink and it is skipped there. Git's list\nis the gap, and it is the path taken for anything that is a repository.\n\nPaths are canonicalized already, so this confines them to the directory\nactually asked for. A symlink *within* the tree still resolves and is\nkept — monorepos that link packages around are unaffected, and that is\nheld down by its own test. A single explicitly named file is exempt:\nnaming it IS the request, and there is nothing to escape from.\n\nThe root is canonicalized too. Comparing a resolved file against an\nunresolved root drops every file whenever the root is itself reached\nthrough a link — macOS /var -> /private/var, a home on a network mount, a\n~/code symlink — which would read as \"this repo has no source files\". The\nmatrix is ubuntu + windows, so no runner would catch it; the test builds a\nsymlinked root on purpose.\n\nDropped files are counted and reported (`skipped outside root` in the\nsummary, `skipReasons.outsideRoot` in JSON) rather than vanishing.",
+    "parents": [
+      {
+        "sha": "043bc68f0fb7ddba736ee1490614cb3c68f8f819",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/043bc68f0fb7ddba736ee1490614cb3c68f8f819"
+      }
+    ],
+    "tree_sha": "7080cd592ebdfb3581a94f16a76185785a8dbe25",
+    "authored_at": "2026-08-15T06:00:57Z",
+    "committed_at": "2026-08-15T06:00:57Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@6233b498b81c0ad56337085146bb8cb6cdb6dc95",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/6233b498b81c0ad56337085146bb8cb6cdb6dc95",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/6233b498b81c0ad56337085146bb8cb6cdb6dc95",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-15T06:00:57Z",
+      "last_fetched": "2026-08-16T08:59:39.836Z",
+      "last_verified": "2026-08-16T08:59:39.836Z",
+      "source_updated_at": "2026-08-15T06:00:57Z",
+      "snapshot_version": "2026-08-16T08:59:39.836Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-6233b498b81c0ad56337085146bb8cb6cdb6dc95",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#447"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGED_BY",
+      "other": "PR-447",
+      "other_type": "pr",
+      "other_title": "Ix PR #447",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-447"
+    }
+  ]
+}

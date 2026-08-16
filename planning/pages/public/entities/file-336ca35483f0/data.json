@@ -10,62 +10,11 @@
     "title": "ix-cli/src/cli/commands/map.ts",
     "status": "CURRENT",
     "repository": "ix-infrastructure/Ix",
-    "url": "https://github.com/ix-infrastructure/Ix/blob/HEAD/ix-cli/src/cli/commands/map.ts",
-    "source_mirror_id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/commands/map.ts",
-    "source_type": "github_file",
-    "source_repository": "ix-infrastructure/Ix",
-    "source_url": "https://github.com/ix-infrastructure/Ix/blob/8d6be713600302ca22da3981059e7319c050b64b/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fmap.ts",
-    "source_api_url": null,
-    "source_is_authoritative": true,
-    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+    "url": "https://github.com/ix-infrastructure/Ix/blob/HEAD/ix-cli/src/cli/commands/map.ts"
   },
-  "source_snapshot": {
-    "repository": "ix-infrastructure/Ix",
-    "pr_number": 421,
-    "filename": "ix-cli/src/cli/commands/map.ts",
-    "status": "modified",
-    "additions": 26,
-    "deletions": 1,
-    "changes": 27,
-    "blob_url": "https://github.com/ix-infrastructure/Ix/blob/8d6be713600302ca22da3981059e7319c050b64b/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fmap.ts",
-    "raw_url": "https://github.com/ix-infrastructure/Ix/raw/8d6be713600302ca22da3981059e7319c050b64b/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fmap.ts",
-    "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fmap.ts?ref=8d6be713600302ca22da3981059e7319c050b64b",
-    "patch": "@@ -38,6 +38,30 @@ export function shouldSkipAutoMap(opts: { auto: boolean; cloudReady: boolean }):\n   return true;\n }\n \n+/** Optional exit code for callers that must distinguish coalescing from success. */\n+export function requestedMapCoalesceExitCode(\n+  raw = process[redacted].IX_MAP_COALESCE_EXIT_CODE,\n+): number | undefined {\n+  if (raw === undefined) return undefined;\n+  const code = Number(raw);\n+  return Number.isInteger(code) && code >= 1 && code <= 255 ? code : undefined;\n+}\n+\n+export function applyRequestedMapCoalesceExitCode(\n+  raw = process[redacted].IX_MAP_COALESCE_EXIT_CODE,\n+  apply: (code: number) => void = code => { process.exitCode = code; },\n+): boolean {\n+  const code = requestedMapCoalesceExitCode(raw);\n+  if (code === undefined) return false;\n+  apply(code);\n+  return true;\n+}\n+\n+/** Watch opts into full patches; ordinary `ix map` keeps its topology-only ingest. */\n+export function mapModeForIngest(raw = process[redacted].IX_MAP_FULL_INGEST): boolean {\n+  return raw !== \"1\";\n+}\n+\n export interface MapRegion {\n   id: string;\n   label: string;\n@@ -175,6 +199,7 @@ Examples:\n         if (!silent && opts.format !== \"json\" && opts.format !== \"llm\") {\n           process.stderr.write(chalk.dim(\"  Another ix map is already running for this workspace — skipping.\\n\"));\n         }\n+        applyRequestedMapCoalesceExitCode();\n         return; // coalesce; the in-flight map will refresh the graph\n       }\n \n@@ -256,7 +281,7 @@ Examples:\n             format: (machineFormat || silent) ? \"json\" : \"text\",\n             printSummary: false,\n             suppressOutput: true,\n-            mapMode: true,\n+            mapMode: mapModeForIngest(),\n             deadlineSignal,\n             // `ix map` has no --debug, so the per-file `[commit error] <uri>`\n             // detail was unreachable from the command that produced the",
-    "parent_pr": 421
-  },
-  "source_context": {
-    "id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/commands/map.ts",
-    "source": {
-      "type": "github_file",
-      "authority": "GITHUB",
-      "repository": "ix-infrastructure/Ix",
-      "owner": "ix-infrastructure",
-      "url": "https://github.com/ix-infrastructure/Ix/blob/8d6be713600302ca22da3981059e7319c050b64b/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fmap.ts",
-      "api_url": null,
-      "canonical": true,
-      "url_precision": "OBJECT"
-    },
-    "freshness": {
-      "first_seen": "2026-08-13T19:15:39Z",
-      "last_fetched": "2026-08-13T22:23:39.068Z",
-      "last_verified": "2026-08-13T22:23:39.068Z",
-      "source_updated_at": "2026-08-13T19:15:40Z",
-      "snapshot_version": "2026-08-13T22:23:39.068Z"
-    }
-  },
-  "ix_findings_analysis": {
-    "layer": "IX-FINDINGS_ANALYSIS",
-    "canonical_entity_id": "FILE-336ca35483f0",
-    "entity_type": "FILE",
-    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
-    "status": "CURRENT",
-    "provenance_class": "OFFICIAL_GITHUB_FACT",
-    "source_authority": "GITHUB",
-    "source_is_authoritative": true,
-    "ix_findings_is_authoritative_for_source": false,
-    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#421",
-    "line_precision": "FILE_LEVEL"
-  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
   "relationships": [
     {
       "direction": "in",

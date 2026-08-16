@@ -1,8 +1,8 @@
 {
   "meta": {
-    "generated": "2026-08-12",
-    "sourceRevision": "ab823e34b9ec8679dcf0df4b4ec5725207e2a88d",
-    "count": 3899
+    "generated": "2026-08-16",
+    "sourceRevision": "043bc68f0fb7ddba736ee1490614cb3c68f8f819",
+    "count": 3991
   },
   "items": [
     {
@@ -83,17 +83,45 @@
       "parent": "/prs/393"
     },
     {
-      "path": "/issues/420",
+      "path": "/issues/441",
       "kind": "issue",
-      "title": "[bug] ix watch bypasses canonical ingestion and leaves stale graph data",
-      "url": "https://alot1z.github.io/Ix-findings/issues/420",
+      "title": "[bug] PHP imports can resolve to classes from the wrong namespace",
+      "url": "https://alot1z.github.io/Ix-findings/issues/441",
       "parent": "/issues"
     },
     {
-      "path": "/issues/413",
+      "path": "/issues/439",
       "kind": "issue",
-      "title": "[bug] ix config set fails when ~/.ix does not exist",
-      "url": "https://alot1z.github.io/Ix-findings/issues/413",
+      "title": "[bug] tsconfig paths and baseUrl are ignored during edge resolution",
+      "url": "https://alot1z.github.io/Ix-findings/issues/439",
+      "parent": "/issues"
+    },
+    {
+      "path": "/issues/435",
+      "kind": "issue",
+      "title": "[bug] thrown command errors bypass the MCP output cap",
+      "url": "https://alot1z.github.io/Ix-findings/issues/435",
+      "parent": "/issues"
+    },
+    {
+      "path": "/issues/433",
+      "kind": "issue",
+      "title": "[bug] renamed TypeScript imports drop inheritance and type-reference edges",
+      "url": "https://alot1z.github.io/Ix-findings/issues/433",
+      "parent": "/issues"
+    },
+    {
+      "path": "/issues/429",
+      "kind": "issue",
+      "title": "[bug] ix context crashes on a non-numeric --pick value",
+      "url": "https://alot1z.github.io/Ix-findings/issues/429",
+      "parent": "/issues"
+    },
+    {
+      "path": "/issues/425",
+      "kind": "issue",
+      "title": "[bug] MCP reports truncated in-process output as success",
+      "url": "https://alot1z.github.io/Ix-findings/issues/425",
       "parent": "/issues"
     },
     {
@@ -342,46 +370,130 @@
       "parent": "/issues/385"
     },
     {
-      "path": "/issues/420/conversation",
+      "path": "/issues/441/conversation",
       "kind": "external-source",
-      "title": "Issue #420 conversation",
-      "url": "https://alot1z.github.io/Ix-findings/issues/420/conversation",
-      "parent": "/issues/420"
+      "title": "Issue #441 conversation",
+      "url": "https://alot1z.github.io/Ix-findings/issues/441/conversation",
+      "parent": "/issues/441"
     },
     {
-      "path": "/issues/420/analysis",
+      "path": "/issues/441/analysis",
       "kind": "external-source",
-      "title": "Issue #420 Ix-findings analysis",
-      "url": "https://alot1z.github.io/Ix-findings/issues/420/analysis",
-      "parent": "/issues/420"
+      "title": "Issue #441 Ix-findings analysis",
+      "url": "https://alot1z.github.io/Ix-findings/issues/441/analysis",
+      "parent": "/issues/441"
     },
     {
-      "path": "/issues/420/relationships",
+      "path": "/issues/441/relationships",
       "kind": "external-source",
-      "title": "Issue #420 relationships",
-      "url": "https://alot1z.github.io/Ix-findings/issues/420/relationships",
-      "parent": "/issues/420"
+      "title": "Issue #441 relationships",
+      "url": "https://alot1z.github.io/Ix-findings/issues/441/relationships",
+      "parent": "/issues/441"
     },
     {
-      "path": "/issues/413/conversation",
+      "path": "/issues/439/conversation",
       "kind": "external-source",
-      "title": "Issue #413 conversation",
-      "url": "https://alot1z.github.io/Ix-findings/issues/413/conversation",
-      "parent": "/issues/413"
+      "title": "Issue #439 conversation",
+      "url": "https://alot1z.github.io/Ix-findings/issues/439/conversation",
+      "parent": "/issues/439"
     },
     {
-      "path": "/issues/413/analysis",
+      "path": "/issues/439/analysis",
       "kind": "external-source",
-      "title": "Issue #413 Ix-findings analysis",
-      "url": "https://alot1z.github.io/Ix-findings/issues/413/analysis",
-      "parent": "/issues/413"
+      "title": "Issue #439 Ix-findings analysis",
+      "url": "https://alot1z.github.io/Ix-findings/issues/439/analysis",
+      "parent": "/issues/439"
     },
     {
-      "path": "/issues/413/relationships",
+      "path": "/issues/439/relationships",
       "kind": "external-source",
-      "title": "Issue #413 relationships",
-      "url": "https://alot1z.github.io/Ix-findings/issues/413/relationships",
-      "parent": "/issues/413"
+      "title": "Issue #439 relationships",
+      "url": "https://alot1z.github.io/Ix-findings/issues/439/relationships",
+      "parent": "/issues/439"
+    },
+    {
+      "path": "/issues/435/conversation",
+      "kind": "external-source",
+      "title": "Issue #435 conversation",
+      "url": "https://alot1z.github.io/Ix-findings/issues/435/conversation",
+      "parent": "/issues/435"
+    },
+    {
+      "path": "/issues/435/analysis",
+      "kind": "external-source",
+      "title": "Issue #435 Ix-findings analysis",
+      "url": "https://alot1z.github.io/Ix-findings/issues/435/analysis",
+      "parent": "/issues/435"
+    },
+    {
+      "path": "/issues/435/relationships",
+      "kind": "external-source",
+      "title": "Issue #435 relationships",
+      "url": "https://alot1z.github.io/Ix-findings/issues/435/relationships",
+      "parent": "/issues/435"
+    },
+    {
+      "path": "/issues/433/conversation",
+      "kind": "external-source",
+      "title": "Issue #433 conversation",
+      "url": "https://alot1z.github.io/Ix-findings/issues/433/conversation",
+      "parent": "/issues/433"
+    },
+    {
+      "path": "/issues/433/analysis",
+      "kind": "external-source",
+      "title": "Issue #433 Ix-findings analysis",
+      "url": "https://alot1z.github.io/Ix-findings/issues/433/analysis",
+      "parent": "/issues/433"
+    },
+    {
+      "path": "/issues/433/relationships",
+      "kind": "external-source",
+      "title": "Issue #433 relationships",
+      "url": "https://alot1z.github.io/Ix-findings/issues/433/relationships",
+      "parent": "/issues/433"
+    },
+    {
+      "path": "/issues/429/conversation",
+      "kind": "external-source",
+      "title": "Issue #429 conversation",
+      "url": "https://alot1z.github.io/Ix-findings/issues/429/conversation",
+      "parent": "/issues/429"
+    },
+    {
+      "path": "/issues/429/analysis",
+      "kind": "external-source",
+      "title": "Issue #429 Ix-findings analysis",
+      "url": "https://alot1z.github.io/Ix-findings/issues/429/analysis",
+      "parent": "/issues/429"
+    },
+    {
+      "path": "/issues/429/relationships",
+      "kind": "external-source",
+      "title": "Issue #429 relationships",
+      "url": "https://alot1z.github.io/Ix-findings/issues/429/relationships",
+      "parent": "/issues/429"
+    },
+    {
+      "path": "/issues/425/conversation",
+      "kind": "external-source",
+      "title": "Issue #425 conversation",
+      "url": "https://alot1z.github.io/Ix-findings/issues/425/conversation",
+      "parent": "/issues/425"
+    },
+    {
+      "path": "/issues/425/analysis",
+      "kind": "external-source",
+      "title": "Issue #425 Ix-findings analysis",
+      "url": "https://alot1z.github.io/Ix-findings/issues/425/analysis",
+      "parent": "/issues/425"
+    },
+    {
+      "path": "/issues/425/relationships",
+      "kind": "external-source",
+      "title": "Issue #425 relationships",
+      "url": "https://alot1z.github.io/Ix-findings/issues/425/relationships",
+      "parent": "/issues/425"
     },
     {
       "path": "/prs/358/conversation",
@@ -1546,186 +1658,487 @@
       "parent": "/prs/401"
     },
     {
-      "path": "/prs/423/conversation",
+      "path": "/prs/448/conversation",
       "kind": "external-source",
-      "title": "PR #423 conversation",
-      "url": "https://alot1z.github.io/Ix-findings/prs/423/conversation",
-      "parent": "/prs/423"
+      "title": "PR #448 conversation",
+      "url": "https://alot1z.github.io/Ix-findings/prs/448/conversation",
+      "parent": "/prs/448"
     },
     {
-      "path": "/prs/423/comments",
+      "path": "/prs/448/files",
+      "kind": "external-source",
+      "title": "PR #448 changed files",
+      "url": "https://alot1z.github.io/Ix-findings/prs/448/files",
+      "parent": "/prs/448"
+    },
+    {
+      "path": "/prs/448/commits",
+      "kind": "external-source",
+      "title": "PR #448 commits",
+      "url": "https://alot1z.github.io/Ix-findings/prs/448/commits",
+      "parent": "/prs/448"
+    },
+    {
+      "path": "/prs/448/timeline",
+      "kind": "external-source",
+      "title": "PR #448 timeline",
+      "url": "https://alot1z.github.io/Ix-findings/prs/448/timeline",
+      "parent": "/prs/448"
+    },
+    {
+      "path": "/prs/448/analysis",
+      "kind": "external-source",
+      "title": "PR #448 Ix-findings analysis",
+      "url": "https://alot1z.github.io/Ix-findings/prs/448/analysis",
+      "parent": "/prs/448"
+    },
+    {
+      "path": "/prs/448/relationships",
+      "kind": "external-source",
+      "title": "PR #448 relationships",
+      "url": "https://alot1z.github.io/Ix-findings/prs/448/relationships",
+      "parent": "/prs/448"
+    },
+    {
+      "path": "/prs/445/conversation",
+      "kind": "external-source",
+      "title": "PR #445 conversation",
+      "url": "https://alot1z.github.io/Ix-findings/prs/445/conversation",
+      "parent": "/prs/445"
+    },
+    {
+      "path": "/prs/445/comments",
       "kind": "external-source",
       "title": "PR discussion",
-      "url": "https://alot1z.github.io/Ix-findings/prs/423/comments",
-      "parent": "/prs/423"
+      "url": "https://alot1z.github.io/Ix-findings/prs/445/comments",
+      "parent": "/prs/445"
     },
     {
-      "path": "/prs/423/reviews",
+      "path": "/prs/445/files",
       "kind": "external-source",
-      "title": "PR #423 reviews",
-      "url": "https://alot1z.github.io/Ix-findings/prs/423/reviews",
-      "parent": "/prs/423"
+      "title": "PR #445 changed files",
+      "url": "https://alot1z.github.io/Ix-findings/prs/445/files",
+      "parent": "/prs/445"
     },
     {
-      "path": "/prs/423/files",
+      "path": "/prs/445/commits",
       "kind": "external-source",
-      "title": "PR #423 changed files",
-      "url": "https://alot1z.github.io/Ix-findings/prs/423/files",
-      "parent": "/prs/423"
+      "title": "PR #445 commits",
+      "url": "https://alot1z.github.io/Ix-findings/prs/445/commits",
+      "parent": "/prs/445"
     },
     {
-      "path": "/prs/423/commits",
+      "path": "/prs/445/timeline",
       "kind": "external-source",
-      "title": "PR #423 commits",
-      "url": "https://alot1z.github.io/Ix-findings/prs/423/commits",
-      "parent": "/prs/423"
+      "title": "PR #445 timeline",
+      "url": "https://alot1z.github.io/Ix-findings/prs/445/timeline",
+      "parent": "/prs/445"
     },
     {
-      "path": "/prs/423/timeline",
+      "path": "/prs/445/analysis",
       "kind": "external-source",
-      "title": "PR #423 timeline",
-      "url": "https://alot1z.github.io/Ix-findings/prs/423/timeline",
-      "parent": "/prs/423"
+      "title": "PR #445 Ix-findings analysis",
+      "url": "https://alot1z.github.io/Ix-findings/prs/445/analysis",
+      "parent": "/prs/445"
     },
     {
-      "path": "/prs/423/analysis",
+      "path": "/prs/445/relationships",
       "kind": "external-source",
-      "title": "PR #423 Ix-findings analysis",
-      "url": "https://alot1z.github.io/Ix-findings/prs/423/analysis",
-      "parent": "/prs/423"
+      "title": "PR #445 relationships",
+      "url": "https://alot1z.github.io/Ix-findings/prs/445/relationships",
+      "parent": "/prs/445"
     },
     {
-      "path": "/prs/423/relationships",
+      "path": "/prs/443/conversation",
       "kind": "external-source",
-      "title": "PR #423 relationships",
-      "url": "https://alot1z.github.io/Ix-findings/prs/423/relationships",
-      "parent": "/prs/423"
+      "title": "PR #443 conversation",
+      "url": "https://alot1z.github.io/Ix-findings/prs/443/conversation",
+      "parent": "/prs/443"
     },
     {
-      "path": "/prs/422/conversation",
+      "path": "/prs/443/comments",
       "kind": "external-source",
-      "title": "PR #422 conversation",
-      "url": "https://alot1z.github.io/Ix-findings/prs/422/conversation",
-      "parent": "/prs/422"
+      "title": "PR discussion",
+      "url": "https://alot1z.github.io/Ix-findings/prs/443/comments",
+      "parent": "/prs/443"
     },
     {
-      "path": "/prs/422/files",
+      "path": "/prs/443/files",
       "kind": "external-source",
-      "title": "PR #422 changed files",
-      "url": "https://alot1z.github.io/Ix-findings/prs/422/files",
-      "parent": "/prs/422"
+      "title": "PR #443 changed files",
+      "url": "https://alot1z.github.io/Ix-findings/prs/443/files",
+      "parent": "/prs/443"
     },
     {
-      "path": "/prs/422/commits",
+      "path": "/prs/443/commits",
       "kind": "external-source",
-      "title": "PR #422 commits",
-      "url": "https://alot1z.github.io/Ix-findings/prs/422/commits",
-      "parent": "/prs/422"
+      "title": "PR #443 commits",
+      "url": "https://alot1z.github.io/Ix-findings/prs/443/commits",
+      "parent": "/prs/443"
     },
     {
-      "path": "/prs/422/timeline",
+      "path": "/prs/443/timeline",
       "kind": "external-source",
-      "title": "PR #422 timeline",
-      "url": "https://alot1z.github.io/Ix-findings/prs/422/timeline",
-      "parent": "/prs/422"
+      "title": "PR #443 timeline",
+      "url": "https://alot1z.github.io/Ix-findings/prs/443/timeline",
+      "parent": "/prs/443"
     },
     {
-      "path": "/prs/422/analysis",
+      "path": "/prs/443/analysis",
       "kind": "external-source",
-      "title": "PR #422 Ix-findings analysis",
-      "url": "https://alot1z.github.io/Ix-findings/prs/422/analysis",
-      "parent": "/prs/422"
+      "title": "PR #443 Ix-findings analysis",
+      "url": "https://alot1z.github.io/Ix-findings/prs/443/analysis",
+      "parent": "/prs/443"
     },
     {
-      "path": "/prs/422/relationships",
+      "path": "/prs/443/relationships",
       "kind": "external-source",
-      "title": "PR #422 relationships",
-      "url": "https://alot1z.github.io/Ix-findings/prs/422/relationships",
-      "parent": "/prs/422"
+      "title": "PR #443 relationships",
+      "url": "https://alot1z.github.io/Ix-findings/prs/443/relationships",
+      "parent": "/prs/443"
     },
     {
-      "path": "/prs/421/conversation",
+      "path": "/prs/446/conversation",
       "kind": "external-source",
-      "title": "PR #421 conversation",
-      "url": "https://alot1z.github.io/Ix-findings/prs/421/conversation",
-      "parent": "/prs/421"
+      "title": "PR #446 conversation",
+      "url": "https://alot1z.github.io/Ix-findings/prs/446/conversation",
+      "parent": "/prs/446"
     },
     {
-      "path": "/prs/421/files",
+      "path": "/prs/446/comments",
       "kind": "external-source",
-      "title": "PR #421 changed files",
-      "url": "https://alot1z.github.io/Ix-findings/prs/421/files",
-      "parent": "/prs/421"
+      "title": "PR discussion",
+      "url": "https://alot1z.github.io/Ix-findings/prs/446/comments",
+      "parent": "/prs/446"
     },
     {
-      "path": "/prs/421/commits",
+      "path": "/prs/446/files",
       "kind": "external-source",
-      "title": "PR #421 commits",
-      "url": "https://alot1z.github.io/Ix-findings/prs/421/commits",
-      "parent": "/prs/421"
+      "title": "PR #446 changed files",
+      "url": "https://alot1z.github.io/Ix-findings/prs/446/files",
+      "parent": "/prs/446"
     },
     {
-      "path": "/prs/421/timeline",
+      "path": "/prs/446/commits",
       "kind": "external-source",
-      "title": "PR #421 timeline",
-      "url": "https://alot1z.github.io/Ix-findings/prs/421/timeline",
-      "parent": "/prs/421"
+      "title": "PR #446 commits",
+      "url": "https://alot1z.github.io/Ix-findings/prs/446/commits",
+      "parent": "/prs/446"
     },
     {
-      "path": "/prs/421/analysis",
+      "path": "/prs/446/timeline",
       "kind": "external-source",
-      "title": "PR #421 Ix-findings analysis",
-      "url": "https://alot1z.github.io/Ix-findings/prs/421/analysis",
-      "parent": "/prs/421"
+      "title": "PR #446 timeline",
+      "url": "https://alot1z.github.io/Ix-findings/prs/446/timeline",
+      "parent": "/prs/446"
     },
     {
-      "path": "/prs/421/relationships",
+      "path": "/prs/446/analysis",
       "kind": "external-source",
-      "title": "PR #421 relationships",
-      "url": "https://alot1z.github.io/Ix-findings/prs/421/relationships",
-      "parent": "/prs/421"
+      "title": "PR #446 Ix-findings analysis",
+      "url": "https://alot1z.github.io/Ix-findings/prs/446/analysis",
+      "parent": "/prs/446"
     },
     {
-      "path": "/prs/414/conversation",
+      "path": "/prs/446/relationships",
       "kind": "external-source",
-      "title": "PR #414 conversation",
-      "url": "https://alot1z.github.io/Ix-findings/prs/414/conversation",
-      "parent": "/prs/414"
+      "title": "PR #446 relationships",
+      "url": "https://alot1z.github.io/Ix-findings/prs/446/relationships",
+      "parent": "/prs/446"
     },
     {
-      "path": "/prs/414/files",
+      "path": "/prs/447/conversation",
       "kind": "external-source",
-      "title": "PR #414 changed files",
-      "url": "https://alot1z.github.io/Ix-findings/prs/414/files",
-      "parent": "/prs/414"
+      "title": "PR #447 conversation",
+      "url": "https://alot1z.github.io/Ix-findings/prs/447/conversation",
+      "parent": "/prs/447"
     },
     {
-      "path": "/prs/414/commits",
+      "path": "/prs/447/files",
       "kind": "external-source",
-      "title": "PR #414 commits",
-      "url": "https://alot1z.github.io/Ix-findings/prs/414/commits",
-      "parent": "/prs/414"
+      "title": "PR #447 changed files",
+      "url": "https://alot1z.github.io/Ix-findings/prs/447/files",
+      "parent": "/prs/447"
     },
     {
-      "path": "/prs/414/timeline",
+      "path": "/prs/447/commits",
       "kind": "external-source",
-      "title": "PR #414 timeline",
-      "url": "https://alot1z.github.io/Ix-findings/prs/414/timeline",
-      "parent": "/prs/414"
+      "title": "PR #447 commits",
+      "url": "https://alot1z.github.io/Ix-findings/prs/447/commits",
+      "parent": "/prs/447"
     },
     {
-      "path": "/prs/414/analysis",
+      "path": "/prs/447/timeline",
       "kind": "external-source",
-      "title": "PR #414 Ix-findings analysis",
-      "url": "https://alot1z.github.io/Ix-findings/prs/414/analysis",
-      "parent": "/prs/414"
+      "title": "PR #447 timeline",
+      "url": "https://alot1z.github.io/Ix-findings/prs/447/timeline",
+      "parent": "/prs/447"
     },
     {
-      "path": "/prs/414/relationships",
+      "path": "/prs/447/analysis",
       "kind": "external-source",
-      "title": "PR #414 relationships",
-      "url": "https://alot1z.github.io/Ix-findings/prs/414/relationships",
-      "parent": "/prs/414"
+      "title": "PR #447 Ix-findings analysis",
+      "url": "https://alot1z.github.io/Ix-findings/prs/447/analysis",
+      "parent": "/prs/447"
+    },
+    {
+      "path": "/prs/447/relationships",
+      "kind": "external-source",
+      "title": "PR #447 relationships",
+      "url": "https://alot1z.github.io/Ix-findings/prs/447/relationships",
+      "parent": "/prs/447"
+    },
+    {
+      "path": "/prs/440/conversation",
+      "kind": "external-source",
+      "title": "PR #440 conversation",
+      "url": "https://alot1z.github.io/Ix-findings/prs/440/conversation",
+      "parent": "/prs/440"
+    },
+    {
+      "path": "/prs/440/comments",
+      "kind": "external-source",
+      "title": "PR discussion",
+      "url": "https://alot1z.github.io/Ix-findings/prs/440/comments",
+      "parent": "/prs/440"
+    },
+    {
+      "path": "/prs/440/reviews",
+      "kind": "external-source",
+      "title": "PR #440 reviews",
+      "url": "https://alot1z.github.io/Ix-findings/prs/440/reviews",
+      "parent": "/prs/440"
+    },
+    {
+      "path": "/prs/440/files",
+      "kind": "external-source",
+      "title": "PR #440 changed files",
+      "url": "https://alot1z.github.io/Ix-findings/prs/440/files",
+      "parent": "/prs/440"
+    },
+    {
+      "path": "/prs/440/commits",
+      "kind": "external-source",
+      "title": "PR #440 commits",
+      "url": "https://alot1z.github.io/Ix-findings/prs/440/commits",
+      "parent": "/prs/440"
+    },
+    {
+      "path": "/prs/440/timeline",
+      "kind": "external-source",
+      "title": "PR #440 timeline",
+      "url": "https://alot1z.github.io/Ix-findings/prs/440/timeline",
+      "parent": "/prs/440"
+    },
+    {
+      "path": "/prs/440/analysis",
+      "kind": "external-source",
+      "title": "PR #440 Ix-findings analysis",
+      "url": "https://alot1z.github.io/Ix-findings/prs/440/analysis",
+      "parent": "/prs/440"
+    },
+    {
+      "path": "/prs/440/relationships",
+      "kind": "external-source",
+      "title": "PR #440 relationships",
+      "url": "https://alot1z.github.io/Ix-findings/prs/440/relationships",
+      "parent": "/prs/440"
+    },
+    {
+      "path": "/prs/434/conversation",
+      "kind": "external-source",
+      "title": "PR #434 conversation",
+      "url": "https://alot1z.github.io/Ix-findings/prs/434/conversation",
+      "parent": "/prs/434"
+    },
+    {
+      "path": "/prs/434/comments",
+      "kind": "external-source",
+      "title": "PR discussion",
+      "url": "https://alot1z.github.io/Ix-findings/prs/434/comments",
+      "parent": "/prs/434"
+    },
+    {
+      "path": "/prs/434/files",
+      "kind": "external-source",
+      "title": "PR #434 changed files",
+      "url": "https://alot1z.github.io/Ix-findings/prs/434/files",
+      "parent": "/prs/434"
+    },
+    {
+      "path": "/prs/434/commits",
+      "kind": "external-source",
+      "title": "PR #434 commits",
+      "url": "https://alot1z.github.io/Ix-findings/prs/434/commits",
+      "parent": "/prs/434"
+    },
+    {
+      "path": "/prs/434/timeline",
+      "kind": "external-source",
+      "title": "PR #434 timeline",
+      "url": "https://alot1z.github.io/Ix-findings/prs/434/timeline",
+      "parent": "/prs/434"
+    },
+    {
+      "path": "/prs/434/analysis",
+      "kind": "external-source",
+      "title": "PR #434 Ix-findings analysis",
+      "url": "https://alot1z.github.io/Ix-findings/prs/434/analysis",
+      "parent": "/prs/434"
+    },
+    {
+      "path": "/prs/434/relationships",
+      "kind": "external-source",
+      "title": "PR #434 relationships",
+      "url": "https://alot1z.github.io/Ix-findings/prs/434/relationships",
+      "parent": "/prs/434"
+    },
+    {
+      "path": "/prs/436/conversation",
+      "kind": "external-source",
+      "title": "PR #436 conversation",
+      "url": "https://alot1z.github.io/Ix-findings/prs/436/conversation",
+      "parent": "/prs/436"
+    },
+    {
+      "path": "/prs/436/comments",
+      "kind": "external-source",
+      "title": "PR discussion",
+      "url": "https://alot1z.github.io/Ix-findings/prs/436/comments",
+      "parent": "/prs/436"
+    },
+    {
+      "path": "/prs/436/files",
+      "kind": "external-source",
+      "title": "PR #436 changed files",
+      "url": "https://alot1z.github.io/Ix-findings/prs/436/files",
+      "parent": "/prs/436"
+    },
+    {
+      "path": "/prs/436/commits",
+      "kind": "external-source",
+      "title": "PR #436 commits",
+      "url": "https://alot1z.github.io/Ix-findings/prs/436/commits",
+      "parent": "/prs/436"
+    },
+    {
+      "path": "/prs/436/timeline",
+      "kind": "external-source",
+      "title": "PR #436 timeline",
+      "url": "https://alot1z.github.io/Ix-findings/prs/436/timeline",
+      "parent": "/prs/436"
+    },
+    {
+      "path": "/prs/436/analysis",
+      "kind": "external-source",
+      "title": "PR #436 Ix-findings analysis",
+      "url": "https://alot1z.github.io/Ix-findings/prs/436/analysis",
+      "parent": "/prs/436"
+    },
+    {
+      "path": "/prs/436/relationships",
+      "kind": "external-source",
+      "title": "PR #436 relationships",
+      "url": "https://alot1z.github.io/Ix-findings/prs/436/relationships",
+      "parent": "/prs/436"
+    },
+    {
+      "path": "/prs/442/conversation",
+      "kind": "external-source",
+      "title": "PR #442 conversation",
+      "url": "https://alot1z.github.io/Ix-findings/prs/442/conversation",
+      "parent": "/prs/442"
+    },
+    {
+      "path": "/prs/442/comments",
+      "kind": "external-source",
+      "title": "PR discussion",
+      "url": "https://alot1z.github.io/Ix-findings/prs/442/comments",
+      "parent": "/prs/442"
+    },
+    {
+      "path": "/prs/442/reviews",
+      "kind": "external-source",
+      "title": "PR #442 reviews",
+      "url": "https://alot1z.github.io/Ix-findings/prs/442/reviews",
+      "parent": "/prs/442"
+    },
+    {
+      "path": "/prs/442/files",
+      "kind": "external-source",
+      "title": "PR #442 changed files",
+      "url": "https://alot1z.github.io/Ix-findings/prs/442/files",
+      "parent": "/prs/442"
+    },
+    {
+      "path": "/prs/442/commits",
+      "kind": "external-source",
+      "title": "PR #442 commits",
+      "url": "https://alot1z.github.io/Ix-findings/prs/442/commits",
+      "parent": "/prs/442"
+    },
+    {
+      "path": "/prs/442/timeline",
+      "kind": "external-source",
+      "title": "PR #442 timeline",
+      "url": "https://alot1z.github.io/Ix-findings/prs/442/timeline",
+      "parent": "/prs/442"
+    },
+    {
+      "path": "/prs/442/analysis",
+      "kind": "external-source",
+      "title": "PR #442 Ix-findings analysis",
+      "url": "https://alot1z.github.io/Ix-findings/prs/442/analysis",
+      "parent": "/prs/442"
+    },
+    {
+      "path": "/prs/442/relationships",
+      "kind": "external-source",
+      "title": "PR #442 relationships",
+      "url": "https://alot1z.github.io/Ix-findings/prs/442/relationships",
+      "parent": "/prs/442"
+    },
+    {
+      "path": "/prs/444/conversation",
+      "kind": "external-source",
+      "title": "PR #444 conversation",
+      "url": "https://alot1z.github.io/Ix-findings/prs/444/conversation",
+      "parent": "/prs/444"
+    },
+    {
+      "path": "/prs/444/files",
+      "kind": "external-source",
+      "title": "PR #444 changed files",
+      "url": "https://alot1z.github.io/Ix-findings/prs/444/files",
+      "parent": "/prs/444"
+    },
+    {
+      "path": "/prs/444/commits",
+      "kind": "external-source",
+      "title": "PR #444 commits",
+      "url": "https://alot1z.github.io/Ix-findings/prs/444/commits",
+      "parent": "/prs/444"
+    },
+    {
+      "path": "/prs/444/timeline",
+      "kind": "external-source",
+      "title": "PR #444 timeline",
+      "url": "https://alot1z.github.io/Ix-findings/prs/444/timeline",
+      "parent": "/prs/444"
+    },
+    {
+      "path": "/prs/444/analysis",
+      "kind": "external-source",
+      "title": "PR #444 Ix-findings analysis",
+      "url": "https://alot1z.github.io/Ix-findings/prs/444/analysis",
+      "parent": "/prs/444"
+    },
+    {
+      "path": "/prs/444/relationships",
+      "kind": "external-source",
+      "title": "PR #444 relationships",
+      "url": "https://alot1z.github.io/Ix-findings/prs/444/relationships",
+      "parent": "/prs/444"
     },
     {
       "path": "/entities/src-9e249cefe603",
@@ -3044,6 +3457,13 @@
       "parent": "/entities"
     },
     {
+      "path": "/entities/src-0ac7d847e856",
+      "kind": "file",
+      "title": "planning/EXECUTION-REPORT-2PR.md",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-0ac7d847e856",
+      "parent": "/entities"
+    },
+    {
       "path": "/entities/src-101f41d1ad3c",
       "kind": "file",
       "title": "planning/EXECUTION-REPORT.md",
@@ -3125,6 +3545,13 @@
       "kind": "file",
       "title": "planning/findings/by-status.md",
       "url": "https://alot1z.github.io/Ix-findings/entities/src-ac6da3f51931",
+      "parent": "/entities"
+    },
+    {
+      "path": "/entities/src-5eb527f6aeb8",
+      "kind": "file",
+      "title": "planning/findings/PR-AUDIT-2026-08-15.md",
+      "url": "https://alot1z.github.io/Ix-findings/entities/src-5eb527f6aeb8",
       "parent": "/entities"
     },
     {
@@ -4920,59 +5347,143 @@
       "parent": "/entities"
     },
     {
-      "path": "/entities/pr-423",
+      "path": "/entities/pr-448",
       "kind": "pr",
-      "title": "Ix PR #423",
-      "url": "https://alot1z.github.io/Ix-findings/entities/pr-423",
+      "title": "Ix PR #448",
+      "url": "https://alot1z.github.io/Ix-findings/entities/pr-448",
       "parent": "/entities"
     },
     {
-      "path": "/entities/pr-422",
+      "path": "/entities/pr-445",
       "kind": "pr",
-      "title": "Ix PR #422",
-      "url": "https://alot1z.github.io/Ix-findings/entities/pr-422",
+      "title": "Ix PR #445",
+      "url": "https://alot1z.github.io/Ix-findings/entities/pr-445",
       "parent": "/entities"
     },
     {
-      "path": "/entities/pr-421",
+      "path": "/entities/pr-443",
       "kind": "pr",
-      "title": "Ix PR #421",
-      "url": "https://alot1z.github.io/Ix-findings/entities/pr-421",
+      "title": "Ix PR #443",
+      "url": "https://alot1z.github.io/Ix-findings/entities/pr-443",
       "parent": "/entities"
     },
     {
-      "path": "/entities/pr-414",
+      "path": "/entities/pr-446",
       "kind": "pr",
-      "title": "Ix PR #414",
-      "url": "https://alot1z.github.io/Ix-findings/entities/pr-414",
+      "title": "Ix PR #446",
+      "url": "https://alot1z.github.io/Ix-findings/entities/pr-446",
       "parent": "/entities"
     },
     {
-      "path": "/entities/commit-815afeac0b1fcdff7d140c74a093e52375da1bab",
-      "kind": "commit",
-      "title": "815afeac0b1fcdff7d140c74a093e52375da1bab",
-      "url": "https://alot1z.github.io/Ix-findings/entities/commit-815afeac0b1fcdff7d140c74a093e52375da1bab",
+      "path": "/entities/pr-447",
+      "kind": "pr",
+      "title": "Ix PR #447",
+      "url": "https://alot1z.github.io/Ix-findings/entities/pr-447",
       "parent": "/entities"
     },
     {
-      "path": "/entities/commit-8e348d8f081cccdd2fb6b75941c5e9a777b459ad",
-      "kind": "commit",
-      "title": "8e348d8f081cccdd2fb6b75941c5e9a777b459ad",
-      "url": "https://alot1z.github.io/Ix-findings/entities/commit-8e348d8f081cccdd2fb6b75941c5e9a777b459ad",
+      "path": "/entities/pr-440",
+      "kind": "pr",
+      "title": "Ix PR #440",
+      "url": "https://alot1z.github.io/Ix-findings/entities/pr-440",
       "parent": "/entities"
     },
     {
-      "path": "/entities/commit-8d6be713600302ca22da3981059e7319c050b64b",
-      "kind": "commit",
-      "title": "8d6be713600302ca22da3981059e7319c050b64b",
-      "url": "https://alot1z.github.io/Ix-findings/entities/commit-8d6be713600302ca22da3981059e7319c050b64b",
+      "path": "/entities/pr-434",
+      "kind": "pr",
+      "title": "Ix PR #434",
+      "url": "https://alot1z.github.io/Ix-findings/entities/pr-434",
       "parent": "/entities"
     },
     {
-      "path": "/entities/commit-43bf9ead431a8c5afc43345de886074382df2d51",
+      "path": "/entities/pr-436",
+      "kind": "pr",
+      "title": "Ix PR #436",
+      "url": "https://alot1z.github.io/Ix-findings/entities/pr-436",
+      "parent": "/entities"
+    },
+    {
+      "path": "/entities/pr-442",
+      "kind": "pr",
+      "title": "Ix PR #442",
+      "url": "https://alot1z.github.io/Ix-findings/entities/pr-442",
+      "parent": "/entities"
+    },
+    {
+      "path": "/entities/pr-444",
+      "kind": "pr",
+      "title": "Ix PR #444",
+      "url": "https://alot1z.github.io/Ix-findings/entities/pr-444",
+      "parent": "/entities"
+    },
+    {
+      "path": "/entities/commit-5efd8f185e2f284551000486433d4233b2fe704a",
       "kind": "commit",
-      "title": "43bf9ead431a8c5afc43345de886074382df2d51",
-      "url": "https://alot1z.github.io/Ix-findings/entities/commit-43bf9ead431a8c5afc43345de886074382df2d51",
+      "title": "5efd8f185e2f284551000486433d4233b2fe704a",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-5efd8f185e2f284551000486433d4233b2fe704a",
+      "parent": "/entities"
+    },
+    {
+      "path": "/entities/commit-adc97c1a979992739541a1d39e2e0b45ea6684d6",
+      "kind": "commit",
+      "title": "adc97c1a979992739541a1d39e2e0b45ea6684d6",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-adc97c1a979992739541a1d39e2e0b45ea6684d6",
+      "parent": "/entities"
+    },
+    {
+      "path": "/entities/commit-eab1075695811acec7d951e3da9813e43944662c",
+      "kind": "commit",
+      "title": "eab1075695811acec7d951e3da9813e43944662c",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-eab1075695811acec7d951e3da9813e43944662c",
+      "parent": "/entities"
+    },
+    {
+      "path": "/entities/commit-83b9be4207fb6ecd47a7c694684e6abfe8e18835",
+      "kind": "commit",
+      "title": "83b9be4207fb6ecd47a7c694684e6abfe8e18835",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-83b9be4207fb6ecd47a7c694684e6abfe8e18835",
+      "parent": "/entities"
+    },
+    {
+      "path": "/entities/commit-6233b498b81c0ad56337085146bb8cb6cdb6dc95",
+      "kind": "commit",
+      "title": "6233b498b81c0ad56337085146bb8cb6cdb6dc95",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-6233b498b81c0ad56337085146bb8cb6cdb6dc95",
+      "parent": "/entities"
+    },
+    {
+      "path": "/entities/commit-bf7a4b47758d679be0845a3cec27c1d0a7f5c05e",
+      "kind": "commit",
+      "title": "bf7a4b47758d679be0845a3cec27c1d0a7f5c05e",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-bf7a4b47758d679be0845a3cec27c1d0a7f5c05e",
+      "parent": "/entities"
+    },
+    {
+      "path": "/entities/commit-819d67e06e437e4715ea6e9f0bcd7bc7b5d5f001",
+      "kind": "commit",
+      "title": "819d67e06e437e4715ea6e9f0bcd7bc7b5d5f001",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-819d67e06e437e4715ea6e9f0bcd7bc7b5d5f001",
+      "parent": "/entities"
+    },
+    {
+      "path": "/entities/commit-033181fb5747e0db4303d99653a19ac08b160267",
+      "kind": "commit",
+      "title": "033181fb5747e0db4303d99653a19ac08b160267",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-033181fb5747e0db4303d99653a19ac08b160267",
+      "parent": "/entities"
+    },
+    {
+      "path": "/entities/commit-83079ff3dca7d516cc5818dcf81a28f479ea56cd",
+      "kind": "commit",
+      "title": "83079ff3dca7d516cc5818dcf81a28f479ea56cd",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-83079ff3dca7d516cc5818dcf81a28f479ea56cd",
+      "parent": "/entities"
+    },
+    {
+      "path": "/entities/commit-1f49d9fe3eb715e59dcc3ff43cf3ae0d1b8a19cc",
+      "kind": "commit",
+      "title": "1f49d9fe3eb715e59dcc3ff43cf3ae0d1b8a19cc",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-1f49d9fe3eb715e59dcc3ff43cf3ae0d1b8a19cc",
       "parent": "/entities"
     },
     {
@@ -5120,6 +5631,69 @@
       "kind": "finding",
       "title": "Fork-main is 7 commits behind upstream",
       "url": "https://alot1z.github.io/Ix-findings/entities/n-002",
+      "parent": "/entities"
+    },
+    {
+      "path": "/entities/f-014",
+      "kind": "finding",
+      "title": "#446 global↔namespace PHP scope-boundary regression (C6/C8/D/E)",
+      "url": "https://alot1z.github.io/Ix-findings/entities/f-014",
+      "parent": "/entities"
+    },
+    {
+      "path": "/entities/f-015",
+      "kind": "finding",
+      "title": "#446 C7 — block-scoped `use` leaking into global code (pre-existing)",
+      "url": "https://alot1z.github.io/Ix-findings/entities/f-015",
+      "parent": "/entities"
+    },
+    {
+      "path": "/entities/f-016",
+      "kind": "finding",
+      "title": "#443 renamed-import fallback binds to provider members (X1/X3)",
+      "url": "https://alot1z.github.io/Ix-findings/entities/f-016",
+      "parent": "/entities"
+    },
+    {
+      "path": "/entities/f-017",
+      "kind": "finding",
+      "title": "#445 configured-binding path binds to provider members (Y1)",
+      "url": "https://alot1z.github.io/Ix-findings/entities/f-017",
+      "parent": "/entities"
+    },
+    {
+      "path": "/entities/f-018",
+      "kind": "finding",
+      "title": "#446 parser-level phpNamespaceBlocks guard (upstream implementation)",
+      "url": "https://alot1z.github.io/Ix-findings/entities/f-018",
+      "parent": "/entities"
+    },
+    {
+      "path": "/entities/n-003",
+      "kind": "finding",
+      "title": "#444 MCP output-cap and #447 discovery confinement — audited, no defect",
+      "url": "https://alot1z.github.io/Ix-findings/entities/n-003",
+      "parent": "/entities"
+    },
+    {
+      "path": "/entities/f-019",
+      "kind": "finding",
+      "title": "#446 FQCN index drops same-line sibling PHP types (false negative)",
+      "url": "https://alot1z.github.io/Ix-findings/entities/f-019",
+      "parent": "/entities"
+    },
+    {
+      "path": "/entities/f-020",
+      "kind": "finding",
+      "title": "Single-character symbol names lose CALLS/REFERENCES edges (all languages)",
+      "url": "https://alot1z.github.io/Ix-findings/entities/f-020",
+      "parent": "/entities"
+    },
+    {
+      "path": "/entities/f-021",
+      "kind": "finding",
+      "title": "PHP grouped `use Vendor\\{A, B};` captures zero IMPORTS",
+      "url": "https://alot1z.github.io/Ix-findings/entities/f-021",
       "parent": "/entities"
     },
     {
@@ -6033,10 +6607,10 @@
       "parent": "/entities"
     },
     {
-      "path": "/entities/commit-ab823e34b9ec8679dcf0df4b4ec5725207e2a88d",
+      "path": "/entities/commit-043bc68f0fb7ddba736ee1490614cb3c68f8f819",
       "kind": "commit",
-      "title": "ab823e34b9ec8679dcf0df4b4ec5725207e2a88d",
-      "url": "https://alot1z.github.io/Ix-findings/entities/commit-ab823e34b9ec8679dcf0df4b4ec5725207e2a88d",
+      "title": "043bc68f0fb7ddba736ee1490614cb3c68f8f819",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-043bc68f0fb7ddba736ee1490614cb3c68f8f819",
       "parent": "/entities"
     },
     {
@@ -27173,24 +27747,94 @@
       "parent": "/entities"
     },
     {
-      "path": "/entities/commit-99b8940b2d70cfa10ce99854bc52e5c8f54c3cb8",
+      "path": "/entities/commit-7d834235b99d6d2eccc2e638385368ebdb1de795",
       "kind": "commit",
-      "title": "99b8940b2d70cfa10ce99854bc52e5c8f54c3cb8",
-      "url": "https://alot1z.github.io/Ix-findings/entities/commit-99b8940b2d70cfa10ce99854bc52e5c8f54c3cb8",
+      "title": "7d834235b99d6d2eccc2e638385368ebdb1de795",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-7d834235b99d6d2eccc2e638385368ebdb1de795",
       "parent": "/entities"
     },
     {
-      "path": "/entities/commit-838e7a3bc36e9a5db08ecd5160c133b59ad65f30",
+      "path": "/entities/commit-795ec2ce80759a5730134353640327fb77fb2eff",
       "kind": "commit",
-      "title": "838e7a3bc36e9a5db08ecd5160c133b59ad65f30",
-      "url": "https://alot1z.github.io/Ix-findings/entities/commit-838e7a3bc36e9a5db08ecd5160c133b59ad65f30",
+      "title": "795ec2ce80759a5730134353640327fb77fb2eff",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-795ec2ce80759a5730134353640327fb77fb2eff",
       "parent": "/entities"
     },
     {
-      "path": "/entities/commit-978a09377e634533b03a018bac6a0b7d079385a5",
+      "path": "/entities/commit-c43303e56bb086af4316545c63550def57ff59b0",
       "kind": "commit",
-      "title": "978a09377e634533b03a018bac6a0b7d079385a5",
-      "url": "https://alot1z.github.io/Ix-findings/entities/commit-978a09377e634533b03a018bac6a0b7d079385a5",
+      "title": "c43303e56bb086af4316545c63550def57ff59b0",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-c43303e56bb086af4316545c63550def57ff59b0",
+      "parent": "/entities"
+    },
+    {
+      "path": "/entities/commit-9e58df1f3ba652d284fec088b0c4048945c5a019",
+      "kind": "commit",
+      "title": "9e58df1f3ba652d284fec088b0c4048945c5a019",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-9e58df1f3ba652d284fec088b0c4048945c5a019",
+      "parent": "/entities"
+    },
+    {
+      "path": "/entities/commit-1135ced5af3c5e1a1c0287fbd967a030b7c6d0f7",
+      "kind": "commit",
+      "title": "1135ced5af3c5e1a1c0287fbd967a030b7c6d0f7",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-1135ced5af3c5e1a1c0287fbd967a030b7c6d0f7",
+      "parent": "/entities"
+    },
+    {
+      "path": "/entities/commit-08cd7779d74c92575f55395608229aa0867e1cf9",
+      "kind": "commit",
+      "title": "08cd7779d74c92575f55395608229aa0867e1cf9",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-08cd7779d74c92575f55395608229aa0867e1cf9",
+      "parent": "/entities"
+    },
+    {
+      "path": "/entities/commit-ea79b11596f3ef42532364cde14b98779f8959e2",
+      "kind": "commit",
+      "title": "ea79b11596f3ef42532364cde14b98779f8959e2",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-ea79b11596f3ef42532364cde14b98779f8959e2",
+      "parent": "/entities"
+    },
+    {
+      "path": "/entities/commit-5c322a9901902447e44f4c5e953fc13a5cdfab01",
+      "kind": "commit",
+      "title": "5c322a9901902447e44f4c5e953fc13a5cdfab01",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-5c322a9901902447e44f4c5e953fc13a5cdfab01",
+      "parent": "/entities"
+    },
+    {
+      "path": "/entities/commit-663c6ce0c3fd12ddfcef381126797b78990d50a5",
+      "kind": "commit",
+      "title": "663c6ce0c3fd12ddfcef381126797b78990d50a5",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-663c6ce0c3fd12ddfcef381126797b78990d50a5",
+      "parent": "/entities"
+    },
+    {
+      "path": "/entities/commit-7c8a387db98f192a9a037719119fd2c0a5168d83",
+      "kind": "commit",
+      "title": "7c8a387db98f192a9a037719119fd2c0a5168d83",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-7c8a387db98f192a9a037719119fd2c0a5168d83",
+      "parent": "/entities"
+    },
+    {
+      "path": "/entities/commit-b07bff36bc8b2d08cc61851a625ccb2587fd4df2",
+      "kind": "commit",
+      "title": "b07bff36bc8b2d08cc61851a625ccb2587fd4df2",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-b07bff36bc8b2d08cc61851a625ccb2587fd4df2",
+      "parent": "/entities"
+    },
+    {
+      "path": "/entities/commit-e786f20df62c6278fce9324977b1e4ef87aef406",
+      "kind": "commit",
+      "title": "e786f20df62c6278fce9324977b1e4ef87aef406",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-e786f20df62c6278fce9324977b1e4ef87aef406",
+      "parent": "/entities"
+    },
+    {
+      "path": "/entities/commit-5e2bdcfa5ae678cd134e86ee744e3ec67d8b0b0c",
+      "kind": "commit",
+      "title": "5e2bdcfa5ae678cd134e86ee744e3ec67d8b0b0c",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-5e2bdcfa5ae678cd134e86ee744e3ec67d8b0b0c",
       "parent": "/entities"
     },
     {

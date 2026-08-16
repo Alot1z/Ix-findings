@@ -1,0 +1,51 @@
+{
+  "id": "F-016",
+  "type": "finding",
+  "title": "#443 renamed-import fallback binds to provider members (X1/X3)",
+  "status": "UNKNOWN",
+  "url": "https://alot1z.github.io/Ix-findings/entities/f-016",
+  "summary": {
+    "id": "F-016",
+    "type": "finding",
+    "title": "#443 renamed-import fallback binds to provider members (X1/X3)",
+    "status": "UNKNOWN",
+    "repository": "ix-infrastructure/Ix"
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "RELATED_TO_PR",
+      "other": "PR-443",
+      "other_type": "pr",
+      "other_title": "Ix PR #443",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-443"
+    },
+    {
+      "direction": "out",
+      "relationship": "RELATED_TO_PR",
+      "other": "PR-434",
+      "other_type": "pr",
+      "other_title": "Ix PR #434",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-434"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-125a277e8e67",
+      "other_type": "file",
+      "other_title": "planning/findings/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-125a277e8e67"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-5eb527f6aeb8",
+      "other_type": "file",
+      "other_title": "planning/findings/PR-AUDIT-2026-08-15.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-5eb527f6aeb8"
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "captured_at": "2026-08-13T22:23:39.068Z",
+  "captured_at": "2026-08-16T08:59:39.836Z",
   "source": "read-only GitHub REST API via supplied token",
   "commit_messages": {
     "36c7c7eccd8068d48df4f61394b42a3ffa62483c": "feat(mcp): add ix mcp subcommand exposing the code graph as MCP tools (#219)",
@@ -15,7 +15,7 @@
       "implementation_id": "ix-mcp",
       "title": "MCP implementation",
       "graph_path": "/mcp",
-      "status": "partially_implemented",
+      "status": "superseded",
       "repository": "Alot1z/Ix",
       "issue_refs": [
         "ix-infrastructure/Ix#219"
@@ -185,7 +185,7 @@
       "implementation_id": "ix-mcp",
       "title": "MCP implementation",
       "graph_path": "/mcp/implementation",
-      "status": "partially_implemented",
+      "status": "superseded",
       "repository": "Alot1z/Ix",
       "issue_refs": [
         "ix-infrastructure/Ix#219"
@@ -355,7 +355,7 @@
       "implementation_id": "ix-mcp",
       "title": "MCP stdio server",
       "graph_path": "/mcp/implementation/stdio",
-      "status": "partially_implemented",
+      "status": "superseded",
       "repository": "Alot1z/Ix",
       "issue_refs": [
         "ix-infrastructure/Ix#219"
@@ -525,7 +525,7 @@
       "implementation_id": "ix-mcp",
       "title": "MCP tools",
       "graph_path": "/mcp/implementation/tools",
-      "status": "partially_implemented",
+      "status": "superseded",
       "repository": "Alot1z/Ix",
       "issue_refs": [
         "ix-infrastructure/Ix#219"
@@ -695,7 +695,7 @@
       "implementation_id": "ix-mcp",
       "title": "MCP security",
       "graph_path": "/mcp/security",
-      "status": "partially_implemented",
+      "status": "superseded",
       "repository": "Alot1z/Ix",
       "issue_refs": [
         "ix-infrastructure/Ix#219"
@@ -865,7 +865,7 @@
       "implementation_id": "ix-mcp",
       "title": "MCP tests",
       "graph_path": "/mcp/tests",
-      "status": "partially_implemented",
+      "status": "superseded",
       "repository": "Alot1z/Ix",
       "issue_refs": [
         "ix-infrastructure/Ix#219"
@@ -1035,7 +1035,7 @@
       "implementation_id": "remap-pr393",
       "title": "PR #393 — remap hardening",
       "graph_path": "/prs/393",
-      "status": "implemented_with_remaining_hardening",
+      "status": "merged",
       "repository": "ix-infrastructure/Ix",
       "issue_refs": [],
       "pr_refs": [
@@ -1144,7 +1144,7 @@
       "implementation_id": "remap-pr393",
       "title": "PR #393 — remap endpoint",
       "graph_path": "/prs/393/remap",
-      "status": "implemented_with_remaining_hardening",
+      "status": "merged",
       "repository": "ix-infrastructure/Ix",
       "issue_refs": [],
       "pr_refs": [
@@ -1253,7 +1253,7 @@
       "implementation_id": "remap-pr393",
       "title": "PR #393 — security",
       "graph_path": "/prs/393/security",
-      "status": "implemented_with_remaining_hardening",
+      "status": "merged",
       "repository": "ix-infrastructure/Ix",
       "issue_refs": [],
       "pr_refs": [
@@ -1362,7 +1362,7 @@
       "implementation_id": "remap-pr393",
       "title": "PR #393 — tests",
       "graph_path": "/prs/393/tests",
-      "status": "implemented_with_remaining_hardening",
+      "status": "merged",
       "repository": "ix-infrastructure/Ix",
       "issue_refs": [],
       "pr_refs": [
@@ -1469,12 +1469,12 @@
   ],
   "issue_sections": [
     {
-      "id": "ISSUESEC-420",
-      "issue": 420,
-      "title": "Issue #420 — [bug] ix watch bypasses canonical ingestion and leaves stale graph data",
-      "graph_path": "/issues/420",
-      "issue_url": "https://github.com/ix-infrastructure/Ix/issues/420",
-      "issue_title": "[bug] ix watch bypasses canonical ingestion and leaves stale graph data",
+      "id": "ISSUESEC-441",
+      "issue": 441,
+      "title": "Issue #441 — [bug] PHP imports can resolve to classes from the wrong namespace",
+      "graph_path": "/issues/441",
+      "issue_url": "https://github.com/ix-infrastructure/Ix/issues/441",
+      "issue_title": "[bug] PHP imports can resolve to classes from the wrong namespace",
       "state": "open",
       "user": "Hiro-Chiba",
       "labels": [],
@@ -1487,12 +1487,84 @@
       "related_sections": []
     },
     {
-      "id": "ISSUESEC-413",
-      "issue": 413,
-      "title": "Issue #413 — [bug] ix config set fails when ~/.ix does not exist",
-      "graph_path": "/issues/413",
-      "issue_url": "https://github.com/ix-infrastructure/Ix/issues/413",
-      "issue_title": "[bug] ix config set fails when ~/.ix does not exist",
+      "id": "ISSUESEC-439",
+      "issue": 439,
+      "title": "Issue #439 — [bug] tsconfig paths and baseUrl are ignored during edge resolution",
+      "graph_path": "/issues/439",
+      "issue_url": "https://github.com/ix-infrastructure/Ix/issues/439",
+      "issue_title": "[bug] tsconfig paths and baseUrl are ignored during edge resolution",
+      "state": "open",
+      "user": "Hiro-Chiba",
+      "labels": [],
+      "implementation_ids": [],
+      "pr_refs": [],
+      "commit_refs": [],
+      "file_refs": [],
+      "test_refs": [],
+      "finding_refs": [],
+      "related_sections": []
+    },
+    {
+      "id": "ISSUESEC-435",
+      "issue": 435,
+      "title": "Issue #435 — [bug] thrown command errors bypass the MCP output cap",
+      "graph_path": "/issues/435",
+      "issue_url": "https://github.com/ix-infrastructure/Ix/issues/435",
+      "issue_title": "[bug] thrown command errors bypass the MCP output cap",
+      "state": "open",
+      "user": "Hiro-Chiba",
+      "labels": [],
+      "implementation_ids": [],
+      "pr_refs": [],
+      "commit_refs": [],
+      "file_refs": [],
+      "test_refs": [],
+      "finding_refs": [],
+      "related_sections": []
+    },
+    {
+      "id": "ISSUESEC-433",
+      "issue": 433,
+      "title": "Issue #433 — [bug] renamed TypeScript imports drop inheritance and type-reference edges",
+      "graph_path": "/issues/433",
+      "issue_url": "https://github.com/ix-infrastructure/Ix/issues/433",
+      "issue_title": "[bug] renamed TypeScript imports drop inheritance and type-reference edges",
+      "state": "open",
+      "user": "Hiro-Chiba",
+      "labels": [],
+      "implementation_ids": [],
+      "pr_refs": [],
+      "commit_refs": [],
+      "file_refs": [],
+      "test_refs": [],
+      "finding_refs": [],
+      "related_sections": []
+    },
+    {
+      "id": "ISSUESEC-429",
+      "issue": 429,
+      "title": "Issue #429 — [bug] ix context crashes on a non-numeric --pick value",
+      "graph_path": "/issues/429",
+      "issue_url": "https://github.com/ix-infrastructure/Ix/issues/429",
+      "issue_title": "[bug] ix context crashes on a non-numeric --pick value",
+      "state": "open",
+      "user": "Hiro-Chiba",
+      "labels": [],
+      "implementation_ids": [],
+      "pr_refs": [],
+      "commit_refs": [],
+      "file_refs": [],
+      "test_refs": [],
+      "finding_refs": [],
+      "related_sections": []
+    },
+    {
+      "id": "ISSUESEC-425",
+      "issue": 425,
+      "title": "Issue #425 — [bug] MCP reports truncated in-process output as success",
+      "graph_path": "/issues/425",
+      "issue_url": "https://github.com/ix-infrastructure/Ix/issues/425",
+      "issue_title": "[bug] MCP reports truncated in-process output as success",
       "state": "open",
       "user": "Hiro-Chiba",
       "labels": [],
@@ -1507,19 +1579,51 @@
   ],
   "issues": [
     {
-      "number": 420,
-      "title": "[bug] ix watch bypasses canonical ingestion and leaves stale graph data",
+      "number": 441,
+      "title": "[bug] PHP imports can resolve to classes from the wrong namespace",
       "state": "open",
       "user": "Hiro-Chiba",
-      "url": "https://github.com/ix-infrastructure/Ix/issues/420",
+      "url": "https://github.com/ix-infrastructure/Ix/issues/441",
       "labels": []
     },
     {
-      "number": 413,
-      "title": "[bug] ix config set fails when ~/.ix does not exist",
+      "number": 439,
+      "title": "[bug] tsconfig paths and baseUrl are ignored during edge resolution",
       "state": "open",
       "user": "Hiro-Chiba",
-      "url": "https://github.com/ix-infrastructure/Ix/issues/413",
+      "url": "https://github.com/ix-infrastructure/Ix/issues/439",
+      "labels": []
+    },
+    {
+      "number": 435,
+      "title": "[bug] thrown command errors bypass the MCP output cap",
+      "state": "open",
+      "user": "Hiro-Chiba",
+      "url": "https://github.com/ix-infrastructure/Ix/issues/435",
+      "labels": []
+    },
+    {
+      "number": 433,
+      "title": "[bug] renamed TypeScript imports drop inheritance and type-reference edges",
+      "state": "open",
+      "user": "Hiro-Chiba",
+      "url": "https://github.com/ix-infrastructure/Ix/issues/433",
+      "labels": []
+    },
+    {
+      "number": 429,
+      "title": "[bug] ix context crashes on a non-numeric --pick value",
+      "state": "open",
+      "user": "Hiro-Chiba",
+      "url": "https://github.com/ix-infrastructure/Ix/issues/429",
+      "labels": []
+    },
+    {
+      "number": 425,
+      "title": "[bug] MCP reports truncated in-process output as success",
+      "state": "open",
+      "user": "Hiro-Chiba",
+      "url": "https://github.com/ix-infrastructure/Ix/issues/425",
       "labels": []
     }
   ]

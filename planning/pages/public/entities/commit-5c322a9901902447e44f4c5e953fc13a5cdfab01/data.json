@@ -1,0 +1,79 @@
+{
+  "id": "COMMIT-5c322a9901902447e44f4c5e953fc13a5cdfab01",
+  "type": "commit",
+  "title": "5c322a9901902447e44f4c5e953fc13a5cdfab01",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-5c322a9901902447e44f4c5e953fc13a5cdfab01",
+  "summary": {
+    "id": "COMMIT-5c322a9901902447e44f4c5e953fc13a5cdfab01",
+    "type": "commit",
+    "title": "5c322a9901902447e44f4c5e953fc13a5cdfab01",
+    "status": "HISTORICAL",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    }
+  },
+  "source_snapshot": {
+    "sha": "5c322a9901902447e44f4c5e953fc13a5cdfab01",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/5c322a9901902447e44f4c5e953fc13a5cdfab01",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/5c322a9901902447e44f4c5e953fc13a5cdfab01",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "committer": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "message": "fix(php): scope use-clause parsing to the clause, not the statement\n\nTwo defects, one root cause: both the query and the alias flag looked at the\nwhole 'use' declaration instead of the individual clause.\n\n1. Phantom imports. In 'use Vendor[local-path]\\User as Admin' the alias is a\n   direct (name) sibling of the (qualified_name), so the unanchored\n   alternation captured it as a second imported module. Ix then matched\n   'Admin' against an unrelated class of that name, emitting an IMPORTS edge\n   the file never declares and promoting the wrong short-name matches from\n   0.5 to 0.9 — the exact class of error this PR exists to remove. Anchoring\n   the capture to the clause's first named child fixes it; a bare\n   'use GlobalThing;' is a lone (name) child and still matches.\n\n2. Comma-separated imports. importAliased came from a regex over the whole\n   statement, so 'use A[local-path]\\Alpha, A[local-path]\\Beta as Bee;' flagged every clause\n   as aliased and silently disabled FQCN resolution for Alpha. Reading the\n   clause node instead scopes it correctly.\n\nDeriving the flag from the node also deletes an unanchored /[local-path]\\s+/ over\nrepo-controlled text — the same polynomial-backtracking class CodeQL flagged\nat phpTypeFqcn, in a spot it did not flag. Measured at ~3.7s on a use\nstatement padded with 100k spaces, which parses as valid PHP.\n\nThe two anchored kind regexes (^use function, ^use const) are linear and\nunchanged.\n\ncore-ingestion: 334 passed, 6 pre-existing failures unchanged from base.",
+    "parents": [
+      {
+        "sha": "83079ff3dca7d516cc5818dcf81a28f479ea56cd",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/83079ff3dca7d516cc5818dcf81a28f479ea56cd"
+      }
+    ],
+    "tree_sha": "bc86e1b0b86c24e2ebfb93a1362b7ef6799543a1",
+    "authored_at": "2026-08-14T16:26:39Z",
+    "committed_at": "2026-08-14T16:27:19Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@5c322a9901902447e44f4c5e953fc13a5cdfab01",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/5c322a9901902447e44f4c5e953fc13a5cdfab01",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/5c322a9901902447e44f4c5e953fc13a5cdfab01",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-14T16:27:19Z",
+      "last_fetched": "2026-08-16T08:59:39.836Z",
+      "last_verified": "2026-08-16T08:59:39.836Z",
+      "source_updated_at": "2026-08-14T16:27:19Z",
+      "snapshot_version": "2026-08-16T08:59:39.836Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-5c322a9901902447e44f4c5e953fc13a5cdfab01",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#446"
+  },
+  "relationships": []
+}

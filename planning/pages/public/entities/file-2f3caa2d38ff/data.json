@@ -10,11 +10,62 @@
     "title": "ix-cli/knip.json",
     "status": "CURRENT",
     "repository": "ix-infrastructure/Ix",
-    "url": "https://github.com/ix-infrastructure/Ix/blob/HEAD/ix-cli/knip.json"
+    "url": "https://github.com/ix-infrastructure/Ix/blob/HEAD/ix-cli/knip.json",
+    "source_mirror_id": "github:file:ix-infrastructure/Ix:ix-cli/knip.json",
+    "source_type": "github_file",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/blob/adc97c1a979992739541a1d39e2e0b45ea6684d6/ix-cli%2Fknip.json",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
   },
-  "source_snapshot": null,
-  "source_context": null,
-  "ix_findings_analysis": null,
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 445,
+    "filename": "ix-cli/knip.json",
+    "status": "modified",
+    "additions": 1,
+    "deletions": 1,
+    "changes": 2,
+    "blob_url": "https://github.com/ix-infrastructure/Ix/blob/adc97c1a979992739541a1d39e2e0b45ea6684d6/ix-cli%2Fknip.json",
+    "raw_url": "https://github.com/ix-infrastructure/Ix/raw/adc97c1a979992739541a1d39e2e0b45ea6684d6/ix-cli%2Fknip.json",
+    "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fknip.json?ref=adc97c1a979992739541a1d39e2e0b45ea6684d6",
+    "patch": "@@ -3,5 +3,5 @@\n   \"entry\": [\"src/cli/main.ts\", \"src/index.ts\", \"test/parser.smoke.mjs\"],\n   \"project\": [\"src/**/*.ts\"],\n   \"ignore\": [\"test/fixtures/**\", \"test/parser.stress.mjs\"],\n-  \"ignoreBinaries\": [\"ix\", \"cygpath\", \"tar\", \"start\", \"xdg-open\"]\n+  \"ignoreBinaries\": [\"ix\", \"cygpath\", \"tar\", \"start\", \"xdg-open\", \"mkfifo\"]\n }",
+    "parent_pr": 445
+  },
+  "source_context": {
+    "id": "github:file:ix-infrastructure/Ix:ix-cli/knip.json",
+    "source": {
+      "type": "github_file",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/blob/adc97c1a979992739541a1d39e2e0b45ea6684d6/ix-cli%2Fknip.json",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-14T20:18:40Z",
+      "last_fetched": "2026-08-16T08:59:39.836Z",
+      "last_verified": "2026-08-16T08:59:39.836Z",
+      "source_updated_at": "2026-08-16T01:02:34Z",
+      "snapshot_version": "2026-08-16T08:59:39.836Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "FILE-2f3caa2d38ff",
+    "entity_type": "FILE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#445",
+    "line_precision": "FILE_LEVEL"
+  },
   "relationships": [
     {
       "direction": "in",

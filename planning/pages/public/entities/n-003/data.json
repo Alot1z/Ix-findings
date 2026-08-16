@@ -1,0 +1,51 @@
+{
+  "id": "N-003",
+  "type": "finding",
+  "title": "#444 MCP output-cap and #447 discovery confinement — audited, no defect",
+  "status": "UNKNOWN",
+  "url": "https://alot1z.github.io/Ix-findings/entities/n-003",
+  "summary": {
+    "id": "N-003",
+    "type": "finding",
+    "title": "#444 MCP output-cap and #447 discovery confinement — audited, no defect",
+    "status": "UNKNOWN",
+    "repository": "ix-infrastructure/Ix"
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "RELATED_TO_PR",
+      "other": "PR-444",
+      "other_type": "pr",
+      "other_title": "Ix PR #444",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-444"
+    },
+    {
+      "direction": "out",
+      "relationship": "RELATED_TO_PR",
+      "other": "PR-447",
+      "other_type": "pr",
+      "other_title": "Ix PR #447",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-447"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-125a277e8e67",
+      "other_type": "file",
+      "other_title": "planning/findings/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-125a277e8e67"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-5eb527f6aeb8",
+      "other_type": "file",
+      "other_title": "planning/findings/PR-AUDIT-2026-08-15.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-5eb527f6aeb8"
+    }
+  ]
+}

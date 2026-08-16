@@ -1,0 +1,89 @@
+{
+  "id": "COMMIT-1f49d9fe3eb715e59dcc3ff43cf3ae0d1b8a19cc",
+  "type": "commit",
+  "title": "1f49d9fe3eb715e59dcc3ff43cf3ae0d1b8a19cc",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-1f49d9fe3eb715e59dcc3ff43cf3ae0d1b8a19cc",
+  "summary": {
+    "id": "COMMIT-1f49d9fe3eb715e59dcc3ff43cf3ae0d1b8a19cc",
+    "type": "commit",
+    "title": "1f49d9fe3eb715e59dcc3ff43cf3ae0d1b8a19cc",
+    "status": "CURRENT",
+    "source_mirror_id": "github:commit:ix-infrastructure/Ix@1f49d9fe3eb715e59dcc3ff43cf3ae0d1b8a19cc",
+    "source_type": "github_commit",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/commit/1f49d9fe3eb715e59dcc3ff43cf3ae0d1b8a19cc",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/1f49d9fe3eb715e59dcc3ff43cf3ae0d1b8a19cc",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "sha": "1f49d9fe3eb715e59dcc3ff43cf3ae0d1b8a19cc",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/1f49d9fe3eb715e59dcc3ff43cf3ae0d1b8a19cc",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/1f49d9fe3eb715e59dcc3ff43cf3ae0d1b8a19cc",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "committer": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "message": "fix(mcp): keep the failure reason when the cap fired before the throw\n\nRouting thrown error text through appendChunk gives it the output cap, which\nis right, but appendChunk returns early once run.truncated is set. So a\ncommand that floods past the cap and *then* throws loses its exception text\nentirely: the MCP client receives only\n\n  {\"error\": \"[ix mcp] output exceeded N bytes and was truncated\"}\n\nfor what was actually a crash. Before this PR the reason was appended\nunconditionally, outside the cap, so this is a regression against main in the\none case where the diagnostic matters most.\n\nKeep a bounded copy (2 KiB) of the reason when the cap has already fired.\nThe normal path is unchanged: a throw with no prior output still goes through\nappendChunk and is capped, which the existing test pins.\n\nix-cli: 932 passed, 1 skipped. typecheck and knip clean.",
+    "parents": [
+      {
+        "sha": "033181fb5747e0db4303d99653a19ac08b160267",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/033181fb5747e0db4303d99653a19ac08b160267"
+      }
+    ],
+    "tree_sha": "cc2a13326d6c15c687c9389dc812f00a12583bf1",
+    "authored_at": "2026-08-14T18:22:18Z",
+    "committed_at": "2026-08-14T18:22:18Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@1f49d9fe3eb715e59dcc3ff43cf3ae0d1b8a19cc",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/1f49d9fe3eb715e59dcc3ff43cf3ae0d1b8a19cc",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/1f49d9fe3eb715e59dcc3ff43cf3ae0d1b8a19cc",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-14T18:22:18Z",
+      "last_fetched": "2026-08-16T08:59:39.836Z",
+      "last_verified": "2026-08-16T08:59:39.836Z",
+      "source_updated_at": "2026-08-14T18:22:18Z",
+      "snapshot_version": "2026-08-16T08:59:39.836Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-1f49d9fe3eb715e59dcc3ff43cf3ae0d1b8a19cc",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#444"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGED_BY",
+      "other": "PR-444",
+      "other_type": "pr",
+      "other_title": "Ix PR #444",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-444"
+    }
+  ]
+}

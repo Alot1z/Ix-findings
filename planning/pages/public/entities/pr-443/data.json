@@ -1,0 +1,490 @@
+{
+  "id": "PR-443",
+  "type": "pr",
+  "title": "Ix PR #443",
+  "status": "OPEN",
+  "url": "https://alot1z.github.io/Ix-findings/entities/pr-443",
+  "summary": {
+    "id": "PR-443",
+    "type": "pr",
+    "title": "Ix PR #443",
+    "status": "OPEN",
+    "number": 443,
+    "url": "https://github.com/ix-infrastructure/Ix/pull/443",
+    "source_mirror_id": "github:pull_request:ix-infrastructure/Ix#443",
+    "source_type": "github_pull_request",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/pull/443",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/443",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "number": 443,
+    "node_id": "PR_kwDORdC75M7_R-id",
+    "title": "fix(ingest): resolve renamed type imports, with a default-import guard",
+    "body": "Carries **@Hiro-Chiba's #434** plus one review fix. Landing it here closes #434 as merged.\n\n> ⚠️ **Merge with a merge commit, not squash.** This branch contains Hiro-Chiba's commit alongside mine; a squash would collapse an external contributor's work into one commit authored by me.\n\n## Their change (`819d67e`)\n\nResolves renamed consumer-side TS bindings for inheritance and type references — `import { Base as LocalBase }` now resolves `EXTENDS`/`REFERENCES`/`CALLS` to the provider's real symbol.\n\n## My fix (`eab1075`)\n\nThe fallback matched `binding.imported` against every parsed symbol in the provider file. For `import run from \"./m\"`, `binding.imported` is the literal sentinel `'default'` (set at `index.ts:514`), not an export name — and `fileHasSymbol` holds every entity including non-exported methods. So any provider member *called* `default` satisfied it:\n\n```\n/repo/m.ts  export class M { default() { return 1; } }\n            export default new M();\n/repo/n.ts  import run from \"./m\"; export function go() { return run(); }\n```\n\nmain emits nothing; #434 emits `CALLS go -> m.ts` with `dstQualifiedKey: \"M.default\"` at **0.9** — confident, and wrong. Guarded with the same `!== 'default'` exclusion `index.ts:3199` already uses.\n\nCI was green because every existing default-import test uses a *named* default export, which resolves before the fallback is reached.\n\n## Verification\n\nMutation-tested: delete the guard and the added test alone goes red. `tsc --noEmit` clean; core-ingestion shows the same 6 pre-existing fixture-missing failures as the untouched base.\n\nReviewed as part of a full pass over all 9 open PRs; the per-PR findings and a security review of the combined tree are in the thread on #434.",
+    "state": "open",
+    "draft": false,
+    "merged": false,
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "html_url": "https://github.com/ix-infrastructure/Ix/pull/443",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/443",
+    "head": {
+      "ref": "fix/434-default-import-guard",
+      "sha": "eab1075695811acec7d951e3da9813e43944662c",
+      "repo": {
+        "id": 1171307492,
+        "full_name": "ix-infrastructure/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "ix-infrastructure",
+          "id": 256883681,
+          "type": "Organization",
+          "html_url": "https://github.com/ix-infrastructure"
+        },
+        "html_url": "https://github.com/ix-infrastructure/Ix",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": false,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-03-03T04:48:38Z",
+        "updated_at": "2026-08-16T08:00:03Z",
+        "pushed_at": "2026-08-15T06:01:03Z",
+        "topics": [
+          "ai",
+          "ai-memory",
+          "claude-code",
+          "cli",
+          "code-analysis",
+          "code-mapping",
+          "code-memory",
+          "codebase-understanding",
+          "codex",
+          "developer-tools",
+          "llm",
+          "openclaw",
+          "persistent-memory",
+          "program-analysis",
+          "software-architecture",
+          "system-intelligence",
+          "system-mapping"
+        ],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 731,
+        "stargazers_count": 731,
+        "forks_count": 61,
+        "open_issues_count": 16
+      }
+    },
+    "base": {
+      "ref": "main",
+      "sha": "fef671cca4e922d5e473d99739adee77d9134c20",
+      "repo": {
+        "id": 1171307492,
+        "full_name": "ix-infrastructure/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "ix-infrastructure",
+          "id": 256883681,
+          "type": "Organization",
+          "html_url": "https://github.com/ix-infrastructure"
+        },
+        "html_url": "https://github.com/ix-infrastructure/Ix",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": false,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-03-03T04:48:38Z",
+        "updated_at": "2026-08-16T08:00:03Z",
+        "pushed_at": "2026-08-15T06:01:03Z",
+        "topics": [
+          "ai",
+          "ai-memory",
+          "claude-code",
+          "cli",
+          "code-analysis",
+          "code-mapping",
+          "code-memory",
+          "codebase-understanding",
+          "codex",
+          "developer-tools",
+          "llm",
+          "openclaw",
+          "persistent-memory",
+          "program-analysis",
+          "software-architecture",
+          "system-intelligence",
+          "system-mapping"
+        ],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 731,
+        "stargazers_count": 731,
+        "forks_count": 61,
+        "open_issues_count": 16
+      }
+    },
+    "merge_commit_sha": "497295aa61cf6f6644bea1118d3f5e96f0510e56",
+    "merged_at": null,
+    "closed_at": null,
+    "created_at": "2026-08-14T20:17:59Z",
+    "updated_at": "2026-08-16T01:02:33Z",
+    "labels": [],
+    "milestone": null,
+    "requested_reviewers": [
+      {
+        "login": "josephismikhail",
+        "id": 56614593,
+        "type": "User",
+        "html_url": "https://github.com/josephismikhail"
+      }
+    ],
+    "requested_teams": [],
+    "commits_count": 2,
+    "changed_files_count": 2,
+    "additions": 59,
+    "deletions": 1,
+    "changed_files": [
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 443,
+        "filename": "core-ingestion/src/__tests__/resolveEdges.test.ts",
+        "status": "modified",
+        "additions": 52,
+        "deletions": 0,
+        "changes": 52,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/eab1075695811acec7d951e3da9813e43944662c/core-ingestion%2Fsrc%2F__tests__%2FresolveEdges.test.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/eab1075695811acec7d951e3da9813e43944662c/core-ingestion%2Fsrc%2F__tests__%2FresolveEdges.test.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/core-ingestion%2Fsrc%2F__tests__%2FresolveEdges.test.ts?ref=eab1075695811acec7d951e3da9813e43944662c",
+        "patch": "@@ -583,6 +583,58 @@ describe('resolveEdges', () => {\n     });\n   });\n \n+  it('resolves renamed imports used in inheritance and type references', () => {\n+    const provider = parseFile(\n+      '/repo/types.ts',\n+      'export interface User { id: string; }\\nexport class Base {}\\n',\n+    )!;\n+    const consumer = parseFile(\n+      '/repo/consumer.ts',\n+      'import { type User as ExternalUser, Base as LocalBase } from \"./types\";\\n'\n+        + 'export class Child extends LocalBase {}\\n'\n+        + 'export function use(value: ExternalUser) { return value.id; }\\n',\n+    )!;\n+\n+    const resolved = resolveEdges([consumer, provider]);\n+    expect(resolved).toContainEqual({\n+      srcFilePath: '/repo/consumer.ts',\n+      srcName: 'Child',\n+      dstFilePath: '/repo/types.ts',\n+      dstName: 'LocalBase',\n+      dstQualifiedKey: 'Base',\n+      predicate: 'EXTENDS',\n+      confidence: 0.9,\n+    });\n+    expect(resolved).toContainEqual({\n+      srcFilePath: '/repo/consumer.ts',\n+      srcName: 'use',\n+      dstFilePath: '/repo/types.ts',\n+      dstName: 'ExternalUser',\n+      dstQualifiedKey: 'User',\n+      predicate: 'REFERENCES',\n+      confidence: 0.9,\n+    });\n+  });\n+\n+  it('does not bind a default import to a provider member named \"default\"', () => {\n+    // `imported` is the sentinel 'default' for `import run from \"./m\"`, not an\n+    // export name. Without the guard, the renamed-import fallback matches the\n+    // *method* `M.default` and emits a confident edge to the wrong member.\n+    const provider = parseFile(\n+      '/repo/m.ts',\n+      'export class M { default() { return 1; } }\\nexport default new M();\\n',\n+    )!;\n+    const consumer = parseFile(\n+      '/repo/n.ts',\n+      'import run from \"./m\";\\nexport function go() { return run(); }\\n',\n+    )!;\n+\n+    const resolved = resolveEdges([consumer, provider]);\n+    expect(\n+      resolved.filter((e) => e.srcName === 'go' && e.dstQualifiedKey === 'M.default'),\n+    ).toEqual([]);\n+  });\n+\n   it('uses caller-supplied parse results instead of re-parsing', () => {\n     // The CLI parses prescan sources on its worker pool and hands the results\n     // in, so the index costs no main-thread parsing. Proven by supplying a"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 443,
+        "filename": "core-ingestion/src/index.ts",
+        "status": "modified",
+        "additions": 7,
+        "deletions": 1,
+        "changes": 8,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/eab1075695811acec7d951e3da9813e43944662c/core-ingestion%2Fsrc%2Findex.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/eab1075695811acec7d951e3da9813e43944662c/core-ingestion%2Fsrc%2Findex.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/core-ingestion%2Fsrc%2Findex.ts?ref=eab1075695811acec7d951e3da9813e43944662c",
+        "patch": "@@ -3989,7 +3989,13 @@ export function resolveEdges(\n           ))];\n           const publicMatches: Array<{ fp: string; local: string }> = [];\n           for (const fp of providerFiles.length === 1 ? providerFiles : []) {\n-            const local = filePublicNames.get(fp)?.get(binding.imported);\n+            // `imported` is the literal sentinel 'default' for a default import, never a\n+            // real export name, so a provider member that happens to be *called* `default`\n+            // (a method, getter, or static) must not satisfy the fallback.\n+            const local = filePublicNames.get(fp)?.get(binding.imported)\n+              ?? (binding.imported !== 'default' && fileHasSymbol.get(fp)?.has(binding.imported)\n+                ? binding.imported\n+                : undefined);\n             if (local && fileHasSymbol.get(fp)?.has(local)) publicMatches.push({ fp, local });\n           }\n           if (publicMatches.length === 1) {"
+      }
+    ],
+    "commits": [
+      {
+        "sha": "819d67e06e437e4715ea6e9f0bcd7bc7b5d5f001",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/819d67e06e437e4715ea6e9f0bcd7bc7b5d5f001",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/819d67e06e437e4715ea6e9f0bcd7bc7b5d5f001",
+        "author": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "committer": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "message": "fix(ingest): resolve renamed type imports",
+        "parents": [
+          {
+            "sha": "fef671cca4e922d5e473d99739adee77d9134c20",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/fef671cca4e922d5e473d99739adee77d9134c20"
+          }
+        ],
+        "tree_sha": "b3d455c815f0f48906f9b3e2f140ff1256c799dd",
+        "authored_at": "2026-08-14T13:10:59Z",
+        "committed_at": "2026-08-14T13:10:59Z"
+      },
+      {
+        "sha": "eab1075695811acec7d951e3da9813e43944662c",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/eab1075695811acec7d951e3da9813e43944662c",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/eab1075695811acec7d951e3da9813e43944662c",
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "committer": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "message": "fix(ingest): don't bind a default import to a member named default\n\nThe renamed-import fallback matched `binding.imported` against every parsed\nsymbol in the provider file. For `import run from \"./m\"`, `imported` is the\nliteral sentinel 'default' rather than an export name, so any provider member\nthat happens to be *called* `default` — a method, getter, or static — satisfied\nthe lookup and produced a confident (0.9) edge to the wrong member.\n\nGuard the fallback with the same `!== 'default'` exclusion already used when\nbuilding rename bindings. Named renamed imports, the case this PR exists to\nfix, are unaffected: they short-circuit through filePublicNames.\n\nExisting default-import coverage all used a named default export\n(`export default actualName`), which resolves before the fallback — hence the\ngreen suite.",
+        "parents": [
+          {
+            "sha": "819d67e06e437e4715ea6e9f0bcd7bc7b5d5f001",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/819d67e06e437e4715ea6e9f0bcd7bc7b5d5f001"
+          }
+        ],
+        "tree_sha": "cf30cb4f5a3f48631d4a8a565675e71134066d19",
+        "authored_at": "2026-08-14T16:15:23Z",
+        "committed_at": "2026-08-14T16:15:23Z"
+      }
+    ],
+    "comments": [
+      {
+        "id": 5305054711,
+        "node_id": "IC_kwDORdC75M8AAAABPDS19w",
+        "repository": "ix-infrastructure/Ix",
+        "parent_type": "PULL_REQUEST",
+        "parent_number": 443,
+        "kind": "PR_COMMENT",
+        "author": {
+          "login": "Alot1z",
+          "id": 16801672,
+          "type": "User",
+          "html_url": "https://github.com/Alot1z"
+        },
+        "body": "Found and independently verified an additional ingest correctness regression in the current #443 implementation: a renamed import (`import { Base as LocalBase } from \"./m\"`) falls back to any symbol in the provider file — including a class method — so `extends LocalBase` emits a confident wrong EXTENDS edge to `M.Base` (@0.9), where the PR base never emitted one. The same happens for `import { type User as ExternalUser }`, which emits REFERENCES to `M.User`.\n\nThe issue is still reproducible against the current upstream PR state (head `eab1075`), and I did not find an existing fix or duplicate PR addressing it.\n\nFollow-up commit `cba11a3` applies the minimal fix — require a plain module-level key for the renamed-import fallback binding (a member can never be a module export) — and adds regression coverage for the renamed EXTENDS and renamed REFERENCES cases.\n\nVerification: resolveEdges 70/70 on the fix tree, `tsc` clean; the wrong edges reproduce against `eab1075` and are eliminated after.\n\nFollow-up commit:\nhttps://github.com/Alot1z/Ix-remap/commit/cba11a3363b1fbe57819381f05490d2f395674cd\n\nThis is ready for the PR author/maintainer to review/cherry-pick.",
+        "html_url": "https://github.com/ix-infrastructure/Ix/pull/443#issuecomment-5305054711",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5305054711",
+        "created_at": "2026-08-16T01:02:33Z",
+        "updated_at": "2026-08-16T01:02:33Z",
+        "commit_id": null,
+        "path": null,
+        "line": null,
+        "start_line": null,
+        "side": null,
+        "in_reply_to_id": null,
+        "diff_hunk": null,
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      }
+    ],
+    "reviews": [],
+    "review_comments": [],
+    "timeline": [
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/819d67e06e437e4715ea6e9f0bcd7bc7b5d5f001"
+      },
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/eab1075695811acec7d951e3da9813e43944662c"
+      },
+      {
+        "id": 29479026410,
+        "event": "review_requested",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-14T20:18:00Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29479026410"
+      },
+      {
+        "id": 29479026440,
+        "event": "review_requested",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-14T20:18:00Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29479026440"
+      },
+      {
+        "id": 29479026468,
+        "event": "mentioned",
+        "actor": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "created_at": "2026-08-14T20:18:00Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29479026468"
+      },
+      {
+        "id": 29479026500,
+        "event": "subscribed",
+        "actor": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "created_at": "2026-08-14T20:18:00Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29479026500"
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-14T20:20:33Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-14T20:20:50Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": 5305054711,
+        "event": "commented",
+        "actor": {
+          "login": "Alot1z",
+          "id": 16801672,
+          "type": "User",
+          "html_url": "https://github.com/Alot1z"
+        },
+        "created_at": "2026-08-16T01:02:33Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5305054711"
+      },
+      {
+        "id": 29518399709,
+        "event": "referenced",
+        "actor": {
+          "login": "Alot1z",
+          "id": 16801672,
+          "type": "User",
+          "html_url": "https://github.com/Alot1z"
+        },
+        "created_at": "2026-08-16T08:33:29Z",
+        "commit_id": "03c601e18138f865c3b0351bcd158986b96714f0",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29518399709"
+      }
+    ],
+    "source": "OFFICIAL_GITHUB_FACT",
+    "review_threads": [],
+    "review_thread_capture": {
+      "status": "UNKNOWN",
+      "source": "GitHub GraphQL API"
+    }
+  },
+  "source_context": {
+    "id": "github:pull_request:ix-infrastructure/Ix#443",
+    "source": {
+      "type": "github_pull_request",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/443",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/443",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-14T20:17:59Z",
+      "last_fetched": "2026-08-16T08:59:39.836Z",
+      "last_verified": "2026-08-16T08:59:39.836Z",
+      "source_updated_at": "2026-08-16T01:02:33Z",
+      "snapshot_version": "2026-08-16T08:59:39.836Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "PR-443",
+    "entity_type": "PULL_REQUEST",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "mirror_scope": "source PR, commits, files, comments, reviews, review comments, and review threads",
+    "related_analysis_types": [
+      "FINDING",
+      "DECISION",
+      "IMPLEMENTATION"
+    ],
+    "review_thread_state": "UNKNOWN"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "CHANGED_BY",
+      "other": "COMMIT-eab1075695811acec7d951e3da9813e43944662c",
+      "other_type": "commit",
+      "other_title": "eab1075695811acec7d951e3da9813e43944662c",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-eab1075695811acec7d951e3da9813e43944662c"
+    },
+    {
+      "direction": "out",
+      "relationship": "FOUND_IN",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "in",
+      "relationship": "RELATED_TO_PR",
+      "other": "F-016",
+      "other_type": "finding",
+      "other_title": "#443 renamed-import fallback binds to provider members (X1/X3)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-016"
+    }
+  ]
+}

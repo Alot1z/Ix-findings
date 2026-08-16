@@ -1,0 +1,89 @@
+{
+  "id": "COMMIT-5efd8f185e2f284551000486433d4233b2fe704a",
+  "type": "commit",
+  "title": "5efd8f185e2f284551000486433d4233b2fe704a",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-5efd8f185e2f284551000486433d4233b2fe704a",
+  "summary": {
+    "id": "COMMIT-5efd8f185e2f284551000486433d4233b2fe704a",
+    "type": "commit",
+    "title": "5efd8f185e2f284551000486433d4233b2fe704a",
+    "status": "CURRENT",
+    "source_mirror_id": "github:commit:ix-infrastructure/Ix@5efd8f185e2f284551000486433d4233b2fe704a",
+    "source_type": "github_commit",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/commit/5efd8f185e2f284551000486433d4233b2fe704a",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/5efd8f185e2f284551000486433d4233b2fe704a",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "sha": "5efd8f185e2f284551000486433d4233b2fe704a",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/5efd8f185e2f284551000486433d4233b2fe704a",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/5efd8f185e2f284551000486433d4233b2fe704a",
+    "author": {
+      "login": "Alot1z",
+      "id": 16801672,
+      "type": "User",
+      "html_url": "https://github.com/Alot1z"
+    },
+    "committer": {
+      "login": "Alot1z",
+      "id": 16801672,
+      "type": "User",
+      "html_url": "https://github.com/Alot1z"
+    },
+    "message": "fix(php): capture grouped use imports\n\n`use Vendor\\Package\\{A, B};` (and the `use function` / `use const`\nvariants) never produced IMPORTS relationships: the PHP query only\nmatched `namespace_use_clause (qualified_name)`, but a group's shared\nprefix is a separate `namespace_name` and each member is a bare\n`namespace_use_clause (name)` — so every member import was silently\ndropped and calls like `new A()` went unresolved.\n\nAdd a grouped-use pattern that captures the prefix (`@import.prefix`)\nand each member clause (`@import.clause`), and rebuild each FQCN from\nprefix + the clause's FIRST name child (a second name child is an `as`\nalias and must never become an import). The emitted modName/importRaw\nmatch the single-clause form, so grouped imports resolve exactly like\ntheir comma-separated equivalents.\n\nRegression tests: per-member capture, alias exclusion, and end-to-end\nresolution of a grouped import. Fail-before verified on main.",
+    "parents": [
+      {
+        "sha": "043bc68f0fb7ddba736ee1490614cb3c68f8f819",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/043bc68f0fb7ddba736ee1490614cb3c68f8f819"
+      }
+    ],
+    "tree_sha": "dff158e2adf7ded63b76929a1d8ea4d8343dafe1",
+    "authored_at": "2026-08-16T01:20:04Z",
+    "committed_at": "2026-08-16T01:20:04Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@5efd8f185e2f284551000486433d4233b2fe704a",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/5efd8f185e2f284551000486433d4233b2fe704a",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/5efd8f185e2f284551000486433d4233b2fe704a",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-16T01:20:04Z",
+      "last_fetched": "2026-08-16T08:59:39.836Z",
+      "last_verified": "2026-08-16T08:59:39.836Z",
+      "source_updated_at": "2026-08-16T01:20:04Z",
+      "snapshot_version": "2026-08-16T08:59:39.836Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-5efd8f185e2f284551000486433d4233b2fe704a",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#448"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGED_BY",
+      "other": "PR-448",
+      "other_type": "pr",
+      "other_title": "Ix PR #448",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-448"
+    }
+  ]
+}

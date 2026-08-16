@@ -1,0 +1,79 @@
+{
+  "id": "COMMIT-7c8a387db98f192a9a037719119fd2c0a5168d83",
+  "type": "commit",
+  "title": "7c8a387db98f192a9a037719119fd2c0a5168d83",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-7c8a387db98f192a9a037719119fd2c0a5168d83",
+  "summary": {
+    "id": "COMMIT-7c8a387db98f192a9a037719119fd2c0a5168d83",
+    "type": "commit",
+    "title": "7c8a387db98f192a9a037719119fd2c0a5168d83",
+    "status": "HISTORICAL",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    }
+  },
+  "source_snapshot": {
+    "sha": "7c8a387db98f192a9a037719119fd2c0a5168d83",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/7c8a387db98f192a9a037719119fd2c0a5168d83",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/7c8a387db98f192a9a037719119fd2c0a5168d83",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "committer": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "message": "fix(php): resolve a definition's namespace without rescanning the file\n\nphpNamespaceForNode walked rootNode.namedChild(0..i) for every definition, so\none file cost O(definitions x top-level nodes). An ordinary, valid PSR-12 file\n— namespace App\\Support plus ~16k functions, 890 KB, comfortably under the\n1 MB ingest cap — took over three minutes to parse, and nothing stops it:\n.php is ingested by default, the minified-file skip needs a >=20k-char line,\nand ParsePool has no per-file timeout, so one file pins a worker. PHP is also\nin PARSER_DERIVED_PRESCAN, so the file is parsed twice.\n\nCollect the unbraced namespace boundaries once per parse, mirroring how\ngoPackage is already hoisted, and binary-search them per definition. Braced\nnamespaces scope by containment and keep using the ancestor walk.\n\nMeasured on this machine, same file, entity counts and packageScope values\nidentical at every size:\n\n  declarations   before      after\n     2,000       3,245 ms    104 ms\n     4,000      13,099 ms    151 ms\n     8,000      54,408 ms    236 ms\n\nWorth recording what mutation testing showed, since it is not what I first\nassumed: swapping the binary search back for a linear scan over the spans\nchanges nothing, and even rebuilding the span list per definition stays fast.\nThe dominant cost is namedChild(i), which materializes a node wrapper per\nindex; iterating namedChildren once is what actually fixes it. The regression\ntest times out only against the exact original.\n\ncore-ingestion: 338 passed, 6 pre-existing failures unchanged from base.",
+    "parents": [
+      {
+        "sha": "663c6ce0c3fd12ddfcef381126797b78990d50a5",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/663c6ce0c3fd12ddfcef381126797b78990d50a5"
+      }
+    ],
+    "tree_sha": "c8200ae9d9e93922aade5d79e53451af3a6cc61b",
+    "authored_at": "2026-08-14T20:10:05Z",
+    "committed_at": "2026-08-14T20:10:05Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@7c8a387db98f192a9a037719119fd2c0a5168d83",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/7c8a387db98f192a9a037719119fd2c0a5168d83",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/7c8a387db98f192a9a037719119fd2c0a5168d83",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-14T20:10:05Z",
+      "last_fetched": "2026-08-16T08:59:39.836Z",
+      "last_verified": "2026-08-16T08:59:39.836Z",
+      "source_updated_at": "2026-08-14T20:10:05Z",
+      "snapshot_version": "2026-08-16T08:59:39.836Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-7c8a387db98f192a9a037719119fd2c0a5168d83",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#446"
+  },
+  "relationships": []
+}

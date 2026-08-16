@@ -1,0 +1,79 @@
+{
+  "id": "COMMIT-e786f20df62c6278fce9324977b1e4ef87aef406",
+  "type": "commit",
+  "title": "e786f20df62c6278fce9324977b1e4ef87aef406",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-e786f20df62c6278fce9324977b1e4ef87aef406",
+  "summary": {
+    "id": "COMMIT-e786f20df62c6278fce9324977b1e4ef87aef406",
+    "type": "commit",
+    "title": "e786f20df62c6278fce9324977b1e4ef87aef406",
+    "status": "HISTORICAL",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    }
+  },
+  "source_snapshot": {
+    "sha": "e786f20df62c6278fce9324977b1e4ef87aef406",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/e786f20df62c6278fce9324977b1e4ef87aef406",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/e786f20df62c6278fce9324977b1e4ef87aef406",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "committer": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "message": "fix(php): don't emit duplicate claims for a two-kind call\n\nSame root cause as the duplicate edge fixed earlier in this branch, on the\nclaim path this time, and it fires on ordinary untyped PHP rather than an\nexotic shape: phpCallKind splits the relationship dedup key, so\n`handle(); $obj->handle();` survives as two relationships. A claim carries no\nkind, so the two ops are byte-identical and nothing downstream can tell them\napart. Applied to both buildPatch and buildPatchWithResolution.\n\nContained today — stripMapModeOps drops all claims, so `ix map` never carried\nthese, and the only other consumer is a counter — but it inflates the counter\nand would double-assert on any path that keeps claims.\n\nAlso tightens the namespace-scoping perf test from a 10s to a 3s timeout: the\nfixed code runs in ~3ms and the old algorithm took ~12s, so 10s left only a\n1.2x margin over the thing it is meant to catch.\n\nMutation-tested. core-ingestion: 339 passed, 6 pre-existing failures unchanged.",
+    "parents": [
+      {
+        "sha": "b07bff36bc8b2d08cc61851a625ccb2587fd4df2",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/b07bff36bc8b2d08cc61851a625ccb2587fd4df2"
+      }
+    ],
+    "tree_sha": "e8d078239d45915ee4cfbbeee62090df91c53114",
+    "authored_at": "2026-08-14T21:22:47Z",
+    "committed_at": "2026-08-14T21:22:47Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@e786f20df62c6278fce9324977b1e4ef87aef406",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/e786f20df62c6278fce9324977b1e4ef87aef406",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/e786f20df62c6278fce9324977b1e4ef87aef406",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-14T21:22:47Z",
+      "last_fetched": "2026-08-16T08:59:39.836Z",
+      "last_verified": "2026-08-16T08:59:39.836Z",
+      "source_updated_at": "2026-08-14T21:22:47Z",
+      "snapshot_version": "2026-08-16T08:59:39.836Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-e786f20df62c6278fce9324977b1e4ef87aef406",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#446"
+  },
+  "relationships": []
+}

@@ -1,0 +1,43 @@
+{
+  "id": "F-017",
+  "type": "finding",
+  "title": "#445 configured-binding path binds to provider members (Y1)",
+  "status": "UNKNOWN",
+  "url": "https://alot1z.github.io/Ix-findings/entities/f-017",
+  "summary": {
+    "id": "F-017",
+    "type": "finding",
+    "title": "#445 configured-binding path binds to provider members (Y1)",
+    "status": "UNKNOWN",
+    "repository": "ix-infrastructure/Ix"
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "RELATED_TO_PR",
+      "other": "PR-445",
+      "other_type": "pr",
+      "other_title": "Ix PR #445",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-445"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-125a277e8e67",
+      "other_type": "file",
+      "other_title": "planning/findings/registry.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-125a277e8e67"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-5eb527f6aeb8",
+      "other_type": "file",
+      "other_title": "planning/findings/PR-AUDIT-2026-08-15.md",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-5eb527f6aeb8"
+    }
+  ]
+}

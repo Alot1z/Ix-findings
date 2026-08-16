@@ -1,0 +1,79 @@
+{
+  "id": "COMMIT-795ec2ce80759a5730134353640327fb77fb2eff",
+  "type": "commit",
+  "title": "795ec2ce80759a5730134353640327fb77fb2eff",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-795ec2ce80759a5730134353640327fb77fb2eff",
+  "summary": {
+    "id": "COMMIT-795ec2ce80759a5730134353640327fb77fb2eff",
+    "type": "commit",
+    "title": "795ec2ce80759a5730134353640327fb77fb2eff",
+    "status": "HISTORICAL",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    }
+  },
+  "source_snapshot": {
+    "sha": "795ec2ce80759a5730134353640327fb77fb2eff",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/795ec2ce80759a5730134353640327fb77fb2eff",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/795ec2ce80759a5730134353640327fb77fb2eff",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "committer": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "message": "fix(ingest): don't let baseUrl claim authority over every bare specifier\n\nThe resolver returned [] — 'definitively not local', which makes\nresolveEdges skip both the stem fallback and the Tier-3 guess — whenever a\nconfig merely set baseUrl. baseUrl matches every non-relative specifier, so\nin any repo that sets it (the default in Next.js, CRA, Nest and most monorepo\ntemplates) every third-party import, react and zod included, became an\nauthoritative miss and its IMPORTS/CALLS edges were dropped. A catch-all\n'*' paths rule had the same effect.\n\nAuthority now requires an explicit paths pattern to have matched. A bare\nbaseUrl, and a '*' rule that is baseUrl by another name, return undefined\n('no opinion') so existing resolution continues unchanged.\n\nAlso: a matching-but-failing paths rule no longer short-circuits the baseUrl\nlookup, matching how TypeScript itself orders the two.\n\nThis reverses the decision pinned by 'treats an unresolved baseUrl module as\nauthoritative'; that test is replaced. The PR's actual goal — an explicit\npaths mapping suppressing an unrelated same-stem match — is unchanged and\nstill covered.\n\nSeparately, resolveExtends probed candidates with existsSync before handing\nthe path to a reader (CodeQL js/file-system-race, the pattern view.ts calls\nout explicitly). It now returns all candidates and lets the caller read each;\nreadObject already reports an unreadable file as undefined. That also fixes a\nreal bug: the probe stopped at a directory named by extends and never tried\n<dir>/tsconfig.json, silently dropping the parent's paths.\n\nix-cli: 940 passed, 1 skipped. typecheck, lint, knip clean.",
+    "parents": [
+      {
+        "sha": "bf7a4b47758d679be0845a3cec27c1d0a7f5c05e",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/bf7a4b47758d679be0845a3cec27c1d0a7f5c05e"
+      }
+    ],
+    "tree_sha": "9ef04c99f6a357797fe586036259f03ec47c6e6c",
+    "authored_at": "2026-08-14T16:23:26Z",
+    "committed_at": "2026-08-14T16:27:43Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@795ec2ce80759a5730134353640327fb77fb2eff",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/795ec2ce80759a5730134353640327fb77fb2eff",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/795ec2ce80759a5730134353640327fb77fb2eff",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-14T16:27:43Z",
+      "last_fetched": "2026-08-16T08:59:39.836Z",
+      "last_verified": "2026-08-16T08:59:39.836Z",
+      "source_updated_at": "2026-08-14T16:27:43Z",
+      "snapshot_version": "2026-08-16T08:59:39.836Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-795ec2ce80759a5730134353640327fb77fb2eff",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#445"
+  },
+  "relationships": []
+}

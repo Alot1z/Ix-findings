@@ -38,8 +38,8 @@
     "parent": null,
     "source": null,
     "created_at": "2026-03-03T04:48:38Z",
-    "updated_at": "2026-08-13T21:51:31Z",
-    "pushed_at": "2026-08-13T19:18:44Z",
+    "updated_at": "2026-08-16T08:00:03Z",
+    "pushed_at": "2026-08-15T06:01:03Z",
     "topics": [
       "ai",
       "ai-memory",
@@ -65,19 +65,19 @@
       "name": "Apache License 2.0",
       "url": "https://api.github.com/licenses/apache-2.0"
     },
-    "watchers_count": 701,
-    "stargazers_count": 701,
-    "forks_count": 60,
-    "open_issues_count": 6,
+    "watchers_count": 731,
+    "stargazers_count": 731,
+    "forks_count": 61,
+    "open_issues_count": 16,
     "head": {
-      "sha": "ab823e34b9ec8679dcf0df4b4ec5725207e2a88d",
-      "html_url": "https://github.com/ix-infrastructure/Ix/commit/ab823e34b9ec8679dcf0df4b4ec5725207e2a88d",
-      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/ab823e34b9ec8679dcf0df4b4ec5725207e2a88d",
+      "sha": "043bc68f0fb7ddba736ee1490614cb3c68f8f819",
+      "html_url": "https://github.com/ix-infrastructure/Ix/commit/043bc68f0fb7ddba736ee1490614cb3c68f8f819",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/043bc68f0fb7ddba736ee1490614cb3c68f8f819",
       "author": {
-        "login": "josephismikhail",
-        "id": 56614593,
+        "login": "Hiro-Chiba",
+        "id": 203865699,
         "type": "User",
-        "html_url": "https://github.com/josephismikhail"
+        "html_url": "https://github.com/Hiro-Chiba"
       },
       "committer": {
         "login": "web-flow",
@@ -85,16 +85,16 @@
         "type": "User",
         "html_url": "https://github.com/web-flow"
       },
-      "message": "fix(view): keep backend scope out of generated script (#412)\n\n* fix(view): keep backend scope out of generated script\n\n* fix(view): don't report success for a server that never came up\n\nThe generated script now throws if its argv contract is not met, and it runs\ndetached with `stdio: \"ignore\"` — so that throw goes nowhere. The CLI checked\nonly that spawn returned a pid, then printed \"[ok] Visualizer started\", wrote a\nPID file for a dead process and opened a browser on a closed port.\n\n`view-server.test.ts` already had `waitForPort` for exactly this reason (\"a\nserver that dies on startup would otherwise surface as a timeout ... invisibly,\nbecause stdio is ignored\"). This gives the command the same check.\n\nReported rather than fatal, and the process is left alone: 8s is a heuristic,\nand on a machine slow enough to exceed it, killing the server or failing the\ncommand would be worse than the mis-report. The PID/scope/port files are written\neither way, so `ix view status` and `ix view stop` still work.\n\n`view-running-port.test.ts` mocked `createConnection` to always refuse, which\nanswered the pre-spawn \"is this port taken?\" check but hangs a post-spawn\nreadiness probe for its whole budget. The mock now models the transition.\n\n* test(view): cover runtime server arguments\n\n---------\n\nCo-authored-by: KageBinary <ianjakobhock@gmail.com>",
+      "message": "fix(cli): validate pick options consistently (#438)\n\n* fix(context): validate pick option\n\n* fix(cli): validate pick options consistently",
       "parents": [
         {
-          "sha": "8d1bc85be21d34815a23c9bddd2ae1abbf6237b5",
-          "html_url": "https://github.com/ix-infrastructure/Ix/commit/8d1bc85be21d34815a23c9bddd2ae1abbf6237b5"
+          "sha": "d8dfb82f413998138ce17bb0ad26f18073f5e029",
+          "html_url": "https://github.com/ix-infrastructure/Ix/commit/d8dfb82f413998138ce17bb0ad26f18073f5e029"
         }
       ],
-      "tree_sha": "fa35652169026eaee16aae7d425f2fea0ca2355a",
-      "authored_at": "2026-08-13T18:34:34Z",
-      "committed_at": "2026-08-13T18:34:34Z"
+      "tree_sha": "84d5dae63e71f5f65c6a8bce5ca61d57b6c64e07",
+      "authored_at": "2026-08-14T20:33:35Z",
+      "committed_at": "2026-08-14T20:33:35Z"
     },
     "branches": [
       {
@@ -158,6 +158,12 @@
         "url": null
       },
       {
+        "name": "fix/discovery-symlink-escape",
+        "protected": false,
+        "sha": "6233b498b81c0ad56337085146bb8cb6cdb6dc95",
+        "url": null
+      },
+      {
         "name": "fix/installer-docker-autoinstall-noop",
         "protected": false,
         "sha": "4475d240b3a9bae0618626c9b1f5d73c8883c167",
@@ -179,6 +185,12 @@
         "name": "fix/progress-frames-non-tty",
         "protected": false,
         "sha": "decd85e25d922f13b049f08d5875e162e8d7a62f",
+        "url": null
+      },
+      {
+        "name": "fix/read-workspace-containment",
+        "protected": false,
+        "sha": "d0ea5d1abfcdaae1da120f11c15e44cd23a7ef31",
         "url": null
       },
       {
@@ -224,9 +236,33 @@
         "url": null
       },
       {
+        "name": "fix/434-default-import-guard",
+        "protected": false,
+        "sha": "eab1075695811acec7d951e3da9813e43944662c",
+        "url": null
+      },
+      {
+        "name": "fix/436-truncated-failure-reason",
+        "protected": false,
+        "sha": "1f49d9fe3eb715e59dcc3ff43cf3ae0d1b8a19cc",
+        "url": null
+      },
+      {
+        "name": "fix/440-baseurl-authority",
+        "protected": false,
+        "sha": "adc97c1a979992739541a1d39e2e0b45ea6684d6",
+        "url": null
+      },
+      {
+        "name": "fix/442-php-use-clause-scope",
+        "protected": false,
+        "sha": "83b9be4207fb6ecd47a7c694684e6abfe8e18835",
+        "url": null
+      },
+      {
         "name": "main",
         "protected": true,
-        "sha": "ab823e34b9ec8679dcf0df4b4ec5725207e2a88d",
+        "sha": "043bc68f0fb7ddba736ee1490614cb3c68f8f819",
         "url": null
       },
       {
@@ -854,11 +890,11 @@
       "url_precision": "OBJECT"
     },
     "freshness": {
-      "first_seen": "2026-08-13T22:23:39.068Z",
-      "last_fetched": "2026-08-13T22:23:39.068Z",
-      "last_verified": "2026-08-13T22:23:39.068Z",
-      "source_updated_at": "2026-08-13T21:51:31Z",
-      "snapshot_version": "2026-08-13T22:23:39.068Z"
+      "first_seen": "2026-08-16T08:59:39.836Z",
+      "last_fetched": "2026-08-16T08:59:39.836Z",
+      "last_verified": "2026-08-16T08:59:39.836Z",
+      "source_updated_at": "2026-08-16T08:00:03Z",
+      "snapshot_version": "2026-08-16T08:59:39.836Z"
     }
   },
   "ix_findings_analysis": {
@@ -878,50 +914,130 @@
     {
       "direction": "in",
       "relationship": "FOUND_IN",
-      "other": "ISSUE-420",
+      "other": "ISSUE-441",
       "other_type": "issue",
-      "other_title": "Ix issue #420",
-      "other_url": "https://alot1z.github.io/Ix-findings/issues/420"
+      "other_title": "Ix issue #441",
+      "other_url": "https://alot1z.github.io/Ix-findings/issues/441"
     },
     {
       "direction": "in",
       "relationship": "FOUND_IN",
-      "other": "ISSUE-413",
+      "other": "ISSUE-439",
       "other_type": "issue",
-      "other_title": "Ix issue #413",
-      "other_url": "https://alot1z.github.io/Ix-findings/issues/413"
+      "other_title": "Ix issue #439",
+      "other_url": "https://alot1z.github.io/Ix-findings/issues/439"
     },
     {
       "direction": "in",
       "relationship": "FOUND_IN",
-      "other": "PR-423",
-      "other_type": "pr",
-      "other_title": "Ix PR #423",
-      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-423"
+      "other": "ISSUE-435",
+      "other_type": "issue",
+      "other_title": "Ix issue #435",
+      "other_url": "https://alot1z.github.io/Ix-findings/issues/435"
     },
     {
       "direction": "in",
       "relationship": "FOUND_IN",
-      "other": "PR-422",
-      "other_type": "pr",
-      "other_title": "Ix PR #422",
-      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-422"
+      "other": "ISSUE-433",
+      "other_type": "issue",
+      "other_title": "Ix issue #433",
+      "other_url": "https://alot1z.github.io/Ix-findings/issues/433"
     },
     {
       "direction": "in",
       "relationship": "FOUND_IN",
-      "other": "PR-421",
-      "other_type": "pr",
-      "other_title": "Ix PR #421",
-      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-421"
+      "other": "ISSUE-429",
+      "other_type": "issue",
+      "other_title": "Ix issue #429",
+      "other_url": "https://alot1z.github.io/Ix-findings/issues/429"
     },
     {
       "direction": "in",
       "relationship": "FOUND_IN",
-      "other": "PR-414",
+      "other": "ISSUE-425",
+      "other_type": "issue",
+      "other_title": "Ix issue #425",
+      "other_url": "https://alot1z.github.io/Ix-findings/issues/425"
+    },
+    {
+      "direction": "in",
+      "relationship": "FOUND_IN",
+      "other": "PR-448",
       "other_type": "pr",
-      "other_title": "Ix PR #414",
-      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-414"
+      "other_title": "Ix PR #448",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-448"
+    },
+    {
+      "direction": "in",
+      "relationship": "FOUND_IN",
+      "other": "PR-445",
+      "other_type": "pr",
+      "other_title": "Ix PR #445",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-445"
+    },
+    {
+      "direction": "in",
+      "relationship": "FOUND_IN",
+      "other": "PR-443",
+      "other_type": "pr",
+      "other_title": "Ix PR #443",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-443"
+    },
+    {
+      "direction": "in",
+      "relationship": "FOUND_IN",
+      "other": "PR-446",
+      "other_type": "pr",
+      "other_title": "Ix PR #446",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-446"
+    },
+    {
+      "direction": "in",
+      "relationship": "FOUND_IN",
+      "other": "PR-447",
+      "other_type": "pr",
+      "other_title": "Ix PR #447",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-447"
+    },
+    {
+      "direction": "in",
+      "relationship": "FOUND_IN",
+      "other": "PR-440",
+      "other_type": "pr",
+      "other_title": "Ix PR #440",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-440"
+    },
+    {
+      "direction": "in",
+      "relationship": "FOUND_IN",
+      "other": "PR-434",
+      "other_type": "pr",
+      "other_title": "Ix PR #434",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-434"
+    },
+    {
+      "direction": "in",
+      "relationship": "FOUND_IN",
+      "other": "PR-436",
+      "other_type": "pr",
+      "other_title": "Ix PR #436",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-436"
+    },
+    {
+      "direction": "in",
+      "relationship": "FOUND_IN",
+      "other": "PR-442",
+      "other_type": "pr",
+      "other_title": "Ix PR #442",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-442"
+    },
+    {
+      "direction": "in",
+      "relationship": "FOUND_IN",
+      "other": "PR-444",
+      "other_type": "pr",
+      "other_title": "Ix PR #444",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-444"
     },
     {
       "direction": "in",

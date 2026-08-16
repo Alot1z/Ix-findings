@@ -1,0 +1,79 @@
+{
+  "id": "COMMIT-08cd7779d74c92575f55395608229aa0867e1cf9",
+  "type": "commit",
+  "title": "08cd7779d74c92575f55395608229aa0867e1cf9",
+  "status": "HISTORICAL",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-08cd7779d74c92575f55395608229aa0867e1cf9",
+  "summary": {
+    "id": "COMMIT-08cd7779d74c92575f55395608229aa0867e1cf9",
+    "type": "commit",
+    "title": "08cd7779d74c92575f55395608229aa0867e1cf9",
+    "status": "HISTORICAL",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    }
+  },
+  "source_snapshot": {
+    "sha": "08cd7779d74c92575f55395608229aa0867e1cf9",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/08cd7779d74c92575f55395608229aa0867e1cf9",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/08cd7779d74c92575f55395608229aa0867e1cf9",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "committer": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "message": "fix(ingest): open config files non-blocking, and don't half-load a dropped extends\n\nThree fixes from a rescan of the previous security commit.\n\n1. The FIFO guard could never fire. Opening a FIFO for reading blocks until a\n   writer appears, so the isFile() check — which runs after the open — was\n   never reached. My comment credited it with stopping \"a FIFO (blocks the\n   event loop forever)\", a protection the code could not provide, and the\n   passing /dev/zero test made that look verified: a character device opens\n   fine, so it exercised a different path. A repo-committed symlink to any\n   FIFO wedged `ix ingest` before the parsing phase even announces itself —\n   no output, no timeout, no error. O_RDONLY|O_NONBLOCK makes the open\n   return; the existing fstat/isFile guard then rejects it correctly.\n   Undefined on Windows, where the bitwise-or degrades to a plain read and\n   there is no FIFO to open this way.\n\n2. Containment over-rejected a legitimate sibling. A bare startsWith(\"..\")\n   also matches a directory merely *named* with leading dots, so\n   `..shared/tsconfig.json` inside the workspace read as an escape and was\n   dropped silently. Compare path segments instead.\n\n3. A dropped extends left a half-loaded config, which is worse than main. A\n   scoped run (`ix map ./packages/web`) roots containment at the ingest path,\n   so a monorepo's shared tsconfig.base.json one level up is correctly\n   refused — but the remainder still carried the package's own `paths`,\n   which then matched, failed against the missing baseUrl, and returned an\n   *authoritative* empty. That suppresses the stem fallback and deletes an\n   edge main resolves fine. Treat such a config as unusable, which is exactly\n   main's behaviour.\n\nknip.json: mkfifo added to ignoreBinaries for the new POSIX-gated test.\n\nEach fix mutation-tested; removing O_NONBLOCK hangs the suite outright.\nix-cli: 947 passed, 1 skipped. typecheck, lint, knip and the NUL guard clean.",
+    "parents": [
+      {
+        "sha": "1135ced5af3c5e1a1c0287fbd967a030b7c6d0f7",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/1135ced5af3c5e1a1c0287fbd967a030b7c6d0f7"
+      }
+    ],
+    "tree_sha": "cea58644f755ce90628457a20741b424f042ce34",
+    "authored_at": "2026-08-14T21:21:12Z",
+    "committed_at": "2026-08-14T21:21:12Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@08cd7779d74c92575f55395608229aa0867e1cf9",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/08cd7779d74c92575f55395608229aa0867e1cf9",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/08cd7779d74c92575f55395608229aa0867e1cf9",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-14T21:21:12Z",
+      "last_fetched": "2026-08-16T08:59:39.836Z",
+      "last_verified": "2026-08-16T08:59:39.836Z",
+      "source_updated_at": "2026-08-14T21:21:12Z",
+      "snapshot_version": "2026-08-16T08:59:39.836Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-08cd7779d74c92575f55395608229aa0867e1cf9",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "HISTORICAL",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#445"
+  },
+  "relationships": []
+}

@@ -1,0 +1,505 @@
+{
+  "id": "PR-436",
+  "type": "pr",
+  "title": "Ix PR #436",
+  "status": "OPEN",
+  "url": "https://alot1z.github.io/Ix-findings/entities/pr-436",
+  "summary": {
+    "id": "PR-436",
+    "type": "pr",
+    "title": "Ix PR #436",
+    "status": "OPEN",
+    "number": 436,
+    "url": "https://github.com/ix-infrastructure/Ix/pull/436",
+    "source_mirror_id": "github:pull_request:ix-infrastructure/Ix#436",
+    "source_type": "github_pull_request",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/pull/436",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/436",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "number": 436,
+    "node_id": "PR_kwDORdC75M7_HKYk",
+    "title": "fix(mcp): cap thrown error output",
+    "body": "Fixes #435\n\nDepends on #426.\n\n## Summary\n\nApply the in-process MCP output cap to thrown command errors as well as captured output.\n\n## Type\n- [x] Bug fix\n- [ ] Feature\n- [ ] Refactor\n- [ ] Docs\n- [ ] Test\n- [ ] CI\n\n## Changes\n- Route thrown error text through the existing bounded-output collector.\n- Preserve the existing error result while adding the standard truncation marker when needed.\n- Cover both the runner boundary and the MCP error response.\n\n## Validation\n\n- Focused runner and MCP tests: 31 passed.\n- Ix CLI tests: 931 passed, 1 skipped, including parser smoke tests.\n- Typecheck, build, lint, and `git diff --check` passed.\n\n## Checklist\n- [x] Tests pass\n- [x] Smoke tests pass\n- [x] No raw errors introduced\n- [x] CLI output follows Ix format\n\n## Release checklist (if merging to main)\n- [ ] `ix-cli/package.json` version bumped\n- [ ] After merge: tag pushed (`git tag vX.Y.Z && git push origin vX.Y.Z`)\n- [ ] If backend changes: `ix-memory-layer` tagged and released first\n- [ ] If `docker-compose.standalone.yml` changed: verified `curl | sh` install works\n",
+    "state": "open",
+    "draft": false,
+    "merged": false,
+    "author": {
+      "login": "Hiro-Chiba",
+      "id": 203865699,
+      "type": "User",
+      "html_url": "https://github.com/Hiro-Chiba"
+    },
+    "html_url": "https://github.com/ix-infrastructure/Ix/pull/436",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/436",
+    "head": {
+      "ref": "fix/mcp-error-output-cap",
+      "sha": "033181fb5747e0db4303d99653a19ac08b160267",
+      "repo": {
+        "id": 1329113547,
+        "full_name": "Hiro-Chiba/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "html_url": "https://github.com/Hiro-Chiba/Ix",
+        "api_url": "https://api.github.com/repos/Hiro-Chiba/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": true,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-08-09T19:06:50Z",
+        "updated_at": "2026-08-09T19:06:51Z",
+        "pushed_at": "2026-08-14T13:24:21Z",
+        "topics": [],
+        "language": null,
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 0,
+        "stargazers_count": 0,
+        "forks_count": 0,
+        "open_issues_count": 0
+      }
+    },
+    "base": {
+      "ref": "main",
+      "sha": "fef671cca4e922d5e473d99739adee77d9134c20",
+      "repo": {
+        "id": 1171307492,
+        "full_name": "ix-infrastructure/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "ix-infrastructure",
+          "id": 256883681,
+          "type": "Organization",
+          "html_url": "https://github.com/ix-infrastructure"
+        },
+        "html_url": "https://github.com/ix-infrastructure/Ix",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": false,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-03-03T04:48:38Z",
+        "updated_at": "2026-08-16T08:00:03Z",
+        "pushed_at": "2026-08-15T06:01:03Z",
+        "topics": [
+          "ai",
+          "ai-memory",
+          "claude-code",
+          "cli",
+          "code-analysis",
+          "code-mapping",
+          "code-memory",
+          "codebase-understanding",
+          "codex",
+          "developer-tools",
+          "llm",
+          "openclaw",
+          "persistent-memory",
+          "program-analysis",
+          "software-architecture",
+          "system-intelligence",
+          "system-mapping"
+        ],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 731,
+        "stargazers_count": 731,
+        "forks_count": 61,
+        "open_issues_count": 16
+      }
+    },
+    "merge_commit_sha": "0d9e154e4b7bb2f52cc8f5e907194d79bc49ce79",
+    "merged_at": null,
+    "closed_at": null,
+    "created_at": "2026-08-14T13:18:16Z",
+    "updated_at": "2026-08-15T00:19:11Z",
+    "labels": [],
+    "milestone": null,
+    "requested_reviewers": [
+      {
+        "login": "josephismikhail",
+        "id": 56614593,
+        "type": "User",
+        "html_url": "https://github.com/josephismikhail"
+      }
+    ],
+    "requested_teams": [],
+    "commits_count": 2,
+    "changed_files_count": 3,
+    "additions": 82,
+    "deletions": 3,
+    "changed_files": [
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 436,
+        "filename": "ix-cli/src/cli/__tests__/mcp-runner.test.ts",
+        "status": "modified",
+        "additions": 22,
+        "deletions": 1,
+        "changes": 23,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/033181fb5747e0db4303d99653a19ac08b160267/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fmcp-runner.test.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/033181fb5747e0db4303d99653a19ac08b160267/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fmcp-runner.test.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fmcp-runner.test.ts?ref=033181fb5747e0db4303d99653a19ac08b160267",
+        "patch": "@@ -403,18 +403,39 @@ describe(\"in-process ix runner\", () => {\n     });\n   });\n \n-  it(\"truncates output instead of growing the server heap without bound\", async () => {\n+  it(\"fails the run when output is truncated to protect the server heap\", async () => {\n     const run = createInProcessRunner({\n       createProgram: createTestProgram,\n       maxOutputBytes: 500,\n     });\n \n     const result = await run([\"flood\"]);\n \n+    expect(result.ok).toBe(false);\n     expect(result.stdout.length).toBeLessThanOrEqual(500);\n     expect(result.stderr).toContain(\"exceeded 500 bytes and was truncated\");\n   });\n \n+  it(\"applies the output cap to thrown error messages\", async () => {\n+    const run = createInProcessRunner({\n+      maxOutputBytes: 500,\n+      createProgram: () => {\n+        const program = new Command();\n+        program.command(\"throw-long\").action(() => {\n+          throw new Error(\"E\".repeat(2_000));\n+        });\n+        return program;\n+      },\n+    });\n+\n+    const result = await run([\"throw-long\"]);\n+\n+    expect(result.ok).toBe(false);\n+    expect(Buffer.byteLength(result.stderr)).toBeLessThanOrEqual(500);\n+    expect(result.stderr).toContain(\"exceeded 500 bytes and was truncated\");\n+    expect(result.stderr).not.toContain(\"E\".repeat(500));\n+  });\n+\n   it(\"reports an unknown command as a failure with commander's message\", async () => {\n     const run = testRunner();\n "
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 436,
+        "filename": "ix-cli/src/cli/__tests__/mcp-structured-output.test.ts",
+        "status": "modified",
+        "additions": 57,
+        "deletions": 0,
+        "changes": 57,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/033181fb5747e0db4303d99653a19ac08b160267/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fmcp-structured-output.test.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/033181fb5747e0db4303d99653a19ac08b160267/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fmcp-structured-output.test.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fmcp-structured-output.test.ts?ref=033181fb5747e0db4303d99653a19ac08b160267",
+        "patch": "@@ -1,9 +1,11 @@\n import { Client } from \"@modelcontextprotocol/sdk/client/index.js\";\n import { InMemoryTransport } from \"@modelcontextprotocol/sdk/inMemory.js\";\n import type { CallToolResult } from \"@modelcontextprotocol/sdk/types.js\";\n+import { Command } from \"commander\";\n import { afterEach, describe, expect, it } from \"vitest\";\n \n import { createIxMcpServer, type IxRunner } from \"../../mcp/server.js\";\n+import { createInProcessRunner } from \"../../mcp/runner.js\";\n \n const clients: Client[] = [];\n \n@@ -52,6 +54,61 @@ describe(\"ix mcp structured output\", () => {\n     expect(result.content[0]).toEqual({ type: \"text\", text: \"not json at all\" });\n   });\n \n+  it(\"returns an MCP error without structured content when in-process output is truncated\", async () => {\n+    const runIx = createInProcessRunner({\n+      maxOutputBytes: 100,\n+      createProgram: () => {\n+        const program = new Command();\n+        program\n+          .command(\"map\")\n+          .option(\"--format <format>\")\n+          .action(() => console.log(JSON.stringify({ payload: \"x\".repeat(500) })));\n+        return program;\n+      },\n+    });\n+    const client = await connect(runIx);\n+\n+    const result = (await client.callTool({ name: \"ix_map\", arguments: {} })) as CallToolResult;\n+\n+    expect(result.isError).toBe(true);\n+    expect(result.structuredContent).toBeUndefined();\n+    const content = result.content[0];\n+    expect(content?.type).toBe(\"text\");\n+    const error = JSON.parse(content?.type === \"text\" ? content.text : \"{}\");\n+    expect(error).toEqual({\n+      error: \"[ix mcp] output exceeded 100 bytes and was truncated\",\n+      tool: \"ix_map\",\n+    });\n+  });\n+\n+  it(\"caps thrown command errors before returning them through MCP\", async () => {\n+    const runIx = createInProcessRunner({\n+      maxOutputBytes: 100,\n+      createProgram: () => {\n+        const program = new Command();\n+        program\n+          .command(\"map\")\n+          .option(\"--format <format>\")\n+          .action(() => {\n+            throw new Error(\"E\".repeat(500));\n+          });\n+        return program;\n+      },\n+    });\n+    const client = await connect(runIx);\n+\n+    const result = (await client.callTool({ name: \"ix_map\", arguments: {} })) as CallToolResult;\n+\n+    expect(result.isError).toBe(true);\n+    expect(result.structuredContent).toBeUndefined();\n+    const content = result.content[0];\n+    const error = JSON.parse(content?.type === \"text\" ? content.text : \"{}\");\n+    expect(error).toEqual({\n+      error: \"[ix mcp] output exceeded 100 bytes and was truncated\",\n+      tool: \"ix_map\",\n+    });\n+  });\n+\n   it(\"exposes the filtered smell candidates as structuredContent\", async () => {\n     const client = await connect(async () => ({\n       ok: true,"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 436,
+        "filename": "ix-cli/src/mcp/runner.ts",
+        "status": "modified",
+        "additions": 3,
+        "deletions": 2,
+        "changes": 5,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/033181fb5747e0db4303d99653a19ac08b160267/ix-cli%2Fsrc%2Fmcp%2Frunner.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/033181fb5747e0db4303d99653a19ac08b160267/ix-cli%2Fsrc%2Fmcp%2Frunner.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fmcp%2Frunner.ts?ref=033181fb5747e0db4303d99653a19ac08b160267",
+        "patch": "@@ -422,6 +422,7 @@ async function executeInProcess(\n   } finally {\n     commandExitCode = commandExitCode ?? (exitCodeIsOurs ? process.exitCode : undefined);\n     process.exitCode = callerExitCode;\n+    if (failure !== null) appendChunk(run, \"stderr\", failure);\n     run.closed = true;\n     activeRun = null;\n \n@@ -468,11 +469,11 @@ async function executeInProcess(\n     }\n   }\n \n-  const ok = failure === null && (commandExitCode === undefined || commandExitCode === 0);\n+  const ok = !run.truncated && failure === null && (commandExitCode === undefined || commandExitCode === 0);\n   return {\n     ok,\n     stdout: run.stdout.join(\"\"),\n-    stderr: run.stderr.join(\"\") + (failure ?? \"\"),\n+    stderr: run.stderr.join(\"\"),\n   };\n }\n "
+      }
+    ],
+    "commits": [
+      {
+        "sha": "5e2bdcfa5ae678cd134e86ee744e3ec67d8b0b0c",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/5e2bdcfa5ae678cd134e86ee744e3ec67d8b0b0c",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/5e2bdcfa5ae678cd134e86ee744e3ec67d8b0b0c",
+        "author": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "committer": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "message": "fix(mcp): fail truncated in-process output",
+        "parents": [
+          {
+            "sha": "fef671cca4e922d5e473d99739adee77d9134c20",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/fef671cca4e922d5e473d99739adee77d9134c20"
+          }
+        ],
+        "tree_sha": "faacd12af8239f2bbd34479a28e829c098d3ea07",
+        "authored_at": "2026-08-14T03:34:11Z",
+        "committed_at": "2026-08-14T03:34:11Z"
+      },
+      {
+        "sha": "033181fb5747e0db4303d99653a19ac08b160267",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/033181fb5747e0db4303d99653a19ac08b160267",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/033181fb5747e0db4303d99653a19ac08b160267",
+        "author": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "committer": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "message": "fix(mcp): cap thrown error output",
+        "parents": [
+          {
+            "sha": "5e2bdcfa5ae678cd134e86ee744e3ec67d8b0b0c",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/5e2bdcfa5ae678cd134e86ee744e3ec67d8b0b0c"
+          }
+        ],
+        "tree_sha": "66c7626cf75c3d6014ad5dfc3e0173aa59c58373",
+        "authored_at": "2026-08-14T13:10:59Z",
+        "committed_at": "2026-08-14T13:10:59Z"
+      }
+    ],
+    "comments": [
+      {
+        "id": 5296782368,
+        "node_id": "IC_kwDORdC75M8AAAABO7Z8IA",
+        "repository": "ix-infrastructure/Ix",
+        "parent_type": "PULL_REQUEST",
+        "parent_number": 436,
+        "kind": "PR_COMMENT",
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "body": "One more, non-blocking but worth folding in: routing thrown text through `appendChunk` means it is dropped outright once the cap has fired, because `appendChunk` starts with `if (run.truncated) return;`. A command that floods and *then* throws reaches the client as only `output exceeded N bytes and was truncated` — no reason. main appended it unconditionally, so it's a regression in the case where the diagnostic matters most.\n\nFix + test: **Hiro-Chiba/Ix#4**. Your existing cap test is unaffected and passes unchanged.",
+        "html_url": "https://github.com/ix-infrastructure/Ix/pull/436#issuecomment-5296782368",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5296782368",
+        "created_at": "2026-08-14T18:26:00Z",
+        "updated_at": "2026-08-14T18:26:00Z",
+        "commit_id": null,
+        "path": null,
+        "line": null,
+        "start_line": null,
+        "side": null,
+        "in_reply_to_id": null,
+        "diff_hunk": null,
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      },
+      {
+        "id": 5297796735,
+        "node_id": "IC_kwDORdC75M8AAAABO8X2fw",
+        "repository": "ix-infrastructure/Ix",
+        "parent_type": "PULL_REQUEST",
+        "parent_number": 436,
+        "kind": "PR_COMMENT",
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "body": "Update on how this lands: **#444** now carries your commits plus the review fixes, targeting `main` directly. It's up for review by @josephismikhail.\n\nNo action needed from you. Your commits keep their authorship on that branch, and it will be merged with a merge commit rather than a squash so that stays true — when it lands, this PR closes as *merged*. The follow-up PR I'd opened into your fork is closed as superseded.\n\nThe reasoning for each fix is in this thread above and in #444's description.",
+        "html_url": "https://github.com/ix-infrastructure/Ix/pull/436#issuecomment-5297796735",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5297796735",
+        "created_at": "2026-08-14T20:20:50Z",
+        "updated_at": "2026-08-14T20:20:50Z",
+        "commit_id": null,
+        "path": null,
+        "line": null,
+        "start_line": null,
+        "side": null,
+        "in_reply_to_id": null,
+        "diff_hunk": null,
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      }
+    ],
+    "reviews": [],
+    "review_comments": [],
+    "timeline": [
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/5e2bdcfa5ae678cd134e86ee744e3ec67d8b0b0c"
+      },
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/033181fb5747e0db4303d99653a19ac08b160267"
+      },
+      {
+        "id": 29459715251,
+        "event": "review_requested",
+        "actor": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "created_at": "2026-08-14T13:18:17Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29459715251"
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-14T14:56:09Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-14T18:25:44Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": 5296782368,
+        "event": "commented",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-14T18:26:00Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5296782368"
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-14T20:18:18Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": 5297796735,
+        "event": "commented",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-14T20:20:50Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5297796735"
+      },
+      {
+        "id": 29479139593,
+        "event": "mentioned",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-14T20:20:52Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29479139593"
+      },
+      {
+        "id": 29479139637,
+        "event": "subscribed",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-14T20:20:52Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29479139637"
+      }
+    ],
+    "source": "OFFICIAL_GITHUB_FACT",
+    "review_threads": [],
+    "review_thread_capture": {
+      "status": "UNKNOWN",
+      "source": "GitHub GraphQL API"
+    }
+  },
+  "source_context": {
+    "id": "github:pull_request:ix-infrastructure/Ix#436",
+    "source": {
+      "type": "github_pull_request",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/436",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/436",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-14T13:18:16Z",
+      "last_fetched": "2026-08-16T08:59:39.836Z",
+      "last_verified": "2026-08-16T08:59:39.836Z",
+      "source_updated_at": "2026-08-15T00:19:11Z",
+      "snapshot_version": "2026-08-16T08:59:39.836Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "PR-436",
+    "entity_type": "PULL_REQUEST",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "mirror_scope": "source PR, commits, files, comments, reviews, review comments, and review threads",
+    "related_analysis_types": [
+      "FINDING",
+      "DECISION",
+      "IMPLEMENTATION"
+    ],
+    "review_thread_state": "UNKNOWN"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "CHANGED_BY",
+      "other": "COMMIT-033181fb5747e0db4303d99653a19ac08b160267",
+      "other_type": "commit",
+      "other_title": "033181fb5747e0db4303d99653a19ac08b160267",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-033181fb5747e0db4303d99653a19ac08b160267"
+    },
+    {
+      "direction": "out",
+      "relationship": "FOUND_IN",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    }
+  ]
+}

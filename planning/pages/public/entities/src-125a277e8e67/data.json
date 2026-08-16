@@ -145,6 +145,78 @@
     {
       "direction": "in",
       "relationship": "HAS_SOURCE",
+      "other": "F-014",
+      "other_type": "finding",
+      "other_title": "#446 global↔namespace PHP scope-boundary regression (C6/C8/D/E)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-014"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "F-015",
+      "other_type": "finding",
+      "other_title": "#446 C7 — block-scoped `use` leaking into global code (pre-existing)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-015"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "F-016",
+      "other_type": "finding",
+      "other_title": "#443 renamed-import fallback binds to provider members (X1/X3)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-016"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "F-017",
+      "other_type": "finding",
+      "other_title": "#445 configured-binding path binds to provider members (Y1)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-017"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "F-018",
+      "other_type": "finding",
+      "other_title": "#446 parser-level phpNamespaceBlocks guard (upstream implementation)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-018"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "N-003",
+      "other_type": "finding",
+      "other_title": "#444 MCP output-cap and #447 discovery confinement — audited, no defect",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/n-003"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "F-019",
+      "other_type": "finding",
+      "other_title": "#446 FQCN index drops same-line sibling PHP types (false negative)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-019"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "F-020",
+      "other_type": "finding",
+      "other_title": "Single-character symbol names lose CALLS/REFERENCES edges (all languages)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-020"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
+      "other": "F-021",
+      "other_type": "finding",
+      "other_title": "PHP grouped `use Vendor\\{A, B};` captures zero IMPORTS",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-021"
+    },
+    {
+      "direction": "in",
+      "relationship": "HAS_SOURCE",
       "other": "CONTRA-001",
       "other_type": "artifact",
       "other_title": "F-008/F-009 status",

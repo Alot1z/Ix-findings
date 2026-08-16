@@ -10,62 +10,11 @@
     "title": "ix-cli/src/cli/config.ts",
     "status": "CURRENT",
     "repository": "ix-infrastructure/Ix",
-    "url": "https://github.com/ix-infrastructure/Ix/blob/HEAD/ix-cli/src/cli/config.ts",
-    "source_mirror_id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/config.ts",
-    "source_type": "github_file",
-    "source_repository": "ix-infrastructure/Ix",
-    "source_url": "https://github.com/ix-infrastructure/Ix/blob/43bf9ead431a8c5afc43345de886074382df2d51/ix-cli%2Fsrc%2Fcli%2Fconfig.ts",
-    "source_api_url": null,
-    "source_is_authoritative": true,
-    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+    "url": "https://github.com/ix-infrastructure/Ix/blob/HEAD/ix-cli/src/cli/config.ts"
   },
-  "source_snapshot": {
-    "repository": "ix-infrastructure/Ix",
-    "pr_number": 414,
-    "filename": "ix-cli/src/cli/config.ts",
-    "status": "modified",
-    "additions": 4,
-    "deletions": 2,
-    "changes": 6,
-    "blob_url": "https://github.com/ix-infrastructure/Ix/blob/43bf9ead431a8c5afc43345de886074382df2d51/ix-cli%2Fsrc%2Fcli%2Fconfig.ts",
-    "raw_url": "https://github.com/ix-infrastructure/Ix/raw/43bf9ead431a8c5afc43345de886074382df2d51/ix-cli%2Fsrc%2Fcli%2Fconfig.ts",
-    "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fconfig.ts?ref=43bf9ead431a8c5afc43345de886074382df2d51",
-    "patch": "@@ -1,4 +1,4 @@\n-import { readFileSync, writeFileSync, existsSync, rmSync, chmodSync, renameSync } from \"node:fs\";\n+import { readFileSync, writeFileSync, existsSync, rmSync, chmodSync, renameSync, mkdirSync } from \"node:fs\";\n import { isAbsolute, join, relative, resolve as resolvePath, sep } from \"node:path\";\n import { homedir } from \"node:os\";\n import { createHash } from \"node:crypto\";\n@@ -75,7 +75,9 @@ const OSS_OWNED_KEYS = new Set<keyof IxConfig>([\n ]);\n \n export function saveConfig(config: IxConfig): void {\n-  const configPath = join(homedir(), \".ix\", \"config.yaml\");\n+  const configDir = join(homedir(), \".ix\");\n+  const configPath = join(configDir, \"config.yaml\");\n+  mkdirSync(configDir, { recursive: true });\n   let existing: Record<string, unknown> = {};\n   if (existsSync(configPath)) {\n     try {",
-    "parent_pr": 414
-  },
-  "source_context": {
-    "id": "github:file:ix-infrastructure/Ix:ix-cli/src/cli/config.ts",
-    "source": {
-      "type": "github_file",
-      "authority": "GITHUB",
-      "repository": "ix-infrastructure/Ix",
-      "owner": "ix-infrastructure",
-      "url": "https://github.com/ix-infrastructure/Ix/blob/43bf9ead431a8c5afc43345de886074382df2d51/ix-cli%2Fsrc%2Fcli%2Fconfig.ts",
-      "api_url": null,
-      "canonical": true,
-      "url_precision": "OBJECT"
-    },
-    "freshness": {
-      "first_seen": "2026-08-13T18:57:15Z",
-      "last_fetched": "2026-08-13T22:23:39.068Z",
-      "last_verified": "2026-08-13T22:23:39.068Z",
-      "source_updated_at": "2026-08-13T18:57:16Z",
-      "snapshot_version": "2026-08-13T22:23:39.068Z"
-    }
-  },
-  "ix_findings_analysis": {
-    "layer": "IX-FINDINGS_ANALYSIS",
-    "canonical_entity_id": "FILE-2c087a62904a",
-    "entity_type": "FILE",
-    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
-    "status": "CURRENT",
-    "provenance_class": "OFFICIAL_GITHUB_FACT",
-    "source_authority": "GITHUB",
-    "source_is_authoritative": true,
-    "ix_findings_is_authoritative_for_source": false,
-    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#414",
-    "line_precision": "FILE_LEVEL"
-  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
   "relationships": [
     {
       "direction": "in",

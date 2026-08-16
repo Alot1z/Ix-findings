@@ -1,0 +1,89 @@
+{
+  "id": "COMMIT-83b9be4207fb6ecd47a7c694684e6abfe8e18835",
+  "type": "commit",
+  "title": "83b9be4207fb6ecd47a7c694684e6abfe8e18835",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-83b9be4207fb6ecd47a7c694684e6abfe8e18835",
+  "summary": {
+    "id": "COMMIT-83b9be4207fb6ecd47a7c694684e6abfe8e18835",
+    "type": "commit",
+    "title": "83b9be4207fb6ecd47a7c694684e6abfe8e18835",
+    "status": "CURRENT",
+    "source_mirror_id": "github:commit:ix-infrastructure/Ix@83b9be4207fb6ecd47a7c694684e6abfe8e18835",
+    "source_type": "github_commit",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/commit/83b9be4207fb6ecd47a7c694684e6abfe8e18835",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/83b9be4207fb6ecd47a7c694684e6abfe8e18835",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "sha": "83b9be4207fb6ecd47a7c694684e6abfe8e18835",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/83b9be4207fb6ecd47a7c694684e6abfe8e18835",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/83b9be4207fb6ecd47a7c694684e6abfe8e18835",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "committer": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "message": "fix(php): count namespace blocks at the parser, not from entity scopes\n\nThe multi-namespace guard skipped a file when its entities carried more\nthan one distinct packageScope. Two shapes slip past that:\n\n  namespace A { use Vendor\\Thing; }   // declares nothing -> no scope\n  namespace B { class Thing {} ... }\n\n  namespace A { use Vendor\\Thing; }   // two blocks, one scope *string*\n  namespace A { class Thing {} ... }\n\nIn both, `use` from the first block was applied to the second, resolving\na name the second block declares itself and pointing it confidently at\nthe wrong file — the exact mis-resolution the guard exists to prevent.\n\nCount `namespace_definition` nodes instead, which is what the guard\nactually means. The count rides along on the walk that already collects\nthe unbraced spans: reading `namedChildren` a second time would pay the\nnode-wrapper materialization cost twice, and that term is what made the\noriginal per-definition scan expensive.\n\n`phpNamespaceBlocks` is spread in rather than assigned `undefined` so the\nkey is absent on non-PHP results — a present-but-undefined key still\nserializes and would have rewritten every checked-in parseFile snapshot.",
+    "parents": [
+      {
+        "sha": "e786f20df62c6278fce9324977b1e4ef87aef406",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/e786f20df62c6278fce9324977b1e4ef87aef406"
+      }
+    ],
+    "tree_sha": "d3ba2e1ee30bc3e41d940c2c81a4c7f5a3630bb5",
+    "authored_at": "2026-08-15T00:04:49Z",
+    "committed_at": "2026-08-15T00:04:49Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@83b9be4207fb6ecd47a7c694684e6abfe8e18835",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/83b9be4207fb6ecd47a7c694684e6abfe8e18835",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/83b9be4207fb6ecd47a7c694684e6abfe8e18835",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-15T00:04:49Z",
+      "last_fetched": "2026-08-16T08:59:39.836Z",
+      "last_verified": "2026-08-16T08:59:39.836Z",
+      "source_updated_at": "2026-08-15T00:04:49Z",
+      "snapshot_version": "2026-08-16T08:59:39.836Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-83b9be4207fb6ecd47a7c694684e6abfe8e18835",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#446"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGED_BY",
+      "other": "PR-446",
+      "other_type": "pr",
+      "other_title": "Ix PR #446",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-446"
+    }
+  ]
+}

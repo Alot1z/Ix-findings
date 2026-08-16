@@ -10,11 +10,62 @@
     "title": "core-ingestion/src/__tests__/patchBuilder.resolution.test.ts",
     "status": "CURRENT",
     "repository": "ix-infrastructure/Ix",
-    "url": "https://github.com/ix-infrastructure/Ix/blob/HEAD/core-ingestion/src/__tests__/patchBuilder.resolution.test.ts"
+    "url": "https://github.com/ix-infrastructure/Ix/blob/HEAD/core-ingestion/src/__tests__/patchBuilder.resolution.test.ts",
+    "source_mirror_id": "github:file:ix-infrastructure/Ix:core-ingestion/src/__tests__/patchBuilder.resolution.test.ts",
+    "source_type": "github_file",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/blob/83b9be4207fb6ecd47a7c694684e6abfe8e18835/core-ingestion%2Fsrc%2F__tests__%2FpatchBuilder.resolution.test.ts",
+    "source_api_url": null,
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
   },
-  "source_snapshot": null,
-  "source_context": null,
-  "ix_findings_analysis": null,
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "pr_number": 446,
+    "filename": "core-ingestion/src/__tests__/patchBuilder.resolution.test.ts",
+    "status": "modified",
+    "additions": 71,
+    "deletions": 0,
+    "changes": 71,
+    "blob_url": "https://github.com/ix-infrastructure/Ix/blob/83b9be4207fb6ecd47a7c694684e6abfe8e18835/core-ingestion%2Fsrc%2F__tests__%2FpatchBuilder.resolution.test.ts",
+    "raw_url": "https://github.com/ix-infrastructure/Ix/raw/83b9be4207fb6ecd47a7c694684e6abfe8e18835/core-ingestion%2Fsrc%2F__tests__%2FpatchBuilder.resolution.test.ts",
+    "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/core-ingestion%2Fsrc%2F__tests__%2FpatchBuilder.resolution.test.ts?ref=83b9be4207fb6ecd47a7c694684e6abfe8e18835",
+    "patch": "@@ -109,6 +109,32 @@ describe('buildPatchWithResolution', () => {\n     }));\n   });\n \n+  it('keeps same-named PHP constructor and function calls distinct', () => {\n+    const consumer = parseFile(\n+      '/repo/Consumer.php',\n+      `<?php\n+use Vendor[local-path]\\Helper;\n+function Helper(): void {}\n+function run(): void { new Helper(); Helper(); }\n+      `,\n+    )!;\n+    const provider = parseFile(\n+      '/repo/Vendor/Package/Helper.php',\n+      '<?php namespace Vendor\\\\Package; class Helper {}',\n+    )!;\n+    const resolved = resolveEdges([consumer, provider]);\n+    const patch = buildPatchWithResolution(consumer, 'hash', '', resolved);\n+    const callEdges = patch.ops.filter(op => op.type === 'UpsertEdge' && op.predicate === 'CALLS');\n+\n+    expect(callEdges).toHaveLength(2);\n+    expect(callEdges).toContainEqual(expect.objectContaining({\n+      dst: nodeId('/repo/Vendor/Package/Helper.php', 'Helper'),\n+    }));\n+    expect(callEdges).toContainEqual(expect.objectContaining({\n+      dst: nodeId('/repo/Consumer.php', 'Helper'),\n+    }));\n+  });\n+\n   it('materialises external stub node for unresolved :: package calls', () => {\n     const file = '/repo/model.R';\n     const externalNodeId = nodeId('external://dplyr', 'dplyr::filter');\n@@ -401,4 +427,49 @@ describe('multi-repo co-ingest identity convergence', () => {\n \n     expect(callsDst).toBe(svcbUtilNode);\n   });\n+\n+  it('emits one edge when two PHP call kinds resolve to the same node', () => {\n+    // `log()` and `Logger::log()` are two relationships once phpCallKind splits\n+    // the dedup key. Both resolve to the same member here, so salting the edge\n+    // id by call kind would mint two ids for one edge — and the dedup\n+    // downstream keys on id, so both would commit.\n+    const consumer = parseFile(\n+      '/repo/Caller.php',\n+      `<?php\n+use Vendor[local-path]\\Logger;\n+function handler(): void { log(); Logger::log(); }\n+`,\n+    )!;\n+    const logger = parseFile(\n+      '/repo/Vendor/Package/Logger.php',\n+      '<?php namespace Vendor\\\\Package; class Logger { public static function log(): void {} }',\n+    )!;\n+\n+    const patch = buildPatchWithResolution(consumer, 'hash', '', resolveEdges([consumer, logger]));\n+    const callEdges = patch.ops.filter(\n+      (op) => op.type === 'UpsertEdge' && op.predicate === 'CALLS',\n+    );\n+\n+    expect(callEdges).toHaveLength(1);\n+  });\n+\n+  it('emits one claim when two PHP call kinds name the same callee', () => {\n+    // Same root cause as the edge case above, and it fires on ordinary untyped\n+    // PHP: `handle()` and `$obj->handle()` are two relationships once\n+    // phpCallKind splits the key, but a claim carries no kind, so the two ops\n+    // are byte-identical.\n+    const consumer = parseFile(\n+      '/repo/Caller.php',\n+      `<?php\n+function handler($obj): void { handle(); $obj->handle(); }\n+`,\n+    )!;\n+\n+    const patch = buildPatchWithResolution(consumer, 'hash', '', []);\n+    const claims = patch.ops.filter(\n+      (op) => op.type === 'AssertClaim' && op.field === 'calls:handle',\n+    );\n+\n+    expect(claims).toHaveLength(1);\n+  });\n });",
+    "parent_pr": 446
+  },
+  "source_context": {
+    "id": "github:file:ix-infrastructure/Ix:core-ingestion/src/__tests__/patchBuilder.resolution.test.ts",
+    "source": {
+      "type": "github_file",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/blob/83b9be4207fb6ecd47a7c694684e6abfe8e18835/core-ingestion%2Fsrc%2F__tests__%2FpatchBuilder.resolution.test.ts",
+      "api_url": null,
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-14T20:19:05Z",
+      "last_fetched": "2026-08-16T08:59:39.836Z",
+      "last_verified": "2026-08-16T08:59:39.836Z",
+      "source_updated_at": "2026-08-16T01:02:32Z",
+      "snapshot_version": "2026-08-16T08:59:39.836Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "FILE-c6f85ba42d2a",
+    "entity_type": "FILE",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#446",
+    "line_precision": "FILE_LEVEL"
+  },
   "relationships": [
     {
       "direction": "in",

@@ -1,0 +1,450 @@
+{
+  "id": "PR-434",
+  "type": "pr",
+  "title": "Ix PR #434",
+  "status": "OPEN",
+  "url": "https://alot1z.github.io/Ix-findings/entities/pr-434",
+  "summary": {
+    "id": "PR-434",
+    "type": "pr",
+    "title": "Ix PR #434",
+    "status": "OPEN",
+    "number": 434,
+    "url": "https://github.com/ix-infrastructure/Ix/pull/434",
+    "source_mirror_id": "github:pull_request:ix-infrastructure/Ix#434",
+    "source_type": "github_pull_request",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/pull/434",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/434",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "number": 434,
+    "node_id": "PR_kwDORdC75M7_HIOf",
+    "title": "fix(ingest): resolve renamed type imports",
+    "body": "Fixes #433\n\n## Summary\n\nResolve renamed consumer-side TypeScript bindings for inheritance and type references.\n\n## Type\n- [x] Bug fix\n- [ ] Feature\n- [ ] Refactor\n- [ ] Docs\n- [ ] Test\n- [ ] CI\n\n## Changes\n- Prefer an exported public-name mapping when the provider defines one.\n- Fall back to the direct provider symbol for ordinary renamed imports.\n- Cover same-batch and cross-batch `EXTENDS`, `REFERENCES`, and `CALLS` resolution.\n\n## Validation\n\n- Focused core ingestion tests: 68 passed, 1 skipped.\n- Ix CLI tests: 928 passed, 1 skipped, including parser smoke tests.\n- Typecheck, build, lint, and `git diff --check` passed.\n- The unrelated core baseline still has six pre-existing failures involving unavailable fixtures and existing snapshots.\n\n## Checklist\n- [x] Tests pass\n- [x] Smoke tests pass\n- [x] No raw errors introduced\n- [x] CLI output follows Ix format\n\n## Release checklist (if merging to main)\n- [ ] `ix-cli/package.json` version bumped\n- [ ] After merge: tag pushed (`git tag vX.Y.Z && git push origin vX.Y.Z`)\n- [ ] If backend changes: `ix-memory-layer` tagged and released first\n- [ ] If `docker-compose.standalone.yml` changed: verified `curl | sh` install works\n",
+    "state": "open",
+    "draft": false,
+    "merged": false,
+    "author": {
+      "login": "Hiro-Chiba",
+      "id": 203865699,
+      "type": "User",
+      "html_url": "https://github.com/Hiro-Chiba"
+    },
+    "html_url": "https://github.com/ix-infrastructure/Ix/pull/434",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/434",
+    "head": {
+      "ref": "fix/renamed-type-imports",
+      "sha": "819d67e06e437e4715ea6e9f0bcd7bc7b5d5f001",
+      "repo": {
+        "id": 1329113547,
+        "full_name": "Hiro-Chiba/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "html_url": "https://github.com/Hiro-Chiba/Ix",
+        "api_url": "https://api.github.com/repos/Hiro-Chiba/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": true,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-08-09T19:06:50Z",
+        "updated_at": "2026-08-09T19:06:51Z",
+        "pushed_at": "2026-08-14T13:24:21Z",
+        "topics": [],
+        "language": null,
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 0,
+        "stargazers_count": 0,
+        "forks_count": 0,
+        "open_issues_count": 0
+      }
+    },
+    "base": {
+      "ref": "main",
+      "sha": "fef671cca4e922d5e473d99739adee77d9134c20",
+      "repo": {
+        "id": 1171307492,
+        "full_name": "ix-infrastructure/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "ix-infrastructure",
+          "id": 256883681,
+          "type": "Organization",
+          "html_url": "https://github.com/ix-infrastructure"
+        },
+        "html_url": "https://github.com/ix-infrastructure/Ix",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": false,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-03-03T04:48:38Z",
+        "updated_at": "2026-08-16T08:00:03Z",
+        "pushed_at": "2026-08-15T06:01:03Z",
+        "topics": [
+          "ai",
+          "ai-memory",
+          "claude-code",
+          "cli",
+          "code-analysis",
+          "code-mapping",
+          "code-memory",
+          "codebase-understanding",
+          "codex",
+          "developer-tools",
+          "llm",
+          "openclaw",
+          "persistent-memory",
+          "program-analysis",
+          "software-architecture",
+          "system-intelligence",
+          "system-mapping"
+        ],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 731,
+        "stargazers_count": 731,
+        "forks_count": 61,
+        "open_issues_count": 16
+      }
+    },
+    "merge_commit_sha": "7095f3cc2eaf641ab6d2c3bdb2b717e94c2737db",
+    "merged_at": null,
+    "closed_at": null,
+    "created_at": "2026-08-14T13:17:14Z",
+    "updated_at": "2026-08-15T00:26:11Z",
+    "labels": [],
+    "milestone": null,
+    "requested_reviewers": [
+      {
+        "login": "josephismikhail",
+        "id": 56614593,
+        "type": "User",
+        "html_url": "https://github.com/josephismikhail"
+      }
+    ],
+    "requested_teams": [],
+    "commits_count": 1,
+    "changed_files_count": 2,
+    "additions": 35,
+    "deletions": 1,
+    "changed_files": [
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 434,
+        "filename": "core-ingestion/src/__tests__/resolveEdges.test.ts",
+        "status": "modified",
+        "additions": 33,
+        "deletions": 0,
+        "changes": 33,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/819d67e06e437e4715ea6e9f0bcd7bc7b5d5f001/core-ingestion%2Fsrc%2F__tests__%2FresolveEdges.test.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/819d67e06e437e4715ea6e9f0bcd7bc7b5d5f001/core-ingestion%2Fsrc%2F__tests__%2FresolveEdges.test.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/core-ingestion%2Fsrc%2F__tests__%2FresolveEdges.test.ts?ref=819d67e06e437e4715ea6e9f0bcd7bc7b5d5f001",
+        "patch": "@@ -583,6 +583,39 @@ describe('resolveEdges', () => {\n     });\n   });\n \n+  it('resolves renamed imports used in inheritance and type references', () => {\n+    const provider = parseFile(\n+      '/repo/types.ts',\n+      'export interface User { id: string; }\\nexport class Base {}\\n',\n+    )!;\n+    const consumer = parseFile(\n+      '/repo/consumer.ts',\n+      'import { type User as ExternalUser, Base as LocalBase } from \"./types\";\\n'\n+        + 'export class Child extends LocalBase {}\\n'\n+        + 'export function use(value: ExternalUser) { return value.id; }\\n',\n+    )!;\n+\n+    const resolved = resolveEdges([consumer, provider]);\n+    expect(resolved).toContainEqual({\n+      srcFilePath: '/repo/consumer.ts',\n+      srcName: 'Child',\n+      dstFilePath: '/repo/types.ts',\n+      dstName: 'LocalBase',\n+      dstQualifiedKey: 'Base',\n+      predicate: 'EXTENDS',\n+      confidence: 0.9,\n+    });\n+    expect(resolved).toContainEqual({\n+      srcFilePath: '/repo/consumer.ts',\n+      srcName: 'use',\n+      dstFilePath: '/repo/types.ts',\n+      dstName: 'ExternalUser',\n+      dstQualifiedKey: 'User',\n+      predicate: 'REFERENCES',\n+      confidence: 0.9,\n+    });\n+  });\n+\n   it('uses caller-supplied parse results instead of re-parsing', () => {\n     // The CLI parses prescan sources on its worker pool and hands the results\n     // in, so the index costs no main-thread parsing. Proven by supplying a"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 434,
+        "filename": "core-ingestion/src/index.ts",
+        "status": "modified",
+        "additions": 2,
+        "deletions": 1,
+        "changes": 3,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/819d67e06e437e4715ea6e9f0bcd7bc7b5d5f001/core-ingestion%2Fsrc%2Findex.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/819d67e06e437e4715ea6e9f0bcd7bc7b5d5f001/core-ingestion%2Fsrc%2Findex.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/core-ingestion%2Fsrc%2Findex.ts?ref=819d67e06e437e4715ea6e9f0bcd7bc7b5d5f001",
+        "patch": "@@ -3989,7 +3989,8 @@ export function resolveEdges(\n           ))];\n           const publicMatches: Array<{ fp: string; local: string }> = [];\n           for (const fp of providerFiles.length === 1 ? providerFiles : []) {\n-            const local = filePublicNames.get(fp)?.get(binding.imported);\n+            const local = filePublicNames.get(fp)?.get(binding.imported)\n+              ?? (fileHasSymbol.get(fp)?.has(binding.imported) ? binding.imported : undefined);\n             if (local && fileHasSymbol.get(fp)?.has(local)) publicMatches.push({ fp, local });\n           }\n           if (publicMatches.length === 1) {"
+      }
+    ],
+    "commits": [
+      {
+        "sha": "819d67e06e437e4715ea6e9f0bcd7bc7b5d5f001",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/819d67e06e437e4715ea6e9f0bcd7bc7b5d5f001",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/819d67e06e437e4715ea6e9f0bcd7bc7b5d5f001",
+        "author": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "committer": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "message": "fix(ingest): resolve renamed type imports",
+        "parents": [
+          {
+            "sha": "fef671cca4e922d5e473d99739adee77d9134c20",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/fef671cca4e922d5e473d99739adee77d9134c20"
+          }
+        ],
+        "tree_sha": "b3d455c815f0f48906f9b3e2f140ff1256c799dd",
+        "authored_at": "2026-08-14T13:10:59Z",
+        "committed_at": "2026-08-14T13:10:59Z"
+      }
+    ],
+    "comments": [
+      {
+        "id": 5295706429,
+        "node_id": "IC_kwDORdC75M8AAAABO6YRPQ",
+        "repository": "ix-infrastructure/Ix",
+        "parent_type": "PULL_REQUEST",
+        "parent_number": 434,
+        "kind": "PR_COMMENT",
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "body": "Reviewed. The renamed-import fix is correct and the cross-batch path holds up — `filePublicNames`/`fileHasSymbol` are single merged maps, so same-batch and cross-batch are the same branch.\n\nOne defect to fix before merge: the new fallback matches `binding.imported` against every parsed symbol, and for a default import that value is the literal sentinel `'default'`, not an export name. Any provider member *called* `default` — a method, getter, or static — then satisfies it and produces a 0.9-confidence edge to the wrong member. Existing tests all use a named default export (`export default actualName`), which resolves earlier, which is why CI is green.\n\nFix + regression test (mutation-tested): **Hiro-Chiba/Ix#1** → merge it into `fix/renamed-type-imports` and this PR updates in place.",
+        "html_url": "https://github.com/ix-infrastructure/Ix/pull/434#issuecomment-5295706429",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5295706429",
+        "created_at": "2026-08-14T16:29:21Z",
+        "updated_at": "2026-08-14T16:29:21Z",
+        "commit_id": null,
+        "path": null,
+        "line": null,
+        "start_line": null,
+        "side": null,
+        "in_reply_to_id": null,
+        "diff_hunk": null,
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      },
+      {
+        "id": 5297796588,
+        "node_id": "IC_kwDORdC75M8AAAABO8X17A",
+        "repository": "ix-infrastructure/Ix",
+        "parent_type": "PULL_REQUEST",
+        "parent_number": 434,
+        "kind": "PR_COMMENT",
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "body": "Update on how this lands: **#443** now carries your commits plus the review fixes, targeting `main` directly. It's up for review by @josephismikhail.\n\nNo action needed from you. Your commits keep their authorship on that branch, and it will be merged with a merge commit rather than a squash so that stays true — when it lands, this PR closes as *merged*. The follow-up PR I'd opened into your fork is closed as superseded.\n\nThe reasoning for each fix is in this thread above and in #443's description.",
+        "html_url": "https://github.com/ix-infrastructure/Ix/pull/434#issuecomment-5297796588",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5297796588",
+        "created_at": "2026-08-14T20:20:49Z",
+        "updated_at": "2026-08-14T20:20:49Z",
+        "commit_id": null,
+        "path": null,
+        "line": null,
+        "start_line": null,
+        "side": null,
+        "in_reply_to_id": null,
+        "diff_hunk": null,
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      }
+    ],
+    "reviews": [],
+    "review_comments": [],
+    "timeline": [
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/819d67e06e437e4715ea6e9f0bcd7bc7b5d5f001"
+      },
+      {
+        "id": 29459665387,
+        "event": "review_requested",
+        "actor": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "created_at": "2026-08-14T13:17:15Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29459665387"
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-14T16:28:15Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": 5295706429,
+        "event": "commented",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-14T16:29:21Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5295706429"
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-14T20:18:00Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": 5297796588,
+        "event": "commented",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-14T20:20:49Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5297796588"
+      },
+      {
+        "id": 29479138768,
+        "event": "mentioned",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-14T20:20:51Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29479138768"
+      },
+      {
+        "id": 29479138805,
+        "event": "subscribed",
+        "actor": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "created_at": "2026-08-14T20:20:51Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29479138805"
+      }
+    ],
+    "source": "OFFICIAL_GITHUB_FACT",
+    "review_threads": [],
+    "review_thread_capture": {
+      "status": "UNKNOWN",
+      "source": "GitHub GraphQL API"
+    }
+  },
+  "source_context": {
+    "id": "github:pull_request:ix-infrastructure/Ix#434",
+    "source": {
+      "type": "github_pull_request",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/434",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/434",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-14T13:17:14Z",
+      "last_fetched": "2026-08-16T08:59:39.836Z",
+      "last_verified": "2026-08-16T08:59:39.836Z",
+      "source_updated_at": "2026-08-15T00:26:11Z",
+      "snapshot_version": "2026-08-16T08:59:39.836Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "PR-434",
+    "entity_type": "PULL_REQUEST",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "mirror_scope": "source PR, commits, files, comments, reviews, review comments, and review threads",
+    "related_analysis_types": [
+      "FINDING",
+      "DECISION",
+      "IMPLEMENTATION"
+    ],
+    "review_thread_state": "UNKNOWN"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "CHANGED_BY",
+      "other": "COMMIT-819d67e06e437e4715ea6e9f0bcd7bc7b5d5f001",
+      "other_type": "commit",
+      "other_title": "819d67e06e437e4715ea6e9f0bcd7bc7b5d5f001",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-819d67e06e437e4715ea6e9f0bcd7bc7b5d5f001"
+    },
+    {
+      "direction": "out",
+      "relationship": "FOUND_IN",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "in",
+      "relationship": "RELATED_TO_PR",
+      "other": "F-016",
+      "other_type": "finding",
+      "other_title": "#443 renamed-import fallback binds to provider members (X1/X3)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-016"
+    }
+  ]
+}

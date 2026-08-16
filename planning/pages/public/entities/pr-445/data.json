@@ -1,0 +1,814 @@
+{
+  "id": "PR-445",
+  "type": "pr",
+  "title": "Ix PR #445",
+  "status": "OPEN",
+  "url": "https://alot1z.github.io/Ix-findings/entities/pr-445",
+  "summary": {
+    "id": "PR-445",
+    "type": "pr",
+    "title": "Ix PR #445",
+    "status": "OPEN",
+    "number": 445,
+    "url": "https://github.com/ix-infrastructure/Ix/pull/445",
+    "source_mirror_id": "github:pull_request:ix-infrastructure/Ix#445",
+    "source_type": "github_pull_request",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/pull/445",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/445",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "number": 445,
+    "node_id": "PR_kwDORdC75M7_R_nU",
+    "title": "fix(ingest): resolve tsconfig module mappings, with authority + security fixes",
+    "body": "Carries **@Hiro-Chiba's #440** plus three review fixes, two of them security. Landing it here closes #440 as merged.\n\n> ⚠️ **Merge with a merge commit, not squash** — contains Hiro-Chiba's two commits alongside mine.\n\n## Their change (`7d83423`, `bf7a4b4`)\n\nResolves local TS/JS imports through `tsconfig.json`/`jsconfig.json` `paths`/`baseUrl` before the filename-stem fallback. New 360-line module. The follow-up commit fixes `$`-token expansion in wildcard substitution — **the CodeQL alert on #440 is stale** and can be dismissed after a re-scan (its multi-star rationale is unreachable: `matchPathPattern` rejects a second `*` before substitution).\n\n## My fixes\n\n**1. `795ec2c` — `baseUrl` claimed authority over every bare specifier.** `return config?.baseUrl ? [] : undefined` — but `[]` means *definitively not local*, and `baseUrl` matches every non-relative specifier. On any repo that sets it (the default in Next.js, CRA, Nest, most monorepo templates) every third-party import including `react` became an authoritative miss and its IMPORTS/CALLS edges were silently dropped. Authority now requires an *explicit* `paths` pattern; a bare `baseUrl` and a catch-all `\"*\"` rule return \"no opinion\". This **replaces their `treats an unresolved baseUrl module as authoritative` test** — that behaviour is the defect. Their explicit-`paths` authority test is untouched and still passes.\n\n**2. `9e58df1` — three security holes on the config-reading path.** All reachable from repo content, and all *before* ingestion's size gate (the resolver is built at `ingest.ts:1049`, 51 lines ahead of the `MAX_FILE_BYTES` check):\n- **No size cap.** A 64 MB JSONC file — which git packs to a ~95 KB repo — gives `FatalProcessOutOfMemory`, signal 6, uncatchable. main skips it as `tooLarge`, so this was the first pre-gate whole-file read and it bypassed an existing control.\n- **Device nodes and FIFOs.** `openSync` follows symlinks, so a link committed in the repo pointing at `/dev/zero` read forever (**exit 134, core dumped**); a FIFO blocked the event loop. Both report size 0, so a size check alone doesn't help. Under MCP the in-process runner means `withTimeout` can never fire and the server wedges uncancellably.\n- **No containment.** `resolveExtends` only checked `startsWith(\".\")`, which isn't containment — `resolve` clamps at `/`, so enough `..` segments name any absolute path.\n\nFixed by opening once and fstat-ing the same handle (no stat-then-read window — CodeQL `js/file-system-race`, the pattern `ingest.ts` already uses), rejecting non-regular files and anything over 1 MB, and filtering `extends` candidates to inside the workspace. No content ever escaped — `resolveCandidate` only consults an in-memory Map built from the caller's file list.\n\n**3. `c43303e` — memoization.** 24.87 µs → 3.38 µs per call, ~7.4x. Note the trap: the obvious `dirname` key is **wrong**, because `resolveCandidate` also reads the source *extension* (a `.js` caller prefers `.js`); keying on the directory alone serves one caller's answer to another. There's a test that runs both orders.\n\n## Verification\n\nEvery fix mutation-tested individually. ix-cli 944 passed, 1 skipped; `typecheck`, `lint` (0 errors), `knip` clean.",
+    "state": "open",
+    "draft": false,
+    "merged": false,
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "html_url": "https://github.com/ix-infrastructure/Ix/pull/445",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/445",
+    "head": {
+      "ref": "fix/440-baseurl-authority",
+      "sha": "adc97c1a979992739541a1d39e2e0b45ea6684d6",
+      "repo": {
+        "id": 1171307492,
+        "full_name": "ix-infrastructure/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "ix-infrastructure",
+          "id": 256883681,
+          "type": "Organization",
+          "html_url": "https://github.com/ix-infrastructure"
+        },
+        "html_url": "https://github.com/ix-infrastructure/Ix",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": false,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-03-03T04:48:38Z",
+        "updated_at": "2026-08-16T08:00:03Z",
+        "pushed_at": "2026-08-15T06:01:03Z",
+        "topics": [
+          "ai",
+          "ai-memory",
+          "claude-code",
+          "cli",
+          "code-analysis",
+          "code-mapping",
+          "code-memory",
+          "codebase-understanding",
+          "codex",
+          "developer-tools",
+          "llm",
+          "openclaw",
+          "persistent-memory",
+          "program-analysis",
+          "software-architecture",
+          "system-intelligence",
+          "system-mapping"
+        ],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 731,
+        "stargazers_count": 731,
+        "forks_count": 61,
+        "open_issues_count": 16
+      }
+    },
+    "base": {
+      "ref": "main",
+      "sha": "fef671cca4e922d5e473d99739adee77d9134c20",
+      "repo": {
+        "id": 1171307492,
+        "full_name": "ix-infrastructure/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "ix-infrastructure",
+          "id": 256883681,
+          "type": "Organization",
+          "html_url": "https://github.com/ix-infrastructure"
+        },
+        "html_url": "https://github.com/ix-infrastructure/Ix",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": false,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-03-03T04:48:38Z",
+        "updated_at": "2026-08-16T08:00:03Z",
+        "pushed_at": "2026-08-15T06:01:03Z",
+        "topics": [
+          "ai",
+          "ai-memory",
+          "claude-code",
+          "cli",
+          "code-analysis",
+          "code-mapping",
+          "code-memory",
+          "codebase-understanding",
+          "codex",
+          "developer-tools",
+          "llm",
+          "openclaw",
+          "persistent-memory",
+          "program-analysis",
+          "software-architecture",
+          "system-intelligence",
+          "system-mapping"
+        ],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 731,
+        "stargazers_count": 731,
+        "forks_count": 61,
+        "open_issues_count": 16
+      }
+    },
+    "merge_commit_sha": "03913a728f44602c08fbd67872ab2ca7bf8b85af",
+    "merged_at": null,
+    "closed_at": null,
+    "created_at": "2026-08-14T20:18:40Z",
+    "updated_at": "2026-08-16T01:02:34Z",
+    "labels": [],
+    "milestone": null,
+    "requested_reviewers": [
+      {
+        "login": "josephismikhail",
+        "id": 56614593,
+        "type": "User",
+        "html_url": "https://github.com/josephismikhail"
+      }
+    ],
+    "requested_teams": [],
+    "commits_count": 8,
+    "changed_files_count": 6,
+    "additions": 1094,
+    "deletions": 4,
+    "changed_files": [
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 445,
+        "filename": "core-ingestion/src/__tests__/resolveEdges.test.ts",
+        "status": "modified",
+        "additions": 109,
+        "deletions": 0,
+        "changes": 109,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/adc97c1a979992739541a1d39e2e0b45ea6684d6/core-ingestion%2Fsrc%2F__tests__%2FresolveEdges.test.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/adc97c1a979992739541a1d39e2e0b45ea6684d6/core-ingestion%2Fsrc%2F__tests__%2FresolveEdges.test.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/core-ingestion%2Fsrc%2F__tests__%2FresolveEdges.test.ts?ref=adc97c1a979992739541a1d39e2e0b45ea6684d6",
+        "patch": "@@ -287,6 +287,115 @@ describe('resolveEdges', () => {\n     });\n   });\n \n+  it('prefers configured JS/TS module targets over unrelated stem matches', () => {\n+    const consumer = parseFile(\n+      '/repo/src/consumer.ts',\n+      'import { execute } from \"@core\";\\nexport function run() { return execute(); }\\n',\n+    )!;\n+    const intended = parseFile(\n+      '/repo/src/adapters/worker.ts',\n+      'export function execute() { return \"worker\"; }\\n',\n+    )!;\n+    const unrelated = parseFile(\n+      '/repo/legacy/core.ts',\n+      'export function execute() { return \"legacy\"; }\\n',\n+    )!;\n+\n+    const resolved = resolveEdges([consumer, intended, unrelated], undefined, undefined, {\n+      resolveModuleSpecifier: (_source, specifier) =>\n+        specifier === '@core' ? ['/repo/src/adapters/worker.ts'] : undefined,\n+    });\n+\n+    expect(resolved).toContainEqual(expect.objectContaining({\n+      srcFilePath: '/repo/src/consumer.ts',\n+      dstFilePath: '/repo/src/adapters/worker.ts',\n+      predicate: 'IMPORTS',\n+      confidence: 0.9,\n+    }));\n+    expect(resolved).toContainEqual(expect.objectContaining({\n+      srcFilePath: '/repo/src/consumer.ts',\n+      dstFilePath: '/repo/src/adapters/worker.ts',\n+      predicate: 'CALLS',\n+      confidence: 0.9,\n+    }));\n+    expect(resolved.some(edge => edge.dstFilePath === '/repo/legacy/core.ts')).toBe(false);\n+  });\n+\n+  it('uses mapped runtime files for calls and declaration files for references', () => {\n+    const consumer = parseFile(\n+      '/repo/src/consumer.ts',\n+      'import { run, type Foo } from \"@pkg\";\\n'\n+        + 'export function call() { return run(); }\\n'\n+        + 'export function use(value: Foo) { return value; }\\n',\n+    )!;\n+    const runtime = parseFile('/repo/lib/index.js', 'export function run() { return 1; }\\n')!;\n+    const declarations = parseFile('/repo/lib/index.d.ts', 'export interface Foo { id: string; }\\n')!;\n+\n+    const resolved = resolveEdges([consumer, runtime, declarations], undefined, undefined, {\n+      resolveModuleSpecifier: (_source, _specifier, kind) =>\n+        kind === 'types' ? ['/repo/lib/index.d.ts'] : ['/repo/lib/index.js'],\n+    });\n+\n+    expect(resolved).toContainEqual(expect.objectContaining({\n+      dstFilePath: '/repo/lib/index.js',\n+      predicate: 'CALLS',\n+      confidence: 0.9,\n+    }));\n+    expect(resolved).toContainEqual(expect.objectContaining({\n+      dstFilePath: '/repo/lib/index.d.ts',\n+      predicate: 'REFERENCES',\n+      confidence: 0.9,\n+    }));\n+  });\n+\n+  it('does not fall back to a stem when a configured JS/TS import is unresolved', () => {\n+    const consumer = parseFile(\n+      '/repo/src/consumer.ts',\n+      'import { execute } from \"@core\";\\nexport function run() { return execute(); }\\n',\n+    )!;\n+    const unrelated = parseFile(\n+      '/repo/legacy/core.ts',\n+      'export function execute() { return \"legacy\"; }\\n',\n+    )!;\n+\n+    expect(resolveEdges([consumer, unrelated], undefined, undefined, {\n+      resolveModuleSpecifier: () => [],\n+    })).toEqual([]);\n+  });\n+\n+  it('keeps transitive resolution when a configured module target is a barrel', () => {\n+    const consumer = parseFile(\n+      '/repo/app/consumer.ts',\n+      'import { execute } from \"@pkg\";\\nexport function run() { return execute(); }\\n',\n+    )!;\n+    const barrel = parseFile(\n+      '/repo/pkg/index.ts',\n+      'export { execute } from \"./worker.js\";\\n',\n+    )!;\n+    const worker = parseFile(\n+      '/repo/pkg/worker.ts',\n+      'export function execute() { return \"worker\"; }\\n',\n+    )!;\n+\n+    const resolved = resolveEdges([consumer, barrel, worker], undefined, undefined, {\n+      resolveModuleSpecifier: (_source, specifier) =>\n+        specifier === '@pkg' ? ['/repo/pkg/index.ts'] : undefined,\n+    });\n+\n+    expect(resolved).toContainEqual(expect.objectContaining({\n+      srcFilePath: '/repo/app/consumer.ts',\n+      dstFilePath: '/repo/pkg/index.ts',\n+      predicate: 'IMPORTS',\n+      confidence: 0.9,\n+    }));\n+    expect(resolved).toContainEqual(expect.objectContaining({\n+      srcFilePath: '/repo/app/consumer.ts',\n+      dstFilePath: '/repo/pkg/worker.ts',\n+      predicate: 'CALLS',\n+      confidence: 0.8,\n+    }));\n+  });\n+\n   it('resolves a call through a provider export alias', () => {\n     const provider = parseFile(\n       '/repo/provider.ts',"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 445,
+        "filename": "core-ingestion/src/index.ts",
+        "status": "modified",
+        "additions": 54,
+        "deletions": 2,
+        "changes": 56,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/adc97c1a979992739541a1d39e2e0b45ea6684d6/core-ingestion%2Fsrc%2Findex.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/adc97c1a979992739541a1d39e2e0b45ea6684d6/core-ingestion%2Fsrc%2Findex.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/core-ingestion%2Fsrc%2Findex.ts?ref=adc97c1a979992739541a1d39e2e0b45ea6684d6",
+        "patch": "@@ -3165,6 +3165,14 @@ export function resolveEdges(\n     // cross-repo gate so genuine edges survive even where import-to-package matching\n     // can't bridge the gap (e.g. Java's Maven artifactId vs `import com.google...`).\n     declaredRepoDeps?: Record<string, string[]>;\n+    // Workspace-aware JS/TS module resolution supplied by the CLI. `undefined`\n+    // preserves the existing fallback; an empty array is authoritative and\n+    // prevents a configured import from falling through to an unrelated stem.\n+    resolveModuleSpecifier?: (\n+      srcFilePath: string,\n+      specifier: string,\n+      kind?: 'runtime' | 'types',\n+    ) => string[] | undefined;\n   },\n ): ResolvedEdge[] {\n   // Provide a default no-op stats bag when caller passes none (backward compat).\n@@ -3690,13 +3698,25 @@ export function resolveEdges(\n     srcLanguage: SupportedLanguages,\n     modName: unknown,\n     importRaw?: unknown,\n+    kind: 'runtime' | 'types' = 'runtime',\n   ): string[] {\n+    const configuredMatches =\n+      (srcLanguage === SupportedLanguages.JavaScript || srcLanguage === SupportedLanguages.TypeScript) &&\n+      typeof importRaw === 'string' &&\n+      !importRaw.startsWith('./') &&\n+      !importRaw.startsWith('../')\n+        ? opts?.resolveModuleSpecifier?.(srcFilePath, importRaw, kind)\n+        : undefined;\n+    const indexedConfiguredMatches = configuredMatches?.flatMap(filePath =>\n+      normalizedPathToFiles.get(normalizedPathKey(filePath)) ?? []\n+    ).filter(filePath => normalizedPathKey(filePath) !== normalizedPathKey(srcFilePath));\n     // fileLanguage only covers the current parse batch; cross-batch candidates\n     // come from the global stem index, so fall back to the extension-derived\n     // language (always available) — otherwise an undefined dst language would\n     // slip cross-language matches (e.g. a Python import -> a Rust/Elixir file).\n-    const importMatches = (resolveRelativeImportTargets(srcFilePath, srcLanguage, importRaw) ??\n-      modNameToFiles(modName, srcFilePath))\n+    const importMatches = (configuredMatches === undefined\n+      ? resolveRelativeImportTargets(srcFilePath, srcLanguage, importRaw) ?? modNameToFiles(modName, srcFilePath)\n+      : indexedConfiguredMatches ?? [])\n       .filter(fp => importLanguageCompatible(srcLanguage, fileLanguage.get(fp) ?? languageFromPath(fp)));\n     if (srcLanguage !== SupportedLanguages.Go || importMatches.length <= 1) return importMatches;\n     return narrowGoImportCandidates(srcFilePath, modName, importMatches, files => {\n@@ -3968,6 +3988,16 @@ export function resolveEdges(\n       const binding = rel.importBinding === false\n         ? undefined\n         : importBindingsByLocal.get(srcFilePath)?.get(origDstName);\n+      const configuredBindingTargets = binding &&\n+        (srcLanguage === SupportedLanguages.JavaScript || srcLanguage === SupportedLanguages.TypeScript) &&\n+        !binding.pkg.startsWith('./') &&\n+        !binding.pkg.startsWith('../')\n+          ? opts?.resolveModuleSpecifier?.(\n+              srcFilePath,\n+              binding.pkg,\n+              rel.predicate === 'CALLS' ? 'runtime' : 'types',\n+            )\n+          : undefined;\n \n       // Tier 1: same-file — already correct in buildPatch, skip here. Check the\n       // call-site name before any import binding rewrite so a local shadow wins.\n@@ -3986,7 +4016,28 @@ export function resolveEdges(\n             srcLanguage,\n             binding.pkg,\n             binding.pkg,\n+            rel.predicate === 'CALLS' ? 'runtime' : 'types',\n           ))];\n+          if (\n+            configuredBindingTargets !== undefined &&\n+            providerFiles.length === 1 &&\n+            fileHasSymbol.get(providerFiles[0])?.has(binding.imported)\n+          ) {\n+            const fp = providerFiles[0];\n+            const dstQualifiedKey = bestQKey(fileQKeys, fp, binding.imported);\n+            if (dstQualifiedKey !== null) {\n+              resolved.push({\n+                srcFilePath,\n+                srcName,\n+                dstFilePath: fp,\n+                dstName: origDstName,\n+                dstQualifiedKey,\n+                predicate: rel.predicate,\n+                confidence: 0.9,\n+              });\n+              continue;\n+            }\n+          }\n           const publicMatches: Array<{ fp: string; local: string }> = [];\n           for (const fp of providerFiles.length === 1 ? providerFiles : []) {\n             const local = filePublicNames.get(fp)?.get(binding.imported);\n@@ -4120,6 +4171,7 @@ export function resolveEdges(\n         resolved.push({ srcFilePath, srcName, dstFilePath: fp, dstName: origDstName, dstQualifiedKey, predicate: rel.predicate, confidence: 0.8 });\n         continue;\n       }\n+      if (configuredBindingTargets?.length === 0) continue;\n       if (rel.predicate === 'CALLS' && relativeCallBindings.get(srcFilePath)?.has(origDstName)) {\n         stats.skippedAmbiguous++;\n         continue;"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 445,
+        "filename": "ix-cli/knip.json",
+        "status": "modified",
+        "additions": 1,
+        "deletions": 1,
+        "changes": 2,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/adc97c1a979992739541a1d39e2e0b45ea6684d6/ix-cli%2Fknip.json",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/adc97c1a979992739541a1d39e2e0b45ea6684d6/ix-cli%2Fknip.json",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fknip.json?ref=adc97c1a979992739541a1d39e2e0b45ea6684d6",
+        "patch": "@@ -3,5 +3,5 @@\n   \"entry\": [\"src/cli/main.ts\", \"src/index.ts\", \"test/parser.smoke.mjs\"],\n   \"project\": [\"src/**/*.ts\"],\n   \"ignore\": [\"test/fixtures/**\", \"test/parser.stress.mjs\"],\n-  \"ignoreBinaries\": [\"ix\", \"cygpath\", \"tar\", \"start\", \"xdg-open\"]\n+  \"ignoreBinaries\": [\"ix\", \"cygpath\", \"tar\", \"start\", \"xdg-open\", \"mkfifo\"]\n }"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 445,
+        "filename": "ix-cli/src/cli/__tests__/ts-module-resolution.test.ts",
+        "status": "added",
+        "additions": 457,
+        "deletions": 0,
+        "changes": 457,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/adc97c1a979992739541a1d39e2e0b45ea6684d6/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fts-module-resolution.test.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/adc97c1a979992739541a1d39e2e0b45ea6684d6/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fts-module-resolution.test.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fts-module-resolution.test.ts?ref=adc97c1a979992739541a1d39e2e0b45ea6684d6",
+        "patch": "@@ -0,0 +1,457 @@\n+import { execFileSync } from \"node:child_process\";\n+import { mkdirSync, mkdtempSync, rmSync, symlinkSync, writeFileSync } from \"node:fs\";\n+import { tmpdir } from \"node:os\";\n+import { dirname, join, relative, sep } from \"node:path\";\n+\n+import { afterEach, describe, expect, it } from \"vitest\";\n+\n+import { createTypeScriptModuleResolver } from \"../ts-module-resolution.js\";\n+\n+const workspaces: string[] = [];\n+\n+function workspace(): string {\n+  const root = mkdtempSync(join(tmpdir(), \"ix-ts-resolution-\"));\n+  workspaces.push(root);\n+  return root;\n+}\n+\n+function write(root: string, relativePath: string, content = \"\"): string {\n+  const filePath = join(root, relativePath);\n+  mkdirSync(dirname(filePath), { recursive: true });\n+  writeFileSync(filePath, content);\n+  return filePath;\n+}\n+\n+afterEach(() => {\n+  for (const root of workspaces.splice(0)) rmSync(root, { recursive: true, force: true });\n+});\n+\n+describe(\"createTypeScriptModuleResolver\", () => {\n+  it(\"resolves tsconfig paths before an unrelated same-stem file\", () => {\n+    const root = workspace();\n+    const config = write(\n+      root,\n+      \"tsconfig.json\",\n+      `{\n+      // JSONC comments and trailing commas are valid in tsconfig files.\n+      \"compilerOptions\": {\n+        \"baseUrl\": \".\",\n+        \"paths\": { \"@core\": [\"src/adapters/worker\"], },\n+      },\n+    }`,\n+    );\n+    const consumer = write(root, \"src/consumer.ts\");\n+    const worker = write(root, \"src/adapters/worker.ts\");\n+    const unrelated = write(root, \"legacy/core.ts\");\n+    const resolve = createTypeScriptModuleResolver(root, [config, consumer, worker, unrelated]);\n+\n+    expect(resolve(\"src/consumer.ts\", \"@core\")).toEqual([\"src/adapters/worker.ts\"]);\n+  });\n+\n+  it(\"treats an unresolved matching paths rule as authoritative\", () => {\n+    const root = workspace();\n+    const config = write(\n+      root,\n+      \"tsconfig.json\",\n+      JSON.stringify({\n+        compilerOptions: { paths: { \"@core/*\": [\"src/core/*\"] } },\n+      }),\n+    );\n+    const consumer = write(root, \"src/consumer.ts\");\n+    const unrelated = write(root, \"legacy/missing.ts\");\n+    const resolve = createTypeScriptModuleResolver(root, [config, consumer, unrelated]);\n+\n+    expect(resolve(\"src/consumer.ts\", \"@core/missing\")).toEqual([]);\n+  });\n+\n+  it(\"substitutes wildcard text without interpreting replacement tokens\", () => {\n+    const root = workspace();\n+    const config = write(\n+      root,\n+      \"tsconfig.json\",\n+      JSON.stringify({\n+        compilerOptions: { paths: { \"@core/*\": [\"src/core/*\"] } },\n+      }),\n+    );\n+    const consumer = write(root, \"src/consumer.ts\");\n+    const target = write(root, \"src/core/$&.ts\");\n+    const resolve = createTypeScriptModuleResolver(root, [config, consumer, target]);\n+\n+    expect(resolve(\"src/consumer.ts\", \"@core/$&\")).toEqual([\"src/core/$&.ts\"]);\n+  });\n+\n+  it(\"resolves baseUrl modules\", () => {\n+    const root = workspace();\n+    const config = write(\n+      root,\n+      \"tsconfig.json\",\n+      JSON.stringify({\n+        compilerOptions: { baseUrl: \"src\" },\n+      }),\n+    );\n+    const consumer = write(root, \"src/consumer.ts\");\n+    const worker = write(root, \"src/services/worker.ts\");\n+    const unrelated = write(root, \"vendor/worker.ts\");\n+    const resolve = createTypeScriptModuleResolver(root, [config, consumer, worker, unrelated]);\n+\n+    expect(resolve(\"src/consumer.ts\", \"services/worker\")).toEqual([\"src/services/worker.ts\"]);\n+  });\n+\n+  it(\"does not treat an unresolved baseUrl module as authoritative\", () => {\n+    // `baseUrl` matches every bare specifier, so its miss carries no information.\n+    // Returning [] here tells the resolver \"definitively not local\", which drops\n+    // the edge; `undefined` means \"no opinion\" and lets the stem fallback run.\n+    const root = workspace();\n+    const config = write(\n+      root,\n+      \"tsconfig.json\",\n+      JSON.stringify({\n+        compilerOptions: { baseUrl: \"src\" },\n+      }),\n+    );\n+    const consumer = write(root, \"src/consumer.ts\");\n+    const unrelated = write(root, \"legacy/missing.ts\");\n+    const resolve = createTypeScriptModuleResolver(root, [config, consumer, unrelated]);\n+\n+    expect(resolve(\"src/consumer.ts\", \"services/missing\")).toBeUndefined();\n+  });\n+\n+  it(\"keeps third-party specifiers unresolved rather than authoritative under baseUrl\", () => {\n+    // The regression this guards: `baseUrl: \".\"` is the default in Next.js, CRA\n+    // and most monorepo templates. Claiming authority over `react` there erased\n+    // every third-party import edge in the graph.\n+    const root = workspace();\n+    const config = write(\n+      root,\n+      \"tsconfig.json\",\n+      JSON.stringify({ compilerOptions: { baseUrl: \".\" } }),\n+    );\n+    const consumer = write(root, \"packages/app/index.ts\");\n+    const sibling = write(root, \"packages/lib/index.ts\");\n+    const resolve = createTypeScriptModuleResolver(root, [config, consumer, sibling]);\n+\n+    expect(resolve(\"packages/app/index.ts\", \"react\")).toBeUndefined();\n+    expect(resolve(\"packages/app/index.ts\", \"@org/lib\")).toBeUndefined();\n+  });\n+\n+  it(\"does not treat a catch-all paths rule as authoritative\", () => {\n+    // `\"*\": [\"src/*\"]` matches every specifier, so it is baseUrl by another name.\n+    const root = workspace();\n+    const config = write(\n+      root,\n+      \"tsconfig.json\",\n+      JSON.stringify({\n+        compilerOptions: { paths: { \"*\": [\"src/*\"] } },\n+      }),\n+    );\n+    const consumer = write(root, \"src/consumer.ts\");\n+    const resolve = createTypeScriptModuleResolver(root, [config, consumer]);\n+\n+    expect(resolve(\"src/consumer.ts\", \"lodash\")).toBeUndefined();\n+  });\n+\n+  it(\"falls back to baseUrl when a matching paths rule resolves nothing\", () => {\n+    // TypeScript tries `paths` first, then `baseUrl`. A failed rule must not\n+    // short-circuit the baseUrl lookup.\n+    const root = workspace();\n+    const config = write(\n+      root,\n+      \"tsconfig.json\",\n+      JSON.stringify({\n+        compilerOptions: { baseUrl: \"src\", paths: { \"@core/*\": [\"missing/*\"] } },\n+      }),\n+    );\n+    const consumer = write(root, \"src/consumer.ts\");\n+    const actual = write(root, \"src/@core/thing.ts\");\n+    const resolve = createTypeScriptModuleResolver(root, [config, consumer, actual]);\n+\n+    expect(resolve(\"src/consumer.ts\", \"@core/thing\")).toEqual([\"src/@core/thing.ts\"]);\n+  });\n+\n+  it(\"ignores a config larger than the size cap instead of parsing it\", () => {\n+    // The resolver is built before ingestion's MAX_FILE_BYTES gate, so a repo\n+    // could hand it a 64 MB JSONC file and take the process out with an\n+    // uncatchable OOM. Small here; the cap is what is under test.\n+    const root = workspace();\n+    const config = write(\n+      root,\n+      \"tsconfig.json\",\n+      `{/*${\"a\".repeat(1024 * 1024 + 16)}*/\"compilerOptions\":{\"paths\":{\"@core\":[\"src/worker\"]}}}`,\n+    );\n+    const consumer = write(root, \"src/consumer.ts\");\n+    const worker = write(root, \"src/worker.ts\");\n+    const resolve = createTypeScriptModuleResolver(root, [config, consumer, worker]);\n+\n+    // Config ignored entirely -> no mapping, and no opinion.\n+    expect(resolve(\"src/consumer.ts\", \"@core\")).toBeUndefined();\n+  });\n+\n+  it(\"refuses an extends that escapes the workspace\", () => {\n+    // `startsWith(\".\")` is not containment: resolve() clamps at the filesystem\n+    // root, so enough `..` segments name any absolute path.\n+    const root = workspace();\n+    const outside = mkdtempSync(join(tmpdir(), \"ix-outside-\"));\n+    workspaces.push(outside);\n+    writeFileSync(\n+      join(outside, \"tsconfig.json\"),\n+      JSON.stringify({ compilerOptions: { paths: { \"@evil\": [\"target\"] } } }),\n+    );\n+    const escape = relative(root, join(outside, \"tsconfig.json\")).split(sep).join(\"/\");\n+    const config = write(root, \"tsconfig.json\", JSON.stringify({ extends: `./${escape}` }));\n+    const consumer = write(root, \"src/consumer.ts\");\n+    const target = write(root, \"target.ts\");\n+    const resolve = createTypeScriptModuleResolver(root, [config, consumer, target]);\n+\n+    expect(resolve(\"src/consumer.ts\", \"@evil\")).toBeUndefined();\n+  });\n+\n+  it.skipIf(process.platform === \"win32\")(\n+    \"refuses an extends that leaves the workspace through a symlinked directory\",\n+    () => {\n+      // Every segment of \"./linked/tsconfig.json\" is inside the workspace by\n+      // path arithmetic, so a lexical containment check passes it. Only the\n+      // path we actually opened shows that `linked/` is a link to elsewhere.\n+      const root = workspace();\n+      const outside = mkdtempSync(join(tmpdir(), \"ix-outside-\"));\n+      workspaces.push(outside);\n+      writeFileSync(\n+        join(outside, \"tsconfig.json\"),\n+        JSON.stringify({ compilerOptions: { paths: { \"@evil\": [\"target\"] } } }),\n+      );\n+      try {\n+        symlinkSync(outside, join(root, \"linked\"), \"dir\");\n+      } catch {\n+        return; // no permission to symlink (e.g. restricted CI) — nothing to assert\n+      }\n+      const config = write(root, \"tsconfig.json\", JSON.stringify({ extends: \"./linked/tsconfig.json\" }));\n+      const consumer = write(root, \"src/consumer.ts\");\n+      const target = write(root, \"target.ts\");\n+      const resolve = createTypeScriptModuleResolver(root, [config, consumer, target]);\n+\n+      expect(resolve(\"src/consumer.ts\", \"@evil\")).toBeUndefined();\n+    },\n+  );\n+\n+  it.skipIf(process.platform === \"win32\")(\n+    \"still resolves when the workspace root is itself reached through a symlink\",\n+    () => {\n+      // Comparing a resolved file path against an unresolved root rejects every\n+      // config whenever the root is a link — macOS /var -> /private/var, a home\n+      // on a network mount, a ~/code symlink. No CI runner here has one, so this\n+      // is the only thing standing between that and a silent no-op for those\n+      // users.\n+      const real = workspace();\n+      const link = join(mkdtempSync(join(tmpdir(), \"ix-linkroot-\")), \"root\");\n+      workspaces.push(dirname(link));\n+      try {\n+        symlinkSync(real, link, \"dir\");\n+      } catch {\n+        return; // no permission to symlink (e.g. restricted CI) — nothing to assert\n+      }\n+      write(\n+        real,\n+        \"tsconfig.json\",\n+        JSON.stringify({ compilerOptions: { baseUrl: \".\", paths: { \"@core\": [\"src/worker\"] } } }),\n+      );\n+      write(real, \"src/worker.ts\");\n+      write(real, \"src/consumer.ts\");\n+      const resolve = createTypeScriptModuleResolver(link, [\n+        join(link, \"tsconfig.json\"),\n+        join(link, \"src/worker.ts\"),\n+        join(link, \"src/consumer.ts\"),\n+      ]);\n+\n+      expect(resolve(\"src/consumer.ts\", \"@core\")).toEqual([\"src/worker.ts\"]);\n+    },\n+  );\n+\n+  it.skipIf(process.platform === \"win32\")(\n+    \"refuses an extends that reaches a device node through a symlink\",\n+    () => {\n+      // Containment alone does not cover this: the link sits inside the\n+      // workspace and only the *target* is a character device, which reports\n+      // size 0 and would read forever.\n+      const root = workspace();\n+      const link = join(root, \"linked.json\");\n+      try {\n+        symlinkSync(\"/dev/zero\", link);\n+      } catch {\n+        return; // no permission to symlink (e.g. restricted CI) — nothing to assert\n+      }\n+      const config = write(root, \"tsconfig.json\", JSON.stringify({ extends: \"./linked.json\" }));\n+      const consumer = write(root, \"src/consumer.ts\");\n+      const resolve = createTypeScriptModuleResolver(root, [config, consumer, link]);\n+\n+      expect(resolve(\"src/consumer.ts\", \"@core\")).toBeUndefined();\n+    },\n+  );\n+\n+  it.skipIf(process.platform === \"win32\")(\n+    \"refuses an extends that reaches a FIFO without blocking on the open\",\n+    () => {\n+      // The guard that rejects non-regular files runs *after* the open, and\n+      // opening a FIFO for reading blocks until a writer appears — so without\n+      // O_NONBLOCK the open never returns and no later check can save it. The\n+      // /dev/zero case does not cover this: a character device opens fine.\n+      const root = workspace();\n+      const fifo = join(root, \"piped.json\");\n+      try {\n+        execFileSync(\"mkfifo\", [fifo]);\n+      } catch {\n+        return; // no mkfifo available — nothing to assert\n+      }\n+      const config = write(root, \"tsconfig.json\", JSON.stringify({ extends: \"./piped.json\" }));\n+      const consumer = write(root, \"src/consumer.ts\");\n+      const resolve = createTypeScriptModuleResolver(root, [config, consumer, fifo]);\n+\n+      expect(resolve(\"src/consumer.ts\", \"@core\")).toBeUndefined();\n+    },\n+  );\n+\n+  it(\"accepts a sibling directory whose name begins with dots\", () => {\n+    // Containment must compare path segments: `..shared` is inside the\n+    // workspace, but a bare startsWith(\"..\") reads it as an escape.\n+    const root = workspace();\n+    write(\n+      root,\n+      \"..shared/tsconfig.json\",\n+      JSON.stringify({ compilerOptions: { paths: { \"@core\": [\"src/worker\"] } } }),\n+    );\n+    const config = write(root, \"tsconfig.json\", JSON.stringify({ extends: \"./..shared\" }));\n+    const consumer = write(root, \"src/consumer.ts\");\n+    const worker = write(root, \"..shared/src/worker.ts\");\n+    const resolve = createTypeScriptModuleResolver(root, [config, consumer, worker]);\n+\n+    expect(resolve(\"src/consumer.ts\", \"@core\")).toEqual([\"..shared/src/worker.ts\"]);\n+  });\n+\n+  it(\"does not claim authority when an out-of-scope extends was dropped\", () => {\n+    // A scoped ingest roots containment at the ingest path, so a shared base\n+    // config above it is dropped. Half-loading the remainder is worse than main:\n+    // the local `paths` rule matches, fails against the missing baseUrl, and\n+    // returns an authoritative [] that deletes an edge main resolves.\n+    const outer = workspace();\n+    writeFileSync(\n+      join(outer, \"tsconfig.base.json\"),\n+      JSON.stringify({ compilerOptions: { baseUrl: \".\" } }),\n+    );\n+    const scoped = join(outer, \"packages\", \"web\");\n+    mkdirSync(scoped, { recursive: true });\n+    const config = write(\n+      scoped,\n+      \"tsconfig.json\",\n+      JSON.stringify({\n+        extends: \"../../tsconfig.base.json\",\n+        compilerOptions: { paths: { \"@app/*\": [\"src/*\"] } },\n+      }),\n+    );\n+    const consumer = write(scoped, \"src/consumer.ts\");\n+    const resolve = createTypeScriptModuleResolver(scoped, [config, consumer]);\n+\n+    // undefined (\"no opinion\") lets the stem fallback run; [] would delete the edge.\n+    expect(resolve(\"src/consumer.ts\", \"@app/missing\")).toBeUndefined();\n+  });\n+\n+  it(\"follows a relative extends that names a directory\", () => {\n+    // Previously an existsSync probe stopped at the directory itself and never\n+    // tried <dir>/tsconfig.json, so the parent's paths were silently dropped.\n+    const root = workspace();\n+    write(\n+      root,\n+      \"cfg/tsconfig.json\",\n+      JSON.stringify({ compilerOptions: { paths: { \"@core\": [\"src/worker\"] } } }),\n+    );\n+    const config = write(root, \"tsconfig.json\", JSON.stringify({ extends: \"./cfg\" }));\n+    const consumer = write(root, \"src/consumer.ts\");\n+    // `paths` in an extended config resolve against the config that declares them.\n+    const worker = write(root, \"cfg/src/worker.ts\");\n+    const resolve = createTypeScriptModuleResolver(root, [config, consumer, worker]);\n+\n+    expect(resolve(\"src/consumer.ts\", \"@core\")).toEqual([\"cfg/src/worker.ts\"]);\n+  });\n+\n+  it(\"prefers JavaScript for extensionless imports from JavaScript files\", () => {\n+    const root = workspace();\n+    const config = write(\n+      root,\n+      \"jsconfig.json\",\n+      JSON.stringify({\n+        compilerOptions: { baseUrl: \"src\" },\n+      }),\n+    );\n+    const consumer = write(root, \"src/consumer.js\");\n+    const javascript = write(root, \"src/services/worker.js\");\n+    const typescript = write(root, \"src/services/worker.ts\");\n+    const resolve = createTypeScriptModuleResolver(root, [\n+      config,\n+      consumer,\n+      javascript,\n+      typescript,\n+    ]);\n+\n+    expect(resolve(\"src/consumer.js\", \"services/worker\")).toEqual([\"src/services/worker.js\"]);\n+  });\n+\n+  it(\"does not serve one caller's language preference to another in the same directory\", () => {\n+    // Guards the memo key: results are cached, and callers in the same folder\n+    // share a config but not a preference order. Keying on the directory alone\n+    // would hand the .js answer to the .ts caller, or whichever ran first.\n+    const root = workspace();\n+    const config = write(\n+      root,\n+      \"jsconfig.json\",\n+      JSON.stringify({ compilerOptions: { baseUrl: \"src\" } }),\n+    );\n+    const jsConsumer = write(root, \"src/consumer.js\");\n+    const tsConsumer = write(root, \"src/consumer.ts\");\n+    const javascript = write(root, \"src/services/worker.js\");\n+    const typescript = write(root, \"src/services/worker.ts\");\n+    const resolve = createTypeScriptModuleResolver(root, [\n+      config,\n+      jsConsumer,\n+      tsConsumer,\n+      javascript,\n+      typescript,\n+    ]);\n+\n+    // Order matters: whichever runs first would poison a directory-only key.\n+    expect(resolve(\"src/consumer.js\", \"services/worker\")).toEqual([\"src/services/worker.js\"]);\n+    expect(resolve(\"src/consumer.ts\", \"services/worker\")).toEqual([\"src/services/worker.ts\"]);\n+    // And repeated asks, which is what the cache exists for, stay stable.\n+    expect(resolve(\"src/consumer.js\", \"services/worker\")).toEqual([\"src/services/worker.js\"]);\n+  });\n+\n+  it(\"matches mapped paths case-insensitively on case-insensitive filesystems\", () => {\n+    const root = workspace();\n+    const config = write(\n+      root,\n+      \"tsconfig.json\",\n+      JSON.stringify({ compilerOptions: { paths: { \"@utils\": [\"src/utils\"] } } }),\n+    );\n+    const consumer = write(root, \"src/consumer.ts\");\n+    const actual = write(root, \"src/Utils.ts\");\n+    const resolve = createTypeScriptModuleResolver(root, [config, consumer, actual], {\n+      caseSensitive: false,\n+    });\n+\n+    expect(resolve(\"src/consumer.ts\", \"@utils\")).toEqual([\"src/Utils.ts\"]);\n+  });\n+\n+  it(\"selects runtime and declaration targets for mapped JavaScript paths\", () => {\n+    const root = workspace();\n+    const config = write(\n+      root,\n+      \"tsconfig.json\",\n+      JSON.stringify({\n+        compilerOptions: { paths: { \"@sample/tool\": [\"lib/index.js\"] } },\n+      }),\n+    );\n+    const consumer = write(root, \"apps/client.ts\");\n+    const declarations = write(root, \"lib/index.d.ts\");\n+    const runtime = write(root, \"lib/index.js\");\n+    const resolve = createTypeScriptModuleResolver(root, [config, consumer, declarations, runtime]);\n+\n+    expect(resolve(\"apps/client.ts\", \"@sample/tool\", \"runtime\")).toEqual([\"lib/index.js\"]);\n+    expect(resolve(\"apps/client.ts\", \"@sample/tool\", \"types\")).toEqual([\"lib/index.d.ts\"]);\n+  });\n+});"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 445,
+        "filename": "ix-cli/src/cli/commands/ingest.ts",
+        "status": "modified",
+        "additions": 6,
+        "deletions": 1,
+        "changes": 7,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/adc97c1a979992739541a1d39e2e0b45ea6684d6/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fingest.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/adc97c1a979992739541a1d39e2e0b45ea6684d6/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fingest.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fingest.ts?ref=adc97c1a979992739541a1d39e2e0b45ea6684d6",
+        "patch": "@@ -20,6 +20,7 @@ import { detectSystem, repoWorkspaceIdFor, lookupPackage, readPackageNames, read\n import { CLIENT_EXPECTED_SCHEMA_VERSION } from '../backend-status.js';\n import { SUPPORTED_EXTENSIONS } from '../supported-extensions.js';\n import { canRenderProgress } from '../stderr.js';\n+import { createTypeScriptModuleResolver } from '../ts-module-resolution.js';\n import {\n   deterministicId,\n   transformIssue,\n@@ -770,7 +771,7 @@ export async function ingestFiles(\n   const packageRegistry = detectedSystem?.packageRegistry ?? {};\n   const packageOf = (mod: string): string | undefined => lookupPackage(packageRegistry, mod);\n   const declaredRepoDeps = detectedSystem?.repoDeps;\n-  const resolveOpts = systemId ? { repoOf, packageOf, declaredRepoDeps } : undefined;\n+  const crossRepoResolveOpts = systemId ? { repoOf, packageOf, declaredRepoDeps } : undefined;\n \n   // ── Path-2 separate-ingest stitcher (Ix#225 Half A) ──────────────────\n   // Co-ingest already forms cross-repo edges in-batch, so the stitcher only runs\n@@ -1043,6 +1044,10 @@ export async function ingestFiles(\n         ? (isSupportedSourceFile(resolvedPath) ? [resolvedPath] : [])\n         : (tryGitLsFiles(resolvedPath, opts.recursive ?? true) ?? Array.from(walkFiles(resolvedPath, opts.recursive ?? true))),\n     );\n+    const resolveOpts = {\n+      ...crossRepoResolveOpts,\n+      resolveModuleSpecifier: createTypeScriptModuleResolver(workspaceRoot, filePaths),\n+    };\n \n     filesDiscovered = filePaths.length;\n     const discovered = performance.now();"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 445,
+        "filename": "ix-cli/src/cli/ts-module-resolution.ts",
+        "status": "added",
+        "additions": 467,
+        "deletions": 0,
+        "changes": 467,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/adc97c1a979992739541a1d39e2e0b45ea6684d6/ix-cli%2Fsrc%2Fcli%2Fts-module-resolution.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/adc97c1a979992739541a1d39e2e0b45ea6684d6/ix-cli%2Fsrc%2Fcli%2Fts-module-resolution.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fts-module-resolution.ts?ref=adc97c1a979992739541a1d39e2e0b45ea6684d6",
+        "patch": "@@ -0,0 +1,467 @@\n+import * as fs from \"node:fs\";\n+import * as nodePath from \"node:path\";\n+\n+interface PathRule {\n+  pattern: string;\n+  targets: string[];\n+  baseDir: string;\n+}\n+\n+interface LoadedConfig {\n+  dir: string;\n+  baseUrl?: string;\n+  paths: PathRule[];\n+}\n+\n+export type TypeScriptModuleResolver = (\n+  sourcePath: string,\n+  specifier: string,\n+  kind?: \"runtime\" | \"types\",\n+) => string[] | undefined;\n+\n+const SOURCE_SUFFIXES = [\".ts\", \".tsx\", \".d.ts\", \".js\", \".jsx\", \".mjs\", \".cjs\"];\n+\n+function normalizePath(value: string): string {\n+  return nodePath.posix.normalize(value.replace(/\\\\/g, \"/\"));\n+}\n+\n+function isWithinDir(filePath: string, dir: string): boolean {\n+  return dir === \".\" || filePath === dir || filePath.startsWith(`${dir}/`);\n+}\n+\n+function toggleFirstAsciiCase(value: string): string | undefined {\n+  const index = value.search(/[A-Za-z]/);\n+  if (index === -1) return undefined;\n+  const char = value[index];\n+  const toggled = char === char.toLowerCase() ? char.toUpperCase() : char.toLowerCase();\n+  return value.slice(0, index) + toggled + value.slice(index + 1);\n+}\n+\n+function isCaseSensitiveFilesystem(workspaceRoot: string, absoluteFilePaths: string[]): boolean {\n+  for (const candidate of [...absoluteFilePaths, workspaceRoot]) {\n+    const basename = nodePath.basename(candidate);\n+    const toggled = toggleFirstAsciiCase(basename);\n+    if (!toggled || toggled === basename) continue;\n+    const alternate = nodePath.join(nodePath.dirname(candidate), toggled);\n+    try {\n+      return fs.realpathSync.native(candidate) !== fs.realpathSync.native(alternate);\n+    } catch {\n+      return true;\n+    }\n+  }\n+  return true;\n+}\n+\n+function parseJsonc(text: string): unknown {\n+  let output = \"\";\n+  let inString = false;\n+  let escaped = false;\n+  let lineComment = false;\n+  let blockComment = false;\n+\n+  for (let i = 0; i < text.length; i += 1) {\n+    const char = text[i];\n+    const next = text[i + 1];\n+    if (lineComment) {\n+      if (char === \"\\n\") {\n+        lineComment = false;\n+        output += char;\n+      } else {\n+        output += \" \";\n+      }\n+      continue;\n+    }\n+    if (blockComment) {\n+      if (char === \"*\" && next === \"/\") {\n+        output += \"  \";\n+        blockComment = false;\n+        i += 1;\n+      } else {\n+        output += char === \"\\n\" ? \"\\n\" : \" \";\n+      }\n+      continue;\n+    }\n+    if (inString) {\n+      output += char;\n+      if (escaped) escaped = false;\n+      else if (char === \"\\\\\") escaped = true;\n+      else if (char === '\"') inString = false;\n+      continue;\n+    }\n+    if (char === '\"') {\n+      inString = true;\n+      output += char;\n+    } else if (char === \"/\" && next === \"/\") {\n+      lineComment = true;\n+      output += \"  \";\n+      i += 1;\n+    } else if (char === \"/\" && next === \"*\") {\n+      blockComment = true;\n+      output += \"  \";\n+      i += 1;\n+    } else {\n+      output += char;\n+    }\n+  }\n+\n+  let normalized = \"\";\n+  inString = false;\n+  escaped = false;\n+  for (let i = 0; i < output.length; i += 1) {\n+    const char = output[i];\n+    if (inString) {\n+      normalized += char;\n+      if (escaped) escaped = false;\n+      else if (char === \"\\\\\") escaped = true;\n+      else if (char === '\"') inString = false;\n+      continue;\n+    }\n+    if (char === '\"') {\n+      inString = true;\n+      normalized += char;\n+      continue;\n+    }\n+    if (char === \",\") {\n+      let next = i + 1;\n+      while (/\\s/.test(output[next] ?? \"\")) next += 1;\n+      if (output[next] === \"}\" || output[next] === \"]\") continue;\n+    }\n+    normalized += char;\n+  }\n+\n+  return JSON.parse(normalized);\n+}\n+\n+/**\n+ * Config files are read while the resolver is built, which happens *before*\n+ * ingestion's own size gate, so they need their own. Mirrors `MAX_FILE_BYTES`\n+ * in `ingest.ts`: anything larger is not a tsconfig, and parsing one is how a\n+ * 64 MB JSONC file takes the process out with an uncatchable OOM.\n+ */\n+const MAX_CONFIG_BYTES = 1024 * 1024;\n+\n+/**\n+ * True when the file we are *holding open* lives inside the workspace.\n+ *\n+ * The lexical check in {@link isWithinWorkspace} cannot see through a symlinked\n+ * directory: every segment of `./linked/tsconfig.json` is inside the workspace\n+ * by path arithmetic even when `linked/` points somewhere else entirely. Only\n+ * the resolved path shows that, so resolve it and re-check.\n+ *\n+ * Resolving the name a second time reopens the question of whether it still\n+ * denotes the file we hold, so the resolved path is confirmed to be the same\n+ * inode as the open handle. Without that, swapping the symlink between the open\n+ * and the resolve would let an outside file be read under an inside name.\n+ * (`ino` is 0 on filesystems that do not report one — chiefly some Windows\n+ * configurations — where this degrades to the plain resolved-path check.)\n+ *\n+ * The ROOT is resolved too, and that is not symmetry for its own sake: a\n+ * resolved file compared against an unresolved root rejects every config\n+ * whenever the workspace is itself reached through a link — macOS `/var` ->\n+ * `/private/var`, a home directory on a network mount, a `~/code` symlink. That\n+ * would silently switch tsconfig resolution off for those users, and no CI\n+ * runner here has a symlinked root to notice it.\n+ */\n+function openedWithinWorkspace(\n+  workspaceRoot: string,\n+  filePath: string,\n+  opened: fs.Stats,\n+): boolean {\n+  try {\n+    const resolved = fs.realpathSync(filePath);\n+    const viaResolved = fs.statSync(resolved);\n+    if (viaResolved.dev !== opened.dev || viaResolved.ino !== opened.ino) return false;\n+    let resolvedRoot: string;\n+    try {\n+      resolvedRoot = fs.realpathSync(workspaceRoot);\n+    } catch {\n+      resolvedRoot = workspaceRoot; // unreadable root: fall back to the lexical check\n+    }\n+    return isWithinWorkspace(resolvedRoot, resolved);\n+  } catch {\n+    return false;\n+  }\n+}\n+\n+function readObject(workspaceRoot: string, filePath: string): Record<string, unknown> | undefined {\n+  try {\n+    // Open once and fstat the same handle so the checks and the read observe the\n+    // same inode — no stat-then-read window (CodeQL js/file-system-race). This is\n+    // the pattern ingest.ts already uses.\n+    //\n+    // O_NONBLOCK is load-bearing, not tidiness: opening a FIFO for reading\n+    // *blocks until a writer appears*, so without it the open never returns and\n+    // no later check can help. It is the one case a guard placed after the open\n+    // cannot cover. Undefined on Windows, where `|` with undefined degrades to\n+    // a plain read — and Windows has no FIFO to open this way.\n+    const handle = fs.openSync(filePath, fs.constants.O_RDONLY | fs.constants.O_NONBLOCK);\n+    let text: string;\n+    try {\n+      const stats = fs.fstatSync(handle);\n+      // `openSync` follows symlinks, so fstat describes the *target*. Refusing\n+      // anything that is not a regular file is what stops a link to /dev/zero\n+      // (an unbounded read) and a FIFO (which would otherwise deliver no data\n+      // and no EOF) — neither of which a size check catches, since both\n+      // report size 0.\n+      if (!stats.isFile() || stats.size > MAX_CONFIG_BYTES) return undefined;\n+      if (!openedWithinWorkspace(workspaceRoot, filePath, stats)) return undefined;\n+      text = fs.readFileSync(handle, \"utf8\");\n+    } finally {\n+      fs.closeSync(handle);\n+    }\n+    const parsed = parseJsonc(text);\n+    return parsed && typeof parsed === \"object\" && !Array.isArray(parsed)\n+      ? (parsed as Record<string, unknown>)\n+      : undefined;\n+  } catch {\n+    return undefined;\n+  }\n+}\n+\n+/**\n+ * Candidate paths a relative `extends` may name, in TypeScript's own order.\n+ * Returns every candidate rather than probing with `existsSync`: the caller\n+ * reads each one and `readObject` already reports an unreadable file as\n+ * `undefined`, so there is no check-then-use window (CodeQL js/file-system-race).\n+ */\n+function resolveExtends(workspaceRoot: string, configPath: string, value: unknown): string[] {\n+  if (typeof value !== \"string\" || !value.startsWith(\".\")) return [];\n+  const unresolved = nodePath.resolve(nodePath.dirname(configPath), value);\n+  return [unresolved, `${unresolved}.json`, nodePath.join(unresolved, \"tsconfig.json\")].filter(\n+    // `startsWith(\".\")` is not containment: `nodePath.resolve` clamps at the\n+    // filesystem root, so \"../../../../../../..\" names any absolute path from\n+    // any depth. The config is repo content, so without this an ingested repo\n+    // chooses which files on the machine get read.\n+    (candidate) => isWithinWorkspace(workspaceRoot, candidate),\n+  );\n+}\n+\n+function isWithinWorkspace(workspaceRoot: string, candidate: string): boolean {\n+  const relative = nodePath.relative(nodePath.resolve(workspaceRoot), candidate);\n+  // Compare path *segments*: a bare `..startsWith` also rejects a legitimate\n+  // sibling directory whose name merely begins with dots, e.g. `..shared/`.\n+  return (\n+    relative !== \"\" &&\n+    relative !== \"..\" &&\n+    !relative.startsWith(`..${nodePath.sep}`) &&\n+    !nodePath.isAbsolute(relative)\n+  );\n+}\n+\n+function loadConfig(\n+  workspaceRoot: string,\n+  configPath: string,\n+  cache: Map<string, LoadedConfig | undefined>,\n+  loading = new Set<string>(),\n+): LoadedConfig | undefined {\n+  const absoluteConfig = nodePath.resolve(configPath);\n+  if (cache.has(absoluteConfig)) return cache.get(absoluteConfig);\n+  if (loading.has(absoluteConfig)) return undefined;\n+  loading.add(absoluteConfig);\n+\n+  const raw = readObject(workspaceRoot, absoluteConfig);\n+  if (!raw) {\n+    cache.set(absoluteConfig, undefined);\n+    loading.delete(absoluteConfig);\n+    return undefined;\n+  }\n+\n+  const extendsCandidates = resolveExtends(workspaceRoot, absoluteConfig, raw.extends);\n+  let parent: LoadedConfig | undefined;\n+  for (const candidate of extendsCandidates) {\n+    parent = loadConfig(workspaceRoot, candidate, cache, loading);\n+    if (parent) break;\n+  }\n+\n+  // A scoped run (`ix map ./packages/web`) roots containment at the ingest path,\n+  // so a monorepo's shared `tsconfig.base.json` one level up is dropped. Half-\n+  // loading what remains is worse than not loading it: this config's own `paths`\n+  // would still match, fail to resolve against the missing `baseUrl`, and return\n+  // an *authoritative* empty — which suppresses the stem fallback and deletes an\n+  // edge main resolves fine. Treat the config as unusable instead, which is\n+  // exactly main's behaviour.\n+  if (typeof raw.extends === \"string\" && raw.extends.startsWith(\".\") && !parent) {\n+    cache.set(absoluteConfig, undefined);\n+    loading.delete(absoluteConfig);\n+    return undefined;\n+  }\n+  const configDir = nodePath.dirname(absoluteConfig);\n+  const compilerOptions =\n+    raw.compilerOptions && typeof raw.compilerOptions === \"object\"\n+      ? (raw.compilerOptions as Record<string, unknown>)\n+      : {};\n+  const ownBaseUrl =\n+    typeof compilerOptions.baseUrl === \"string\"\n+      ? nodePath.resolve(configDir, compilerOptions.baseUrl)\n+      : undefined;\n+  const baseUrl = ownBaseUrl ?? parent?.baseUrl;\n+  let paths = parent?.paths ?? [];\n+  if (compilerOptions.paths && typeof compilerOptions.paths === \"object\") {\n+    const pathBase = baseUrl ?? configDir;\n+    paths = Object.entries(compilerOptions.paths as Record<string, unknown>)\n+      .filter(\n+        (entry): entry is [string, string[]] =>\n+          Array.isArray(entry[1]) && entry[1].every((target) => typeof target === \"string\"),\n+      )\n+      .map(([pattern, targets]) => ({ pattern, targets, baseDir: pathBase }))\n+      .sort((a, b) => {\n+        const aStar = a.pattern.indexOf(\"*\");\n+        const bStar = b.pattern.indexOf(\"*\");\n+        if (aStar === -1 || bStar === -1) return aStar === -1 ? -1 : 1;\n+        return bStar - aStar;\n+      });\n+  }\n+\n+  const relativeDir = normalizePath(nodePath.relative(workspaceRoot, configDir) || \".\");\n+  const loaded = { dir: relativeDir, baseUrl, paths };\n+  cache.set(absoluteConfig, loaded);\n+  loading.delete(absoluteConfig);\n+  return loaded;\n+}\n+\n+function matchPathPattern(pattern: string, specifier: string): string | undefined {\n+  const star = pattern.indexOf(\"*\");\n+  if (star === -1) return pattern === specifier ? \"\" : undefined;\n+  if (pattern.indexOf(\"*\", star + 1) !== -1) return undefined;\n+  const prefix = pattern.slice(0, star);\n+  const suffix = pattern.slice(star + 1);\n+  return specifier.startsWith(prefix) && specifier.endsWith(suffix)\n+    ? specifier.slice(prefix.length, specifier.length - suffix.length)\n+    : undefined;\n+}\n+\n+export function createTypeScriptModuleResolver(\n+  workspaceRoot: string,\n+  absoluteFilePaths: string[],\n+  options: { caseSensitive?: boolean } = {},\n+): TypeScriptModuleResolver {\n+  const root = nodePath.resolve(workspaceRoot);\n+  const caseSensitive =\n+    options.caseSensitive ?? isCaseSensitiveFilesystem(root, absoluteFilePaths);\n+  const pathKey = (value: string): string => {\n+    const normalized = normalizePath(value);\n+    return caseSensitive ? normalized : normalized.toLowerCase();\n+  };\n+  const indexed = new Map(\n+    absoluteFilePaths.map((filePath) => {\n+      const relativePath = normalizePath(nodePath.relative(root, nodePath.resolve(filePath)));\n+      return [pathKey(relativePath), relativePath];\n+    }),\n+  );\n+\n+  const resolveCandidate = (\n+    absoluteTarget: string,\n+    sourcePath: string,\n+    kind: \"runtime\" | \"types\",\n+  ): string[] => {\n+    const relativeTarget = normalizePath(nodePath.relative(root, absoluteTarget));\n+    const extension = nodePath.posix.extname(relativeTarget).toLowerCase();\n+    const base = extension ? relativeTarget.slice(0, -extension.length) : relativeTarget;\n+    const sourceExtension = nodePath.posix.extname(normalizePath(sourcePath)).toLowerCase();\n+    const preferJavaScript = [\".js\", \".jsx\", \".mjs\", \".cjs\"].includes(sourceExtension);\n+    const extensionlessSuffixes =\n+      kind === \"types\"\n+        ? SOURCE_SUFFIXES\n+        : preferJavaScript\n+          ? [\".js\", \".jsx\", \".mjs\", \".cjs\", \".ts\", \".tsx\", \".d.ts\"]\n+          : [\".ts\", \".tsx\", \".js\", \".jsx\", \".d.ts\", \".mjs\", \".cjs\"];\n+    const candidates =\n+      extension === \".js\"\n+        ? kind === \"types\"\n+          ? [base + \".ts\", base + \".tsx\", base + \".d.ts\", relativeTarget, base + \".jsx\"]\n+          : preferJavaScript\n+            ? [relativeTarget, base + \".jsx\", base + \".ts\", base + \".tsx\", base + \".d.ts\"]\n+            : [base + \".ts\", base + \".tsx\", relativeTarget, base + \".jsx\", base + \".d.ts\"]\n+        : extension === \".jsx\"\n+          ? kind === \"types\"\n+            ? [base + \".tsx\", base + \".d.ts\", relativeTarget]\n+            : preferJavaScript\n+              ? [relativeTarget, base + \".tsx\", base + \".d.ts\"]\n+              : [base + \".tsx\", relativeTarget, base + \".d.ts\"]\n+          : extension\n+            ? [relativeTarget]\n+            : [\n+                ...extensionlessSuffixes.map((suffix) => relativeTarget + suffix),\n+                ...extensionlessSuffixes.map((suffix) =>\n+                  nodePath.posix.join(relativeTarget, \"index\" + suffix),\n+                ),\n+              ];\n+    const match = candidates.map((candidate) => indexed.get(pathKey(candidate))).find(Boolean);\n+    return match ? [match] : [];\n+  };\n+\n+  const configCache = new Map<string, LoadedConfig | undefined>();\n+  const configs = absoluteFilePaths\n+    .filter((filePath) => /(?:^|[/[local-path].json$/i.test(filePath))\n+    .map((filePath) => loadConfig(root, filePath, configCache))\n+    .filter((config): config is LoadedConfig => config !== undefined)\n+    .sort((a, b) => b.dir.length - a.dir.length);\n+\n+  // Ingestion asks the same question repeatedly: resolution runs per bound\n+  // relationship, and index.ts issues two full lookups of the same triple for\n+  // each one. Only three things about a call change the answer — see the key.\n+  const resolutionCache = new Map<string, string[] | undefined>();\n+\n+  const resolveUncached = (\n+    sourcePath: string,\n+    normalizedSource: string,\n+    specifier: string,\n+    kind: \"runtime\" | \"types\",\n+  ): string[] | undefined => {\n+    const config = configs.find((candidate) => isWithinDir(normalizedSource, candidate.dir));\n+    // Only an *explicit* `paths` mapping licenses an authoritative \"no match\".\n+    // A bare `baseUrl` — and a catch-all `\"*\"` rule, which is the same thing\n+    // spelled differently — matches `react` exactly as readily as `@app/thing`,\n+    // so treating its miss as authoritative would delete every third-party\n+    // import edge in any repo that sets one.\n+    let mappedExplicitly = false;\n+    if (config) {\n+      for (const rule of config.paths) {\n+        const star = matchPathPattern(rule.pattern, specifier);\n+        if (star === undefined) continue;\n+        for (const target of rule.targets) {\n+          const matches = resolveCandidate(\n+            nodePath.resolve(rule.baseDir, target.split(\"*\").join(star)),\n+            sourcePath,\n+            kind,\n+          );\n+          if (matches.length > 0) return matches;\n+        }\n+        mappedExplicitly = rule.pattern !== \"*\";\n+        break;\n+      }\n+      // TypeScript tries `paths` first and then falls back to `baseUrl`, so a\n+      // failed rule must not short-circuit the baseUrl lookup.\n+      if (config.baseUrl) {\n+        const matches = resolveCandidate(\n+          nodePath.resolve(config.baseUrl, specifier),\n+          sourcePath,\n+          kind,\n+        );\n+        if (matches.length > 0) return matches;\n+      }\n+    }\n+    return mappedExplicitly ? [] : undefined;\n+  };\n+\n+  return (sourcePath: string, rawSpecifier: string, kind = \"runtime\"): string[] | undefined => {\n+    const specifier = rawSpecifier.split(/[?#]/, 1)[0];\n+    if (!specifier || specifier.startsWith(\".\") || specifier.startsWith(\"/\")) return undefined;\n+    const normalizedSource = normalizePath(sourcePath);\n+    // Config selection reads only the source *directory*; candidate ordering\n+    // additionally reads the source *extension* (a .js caller prefers .js over\n+    // .ts). Nothing else about the path is consulted, so this key is exact —\n+    // keying on the directory alone would serve a .js caller's answer to a .ts\n+    // caller in the same folder and silently flip the preference order.\n+    const cacheKey = [\n+      nodePath.posix.dirname(normalizedSource),\n+      nodePath.posix.extname(normalizedSource).toLowerCase(),\n+      specifier,\n+      kind,\n+    ].join(\"\\x00\");\n+    if (resolutionCache.has(cacheKey)) return resolutionCache.get(cacheKey);\n+    const result = resolveUncached(sourcePath, normalizedSource, specifier, kind);\n+    resolutionCache.set(cacheKey, result);\n+    return result;\n+  };\n+}"
+      }
+    ],
+    "commits": [
+      {
+        "sha": "7d834235b99d6d2eccc2e638385368ebdb1de795",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/7d834235b99d6d2eccc2e638385368ebdb1de795",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/7d834235b99d6d2eccc2e638385368ebdb1de795",
+        "author": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "committer": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "message": "fix(ingest): resolve tsconfig module mappings",
+        "parents": [
+          {
+            "sha": "fef671cca4e922d5e473d99739adee77d9134c20",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/fef671cca4e922d5e473d99739adee77d9134c20"
+          }
+        ],
+        "tree_sha": "324e5ee1ecfda7ecfa3d03ea2f241c8310432431",
+        "authored_at": "2026-08-14T13:10:59Z",
+        "committed_at": "2026-08-14T13:10:59Z"
+      },
+      {
+        "sha": "bf7a4b47758d679be0845a3cec27c1d0a7f5c05e",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/bf7a4b47758d679be0845a3cec27c1d0a7f5c05e",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/bf7a4b47758d679be0845a3cec27c1d0a7f5c05e",
+        "author": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "committer": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "message": "fix(ingest): harden module path substitution",
+        "parents": [
+          {
+            "sha": "7d834235b99d6d2eccc2e638385368ebdb1de795",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/7d834235b99d6d2eccc2e638385368ebdb1de795"
+          }
+        ],
+        "tree_sha": "b6c343d15c4d5f96c9a647d68cdb8e73f6296b95",
+        "authored_at": "2026-08-14T13:24:09Z",
+        "committed_at": "2026-08-14T13:24:09Z"
+      },
+      {
+        "sha": "795ec2ce80759a5730134353640327fb77fb2eff",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/795ec2ce80759a5730134353640327fb77fb2eff",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/795ec2ce80759a5730134353640327fb77fb2eff",
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "committer": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "message": "fix(ingest): don't let baseUrl claim authority over every bare specifier\n\nThe resolver returned [] — 'definitively not local', which makes\nresolveEdges skip both the stem fallback and the Tier-3 guess — whenever a\nconfig merely set baseUrl. baseUrl matches every non-relative specifier, so\nin any repo that sets it (the default in Next.js, CRA, Nest and most monorepo\ntemplates) every third-party import, react and zod included, became an\nauthoritative miss and its IMPORTS/CALLS edges were dropped. A catch-all\n'*' paths rule had the same effect.\n\nAuthority now requires an explicit paths pattern to have matched. A bare\nbaseUrl, and a '*' rule that is baseUrl by another name, return undefined\n('no opinion') so existing resolution continues unchanged.\n\nAlso: a matching-but-failing paths rule no longer short-circuits the baseUrl\nlookup, matching how TypeScript itself orders the two.\n\nThis reverses the decision pinned by 'treats an unresolved baseUrl module as\nauthoritative'; that test is replaced. The PR's actual goal — an explicit\npaths mapping suppressing an unrelated same-stem match — is unchanged and\nstill covered.\n\nSeparately, resolveExtends probed candidates with existsSync before handing\nthe path to a reader (CodeQL js/file-system-race, the pattern view.ts calls\nout explicitly). It now returns all candidates and lets the caller read each;\nreadObject already reports an unreadable file as undefined. That also fixes a\nreal bug: the probe stopped at a directory named by extends and never tried\n<dir>/tsconfig.json, silently dropping the parent's paths.\n\nix-cli: 940 passed, 1 skipped. typecheck, lint, knip clean.",
+        "parents": [
+          {
+            "sha": "bf7a4b47758d679be0845a3cec27c1d0a7f5c05e",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/bf7a4b47758d679be0845a3cec27c1d0a7f5c05e"
+          }
+        ],
+        "tree_sha": "9ef04c99f6a357797fe586036259f03ec47c6e6c",
+        "authored_at": "2026-08-14T16:23:26Z",
+        "committed_at": "2026-08-14T16:27:43Z"
+      },
+      {
+        "sha": "c43303e56bb086af4316545c63550def57ff59b0",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/c43303e56bb086af4316545c63550def57ff59b0",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/c43303e56bb086af4316545c63550def57ff59b0",
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "committer": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "message": "perf(ingest): memoize module resolution\n\nResolution runs per bound relationship, and index.ts issues two full lookups\nof the same (source, specifier, kind) triple for each one, so a repo with\npaths/baseUrl pays the walk over and over.\n\nCache on the three things that actually change the answer: the source\ndirectory (which config applies), the source extension (a .js caller prefers\n.js over .ts), and the specifier and kind. Keying on the directory alone —\nthe obvious shortcut — would serve a .js caller's answer to a .ts caller in\nthe same folder and silently flip the preference order, so there is a test\nthat runs both orders and a repeat.\n\nMeasured on a synthetic 2000-file workspace, 1000 calls across 50 source\ndirectories: 24.87us/call -> 3.38us/call, ~7.4x.\n\nix-cli: 941 passed, 1 skipped. typecheck, lint, knip clean.",
+        "parents": [
+          {
+            "sha": "795ec2ce80759a5730134353640327fb77fb2eff",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/795ec2ce80759a5730134353640327fb77fb2eff"
+          }
+        ],
+        "tree_sha": "35de114b53412fe730c77993a5555a62f557040b",
+        "authored_at": "2026-08-14T18:25:30Z",
+        "committed_at": "2026-08-14T18:25:30Z"
+      },
+      {
+        "sha": "9e58df1f3ba652d284fec088b0c4048945c5a019",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/9e58df1f3ba652d284fec088b0c4048945c5a019",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/9e58df1f3ba652d284fec088b0c4048945c5a019",
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "committer": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "message": "fix(ingest): bound and confine tsconfig reads\n\nThree holes on the config-reading path, all reachable from repo content\nbecause tsconfig.json is repo content, and all reachable before ingestion's\nown size gate — createTypeScriptModuleResolver is built at ingest.ts:1049,\n51 lines ahead of the MAX_FILE_BYTES check.\n\n1. No size cap. readObject read and parsed any tsconfig whole. A 64 MB JSONC\n   file — which git packs down to a ~95 KB repo — gives\n   FatalProcessOutOfMemory, signal 6, which the surrounding try/catch cannot\n   catch. main skips that file as tooLarge, so this was the first pre-gate\n   whole-file read and it bypassed an existing control.\n\n2. Device nodes and FIFOs. openSync follows symlinks, so a link committed\n   inside the repo pointing at /dev/zero read forever, and one pointing at a\n   FIFO blocked the event loop. Both report size 0, so a size check alone\n   does not help. Under MCP this is worse than a slow ingest: the in-process\n   runner means withTimeout can never fire and the server wedges\n   uncancellably.\n\n3. No containment. resolveExtends only checked value.startsWith(\".\"), which\n   is not containment — nodePath.resolve clamps at the filesystem root, so\n   enough .. segments name any absolute path from any depth. An ingested repo\n   chose which files on the machine were read, and a config outside the\n   workspace had its paths trusted.\n\nFixed by opening once and fstat-ing the same handle (no stat-then-read\nwindow; the pattern ingest.ts already uses), rejecting anything that is not a\nregular file or is over 1 MB, and filtering extends candidates to those\ninside the workspace root.\n\nNo content ever escaped: resolveCandidate only consults an in-memory Map\nbuilt from the caller's file list, so an escaped read could not reach output.\nThis is availability plus unauthorized read, now closed.\n\n3 tests, each mutation-tested. ix-cli: 944 passed, 1 skipped. typecheck,\nlint, knip clean.",
+        "parents": [
+          {
+            "sha": "c43303e56bb086af4316545c63550def57ff59b0",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/c43303e56bb086af4316545c63550def57ff59b0"
+          }
+        ],
+        "tree_sha": "1e86f15da54818af6a3ddf32e384bdb2aa22a803",
+        "authored_at": "2026-08-14T20:04:22Z",
+        "committed_at": "2026-08-14T20:04:22Z"
+      },
+      {
+        "sha": "1135ced5af3c5e1a1c0287fbd967a030b7c6d0f7",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/1135ced5af3c5e1a1c0287fbd967a030b7c6d0f7",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/1135ced5af3c5e1a1c0287fbd967a030b7c6d0f7",
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "committer": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "message": "chore: use the \\\\x00 escape instead of a raw NUL byte\n\nI used raw NUL separators in a lookup key. They are invisible in most editors\nand diffs — they render as a space — so the CI guard is the only thing that\nsees them, and it is there precisely because a raw NUL makes the file binary\nto grep/ripgrep, which then silently skips it.\n\nThe escape is the same byte at runtime, so behaviour and tests are unchanged.",
+        "parents": [
+          {
+            "sha": "9e58df1f3ba652d284fec088b0c4048945c5a019",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/9e58df1f3ba652d284fec088b0c4048945c5a019"
+          }
+        ],
+        "tree_sha": "811103ea2e15dee9355c5b31c24eb357bd190817",
+        "authored_at": "2026-08-14T20:23:18Z",
+        "committed_at": "2026-08-14T20:23:18Z"
+      },
+      {
+        "sha": "08cd7779d74c92575f55395608229aa0867e1cf9",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/08cd7779d74c92575f55395608229aa0867e1cf9",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/08cd7779d74c92575f55395608229aa0867e1cf9",
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "committer": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "message": "fix(ingest): open config files non-blocking, and don't half-load a dropped extends\n\nThree fixes from a rescan of the previous security commit.\n\n1. The FIFO guard could never fire. Opening a FIFO for reading blocks until a\n   writer appears, so the isFile() check — which runs after the open — was\n   never reached. My comment credited it with stopping \"a FIFO (blocks the\n   event loop forever)\", a protection the code could not provide, and the\n   passing /dev/zero test made that look verified: a character device opens\n   fine, so it exercised a different path. A repo-committed symlink to any\n   FIFO wedged `ix ingest` before the parsing phase even announces itself —\n   no output, no timeout, no error. O_RDONLY|O_NONBLOCK makes the open\n   return; the existing fstat/isFile guard then rejects it correctly.\n   Undefined on Windows, where the bitwise-or degrades to a plain read and\n   there is no FIFO to open this way.\n\n2. Containment over-rejected a legitimate sibling. A bare startsWith(\"..\")\n   also matches a directory merely *named* with leading dots, so\n   `..shared/tsconfig.json` inside the workspace read as an escape and was\n   dropped silently. Compare path segments instead.\n\n3. A dropped extends left a half-loaded config, which is worse than main. A\n   scoped run (`ix map ./packages/web`) roots containment at the ingest path,\n   so a monorepo's shared tsconfig.base.json one level up is correctly\n   refused — but the remainder still carried the package's own `paths`,\n   which then matched, failed against the missing baseUrl, and returned an\n   *authoritative* empty. That suppresses the stem fallback and deletes an\n   edge main resolves fine. Treat such a config as unusable, which is exactly\n   main's behaviour.\n\nknip.json: mkfifo added to ignoreBinaries for the new POSIX-gated test.\n\nEach fix mutation-tested; removing O_NONBLOCK hangs the suite outright.\nix-cli: 947 passed, 1 skipped. typecheck, lint, knip and the NUL guard clean.",
+        "parents": [
+          {
+            "sha": "1135ced5af3c5e1a1c0287fbd967a030b7c6d0f7",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/1135ced5af3c5e1a1c0287fbd967a030b7c6d0f7"
+          }
+        ],
+        "tree_sha": "cea58644f755ce90628457a20741b424f042ce34",
+        "authored_at": "2026-08-14T21:21:12Z",
+        "committed_at": "2026-08-14T21:21:12Z"
+      },
+      {
+        "sha": "adc97c1a979992739541a1d39e2e0b45ea6684d6",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/adc97c1a979992739541a1d39e2e0b45ea6684d6",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/adc97c1a979992739541a1d39e2e0b45ea6684d6",
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "committer": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "message": "fix(ingest): check containment against the file actually opened\n\nContainment was pure path arithmetic, which cannot see through a\nsymlinked directory: every segment of \"./linked/tsconfig.json\" is inside\nthe workspace even when `linked/` points elsewhere, so an ingested repo\ncould still choose a file outside the tree by shipping one link. The\nlexical check stays — it is what stops `../` traversal from the config\ntext — and the resolved path is now checked as well.\n\nThe resolve happens while the handle is open and is confirmed to name the\nsame inode, so swapping the link between the open and the resolve cannot\nsmuggle an outside file in under an inside name.\n\nThe workspace root is resolved too. Comparing a resolved file against an\nunresolved root rejects every config whenever the root is itself reached\nthrough a link — macOS /var -> /private/var, a home on a network mount, a\n~/code symlink — which would have switched tsconfig resolution off for\nthose users with no error. The matrix here is ubuntu + windows, so no\nrunner would have caught it; the added test uses a symlinked root.",
+        "parents": [
+          {
+            "sha": "08cd7779d74c92575f55395608229aa0867e1cf9",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/08cd7779d74c92575f55395608229aa0867e1cf9"
+          }
+        ],
+        "tree_sha": "a332d1a495b471c55765f5dccb7ef9b9be6cf1d7",
+        "authored_at": "2026-08-15T00:09:45Z",
+        "committed_at": "2026-08-15T00:09:45Z"
+      }
+    ],
+    "comments": [
+      {
+        "id": 5299396751,
+        "node_id": "IC_kwDORdC75M8AAAABO95gjw",
+        "repository": "ix-infrastructure/Ix",
+        "parent_type": "PULL_REQUEST",
+        "parent_number": 445,
+        "kind": "PR_COMMENT",
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "body": "Added one more commit (`adc97c1`) closing the symlink gap I flagged as non-blocking earlier.\n\nContainment was pure path arithmetic, which cannot see through a symlinked directory: every segment of `./linked/tsconfig.json` is inside the workspace even when `linked/` points elsewhere, so an ingested repo could still name a file outside the tree by shipping one link. Wrote the failing test first to confirm the escape was real rather than theoretical.\n\nThe lexical check stays — it is what stops `../` traversal from the config text — and the resolved path is now checked too. The resolve happens while the handle is open and is confirmed to name the same inode, so swapping the link between the open and the resolve cannot smuggle an outside file in under an inside name.\n\nThe part I would most like a second pair of eyes on: **the workspace root is resolved too.** Comparing a resolved file against an unresolved root rejects every config whenever the root is itself reached through a link — macOS `/var` -> `/private/var`, a home on a network mount, a `~/code` symlink. That would have switched tsconfig resolution off entirely for those users, with no error and nothing in CI to catch it, since the matrix here is ubuntu + windows. The added test uses a symlinked root specifically to hold that down.\n\nBoth halves mutation-tested: dropping the containment call fails only the escape test, and comparing against the unresolved root fails only the symlinked-root test. Full `test:unit` is 949 passing.\n\nContext for the review: this is the same module where my earlier \"fix\" for FIFOs shipped a guard that could not fire (the non-regular-file check sat *after* an open that blocks forever on a FIFO), with a comment asserting it worked and a passing `/dev/zero` test that exercised a different path. That is why I am flagging the root-resolution decision explicitly rather than letting it ride on my own reading.",
+        "html_url": "https://github.com/ix-infrastructure/Ix/pull/445#issuecomment-5299396751",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5299396751",
+        "created_at": "2026-08-15T00:11:20Z",
+        "updated_at": "2026-08-15T00:11:20Z",
+        "commit_id": null,
+        "path": null,
+        "line": null,
+        "start_line": null,
+        "side": null,
+        "in_reply_to_id": null,
+        "diff_hunk": null,
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      },
+      {
+        "id": 5305054778,
+        "node_id": "IC_kwDORdC75M8AAAABPDS2Og",
+        "repository": "ix-infrastructure/Ix",
+        "parent_type": "PULL_REQUEST",
+        "parent_number": 445,
+        "kind": "PR_COMMENT",
+        "author": {
+          "login": "Alot1z",
+          "id": 16801672,
+          "type": "User",
+          "html_url": "https://github.com/Alot1z"
+        },
+        "body": "Found and independently verified an additional ingest correctness regression in the current #445 implementation: a configured module mapping names the module authoritatively, but the renamed-import fallback still binds `import { Base as LocalBase } from \"@core\"` to a class method `W.Base` — a member can never be a module export — emitting a confident wrong EXTENDS edge (@0.9) where the base never had one. The same happens for `import { type User as ExternalUser }`, which emits REFERENCES to `W.User`.\n\nThe issue is still reproducible against the current upstream PR state (head `adc97c1`), and I did not find an existing fix or duplicate PR addressing it.\n\nFollow-up commit `f9274cc` applies the minimal fix — the same plain-key requirement on the configured-binding path — and adds regression coverage for the configured renamed EXTENDS and REFERENCES cases.\n\nVerification: resolveEdges 72/72 on the fix tree, `tsc` clean; the wrong edges reproduce against `adc97c1` and are eliminated after.\n\nFollow-up commit:\nhttps://github.com/Alot1z/Ix-remap/commit/f9274cc0870c65a496a5b983c814d9fed6a65c0f\n\nThis is ready for the PR author/maintainer to review/cherry-pick.",
+        "html_url": "https://github.com/ix-infrastructure/Ix/pull/445#issuecomment-5305054778",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5305054778",
+        "created_at": "2026-08-16T01:02:34Z",
+        "updated_at": "2026-08-16T01:02:34Z",
+        "commit_id": null,
+        "path": null,
+        "line": null,
+        "start_line": null,
+        "side": null,
+        "in_reply_to_id": null,
+        "diff_hunk": null,
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
+      }
+    ],
+    "reviews": [],
+    "review_comments": [],
+    "timeline": [
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/7d834235b99d6d2eccc2e638385368ebdb1de795"
+      },
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/bf7a4b47758d679be0845a3cec27c1d0a7f5c05e"
+      },
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/795ec2ce80759a5730134353640327fb77fb2eff"
+      },
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/c43303e56bb086af4316545c63550def57ff59b0"
+      },
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/9e58df1f3ba652d284fec088b0c4048945c5a019"
+      },
+      {
+        "id": 29479054895,
+        "event": "review_requested",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-14T20:18:41Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29479054895"
+      },
+      {
+        "id": 29479055210,
+        "event": "mentioned",
+        "actor": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "created_at": "2026-08-14T20:18:41Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29479055210"
+      },
+      {
+        "id": 29479055244,
+        "event": "subscribed",
+        "actor": {
+          "login": "Hiro-Chiba",
+          "id": 203865699,
+          "type": "User",
+          "html_url": "https://github.com/Hiro-Chiba"
+        },
+        "created_at": "2026-08-14T20:18:41Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29479055244"
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-14T20:20:35Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-14T20:20:52Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/1135ced5af3c5e1a1c0287fbd967a030b7c6d0f7"
+      },
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/08cd7779d74c92575f55395608229aa0867e1cf9"
+      },
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/adc97c1a979992739541a1d39e2e0b45ea6684d6"
+      },
+      {
+        "id": 5299396751,
+        "event": "commented",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-15T00:11:20Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5299396751"
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "Alot1z",
+          "id": 16801672,
+          "type": "User",
+          "html_url": "https://github.com/Alot1z"
+        },
+        "created_at": "2026-08-15T00:12:58Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": null,
+        "event": "cross-referenced",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-15T06:01:23Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": null
+      },
+      {
+        "id": 5305054778,
+        "event": "commented",
+        "actor": {
+          "login": "Alot1z",
+          "id": 16801672,
+          "type": "User",
+          "html_url": "https://github.com/Alot1z"
+        },
+        "created_at": "2026-08-16T01:02:34Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5305054778"
+      },
+      {
+        "id": 29518399720,
+        "event": "referenced",
+        "actor": {
+          "login": "Alot1z",
+          "id": 16801672,
+          "type": "User",
+          "html_url": "https://github.com/Alot1z"
+        },
+        "created_at": "2026-08-16T08:33:29Z",
+        "commit_id": "03c601e18138f865c3b0351bcd158986b96714f0",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29518399720"
+      }
+    ],
+    "source": "OFFICIAL_GITHUB_FACT",
+    "review_threads": [],
+    "review_thread_capture": {
+      "status": "UNKNOWN",
+      "source": "GitHub GraphQL API"
+    }
+  },
+  "source_context": {
+    "id": "github:pull_request:ix-infrastructure/Ix#445",
+    "source": {
+      "type": "github_pull_request",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/445",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/445",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-14T20:18:40Z",
+      "last_fetched": "2026-08-16T08:59:39.836Z",
+      "last_verified": "2026-08-16T08:59:39.836Z",
+      "source_updated_at": "2026-08-16T01:02:34Z",
+      "snapshot_version": "2026-08-16T08:59:39.836Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "PR-445",
+    "entity_type": "PULL_REQUEST",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "mirror_scope": "source PR, commits, files, comments, reviews, review comments, and review threads",
+    "related_analysis_types": [
+      "FINDING",
+      "DECISION",
+      "IMPLEMENTATION"
+    ],
+    "review_thread_state": "UNKNOWN"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "CHANGED_BY",
+      "other": "COMMIT-adc97c1a979992739541a1d39e2e0b45ea6684d6",
+      "other_type": "commit",
+      "other_title": "adc97c1a979992739541a1d39e2e0b45ea6684d6",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-adc97c1a979992739541a1d39e2e0b45ea6684d6"
+    },
+    {
+      "direction": "out",
+      "relationship": "FOUND_IN",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    },
+    {
+      "direction": "in",
+      "relationship": "RELATED_TO_PR",
+      "other": "F-017",
+      "other_type": "finding",
+      "other_title": "#445 configured-binding path binds to provider members (Y1)",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-017"
+    }
+  ]
+}
