@@ -1,6 +1,6 @@
 {
   "version": "2.0.0",
-  "generated": "2026-08-15",
+  "generated": "2026-08-17",
   "note": "F-### IDs are the planning-layer canonical IDs; ixf_id is the 1:1 alias used by the earlier ledger (manifests/findings-index.json). Evidence classes: A=source, B=artifact/runtime, C=reconstruction, D=inference.",
   "findings": [
     {
@@ -845,6 +845,40 @@
       ],
       "related_suggestions": [],
       "recommendation": "PR #455 closes the gap on the read side by applying contextBundleSchema.safeParse to parsed.bundle before returning from loadInvestigation. The fork commit 76134e22 (feat/audit-read-side-investigation-validation) mirrors #455 with one additional regression (hostile-target schema rejection) and adds 3 tests to context-investigation.test.ts. Full test suite 978/978 pass, typecheck clean. Recommended destination when upstream contribution is authorized: track #455 to its merge; if upstream contribution is blocked or does not progress in a reasonable cycle, propose a clean rebase of #455 onto origin/main as a new PR (NOT comment on #455 itself, which may close early without rollback consideration)."
+    },
+    {
+      "id": "F-024",
+      "ixf_id": "IXF-024",
+      "title": "ix context --diff silently ignores CLI --max-* (effective != requested)",
+      "repository": "ix-infrastructure/Ix",
+      "subsystem": "context",
+      "first_phase": "phase-context-enhancements-b",
+      "latest_phase": "phase-c",
+      "evidence_class": "B",
+      "confidence": "high",
+      "status": "FIXED_IN_FORK_LOCAL",
+      "decision": "IMPLEMENT",
+      "severity": "medium",
+      "affected_versions": [
+        "8be5f110"
+      ],
+      "evidence_refs": [
+        "planning/campaigns/ix-context-enhancements/CAMPAIGN.md",
+        "planning/campaigns/ix-context-pr423-pr455/PHASE-A-COMPLETE.md",
+        "findings/ix-context/reproducers/b4-budget-precedence.md"
+      ],
+      "reproduction": "1. Build a workspace via ix map . on a fixture project. 2. ix context <target> --kind <k> --save <id> --max-entities 50 --max-evidence 25 --max-relationships 100. 3. ix context --diff <id> --kind <k> --max-evidence 1 --format llm. Expected by user: the fresh side rebuilds with max-evidence=1, so the diff shows added/removed evidence reflecting that change. Observed: the diff reports added.evidence=[] and removed.evidence=[], and the fresh side was always governed by saved.bundle.budgets (50/100/25/12000) regardless of CLI flags. Confirmed by static path: ix-cli/src/cli/commands/context.ts calls buildFreshBundle(target, optsTrimmed, saved.bundle.budgets) directly, and buildFreshBundle only accepts {kind, path, pick, depth, asOfRev} from opts, never the --max-* fields.",
+      "related_files": [
+        "ix-cli/src/cli/commands/context.ts (action handler, buildFreshBundle signature, diffInvestigations and renderInvestigationDiff)",
+        "ix-cli/src/cli/__tests__/context-investigation.test.ts (new tests: budget transparency, parseRequestedBudgets, three-mode rendering)"
+      ],
+      "related_issues": [],
+      "related_prs": [
+        "#423 historical: introduced the silent saved-budget precedence as part of the investigation-diff action handler",
+        "#455 different scope, read-side validation already addressed by F-023"
+      ],
+      "related_suggestions": [],
+      "recommendation": "Branch feat/context-diff-budget-transparency on Alot1z/Ix-remap, commit 58aea40, implements the smallest UX fix: adds a budgets: {saved, requested?, effective, note} field to the existing ix-investigation-diff/1 schema (additive, not a behavior change), drops the commander defaults on --max-* so parseRequestedBudgets can distinguish absent flags from explicit ones (defaults still applied via clampInt at build time, so direct ix-context runs are byte-for-byte unchanged), and renders a four-line budgets: block in text and llm format. Tests: 978/978 pass (12 pre-existing skips), tsc clean, eslint clean. Recommended destination: a NEW PR against origin/main titled feat(context): surface effective/requested/saved budgets on ix context --diff, independent of #455 because it touches a different code path with a different finding and a different author."
     }
   ]
 }
