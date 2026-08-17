@@ -1,0 +1,12 @@
+=== FORK feat/audit-read-side-investigation-validation (76134e2) — #455 applied ===
+PASS  case=0_valid_envelope_and_body                expected=accepted  observed=accepted
+PASS  case=1_envelope_ok_bundle_entities_string     expected=rejected  observed=rejected
+PASS  case=2_truncated_json                         expected=rejected  observed=rejected
+PASS  case=3_envelope_v2_with_empty_body            expected=rejected  observed=rejected
+PASS  case=4_envelope_ok_body_null                  expected=rejected  observed=rejected
+PASS  case=5_envelope_ok_bundle_missing_entities    expected=rejected  observed=rejected
+PASS  case=6_envelope_ok_bundle_completely_wrong_shape expected=rejected  observed=rejected
+PASS  case=7_envelope_ok_bundle_via_symlink_outside_tree expected=rejected  observed=rejected
+PASS  case=8_e2e_resume_smoke                       expected=accepted  observed=accepted
+
+9/9 pass. The 4 baseline FAILs are corrected by the read-side safeParse bridge.

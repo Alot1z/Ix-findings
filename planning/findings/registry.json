@@ -505,7 +505,6 @@
         "method": "built core-ingestion+ix-cli from upstream main; resolveEdges probe + CLI map against local backend",
         "detail": "C6 fixture (global use Vendor\\Thing + namespace A { class Thing {} } + new Thing()) emits wrong CALLS@0.9 (plus IMPORTS@0.9) to Vendor/Thing.php on main. Fork fix 0a7d97f applied onto main removes the CALLS edge while keeping the legitimate IMPORTS edge - fix verified against current main."
       },
-
       "evidence_class": "A",
       "confidence": "high",
       "status": "FIXED_FORK",
@@ -571,7 +570,6 @@
         "method": "built core-ingestion+ix-cli from upstream main; resolveEdges probe",
         "detail": "X1 fixture (renamed import { Base as LocalBase } of ./m; class D extends LocalBase {} with m.ts = export class M { Base() {} }) emits wrong EXTENDS@0.9 dstQualifiedKey=M.Base on main. Fork fix cba11a3 applied onto main removes the edge; X2 positive control (real top-level export) still resolves EXTENDS@0.9."
       },
-
       "evidence_class": "A",
       "confidence": "high",
       "status": "FIXED_FORK",
@@ -608,7 +606,6 @@
         "method": "built core-ingestion+ix-cli from upstream main; resolveEdges probe with resolveModuleSpecifier mapping @core to worker.ts",
         "detail": "Y1 fixture emits wrong EXTENDS@0.9 dstQualifiedKey=W.Base on main via the configured-binding path. IMPORTANT: on merged main, fork fix f9274cc ALONE is insufficient - the #443 fileHasSymbol fallback was unified into the publicMatches loop, so the edge re-emerges through the fallback; cba11a3 (plain-qualified-key guard on the fallback) + f9274cc together fix it. Y2 positive control still resolves EXTENDS@0.9."
       },
-
       "evidence_class": "A",
       "confidence": "high",
       "status": "FIXED_FORK",
@@ -701,7 +698,6 @@
         "method": "built core-ingestion+ix-cli from upstream main; resolveEdges probe + CLI map against local backend",
         "detail": "Same-line fixture (<?php namespace Vendor\\Package; class A {} class B {} plus consumer use Vendor\\Package\\B; new B()) emits NONE on main - B:class container=A artifact present, B dropped from the FQCN index. CLI/backend graph confirmed: C.php has no IMPORTS edge to the same-line B.php. Fork fix f577492 applied onto main restores IMPORTS@0.9; multi-line control unaffected."
       },
-
       "evidence_class": "A",
       "confidence": "high",
       "status": "FIXED_FORK",
@@ -739,7 +735,6 @@
         "method": "built core-ingestion from upstream main; resolveEdges probe with provider present",
         "detail": "Single-char name B: only the IMPORTS relationship is emitted - no REFERENCES/CALLS edges (multi-char control User emits REFERENCES@0.5+CALLS@0.5). Pre-existing (base==head semantics unchanged); status stays OPEN."
       },
-
       "evidence_class": "A",
       "confidence": "high",
       "status": "OPEN",
@@ -785,8 +780,8 @@
       ],
       "related_issues": [],
       "related_prs": [
-    "#448 (merged 2026-08-16, commit 5efd8f18, merge cf39184)"
-  ],
+        "#448 (merged 2026-08-16, commit 5efd8f18, merge cf39184)"
+      ],
       "related_suggestions": [],
       "recommendation": "Fixed by fork commit 5efd8f1 (branch fix/php-grouped-use-imports, parent 043bc68), opened as upstream PR #448. Adds a grouped-use query pattern (namespace_name @import.prefix + namespace_use_clause @import.clause) and rebuilds each member FQCN from prefix + the clause's FIRST name child (an `as` alias is a second name child and never becomes an import). Regression tests fail-before on main / pass-after; relevant suites 86/86, tsc clean. Pre-existing query-layer gap, base==head — NOT a #446 regression, opened independently."
     },
@@ -816,6 +811,40 @@
       ],
       "related_suggestions": [],
       "recommendation": "Minimal fix direction (not implemented this campaign): strip the container artifact when computing PHP type qualified keys, mirroring f577492 rationale (PHP types cannot nest). Alternative: fix findEnclosing to not nest same-line siblings. Needs a regression test asserting same-line sibling CALLS/REFERENCES edges carry the plain (or namespace-qualified) key."
+    },
+    {
+      "id": "F-023",
+      "ixf_id": "IXF-023",
+      "title": "ix context: loadInvestigation missing read-side bundle schema validation (#455)",
+      "repository": "ix-infrastructure/Ix",
+      "subsystem": "ix-cli (ix-context persistence / validation)",
+      "first_phase": "campaign-ix-context-pr423-pr455",
+      "latest_phase": "campaign-ix-context-pr423-pr455",
+      "evidence_class": "A",
+      "confidence": "high",
+      "status": "OPEN_UPSTREAM",
+      "severity": "high",
+      "affected_versions": [
+        "8be5f110"
+      ],
+      "evidence_refs": [],
+      "reproduction": "saveInvestigation(\"foo\", validBundle); tamper with the on-disk envelope so that bundle.entities is replaced with the string \"not-an-array\" while preserving schema=ix-investigation/1 and bundle truthy; call loadInvestigation(\"foo\"): origin/main returns the tampered object as SavedInvestigation (the cast-only trust on disk), and a subsequent diffInvestigations call crashes inside prev.entities.some because the bundle body no longer matches the shape the rest of the code assumes.",
+      "related_files": [
+        "planning/campaigns/ix-context-pr423-pr455/CAMPAIGN.md",
+        "findings/ix-context/architecture/IX-CONTEXT-ARCHITECTURE.md",
+        "findings/ix-context/architecture/IX-CONTEXT-VALIDATION-MATRIX.md",
+        "findings/ix-context/reproducers/repro-455-corpus.ts",
+        "findings/ix-context/reproducers/CORPUS-NOTES.md",
+        "findings/ix-context/reproducers/ci-output/baseline-origin-main.txt",
+        "findings/ix-context/reproducers/ci-output/fork-with-455.txt"
+      ],
+      "related_issues": [],
+      "related_prs": [
+        "#423 (introduced the gap; merged)",
+        "#455 (open at origin/fix/validate-saved-investigation, head 084faae, base 4a88a654de10efdd88335f7966b5553a41cd7ded; not yet merged into origin/main as of capture)"
+      ],
+      "related_suggestions": [],
+      "recommendation": "PR #455 closes the gap on the read side by applying contextBundleSchema.safeParse to parsed.bundle before returning from loadInvestigation. The fork commit 76134e22 (feat/audit-read-side-investigation-validation) mirrors #455 with one additional regression (hostile-target schema rejection) and adds 3 tests to context-investigation.test.ts. Full test suite 978/978 pass, typecheck clean. Recommended destination when upstream contribution is authorized: track #455 to its merge; if upstream contribution is blocked or does not progress in a reasonable cycle, propose a clean rebase of #455 onto origin/main as a new PR (NOT comment on #455 itself, which may close early without rollback consideration)."
     }
   ]
 }

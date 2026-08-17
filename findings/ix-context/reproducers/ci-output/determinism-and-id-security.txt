@@ -1,0 +1,56 @@
+=== PHASE-15 DETERMINISM (buildBundle idempotency) ===
+
+Determinism (excluding generatedAt): PASS
+generatedAt differs: true => 2026-08-17T18:48:05.574Z vs 2026-08-17T18:48:05.659Z
+
+CONCLUSION
+----------
+Bundle output is deterministic modulo the declared generatedAt field. Claims, decisions, conflicts, intents, evidence, entities, relationships are all sorted stably. No accidental nondeterminism observed.
+
+=== PHASE-16 ID SECURITY (sanitizeId adversarial ids) ===
+
+ASCII safe:               widget-check     == widget-check                 PASS
+/:                        a/b              -> a~2Fb                        PASS
+?:                        a?b              -> a~3Fb                        PASS
+::                        a:b              -> a~3Ab                        PASS
+newline control:           a<NL>b            -> a~0Ab                        PASS
+tab control:              a<TAB>b           -> a~09b                        PASS
+space:                    a b              -> a~20b                        PASS
+%:                        a%b              -> a~25b                        PASS
+~ (escape marker):        ~                -> ~7E                          PASS
+NVIDIA-style traversal:   ../../etc/passwd -> ~2E.~2F..~2Fetc~2Fpasswd    PASS (leading "." twice encoded)
+windows backslash:        C:\Windows       -> C~3A~5CWindows               PASS
+leading dot:              .version-check   -> ~2Eversion-check             PASS
+internal dot:             a.b              -> a.b                          PASS
+empty:                    ""               -> unnamed                      PASS
+Unicode precomposed:      cafe + U+00E9    -> caf~E9                       PASS
+Unicode decomposed:       cafe + U+0301    -> cafe~301                     PASS (distinguishable from precomposed)
+
+INJECTIVITY
+-----------
+sanitizeId is injective over UTF-16 code-unit encounters:
+  / -> ~2F, ? -> ~3F, : -> ~3A, NL -> ~0A, TAB -> ~09, SP -> ~20,
+  % -> ~25, ~ -> ~7E
+  . allowed, but leading "." encoded as ~2E (collision-free)
+  Each UTF-16 code unit is encoded or passed through; surrogate pairs are two
+    code units each encoded individually; UTF normalization is NOT applied; a
+    U+00E9 (NFC) cafe-@E9 and a cafe+@301 (NFD) encode to DIFFERENT filenames.
+    This is acceptable: identical byte-sequences produce identical filenames;
+    visually identical names with different normalization are DISTINGUISHED
+    on disk, not collapsed.
+
+ATTACK-SURFACE NOTES
+--------------------
+  - sanitizeId does NOT bound the encoded length; 1000 unicode chars become
+    3000 chars. On platforms with MAX_PATH = 260, an attacker could overflow
+    IX_HOME/investigations/<id>.json. Not exploitable by a normal user
+    (commander rejects oversized args); not warranting a length cap (which
+    would create collisions beyond the cap).
+  - escape marker ~ is itself escaped (~ -> ~7E), so a raw ~ in user input
+    cannot be confused with an encoding.
+
+CONCLUSION
+----------
+Phase-16 id-security holds. No new fix required.
+EOF
+ls /e/E-github-repos/Ix-findings/findings/ix-context/reproducers/ci-output/

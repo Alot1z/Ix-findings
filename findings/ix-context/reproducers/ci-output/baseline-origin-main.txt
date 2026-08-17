@@ -1,0 +1,12 @@
+=== ORIGIN/MAIN BASELINE (8be5f110) — no fix ===
+PASS  case=0_valid_envelope_and_body                expected=accepted  observed=accepted
+FAIL  case=1_envelope_ok_bundle_entities_string     expected=rejected  observed=accepted
+PASS  case=2_truncated_json                         expected=rejected  observed=rejected
+PASS  case=3_envelope_v2_with_empty_body            expected=rejected  observed=rejected
+PASS  case=4_envelope_ok_body_null                  expected=rejected  observed=rejected
+FAIL  case=5_envelope_ok_bundle_missing_entities    expected=rejected  observed=accepted
+FAIL  case=6_envelope_ok_bundle_completely_wrong_shape expected=rejected  observed=accepted
+FAIL  case=7_envelope_ok_bundle_via_symlink_outside_tree expected=rejected  observed=accepted
+PASS  case=8_e2e_resume_smoke                       expected=accepted  observed=accepted
+
+5/9 pass. The 4 FAILs are exactly the read-side-validator gap.
