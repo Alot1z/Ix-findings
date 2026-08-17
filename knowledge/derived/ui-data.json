@@ -1213,6 +1213,12 @@
       "status": "CURRENT"
     },
     {
+      "id": "SRC-091fcb41dd08",
+      "type": "source",
+      "title": "planning/findings/CAMPAIGN-FORENSICS-2026-08-17.md",
+      "status": "CURRENT"
+    },
+    {
       "id": "SRC-5eb527f6aeb8",
       "type": "source",
       "title": "planning/findings/PR-AUDIT-2026-08-15.md",
@@ -3154,6 +3160,12 @@
       "id": "E-030",
       "type": "evidence",
       "title": "#349 installer-space-in-path fix — PR #352 + #392 merged upstream",
+      "status": "HISTORICAL"
+    },
+    {
+      "id": "E-031",
+      "type": "evidence",
+      "title": "Live upstream reproduction of F-014/F-016/F-017/F-019 on main 8be5f110",
       "status": "HISTORICAL"
     },
     {
@@ -22959,6 +22971,36 @@
       "confidence": "HIGH"
     },
     {
+      "source": "E-031",
+      "target": "F-014",
+      "relationship": "SUPPORTS",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "E-031",
+      "target": "F-016",
+      "relationship": "SUPPORTS",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "E-031",
+      "target": "F-017",
+      "relationship": "SUPPORTS",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "E-031",
+      "target": "F-019",
+      "relationship": "SUPPORTS",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "E-031",
+      "target": "F-020",
+      "relationship": "SUPPORTS",
+      "confidence": "HIGH"
+    },
+    {
       "source": "S-001",
       "target": "F-010",
       "relationship": "APPLIES_TO",
@@ -23860,6 +23902,12 @@
     },
     {
       "source": "E-030",
+      "target": "REPO-ix-infrastructure-Ix",
+      "relationship": "FOUND_IN",
+      "confidence": "MEDIUM"
+    },
+    {
+      "source": "E-031",
       "target": "REPO-ix-infrastructure-Ix",
       "relationship": "FOUND_IN",
       "confidence": "MEDIUM"
@@ -25066,6 +25114,12 @@
     },
     {
       "source": "SRC-ac6da3f51931",
+      "target": "REPO-Ix-findings",
+      "relationship": "PART_OF",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SRC-091fcb41dd08",
       "target": "REPO-Ix-findings",
       "relationship": "PART_OF",
       "confidence": "HIGH"
@@ -27328,6 +27382,12 @@
     },
     {
       "source": "E-030",
+      "target": "SRC-11b62787a2c7",
+      "relationship": "HAS_SOURCE",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "E-031",
       "target": "SRC-11b62787a2c7",
       "relationship": "HAS_SOURCE",
       "confidence": "HIGH"

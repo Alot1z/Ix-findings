@@ -2,9 +2,9 @@
 
 Generated: 2026-08-12
 
-- Raw source files ingested: 406
-- Canonical entities: 3693
-- Typed relationships: 13596
+- Raw source files ingested: 407
+- Canonical entities: 3695
+- Typed relationships: 13604
 - Orphan entities: 31
 - Historical duplicate-ID claims requiring recheck: 0
 - Explicit contradictions: 6

@@ -478,5 +478,21 @@
     "result": "#349 installer-space-in-path fix — PR #352 + #392 merged upstream (class A).",
     "confidence": "HIGH",
     "limitations": "UNKNOWN"
+  },
+  {
+    "evidence_id": "E-031",
+    "title": "Live upstream reproduction of F-014/F-016/F-017/F-019 on main 8be5f110",
+    "class": "A",
+    "what": "Built core-ingestion + ix-cli from upstream main 8be5f110 and reproduced all four regressions via resolveEdges probes (deterministic) plus CLI map/backend graph queries: F-014 wrong CALLS@0.9 across the global->namespace boundary; F-016 EXTENDS@0.9 -> provider method M.Base; F-017 EXTENDS@0.9 -> provider method W.Base (configured path); F-019 same-line sibling PHP type dropped from the FQCN index (NONE). Fork fixes 0a7d97f / f577492 / cba11a3 verified against current main; F-017 requires BOTH cba11a3 and f9274cc on merged main (f9274cc alone insufficient). F-020 confirmed pre-existing (single-char guard, base==head).",
+    "where": "ix-infrastructure/Ix",
+    "when": "live-upstream-verify-2026-08-17",
+    "source_refs": [
+      "SRC-11b62787a2c7"
+    ],
+    "observation": "Built core-ingestion + ix-cli from upstream main 8be5f110 and reproduced all four regressions via resolveEdges probes (deterministic) plus CLI map/backend graph queries: F-014 wrong CALLS@0.9 across the global->namespace boundary; F-016 EXTENDS@0.9 -> provider method M.Base; F-017 EXTENDS@0.9 -> provider method W.Base (configured path); F-019 same-line sibling PHP type dropped from the FQCN index (NONE). Fork fixes 0a7d97f / f577492 / cba11a3 verified against current main; F-017 requires BOTH cba11a3 and f9274cc on merged main (f9274cc alone insufficient). F-020 confirmed pre-existing (single-char guard, base==head).",
+    "method": "reproduction",
+    "result": "Live upstream reproduction of F-014/F-016/F-017/F-019 on main 8be5f110 (class A).",
+    "confidence": "HIGH",
+    "limitations": "UNKNOWN"
   }
 ]

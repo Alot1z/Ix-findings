@@ -1823,7 +1823,8 @@
       "E-027",
       "E-028",
       "E-029",
-      "E-030"
+      "E-030",
+      "E-031"
     ],
     "next": []
   },
@@ -1982,6 +1983,15 @@
   },
   "SRC-ac6da3f51931": {
     "summary": "planning/findings/by-status.md (HISTORICAL).",
+    "status": "CURRENT",
+    "evidence": [],
+    "neighbors": [
+      "REPO-Ix-findings"
+    ],
+    "next": []
+  },
+  "SRC-091fcb41dd08": {
+    "summary": "planning/findings/CAMPAIGN-FORENSICS-2026-08-17.md (HISTORICAL).",
     "status": "CURRENT",
     "evidence": [],
     "neighbors": [
@@ -3994,6 +4004,7 @@
       "E-028",
       "E-029",
       "E-030",
+      "E-031",
       "SRC-2a5998452c1a",
       "FORK-Alot1z-Ix-remap",
       "CLONE-E-E-github-repos-Ix-remap",
@@ -4350,6 +4361,7 @@
       "SRC-66daa267af2f",
       "SRC-cc0f778ab554",
       "SRC-ac6da3f51931",
+      "SRC-091fcb41dd08",
       "SRC-5eb527f6aeb8",
       "SRC-125a277e8e67",
       "SRC-11f33e1eba18",
@@ -5807,6 +5819,7 @@
       "E-PR446-SCOPE"
     ],
     "neighbors": [
+      "E-031",
       "SRC-125a277e8e67",
       "SRC-5eb527f6aeb8"
     ],
@@ -5827,6 +5840,7 @@
     "status": "FIXED_FORK",
     "evidence": [],
     "neighbors": [
+      "E-031",
       "SRC-125a277e8e67",
       "SRC-5eb527f6aeb8"
     ],
@@ -5837,6 +5851,7 @@
     "status": "FIXED_FORK",
     "evidence": [],
     "neighbors": [
+      "E-031",
       "SRC-125a277e8e67",
       "SRC-5eb527f6aeb8"
     ],
@@ -5867,6 +5882,7 @@
     "status": "FIXED_FORK",
     "evidence": [],
     "neighbors": [
+      "E-031",
       "SRC-125a277e8e67",
       "SRC-5eb527f6aeb8"
     ],
@@ -5877,6 +5893,7 @@
     "status": "OPEN",
     "evidence": [],
     "neighbors": [
+      "E-031",
       "SRC-125a277e8e67",
       "SRC-5eb527f6aeb8"
     ],
@@ -6261,6 +6278,21 @@
     "status": "HISTORICAL",
     "evidence": [],
     "neighbors": [
+      "REPO-ix-infrastructure-Ix",
+      "SRC-11b62787a2c7"
+    ],
+    "next": []
+  },
+  "E-031": {
+    "summary": "Live upstream reproduction of F-014/F-016/F-017/F-019 on main 8be5f110 (class A).",
+    "status": "HISTORICAL",
+    "evidence": [],
+    "neighbors": [
+      "F-014",
+      "F-016",
+      "F-017",
+      "F-019",
+      "F-020",
       "REPO-ix-infrastructure-Ix",
       "SRC-11b62787a2c7"
     ],
