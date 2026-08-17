@@ -1593,6 +1593,70 @@
     ],
     "next": []
   },
+  "SRC-dfdf4046e8a7": {
+    "summary": "planning/campaigns/446-deep-engineering-research/CAMPAIGN-MEMORY.md (HISTORICAL).",
+    "status": "CURRENT",
+    "evidence": [],
+    "neighbors": [
+      "REPO-Ix-findings"
+    ],
+    "next": []
+  },
+  "SRC-84e827aab22b": {
+    "summary": "planning/campaigns/446-deep-engineering-research/CONTRIBUTION-DECISION.md (HISTORICAL).",
+    "status": "CURRENT",
+    "evidence": [],
+    "neighbors": [
+      "REPO-Ix-findings"
+    ],
+    "next": []
+  },
+  "SRC-0042e543b58c": {
+    "summary": "planning/campaigns/446-deep-engineering-research/DRAFTS.md (HISTORICAL).",
+    "status": "CURRENT",
+    "evidence": [],
+    "neighbors": [
+      "REPO-Ix-findings"
+    ],
+    "next": []
+  },
+  "SRC-1283a3885f9d": {
+    "summary": "planning/campaigns/446-deep-engineering-research/REGRESSION-MATRIX.md (HISTORICAL).",
+    "status": "CURRENT",
+    "evidence": [],
+    "neighbors": [
+      "REPO-Ix-findings"
+    ],
+    "next": []
+  },
+  "SRC-71872d7dc521": {
+    "summary": "planning/campaigns/446-deep-engineering-research/RELATED-RISK-ANALYSIS.md (HISTORICAL).",
+    "status": "CURRENT",
+    "evidence": [],
+    "neighbors": [
+      "REPO-Ix-findings",
+      "F-022"
+    ],
+    "next": []
+  },
+  "SRC-fa60a62a2a7d": {
+    "summary": "planning/campaigns/446-deep-engineering-research/ROOT-CAUSES-F-014-F-016-F-017-F-019.md (HISTORICAL).",
+    "status": "CURRENT",
+    "evidence": [],
+    "neighbors": [
+      "REPO-Ix-findings"
+    ],
+    "next": []
+  },
+  "SRC-365675600811": {
+    "summary": "planning/campaigns/446-deep-engineering-research/SYSTEM-AUDIT.md (HISTORICAL).",
+    "status": "CURRENT",
+    "evidence": [],
+    "neighbors": [
+      "REPO-Ix-findings"
+    ],
+    "next": []
+  },
   "SRC-ea279e9f1777": {
     "summary": "planning/compass/artifacts.md (HISTORICAL).",
     "status": "CURRENT",
@@ -2047,6 +2111,7 @@
       "F-019",
       "F-020",
       "F-021",
+      "F-022",
       "CONTRA-001"
     ],
     "next": []
@@ -4322,6 +4387,13 @@
       "SRC-cc1bb4a76b8d",
       "SRC-e769c741ffbd",
       "SRC-3f1b9b23ddf5",
+      "SRC-dfdf4046e8a7",
+      "SRC-84e827aab22b",
+      "SRC-0042e543b58c",
+      "SRC-1283a3885f9d",
+      "SRC-71872d7dc521",
+      "SRC-fa60a62a2a7d",
+      "SRC-365675600811",
       "SRC-ea279e9f1777",
       "SRC-60b3abf2ff06",
       "SRC-5b3c4374026a",
@@ -5906,6 +5978,16 @@
     "neighbors": [
       "SRC-125a277e8e67",
       "SRC-5eb527f6aeb8"
+    ],
+    "next": []
+  },
+  "F-022": {
+    "summary": "Same-line PHP sibling types leak container artifact into graph qualified keys (A.User). Current semantic status: OPEN.",
+    "status": "OPEN",
+    "evidence": [],
+    "neighbors": [
+      "SRC-125a277e8e67",
+      "SRC-71872d7dc521"
     ],
     "next": []
   },

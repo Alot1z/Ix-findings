@@ -1755,6 +1755,77 @@
       "REPO-Ix-findings"
     ]
   },
+  "SRC-dfdf4046e8a7": {
+    "type": "SOURCE",
+    "name": "planning/campaigns/446-deep-engineering-research/CAMPAIGN-MEMORY.md",
+    "status": "CURRENT",
+    "summary": "planning/campaigns/446-deep-engineering-research/CAMPAIGN-MEMORY.md (HISTORICAL).",
+    "evidence": [],
+    "neighbors": [
+      "REPO-Ix-findings"
+    ]
+  },
+  "SRC-84e827aab22b": {
+    "type": "SOURCE",
+    "name": "planning/campaigns/446-deep-engineering-research/CONTRIBUTION-DECISION.md",
+    "status": "CURRENT",
+    "summary": "planning/campaigns/446-deep-engineering-research/CONTRIBUTION-DECISION.md (HISTORICAL).",
+    "evidence": [],
+    "neighbors": [
+      "REPO-Ix-findings"
+    ]
+  },
+  "SRC-0042e543b58c": {
+    "type": "SOURCE",
+    "name": "planning/campaigns/446-deep-engineering-research/DRAFTS.md",
+    "status": "CURRENT",
+    "summary": "planning/campaigns/446-deep-engineering-research/DRAFTS.md (HISTORICAL).",
+    "evidence": [],
+    "neighbors": [
+      "REPO-Ix-findings"
+    ]
+  },
+  "SRC-1283a3885f9d": {
+    "type": "SOURCE",
+    "name": "planning/campaigns/446-deep-engineering-research/REGRESSION-MATRIX.md",
+    "status": "CURRENT",
+    "summary": "planning/campaigns/446-deep-engineering-research/REGRESSION-MATRIX.md (HISTORICAL).",
+    "evidence": [],
+    "neighbors": [
+      "REPO-Ix-findings"
+    ]
+  },
+  "SRC-71872d7dc521": {
+    "type": "SOURCE",
+    "name": "planning/campaigns/446-deep-engineering-research/RELATED-RISK-ANALYSIS.md",
+    "status": "CURRENT",
+    "summary": "planning/campaigns/446-deep-engineering-research/RELATED-RISK-ANALYSIS.md (HISTORICAL).",
+    "evidence": [],
+    "neighbors": [
+      "REPO-Ix-findings",
+      "F-022"
+    ]
+  },
+  "SRC-fa60a62a2a7d": {
+    "type": "SOURCE",
+    "name": "planning/campaigns/446-deep-engineering-research/ROOT-CAUSES-F-014-F-016-F-017-F-019.md",
+    "status": "CURRENT",
+    "summary": "planning/campaigns/446-deep-engineering-research/ROOT-CAUSES-F-014-F-016-F-017-F-019.md (HISTORICAL).",
+    "evidence": [],
+    "neighbors": [
+      "REPO-Ix-findings"
+    ]
+  },
+  "SRC-365675600811": {
+    "type": "SOURCE",
+    "name": "planning/campaigns/446-deep-engineering-research/SYSTEM-AUDIT.md",
+    "status": "CURRENT",
+    "summary": "planning/campaigns/446-deep-engineering-research/SYSTEM-AUDIT.md (HISTORICAL).",
+    "evidence": [],
+    "neighbors": [
+      "REPO-Ix-findings"
+    ]
+  },
   "SRC-ea279e9f1777": {
     "type": "SOURCE",
     "name": "planning/compass/artifacts.md",
@@ -2252,6 +2323,7 @@
       "F-019",
       "F-020",
       "F-021",
+      "F-022",
       "CONTRA-001"
     ]
   },
@@ -4735,6 +4807,13 @@
       "SRC-cc1bb4a76b8d",
       "SRC-e769c741ffbd",
       "SRC-3f1b9b23ddf5",
+      "SRC-dfdf4046e8a7",
+      "SRC-84e827aab22b",
+      "SRC-0042e543b58c",
+      "SRC-1283a3885f9d",
+      "SRC-71872d7dc521",
+      "SRC-fa60a62a2a7d",
+      "SRC-365675600811",
       "SRC-ea279e9f1777",
       "SRC-60b3abf2ff06",
       "SRC-5b3c4374026a",
@@ -6403,6 +6482,17 @@
     "neighbors": [
       "SRC-125a277e8e67",
       "SRC-5eb527f6aeb8"
+    ]
+  },
+  "F-022": {
+    "type": "FINDING",
+    "name": "Same-line PHP sibling types leak container artifact into graph qualified keys (A.User)",
+    "status": "OPEN",
+    "summary": "F-022: Same-line PHP sibling types leak container artifact into graph qualified keys (A.User); status OPEN.",
+    "evidence": [],
+    "neighbors": [
+      "SRC-125a277e8e67",
+      "SRC-71872d7dc521"
     ]
   },
   "E-001": {

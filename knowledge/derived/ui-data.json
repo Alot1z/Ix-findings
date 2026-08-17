@@ -979,6 +979,48 @@
       "status": "CURRENT"
     },
     {
+      "id": "SRC-dfdf4046e8a7",
+      "type": "source",
+      "title": "planning/campaigns/446-deep-engineering-research/CAMPAIGN-MEMORY.md",
+      "status": "CURRENT"
+    },
+    {
+      "id": "SRC-84e827aab22b",
+      "type": "source",
+      "title": "planning/campaigns/446-deep-engineering-research/CONTRIBUTION-DECISION.md",
+      "status": "CURRENT"
+    },
+    {
+      "id": "SRC-0042e543b58c",
+      "type": "source",
+      "title": "planning/campaigns/446-deep-engineering-research/DRAFTS.md",
+      "status": "CURRENT"
+    },
+    {
+      "id": "SRC-1283a3885f9d",
+      "type": "source",
+      "title": "planning/campaigns/446-deep-engineering-research/REGRESSION-MATRIX.md",
+      "status": "CURRENT"
+    },
+    {
+      "id": "SRC-71872d7dc521",
+      "type": "source",
+      "title": "planning/campaigns/446-deep-engineering-research/RELATED-RISK-ANALYSIS.md",
+      "status": "CURRENT"
+    },
+    {
+      "id": "SRC-fa60a62a2a7d",
+      "type": "source",
+      "title": "planning/campaigns/446-deep-engineering-research/ROOT-CAUSES-F-014-F-016-F-017-F-019.md",
+      "status": "CURRENT"
+    },
+    {
+      "id": "SRC-365675600811",
+      "type": "source",
+      "title": "planning/campaigns/446-deep-engineering-research/SYSTEM-AUDIT.md",
+      "status": "CURRENT"
+    },
+    {
       "id": "SRC-ea279e9f1777",
       "type": "source",
       "title": "planning/compass/artifacts.md",
@@ -2981,6 +3023,12 @@
       "type": "finding",
       "title": "PHP grouped `use Vendor\\{A, B};` captures zero IMPORTS",
       "status": "RESOLVED"
+    },
+    {
+      "id": "F-022",
+      "type": "finding",
+      "title": "Same-line PHP sibling types leak container artifact into graph qualified keys (A.User)",
+      "status": "OPEN"
     },
     {
       "id": "E-001",
@@ -24885,6 +24933,48 @@
       "confidence": "HIGH"
     },
     {
+      "source": "SRC-dfdf4046e8a7",
+      "target": "REPO-Ix-findings",
+      "relationship": "PART_OF",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SRC-84e827aab22b",
+      "target": "REPO-Ix-findings",
+      "relationship": "PART_OF",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SRC-0042e543b58c",
+      "target": "REPO-Ix-findings",
+      "relationship": "PART_OF",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SRC-1283a3885f9d",
+      "target": "REPO-Ix-findings",
+      "relationship": "PART_OF",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SRC-71872d7dc521",
+      "target": "REPO-Ix-findings",
+      "relationship": "PART_OF",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SRC-fa60a62a2a7d",
+      "target": "REPO-Ix-findings",
+      "relationship": "PART_OF",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "SRC-365675600811",
+      "target": "REPO-Ix-findings",
+      "relationship": "PART_OF",
+      "confidence": "HIGH"
+    },
+    {
       "source": "SRC-ea279e9f1777",
       "target": "REPO-Ix-findings",
       "relationship": "PART_OF",
@@ -27203,6 +27293,18 @@
     {
       "source": "F-021",
       "target": "SRC-5eb527f6aeb8",
+      "relationship": "HAS_SOURCE",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "F-022",
+      "target": "SRC-125a277e8e67",
+      "relationship": "HAS_SOURCE",
+      "confidence": "HIGH"
+    },
+    {
+      "source": "F-022",
+      "target": "SRC-71872d7dc521",
       "relationship": "HAS_SOURCE",
       "confidence": "HIGH"
     },
