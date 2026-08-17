@@ -726,10 +726,10 @@
       "repository": "ix-infrastructure/Ix",
       "subsystem": "core-ingestion (PHP query / import resolution)",
       "first_phase": "pr-audit-2026-08-15",
-      "latest_phase": "final-orchestrator-2026-08-16",
+      "latest_phase": "final-orchestrator-2026-08-17",
       "evidence_class": "A",
       "confidence": "high",
-      "status": "PR_OPEN",
+      "status": "FIXED_UPSTREAM",
       "publication_url": "https://github.com/Alot1z/Ix-remap/commit/5efd8f185e2f284551000486433d4233b2fe704a",
       "pr_url": "https://github.com/ix-infrastructure/Ix/pull/448",
       "severity": "medium",
@@ -745,7 +745,7 @@
       ],
       "related_issues": [],
       "related_prs": [
-    "#448"
+    "#448 (merged 2026-08-16, commit 5efd8f18, merge cf39184)"
   ],
       "related_suggestions": [],
       "recommendation": "Fixed by fork commit 5efd8f1 (branch fix/php-grouped-use-imports, parent 043bc68), opened as upstream PR #448. Adds a grouped-use query pattern (namespace_name @import.prefix + namespace_use_clause @import.clause) and rebuilds each member FQCN from prefix + the clause's FIRST name child (an `as` alias is a second name child and never becomes an import). Regression tests fail-before on main / pass-after; relevant suites 86/86, tsc clean. Pre-existing query-layer gap, base==head — NOT a #446 regression, opened independently."
