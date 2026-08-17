@@ -8,102 +8,143 @@ MCP ix_context). No core-ingestion work. No new bugs invented.
 **Closed prior phase:** 2026-08-17 — see
 `planning/campaigns/ix-context-pr423-pr455/PHASE-A-COMPLETE.md` (commit `d01416c5`).
 
-**Inventoried evidence inventory (read-only):**
+**Upstream SHA baseline:** `8be5f110a5a072767e04dc108e79c539d1bab0f9`
+**Fork tip:** tracked per branch below
+**PR #455 status:** OPEN — head `084faae83245774db3fdaebfc7361c50281a55e7`, base `4a88a654de10efdd88335f7966b5553a41cd7ded`. NOT the destination for unrelated new work.
 
-```text
-ix-cli/src/cli/commands/context.ts             844 lines
-ix-cli/src/cli/context-bundle-schema.ts       36 lines (contextBundleSchema)
-ix-cli/src/mcp/server.ts                      ix_context registered at line 49,
-                                              tool defined at line 403,
-                                              outputSchema dispatch at line 530
-ix-cli/src/cli/__tests__/context.test.ts                  9 tests
-ix-cli/src/cli/__tests__/context-investigation.test.ts  11 tests
-ix-cli/src/cli/__tests__/context-pick-validation.test.ts (? tests — read in Phase B)
-ix-cli/src/cli/__tests__/mcp.test.ts           ix_context coverage (read in Phase B)
-```
+---
 
-**Existing CLI surface:**
-
-```text
-ix context                                    default — fresh build
-ix context --resume <id>                      render saved state
-ix context --diff <id>                        render diff against fresh build
-ix context --save <id>                        persist state
-ix context --out <path>                       write JSON bundle to file
-ix context --as-of-rev <n>                    historical context
-ix context --max-{entities,relationships,evidence,chars} <n>
-ix context --format {text,json,llm}
-ix context --kind / --path / --pick / --depth  resolution filters
-```
-
-**Investigated capability audit table:**
-
-| Capability | Current behavior | Strength | Limitation | Evidence |
-| ---------- | ---------------- | -------- | ---------- | -------- |
-| `--diff --format llm` | `renderInvestigationDiff` only branches on `format === "json"`. llm falls through to text-section render. | -- | ASYMMETRIC vs `--resume --format llm` (which calls `renderBundle` with a proper llm branch) | ix-cli/src/cli/commands/context.ts L457+ and L768+ |
-| Effective-budgets on bundle | bundle carries `budgets` (asked) + `truncation` (cut). No `effective` field. | -- | Agent cannot determine which slice of the available context was actually returned; "asked 200 kept 50" is derivable only via two tables | ix-cli/src/cli/commands/context.ts bundle shape ~L600 |
-| Investigation listing | `--resume <id>` accepts id; no enumeration. | -- | Agent cannot discover saved investigations without reading ~/.ix directly | registerContextCommand (commands/context.ts L115+) |
-| Cheap `--inspect <id>` | only `--resume <id>` — renders full bundle, possibly truncated but heavy | -- | No metadata-only path for cheap inspection | renderSavedInvestigation L399+ |
-| Diff classification | added / removed only | clean | No "stale-flipped but still-present" classification | diffInvestigations L409+ |
-| `--diff --max-entities` | silently ignored on `--diff` path | -- | Flag is accepted but buildFreshBundle(target,opts,savedBudgets) drops it. Prior campaign recorded this as "by-design". Re-test hypothesis is needed. | command handler L144-157 + buildFreshBundle L245+ |
-
-**Decision matrix (initial):**
-
-| Candidate | Evidence | Value | Complexity | Compatibility | Performance | Upstream suitability | Decision |
-| --------- | -------- | ----- | ---------- | ------------- | ----------- | -------------------- | -------- |
-| A. `--format llm` parity for `--diff` | confirmed via code inspection | medium (CLIs must work the same shape across resume/diff) | very low | none | none | yes — clean parity fix | IMPLEMENT (Phase B-1) |
-| B. `effectiveBudgets` field on bundle | derived from existing budgets/truncation | medium-high (agent-readable consumed-budget delta) | low | additive only | none | yes | DEFER to Phase B-2 if B-1 lands clean |
-| C. Cheap `--inspect <id>` | new command surface | medium | medium | additive only | none | yes | DEFER to Phase B-3 |
-| D. `--diff --max-*` honor-overrides hypothesis | requires fresh reproduction; prior campaign declared by-design | re-test | low | would change precedence | none | depends on reproducible defect | RESEARCH ONLY (fresh repro required before decision) |
-| E. Stale-flipped classification in diff | annotated gap | medium | low | additive | none | yes | DEFER (lower priority) |
-
-**Out of scope (do NOT touch):**
-
-```text
-F-022 (PHP/core-ingestion): separate campaign
-extractJsExportPublicNames: separate campaign
-build-at-SHA tooling: rejected previously
-Real backend validation harness: deferred
-```
-
-**Per-candidate implementation rules:**
-
-1. Isolated branch off current upstream `main` (8be5f110).
-2. One coherent commit per candidate.
-3. Target tests + full suite + typecheck + lint.
-4. Adversarial review.
-5. Update this campaign record after each commit.
-
-**Routing:**
-
-- Each commit is local on the fork branch.
-- Upstream contribution is NOT attempted without explicit authorization.
-- PR #423 is closed; do not comment.
-- PR #455 (open, head 084faae) already owns read-side validation and is NOT a candidate for parity additions; do not use it as a destination for unrelated new work.
+(Sections previously included: inventories, capability audit table,
+decision matrix, out-of-scope list, per-candidate implementation rules,
+routing rules. Those now live in the round-1 case history below; the live
+status of each candidate is recorded in the implementation sections that
+follow.)
 
 ---
 
 ## Phase B-1: `--format llm` parity for `--diff`
 
-**Status:** implemented in fork
+**Status:** COMPLETE — implemented on fork
 **Branch:** `feat/diff-format-llm-parity`
-**Plan:**
-1. Add an `llm` branch to `renderInvestigationDiff` that emits `key=value` lines describing the diff.
-2. Add tests in `context-investigation.test.ts`: llm format with a known invocation; matching expected lines.
-3. Adversarial: a diff with no changes, an empty diff, and a multi-section diff.
+**Tip:** `6363612b4b29773fd565dca6c99bae38cd8dd454`
+**Diff:** `2 files changed, 178 insertions(+), 1 deletion(-)`
 
-**Outcome:** recorded below after implementation.
+Files:
+
+- `ix-cli/src/cli/commands/context.ts` — export `renderInvestigationDiff` and add the llm branch.
+- `ix-cli/src/cli/__tests__/context-investigation.test.ts` — 3 new tests.
+
+Evidence:
+
+- Pre-fix: `renderInvestigationDiff` branched only on `format === "json"`. llm fell through to the prose renderer — the most common agent path (`--diff --format llm`) was the worst one.
+- Post-fix: llm branch mirroring `renderBundle`'s wire contract — counts always emitted (zero is signal), items prefixed with `+`/`-`, one record per line.
+
+Validation:
+
+- 11 focused ix-context test files (134 tests): green.
+- Three consecutive runs of the four slow infrastructure files (view-server, upgrade-* , watch-dedup): pass on this branch and on origin/main with identical flake pattern, so the prior full-suite flakes are unrelated to this change.
+- `npx tsc --noEmit`: clean.
+- `npx eslint src/cli/commands/context.ts src/cli/__tests__/context-investigation.test.ts`: clean.
+
+Destination: When upstream contribution is authorized, the production change is the natural sibling of PR #455's read-side validation guard and can ride that PR's branch — both fixes pour through the same `loadInvestigation` boundary and the same wire-format contract. Until then: fork-only.
 
 ---
 
-## Phase B-2: `effectiveBudgets` field
+## Phase B-2: `ix context --list` for discovery
 
-**Status:** deferred
+**Status:** COMPLETE — implemented on fork
+**Branch:** `feat/context-list-investigations`
+**Tip:** `ea26d93d73c610a1cecc350a4850fa603cf01475`
+**Diff:** `2 files changed, 188 insertions(+), 2 deletions(-)`
+
+Files:
+
+- `ix-cli/src/cli/commands/context.ts` — `--list` flag, `listInvestigations()`, `renderInvestigationList()`.
+- `ix-cli/src/cli/__tests__/context-investigation.test.ts` — 3 new tests.
+
+Evidence:
+
+- Pre-fix: no surface enumerated saved investigations. The only path was reading `~/.ix/investigations/*.json` directly.
+- Post-fix: `ix context --list` lists every saved investigation with id, target, savedAt, freshness, counts, and truncation. Same wire formats as the rest of the CLI (text / llm / json).
+- The same read-side hardening PR #455 added for `--resume`/`--diff` is enforced here: corrupt envelopes, truncated JSON, and tampered bodies are skipped from the listing rather than poisoning it.
+
+Validation:
+
+- 81/81 targeted tests pass.
+- Typecheck and eslint clean.
+- Tests pin: (a) deterministic newest-first ordering, (b) corrupt files skipped without breaking the listing, (c) directory-not-yet case returns [].
+
+Destination: A local PR on origin/main once upstream contribution is authorized. Not a duplicate of #455 (different surface). Do NOT comment on #423 (closed) or #455 (different topic).
 
 ---
 
-## Phase B-3: `--inspect <id>` command
+## Phase B-3: `effectiveBudgets` field on bundle
 
-**Status:** deferred
+**Status:** REJECTED — duplicate of existing fields.
+
+Reason:
+
+- `bundle.budgets` already exposes the asked-for limits.
+- `bundle.truncation` already exposes what was cut.
+- `bundle.entities.length`, `bundle.relationships.length`, `bundle.evidence.length` already expose what was actually used.
+
+A `bundle.effectiveBudgets` field would be derivable from those three and would not answer any question an agent currently cannot answer.
+
+Decision: do not introduce. Recorded so future contributors do not rediscover the same gap.
 
 ---
+
+## Phase B-4: `--diff --max-*` honor-overrides hypothesis
+
+**Status:** NOT IMPLEMENTED — needs fresh reproduction before any fix or doc-only decision.
+
+Reading the `--diff` action handler:
+
+```ts
+if (opts.diff) {
+  ...
+  const fresh = await buildFreshBundle(
+    target ?? saved.bundle.target.name,
+    { ...opts, ...mergeDiffOptions(saved, opts) },   // restores asOfRev and depth only
+    saved.bundle.budgets,                            // SAVED budgets win
+  );
+```
+
+`mergeDiffOptions` only merges `asOfRev` and `depth`. `buildFreshBundle`'s `opts` parameter type is `{ kind?, path?, pick?, depth?, asOfRev? }`. The CLI's `--max-entities`, `--max-relationships`, `--max-evidence`, `--max-chars` flags are not passed to the fresh build at all; the saved envelope's budgets win for the fresh side.
+
+Hypothesis: running
+
+`ix context Widget --save foo --max-entities 200; ix context --diff foo --max-entities 10`
+
+silently returns the saved 200-entity frame instead of the requested 10.
+
+Why not implemented this turn:
+
+- Prior campaign declared "by-design" without a reproduction; that decision must not survive the campaign rule of evidence-before-decision.
+- Reproducing needs a running backend; without it, neither a fix nor a documented precedence rule can be confidently proposed.
+- The behavior may be intentional (like-for-like diff) or a defect (silent override); only a run + adversarial review can decide.
+
+Decision: defer to a future Phase C that boots the Docker backend, runs both shapes, and either proposes the smallest compat fix or writes the precedence rule into `docs/llm-format.md`.
+
+---
+
+## Phase B campaign summary
+
+```text
+Implemented this turn (fork-only, not pushed):
+  B-1: feat/diff-format-llm-parity      — tip 6363612
+       Production: add llm branch to renderInvestigationDiff
+       Tests:      3 (empty-diff, populated-diff, prose-path unchanged)
+  B-2: feat/context-list-investigations — tip ea26d93
+       Production: ix context --list; listInvestigations(); renderInvestigationList()
+       Tests:      3 (ordering, corrupt-file skipping, missing-dir case)
+
+Rejected (with documented reasoning):
+  B-3 effectiveBudgets — duplicate of budgets/truncation/lengths
+
+Deferred (awaiting reproduction):
+  B-4 --diff budget overrides — needs a live backend repro
+
+Out of scope for this campaign:
+  F-022, extractJsExportPublicNames, build-at-SHA tooling
+```
