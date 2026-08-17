@@ -216,10 +216,10 @@
       "id": "F-021",
       "title": "PHP grouped `use Vendor\\{A, B};` captures zero IMPORTS",
       "evidence_class": "A",
-      "status": "PR_OPEN",
-      "registry_status": "PR_OPEN",
-      "summary": "PHP grouped `use Vendor\\{A, B};` captures zero IMPORTS. Current semantic status: PR_OPEN.",
-      "recommendation": "PHP grouped `use Vendor\\{A, B};` captures zero IMPORTS affects ix-infrastructure/Ix/core-ingestion (PHP query / import resolution). Historical registry status was PR_OPEN; recommendation: Fixed by fork commit 5efd8f1 (branch fix/php-grouped-use-imports, parent 043bc68), opened as upstream PR #448. Adds a grouped-use query pattern (namespace_name @import.prefix + namespace_use_clause @import.clause) and rebuilds each member FQCN from prefix + the clause's FIRST name child (an `as` alias is a second name child and never becomes an import). Regression tests fail-before on main / pass-after; relevant suites 86/86, tsc clean. Pre-existing query-layer gap, base==head — NOT a #446 regression, opened independently.."
+      "status": "FIXED_UPSTREAM",
+      "registry_status": "FIXED_UPSTREAM",
+      "summary": "PHP grouped `use Vendor\\{A, B};` captures zero IMPORTS. Current semantic status: RESOLVED.",
+      "recommendation": "PHP grouped `use Vendor\\{A, B};` captures zero IMPORTS affects ix-infrastructure/Ix/core-ingestion (PHP query / import resolution). Historical registry status was FIXED_UPSTREAM; recommendation: Fixed by fork commit 5efd8f1 (branch fix/php-grouped-use-imports, parent 043bc68), opened as upstream PR #448. Adds a grouped-use query pattern (namespace_name @import.prefix + namespace_use_clause @import.clause) and rebuilds each member FQCN from prefix + the clause's FIRST name child (an `as` alias is a second name child and never becomes an import). Regression tests fail-before on main / pass-after; relevant suites 86/86, tsc clean. Pre-existing query-layer gap, base==head — NOT a #446 regression, opened independently.."
     }
   ]
 }
