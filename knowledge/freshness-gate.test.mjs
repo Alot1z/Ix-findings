@@ -194,4 +194,40 @@ const noPurge = compareFreshness({ ...purgeDirtyBase, purgedShas: [] }, purgeLiv
 assert.equal(noPurge.gate, "PASS");
 assert.equal(noPurge.checks.some(check => check.id.startsWith("purged-sha:")), false);
 
+// Manifest live_baseline staleness: the manifest-era record (baselineHead)
+// must not silently pass publication freshness checks when it no longer
+// matches the live head — even when the graph's canonical head is current.
+// This is the class that previously blocked publication when
+// knowledge/manifest.json recorded fef671c while live upstream was 043bc68.
+const liveFresh = {
+  repository: "ix-infrastructure/Ix",
+  defaultBranch: "main",
+  head: "abc123",
+  openPRs: new Set([393]),
+  openIssues: new Set([219]),
+  fetchedAt: "fixture",
+};
+const manifestStale = compareFreshness({ ...canonical, canonicalHead: "abc123", baselineHead: "fef671c" }, liveFresh, snapshot);
+assert.equal(manifestStale.gate, "STALE");
+assert.ok(manifestStale.checks.some(check => check.id === "manifest-head" && !check.ok));
+assert.ok(manifestStale.checks.some(check => check.id === "canonical-head" && check.ok));
+
+const manifestFresh = compareFreshness({ ...canonical, canonicalHead: "abc123", baselineHead: "abc123" }, liveFresh, snapshot);
+assert.equal(manifestFresh.gate, "PASS");
+assert.equal(manifestFresh.stale_count, 0);
+
+// Degraded mode (live API unavailable): a stale manifest baseline must also
+// fail closed against a stale captured baseline (manifest-head check).
+const captureStale = {
+  repository: "ix-infrastructure/Ix",
+  defaultBranch: "main",
+  head: "def456",
+  openPRs: new Set([393, 395]),
+  openIssues: new Set([219, 349]),
+  fetchedAt: "fixture",
+};
+const manifestStaleDegraded = compareFreshness({ ...canonical, canonicalHead: "abc123", baselineHead: "fef671c" }, captureStale, snapshot);
+assert.equal(manifestStaleDegraded.gate, "STALE");
+assert.ok(manifestStaleDegraded.checks.some(check => check.id === "manifest-head" && !check.ok));
+
 console.log("freshness-gate tests passed: fresh state passes; head, PR, and issue drift fail closed; degraded baseline fallback passes; superseded-commit staleness fails closed (open-PR and fork-branch heads); upstream-main repo guard holds; purged-SHA hygiene fails closed (live metadata, summaries, CURRENT relationships, live capture heads/file refs, non-HISTORICAL COMMIT entities) with provenance/HISTORICAL exemptions and inert-when-unconfigured");
