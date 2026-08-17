@@ -789,6 +789,33 @@
   ],
       "related_suggestions": [],
       "recommendation": "Fixed by fork commit 5efd8f1 (branch fix/php-grouped-use-imports, parent 043bc68), opened as upstream PR #448. Adds a grouped-use query pattern (namespace_name @import.prefix + namespace_use_clause @import.clause) and rebuilds each member FQCN from prefix + the clause's FIRST name child (an `as` alias is a second name child and never becomes an import). Regression tests fail-before on main / pass-after; relevant suites 86/86, tsc clean. Pre-existing query-layer gap, base==head — NOT a #446 regression, opened independently."
+    },
+    {
+      "id": "F-022",
+      "ixf_id": "IXF-022",
+      "title": "Same-line PHP sibling types leak container artifact into graph qualified keys (A.User)",
+      "repository": "ix-infrastructure/Ix",
+      "subsystem": "core-ingestion (PHP resolution / graph identity)",
+      "first_phase": "campaign-446-deep-engineering-research",
+      "latest_phase": "campaign-446-deep-engineering-research",
+      "evidence_class": "A",
+      "confidence": "high",
+      "status": "OPEN",
+      "severity": "low",
+      "affected_versions": [
+        "8be5f110"
+      ],
+      "evidence_refs": [],
+      "reproduction": "<?php namespace Vendor\\Package; class A {} class User {} (one line) plus consumer use Vendor\\Package\\User; function f() { new User(); } -> with the F-019 fix (f577492) applied, the CALLS@0.9 edge to User.php carries dstQualifiedKey=A.User: qualifiedKey() (index.ts:2969) and patch-builder entityQKey (patch-builder.ts:200) key the entity A.User because findEnclosing inclusive line ranges nest User inside A. Node identity is wrong for a top-level class (split-identity risk across files; misleading graph/explorer key). No dangling edge (edge qkey matches the artifact-keyed node).",
+      "related_files": [
+        "planning/campaigns/446-deep-engineering-research/RELATED-RISK-ANALYSIS.md"
+      ],
+      "related_issues": [],
+      "related_prs": [
+        "#446"
+      ],
+      "related_suggestions": [],
+      "recommendation": "Minimal fix direction (not implemented this campaign): strip the container artifact when computing PHP type qualified keys, mirroring f577492 rationale (PHP types cannot nest). Alternative: fix findEnclosing to not nest same-line siblings. Needs a regression test asserting same-line sibling CALLS/REFERENCES edges carry the plain (or namespace-qualified) key."
     }
   ]
 }
