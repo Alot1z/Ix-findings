@@ -38,8 +38,8 @@
     "parent": "ix-infrastructure/Ix",
     "source": "ix-infrastructure/Ix",
     "created_at": "2026-08-10T00:14:10Z",
-    "updated_at": "2026-08-16T08:48:07Z",
-    "pushed_at": "2026-08-16T08:47:16Z",
+    "updated_at": "2026-08-16T09:18:57Z",
+    "pushed_at": "2026-08-16T09:18:22Z",
     "topics": [],
     "language": "TypeScript",
     "license": {
@@ -52,9 +52,9 @@
     "forks_count": 0,
     "open_issues_count": 0,
     "head": {
-      "sha": "b33b8da9005030cc16a624f1eef052622c36ef15",
-      "html_url": "https://github.com/Alot1z/Ix-remap/commit/b33b8da9005030cc16a624f1eef052622c36ef15",
-      "api_url": "https://api.github.com/repos/Alot1z/Ix-remap/commits/b33b8da9005030cc16a624f1eef052622c36ef15",
+      "sha": "c2a27dd00ebc22d78d7a0199441ffe98b19c082f",
+      "html_url": "https://github.com/Alot1z/Ix-remap/commit/c2a27dd00ebc22d78d7a0199441ffe98b19c082f",
+      "api_url": "https://api.github.com/repos/Alot1z/Ix-remap/commits/c2a27dd00ebc22d78d7a0199441ffe98b19c082f",
       "author": {
         "login": "Alot1z",
         "id": 16801672,
@@ -67,16 +67,16 @@
         "type": "User",
         "html_url": "https://github.com/Alot1z"
       },
-      "message": "feat(agents): add reusable contribution-lifecycle skill\n\nAdd .agents/skills/ix-contribution-lifecycle.md — the deterministic\nDISCOVER→FINAL-REPORT pipeline (live upstream, duplicates, reproduction,\nclassification, adversarial testing, fork publication, findings update,\ncomment/PR decision, verification) so agents invoke the procedure instead of\nreconstructing it. Align ix-pr-review's posting constraint with the\nworkflow-authorization governance.",
+      "message": "docs: define planning/ intentionality rules\n\nAdd the what-belongs/what-does-not routing table so planning/ holds only the\nindex and the session-state log; historical audits stay on clean-rebuild,\nevidence goes to Ix-findings, and nothing else accumulates here.",
       "parents": [
         {
-          "sha": "38aebb4195d395458c4b78883bfe2667ced3a037",
-          "html_url": "https://github.com/Alot1z/Ix-remap/commit/38aebb4195d395458c4b78883bfe2667ced3a037"
+          "sha": "62cfb8b9616ab3bdab5ad049e92f7b007e50840c",
+          "html_url": "https://github.com/Alot1z/Ix-remap/commit/62cfb8b9616ab3bdab5ad049e92f7b007e50840c"
         }
       ],
-      "tree_sha": "d2fcd9c9b16b94b3e1249e2bf1b369ebfc1f7626",
-      "authored_at": "2026-08-16T08:47:12Z",
-      "committed_at": "2026-08-16T08:47:12Z"
+      "tree_sha": "6c17c7794f35270fa78a63ab873e94e0084b012e",
+      "authored_at": "2026-08-16T09:18:16Z",
+      "committed_at": "2026-08-16T09:18:16Z"
     },
     "branches": [
       {
@@ -250,7 +250,7 @@
       {
         "name": "main",
         "protected": false,
-        "sha": "b33b8da9005030cc16a624f1eef052622c36ef15",
+        "sha": "c2a27dd00ebc22d78d7a0199441ffe98b19c082f",
         "url": null
       },
       {
@@ -425,11 +425,11 @@
       "url_precision": "OBJECT"
     },
     "freshness": {
-      "first_seen": "2026-08-16T08:59:39.836Z",
-      "last_fetched": "2026-08-16T08:59:39.836Z",
-      "last_verified": "2026-08-16T08:59:39.836Z",
-      "source_updated_at": "2026-08-16T08:48:07Z",
-      "snapshot_version": "2026-08-16T08:59:39.836Z"
+      "first_seen": "2026-08-17T14:10:08.888Z",
+      "last_fetched": "2026-08-17T14:10:08.888Z",
+      "last_verified": "2026-08-17T14:10:08.888Z",
+      "source_updated_at": "2026-08-16T09:18:57Z",
+      "snapshot_version": "2026-08-17T14:10:08.888Z"
     }
   },
   "ix_findings_analysis": {

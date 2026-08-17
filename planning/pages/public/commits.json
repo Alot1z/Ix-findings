@@ -1,8 +1,8 @@
 {
   "meta": {
-    "generated": "2026-08-16",
-    "sourceRevision": "043bc68f0fb7ddba736ee1490614cb3c68f8f819",
-    "count": 828
+    "generated": "2026-08-17",
+    "sourceRevision": "8be5f110a5a072767e04dc108e79c539d1bab0f9",
+    "count": 831
   },
   "items": [
     {
@@ -78,74 +78,11 @@
       "pr": "#368"
     },
     {
-      "sha": "5efd8f185e2f284551000486433d4233b2fe704a",
-      "repo": "Alot1z/Ix-remap",
-      "branch": "fix/php-grouped-use-imports",
-      "msg": "5efd8f18 — current head of fix/php-grouped-use-imports (Alot1z/Ix-remap).",
-      "pr": 448
-    },
-    {
-      "sha": "adc97c1a979992739541a1d39e2e0b45ea6684d6",
+      "sha": "084faae83245774db3fdaebfc7361c50281a55e7",
       "repo": "ix-infrastructure/Ix",
-      "branch": "fix/440-baseurl-authority",
-      "msg": "adc97c1a — current head of fix/440-baseurl-authority (ix-infrastructure/Ix).",
-      "pr": 445
-    },
-    {
-      "sha": "eab1075695811acec7d951e3da9813e43944662c",
-      "repo": "ix-infrastructure/Ix",
-      "branch": "fix/434-default-import-guard",
-      "msg": "eab10756 — current head of fix/434-default-import-guard (ix-infrastructure/Ix).",
-      "pr": 443
-    },
-    {
-      "sha": "83b9be4207fb6ecd47a7c694684e6abfe8e18835",
-      "repo": "ix-infrastructure/Ix",
-      "branch": "fix/442-php-use-clause-scope",
-      "msg": "83b9be42 — current head of fix/442-php-use-clause-scope (ix-infrastructure/Ix).",
-      "pr": 446
-    },
-    {
-      "sha": "6233b498b81c0ad56337085146bb8cb6cdb6dc95",
-      "repo": "ix-infrastructure/Ix",
-      "branch": "fix/discovery-symlink-escape",
-      "msg": "6233b498 — current head of fix/discovery-symlink-escape (ix-infrastructure/Ix).",
-      "pr": 447
-    },
-    {
-      "sha": "bf7a4b47758d679be0845a3cec27c1d0a7f5c05e",
-      "repo": "Hiro-Chiba/Ix",
-      "branch": "fix/ts-module-resolution",
-      "msg": "bf7a4b47 — current head of fix/ts-module-resolution (Hiro-Chiba/Ix).",
-      "pr": 440
-    },
-    {
-      "sha": "819d67e06e437e4715ea6e9f0bcd7bc7b5d5f001",
-      "repo": "Hiro-Chiba/Ix",
-      "branch": "fix/renamed-type-imports",
-      "msg": "819d67e0 — current head of fix/renamed-type-imports (Hiro-Chiba/Ix).",
-      "pr": 434
-    },
-    {
-      "sha": "033181fb5747e0db4303d99653a19ac08b160267",
-      "repo": "Hiro-Chiba/Ix",
-      "branch": "fix/mcp-error-output-cap",
-      "msg": "033181fb — current head of fix/mcp-error-output-cap (Hiro-Chiba/Ix).",
-      "pr": 436
-    },
-    {
-      "sha": "83079ff3dca7d516cc5818dcf81a28f479ea56cd",
-      "repo": "Hiro-Chiba/Ix",
-      "branch": "fix/php-namespace-resolution",
-      "msg": "83079ff3 — current head of fix/php-namespace-resolution (Hiro-Chiba/Ix).",
-      "pr": 442
-    },
-    {
-      "sha": "1f49d9fe3eb715e59dcc3ff43cf3ae0d1b8a19cc",
-      "repo": "ix-infrastructure/Ix",
-      "branch": "fix/436-truncated-failure-reason",
-      "msg": "1f49d9fe — current head of fix/436-truncated-failure-reason (ix-infrastructure/Ix).",
-      "pr": 444
+      "branch": "fix/validate-saved-investigation",
+      "msg": "084faae8 — current head of fix/validate-saved-investigation (ix-infrastructure/Ix).",
+      "pr": 455
     },
     {
       "sha": "36c7c7eccd8068d48df4f61394b42a3ffa62483c",
@@ -190,10 +127,10 @@
       "msg": "Phase 15 audited head of the fork ix-mcp branch."
     },
     {
-      "sha": "043bc68f0fb7ddba736ee1490614cb3c68f8f819",
+      "sha": "8be5f110a5a072767e04dc108e79c539d1bab0f9",
       "repo": "ix-infrastructure/Ix",
       "branch": "main",
-      "msg": "Current upstream Ix main at 043bc68f0fb7ddba736ee1490614cb3c68f8f819."
+      "msg": "Current upstream Ix main at 8be5f110a5a072767e04dc108e79c539d1bab0f9."
     },
     {
       "sha": "309329a3dd733694bed967655436d5d8dcc352f2",
@@ -3340,9 +3277,49 @@
       "msg": "f7302827 - revert(mcp): drop the remove-then-add force repair."
     },
     {
+      "sha": "819d67e06e437e4715ea6e9f0bcd7bc7b5d5f001",
+      "repo": "ix-infrastructure/Ix",
+      "msg": "819d67e0 - fix(ingest): resolve renamed type imports."
+    },
+    {
+      "sha": "5e2bdcfa5ae678cd134e86ee744e3ec67d8b0b0c",
+      "repo": "ix-infrastructure/Ix",
+      "msg": "5e2bdcfa - fix(mcp): fail truncated in-process output."
+    },
+    {
+      "sha": "033181fb5747e0db4303d99653a19ac08b160267",
+      "repo": "ix-infrastructure/Ix",
+      "msg": "033181fb - fix(mcp): cap thrown error output."
+    },
+    {
       "sha": "7d834235b99d6d2eccc2e638385368ebdb1de795",
       "repo": "ix-infrastructure/Ix",
       "msg": "7d834235 - fix(ingest): resolve tsconfig module mappings."
+    },
+    {
+      "sha": "bf7a4b47758d679be0845a3cec27c1d0a7f5c05e",
+      "repo": "ix-infrastructure/Ix",
+      "msg": "bf7a4b47 - fix(ingest): harden module path substitution."
+    },
+    {
+      "sha": "ea79b11596f3ef42532364cde14b98779f8959e2",
+      "repo": "ix-infrastructure/Ix",
+      "msg": "ea79b115 - fix(php): resolve imports by namespace."
+    },
+    {
+      "sha": "83079ff3dca7d516cc5818dcf81a28f479ea56cd",
+      "repo": "ix-infrastructure/Ix",
+      "msg": "83079ff3 - fix(php): bound namespace trimming."
+    },
+    {
+      "sha": "eab1075695811acec7d951e3da9813e43944662c",
+      "repo": "ix-infrastructure/Ix",
+      "msg": "eab10756 - fix(ingest): don't bind a default import to a member named default."
+    },
+    {
+      "sha": "1f49d9fe3eb715e59dcc3ff43cf3ae0d1b8a19cc",
+      "repo": "ix-infrastructure/Ix",
+      "msg": "1f49d9fe - fix(mcp): keep the failure reason when the cap fired before the throw."
     },
     {
       "sha": "795ec2ce80759a5730134353640327fb77fb2eff",
@@ -3370,9 +3347,9 @@
       "msg": "08cd7779 - fix(ingest): open config files non-blocking, and don't half-load a dropped extends."
     },
     {
-      "sha": "ea79b11596f3ef42532364cde14b98779f8959e2",
+      "sha": "adc97c1a979992739541a1d39e2e0b45ea6684d6",
       "repo": "ix-infrastructure/Ix",
-      "msg": "ea79b115 - fix(php): resolve imports by namespace."
+      "msg": "adc97c1a - fix(ingest): check containment against the file actually opened."
     },
     {
       "sha": "5c322a9901902447e44f4c5e953fc13a5cdfab01",
@@ -3400,9 +3377,29 @@
       "msg": "e786f20d - fix(php): don't emit duplicate claims for a two-kind call."
     },
     {
-      "sha": "5e2bdcfa5ae678cd134e86ee744e3ec67d8b0b0c",
+      "sha": "83b9be4207fb6ecd47a7c694684e6abfe8e18835",
       "repo": "ix-infrastructure/Ix",
-      "msg": "5e2bdcfa - fix(mcp): fail truncated in-process output."
+      "msg": "83b9be42 - fix(php): count namespace blocks at the parser, not from entity scopes."
+    },
+    {
+      "sha": "2e8d17135de05701cd32383dd2bc1b8c18f5bb91",
+      "repo": "ix-infrastructure/Ix",
+      "msg": "2e8d1713 - Merge main into fix/442-php-use-clause-scope."
+    },
+    {
+      "sha": "6233b498b81c0ad56337085146bb8cb6cdb6dc95",
+      "repo": "ix-infrastructure/Ix",
+      "msg": "6233b498 - fix(ingest): confine discovered files to the directory being ingested."
+    },
+    {
+      "sha": "a37d5b752a55f4c147f3058b299b60343963a077",
+      "repo": "ix-infrastructure/Ix",
+      "msg": "a37d5b75 - Merge main into fix/discovery-symlink-escape."
+    },
+    {
+      "sha": "5efd8f185e2f284551000486433d4233b2fe704a",
+      "repo": "ix-infrastructure/Ix",
+      "msg": "5efd8f18 - fix(php): capture grouped use imports."
     },
     {
       "sha": "74b848c83a0d547069660615dddcf1ea0ad0749c",

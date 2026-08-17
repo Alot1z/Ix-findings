@@ -9,13 +9,12 @@
     "type": "commit",
     "title": "bf7a4b47758d679be0845a3cec27c1d0a7f5c05e",
     "status": "CURRENT",
-    "source_mirror_id": "github:commit:ix-infrastructure/Ix@bf7a4b47758d679be0845a3cec27c1d0a7f5c05e",
-    "source_type": "github_commit",
-    "source_repository": "ix-infrastructure/Ix",
-    "source_url": "https://github.com/ix-infrastructure/Ix/commit/bf7a4b47758d679be0845a3cec27c1d0a7f5c05e",
-    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/bf7a4b47758d679be0845a3cec27c1d0a7f5c05e",
-    "source_is_authoritative": true,
-    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+    "author": {
+      "login": "Hiro-Chiba",
+      "id": 203865699,
+      "type": "User",
+      "html_url": "https://github.com/Hiro-Chiba"
+    }
   },
   "source_snapshot": {
     "sha": "bf7a4b47758d679be0845a3cec27c1d0a7f5c05e",
@@ -58,10 +57,10 @@
     },
     "freshness": {
       "first_seen": "2026-08-14T13:24:09Z",
-      "last_fetched": "2026-08-16T08:59:39.836Z",
-      "last_verified": "2026-08-16T08:59:39.836Z",
+      "last_fetched": "2026-08-17T14:10:08.888Z",
+      "last_verified": "2026-08-17T14:10:08.888Z",
       "source_updated_at": "2026-08-14T13:24:09Z",
-      "snapshot_version": "2026-08-16T08:59:39.836Z"
+      "snapshot_version": "2026-08-17T14:10:08.888Z"
     }
   },
   "ix_findings_analysis": {
@@ -69,12 +68,12 @@
     "canonical_entity_id": "COMMIT-bf7a4b47758d679be0845a3cec27c1d0a7f5c05e",
     "entity_type": "COMMIT",
     "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
-    "status": "HISTORICAL",
+    "status": "CURRENT",
     "provenance_class": "OFFICIAL_GITHUB_FACT",
     "source_authority": "GITHUB",
     "source_is_authoritative": true,
     "ix_findings_is_authoritative_for_source": false,
-    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#445"
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#440"
   },
   "relationships": [
     {

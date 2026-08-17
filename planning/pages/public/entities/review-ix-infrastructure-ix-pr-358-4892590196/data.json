@@ -10,68 +10,11 @@
     "title": "Review 4892590196 on PR #358",
     "status": "HISTORICAL",
     "repository": "ix-infrastructure/Ix",
-    "url": "https://github.com/ix-infrastructure/Ix/pull/358#pullrequestreview-4892590196",
-    "source_mirror_id": "github:review:ix-infrastructure/Ix#pr-358-4892590196",
-    "source_type": "github_review",
-    "source_repository": "ix-infrastructure/Ix",
-    "source_url": "https://github.com/ix-infrastructure/Ix/pull/358#pullrequestreview-4892590196",
-    "source_api_url": null,
-    "source_is_authoritative": true,
-    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+    "url": "https://github.com/ix-infrastructure/Ix/pull/358#pullrequestreview-4892590196"
   },
-  "source_snapshot": {
-    "id": 4892590196,
-    "node_id": "PRR_kwDORdC75M8AAAABI58AdA",
-    "repository": "ix-infrastructure/Ix",
-    "pr_number": 358,
-    "author": {
-      "login": "KageBinary",
-      "id": 107007243,
-      "type": "User",
-      "html_url": "https://github.com/KageBinary"
-    },
-    "state": "APPROVED",
-    "body": "Reviewed and verified locally (fork PRs don't get a CI run here): `tsc --noEmit` clean, `eslint src` clean, full suite green (631 tests), merges onto `main` alongside #356/#359 with no conflicts.\n\nPicking this over my own #360, and the deciding factor is the legacy recovery — parsing `const PORT = N;` out of the old `compass-server.js` and migrating it into the port file means anyone with a visualizer already running when they upgrade gets a real answer instead of being told to restart. Mine just gave up in that case. `removeCompassState()` and the `pid <= 0` hardening in `readAlivePid` are both improvements on what was there.\n\nThe tests are the other reason: driving the real command against a temp `IX_HOME` with `spawn`/`net` mocked, asserting output *and* file state, catches wiring mistakes that my pure-function tests would have sailed straight past.\n\nTwo small things from #360 I will port as a follow-up rather than block on:\n\n1. When `-p` does not match the running port, say so. Right now the correct URL prints but the user never learns their `-p` was ignored — worth using `getOptionValueSource(\"port\")` so an explicit `-p 8080` warns and a bare `ix view` stays quiet.\n2. `ix view status` could print the URL now that the port is recorded.",
-    "html_url": "https://github.com/ix-infrastructure/Ix/pull/358#pullrequestreview-4892590196",
-    "submitted_at": "2026-08-09T21:17:45Z",
-    "commit_id": "1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
-    "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
-    "source": "OFFICIAL_GITHUB_FACT",
-    "parent_pr": 358
-  },
-  "source_context": {
-    "id": "github:review:ix-infrastructure/Ix#pr-358-4892590196",
-    "source": {
-      "type": "github_review",
-      "authority": "GITHUB",
-      "repository": "ix-infrastructure/Ix",
-      "owner": "ix-infrastructure",
-      "url": "https://github.com/ix-infrastructure/Ix/pull/358#pullrequestreview-4892590196",
-      "api_url": null,
-      "canonical": true,
-      "url_precision": "OBJECT"
-    },
-    "freshness": {
-      "first_seen": "2026-08-09T21:17:45Z",
-      "last_fetched": "2026-08-16T08:59:39.836Z",
-      "last_verified": "2026-08-16T08:59:39.836Z",
-      "source_updated_at": "2026-08-09T21:17:45Z",
-      "snapshot_version": "2026-08-16T08:59:39.836Z"
-    }
-  },
-  "ix_findings_analysis": {
-    "layer": "IX-FINDINGS_ANALYSIS",
-    "canonical_entity_id": "REVIEW-ix-infrastructure-Ix-pr-358-4892590196",
-    "entity_type": "REVIEW",
-    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
-    "status": "HISTORICAL",
-    "provenance_class": "OFFICIAL_GITHUB_FACT",
-    "source_authority": "GITHUB",
-    "source_is_authoritative": true,
-    "ix_findings_is_authoritative_for_source": false,
-    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#358",
-    "review_thread_state": "VERIFIED_GRAPHQL_NO_ASSOCIATED_THREAD_DATA"
-  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
   "relationships": [
     {
       "direction": "in",

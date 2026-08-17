@@ -3,13 +3,13 @@
 Generated: 2026-08-12
 
 - Raw source files ingested: 406
-- Canonical entities: 3691
-- Typed relationships: 13617
-- Orphan entities: 29
+- Canonical entities: 3693
+- Typed relationships: 13596
+- Orphan entities: 31
 - Historical duplicate-ID claims requiring recheck: 0
 - Explicit contradictions: 6
 - Finding evidence coverage: 58.3%
-- Provenance coverage: 88.4%
+- Provenance coverage: 87.8%
 - Human-summary coverage: 95.6%
 - LLM metadata coverage: 100.0%
 - Precise typed-edge coverage: 100.0%

@@ -10,68 +10,11 @@
     "title": "Review 4902665897 on PR #391",
     "status": "HISTORICAL",
     "repository": "ix-infrastructure/Ix",
-    "url": "https://github.com/ix-infrastructure/Ix/pull/391#pullrequestreview-4902665897",
-    "source_mirror_id": "github:review:ix-infrastructure/Ix#pr-391-4902665897",
-    "source_type": "github_review",
-    "source_repository": "ix-infrastructure/Ix",
-    "source_url": "https://github.com/ix-infrastructure/Ix/pull/391#pullrequestreview-4902665897",
-    "source_api_url": null,
-    "source_is_authoritative": true,
-    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+    "url": "https://github.com/ix-infrastructure/Ix/pull/391#pullrequestreview-4902665897"
   },
-  "source_snapshot": {
-    "id": 4902665897,
-    "node_id": "PRR_kwDORdC75M8AAAABJDi-qQ",
-    "repository": "ix-infrastructure/Ix",
-    "pr_number": 391,
-    "author": {
-      "login": "josephismikhail",
-      "id": 56614593,
-      "type": "User",
-      "html_url": "https://github.com/josephismikhail"
-    },
-    "state": "APPROVED",
-    "body": "The diagnosis is right and the live reproduction settles it — `.version` really was denominated in the wrong series, and `source=` is the correct shape for the answer. Checked the parts that could bite:\n\n- `build` does declare `needs: compass`, so `needs.compass.outputs.sha` resolves; on a PR dry-run compass is skipped and the `${COMPASS_SHA:-unknown}` fallback covers it.\n- No leftover callers of `resolve_compass_version` / `Get-CompassLatestVersion` — both survive only as comments.\n- `$Version` is assigned at `install.ps1:207`, well above the stamp block at :532.\n- The `0.0.0` repair check correctly sits *ahead* of the source check, so a gutted release bundle is still repaired rather than pinned forever.\n\n**One gap, fixed in c415461.** `shouldOfferCompassUpgrade` read the stamp itself, so the only thing the new test file could reach was `parseCompassStamp` — a pure function that was never the bug. I deleted the `readCompassStamp().source === \"release\"` line, which is the entire behavioural change here, and all 728 tests passed. The case named `pins the inversion the marker exists to prevent` survives it too: `expect(parseCompassStamp(...).source).toBe(\"release\")` restates the parser rather than the decision.\n\nMade the decision take the stamp as an argument (`shouldOfferCompassUpgradeFor`) and exported it. `installedCompass()` now returns the whole stamp rather than the version alone, which also drops a second read of `compass/.version` per call.\n\nFive cases now cover it: the inversion, the dist-series comparison that must still happen, the repair path for a gutted bundle, the offline case, and a legacy bare stamp. Two mutations verified failing — deleting the source check, and swapping it ahead of the `0.0.0` check (that one is #365/#366 again: `ix view` never repairs).\n\n733 green.",
-    "html_url": "https://github.com/ix-infrastructure/Ix/pull/391#pullrequestreview-4902665897",
-    "submitted_at": "2026-08-11T03:14:26Z",
-    "commit_id": "c4154613a2fdd434c5271f2babc10bcd88ab46b1",
-    "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
-    "source": "OFFICIAL_GITHUB_FACT",
-    "parent_pr": 391
-  },
-  "source_context": {
-    "id": "github:review:ix-infrastructure/Ix#pr-391-4902665897",
-    "source": {
-      "type": "github_review",
-      "authority": "GITHUB",
-      "repository": "ix-infrastructure/Ix",
-      "owner": "ix-infrastructure",
-      "url": "https://github.com/ix-infrastructure/Ix/pull/391#pullrequestreview-4902665897",
-      "api_url": null,
-      "canonical": true,
-      "url_precision": "OBJECT"
-    },
-    "freshness": {
-      "first_seen": "2026-08-11T03:14:26Z",
-      "last_fetched": "2026-08-16T08:59:39.836Z",
-      "last_verified": "2026-08-16T08:59:39.836Z",
-      "source_updated_at": "2026-08-11T03:14:26Z",
-      "snapshot_version": "2026-08-16T08:59:39.836Z"
-    }
-  },
-  "ix_findings_analysis": {
-    "layer": "IX-FINDINGS_ANALYSIS",
-    "canonical_entity_id": "REVIEW-ix-infrastructure-Ix-pr-391-4902665897",
-    "entity_type": "REVIEW",
-    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
-    "status": "HISTORICAL",
-    "provenance_class": "OFFICIAL_GITHUB_FACT",
-    "source_authority": "GITHUB",
-    "source_is_authoritative": true,
-    "ix_findings_is_authoritative_for_source": false,
-    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#391",
-    "review_thread_state": "VERIFIED_GRAPHQL_NO_ASSOCIATED_THREAD_DATA"
-  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
   "relationships": [
     {
       "direction": "in",

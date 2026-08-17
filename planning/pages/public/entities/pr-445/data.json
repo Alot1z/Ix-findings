@@ -2,22 +2,22 @@
   "id": "PR-445",
   "type": "pr",
   "title": "Ix PR #445",
-  "status": "OPEN",
+  "status": "RESOLVED",
   "url": "https://alot1z.github.io/Ix-findings/entities/pr-445",
   "summary": {
     "id": "PR-445",
     "type": "pr",
     "title": "Ix PR #445",
-    "status": "OPEN",
+    "status": "RESOLVED",
+    "repository": "ix-infrastructure/Ix",
     "number": 445,
-    "url": "https://github.com/ix-infrastructure/Ix/pull/445",
-    "source_mirror_id": "github:pull_request:ix-infrastructure/Ix#445",
-    "source_type": "github_pull_request",
-    "source_repository": "ix-infrastructure/Ix",
-    "source_url": "https://github.com/ix-infrastructure/Ix/pull/445",
-    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/445",
-    "source_is_authoritative": true,
-    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "merged_at": "2026-08-16T19:22:28Z"
   },
   "source_snapshot": {
     "repository": "ix-infrastructure/Ix",
@@ -25,9 +25,9 @@
     "node_id": "PR_kwDORdC75M7_R_nU",
     "title": "fix(ingest): resolve tsconfig module mappings, with authority + security fixes",
     "body": "Carries **@Hiro-Chiba's #440** plus three review fixes, two of them security. Landing it here closes #440 as merged.\n\n> ⚠️ **Merge with a merge commit, not squash** — contains Hiro-Chiba's two commits alongside mine.\n\n## Their change (`7d83423`, `bf7a4b4`)\n\nResolves local TS/JS imports through `tsconfig.json`/`jsconfig.json` `paths`/`baseUrl` before the filename-stem fallback. New 360-line module. The follow-up commit fixes `$`-token expansion in wildcard substitution — **the CodeQL alert on #440 is stale** and can be dismissed after a re-scan (its multi-star rationale is unreachable: `matchPathPattern` rejects a second `*` before substitution).\n\n## My fixes\n\n**1. `795ec2c` — `baseUrl` claimed authority over every bare specifier.** `return config?.baseUrl ? [] : undefined` — but `[]` means *definitively not local*, and `baseUrl` matches every non-relative specifier. On any repo that sets it (the default in Next.js, CRA, Nest, most monorepo templates) every third-party import including `react` became an authoritative miss and its IMPORTS/CALLS edges were silently dropped. Authority now requires an *explicit* `paths` pattern; a bare `baseUrl` and a catch-all `\"*\"` rule return \"no opinion\". This **replaces their `treats an unresolved baseUrl module as authoritative` test** — that behaviour is the defect. Their explicit-`paths` authority test is untouched and still passes.\n\n**2. `9e58df1` — three security holes on the config-reading path.** All reachable from repo content, and all *before* ingestion's size gate (the resolver is built at `ingest.ts:1049`, 51 lines ahead of the `MAX_FILE_BYTES` check):\n- **No size cap.** A 64 MB JSONC file — which git packs to a ~95 KB repo — gives `FatalProcessOutOfMemory`, signal 6, uncatchable. main skips it as `tooLarge`, so this was the first pre-gate whole-file read and it bypassed an existing control.\n- **Device nodes and FIFOs.** `openSync` follows symlinks, so a link committed in the repo pointing at `/dev/zero` read forever (**exit 134, core dumped**); a FIFO blocked the event loop. Both report size 0, so a size check alone doesn't help. Under MCP the in-process runner means `withTimeout` can never fire and the server wedges uncancellably.\n- **No containment.** `resolveExtends` only checked `startsWith(\".\")`, which isn't containment — `resolve` clamps at `/`, so enough `..` segments name any absolute path.\n\nFixed by opening once and fstat-ing the same handle (no stat-then-read window — CodeQL `js/file-system-race`, the pattern `ingest.ts` already uses), rejecting non-regular files and anything over 1 MB, and filtering `extends` candidates to inside the workspace. No content ever escaped — `resolveCandidate` only consults an in-memory Map built from the caller's file list.\n\n**3. `c43303e` — memoization.** 24.87 µs → 3.38 µs per call, ~7.4x. Note the trap: the obvious `dirname` key is **wrong**, because `resolveCandidate` also reads the source *extension* (a `.js` caller prefers `.js`); keying on the directory alone serves one caller's answer to another. There's a test that runs both orders.\n\n## Verification\n\nEvery fix mutation-tested individually. ix-cli 944 passed, 1 skipped; `typecheck`, `lint` (0 errors), `knip` clean.",
-    "state": "open",
+    "state": "closed",
     "draft": false,
-    "merged": false,
+    "merged": true,
     "author": {
       "login": "KageBinary",
       "id": 107007243,
@@ -59,8 +59,8 @@
         "parent": null,
         "source": null,
         "created_at": "2026-03-03T04:48:38Z",
-        "updated_at": "2026-08-16T08:00:03Z",
-        "pushed_at": "2026-08-15T06:01:03Z",
+        "updated_at": "2026-08-17T13:44:46Z",
+        "pushed_at": "2026-08-17T13:55:58Z",
         "topics": [
           "ai",
           "ai-memory",
@@ -86,10 +86,10 @@
           "name": "Apache License 2.0",
           "url": "https://api.github.com/licenses/apache-2.0"
         },
-        "watchers_count": 731,
-        "stargazers_count": 731,
-        "forks_count": 61,
-        "open_issues_count": 16
+        "watchers_count": 746,
+        "stargazers_count": 746,
+        "forks_count": 62,
+        "open_issues_count": 5
       }
     },
     "base": {
@@ -115,8 +115,8 @@
         "parent": null,
         "source": null,
         "created_at": "2026-03-03T04:48:38Z",
-        "updated_at": "2026-08-16T08:00:03Z",
-        "pushed_at": "2026-08-15T06:01:03Z",
+        "updated_at": "2026-08-17T13:44:46Z",
+        "pushed_at": "2026-08-17T13:55:58Z",
         "topics": [
           "ai",
           "ai-memory",
@@ -142,17 +142,17 @@
           "name": "Apache License 2.0",
           "url": "https://api.github.com/licenses/apache-2.0"
         },
-        "watchers_count": 731,
-        "stargazers_count": 731,
-        "forks_count": 61,
-        "open_issues_count": 16
+        "watchers_count": 746,
+        "stargazers_count": 746,
+        "forks_count": 62,
+        "open_issues_count": 5
       }
     },
-    "merge_commit_sha": "03913a728f44602c08fbd67872ab2ca7bf8b85af",
-    "merged_at": null,
-    "closed_at": null,
+    "merge_commit_sha": "787f466a7d9862c3e71f326e63d768884896e3ac",
+    "merged_at": "2026-08-16T19:22:28Z",
+    "closed_at": "2026-08-16T19:22:28Z",
     "created_at": "2026-08-14T20:18:40Z",
-    "updated_at": "2026-08-16T01:02:34Z",
+    "updated_at": "2026-08-16T19:22:29Z",
     "labels": [],
     "milestone": null,
     "requested_reviewers": [
@@ -738,6 +738,34 @@
         "commit_id": "03c601e18138f865c3b0351bcd158986b96714f0",
         "issue": null,
         "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29518399720"
+      },
+      {
+        "id": 29530403164,
+        "event": "merged",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-16T19:22:28Z",
+        "commit_id": "787f466a7d9862c3e71f326e63d768884896e3ac",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29530403164"
+      },
+      {
+        "id": 29530403193,
+        "event": "closed",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-16T19:22:29Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29530403193"
       }
     ],
     "source": "OFFICIAL_GITHUB_FACT",
@@ -761,10 +789,10 @@
     },
     "freshness": {
       "first_seen": "2026-08-14T20:18:40Z",
-      "last_fetched": "2026-08-16T08:59:39.836Z",
-      "last_verified": "2026-08-16T08:59:39.836Z",
-      "source_updated_at": "2026-08-16T01:02:34Z",
-      "snapshot_version": "2026-08-16T08:59:39.836Z"
+      "last_fetched": "2026-08-17T14:10:08.888Z",
+      "last_verified": "2026-08-17T14:10:08.888Z",
+      "source_updated_at": "2026-08-16T19:22:29Z",
+      "snapshot_version": "2026-08-17T14:10:08.888Z"
     }
   },
   "ix_findings_analysis": {
@@ -793,22 +821,6 @@
       "other_type": "commit",
       "other_title": "adc97c1a979992739541a1d39e2e0b45ea6684d6",
       "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-adc97c1a979992739541a1d39e2e0b45ea6684d6"
-    },
-    {
-      "direction": "out",
-      "relationship": "FOUND_IN",
-      "other": "REPO-ix-infrastructure-Ix",
-      "other_type": "repository",
-      "other_title": "ix-infrastructure/Ix",
-      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
-    },
-    {
-      "direction": "in",
-      "relationship": "RELATED_TO_PR",
-      "other": "F-017",
-      "other_type": "finding",
-      "other_title": "#445 configured-binding path binds to provider members (Y1)",
-      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-017"
     }
   ]
 }

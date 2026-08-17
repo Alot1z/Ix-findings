@@ -2,22 +2,22 @@
   "id": "PR-434",
   "type": "pr",
   "title": "Ix PR #434",
-  "status": "OPEN",
+  "status": "HISTORICAL",
   "url": "https://alot1z.github.io/Ix-findings/entities/pr-434",
   "summary": {
     "id": "PR-434",
     "type": "pr",
     "title": "Ix PR #434",
-    "status": "OPEN",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
     "number": 434,
-    "url": "https://github.com/ix-infrastructure/Ix/pull/434",
-    "source_mirror_id": "github:pull_request:ix-infrastructure/Ix#434",
-    "source_type": "github_pull_request",
-    "source_repository": "ix-infrastructure/Ix",
-    "source_url": "https://github.com/ix-infrastructure/Ix/pull/434",
-    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/434",
-    "source_is_authoritative": true,
-    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+    "author": {
+      "login": "Hiro-Chiba",
+      "id": 203865699,
+      "type": "User",
+      "html_url": "https://github.com/Hiro-Chiba"
+    },
+    "merged_at": null
   },
   "source_snapshot": {
     "repository": "ix-infrastructure/Ix",
@@ -25,7 +25,7 @@
     "node_id": "PR_kwDORdC75M7_HIOf",
     "title": "fix(ingest): resolve renamed type imports",
     "body": "Fixes #433\n\n## Summary\n\nResolve renamed consumer-side TypeScript bindings for inheritance and type references.\n\n## Type\n- [x] Bug fix\n- [ ] Feature\n- [ ] Refactor\n- [ ] Docs\n- [ ] Test\n- [ ] CI\n\n## Changes\n- Prefer an exported public-name mapping when the provider defines one.\n- Fall back to the direct provider symbol for ordinary renamed imports.\n- Cover same-batch and cross-batch `EXTENDS`, `REFERENCES`, and `CALLS` resolution.\n\n## Validation\n\n- Focused core ingestion tests: 68 passed, 1 skipped.\n- Ix CLI tests: 928 passed, 1 skipped, including parser smoke tests.\n- Typecheck, build, lint, and `git diff --check` passed.\n- The unrelated core baseline still has six pre-existing failures involving unavailable fixtures and existing snapshots.\n\n## Checklist\n- [x] Tests pass\n- [x] Smoke tests pass\n- [x] No raw errors introduced\n- [x] CLI output follows Ix format\n\n## Release checklist (if merging to main)\n- [ ] `ix-cli/package.json` version bumped\n- [ ] After merge: tag pushed (`git tag vX.Y.Z && git push origin vX.Y.Z`)\n- [ ] If backend changes: `ix-memory-layer` tagged and released first\n- [ ] If `docker-compose.standalone.yml` changed: verified `curl | sh` install works\n",
-    "state": "open",
+    "state": "closed",
     "draft": false,
     "merged": false,
     "author": {
@@ -97,8 +97,8 @@
         "parent": null,
         "source": null,
         "created_at": "2026-03-03T04:48:38Z",
-        "updated_at": "2026-08-16T08:00:03Z",
-        "pushed_at": "2026-08-15T06:01:03Z",
+        "updated_at": "2026-08-17T13:44:46Z",
+        "pushed_at": "2026-08-17T13:55:58Z",
         "topics": [
           "ai",
           "ai-memory",
@@ -124,17 +124,17 @@
           "name": "Apache License 2.0",
           "url": "https://api.github.com/licenses/apache-2.0"
         },
-        "watchers_count": 731,
-        "stargazers_count": 731,
-        "forks_count": 61,
-        "open_issues_count": 16
+        "watchers_count": 746,
+        "stargazers_count": 746,
+        "forks_count": 62,
+        "open_issues_count": 5
       }
     },
     "merge_commit_sha": "7095f3cc2eaf641ab6d2c3bdb2b717e94c2737db",
     "merged_at": null,
-    "closed_at": null,
+    "closed_at": "2026-08-16T19:22:07Z",
     "created_at": "2026-08-14T13:17:14Z",
-    "updated_at": "2026-08-15T00:26:11Z",
+    "updated_at": "2026-08-16T19:30:56Z",
     "labels": [],
     "milestone": null,
     "requested_reviewers": [
@@ -263,6 +263,34 @@
         "diff_hunk": null,
         "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
         "source": "OFFICIAL_GITHUB_FACT"
+      },
+      {
+        "id": 5309271248,
+        "node_id": "IC_kwDORdC75M8AAAABPHUM0A",
+        "repository": "ix-infrastructure/Ix",
+        "parent_type": "PULL_REQUEST",
+        "parent_number": 434,
+        "kind": "PR_COMMENT",
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "body": "Landed on `main` — your commit `819d67e` is an ancestor of main via #443, which carried it forward with an added guard (a default import must not bind to a provider member that happens to be named `default`). GitHub closed this one without the merged marker because the superset PR was the thing merged, but your commit and authorship are in the history. Thanks!",
+        "html_url": "https://github.com/ix-infrastructure/Ix/pull/434#issuecomment-5309271248",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5309271248",
+        "created_at": "2026-08-16T19:30:56Z",
+        "updated_at": "2026-08-16T19:30:56Z",
+        "commit_id": null,
+        "path": null,
+        "line": null,
+        "start_line": null,
+        "side": null,
+        "in_reply_to_id": null,
+        "diff_hunk": null,
+        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
+        "source": "OFFICIAL_GITHUB_FACT"
       }
     ],
     "reviews": [],
@@ -374,6 +402,34 @@
         "commit_id": null,
         "issue": null,
         "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29479138805"
+      },
+      {
+        "id": 29530396272,
+        "event": "closed",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-16T19:22:07Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29530396272"
+      },
+      {
+        "id": 5309271248,
+        "event": "commented",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-16T19:30:56Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5309271248"
       }
     ],
     "source": "OFFICIAL_GITHUB_FACT",
@@ -397,10 +453,10 @@
     },
     "freshness": {
       "first_seen": "2026-08-14T13:17:14Z",
-      "last_fetched": "2026-08-16T08:59:39.836Z",
-      "last_verified": "2026-08-16T08:59:39.836Z",
-      "source_updated_at": "2026-08-15T00:26:11Z",
-      "snapshot_version": "2026-08-16T08:59:39.836Z"
+      "last_fetched": "2026-08-17T14:10:08.888Z",
+      "last_verified": "2026-08-17T14:10:08.888Z",
+      "source_updated_at": "2026-08-16T19:30:56Z",
+      "snapshot_version": "2026-08-17T14:10:08.888Z"
     }
   },
   "ix_findings_analysis": {
@@ -408,7 +464,7 @@
     "canonical_entity_id": "PR-434",
     "entity_type": "PULL_REQUEST",
     "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "provenance_class": "OFFICIAL_GITHUB_FACT",
     "source_authority": "GITHUB",
     "source_is_authoritative": true,
@@ -429,22 +485,6 @@
       "other_type": "commit",
       "other_title": "819d67e06e437e4715ea6e9f0bcd7bc7b5d5f001",
       "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-819d67e06e437e4715ea6e9f0bcd7bc7b5d5f001"
-    },
-    {
-      "direction": "out",
-      "relationship": "FOUND_IN",
-      "other": "REPO-ix-infrastructure-Ix",
-      "other_type": "repository",
-      "other_title": "ix-infrastructure/Ix",
-      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
-    },
-    {
-      "direction": "in",
-      "relationship": "RELATED_TO_PR",
-      "other": "F-016",
-      "other_type": "finding",
-      "other_title": "#443 renamed-import fallback binds to provider members (X1/X3)",
-      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-016"
     }
   ]
 }

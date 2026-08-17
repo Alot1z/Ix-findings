@@ -10,68 +10,11 @@
     "title": "Review 4898874189 on PR #372",
     "status": "HISTORICAL",
     "repository": "ix-infrastructure/Ix",
-    "url": "https://github.com/ix-infrastructure/Ix/pull/372#pullrequestreview-4898874189",
-    "source_mirror_id": "github:review:ix-infrastructure/Ix#pr-372-4898874189",
-    "source_type": "github_review",
-    "source_repository": "ix-infrastructure/Ix",
-    "source_url": "https://github.com/ix-infrastructure/Ix/pull/372#pullrequestreview-4898874189",
-    "source_api_url": null,
-    "source_is_authoritative": true,
-    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+    "url": "https://github.com/ix-infrastructure/Ix/pull/372#pullrequestreview-4898874189"
   },
-  "source_snapshot": {
-    "id": 4898874189,
-    "node_id": "PRR_kwDORdC75M8AAAABI_7jTQ",
-    "repository": "ix-infrastructure/Ix",
-    "pr_number": 372,
-    "author": {
-      "login": "josephismikhail",
-      "id": 56614593,
-      "type": "User",
-      "html_url": "https://github.com/josephismikhail"
-    },
-    "state": "APPROVED",
-    "body": "Two independent review passes (one on your commit, one on my follow-up). Merging.\n\n**The renderers themselves are solid.** Record shape matches the shipped Tier 1–4 convention (header record named after the command, then repeated child records), keys are snake_case throughout with no camelCase leaking, and every field except `read`'s content block goes through `llmLine` → `llmField` → `llmQuote`. Probed the free-text fields directly with embedded newlines, quotes, tabs and backslashes — doctor check names and details, status paths with spaces and quotes, raw-explain docstrings — all correctly escaped, nothing spans two lines. Every docs claim was verified by running the built CLI rather than reading: all seven of `config`/`init`/`reset`/`upgrade`/`view`/`watch`/`docker` do exit 1 with `unknown option`, and `query` really does offer only `text|json`. Three of the strongest test claims mutation-checked and each bites.\n\n**One blocker found and fixed, in a commit I pushed.** `printLlmLines` skipped falsy entries, and a blank source line is `\"\"`. So `read --format llm` counted lines in `content lines=<n>` that never reached stdout, and a consumer honouring the count — the entire point of the self-delimiting block — read the following records as source. Wrong on almost every real input, not an edge case: `ix read src/cli/llm.ts --format llm` declared **91** and emitted **81**. Correct only for a file with no blank lines and no trailing newline.\n\nChanged to `!= null`. Safe because `printLlmLines` had zero callers on `main` before this branch, and I enumerated every path into it: all seven call sites go through renderers that build lines exclusively from `llmLine(\"<literal>\", …)`. The only three `llmLine` calls with a variable kind (`impact.ts:548`, `trace.ts:331`, `format.ts:490`) don't use `printLlmLines`, and the only `push(\"\")` calls are text renderers behind `subsystems`.\n\nWorth naming the trap, because it's the recurring one here: **your test was correct and still passed against the bug.** `expect(lines.slice(2)).toEqual([…, \"\"])` asserts on `renderReadLlm`'s return value, which was always right — the defect lived in render *composed with* print. So `outputResult` is now exported and the new tests drive the real print path across blank lines, an empty file, CRLF, no-trailing-newline and blank-lines-only.\n\nAlso added the `{ok:true, warn:true}` row for `doctor` — the one shape your ternary's ordering actually decides, and previously uncovered. It pins `status=ok`, matching what the glyph line renders for the same record; `warn` would have been wrong. And folded the CLAUDE.md paragraph that still said \"these commands take no `--format`\" into your new one, since yours is a strict superset (it adds `docker`) and the two contradicted each other two paragraphs apart.\n\nBug restored on both fixes: 6 targeted failures — 5 framing, 1 doctor. `\"no trailing newline\"` correctly does *not* fail, since it's the one input the old code got right. tsc/eslint/knip clean, 667 passing.\n\nNot fixed, flagged for follow-up: **the `--format llm` dispatch itself is still untested for all five commands.** Reverting the `\"llm\"` comparison in each leaves the full suite green. The renderers are covered; the branch that reaches them is not, which is exactly the regression this PR exists to fix. Closing that needs client mocking per command, and I'd rather leave it to you than bolt on a structural test that gives false confidence. Also unfixed: `read`'s not-found and `explain`'s resolve-failure branches still emit human prose to stderr and nothing on stdout, so `ix read bogus --format llm` gives an agent zero bytes and exit 0 — `diff.ts:471` already has the `llmError` precedent.",
-    "html_url": "https://github.com/ix-infrastructure/Ix/pull/372#pullrequestreview-4898874189",
-    "submitted_at": "2026-08-10T16:27:39Z",
-    "commit_id": "86f3684c4e4dc77dd0a579eb92863824953a3ce9",
-    "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
-    "source": "OFFICIAL_GITHUB_FACT",
-    "parent_pr": 372
-  },
-  "source_context": {
-    "id": "github:review:ix-infrastructure/Ix#pr-372-4898874189",
-    "source": {
-      "type": "github_review",
-      "authority": "GITHUB",
-      "repository": "ix-infrastructure/Ix",
-      "owner": "ix-infrastructure",
-      "url": "https://github.com/ix-infrastructure/Ix/pull/372#pullrequestreview-4898874189",
-      "api_url": null,
-      "canonical": true,
-      "url_precision": "OBJECT"
-    },
-    "freshness": {
-      "first_seen": "2026-08-10T16:27:39Z",
-      "last_fetched": "2026-08-16T08:59:39.836Z",
-      "last_verified": "2026-08-16T08:59:39.836Z",
-      "source_updated_at": "2026-08-10T16:27:39Z",
-      "snapshot_version": "2026-08-16T08:59:39.836Z"
-    }
-  },
-  "ix_findings_analysis": {
-    "layer": "IX-FINDINGS_ANALYSIS",
-    "canonical_entity_id": "REVIEW-ix-infrastructure-Ix-pr-372-4898874189",
-    "entity_type": "REVIEW",
-    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
-    "status": "HISTORICAL",
-    "provenance_class": "OFFICIAL_GITHUB_FACT",
-    "source_authority": "GITHUB",
-    "source_is_authoritative": true,
-    "ix_findings_is_authoritative_for_source": false,
-    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#372",
-    "review_thread_state": "VERIFIED_GRAPHQL_NO_ASSOCIATED_THREAD_DATA"
-  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
   "relationships": [
     {
       "direction": "in",

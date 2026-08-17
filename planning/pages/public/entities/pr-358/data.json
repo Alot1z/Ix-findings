@@ -97,8 +97,8 @@
         "parent": null,
         "source": null,
         "created_at": "2026-03-03T04:48:38Z",
-        "updated_at": "2026-08-16T08:00:03Z",
-        "pushed_at": "2026-08-15T06:01:03Z",
+        "updated_at": "2026-08-17T13:44:46Z",
+        "pushed_at": "2026-08-17T13:55:58Z",
         "topics": [
           "ai",
           "ai-memory",
@@ -124,10 +124,10 @@
           "name": "Apache License 2.0",
           "url": "https://api.github.com/licenses/apache-2.0"
         },
-        "watchers_count": 731,
-        "stargazers_count": 731,
-        "forks_count": 61,
-        "open_issues_count": 16
+        "watchers_count": 746,
+        "stargazers_count": 746,
+        "forks_count": 62,
+        "open_issues_count": 5
       }
     },
     "merge_commit_sha": "87cd9c0a8e0c64e267b5d71dc83a87c36d2de767",
@@ -208,27 +208,7 @@
       }
     ],
     "comments": [],
-    "reviews": [
-      {
-        "id": 4892590196,
-        "node_id": "PRR_kwDORdC75M8AAAABI58AdA",
-        "repository": "ix-infrastructure/Ix",
-        "pr_number": 358,
-        "author": {
-          "login": "KageBinary",
-          "id": 107007243,
-          "type": "User",
-          "html_url": "https://github.com/KageBinary"
-        },
-        "state": "APPROVED",
-        "body": "Reviewed and verified locally (fork PRs don't get a CI run here): `tsc --noEmit` clean, `eslint src` clean, full suite green (631 tests), merges onto `main` alongside #356/#359 with no conflicts.\n\nPicking this over my own #360, and the deciding factor is the legacy recovery — parsing `const PORT = N;` out of the old `compass-server.js` and migrating it into the port file means anyone with a visualizer already running when they upgrade gets a real answer instead of being told to restart. Mine just gave up in that case. `removeCompassState()` and the `pid <= 0` hardening in `readAlivePid` are both improvements on what was there.\n\nThe tests are the other reason: driving the real command against a temp `IX_HOME` with `spawn`/`net` mocked, asserting output *and* file state, catches wiring mistakes that my pure-function tests would have sailed straight past.\n\nTwo small things from #360 I will port as a follow-up rather than block on:\n\n1. When `-p` does not match the running port, say so. Right now the correct URL prints but the user never learns their `-p` was ignored — worth using `getOptionValueSource(\"port\")` so an explicit `-p 8080` warns and a bare `ix view` stays quiet.\n2. `ix view status` could print the URL now that the port is recorded.",
-        "html_url": "https://github.com/ix-infrastructure/Ix/pull/358#pullrequestreview-4892590196",
-        "submitted_at": "2026-08-09T21:17:45Z",
-        "commit_id": "1b9a761fc2db7087b5bad37f07119f8f6a3467aa",
-        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
-        "source": "OFFICIAL_GITHUB_FACT"
-      }
-    ],
+    "reviews": [],
     "review_comments": [],
     "timeline": [
       {
@@ -397,10 +377,10 @@
     },
     "freshness": {
       "first_seen": "2026-08-09T19:12:46Z",
-      "last_fetched": "2026-08-16T08:59:39.836Z",
-      "last_verified": "2026-08-16T08:59:39.836Z",
+      "last_fetched": "2026-08-17T14:10:08.888Z",
+      "last_verified": "2026-08-17T14:10:08.888Z",
       "source_updated_at": "2026-08-09T21:18:51Z",
-      "snapshot_version": "2026-08-16T08:59:39.836Z"
+      "snapshot_version": "2026-08-17T14:10:08.888Z"
     }
   },
   "ix_findings_analysis": {

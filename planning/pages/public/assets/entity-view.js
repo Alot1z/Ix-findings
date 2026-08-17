@@ -24,6 +24,7 @@ const kv = (label, value) => {
   const s = el("span", "faint", label + ": ");
   p.append(s);
   if (typeof value === "string") p.append(document.createTextNode(value));
+  else if (typeof value === "number") p.append(document.createTextNode(String(value)));
   else if (value && value.nodeType) p.append(value);
   return p;
 };

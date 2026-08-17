@@ -615,7 +615,7 @@
       "ISSUE-219",
       "BRANCH-fork-ix-mcp",
       "COMMIT-606f18f",
-      "COMMIT-043bc68f0fb7ddba736ee1490614cb3c68f8f819"
+      "COMMIT-8be5f110a5a072767e04dc108e79c539d1bab0f9"
     ],
     "next": []
   },
@@ -3973,22 +3973,11 @@
     "status": "CURRENT",
     "evidence": [],
     "neighbors": [
-      "ISSUE-441",
       "ISSUE-439",
-      "ISSUE-435",
       "ISSUE-433",
       "ISSUE-429",
       "ISSUE-425",
-      "PR-448",
-      "PR-445",
-      "PR-443",
-      "PR-446",
-      "PR-447",
-      "PR-440",
-      "PR-434",
-      "PR-436",
-      "PR-442",
-      "PR-444",
+      "PR-455",
       "BRANCH-1c828029ee8b",
       "BRANCH-7888482e155d",
       "BRANCH-bb1d25e4c9d1",
@@ -4570,7 +4559,7 @@
     "next": []
   },
   "BRANCH-1c828029ee8b": {
-    "summary": "ix-infrastructure/Ix:main at 043bc68f0fb7ddba736ee1490614cb3c68f8f819.",
+    "summary": "ix-infrastructure/Ix:main at 8be5f110a5a072767e04dc108e79c539d1bab0f9.",
     "status": "CURRENT",
     "evidence": [],
     "neighbors": [
@@ -4578,7 +4567,7 @@
       "COMMIT-ffe21f0",
       "COMMIT-b25bf2e",
       "COMMIT-5488741",
-      "COMMIT-043bc68f0fb7ddba736ee1490614cb3c68f8f819",
+      "COMMIT-8be5f110a5a072767e04dc108e79c539d1bab0f9",
       "SRC-2a5998452c1a",
       "SRC-90ab8426282e"
     ],
@@ -4611,7 +4600,7 @@
     "next": []
   },
   "BRANCH-09d906f6088f": {
-    "summary": "Alot1z/Ix:fork/main at b33b8da9005030cc16a624f1eef052622c36ef15.",
+    "summary": "Alot1z/Ix:fork/main at c2a27dd00ebc22d78d7a0199441ffe98b19c082f.",
     "status": "CURRENT",
     "evidence": [],
     "neighbors": [
@@ -4697,7 +4686,7 @@
     "next": []
   },
   "COMMIT-c4f8fea": {
-    "summary": "chore(deps-dev): bump dev-dependencies (#369) Superseded: fork/main + Ix-test head is now b33b8da9.",
+    "summary": "chore(deps-dev): bump dev-dependencies (#369) Superseded: fork/main + Ix-test head is now c2a27dd0.",
     "status": "HISTORICAL",
     "evidence": [],
     "neighbors": [
@@ -4726,7 +4715,7 @@
     "next": []
   },
   "COMMIT-0437abf": {
-    "summary": "fix(upgrade): pair tar binary (#366) Superseded: fork/main head is now b33b8da9.",
+    "summary": "fix(upgrade): pair tar binary (#366) Superseded: fork/main head is now c2a27dd0.",
     "status": "HISTORICAL",
     "evidence": [],
     "neighbors": [
@@ -5242,204 +5231,22 @@
     ],
     "next": []
   },
-  "PR-448": {
-    "summary": "fix(php): capture grouped use imports — open.",
+  "PR-455": {
+    "summary": "fix(context): validate saved investigation state on read, not just on write — open.",
     "status": "OPEN",
     "evidence": [],
     "neighbors": [
-      "COMMIT-5efd8f185e2f284551000486433d4233b2fe704a",
-      "REPO-ix-infrastructure-Ix",
-      "F-021"
-    ],
-    "next": []
-  },
-  "PR-445": {
-    "summary": "fix(ingest): resolve tsconfig module mappings, with authority + security fixes — open.",
-    "status": "OPEN",
-    "evidence": [],
-    "neighbors": [
-      "COMMIT-adc97c1a979992739541a1d39e2e0b45ea6684d6",
-      "REPO-ix-infrastructure-Ix",
-      "F-017"
-    ],
-    "next": []
-  },
-  "PR-443": {
-    "summary": "fix(ingest): resolve renamed type imports, with a default-import guard — open.",
-    "status": "OPEN",
-    "evidence": [],
-    "neighbors": [
-      "COMMIT-eab1075695811acec7d951e3da9813e43944662c",
-      "REPO-ix-infrastructure-Ix",
-      "F-016"
-    ],
-    "next": []
-  },
-  "PR-446": {
-    "summary": "fix(php): resolve imports by namespace, with clause-scoping and DoS fixes — open.",
-    "status": "OPEN",
-    "evidence": [],
-    "neighbors": [
-      "COMMIT-83b9be4207fb6ecd47a7c694684e6abfe8e18835",
-      "REPO-ix-infrastructure-Ix",
-      "F-014",
-      "F-015",
-      "F-018",
-      "F-019"
-    ],
-    "next": []
-  },
-  "PR-447": {
-    "summary": "fix(ingest): confine discovered files to the directory being ingested — open.",
-    "status": "OPEN",
-    "evidence": [],
-    "neighbors": [
-      "COMMIT-6233b498b81c0ad56337085146bb8cb6cdb6dc95",
-      "REPO-ix-infrastructure-Ix",
-      "N-003"
-    ],
-    "next": []
-  },
-  "PR-440": {
-    "summary": "fix(ingest): resolve tsconfig module mappings — open.",
-    "status": "OPEN",
-    "evidence": [],
-    "neighbors": [
-      "COMMIT-bf7a4b47758d679be0845a3cec27c1d0a7f5c05e",
+      "COMMIT-084faae83245774db3fdaebfc7361c50281a55e7",
       "REPO-ix-infrastructure-Ix"
     ],
     "next": []
   },
-  "PR-434": {
-    "summary": "fix(ingest): resolve renamed type imports — open.",
-    "status": "OPEN",
-    "evidence": [],
-    "neighbors": [
-      "COMMIT-819d67e06e437e4715ea6e9f0bcd7bc7b5d5f001",
-      "REPO-ix-infrastructure-Ix",
-      "F-016"
-    ],
-    "next": []
-  },
-  "PR-436": {
-    "summary": "fix(mcp): cap thrown error output — open.",
-    "status": "OPEN",
-    "evidence": [],
-    "neighbors": [
-      "COMMIT-033181fb5747e0db4303d99653a19ac08b160267",
-      "REPO-ix-infrastructure-Ix"
-    ],
-    "next": []
-  },
-  "PR-442": {
-    "summary": "fix(php): resolve imports by namespace — open.",
-    "status": "OPEN",
-    "evidence": [],
-    "neighbors": [
-      "COMMIT-83079ff3dca7d516cc5818dcf81a28f479ea56cd",
-      "REPO-ix-infrastructure-Ix",
-      "F-018"
-    ],
-    "next": []
-  },
-  "PR-444": {
-    "summary": "fix(mcp): cap thrown error output, and keep the reason when the cap already fired — open.",
-    "status": "OPEN",
-    "evidence": [],
-    "neighbors": [
-      "COMMIT-1f49d9fe3eb715e59dcc3ff43cf3ae0d1b8a19cc",
-      "REPO-ix-infrastructure-Ix",
-      "N-003"
-    ],
-    "next": []
-  },
-  "COMMIT-5efd8f185e2f284551000486433d4233b2fe704a": {
-    "summary": "5efd8f18 — current head of fix/php-grouped-use-imports (Alot1z/Ix-remap).",
+  "COMMIT-084faae83245774db3fdaebfc7361c50281a55e7": {
+    "summary": "084faae8 — current head of fix/validate-saved-investigation (ix-infrastructure/Ix).",
     "status": "CURRENT",
     "evidence": [],
     "neighbors": [
-      "PR-448"
-    ],
-    "next": []
-  },
-  "COMMIT-adc97c1a979992739541a1d39e2e0b45ea6684d6": {
-    "summary": "adc97c1a — current head of fix/440-baseurl-authority (ix-infrastructure/Ix).",
-    "status": "CURRENT",
-    "evidence": [],
-    "neighbors": [
-      "PR-445"
-    ],
-    "next": []
-  },
-  "COMMIT-eab1075695811acec7d951e3da9813e43944662c": {
-    "summary": "eab10756 — current head of fix/434-default-import-guard (ix-infrastructure/Ix).",
-    "status": "CURRENT",
-    "evidence": [],
-    "neighbors": [
-      "PR-443"
-    ],
-    "next": []
-  },
-  "COMMIT-83b9be4207fb6ecd47a7c694684e6abfe8e18835": {
-    "summary": "83b9be42 — current head of fix/442-php-use-clause-scope (ix-infrastructure/Ix).",
-    "status": "CURRENT",
-    "evidence": [],
-    "neighbors": [
-      "PR-446"
-    ],
-    "next": []
-  },
-  "COMMIT-6233b498b81c0ad56337085146bb8cb6cdb6dc95": {
-    "summary": "6233b498 — current head of fix/discovery-symlink-escape (ix-infrastructure/Ix).",
-    "status": "CURRENT",
-    "evidence": [],
-    "neighbors": [
-      "PR-447"
-    ],
-    "next": []
-  },
-  "COMMIT-bf7a4b47758d679be0845a3cec27c1d0a7f5c05e": {
-    "summary": "bf7a4b47 — current head of fix/ts-module-resolution (Hiro-Chiba/Ix).",
-    "status": "CURRENT",
-    "evidence": [],
-    "neighbors": [
-      "PR-440"
-    ],
-    "next": []
-  },
-  "COMMIT-819d67e06e437e4715ea6e9f0bcd7bc7b5d5f001": {
-    "summary": "819d67e0 — current head of fix/renamed-type-imports (Hiro-Chiba/Ix).",
-    "status": "CURRENT",
-    "evidence": [],
-    "neighbors": [
-      "PR-434"
-    ],
-    "next": []
-  },
-  "COMMIT-033181fb5747e0db4303d99653a19ac08b160267": {
-    "summary": "033181fb — current head of fix/mcp-error-output-cap (Hiro-Chiba/Ix).",
-    "status": "CURRENT",
-    "evidence": [],
-    "neighbors": [
-      "PR-436"
-    ],
-    "next": []
-  },
-  "COMMIT-83079ff3dca7d516cc5818dcf81a28f479ea56cd": {
-    "summary": "83079ff3 — current head of fix/php-namespace-resolution (Hiro-Chiba/Ix).",
-    "status": "CURRENT",
-    "evidence": [],
-    "neighbors": [
-      "PR-442"
-    ],
-    "next": []
-  },
-  "COMMIT-1f49d9fe3eb715e59dcc3ff43cf3ae0d1b8a19cc": {
-    "summary": "1f49d9fe — current head of fix/436-truncated-failure-reason (ix-infrastructure/Ix).",
-    "status": "CURRENT",
-    "evidence": [],
-    "neighbors": [
-      "PR-444"
+      "PR-455"
     ],
     "next": []
   },
@@ -5657,26 +5464,8 @@
     ],
     "next": []
   },
-  "ISSUE-441": {
-    "summary": "[bug] PHP imports can resolve to classes from the wrong namespace — open.",
-    "status": "OPEN",
-    "evidence": [],
-    "neighbors": [
-      "REPO-ix-infrastructure-Ix"
-    ],
-    "next": []
-  },
   "ISSUE-439": {
     "summary": "[bug] tsconfig paths and baseUrl are ignored during edge resolution — open.",
-    "status": "OPEN",
-    "evidence": [],
-    "neighbors": [
-      "REPO-ix-infrastructure-Ix"
-    ],
-    "next": []
-  },
-  "ISSUE-435": {
-    "summary": "[bug] thrown command errors bypass the MCP output cap — open.",
     "status": "OPEN",
     "evidence": [],
     "neighbors": [
@@ -6012,82 +5801,72 @@
     "next": []
   },
   "F-014": {
-    "summary": "#446 global↔namespace PHP scope-boundary regression (C6/C8/D/E). Current semantic status: UNKNOWN.",
-    "status": "UNKNOWN",
+    "summary": "#446 global↔namespace PHP scope-boundary regression (C6/C8/D/E). Current semantic status: FIXED_FORK.",
+    "status": "FIXED_FORK",
     "evidence": [
       "E-PR446-SCOPE"
     ],
     "neighbors": [
-      "PR-446",
       "SRC-125a277e8e67",
       "SRC-5eb527f6aeb8"
     ],
     "next": []
   },
   "F-015": {
-    "summary": "#446 C7 — block-scoped `use` leaking into global code (pre-existing). Current semantic status: UNKNOWN.",
-    "status": "UNKNOWN",
+    "summary": "#446 C7 — block-scoped `use` leaking into global code (pre-existing). Current semantic status: PRE_EXISTING.",
+    "status": "PRE_EXISTING",
     "evidence": [],
     "neighbors": [
-      "PR-446",
       "SRC-125a277e8e67",
       "SRC-5eb527f6aeb8"
     ],
     "next": []
   },
   "F-016": {
-    "summary": "#443 renamed-import fallback binds to provider members (X1/X3). Current semantic status: UNKNOWN.",
-    "status": "UNKNOWN",
+    "summary": "#443 renamed-import fallback binds to provider members (X1/X3). Current semantic status: FIXED_FORK.",
+    "status": "FIXED_FORK",
     "evidence": [],
     "neighbors": [
-      "PR-443",
-      "PR-434",
       "SRC-125a277e8e67",
       "SRC-5eb527f6aeb8"
     ],
     "next": []
   },
   "F-017": {
-    "summary": "#445 configured-binding path binds to provider members (Y1). Current semantic status: UNKNOWN.",
-    "status": "UNKNOWN",
+    "summary": "#445 configured-binding path binds to provider members (Y1). Current semantic status: FIXED_FORK.",
+    "status": "FIXED_FORK",
     "evidence": [],
     "neighbors": [
-      "PR-445",
       "SRC-125a277e8e67",
       "SRC-5eb527f6aeb8"
     ],
     "next": []
   },
   "F-018": {
-    "summary": "#446 parser-level phpNamespaceBlocks guard (upstream implementation). Current semantic status: UNKNOWN.",
-    "status": "UNKNOWN",
+    "summary": "#446 parser-level phpNamespaceBlocks guard (upstream implementation). Current semantic status: PR_OPEN.",
+    "status": "PR_OPEN",
     "evidence": [],
     "neighbors": [
-      "PR-446",
-      "PR-442",
       "SRC-125a277e8e67",
       "SRC-5eb527f6aeb8"
     ],
     "next": []
   },
   "N-003": {
-    "summary": "#444 MCP output-cap and #447 discovery confinement — audited, no defect. Current semantic status: UNKNOWN.",
-    "status": "UNKNOWN",
+    "summary": "#444 MCP output-cap and #447 discovery confinement — audited, no defect. Current semantic status: AUDITED.",
+    "status": "AUDITED",
     "evidence": [],
     "neighbors": [
-      "PR-444",
-      "PR-447",
       "SRC-125a277e8e67",
       "SRC-5eb527f6aeb8"
     ],
     "next": []
   },
   "F-019": {
-    "summary": "#446 FQCN index drops same-line sibling PHP types (false negative). Current semantic status: UNKNOWN.",
-    "status": "UNKNOWN",
+    "summary": "#446 FQCN index drops same-line sibling PHP types (false negative). Current semantic status: FIXED_FORK.",
+    "status": "FIXED_FORK",
     "evidence": [],
     "neighbors": [
-      "PR-446",
       "SRC-125a277e8e67",
       "SRC-5eb527f6aeb8"
     ],
@@ -6108,7 +5887,6 @@
     "status": "PR_OPEN",
     "evidence": [],
     "neighbors": [
-      "PR-448",
       "SRC-125a277e8e67",
       "SRC-5eb527f6aeb8"
     ],
@@ -7694,8 +7472,8 @@
     ],
     "next": []
   },
-  "COMMIT-043bc68f0fb7ddba736ee1490614cb3c68f8f819": {
-    "summary": "Current upstream Ix main at 043bc68f0fb7ddba736ee1490614cb3c68f8f819.",
+  "COMMIT-8be5f110a5a072767e04dc108e79c539d1bab0f9": {
+    "summary": "Current upstream Ix main at 8be5f110a5a072767e04dc108e79c539d1bab0f9.",
     "status": "CURRENT",
     "evidence": [],
     "neighbors": [
@@ -56538,11 +56316,142 @@
     ],
     "next": []
   },
+  "PR-434": {
+    "summary": "Ix pull request #434: fix(ingest): resolve renamed type imports.",
+    "status": "HISTORICAL",
+    "evidence": [],
+    "neighbors": [
+      "COMMIT-819d67e06e437e4715ea6e9f0bcd7bc7b5d5f001"
+    ],
+    "next": []
+  },
+  "COMMIT-819d67e06e437e4715ea6e9f0bcd7bc7b5d5f001": {
+    "summary": "819d67e0 - fix(ingest): resolve renamed type imports.",
+    "status": "CURRENT",
+    "evidence": [],
+    "neighbors": [
+      "PR-434"
+    ],
+    "next": []
+  },
+  "PR-436": {
+    "summary": "Ix pull request #436: fix(mcp): cap thrown error output.",
+    "status": "RESOLVED",
+    "evidence": [],
+    "neighbors": [
+      "COMMIT-033181fb5747e0db4303d99653a19ac08b160267"
+    ],
+    "next": []
+  },
+  "COMMIT-5e2bdcfa5ae678cd134e86ee744e3ec67d8b0b0c": {
+    "summary": "5e2bdcfa - fix(mcp): fail truncated in-process output.",
+    "status": "HISTORICAL",
+    "evidence": [],
+    "neighbors": [],
+    "next": []
+  },
+  "COMMIT-033181fb5747e0db4303d99653a19ac08b160267": {
+    "summary": "033181fb - fix(mcp): cap thrown error output.",
+    "status": "CURRENT",
+    "evidence": [],
+    "neighbors": [
+      "PR-436"
+    ],
+    "next": []
+  },
+  "PR-440": {
+    "summary": "Ix pull request #440: fix(ingest): resolve tsconfig module mappings.",
+    "status": "HISTORICAL",
+    "evidence": [],
+    "neighbors": [
+      "COMMIT-bf7a4b47758d679be0845a3cec27c1d0a7f5c05e"
+    ],
+    "next": []
+  },
   "COMMIT-7d834235b99d6d2eccc2e638385368ebdb1de795": {
     "summary": "7d834235 - fix(ingest): resolve tsconfig module mappings.",
     "status": "HISTORICAL",
     "evidence": [],
     "neighbors": [],
+    "next": []
+  },
+  "COMMIT-bf7a4b47758d679be0845a3cec27c1d0a7f5c05e": {
+    "summary": "bf7a4b47 - fix(ingest): harden module path substitution.",
+    "status": "CURRENT",
+    "evidence": [],
+    "neighbors": [
+      "PR-440"
+    ],
+    "next": []
+  },
+  "PR-442": {
+    "summary": "Ix pull request #442: fix(php): resolve imports by namespace.",
+    "status": "RESOLVED",
+    "evidence": [],
+    "neighbors": [
+      "COMMIT-83079ff3dca7d516cc5818dcf81a28f479ea56cd"
+    ],
+    "next": []
+  },
+  "COMMIT-ea79b11596f3ef42532364cde14b98779f8959e2": {
+    "summary": "ea79b115 - fix(php): resolve imports by namespace.",
+    "status": "HISTORICAL",
+    "evidence": [],
+    "neighbors": [],
+    "next": []
+  },
+  "COMMIT-83079ff3dca7d516cc5818dcf81a28f479ea56cd": {
+    "summary": "83079ff3 - fix(php): bound namespace trimming.",
+    "status": "CURRENT",
+    "evidence": [],
+    "neighbors": [
+      "PR-442"
+    ],
+    "next": []
+  },
+  "PR-443": {
+    "summary": "Ix pull request #443: fix(ingest): resolve renamed type imports, with a default-import guard.",
+    "status": "RESOLVED",
+    "evidence": [],
+    "neighbors": [
+      "COMMIT-eab1075695811acec7d951e3da9813e43944662c"
+    ],
+    "next": []
+  },
+  "COMMIT-eab1075695811acec7d951e3da9813e43944662c": {
+    "summary": "eab10756 - fix(ingest): don't bind a default import to a member named default.",
+    "status": "CURRENT",
+    "evidence": [],
+    "neighbors": [
+      "PR-443"
+    ],
+    "next": []
+  },
+  "PR-444": {
+    "summary": "Ix pull request #444: fix(mcp): cap thrown error output, and keep the reason when the cap already fired.",
+    "status": "RESOLVED",
+    "evidence": [],
+    "neighbors": [
+      "COMMIT-1f49d9fe3eb715e59dcc3ff43cf3ae0d1b8a19cc"
+    ],
+    "next": []
+  },
+  "COMMIT-1f49d9fe3eb715e59dcc3ff43cf3ae0d1b8a19cc": {
+    "summary": "1f49d9fe - fix(mcp): keep the failure reason when the cap fired before the throw.",
+    "status": "CURRENT",
+    "evidence": [],
+    "neighbors": [
+      "PR-444"
+    ],
+    "next": []
+  },
+  "PR-445": {
+    "summary": "Ix pull request #445: fix(ingest): resolve tsconfig module mappings, with authority + security fixes.",
+    "status": "RESOLVED",
+    "evidence": [],
+    "neighbors": [
+      "COMMIT-adc97c1a979992739541a1d39e2e0b45ea6684d6"
+    ],
     "next": []
   },
   "COMMIT-795ec2ce80759a5730134353640327fb77fb2eff": {
@@ -56580,11 +56489,22 @@
     "neighbors": [],
     "next": []
   },
-  "COMMIT-ea79b11596f3ef42532364cde14b98779f8959e2": {
-    "summary": "ea79b115 - fix(php): resolve imports by namespace.",
-    "status": "HISTORICAL",
+  "COMMIT-adc97c1a979992739541a1d39e2e0b45ea6684d6": {
+    "summary": "adc97c1a - fix(ingest): check containment against the file actually opened.",
+    "status": "CURRENT",
     "evidence": [],
-    "neighbors": [],
+    "neighbors": [
+      "PR-445"
+    ],
+    "next": []
+  },
+  "PR-446": {
+    "summary": "Ix pull request #446: fix(php): resolve imports by namespace, with clause-scoping and DoS fixes.",
+    "status": "RESOLVED",
+    "evidence": [],
+    "neighbors": [
+      "COMMIT-2e8d17135de05701cd32383dd2bc1b8c18f5bb91"
+    ],
     "next": []
   },
   "COMMIT-5c322a9901902447e44f4c5e953fc13a5cdfab01": {
@@ -56622,11 +56542,63 @@
     "neighbors": [],
     "next": []
   },
-  "COMMIT-5e2bdcfa5ae678cd134e86ee744e3ec67d8b0b0c": {
-    "summary": "5e2bdcfa - fix(mcp): fail truncated in-process output.",
+  "COMMIT-83b9be4207fb6ecd47a7c694684e6abfe8e18835": {
+    "summary": "83b9be42 - fix(php): count namespace blocks at the parser, not from entity scopes.",
     "status": "HISTORICAL",
     "evidence": [],
     "neighbors": [],
+    "next": []
+  },
+  "COMMIT-2e8d17135de05701cd32383dd2bc1b8c18f5bb91": {
+    "summary": "2e8d1713 - Merge main into fix/442-php-use-clause-scope.",
+    "status": "CURRENT",
+    "evidence": [],
+    "neighbors": [
+      "PR-446"
+    ],
+    "next": []
+  },
+  "PR-447": {
+    "summary": "Ix pull request #447: fix(ingest): confine discovered files to the directory being ingested.",
+    "status": "RESOLVED",
+    "evidence": [],
+    "neighbors": [
+      "COMMIT-a37d5b752a55f4c147f3058b299b60343963a077"
+    ],
+    "next": []
+  },
+  "COMMIT-6233b498b81c0ad56337085146bb8cb6cdb6dc95": {
+    "summary": "6233b498 - fix(ingest): confine discovered files to the directory being ingested.",
+    "status": "HISTORICAL",
+    "evidence": [],
+    "neighbors": [],
+    "next": []
+  },
+  "COMMIT-a37d5b752a55f4c147f3058b299b60343963a077": {
+    "summary": "a37d5b75 - Merge main into fix/discovery-symlink-escape.",
+    "status": "CURRENT",
+    "evidence": [],
+    "neighbors": [
+      "PR-447"
+    ],
+    "next": []
+  },
+  "PR-448": {
+    "summary": "Ix pull request #448: fix(php): capture grouped use imports.",
+    "status": "RESOLVED",
+    "evidence": [],
+    "neighbors": [
+      "COMMIT-5efd8f185e2f284551000486433d4233b2fe704a"
+    ],
+    "next": []
+  },
+  "COMMIT-5efd8f185e2f284551000486433d4233b2fe704a": {
+    "summary": "5efd8f18 - fix(php): capture grouped use imports.",
+    "status": "CURRENT",
+    "evidence": [],
+    "neighbors": [
+      "PR-448"
+    ],
     "next": []
   },
   "COMMIT-74b848c83a0d547069660615dddcf1ea0ad0749c": {

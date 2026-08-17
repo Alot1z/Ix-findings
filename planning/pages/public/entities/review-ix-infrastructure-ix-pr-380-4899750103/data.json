@@ -10,68 +10,11 @@
     "title": "Review 4899750103 on PR #380",
     "status": "HISTORICAL",
     "repository": "ix-infrastructure/Ix",
-    "url": "https://github.com/ix-infrastructure/Ix/pull/380#pullrequestreview-4899750103",
-    "source_mirror_id": "github:review:ix-infrastructure/Ix#pr-380-4899750103",
-    "source_type": "github_review",
-    "source_repository": "ix-infrastructure/Ix",
-    "source_url": "https://github.com/ix-infrastructure/Ix/pull/380#pullrequestreview-4899750103",
-    "source_api_url": null,
-    "source_is_authoritative": true,
-    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+    "url": "https://github.com/ix-infrastructure/Ix/pull/380#pullrequestreview-4899750103"
   },
-  "source_snapshot": {
-    "id": 4899750103,
-    "node_id": "PRR_kwDORdC75M8AAAABJAxA1w",
-    "repository": "ix-infrastructure/Ix",
-    "pr_number": 380,
-    "author": {
-      "login": "KageBinary",
-      "id": 107007243,
-      "type": "User",
-      "html_url": "https://github.com/KageBinary"
-    },
-    "state": "APPROVED",
-    "body": "Thanks for contributing! This one is my favourite of the four — small, and it fixes a real correctness bug rather than papering over it.\n\nThe premise is right: `--kind` is a **filter**, not a **tiebreaker**. The old shortcut treated \"the user named a kind\" as consent to pick arbitrarily among everything matching that kind, so two same-named classes resolved to whichever sorted first — and because it returned `\"exact\"` as the resolution mode, the output actively asserted confidence it did not have. Silently analysing the wrong symbol is worse than asking.\n\nI checked the things a change like this usually breaks, and they hold:\n\n- **`--pick` still reaches the user.** `buildAmbiguous` already emits `\"Use --pick <n> or --path to disambiguate.\"`, so the new ambiguous path is actionable rather than a dead end.\n- **The earlier exits still cover the single-match case.** `--kind` narrowing to one candidate returns via the `unique.length === 1` branch with `resolutionMode(best, opts)`, so the ordinary \"kind disambiguates\" flow is unchanged.\n- **No accidental auto-pick downstream.** With the shortcut gone, `--kind` queries now fall through to the preferred-kind and container-kind rules. For two same-kind candidates the kind ranks are equal, so the `topTierKindRanks.every(...)` guard does not fire, and `CONTAINER_KINDS.has(bestKind) && !CONTAINER_KINDS.has(secondKind)` is false when both kinds are identical. Ambiguity is preserved, which is what your test asserts.\n\nBoth new tests are testing the actual behaviour change (ambiguity preserved; `--pick 2` selects by index and carries the right path), not just the code path.\n\nApproving. No changes requested.\n",
-    "html_url": "https://github.com/ix-infrastructure/Ix/pull/380#pullrequestreview-4899750103",
-    "submitted_at": "2026-08-10T18:19:55Z",
-    "commit_id": "b89046144f0a8cd960a7bbee22b3a12145c6c82e",
-    "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
-    "source": "OFFICIAL_GITHUB_FACT",
-    "parent_pr": 380
-  },
-  "source_context": {
-    "id": "github:review:ix-infrastructure/Ix#pr-380-4899750103",
-    "source": {
-      "type": "github_review",
-      "authority": "GITHUB",
-      "repository": "ix-infrastructure/Ix",
-      "owner": "ix-infrastructure",
-      "url": "https://github.com/ix-infrastructure/Ix/pull/380#pullrequestreview-4899750103",
-      "api_url": null,
-      "canonical": true,
-      "url_precision": "OBJECT"
-    },
-    "freshness": {
-      "first_seen": "2026-08-10T18:19:55Z",
-      "last_fetched": "2026-08-16T08:59:39.836Z",
-      "last_verified": "2026-08-16T08:59:39.836Z",
-      "source_updated_at": "2026-08-10T18:19:55Z",
-      "snapshot_version": "2026-08-16T08:59:39.836Z"
-    }
-  },
-  "ix_findings_analysis": {
-    "layer": "IX-FINDINGS_ANALYSIS",
-    "canonical_entity_id": "REVIEW-ix-infrastructure-Ix-pr-380-4899750103",
-    "entity_type": "REVIEW",
-    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
-    "status": "HISTORICAL",
-    "provenance_class": "OFFICIAL_GITHUB_FACT",
-    "source_authority": "GITHUB",
-    "source_is_authoritative": true,
-    "ix_findings_is_authoritative_for_source": false,
-    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#380",
-    "review_thread_state": "VERIFIED_GRAPHQL_NO_ASSOCIATED_THREAD_DATA"
-  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
   "relationships": [
     {
       "direction": "in",

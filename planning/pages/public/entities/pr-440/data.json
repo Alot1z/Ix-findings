@@ -2,22 +2,22 @@
   "id": "PR-440",
   "type": "pr",
   "title": "Ix PR #440",
-  "status": "OPEN",
+  "status": "HISTORICAL",
   "url": "https://alot1z.github.io/Ix-findings/entities/pr-440",
   "summary": {
     "id": "PR-440",
     "type": "pr",
     "title": "Ix PR #440",
-    "status": "OPEN",
+    "status": "HISTORICAL",
+    "repository": "ix-infrastructure/Ix",
     "number": 440,
-    "url": "https://github.com/ix-infrastructure/Ix/pull/440",
-    "source_mirror_id": "github:pull_request:ix-infrastructure/Ix#440",
-    "source_type": "github_pull_request",
-    "source_repository": "ix-infrastructure/Ix",
-    "source_url": "https://github.com/ix-infrastructure/Ix/pull/440",
-    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/440",
-    "source_is_authoritative": true,
-    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+    "author": {
+      "login": "Hiro-Chiba",
+      "id": 203865699,
+      "type": "User",
+      "html_url": "https://github.com/Hiro-Chiba"
+    },
+    "merged_at": null
   },
   "source_snapshot": {
     "repository": "ix-infrastructure/Ix",
@@ -25,7 +25,7 @@
     "node_id": "PR_kwDORdC75M7_HMel",
     "title": "fix(ingest): resolve tsconfig module mappings",
     "body": "Fixes #439\n\n## Summary\n\nResolve local TypeScript and JavaScript imports through `tsconfig.json` and `jsconfig.json` module mappings before filename-stem fallback.\n\n## Type\n- [x] Bug fix\n- [ ] Feature\n- [ ] Refactor\n- [ ] Docs\n- [ ] Test\n- [ ] CI\n\n## Changes\n- Read nearest standard config files with JSONC comments, trailing commas, local relative `extends`, `paths`, and `baseUrl`.\n- Select runtime or type targets according to the relationship and caller language.\n- Treat a missing configured target as authoritative to prevent unrelated stem matches.\n- Preserve existing fallback behavior when a configured provider exists but does not define the requested symbol.\n- Match tracked paths on case-insensitive filesystems while returning their real casing.\n- Keep package `exports` mappings outside this change.\n\n## Validation\n\n- Focused core ingestion tests: 69 passed, 1 skipped.\n- Resolver and ingestion tests: 14 passed.\n- Ix CLI tests: 936 passed, 1 skipped, including parser smoke tests.\n- Typecheck, build, lint, and `git diff --check` passed.\n- The unrelated core baseline still has six pre-existing failures involving unavailable fixtures and existing snapshots.\n\n## Checklist\n- [x] Tests pass\n- [x] Smoke tests pass\n- [x] No raw errors introduced\n- [x] CLI output follows Ix format\n\n## Release checklist (if merging to main)\n- [ ] `ix-cli/package.json` version bumped\n- [ ] After merge: tag pushed (`git tag vX.Y.Z && git push origin vX.Y.Z`)\n- [ ] If backend changes: `ix-memory-layer` tagged and released first\n- [ ] If `docker-compose.standalone.yml` changed: verified `curl | sh` install works\n",
-    "state": "open",
+    "state": "closed",
     "draft": false,
     "merged": false,
     "author": {
@@ -97,8 +97,8 @@
         "parent": null,
         "source": null,
         "created_at": "2026-03-03T04:48:38Z",
-        "updated_at": "2026-08-16T08:00:03Z",
-        "pushed_at": "2026-08-15T06:01:03Z",
+        "updated_at": "2026-08-17T13:44:46Z",
+        "pushed_at": "2026-08-17T13:55:58Z",
         "topics": [
           "ai",
           "ai-memory",
@@ -124,17 +124,17 @@
           "name": "Apache License 2.0",
           "url": "https://api.github.com/licenses/apache-2.0"
         },
-        "watchers_count": 731,
-        "stargazers_count": 731,
-        "forks_count": 61,
-        "open_issues_count": 16
+        "watchers_count": 746,
+        "stargazers_count": 746,
+        "forks_count": 62,
+        "open_issues_count": 5
       }
     },
     "merge_commit_sha": "f6940fbb27fd8d508441f9f4179d171351c0134b",
     "merged_at": null,
-    "closed_at": null,
+    "closed_at": "2026-08-16T19:22:30Z",
     "created_at": "2026-08-14T13:19:21Z",
-    "updated_at": "2026-08-15T00:26:13Z",
+    "updated_at": "2026-08-16T19:31:01Z",
     "labels": [],
     "milestone": null,
     "requested_reviewers": [
@@ -357,29 +357,37 @@
         "diff_hunk": null,
         "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
         "source": "OFFICIAL_GITHUB_FACT"
-      }
-    ],
-    "reviews": [
+      },
       {
-        "id": 4937498621,
-        "node_id": "PRR_kwDORdC75M8AAAABJkw__Q",
+        "id": 5309271661,
+        "node_id": "IC_kwDORdC75M8AAAABPHUObQ",
         "repository": "ix-infrastructure/Ix",
-        "pr_number": 440,
+        "parent_type": "PULL_REQUEST",
+        "parent_number": 440,
+        "kind": "PR_COMMENT",
         "author": {
-          "login": "github-advanced-security[bot]",
-          "id": 62310815,
-          "type": "Bot",
-          "html_url": "https://github.com/apps/github-advanced-security"
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
         },
-        "state": "COMMENTED",
-        "body": "",
-        "html_url": "https://github.com/ix-infrastructure/Ix/pull/440#pullrequestreview-4937498621",
-        "submitted_at": "2026-08-14T13:20:51Z",
-        "commit_id": "7d834235b99d6d2eccc2e638385368ebdb1de795",
+        "body": "Landed on `main` — your commits `7d83423` and `bf7a4b4` are ancestors of main via #445, which carried them forward with bounded/confined tsconfig reads and a fix so `baseUrl` no longer claims authority over every bare specifier (which would otherwise suppress the stem fallback). GitHub closed this one without the merged marker because the superset PR was the thing merged, but your commits and authorship are in the history. Thanks!",
+        "html_url": "https://github.com/ix-infrastructure/Ix/pull/440#issuecomment-5309271661",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5309271661",
+        "created_at": "2026-08-16T19:31:01Z",
+        "updated_at": "2026-08-16T19:31:01Z",
+        "commit_id": null,
+        "path": null,
+        "line": null,
+        "start_line": null,
+        "side": null,
+        "in_reply_to_id": null,
+        "diff_hunk": null,
         "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
         "source": "OFFICIAL_GITHUB_FACT"
       }
     ],
+    "reviews": [],
     "review_comments": [
       {
         "id": 3783948167,
@@ -549,6 +557,34 @@
         "commit_id": null,
         "issue": null,
         "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29479139892"
+      },
+      {
+        "id": 29530403644,
+        "event": "closed",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-16T19:22:30Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29530403644"
+      },
+      {
+        "id": 5309271661,
+        "event": "commented",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-16T19:31:01Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/comments/5309271661"
       }
     ],
     "source": "OFFICIAL_GITHUB_FACT",
@@ -572,10 +608,10 @@
     },
     "freshness": {
       "first_seen": "2026-08-14T13:19:21Z",
-      "last_fetched": "2026-08-16T08:59:39.836Z",
-      "last_verified": "2026-08-16T08:59:39.836Z",
-      "source_updated_at": "2026-08-15T00:26:13Z",
-      "snapshot_version": "2026-08-16T08:59:39.836Z"
+      "last_fetched": "2026-08-17T14:10:08.888Z",
+      "last_verified": "2026-08-17T14:10:08.888Z",
+      "source_updated_at": "2026-08-16T19:31:01Z",
+      "snapshot_version": "2026-08-17T14:10:08.888Z"
     }
   },
   "ix_findings_analysis": {
@@ -583,7 +619,7 @@
     "canonical_entity_id": "PR-440",
     "entity_type": "PULL_REQUEST",
     "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
-    "status": "CURRENT",
+    "status": "HISTORICAL",
     "provenance_class": "OFFICIAL_GITHUB_FACT",
     "source_authority": "GITHUB",
     "source_is_authoritative": true,
@@ -604,14 +640,6 @@
       "other_type": "commit",
       "other_title": "bf7a4b47758d679be0845a3cec27c1d0a7f5c05e",
       "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-bf7a4b47758d679be0845a3cec27c1d0a7f5c05e"
-    },
-    {
-      "direction": "out",
-      "relationship": "FOUND_IN",
-      "other": "REPO-ix-infrastructure-Ix",
-      "other_type": "repository",
-      "other_title": "ix-infrastructure/Ix",
-      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
     }
   ]
 }

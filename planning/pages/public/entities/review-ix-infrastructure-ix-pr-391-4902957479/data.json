@@ -10,68 +10,11 @@
     "title": "Review 4902957479 on PR #391",
     "status": "HISTORICAL",
     "repository": "ix-infrastructure/Ix",
-    "url": "https://github.com/ix-infrastructure/Ix/pull/391#pullrequestreview-4902957479",
-    "source_mirror_id": "github:review:ix-infrastructure/Ix#pr-391-4902957479",
-    "source_type": "github_review",
-    "source_repository": "ix-infrastructure/Ix",
-    "source_url": "https://github.com/ix-infrastructure/Ix/pull/391#pullrequestreview-4902957479",
-    "source_api_url": null,
-    "source_is_authoritative": true,
-    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+    "url": "https://github.com/ix-infrastructure/Ix/pull/391#pullrequestreview-4902957479"
   },
-  "source_snapshot": {
-    "id": 4902957479,
-    "node_id": "PRR_kwDORdC75M8AAAABJD0xpw",
-    "repository": "ix-infrastructure/Ix",
-    "pr_number": 391,
-    "author": {
-      "login": "josephismikhail",
-      "id": 56614593,
-      "type": "User",
-      "html_url": "https://github.com/josephismikhail"
-    },
-    "state": "APPROVED",
-    "body": "Addressed in 3f70e75. Re-verified end to end.\n\n**Stamp format.** Provenance now rides in semver build metadata on one line — `0.9.3+release.7f98724` for a release bundle, a bare number for dist. `splitVersion` already drops everything after `+`, so every already-shipped CLI reads `0.9.3` and behaves exactly as it does today. The design intent is unchanged; only the encoding moved.\n\n**`present` replaces the `0.0.0` sentinel.** `installedCompass()` carries whether `index.html` is on disk, so a stamp truncated mid-write no longer masquerades as a missing bundle and triggers a downgrade of an intact one. The present-check still sits ahead of the source-check, so a gutted release bundle is repaired.\n\n**install.sh only stamps what it installed.** Gated on a new `CLI_EXTRACTED` flag. The block runs even when the install was skipped, and in that case the compass on disk can be an unstamped dist bundle — labelling that `+release` froze it against every future update. When we did extract, the tarball's own stamp has already landed, which is also what repairs a mislabelled install. `install.ps1` needs no such gate: it has no already-current skip path.\n\n**New producer drift test.** `upgrade-compass-stamp-producers.test.ts` reads `release.yml`, `install.sh` and `install.ps1`, renders the literal each one writes, and pushes it through the real `parseCompassStamp`. Three producers in three languages with no compile-time link to the reader is how this class of bug keeps recurring. Verified non-vacuous — restoring the multi-line form fails both properties it asserts.\n\nMutations re-run against the reworked code: deleting the release guard fails two cases, and reverting the stamp producer fails two more.\n\n744 green. `bash -n` and `sh -n` clean on install.sh, release.yml parses, install.ps1 parses clean.\n\nLeft as-is deliberately: an `IX_VERSION` pin stamps `+release` on that release's bundle and exempts it from dist upgrades. That reads correct to me — the user pinned a release, and the repair path still fires if the bundle is gutted — but flagging it since the review raised it.",
-    "html_url": "https://github.com/ix-infrastructure/Ix/pull/391#pullrequestreview-4902957479",
-    "submitted_at": "2026-08-11T04:36:37Z",
-    "commit_id": "3f70e75a7e5cc21cd50eaa01908948e7036aa9f6",
-    "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
-    "source": "OFFICIAL_GITHUB_FACT",
-    "parent_pr": 391
-  },
-  "source_context": {
-    "id": "github:review:ix-infrastructure/Ix#pr-391-4902957479",
-    "source": {
-      "type": "github_review",
-      "authority": "GITHUB",
-      "repository": "ix-infrastructure/Ix",
-      "owner": "ix-infrastructure",
-      "url": "https://github.com/ix-infrastructure/Ix/pull/391#pullrequestreview-4902957479",
-      "api_url": null,
-      "canonical": true,
-      "url_precision": "OBJECT"
-    },
-    "freshness": {
-      "first_seen": "2026-08-11T04:36:37Z",
-      "last_fetched": "2026-08-16T08:59:39.836Z",
-      "last_verified": "2026-08-16T08:59:39.836Z",
-      "source_updated_at": "2026-08-11T04:36:37Z",
-      "snapshot_version": "2026-08-16T08:59:39.836Z"
-    }
-  },
-  "ix_findings_analysis": {
-    "layer": "IX-FINDINGS_ANALYSIS",
-    "canonical_entity_id": "REVIEW-ix-infrastructure-Ix-pr-391-4902957479",
-    "entity_type": "REVIEW",
-    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
-    "status": "HISTORICAL",
-    "provenance_class": "OFFICIAL_GITHUB_FACT",
-    "source_authority": "GITHUB",
-    "source_is_authoritative": true,
-    "ix_findings_is_authoritative_for_source": false,
-    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#391",
-    "review_thread_state": "VERIFIED_GRAPHQL_NO_ASSOCIATED_THREAD_DATA"
-  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
   "relationships": [
     {
       "direction": "in",

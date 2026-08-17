@@ -1,0 +1,298 @@
+{
+  "id": "PR-455",
+  "type": "pr",
+  "title": "Ix PR #455",
+  "status": "OPEN",
+  "url": "https://alot1z.github.io/Ix-findings/entities/pr-455",
+  "summary": {
+    "id": "PR-455",
+    "type": "pr",
+    "title": "Ix PR #455",
+    "status": "OPEN",
+    "number": 455,
+    "url": "https://github.com/ix-infrastructure/Ix/pull/455",
+    "source_mirror_id": "github:pull_request:ix-infrastructure/Ix#455",
+    "source_type": "github_pull_request",
+    "source_repository": "ix-infrastructure/Ix",
+    "source_url": "https://github.com/ix-infrastructure/Ix/pull/455",
+    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/455",
+    "source_is_authoritative": true,
+    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+  },
+  "source_snapshot": {
+    "repository": "ix-infrastructure/Ix",
+    "number": 455,
+    "node_id": "PR_kwDORdC75M8AAAABABr_qA",
+    "title": "fix(context): validate saved investigation state on read, not just on write",
+    "body": "## What\n\n`ix context --save` and `ix context --out` both validate the bundle against `contextBundleSchema` before it reaches disk. `loadInvestigation` did not validate on the way back in — it trusted a bare `as SavedInvestigation` cast, guarded only by an envelope check (`schema === \"ix-investigation/1\"` and a truthy `bundle`).\n\nSo a state file with those two fields correct and an arbitrary body was accepted in full. This adds the missing read-side check, using the schema that already exists for the write side.\n\n## Why it matters\n\nThe gap is reachable from two commands:\n\n- `--resume <id>` renders the bundle straight out of the file.\n- `--diff <id>` re-resolves `saved.bundle.target.name` and sends it to the configured backend (`ix-cli/src/cli/commands/context.ts:148`).\n\nA non-conforming bundle can only get to disk by being put there — hand-edited, truncated mid-write, or written by a different version of the CLI — but any of those was previously honoured rather than refused.\n\nThis is also the source of the three open `js/file-access-to-http` code-scanning alerts (54/55/56). See the note at the bottom.\n\n## Testing\n\n- `refuses to resume a tampered bundle whose envelope still looks valid` — the fixture keeps `schema` and `bundle` deliberately *valid* so the pre-existing envelope guard cannot be what rejects it; only bundle validation can. Asserted explicitly in the test body.\n- `still resumes a well-formed bundle` — control, so a validator that rejected everything would fail here rather than pass silently.\n- Validated by restoring the bug: with the new `safeParse` block removed, exactly the tampered test fails by name and the control still passes.\n- Full `ix-cli` suite: 974 passed. The 3 `read-containment` failures are Windows `EPERM: symlink` privilege errors that reproduce identically on unmodified `main` locally, and pass on CI runners.\n- `tsc --noEmit` clean; `eslint` clean on both changed files.\n\n## Behaviour change\n\nAn investigation file saved before the write-path validation existed, or one that otherwise does not match `ix-context-bundle/1`, will now be refused on `--resume`/`--diff` with a warning naming the schema and the issue count, instead of being loaded. Re-run `ix context <target> --save <id>` to regenerate it.\n\n## Note on the CodeQL alerts\n\nThis is real hardening, but it does not on its own clear alerts 54/55/56 — CodeQL's taint tracking does not treat a `safeParse` as a barrier, and the flow it reports (saved state → `target.name` → outbound request) is inherent to what `--diff` does. Those alerts are being handled separately as a design decision, not by this PR.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)",
+    "state": "open",
+    "draft": false,
+    "merged": false,
+    "author": {
+      "login": "josephismikhail",
+      "id": 56614593,
+      "type": "User",
+      "html_url": "https://github.com/josephismikhail"
+    },
+    "html_url": "https://github.com/ix-infrastructure/Ix/pull/455",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/455",
+    "head": {
+      "ref": "fix/validate-saved-investigation",
+      "sha": "084faae83245774db3fdaebfc7361c50281a55e7",
+      "repo": {
+        "id": 1171307492,
+        "full_name": "ix-infrastructure/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "ix-infrastructure",
+          "id": 256883681,
+          "type": "Organization",
+          "html_url": "https://github.com/ix-infrastructure"
+        },
+        "html_url": "https://github.com/ix-infrastructure/Ix",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": false,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-03-03T04:48:38Z",
+        "updated_at": "2026-08-17T13:44:46Z",
+        "pushed_at": "2026-08-17T13:55:58Z",
+        "topics": [
+          "ai",
+          "ai-memory",
+          "claude-code",
+          "cli",
+          "code-analysis",
+          "code-mapping",
+          "code-memory",
+          "codebase-understanding",
+          "codex",
+          "developer-tools",
+          "llm",
+          "openclaw",
+          "persistent-memory",
+          "program-analysis",
+          "software-architecture",
+          "system-intelligence",
+          "system-mapping"
+        ],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 746,
+        "stargazers_count": 746,
+        "forks_count": 62,
+        "open_issues_count": 5
+      }
+    },
+    "base": {
+      "ref": "main",
+      "sha": "9a02ca48732c5ac100dd435bb99fcbaf595a81d9",
+      "repo": {
+        "id": 1171307492,
+        "full_name": "ix-infrastructure/Ix",
+        "name": "Ix",
+        "owner": {
+          "login": "ix-infrastructure",
+          "id": 256883681,
+          "type": "Organization",
+          "html_url": "https://github.com/ix-infrastructure"
+        },
+        "html_url": "https://github.com/ix-infrastructure/Ix",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix",
+        "description": "Understand any codebase instantly. System intelligence for codebases, built for humans and AI.",
+        "visibility": "public",
+        "default_branch": "main",
+        "private": false,
+        "fork": false,
+        "parent": null,
+        "source": null,
+        "created_at": "2026-03-03T04:48:38Z",
+        "updated_at": "2026-08-17T13:44:46Z",
+        "pushed_at": "2026-08-17T13:55:58Z",
+        "topics": [
+          "ai",
+          "ai-memory",
+          "claude-code",
+          "cli",
+          "code-analysis",
+          "code-mapping",
+          "code-memory",
+          "codebase-understanding",
+          "codex",
+          "developer-tools",
+          "llm",
+          "openclaw",
+          "persistent-memory",
+          "program-analysis",
+          "software-architecture",
+          "system-intelligence",
+          "system-mapping"
+        ],
+        "language": "TypeScript",
+        "license": {
+          "key": "apache-2.0",
+          "name": "Apache License 2.0",
+          "url": "https://api.github.com/licenses/apache-2.0"
+        },
+        "watchers_count": 746,
+        "stargazers_count": 746,
+        "forks_count": 62,
+        "open_issues_count": 5
+      }
+    },
+    "merge_commit_sha": "762cfd31d99f794293dbb102b0d7bf55ed116efb",
+    "merged_at": null,
+    "closed_at": null,
+    "created_at": "2026-08-17T13:30:59Z",
+    "updated_at": "2026-08-17T13:30:59Z",
+    "labels": [],
+    "milestone": null,
+    "requested_reviewers": [],
+    "requested_teams": [],
+    "commits_count": 1,
+    "changed_files_count": 2,
+    "additions": 45,
+    "deletions": 0,
+    "changed_files": [
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 455,
+        "filename": "ix-cli/src/cli/__tests__/context-investigation.test.ts",
+        "status": "modified",
+        "additions": 29,
+        "deletions": 0,
+        "changes": 29,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/084faae83245774db3fdaebfc7361c50281a55e7/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fcontext-investigation.test.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/084faae83245774db3fdaebfc7361c50281a55e7/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fcontext-investigation.test.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fcontext-investigation.test.ts?ref=084faae83245774db3fdaebfc7361c50281a55e7",
+        "patch": "@@ -156,6 +156,35 @@ describe(\"ix context investigation state\", () => {\n     expect(loadInvestigation(\"broken\")).toBeUndefined();\n   });\n \n+  it(\"refuses to resume a tampered bundle whose envelope still looks valid\", () => {\n+    // The write path is schema-checked, so a non-conforming bundle can only\n+    // reach disk by being put there — a hand-edited file, a truncated write, or\n+    // a state file from a different version. The envelope is deliberately\n+    // *correct* here (`schema` matches, `bundle` is truthy), so the pre-existing\n+    // envelope guard cannot be what rejects it; only validating the bundle\n+    // itself can. `entities` is a string where the contract demands an array.\n+    mkdirSync(investigationsDir(), { recursive: true });\n+    const tampered = {\n+      schema: \"ix-investigation/1\",\n+      id: \"tampered\",\n+      savedAt: new Date().toISOString(),\n+      bundle: { ...bundleWith([]), entities: \"not-an-array\" },\n+    };\n+    writeFileSync(join(investigationsDir(), \"tampered.json\"), JSON.stringify(tampered), \"utf8\");\n+    // Guard the guard: if the envelope check were what fired, this fixture\n+    // would be indistinguishable from the \"unknown schema\" case above.\n+    expect(tampered.schema).toBe(\"ix-investigation/1\");\n+    expect(tampered.bundle).toBeTruthy();\n+    expect(loadInvestigation(\"tampered\")).toBeUndefined();\n+  });\n+\n+  it(\"still resumes a well-formed bundle\", () => {\n+    // Control for the test above: same code path, conforming bundle, so a\n+    // validator that rejected everything would fail here instead of passing.\n+    saveInvestigation(\"well-formed\", bundleWith([makeClaim(\"renders to DOM\", 0.9)]));\n+    expect(loadInvestigation(\"well-formed\")).toBeDefined();\n+  });\n+\n   it(\"refuses to save a bundle that does not match the versioned contract\", () => {\n     const malformed = { ...bundleWith([]), entities: \"not-an-array\" } as unknown as ReturnType<typeof buildBundle>;\n     saveInvestigation(\"bad-shape\", malformed);"
+      },
+      {
+        "repository": "ix-infrastructure/Ix",
+        "pr_number": 455,
+        "filename": "ix-cli/src/cli/commands/context.ts",
+        "status": "modified",
+        "additions": 16,
+        "deletions": 0,
+        "changes": 16,
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/084faae83245774db3fdaebfc7361c50281a55e7/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fcontext.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/084faae83245774db3fdaebfc7361c50281a55e7/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fcontext.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fcontext.ts?ref=084faae83245774db3fdaebfc7361c50281a55e7",
+        "patch": "@@ -372,6 +372,22 @@ export function loadInvestigation(id: string): SavedInvestigation | undefined {\n       renderWarning(`Saved investigation \"${id}\" has an unknown schema; refusing to resume.`);\n       return undefined;\n     }\n+    // Validate the bundle coming back off disk against the same versioned\n+    // contract the write side already enforces (saveInvestigation and --out).\n+    // The two halves were asymmetric: writes were schema-checked, reads trusted\n+    // a bare `as` cast, so the envelope check above was the only thing standing\n+    // between a hand-edited, truncated or version-skewed state file and the\n+    // rest of the command. That gap is reachable — `--diff` re-resolves\n+    // `bundle.target.name` and sends it to the backend, and `--resume` renders\n+    // the bundle — so a file whose `schema` field is right and whose body is\n+    // anything at all used to be honoured.\n+    const bundle = contextBundleSchema.safeParse(parsed.bundle);\n+    if (!bundle.success) {\n+      renderWarning(\n+        `Saved investigation \"${id}\" does not match the ${BUNDLE_SCHEMA} schema (${bundle.error.issues.length} issue(s)); refusing to resume.`,\n+      );\n+      return undefined;\n+    }\n     return parsed;\n   } catch {\n     renderWarning(`Saved investigation \"${id}\" is not valid JSON; refusing to resume.`);"
+      }
+    ],
+    "commits": [
+      {
+        "sha": "084faae83245774db3fdaebfc7361c50281a55e7",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/084faae83245774db3fdaebfc7361c50281a55e7",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/084faae83245774db3fdaebfc7361c50281a55e7",
+        "author": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "committer": {
+          "login": "josephismikhail",
+          "id": 56614593,
+          "type": "User",
+          "html_url": "https://github.com/josephismikhail"
+        },
+        "message": "fix(context): validate saved investigation state on read, not just on write\n\n`saveInvestigation` and `--out` both check the bundle against\n`contextBundleSchema` before it reaches disk, but `loadInvestigation`\ntrusted a bare `as SavedInvestigation` cast. The only read-side guard was\nthe envelope check (`schema === \"ix-investigation/1\"` and a truthy\n`bundle`), so a state file with the right two fields and an arbitrary body\nwas honoured in full.\n\nThat gap is reachable: `--resume` renders the bundle, and `--diff`\nre-resolves `bundle.target.name` and sends it to the configured backend.\nThis is the read half of the same contract the write half already\nenforces.\n\nAdds a regression test whose fixture keeps the envelope deliberately\nvalid, so only bundle validation can reject it, plus a well-formed control\nso a validator that refused everything would fail instead of pass.\n\nCo-Authored-By: Claude Opus 5 (1M context) <noreply@anthropic.com>",
+        "parents": [
+          {
+            "sha": "4a88a654de10efdd88335f7966b5553a41cd7ded",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/4a88a654de10efdd88335f7966b5553a41cd7ded"
+          }
+        ],
+        "tree_sha": "96cc4de1413fa0575862f0228b1d784ec1ca9b01",
+        "authored_at": "2026-08-17T13:30:08Z",
+        "committed_at": "2026-08-17T13:30:08Z"
+      }
+    ],
+    "comments": [],
+    "reviews": [],
+    "review_comments": [],
+    "timeline": [
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/084faae83245774db3fdaebfc7361c50281a55e7"
+      }
+    ],
+    "source": "OFFICIAL_GITHUB_FACT",
+    "review_threads": [],
+    "review_thread_capture": {
+      "status": "UNKNOWN",
+      "source": "GitHub GraphQL API"
+    }
+  },
+  "source_context": {
+    "id": "github:pull_request:ix-infrastructure/Ix#455",
+    "source": {
+      "type": "github_pull_request",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/pull/455",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/455",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-17T13:30:59Z",
+      "last_fetched": "2026-08-17T14:10:08.888Z",
+      "last_verified": "2026-08-17T14:10:08.888Z",
+      "source_updated_at": "2026-08-17T13:30:59Z",
+      "snapshot_version": "2026-08-17T14:10:08.888Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "PR-455",
+    "entity_type": "PULL_REQUEST",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "mirror_scope": "source PR, commits, files, comments, reviews, review comments, and review threads",
+    "related_analysis_types": [
+      "FINDING",
+      "DECISION",
+      "IMPLEMENTATION"
+    ],
+    "review_thread_state": "UNKNOWN"
+  },
+  "relationships": [
+    {
+      "direction": "out",
+      "relationship": "CHANGED_BY",
+      "other": "COMMIT-084faae83245774db3fdaebfc7361c50281a55e7",
+      "other_type": "commit",
+      "other_title": "084faae83245774db3fdaebfc7361c50281a55e7",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-084faae83245774db3fdaebfc7361c50281a55e7"
+    },
+    {
+      "direction": "out",
+      "relationship": "FOUND_IN",
+      "other": "REPO-ix-infrastructure-Ix",
+      "other_type": "repository",
+      "other_title": "ix-infrastructure/Ix",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
+    }
+  ]
+}

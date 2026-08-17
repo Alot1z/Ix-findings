@@ -2,22 +2,22 @@
   "id": "PR-443",
   "type": "pr",
   "title": "Ix PR #443",
-  "status": "OPEN",
+  "status": "RESOLVED",
   "url": "https://alot1z.github.io/Ix-findings/entities/pr-443",
   "summary": {
     "id": "PR-443",
     "type": "pr",
     "title": "Ix PR #443",
-    "status": "OPEN",
+    "status": "RESOLVED",
+    "repository": "ix-infrastructure/Ix",
     "number": 443,
-    "url": "https://github.com/ix-infrastructure/Ix/pull/443",
-    "source_mirror_id": "github:pull_request:ix-infrastructure/Ix#443",
-    "source_type": "github_pull_request",
-    "source_repository": "ix-infrastructure/Ix",
-    "source_url": "https://github.com/ix-infrastructure/Ix/pull/443",
-    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/443",
-    "source_is_authoritative": true,
-    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "merged_at": "2026-08-16T19:22:06Z"
   },
   "source_snapshot": {
     "repository": "ix-infrastructure/Ix",
@@ -25,9 +25,9 @@
     "node_id": "PR_kwDORdC75M7_R-id",
     "title": "fix(ingest): resolve renamed type imports, with a default-import guard",
     "body": "Carries **@Hiro-Chiba's #434** plus one review fix. Landing it here closes #434 as merged.\n\n> ⚠️ **Merge with a merge commit, not squash.** This branch contains Hiro-Chiba's commit alongside mine; a squash would collapse an external contributor's work into one commit authored by me.\n\n## Their change (`819d67e`)\n\nResolves renamed consumer-side TS bindings for inheritance and type references — `import { Base as LocalBase }` now resolves `EXTENDS`/`REFERENCES`/`CALLS` to the provider's real symbol.\n\n## My fix (`eab1075`)\n\nThe fallback matched `binding.imported` against every parsed symbol in the provider file. For `import run from \"./m\"`, `binding.imported` is the literal sentinel `'default'` (set at `index.ts:514`), not an export name — and `fileHasSymbol` holds every entity including non-exported methods. So any provider member *called* `default` satisfied it:\n\n```\n/repo/m.ts  export class M { default() { return 1; } }\n            export default new M();\n/repo/n.ts  import run from \"./m\"; export function go() { return run(); }\n```\n\nmain emits nothing; #434 emits `CALLS go -> m.ts` with `dstQualifiedKey: \"M.default\"` at **0.9** — confident, and wrong. Guarded with the same `!== 'default'` exclusion `index.ts:3199` already uses.\n\nCI was green because every existing default-import test uses a *named* default export, which resolves before the fallback is reached.\n\n## Verification\n\nMutation-tested: delete the guard and the added test alone goes red. `tsc --noEmit` clean; core-ingestion shows the same 6 pre-existing fixture-missing failures as the untouched base.\n\nReviewed as part of a full pass over all 9 open PRs; the per-PR findings and a security review of the combined tree are in the thread on #434.",
-    "state": "open",
+    "state": "closed",
     "draft": false,
-    "merged": false,
+    "merged": true,
     "author": {
       "login": "KageBinary",
       "id": 107007243,
@@ -59,8 +59,8 @@
         "parent": null,
         "source": null,
         "created_at": "2026-03-03T04:48:38Z",
-        "updated_at": "2026-08-16T08:00:03Z",
-        "pushed_at": "2026-08-15T06:01:03Z",
+        "updated_at": "2026-08-17T13:44:46Z",
+        "pushed_at": "2026-08-17T13:55:58Z",
         "topics": [
           "ai",
           "ai-memory",
@@ -86,10 +86,10 @@
           "name": "Apache License 2.0",
           "url": "https://api.github.com/licenses/apache-2.0"
         },
-        "watchers_count": 731,
-        "stargazers_count": 731,
-        "forks_count": 61,
-        "open_issues_count": 16
+        "watchers_count": 746,
+        "stargazers_count": 746,
+        "forks_count": 62,
+        "open_issues_count": 5
       }
     },
     "base": {
@@ -115,8 +115,8 @@
         "parent": null,
         "source": null,
         "created_at": "2026-03-03T04:48:38Z",
-        "updated_at": "2026-08-16T08:00:03Z",
-        "pushed_at": "2026-08-15T06:01:03Z",
+        "updated_at": "2026-08-17T13:44:46Z",
+        "pushed_at": "2026-08-17T13:55:58Z",
         "topics": [
           "ai",
           "ai-memory",
@@ -142,17 +142,17 @@
           "name": "Apache License 2.0",
           "url": "https://api.github.com/licenses/apache-2.0"
         },
-        "watchers_count": 731,
-        "stargazers_count": 731,
-        "forks_count": 61,
-        "open_issues_count": 16
+        "watchers_count": 746,
+        "stargazers_count": 746,
+        "forks_count": 62,
+        "open_issues_count": 5
       }
     },
-    "merge_commit_sha": "497295aa61cf6f6644bea1118d3f5e96f0510e56",
-    "merged_at": null,
-    "closed_at": null,
+    "merge_commit_sha": "aa83310ef8c02eb7f9a71098016e2acaa2292f66",
+    "merged_at": "2026-08-16T19:22:06Z",
+    "closed_at": "2026-08-16T19:22:06Z",
     "created_at": "2026-08-14T20:17:59Z",
-    "updated_at": "2026-08-16T01:02:33Z",
+    "updated_at": "2026-08-16T19:22:06Z",
     "labels": [],
     "milestone": null,
     "requested_reviewers": [
@@ -414,6 +414,34 @@
         "commit_id": "03c601e18138f865c3b0351bcd158986b96714f0",
         "issue": null,
         "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29518399709"
+      },
+      {
+        "id": 29530395848,
+        "event": "merged",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-16T19:22:06Z",
+        "commit_id": "aa83310ef8c02eb7f9a71098016e2acaa2292f66",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29530395848"
+      },
+      {
+        "id": 29530395881,
+        "event": "closed",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-16T19:22:06Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29530395881"
       }
     ],
     "source": "OFFICIAL_GITHUB_FACT",
@@ -437,10 +465,10 @@
     },
     "freshness": {
       "first_seen": "2026-08-14T20:17:59Z",
-      "last_fetched": "2026-08-16T08:59:39.836Z",
-      "last_verified": "2026-08-16T08:59:39.836Z",
-      "source_updated_at": "2026-08-16T01:02:33Z",
-      "snapshot_version": "2026-08-16T08:59:39.836Z"
+      "last_fetched": "2026-08-17T14:10:08.888Z",
+      "last_verified": "2026-08-17T14:10:08.888Z",
+      "source_updated_at": "2026-08-16T19:22:06Z",
+      "snapshot_version": "2026-08-17T14:10:08.888Z"
     }
   },
   "ix_findings_analysis": {
@@ -469,22 +497,6 @@
       "other_type": "commit",
       "other_title": "eab1075695811acec7d951e3da9813e43944662c",
       "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-eab1075695811acec7d951e3da9813e43944662c"
-    },
-    {
-      "direction": "out",
-      "relationship": "FOUND_IN",
-      "other": "REPO-ix-infrastructure-Ix",
-      "other_type": "repository",
-      "other_title": "ix-infrastructure/Ix",
-      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
-    },
-    {
-      "direction": "in",
-      "relationship": "RELATED_TO_PR",
-      "other": "F-016",
-      "other_type": "finding",
-      "other_title": "#443 renamed-import fallback binds to provider members (X1/X3)",
-      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-016"
     }
   ]
 }

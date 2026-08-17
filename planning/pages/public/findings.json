@@ -1,7 +1,7 @@
 {
   "meta": {
-    "generated": "2026-08-16",
-    "sourceRevision": "043bc68f0fb7ddba736ee1490614cb3c68f8f819",
+    "generated": "2026-08-17",
+    "sourceRevision": "8be5f110a5a072767e04dc108e79c539d1bab0f9",
     "count": 24
   },
   "items": [
@@ -146,7 +146,7 @@
       "evidence_class": "A",
       "status": "FIXED_FORK",
       "registry_status": "FIXED_FORK",
-      "summary": "#446 global↔namespace PHP scope-boundary regression (C6/C8/D/E). Current semantic status: UNKNOWN.",
+      "summary": "#446 global↔namespace PHP scope-boundary regression (C6/C8/D/E). Current semantic status: FIXED_FORK.",
       "recommendation": "#446 global↔namespace PHP scope-boundary regression (C6/C8/D/E) affects ix-infrastructure/Ix/core-ingestion (PHP resolution). Historical registry status was FIXED_FORK; recommendation: Fork commit 0a7d97f (fix/446-namespace-scope-boundary) adds parser-level phpMixedScope guard; ready for maintainer cherry-pick.."
     },
     {
@@ -155,7 +155,7 @@
       "evidence_class": "A",
       "status": "PRE_EXISTING",
       "registry_status": "PRE_EXISTING",
-      "summary": "#446 C7 — block-scoped `use` leaking into global code (pre-existing). Current semantic status: UNKNOWN.",
+      "summary": "#446 C7 — block-scoped `use` leaking into global code (pre-existing). Current semantic status: PRE_EXISTING.",
       "recommendation": "#446 C7 — block-scoped `use` leaking into global code (pre-existing) affects ix-infrastructure/Ix/core-ingestion (PHP resolution). Historical registry status was PRE_EXISTING; recommendation: Not a #446 regression; fixing requires namespace-aware bare-name fallback. Documented as known limitation, deliberately excluded from 0a7d97f.."
     },
     {
@@ -164,7 +164,7 @@
       "evidence_class": "A",
       "status": "FIXED_FORK",
       "registry_status": "FIXED_FORK",
-      "summary": "#443 renamed-import fallback binds to provider members (X1/X3). Current semantic status: UNKNOWN.",
+      "summary": "#443 renamed-import fallback binds to provider members (X1/X3). Current semantic status: FIXED_FORK.",
       "recommendation": "#443 renamed-import fallback binds to provider members (X1/X3) affects ix-infrastructure/Ix/core-ingestion (TS/JS resolution). Historical registry status was FIXED_FORK; recommendation: Fork commit cba11a3 (fix/443-renamed-import-member-guard) requires a plain qualified key in the fallback; ready for maintainer cherry-pick. Second-order sweep 2026-08-15: no other PR-introduced member-binding path; PHP FQCN path immune by construction; legacy stem-path member-binding is pre-existing (base==head verified).."
     },
     {
@@ -173,7 +173,7 @@
       "evidence_class": "A",
       "status": "FIXED_FORK",
       "registry_status": "FIXED_FORK",
-      "summary": "#445 configured-binding path binds to provider members (Y1). Current semantic status: UNKNOWN.",
+      "summary": "#445 configured-binding path binds to provider members (Y1). Current semantic status: FIXED_FORK.",
       "recommendation": "#445 configured-binding path binds to provider members (Y1) affects ix-infrastructure/Ix/core-ingestion (tsconfig module resolution). Historical registry status was FIXED_FORK; recommendation: Fork commit f9274cc (fix/445-renamed-import-member-guard) applies the same plain-key requirement to the configured path; ready for maintainer cherry-pick. Second-order sweep 2026-08-15: no other PR-introduced member-binding path; PHP FQCN path immune by construction; legacy stem-path member-binding is pre-existing (base==head verified).."
     },
     {
@@ -182,7 +182,7 @@
       "evidence_class": "A",
       "status": "UPSTREAM_PR",
       "registry_status": "UPSTREAM_PR",
-      "summary": "#446 parser-level phpNamespaceBlocks guard (upstream implementation). Current semantic status: UNKNOWN.",
+      "summary": "#446 parser-level phpNamespaceBlocks guard (upstream implementation). Current semantic status: PR_OPEN.",
       "recommendation": "#446 parser-level phpNamespaceBlocks guard (upstream implementation) affects ix-infrastructure/Ix/core-ingestion (PHP resolution). Historical registry status was UPSTREAM_PR; recommendation: Already upstream in #446 at 83b9be4; our fork validation fixtures live in Alot1z/Ix-remap validation/php-multi-namespace-guard/.."
     },
     {
@@ -191,7 +191,7 @@
       "evidence_class": "A",
       "status": "AUDITED",
       "registry_status": "AUDITED",
-      "summary": "#444 MCP output-cap and #447 discovery confinement — audited, no defect. Current semantic status: UNKNOWN.",
+      "summary": "#444 MCP output-cap and #447 discovery confinement — audited, no defect. Current semantic status: AUDITED.",
       "recommendation": "#444 MCP output-cap and #447 discovery confinement — audited, no defect affects ix-infrastructure/Ix/ix-cli (mcp runner / ingest discovery). Historical registry status was AUDITED; recommendation: No corrective commit. #445 informational: TS paths tie-break / .js→.ts preference divergences are contrived; non-relative `extends` not followed is a documented conservative scope reduction.."
     },
     {
@@ -200,7 +200,7 @@
       "evidence_class": "A",
       "status": "FIXED_FORK",
       "registry_status": "FIXED_FORK",
-      "summary": "#446 FQCN index drops same-line sibling PHP types (false negative). Current semantic status: UNKNOWN.",
+      "summary": "#446 FQCN index drops same-line sibling PHP types (false negative). Current semantic status: FIXED_FORK.",
       "recommendation": "#446 FQCN index drops same-line sibling PHP types (false negative) affects ix-infrastructure/Ix/core-ingestion (PHP namespace resolution). Historical registry status was FIXED_FORK; recommendation: Fork commit f577492 (fix/446-namespace-scope-boundary, parent 0a7d97f) drops the container exclusion in phpTypeFqcn and ambiguousPhpTypeNames — PHP types (class/interface/trait/enum) can never nest, so a container on one is always a same-line artifact. Regression tests fail-before/pass-after; resolveEdges+queries.php+patchBuilder 115/115, tsc clean. Ready for maintainer cherry-pick. Note: the second-order sweep's 'FQCN path immune by construction' claim was about member-binding (false positives); this is a false negative on a different axis. Cross-batch verification (three-state matrix, base 043bc68 / PR 83b9be4 / fixed f577492): the same-line and three-on-line cases drop to NONE in BOTH the in-batch and cross-batch (buildGlobalResolutionIndex -> resolveEdges globalIndex) paths on 83b9be4, and f577492 restores IMPORTS @0.9 on all six cells — the fix is sufficient for every phpFqcnToTypes producer (global builder, resolveEdges merge) and the importedPhpType consumer, all of which share phpTypeFqcn. CLI builds the global index per run in memory (ingest.ts) — no serialized cache. Nested-class (invalid PHP) case captures no entity and is identical on PR and fixed.."
     },
     {

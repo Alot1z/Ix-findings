@@ -74,7 +74,7 @@ async function safe(label, fn, fallback) {
   try { return await fn(); } catch (error) { errors.push({ label, message: error.message }); return fallback; }
 }
 const issueTargets = [57, 219, 349, 371, 374, 376, 377, 379, 383, 385];
-const prTargets = [358, 362, 365, 366, 368, 372, 373, 375, 378, 380, 382, 384, 386, 387, 388, 389, 390, 391, 392, 393, 395, 397, 400, 401];
+const prTargets = [358, 362, 365, 366, 368, 372, 373, 375, 378, 380, 382, 384, 386, 387, 388, 389, 390, 391, 392, 393, 395, 397, 400, 401, 434, 436, 440, 442, 443, 444, 445, 446, 447, 448, 455];
 const repoTargets = ["ix-infrastructure/Ix", "Alot1z/Ix", "Alot1z/Ix-remap", "Alot1z/Ix-findings"];
 const commitTargets = {
   "Alot1z/Ix-remap": [

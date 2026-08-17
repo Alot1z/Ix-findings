@@ -2,22 +2,22 @@
   "id": "PR-447",
   "type": "pr",
   "title": "Ix PR #447",
-  "status": "OPEN",
+  "status": "RESOLVED",
   "url": "https://alot1z.github.io/Ix-findings/entities/pr-447",
   "summary": {
     "id": "PR-447",
     "type": "pr",
     "title": "Ix PR #447",
-    "status": "OPEN",
+    "status": "RESOLVED",
+    "repository": "ix-infrastructure/Ix",
     "number": 447,
-    "url": "https://github.com/ix-infrastructure/Ix/pull/447",
-    "source_mirror_id": "github:pull_request:ix-infrastructure/Ix#447",
-    "source_type": "github_pull_request",
-    "source_repository": "ix-infrastructure/Ix",
-    "source_url": "https://github.com/ix-infrastructure/Ix/pull/447",
-    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/447",
-    "source_is_authoritative": true,
-    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "merged_at": "2026-08-16T19:28:10Z"
   },
   "source_snapshot": {
     "repository": "ix-infrastructure/Ix",
@@ -25,9 +25,9 @@
     "node_id": "PR_kwDORdC75M7_aOKy",
     "title": "fix(ingest): confine discovered files to the directory being ingested",
     "body": "## Summary\n\nAn ingested repository could name files outside itself and have them read into the graph.\n\n`git ls-files` reports a committed symlink as an ordinary entry, and the `statSync` behind it describes the **target**. So a repo shipping\n\n```\nsrc/notes.ts -> ~/.ssh/id_rsa\n```\n\nhad that file discovered, read, parsed, stored, and sent to the configured endpoint. `ix ingest --github owner/repo` runs this over repositories nobody has read, which makes repository contents attacker input — the same threat model that motivated the tsconfig hardening in #445.\n\n`walkFiles` was never the hole: readdir Dirents describe the link itself, so `isFile()` is false for a symlink and it is skipped there. Git's list is the gap, and it is the path taken for anything that is a repository — so the safe-looking walker was never the one running.\n\n## Type\n\n- [x] Bug fix (security)\n\n## Changes\n\n- `discoverIngestFilePaths(discovered, root)` — canonicalize, de-duplicate, and confine to the directory actually asked for. Kept as one function rather than a filter at the call site so the confinement cannot be dropped without a test noticing.\n- `isWithinDiscoveryRoot(root, candidate)` — segment-wise containment, so a sibling named `..shared/` is out but a child named `..shared/` is in.\n- Dropped files are **counted and reported** (`skipped outside root` in the summary, `skipReasons.outsideRoot` in JSON) rather than silently vanishing.\n- `tryGitLsFiles` exported for the test — the guarantee is a property of listing → canonicalize → confine *composed*, and each step looks fine alone.\n\n## What deliberately still works\n\n- **A symlink inside the tree.** Monorepos link packages around; confinement must not become \"no symlinks at all\". Held down by its own test.\n- **An explicitly named single file.** Naming it IS the request, so there is nothing to escape from and no root is applied.\n\n## Two things worth a reviewer's attention\n\n**The root is canonicalized too.** Comparing a resolved file against an unresolved root drops *every* file whenever the root is itself reached through a link — macOS `/var` → `/private/var`, a home on a network mount, a `~/code` symlink. That reads as \"this repo has no source files\", with no error. The matrix here is ubuntu + windows, so no runner would ever catch it; the test builds a symlinked root deliberately.\n\n**The escape test asserts the escape first.** It checks the outside path actually reaches discovery *before* checking that confinement drops it — otherwise it would pass just as well by discovering nothing at all.\n\n## Validation\n\n- Escape reproduced end-to-end against a real git repo with a committed symlink, then confirmed dropped.\n- Mutation-tested, each killing exactly one test: dropping the filter, comparing against the unresolved root, and confining an explicitly named file.\n- `npm run test:unit` — 68 files, 960 passed, 1 skipped. `typecheck`, `lint`, `knip` clean; no NUL bytes.\n- Zero tracked symlinks across the local Ix / Ix-memory checkouts, so no behavioural change for ordinary repos.",
-    "state": "open",
+    "state": "closed",
     "draft": false,
-    "merged": false,
+    "merged": true,
     "author": {
       "login": "KageBinary",
       "id": 107007243,
@@ -38,7 +38,7 @@
     "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/447",
     "head": {
       "ref": "fix/discovery-symlink-escape",
-      "sha": "6233b498b81c0ad56337085146bb8cb6cdb6dc95",
+      "sha": "a37d5b752a55f4c147f3058b299b60343963a077",
       "repo": {
         "id": 1171307492,
         "full_name": "ix-infrastructure/Ix",
@@ -59,8 +59,8 @@
         "parent": null,
         "source": null,
         "created_at": "2026-03-03T04:48:38Z",
-        "updated_at": "2026-08-16T08:00:03Z",
-        "pushed_at": "2026-08-15T06:01:03Z",
+        "updated_at": "2026-08-17T13:44:46Z",
+        "pushed_at": "2026-08-17T13:55:58Z",
         "topics": [
           "ai",
           "ai-memory",
@@ -86,15 +86,15 @@
           "name": "Apache License 2.0",
           "url": "https://api.github.com/licenses/apache-2.0"
         },
-        "watchers_count": 731,
-        "stargazers_count": 731,
-        "forks_count": 61,
-        "open_issues_count": 16
+        "watchers_count": 746,
+        "stargazers_count": 746,
+        "forks_count": 62,
+        "open_issues_count": 5
       }
     },
     "base": {
       "ref": "main",
-      "sha": "043bc68f0fb7ddba736ee1490614cb3c68f8f819",
+      "sha": "787f466a7d9862c3e71f326e63d768884896e3ac",
       "repo": {
         "id": 1171307492,
         "full_name": "ix-infrastructure/Ix",
@@ -115,8 +115,8 @@
         "parent": null,
         "source": null,
         "created_at": "2026-03-03T04:48:38Z",
-        "updated_at": "2026-08-16T08:00:03Z",
-        "pushed_at": "2026-08-15T06:01:03Z",
+        "updated_at": "2026-08-17T13:44:46Z",
+        "pushed_at": "2026-08-17T13:55:58Z",
         "topics": [
           "ai",
           "ai-memory",
@@ -142,17 +142,17 @@
           "name": "Apache License 2.0",
           "url": "https://api.github.com/licenses/apache-2.0"
         },
-        "watchers_count": 731,
-        "stargazers_count": 731,
-        "forks_count": 61,
-        "open_issues_count": 16
+        "watchers_count": 746,
+        "stargazers_count": 746,
+        "forks_count": 62,
+        "open_issues_count": 5
       }
     },
-    "merge_commit_sha": "e28543869a00b17d69030b7e5a0108ab4f37a2fb",
-    "merged_at": null,
-    "closed_at": null,
+    "merge_commit_sha": "5134d8dee2f4d986c4a0f21573436a13b489f562",
+    "merged_at": "2026-08-16T19:28:10Z",
+    "closed_at": "2026-08-16T19:28:10Z",
     "created_at": "2026-08-15T06:01:22Z",
-    "updated_at": "2026-08-15T06:01:23Z",
+    "updated_at": "2026-08-16T19:28:10Z",
     "labels": [],
     "milestone": null,
     "requested_reviewers": [
@@ -164,7 +164,7 @@
       }
     ],
     "requested_teams": [],
-    "commits_count": 1,
+    "commits_count": 2,
     "changed_files_count": 2,
     "additions": 215,
     "deletions": 5,
@@ -177,9 +177,9 @@
         "additions": 139,
         "deletions": 2,
         "changes": 141,
-        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/6233b498b81c0ad56337085146bb8cb6cdb6dc95/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fingest-discovery.test.ts",
-        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/6233b498b81c0ad56337085146bb8cb6cdb6dc95/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fingest-discovery.test.ts",
-        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fingest-discovery.test.ts?ref=6233b498b81c0ad56337085146bb8cb6cdb6dc95",
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/a37d5b752a55f4c147f3058b299b60343963a077/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fingest-discovery.test.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/a37d5b752a55f4c147f3058b299b60343963a077/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fingest-discovery.test.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2F__tests__%2Fingest-discovery.test.ts?ref=a37d5b752a55f4c147f3058b299b60343963a077",
         "patch": "@@ -1,6 +1,18 @@\n-import { describe, expect, it } from 'vitest';\n+import { execFileSync } from 'node:child_process';\n+import { mkdirSync, mkdtempSync, realpathSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';\n+import { tmpdir } from 'node:os';\n+import { join } from 'node:path';\n \n-import { dedupeDiscoveredFilePaths, isSupportedSourceFile, needsIndexPrescan } from '../commands/ingest.js';\n+import { afterEach, describe, expect, it } from 'vitest';\n+\n+import {\n+  dedupeDiscoveredFilePaths,\n+  isSupportedSourceFile,\n+  discoverIngestFilePaths,\n+  isWithinDiscoveryRoot,\n+  needsIndexPrescan,\n+  tryGitLsFiles,\n+} from '../commands/ingest.js';\n \n describe('dedupeDiscoveredFilePaths', () => {\n   it('collapses alternate discovered paths that point at the same canonical file', () => {\n@@ -55,6 +67,19 @@ describe('dedupeDiscoveredFilePaths', () => {\n     }\n   });\n \n+  it('confines a canonical path to the discovery root', () => {\n+    const root = join('/repo', 'project');\n+    expect(isWithinDiscoveryRoot(root, join(root, 'src', 'app.ts'))).toBe(true);\n+    expect(isWithinDiscoveryRoot(root, join('/repo', 'other', 'app.ts'))).toBe(false);\n+    expect(isWithinDiscoveryRoot(root, join('/repo', 'app.ts'))).toBe(false);\n+    // The root itself is not a file inside the root.\n+    expect(isWithinDiscoveryRoot(root, root)).toBe(false);\n+    // A sibling whose name merely starts with dots is outside, but a *child*\n+    // whose name does must stay in — the reason this compares segments.\n+    expect(isWithinDiscoveryRoot(root, join('/repo', '..shared', 'app.ts'))).toBe(false);\n+    expect(isWithinDiscoveryRoot(root, join(root, '..shared', 'app.ts'))).toBe(true);\n+  });\n+\n   it('pre-scans every language whose index is parser-derived', () => {\n     for (const filePath of [\n       'src/Service.php',\n@@ -66,3 +91,115 @@ describe('dedupeDiscoveredFilePaths', () => {\n     expect(needsIndexPrescan('src/service.py')).toBe(false);\n   });\n });\n+\n+describe('discovery symlink containment', () => {\n+  const scratch: string[] = [];\n+\n+  afterEach(() => {\n+    for (const dir of scratch.splice(0)) rmSync(dir, { recursive: true, force: true });\n+  });\n+\n+  function scratchDir(prefix: string): string {\n+    const dir = mkdtempSync(join(tmpdir(), prefix));\n+    scratch.push(dir);\n+    // realpath because macOS hands back /var/... for a /private/var/... temp dir,\n+    // and this whole guarantee is about comparing resolved paths.\n+    return realpathSync(dir);\n+  }\n+\n+  it.skipIf(process.platform === 'win32')(\n+    'drops a committed symlink that leaves the repository',\n+    () => {\n+      const repo = scratchDir('ix-repo-');\n+      const outside = scratchDir('ix-outside-');\n+      const secret = join(outside, 'secret.ts');\n+      writeFileSync(secret, 'export const token = \"leaked\";\\n');\n+\n+      mkdirSync(join(repo, 'src'), { recursive: true });\n+      writeFileSync(join(repo, 'src', 'real.ts'), 'export const ok = 1;\\n');\n+      try {\n+        // A symlink with a source extension: git records it as an ordinary\n+        // entry, and the stat behind it describes the file it points at.\n+        symlinkSync(secret, join(repo, 'src', 'notes.ts'));\n+        execFileSync('git', ['init', '-q'], { cwd: repo });\n+        execFileSync('git', ['add', '-A'], { cwd: repo });\n+      } catch {\n+        return; // no git, or no permission to symlink — nothing to assert\n+      }\n+\n+      const listed = tryGitLsFiles(repo, true);\n+      expect(listed).not.toBeNull();\n+\n+      // The escape is real: discovery resolves the link and hands back a path\n+      // outside the repository. Without this the assertions below could pass\n+      // simply because nothing was ever discovered.\n+      expect(dedupeDiscoveredFilePaths(listed!)).toContain(secret);\n+\n+      // The function runIngest actually calls, so removing the confinement\n+      // from it fails here rather than passing a re-implementation.\n+      const discovery = discoverIngestFilePaths(listed!, repo);\n+\n+      expect(discovery.files).not.toContain(secret);\n+      expect(discovery.files).toEqual([join(repo, 'src', 'real.ts')]);\n+      expect(discovery.outsideRoot).toBe(1);\n+    },\n+  );\n+\n+  it.skipIf(process.platform === 'win32')(\n+    'still discovers everything when the root is reached through a symlink',\n+    () => {\n+      // Resolving the file but not the root drops every file and reports the\n+      // repository as empty. No CI runner here has a symlinked root (the matrix\n+      // is ubuntu + windows), so this test is the only thing holding it down.\n+      const real = scratchDir('ix-realroot-');\n+      const parent = scratchDir('ix-linkroot-');\n+      const link = join(parent, 'root');\n+      mkdirSync(join(real, 'src'), { recursive: true });\n+      writeFileSync(join(real, 'src', 'app.ts'), 'export const ok = 1;\\n');\n+      try {\n+        symlinkSync(real, link, 'dir');\n+      } catch {\n+        return; // no permission to symlink — nothing to assert\n+      }\n+\n+      const discovery = discoverIngestFilePaths([join(link, 'src', 'app.ts')], link);\n+\n+      expect(discovery.files).toEqual([join(real, 'src', 'app.ts')]);\n+      expect(discovery.outsideRoot).toBe(0);\n+    },\n+  );\n+\n+  it('leaves an explicitly named single file alone', () => {\n+    // No root: the user named the file, so there is nothing to escape from and\n+    // confinement must not reject it.\n+    const outside = '/elsewhere/app.ts';\n+    const discovery = discoverIngestFilePaths([outside], undefined, (p) => p);\n+\n+    expect(discovery.files).toEqual([outside]);\n+    expect(discovery.outsideRoot).toBe(0);\n+  });\n+\n+  it.skipIf(process.platform === 'win32')(\n+    'keeps a symlink that stays inside the repository',\n+    () => {\n+      // Monorepos link packages around inside the tree. Confinement must not\n+      // turn into \"no symlinks at all\".\n+      const repo = scratchDir('ix-repo-');\n+      mkdirSync(join(repo, 'shared'), { recursive: true });\n+      mkdirSync(join(repo, 'src'), { recursive: true });\n+      writeFileSync(join(repo, 'shared', 'util.ts'), 'export const shared = 1;\\n');\n+      try {\n+        symlinkSync(join(repo, 'shared', 'util.ts'), join(repo, 'src', 'util.ts'));\n+        execFileSync('git', ['init', '-q'], { cwd: repo });\n+        execFileSync('git', ['add', '-A'], { cwd: repo });\n+      } catch {\n+        return; // no git, or no permission to symlink — nothing to assert\n+      }\n+\n+      const canonical = dedupeDiscoveredFilePaths(tryGitLsFiles(repo, true) ?? []);\n+      const kept = canonical.filter((candidate) => isWithinDiscoveryRoot(repo, candidate));\n+\n+      expect(kept).toContain(join(repo, 'shared', 'util.ts'));\n+    },\n+  );\n+});"
       },
       {
@@ -190,10 +190,10 @@
         "additions": 76,
         "deletions": 3,
         "changes": 79,
-        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/6233b498b81c0ad56337085146bb8cb6cdb6dc95/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fingest.ts",
-        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/6233b498b81c0ad56337085146bb8cb6cdb6dc95/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fingest.ts",
-        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fingest.ts?ref=6233b498b81c0ad56337085146bb8cb6cdb6dc95",
-        "patch": "@@ -163,6 +163,28 @@ function canonicalizeDiscoveredFilePath(filePath: string): string {\n   }\n }\n \n+/**\n+ * True when `candidate` lies inside `root`.\n+ *\n+ * Both arguments must ALREADY be canonical (realpath'd). This is pure path\n+ * arithmetic and so cannot see through a symlink itself — resolving first is\n+ * what gives it meaning, and resolving both sides is what keeps it from\n+ * rejecting everything when the root is itself reached through a link (macOS\n+ * `/var` -> `/private/var`, a home on a network mount, a `~/code` symlink).\n+ */\n+export function isWithinDiscoveryRoot(root: string, candidate: string): boolean {\n+  const relative = nodePath.relative(root, candidate);\n+  // Compare path *segments*: a bare `startsWith('..')` also rejects a\n+  // legitimate sibling whose name merely begins with dots, e.g. `..shared/`.\n+  // `isAbsolute` covers Windows, where `relative` across drives is absolute.\n+  return (\n+    relative !== '' &&\n+    relative !== '..' &&\n+    !relative.startsWith(`..${nodePath.sep}`) &&\n+    !nodePath.isAbsolute(relative)\n+  );\n+}\n+\n export function dedupeDiscoveredFilePaths(\n   filePaths: string[],\n   canonicalize: (filePath: string) => string = canonicalizeDiscoveredFilePath,\n@@ -178,7 +200,51 @@ export function dedupeDiscoveredFilePaths(\n   return deduped;\n }\n \n-function tryGitLsFiles(dir: string, recursive: boolean): string[] | null {\n+/**\n+ * Canonicalize, de-duplicate, and confine discovered paths to `root`.\n+ *\n+ * Discovery resolves symlinks, so a repository can name files outside itself:\n+ * `git ls-files` reports a committed symlink as an ordinary entry and the\n+ * `statSync` behind it describes the *target*, so `src/notes.ts` ->\n+ * `~/.ssh/id_rsa` is discovered, read, parsed into the graph and sent to the\n+ * configured endpoint. `ix ingest --github owner/repo` runs this over\n+ * repositories nobody has read, which makes repository contents attacker input.\n+ *\n+ * (`walkFiles` is not the hole — readdir Dirents describe the link itself, so\n+ * `isFile()` is false for a symlink and it is skipped there. Git's list is\n+ * the gap.)\n+ *\n+ * A symlink *within* the tree still resolves and is kept, which is what\n+ * monorepos that link packages around depend on. `root` is `undefined` when a\n+ * single file was named explicitly: that IS the request, and there is nothing\n+ * for it to escape from.\n+ *\n+ * Kept as one function rather than a filter at the call site so the confinement\n+ * cannot be dropped without a test noticing.\n+ */\n+export function discoverIngestFilePaths(\n+  discovered: string[],\n+  root: string | undefined,\n+  canonicalize: (filePath: string) => string = canonicalizeDiscoveredFilePath,\n+): { files: string[]; outsideRoot: number } {\n+  const canonical = dedupeDiscoveredFilePaths(discovered, canonicalize);\n+  if (root === undefined) return { files: canonical, outsideRoot: 0 };\n+  // Canonicalize the root too. Comparing a resolved file against an unresolved\n+  // root drops everything whenever the root is itself reached through a link —\n+  // macOS `/var` -> `/private/var`, a home on a network mount, a `~/code`\n+  // symlink — which would look like \"this repo has no source files\".\n+  const canonicalRoot = canonicalize(root);\n+  const files = canonical.filter((candidate) => isWithinDiscoveryRoot(canonicalRoot, candidate));\n+  return { files, outsideRoot: canonical.length - files.length };\n+}\n+\n+/**\n+ * Exported for the discovery tests: the symlink-containment guarantee is a\n+ * property of git-listing -> canonicalize -> confine *composed*, and each step\n+ * looks fine alone. A test that cannot run the real listing cannot show that a\n+ * committed symlink escapes in the first place.\n+ */\n+export function tryGitLsFiles(dir: string, recursive: boolean): string[] | null {\n   try {\n     const result = spawnSync(\n       'git',\n@@ -971,6 +1037,7 @@ export async function ingestFiles(\n   let commitErrors = 0;\n   let tooLarge = 0;\n   let minifiedLikely = 0;\n+  let outsideRoot = 0;\n   let latestRev = 0;\n   let entitiesParsed = 0;\n   let currentWorkLabel = '';\n@@ -1038,11 +1105,14 @@ export async function ingestFiles(\n       throw new Error(`Path not found: ${resolvedPath}`);\n     }\n     const stat = fs.statSync(resolvedPath);\n-    const filePaths: string[] = dedupeDiscoveredFilePaths(\n+    const discovery = discoverIngestFilePaths(\n       stat.isFile()\n         ? (isSupportedSourceFile(resolvedPath) ? [resolvedPath] : [])\n         : (tryGitLsFiles(resolvedPath, opts.recursive ?? true) ?? Array.from(walkFiles(resolvedPath, opts.recursive ?? true))),\n+      stat.isFile() ? undefined : resolvedPath,\n     );\n+    const filePaths: string[] = discovery.files;\n+    outsideRoot = discovery.outsideRoot;\n \n     filesDiscovered = filePaths.length;\n     const discovered = performance.now();\n@@ -1935,7 +2005,7 @@ export async function ingestFiles(\n       filesSkipped,\n       entitiesParsed,\n       latestRev,\n-      skipReasons: { unchanged: filesSkipped, emptyFile: 0, parseError: parseErrors, tooLarge, minifiedLikely },\n+      skipReasons: { unchanged: filesSkipped, emptyFile: 0, parseError: parseErrors, tooLarge, minifiedLikely, outsideRoot },\n       commitErrors,\n       elapsedSeconds: parseFloat(elapsed),\n       timings: {\n@@ -1959,6 +2029,9 @@ export async function ingestFiles(\n     if (commitErrors > 0) console.log(`  ${chalk.red('commit errors:')}     ${commitErrors}`);\n     if (tooLarge > 0) console.log(`  ${chalk.dim('skipped too large:')} ${tooLarge}`);\n     if (minifiedLikely > 0) console.log(`  ${chalk.dim('skipped minified:')} ${minifiedLikely}`);\n+    // Not dimmed like the others: these were dropped because the repo pointed\n+    // at files outside itself, which is worth a look rather than a shrug.\n+    if (outsideRoot > 0) console.log(`  ${chalk.yellow('skipped outside root:')} ${outsideRoot} ${chalk.dim('(symlinks leaving the tree)')}`);\n     console.log(`  rev:         ${latestRev}`);\n \n     if (patchesApplied === 0 && filesDiscovered === 0) {"
+        "blob_url": "https://github.com/ix-infrastructure/Ix/blob/a37d5b752a55f4c147f3058b299b60343963a077/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fingest.ts",
+        "raw_url": "https://github.com/ix-infrastructure/Ix/raw/a37d5b752a55f4c147f3058b299b60343963a077/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fingest.ts",
+        "contents_url": "https://api.github.com/repos/ix-infrastructure/Ix/contents/ix-cli%2Fsrc%2Fcli%2Fcommands%2Fingest.ts?ref=a37d5b752a55f4c147f3058b299b60343963a077",
+        "patch": "@@ -164,6 +164,28 @@ function canonicalizeDiscoveredFilePath(filePath: string): string {\n   }\n }\n \n+/**\n+ * True when `candidate` lies inside `root`.\n+ *\n+ * Both arguments must ALREADY be canonical (realpath'd). This is pure path\n+ * arithmetic and so cannot see through a symlink itself — resolving first is\n+ * what gives it meaning, and resolving both sides is what keeps it from\n+ * rejecting everything when the root is itself reached through a link (macOS\n+ * `/var` -> `/private/var`, a home on a network mount, a `~/code` symlink).\n+ */\n+export function isWithinDiscoveryRoot(root: string, candidate: string): boolean {\n+  const relative = nodePath.relative(root, candidate);\n+  // Compare path *segments*: a bare `startsWith('..')` also rejects a\n+  // legitimate sibling whose name merely begins with dots, e.g. `..shared/`.\n+  // `isAbsolute` covers Windows, where `relative` across drives is absolute.\n+  return (\n+    relative !== '' &&\n+    relative !== '..' &&\n+    !relative.startsWith(`..${nodePath.sep}`) &&\n+    !nodePath.isAbsolute(relative)\n+  );\n+}\n+\n export function dedupeDiscoveredFilePaths(\n   filePaths: string[],\n   canonicalize: (filePath: string) => string = canonicalizeDiscoveredFilePath,\n@@ -179,7 +201,51 @@ export function dedupeDiscoveredFilePaths(\n   return deduped;\n }\n \n-function tryGitLsFiles(dir: string, recursive: boolean): string[] | null {\n+/**\n+ * Canonicalize, de-duplicate, and confine discovered paths to `root`.\n+ *\n+ * Discovery resolves symlinks, so a repository can name files outside itself:\n+ * `git ls-files` reports a committed symlink as an ordinary entry and the\n+ * `statSync` behind it describes the *target*, so `src/notes.ts` ->\n+ * `~/.ssh/id_rsa` is discovered, read, parsed into the graph and sent to the\n+ * configured endpoint. `ix ingest --github owner/repo` runs this over\n+ * repositories nobody has read, which makes repository contents attacker input.\n+ *\n+ * (`walkFiles` is not the hole — readdir Dirents describe the link itself, so\n+ * `isFile()` is false for a symlink and it is skipped there. Git's list is\n+ * the gap.)\n+ *\n+ * A symlink *within* the tree still resolves and is kept, which is what\n+ * monorepos that link packages around depend on. `root` is `undefined` when a\n+ * single file was named explicitly: that IS the request, and there is nothing\n+ * for it to escape from.\n+ *\n+ * Kept as one function rather than a filter at the call site so the confinement\n+ * cannot be dropped without a test noticing.\n+ */\n+export function discoverIngestFilePaths(\n+  discovered: string[],\n+  root: string | undefined,\n+  canonicalize: (filePath: string) => string = canonicalizeDiscoveredFilePath,\n+): { files: string[]; outsideRoot: number } {\n+  const canonical = dedupeDiscoveredFilePaths(discovered, canonicalize);\n+  if (root === undefined) return { files: canonical, outsideRoot: 0 };\n+  // Canonicalize the root too. Comparing a resolved file against an unresolved\n+  // root drops everything whenever the root is itself reached through a link —\n+  // macOS `/var` -> `/private/var`, a home on a network mount, a `~/code`\n+  // symlink — which would look like \"this repo has no source files\".\n+  const canonicalRoot = canonicalize(root);\n+  const files = canonical.filter((candidate) => isWithinDiscoveryRoot(canonicalRoot, candidate));\n+  return { files, outsideRoot: canonical.length - files.length };\n+}\n+\n+/**\n+ * Exported for the discovery tests: the symlink-containment guarantee is a\n+ * property of git-listing -> canonicalize -> confine *composed*, and each step\n+ * looks fine alone. A test that cannot run the real listing cannot show that a\n+ * committed symlink escapes in the first place.\n+ */\n+export function tryGitLsFiles(dir: string, recursive: boolean): string[] | null {\n   try {\n     const result = spawnSync(\n       'git',\n@@ -972,6 +1038,7 @@ export async function ingestFiles(\n   let commitErrors = 0;\n   let tooLarge = 0;\n   let minifiedLikely = 0;\n+  let outsideRoot = 0;\n   let latestRev = 0;\n   let entitiesParsed = 0;\n   let currentWorkLabel = '';\n@@ -1039,11 +1106,14 @@ export async function ingestFiles(\n       throw new Error(`Path not found: ${resolvedPath}`);\n     }\n     const stat = fs.statSync(resolvedPath);\n-    const filePaths: string[] = dedupeDiscoveredFilePaths(\n+    const discovery = discoverIngestFilePaths(\n       stat.isFile()\n         ? (isSupportedSourceFile(resolvedPath) ? [resolvedPath] : [])\n         : (tryGitLsFiles(resolvedPath, opts.recursive ?? true) ?? Array.from(walkFiles(resolvedPath, opts.recursive ?? true))),\n+      stat.isFile() ? undefined : resolvedPath,\n     );\n+    const filePaths: string[] = discovery.files;\n+    outsideRoot = discovery.outsideRoot;\n     const resolveOpts = {\n       ...crossRepoResolveOpts,\n       resolveModuleSpecifier: createTypeScriptModuleResolver(workspaceRoot, filePaths),\n@@ -1940,7 +2010,7 @@ export async function ingestFiles(\n       filesSkipped,\n       entitiesParsed,\n       latestRev,\n-      skipReasons: { unchanged: filesSkipped, emptyFile: 0, parseError: parseErrors, tooLarge, minifiedLikely },\n+      skipReasons: { unchanged: filesSkipped, emptyFile: 0, parseError: parseErrors, tooLarge, minifiedLikely, outsideRoot },\n       commitErrors,\n       elapsedSeconds: parseFloat(elapsed),\n       timings: {\n@@ -1964,6 +2034,9 @@ export async function ingestFiles(\n     if (commitErrors > 0) console.log(`  ${chalk.red('commit errors:')}     ${commitErrors}`);\n     if (tooLarge > 0) console.log(`  ${chalk.dim('skipped too large:')} ${tooLarge}`);\n     if (minifiedLikely > 0) console.log(`  ${chalk.dim('skipped minified:')} ${minifiedLikely}`);\n+    // Not dimmed like the others: these were dropped because the repo pointed\n+    // at files outside itself, which is worth a look rather than a shrug.\n+    if (outsideRoot > 0) console.log(`  ${chalk.yellow('skipped outside root:')} ${outsideRoot} ${chalk.dim('(symlinks leaving the tree)')}`);\n     console.log(`  rev:         ${latestRev}`);\n \n     if (patchesApplied === 0 && filesDiscovered === 0) {"
       }
     ],
     "commits": [
@@ -223,6 +223,37 @@
         "tree_sha": "7080cd592ebdfb3581a94f16a76185785a8dbe25",
         "authored_at": "2026-08-15T06:00:57Z",
         "committed_at": "2026-08-15T06:00:57Z"
+      },
+      {
+        "sha": "a37d5b752a55f4c147f3058b299b60343963a077",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/a37d5b752a55f4c147f3058b299b60343963a077",
+        "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/a37d5b752a55f4c147f3058b299b60343963a077",
+        "author": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "committer": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "message": "Merge main into fix/discovery-symlink-escape\n\n# Conflicts:\n#\tix-cli/src/cli/commands/ingest.ts",
+        "parents": [
+          {
+            "sha": "6233b498b81c0ad56337085146bb8cb6cdb6dc95",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/6233b498b81c0ad56337085146bb8cb6cdb6dc95"
+          },
+          {
+            "sha": "787f466a7d9862c3e71f326e63d768884896e3ac",
+            "html_url": "https://github.com/ix-infrastructure/Ix/commit/787f466a7d9862c3e71f326e63d768884896e3ac"
+          }
+        ],
+        "tree_sha": "abd12b65f15e5603b089cb631e7c62f2d84743de",
+        "authored_at": "2026-08-16T19:23:53Z",
+        "committed_at": "2026-08-16T19:23:53Z"
       }
     ],
     "comments": [],
@@ -265,6 +296,43 @@
         "commit_id": "64c01d075e5ca0adea4f4a67659bb0774f04c4f1",
         "issue": null,
         "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29494482427"
+      },
+      {
+        "id": null,
+        "event": "committed",
+        "actor": null,
+        "created_at": null,
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/git/commits/a37d5b752a55f4c147f3058b299b60343963a077"
+      },
+      {
+        "id": 29530509698,
+        "event": "merged",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-16T19:28:10Z",
+        "commit_id": "5134d8dee2f4d986c4a0f21573436a13b489f562",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29530509698"
+      },
+      {
+        "id": 29530509713,
+        "event": "closed",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-16T19:28:10Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29530509713"
       }
     ],
     "source": "OFFICIAL_GITHUB_FACT",
@@ -288,10 +356,10 @@
     },
     "freshness": {
       "first_seen": "2026-08-15T06:01:22Z",
-      "last_fetched": "2026-08-16T08:59:39.836Z",
-      "last_verified": "2026-08-16T08:59:39.836Z",
-      "source_updated_at": "2026-08-15T06:01:23Z",
-      "snapshot_version": "2026-08-16T08:59:39.836Z"
+      "last_fetched": "2026-08-17T14:10:08.888Z",
+      "last_verified": "2026-08-17T14:10:08.888Z",
+      "source_updated_at": "2026-08-16T19:28:10Z",
+      "snapshot_version": "2026-08-17T14:10:08.888Z"
     }
   },
   "ix_findings_analysis": {
@@ -316,26 +384,10 @@
     {
       "direction": "out",
       "relationship": "CHANGED_BY",
-      "other": "COMMIT-6233b498b81c0ad56337085146bb8cb6cdb6dc95",
+      "other": "COMMIT-a37d5b752a55f4c147f3058b299b60343963a077",
       "other_type": "commit",
-      "other_title": "6233b498b81c0ad56337085146bb8cb6cdb6dc95",
-      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-6233b498b81c0ad56337085146bb8cb6cdb6dc95"
-    },
-    {
-      "direction": "out",
-      "relationship": "FOUND_IN",
-      "other": "REPO-ix-infrastructure-Ix",
-      "other_type": "repository",
-      "other_title": "ix-infrastructure/Ix",
-      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
-    },
-    {
-      "direction": "in",
-      "relationship": "RELATED_TO_PR",
-      "other": "N-003",
-      "other_type": "finding",
-      "other_title": "#444 MCP output-cap and #447 discovery confinement — audited, no defect",
-      "other_url": "https://alot1z.github.io/Ix-findings/entities/n-003"
+      "other_title": "a37d5b752a55f4c147f3058b299b60343963a077",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-a37d5b752a55f4c147f3058b299b60343963a077"
     }
   ]
 }

@@ -59,8 +59,8 @@
         "parent": null,
         "source": null,
         "created_at": "2026-03-03T04:48:38Z",
-        "updated_at": "2026-08-16T08:00:03Z",
-        "pushed_at": "2026-08-15T06:01:03Z",
+        "updated_at": "2026-08-17T13:44:46Z",
+        "pushed_at": "2026-08-17T13:55:58Z",
         "topics": [
           "ai",
           "ai-memory",
@@ -86,10 +86,10 @@
           "name": "Apache License 2.0",
           "url": "https://api.github.com/licenses/apache-2.0"
         },
-        "watchers_count": 731,
-        "stargazers_count": 731,
-        "forks_count": 61,
-        "open_issues_count": 16
+        "watchers_count": 746,
+        "stargazers_count": 746,
+        "forks_count": 62,
+        "open_issues_count": 5
       }
     },
     "base": {
@@ -115,8 +115,8 @@
         "parent": null,
         "source": null,
         "created_at": "2026-03-03T04:48:38Z",
-        "updated_at": "2026-08-16T08:00:03Z",
-        "pushed_at": "2026-08-15T06:01:03Z",
+        "updated_at": "2026-08-17T13:44:46Z",
+        "pushed_at": "2026-08-17T13:55:58Z",
         "topics": [
           "ai",
           "ai-memory",
@@ -142,10 +142,10 @@
           "name": "Apache License 2.0",
           "url": "https://api.github.com/licenses/apache-2.0"
         },
-        "watchers_count": 731,
-        "stargazers_count": 731,
-        "forks_count": 61,
-        "open_issues_count": 16
+        "watchers_count": 746,
+        "stargazers_count": 746,
+        "forks_count": 62,
+        "open_issues_count": 5
       }
     },
     "merge_commit_sha": "af23b558efea953869d03ea655cbb0b3c82123b2",
@@ -325,65 +325,7 @@
       }
     ],
     "comments": [],
-    "reviews": [
-      {
-        "id": 4902665897,
-        "node_id": "PRR_kwDORdC75M8AAAABJDi-qQ",
-        "repository": "ix-infrastructure/Ix",
-        "pr_number": 391,
-        "author": {
-          "login": "josephismikhail",
-          "id": 56614593,
-          "type": "User",
-          "html_url": "https://github.com/josephismikhail"
-        },
-        "state": "APPROVED",
-        "body": "The diagnosis is right and the live reproduction settles it — `.version` really was denominated in the wrong series, and `source=` is the correct shape for the answer. Checked the parts that could bite:\n\n- `build` does declare `needs: compass`, so `needs.compass.outputs.sha` resolves; on a PR dry-run compass is skipped and the `${COMPASS_SHA:-unknown}` fallback covers it.\n- No leftover callers of `resolve_compass_version` / `Get-CompassLatestVersion` — both survive only as comments.\n- `$Version` is assigned at `install.ps1:207`, well above the stamp block at :532.\n- The `0.0.0` repair check correctly sits *ahead* of the source check, so a gutted release bundle is still repaired rather than pinned forever.\n\n**One gap, fixed in c415461.** `shouldOfferCompassUpgrade` read the stamp itself, so the only thing the new test file could reach was `parseCompassStamp` — a pure function that was never the bug. I deleted the `readCompassStamp().source === \"release\"` line, which is the entire behavioural change here, and all 728 tests passed. The case named `pins the inversion the marker exists to prevent` survives it too: `expect(parseCompassStamp(...).source).toBe(\"release\")` restates the parser rather than the decision.\n\nMade the decision take the stamp as an argument (`shouldOfferCompassUpgradeFor`) and exported it. `installedCompass()` now returns the whole stamp rather than the version alone, which also drops a second read of `compass/.version` per call.\n\nFive cases now cover it: the inversion, the dist-series comparison that must still happen, the repair path for a gutted bundle, the offline case, and a legacy bare stamp. Two mutations verified failing — deleting the source check, and swapping it ahead of the `0.0.0` check (that one is #365/#366 again: `ix view` never repairs).\n\n733 green.",
-        "html_url": "https://github.com/ix-infrastructure/Ix/pull/391#pullrequestreview-4902665897",
-        "submitted_at": "2026-08-11T03:14:26Z",
-        "commit_id": "c4154613a2fdd434c5271f2babc10bcd88ab46b1",
-        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
-        "source": "OFFICIAL_GITHUB_FACT"
-      },
-      {
-        "id": 4902847986,
-        "node_id": "PRR_kwDORdC75M8AAAABJDuF8g",
-        "repository": "ix-infrastructure/Ix",
-        "pr_number": 391,
-        "author": {
-          "login": "josephismikhail",
-          "id": 56614593,
-          "type": "User",
-          "html_url": "https://github.com/josephismikhail"
-        },
-        "state": "CHANGES_REQUESTED",
-        "body": "Retracting my earlier approval. A deeper review turned up a blocking backward-compatibility break that I verified empirically, so this should not merge in its current form.\n\n## Blocking: the new stamp format is unreadable by every already-shipped CLI\n\nThe shipped reader is `getTrackedVersion` (`upgrade.ts:199-206`) — `readFileSync(...).trim()`, i.e. **the whole file**. The upgrade sequence matters here: `ix upgrade` swaps in the new tree (including the new-format `compass/.version`), and then the *still-running old process* continues into its own compass block and reads that file with the old parser.\n\nI ran the new format through `origin/main`'s own `isNewer`:\n\n```\ndist 0.3.0 vs release-stamp 0.9.4 -> isNewer=false\ndist 0.3.0 vs release-stamp 1.0.0 -> isNewer=TRUE\ndist 0.3.0 vs release-stamp 1.1.0 -> isNewer=TRUE\ndist 0.3.0 vs legacy bare  0.9.4 -> isNewer=false\n```\n\n`splitVersion` yields `Number(\"source=release\\nix=1\") = NaN -> 0` for the major, so a 1.x release parses as `[0,0,0]`. Today (0.9.x) the damage is a garbled three-line version string in `[ok] Compass already on the latest version (...)`. **At the first 1.0.0 release, every CLI older than this one downloads ix-compass-dist over the newer bundled compass** — the exact #376 downgrade this PR exists to prevent, caused by the format change itself.\n\nSuggested fix that keeps the whole design: make the stamp a **single-line semver with build metadata**, `0.9.4+release.7f98724`. `splitVersion` already does `v.split(\"+\")[0]` with the comment \"Build metadata (`+sha`) never participates in precedence\" — so old CLIs read `0.9.4` and behave exactly as they do today, while `parseCompassStamp` reads the `+release.<sha>` suffix for provenance. Dist stays a bare number, which is already the legacy-compatible form.\n\n## Also blocking\n\n**`0.0.0` is overloaded** (`upgrade.ts:298`). The doc comment says only a missing `index.html` produces it, but `parseCompassStamp` also returns `{source:\"release\", version:\"0.0.0\"}` for a release stamp missing its `ix=` key — a `.version` truncated by a full disk or a kill during the non-atomic write. With the bundle perfectly serviceable, the repair branch fires ahead of the source check and downgrades it. Worth distinguishing \"absent\" from \"malformed\" explicitly rather than through the version number.\n\n**`install.sh:1094` stamps `source=release` on a compass it did not install.** The stamp block runs even when the CLI install was skipped (`check_installed_version` == `$VERSION`, or `SKIP_CLI_INSTALL=1`). If `compass/` holds an unstamped *dist* bundle — reachable via `ix upgrade`'s own `stage=\"stamp\"` failure, or Ctrl-C between extract and stamp — it is now permanently labelled `release`, and `shouldOfferCompassUpgradeFor` refuses every future compass update while printing \"Compass is the build bundled with Ix <v>\", which is false. The deleted code re-stamped with the dist number and stayed self-correcting.\n\n**`install.sh:1093`'s `[ ! -s .version ]` never repairs a mislabelled stamp** — so the fix does not reach the installs the PR body calls the majority in the wild. Re-running the installer on an already-current version skips the extract, so no tarball stamp is laid down, and the bare `0.3.0` survives.\n\n**`IX_VERSION=0.9.0` pins** stamp `source=release ix=0.9.0` onto a months-old bundle and exempt it from dist upgrades forever. `resolve_version` also falls back to `0.1.0` when the API is unreachable.\n\n## Non-blocking\n\nGating the compass block behind `shouldOfferCompassUpgrade` also gates the orphan sweep inside it. `main` has exactly two sweep sites — one behind \"CLI needs updating\", one behind \"compass needs updating\" — and the second exists as the fallback for the first, per its own comment. After this change a user on the latest CLI with a release compass sweeps nothing. I traced it and the severe cases self-heal (a gutted compass reports 0.0.0 and repairs; an interrupted CLI upgrade leaves the CLI stale), so this is stranded orphan directories rather than breakage — but it undercuts #392's reason for sweeping downloads at all.\n\nThe diagnosis and the live reproduction in the PR body are right, and the provenance idea is the correct answer. It is the encoding that needs to change.",
-        "html_url": "https://github.com/ix-infrastructure/Ix/pull/391#pullrequestreview-4902847986",
-        "submitted_at": "2026-08-11T04:05:26Z",
-        "commit_id": "c4154613a2fdd434c5271f2babc10bcd88ab46b1",
-        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
-        "source": "OFFICIAL_GITHUB_FACT"
-      },
-      {
-        "id": 4902957479,
-        "node_id": "PRR_kwDORdC75M8AAAABJD0xpw",
-        "repository": "ix-infrastructure/Ix",
-        "pr_number": 391,
-        "author": {
-          "login": "josephismikhail",
-          "id": 56614593,
-          "type": "User",
-          "html_url": "https://github.com/josephismikhail"
-        },
-        "state": "APPROVED",
-        "body": "Addressed in 3f70e75. Re-verified end to end.\n\n**Stamp format.** Provenance now rides in semver build metadata on one line — `0.9.3+release.7f98724` for a release bundle, a bare number for dist. `splitVersion` already drops everything after `+`, so every already-shipped CLI reads `0.9.3` and behaves exactly as it does today. The design intent is unchanged; only the encoding moved.\n\n**`present` replaces the `0.0.0` sentinel.** `installedCompass()` carries whether `index.html` is on disk, so a stamp truncated mid-write no longer masquerades as a missing bundle and triggers a downgrade of an intact one. The present-check still sits ahead of the source-check, so a gutted release bundle is repaired.\n\n**install.sh only stamps what it installed.** Gated on a new `CLI_EXTRACTED` flag. The block runs even when the install was skipped, and in that case the compass on disk can be an unstamped dist bundle — labelling that `+release` froze it against every future update. When we did extract, the tarball's own stamp has already landed, which is also what repairs a mislabelled install. `install.ps1` needs no such gate: it has no already-current skip path.\n\n**New producer drift test.** `upgrade-compass-stamp-producers.test.ts` reads `release.yml`, `install.sh` and `install.ps1`, renders the literal each one writes, and pushes it through the real `parseCompassStamp`. Three producers in three languages with no compile-time link to the reader is how this class of bug keeps recurring. Verified non-vacuous — restoring the multi-line form fails both properties it asserts.\n\nMutations re-run against the reworked code: deleting the release guard fails two cases, and reverting the stamp producer fails two more.\n\n744 green. `bash -n` and `sh -n` clean on install.sh, release.yml parses, install.ps1 parses clean.\n\nLeft as-is deliberately: an `IX_VERSION` pin stamps `+release` on that release's bundle and exempts it from dist upgrades. That reads correct to me — the user pinned a release, and the repair path still fires if the bundle is gutted — but flagging it since the review raised it.",
-        "html_url": "https://github.com/ix-infrastructure/Ix/pull/391#pullrequestreview-4902957479",
-        "submitted_at": "2026-08-11T04:36:37Z",
-        "commit_id": "3f70e75a7e5cc21cd50eaa01908948e7036aa9f6",
-        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
-        "source": "OFFICIAL_GITHUB_FACT"
-      }
-    ],
+    "reviews": [],
     "review_comments": [],
     "timeline": [
       {
@@ -588,10 +530,10 @@
     },
     "freshness": {
       "first_seen": "2026-08-11T00:07:35Z",
-      "last_fetched": "2026-08-16T08:59:39.836Z",
-      "last_verified": "2026-08-16T08:59:39.836Z",
+      "last_fetched": "2026-08-17T14:10:08.888Z",
+      "last_verified": "2026-08-17T14:10:08.888Z",
       "source_updated_at": "2026-08-11T04:37:01Z",
-      "snapshot_version": "2026-08-16T08:59:39.836Z"
+      "snapshot_version": "2026-08-17T14:10:08.888Z"
     }
   },
   "ix_findings_analysis": {

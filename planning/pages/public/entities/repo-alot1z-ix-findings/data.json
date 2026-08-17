@@ -38,8 +38,8 @@
     "parent": null,
     "source": null,
     "created_at": "2026-08-10T15:04:54Z",
-    "updated_at": "2026-08-16T08:48:01Z",
-    "pushed_at": "2026-08-16T08:47:38Z",
+    "updated_at": "2026-08-16T09:19:24Z",
+    "pushed_at": "2026-08-16T09:19:19Z",
     "topics": [],
     "language": "HTML",
     "license": null,
@@ -48,9 +48,9 @@
     "forks_count": 0,
     "open_issues_count": 0,
     "head": {
-      "sha": "2e0bb243e188a3b3d0ac5faebe2963e98df403fd",
-      "html_url": "https://github.com/Alot1z/Ix-findings/commit/2e0bb243e188a3b3d0ac5faebe2963e98df403fd",
-      "api_url": "https://api.github.com/repos/Alot1z/Ix-findings/commits/2e0bb243e188a3b3d0ac5faebe2963e98df403fd",
+      "sha": "7d5978edc0c84684b57a4dec2eb794b52ef12644",
+      "html_url": "https://github.com/Alot1z/Ix-findings/commit/7d5978edc0c84684b57a4dec2eb794b52ef12644",
+      "api_url": "https://api.github.com/repos/Alot1z/Ix-findings/commits/7d5978edc0c84684b57a4dec2eb794b52ef12644",
       "author": {
         "login": "Alot1z",
         "id": 16801672,
@@ -63,22 +63,22 @@
         "type": "User",
         "html_url": "https://github.com/Alot1z"
       },
-      "message": "docs: document knowledge-graph maintenance and the fork agent system\n\nAdd sections to knowledge.md: knowledge-graph regeneration/validation\nworkflow (tracked vs derived, freshness gate, live-state capture, the\nuncommitted regeneration awaiting review), and the fork .agents/ inventory\nwith the new contribution-lifecycle skill. Update the recovery map with the\n2026-08-16 planning/ restore on fork main.",
+      "message": "docs: add self-upgrade, standing-authorization, tool-discovery, and provenance governance\n\nExtend AGENTS.md: explicit workflow state machine with terminal states,\ntool-discovery taxonomy (NOT DISCOVERED / UNAVAILABLE / AVAILABLE / BROKEN /\nNOT APPLICABLE), evidence provenance contract (SOURCE · TOOL · DATE · REPO ·\nSHA · RESULT · CONFIDENCE), standing execution authorization with the\npermission-asking failure-mode decision tree, and self-upgrade governance\n(OBSERVE→DOCUMENT; no governance rewrites from mere preference). Extend\nknowledge.md: governance hierarchy, knowledge-freshness taxonomy, and the\nfork agent-system registry pointer.",
       "parents": [
         {
-          "sha": "7a50531c81b8e746ea8df737164fb470cb1c5802",
-          "html_url": "https://github.com/Alot1z/Ix-findings/commit/7a50531c81b8e746ea8df737164fb470cb1c5802"
+          "sha": "910a276569d235e6bb0488f21ae95ef3f0fa20dd",
+          "html_url": "https://github.com/Alot1z/Ix-findings/commit/910a276569d235e6bb0488f21ae95ef3f0fa20dd"
         }
       ],
-      "tree_sha": "5d0354ebeff676f44146d94dab85e40c10d3b684",
-      "authored_at": "2026-08-16T08:47:38Z",
-      "committed_at": "2026-08-16T08:47:38Z"
+      "tree_sha": "b096e3382b9a44e802a312a9a8d4a273dded957e",
+      "authored_at": "2026-08-16T09:19:17Z",
+      "committed_at": "2026-08-16T09:19:17Z"
     },
     "branches": [
       {
         "name": "master",
         "protected": false,
-        "sha": "2e0bb243e188a3b3d0ac5faebe2963e98df403fd",
+        "sha": "7d5978edc0c84684b57a4dec2eb794b52ef12644",
         "url": null
       }
     ],
@@ -98,11 +98,11 @@
       "url_precision": "OBJECT"
     },
     "freshness": {
-      "first_seen": "2026-08-16T08:59:39.836Z",
-      "last_fetched": "2026-08-16T08:59:39.836Z",
-      "last_verified": "2026-08-16T08:59:39.836Z",
-      "source_updated_at": "2026-08-16T08:48:01Z",
-      "snapshot_version": "2026-08-16T08:59:39.836Z"
+      "first_seen": "2026-08-17T14:10:08.888Z",
+      "last_fetched": "2026-08-17T14:10:08.888Z",
+      "last_verified": "2026-08-17T14:10:08.888Z",
+      "source_updated_at": "2026-08-16T09:19:24Z",
+      "snapshot_version": "2026-08-17T14:10:08.888Z"
     }
   },
   "ix_findings_analysis": {

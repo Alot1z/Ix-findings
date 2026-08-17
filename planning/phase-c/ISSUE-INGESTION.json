@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-16T08:59:39.836Z",
+  "generated_at": "2026-08-17T14:10:08.888Z",
   "source": "GitHub REST API, read-only, authenticated account metadata only",
   "repositories": [
     "ix-infrastructure/Ix",
@@ -592,32 +592,6 @@
     },
     {
       "repository": "ix-infrastructure/Ix",
-      "number": 441,
-      "node_id": "I_kwDORdC75M8AAAABMxUqHA",
-      "title": "[bug] PHP imports can resolve to classes from the wrong namespace",
-      "body": "## Description\n\nPHP imports are flattened to their final class name during graph resolution. If a repository contains another class with the same short name in a different namespace, Ix can create high-confidence `IMPORTS`, `REFERENCES`, and `CALLS` relationships to the wrong class.\n\n## Steps to reproduce\n\n1. Add `/repo/App/User.php` with `namespace App; class User`.\n2. In another file, write `use Vendor\\\\Package\\\\User;` and use `User` as a parameter, constructor, and member-call receiver.\n3. Do not add a `Vendor\\\\Package\\\\User` provider.\n4. Ingest the files and inspect the resolved relationships.\n\n## Expected behavior\n\nNo relationship targets `App\\\\User`. When `Vendor\\\\Package\\\\User` exists, imports and uses resolve to that exact class, including PHP's case-insensitive class naming.\n\n## Actual behavior\n\nIx resolves the explicit import and its uses to `App\\\\User` with confidence `0.9` because the short class name is unique.\n\n## CLI output\n\nThe graph contains four incorrect relationships to `/repo/App/User.php`: one `IMPORTS`, one `REFERENCES`, and two `CALLS` relationships.\n\n## Environment\n\n- OS: macOS 26.6.1\n- Node: v26.7.0\n- Ix version: main at `fef671c`\n",
-      "state": "open",
-      "state_reason": null,
-      "author": {
-        "login": "Hiro-Chiba",
-        "id": 203865699,
-        "type": "User",
-        "html_url": "https://github.com/Hiro-Chiba"
-      },
-      "html_url": "https://github.com/ix-infrastructure/Ix/issues/441",
-      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/441",
-      "labels": [],
-      "milestone": null,
-      "created_at": "2026-08-14T13:19:36Z",
-      "updated_at": "2026-08-14T13:19:36Z",
-      "closed_at": null,
-      "comments_count": 0,
-      "locked": false,
-      "comments": [],
-      "source": "OFFICIAL_GITHUB_FACT"
-    },
-    {
-      "repository": "ix-infrastructure/Ix",
       "number": 439,
       "node_id": "I_kwDORdC75M8AAAABMxUVxQ",
       "title": "[bug] tsconfig paths and baseUrl are ignored during edge resolution",
@@ -636,32 +610,6 @@
       "milestone": null,
       "created_at": "2026-08-14T13:19:01Z",
       "updated_at": "2026-08-14T13:19:01Z",
-      "closed_at": null,
-      "comments_count": 0,
-      "locked": false,
-      "comments": [],
-      "source": "OFFICIAL_GITHUB_FACT"
-    },
-    {
-      "repository": "ix-infrastructure/Ix",
-      "number": 435,
-      "node_id": "I_kwDORdC75M8AAAABMxThIQ",
-      "title": "[bug] thrown command errors bypass the MCP output cap",
-      "body": "## Description\n\nThe in-process MCP output limit applies to captured console and stream output, but a thrown command error is appended after that limit is enforced. A large `Error.message` can therefore bypass `maxOutputBytes` and be returned in full through MCP.\n\n## Steps to reproduce\n\n1. Configure the in-process runner with `maxOutputBytes` set to 128.\n2. Run an action that throws `new Error(\"E\".repeat(4096))`.\n3. Inspect the runner result or the corresponding MCP error response.\n\n## Expected behavior\n\nThe returned error text is bounded by the configured output limit and includes the normal truncation marker.\n\n## Actual behavior\n\nThe result contains the full 4096-byte error message without a truncation marker.\n\n## CLI output\n\nThe runner returns `ok: false`, but `stderr` still contains all 4096 bytes. The MCP response forwards the same oversized error text.\n\n## Environment\n\n- OS: macOS 26.6.1\n- Node: v26.7.0\n- Ix version: main at `fef671c`\n",
-      "state": "open",
-      "state_reason": null,
-      "author": {
-        "login": "Hiro-Chiba",
-        "id": 203865699,
-        "type": "User",
-        "html_url": "https://github.com/Hiro-Chiba"
-      },
-      "html_url": "https://github.com/ix-infrastructure/Ix/issues/435",
-      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/435",
-      "labels": [],
-      "milestone": null,
-      "created_at": "2026-08-14T13:17:33Z",
-      "updated_at": "2026-08-14T13:17:33Z",
       "closed_at": null,
       "comments_count": 0,
       "locked": false,
@@ -747,6 +695,6 @@
       "source": "OFFICIAL_GITHUB_FACT"
     }
   ],
-  "issue_count": 15,
+  "issue_count": 13,
   "comments_count": 12
 }

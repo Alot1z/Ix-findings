@@ -59,8 +59,8 @@
         "parent": null,
         "source": null,
         "created_at": "2026-08-10T00:14:10Z",
-        "updated_at": "2026-08-16T08:48:07Z",
-        "pushed_at": "2026-08-16T08:47:16Z",
+        "updated_at": "2026-08-16T09:18:57Z",
+        "pushed_at": "2026-08-16T09:18:22Z",
         "topics": [],
         "language": "TypeScript",
         "license": {
@@ -97,8 +97,8 @@
         "parent": null,
         "source": null,
         "created_at": "2026-03-03T04:48:38Z",
-        "updated_at": "2026-08-16T08:00:03Z",
-        "pushed_at": "2026-08-15T06:01:03Z",
+        "updated_at": "2026-08-17T13:44:46Z",
+        "pushed_at": "2026-08-17T13:55:58Z",
         "topics": [
           "ai",
           "ai-memory",
@@ -124,10 +124,10 @@
           "name": "Apache License 2.0",
           "url": "https://api.github.com/licenses/apache-2.0"
         },
-        "watchers_count": 731,
-        "stargazers_count": 731,
-        "forks_count": 61,
-        "open_issues_count": 16
+        "watchers_count": 746,
+        "stargazers_count": 746,
+        "forks_count": 62,
+        "open_issues_count": 5
       }
     },
     "merge_commit_sha": "2157158446a74d3d2303f818dc4f3f4e3758432c",
@@ -394,46 +394,7 @@
         "source": "OFFICIAL_GITHUB_FACT"
       }
     ],
-    "reviews": [
-      {
-        "id": 4893362491,
-        "node_id": "PRR_kwDORdC75M8AAAABI6rJOw",
-        "repository": "ix-infrastructure/Ix",
-        "pr_number": 368,
-        "author": {
-          "login": "KageBinary",
-          "id": 107007243,
-          "type": "User",
-          "html_url": "https://github.com/KageBinary"
-        },
-        "state": "CHANGES_REQUESTED",
-        "body": "Thanks for this — and welcome. This is a lot of careful work, and unusually, everything you claimed in the PR description checks out when I ran it myself rather than just reading it. That is rarer than it should be, so I want to be specific about what I verified before getting to the changes I'm asking for.\n\n## What I verified as working\n\n- Your stated checks all pass: `node --check fit-view.js`, `bash -n` on all three shell scripts, and the OpenAPI spec parses cleanly (39 paths, 13 schemas). Every path's base segment exists in the backend's Scala routes, so the API reference is grounded, not invented.\n- `apply.sh` is genuinely idempotent. I ran it three times against a fixture; the third pass printed \"already patched\" for all three steps and the `<script>` tag count in `index.html` stayed at 1.\n- It works against the **real shipped Compass**. I copied `~/.ix/cli/compass` (v0.2.0) to a scratch dir and ran the patch: the minified marker `` {keys:[`0`],label:`Reset zoom & center`} `` really is present in `KeyboardHelp-CLjfSVTU.js`, the F entry inserted correctly, and `node --check` confirms the patched chunk still parses. Same for the injected `view.js`.\n- `registerPatchesCommand is defined but never registered` — **correct**, and a real find. `patches.ts:6` exports it and nothing imports it, so `ix patches` is an unknown command today. That deserves its own issue; I'll open one.\n\nSo the mechanism works. My concerns are about layer and packaging, not craft.\n\n## Blocking\n\n**1. It patches the same two inline styles React owns.** `SystemMapCanvas.tsx:858-871` in the Compass source renders:\n\n```jsx\n<div style={{ transform: `translate(${snappedPan.x}px, ${snappedPan.y}px)`, transformOrigin: \"0 0\" }}>\n  <div className=\"relative ix-crisp-canvas\" style={{ zoom: snappedZoom, ... }}>\n```\n\n`fit-view.js` writes `wrap.style.transform` and `canvas.style.zoom` from outside React — the exact two properties driven by `snappedPan` / `snappedZoom` state. Every subsequent render restores React's values. The 60 ms \"verify the target stuck and re-apply\" timer is a band-aid on that race rather than a fix. Related: the background grid at `:855` uses `backgroundPosition: snappedPan`, which the patch doesn't update, so after pressing F the grid stays put while the nodes move.\n\nWorth checking too whether the auto-frame is still needed: Compass #57 (`fix/bounded-layout-and-viewport-refit`, merged and bundled in v0.9.1) fixed the empty-first-paint case directly — the comment at `SystemMapCanvas.tsx:450` describes the same symptom you're solving.\n\n**2. Two of three patch steps silently no-op on stock Linux.** This box has `python3` and no `python` (standard on Debian/Ubuntu/Fedora). Running `apply.sh`:\n\n```\nindex.html: added fit-view.js script tag\napply.sh: line 40: python: command not found\nkeyboard help: skipped (python unavailable)\napply.sh: line 68: python: command not found\nview.js server: skipped (python unavailable)\nCompass fit-view patch applied. Restart the visualizer ... picks up the real /__ix/remap endpoint\n--- exit code: 0 ---\n```\n\nIt exits 0 and tells you to restart for an endpoint it never installed. `bootstrap.sh:137` compounds it by redirecting to `/dev/null` and reporting success. Swapping in a `python` → `python3` shim made all three steps apply perfectly, so this is purely the interpreter name plus the `|| { echo \"skipped\"; }` swallowing a real failure.\n\n**3. `sed -i` with no suffix is GNU-only** (`apply.sh:33`) and fails on macOS, which the README section and `SKILL.md` both claim to support. The repo already has both portable forms: `scripts/disconnect.sh` uses `sed -i.bak`, `scripts/release.sh` uses `sed -i ''`.\n\n**4. The `/__ix/remap` endpoint should be source, not a patched artifact.** This repo owns `ix-cli/src/cli/commands/view.ts`; step 4 string-injects the handler into the *compiled* `~/.ix/cli/cli/dist/cli/commands/view.js`, which every `ix upgrade` overwrites. In `serverScript()` it would be typechecked, tested, and permanent. Two things to fix on the way in: `serverScript` ends in `server.listen(PORT)` with no host, so it binds `0.0.0.0` — the handler would be reachable from the whole LAN, and from any web page in the user's browser, since a simple-content-type POST isn't preflighted. It should bind `127.0.0.1` and check `Sec-Fetch-Site` / `Origin` before spawning a 30-minute `ix map`.\n\n**5. `CLAUDE.md` ships an absolute path from your machine:** `python \"[redacted]/jacob/.agents/skills/skill-creator/scripts/package_skill.py\"`. This is the file every agent working in the repo loads. The README's copy of the same command already uses `$HOME`, so the two disagree.\n\n**6. `CLAUDE.md` documents two paths that can't exist** — `dist/ix.zip` and `.freebuff/run.md` are both gitignored by this same PR, but the layout table presents them as repo contents.\n\n## Smaller\n\n- `.gitignore`: `dist/` is unanchored so it matches at any depth, and `core-ingestion/dist/` + `ix-cli/dist/` were already covered. `/dist/` is what you want. (Nothing tracked is affected today — I checked.)\n- `upstream/compass-fit-view/` is 723 lines of React that nothing here builds, typechecks, or tests. It belongs in the Compass repo as a PR.\n- `install-skill.sh` `rm -rf`s `~/.claude/skills/ix` and `~/.agents/skills/ix` with no prompt, which silently destroys local edits to a same-named skill.\n\n## Suggested split\n\nThis is five unrelated changes in one commit, and they're ready at very different times:\n\n1. **`docs/api/`** — closest to mergeable as-is. I'd take this on its own today.\n2. **`skills/ix/` + `install-skill.sh` + README** — mergeable once (2), (3) and (5) are fixed.\n3. **`/__ix/remap`** — a small PR against `view.ts` with the bind + origin fix.\n4. **fit-view** — to the Compass repo, after checking what #57 already covers.\n5. The `registerPatchesCommand` and global-`ix reset` findings — issues, and thank you for both.\n\nHappy to review each of those as they come. If you'd like to start with just #1, I think that lands quickly.\n",
-        "html_url": "https://github.com/ix-infrastructure/Ix/pull/368#pullrequestreview-4893362491",
-        "submitted_at": "2026-08-10T02:45:30Z",
-        "commit_id": "b038c46117c26e17ff7f3dc8edd4c4f5083f79f6",
-        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
-        "source": "OFFICIAL_GITHUB_FACT"
-      },
-      {
-        "id": 4893476799,
-        "node_id": "PRR_kwDORdC75M8AAAABI6yHvw",
-        "repository": "ix-infrastructure/Ix",
-        "pr_number": 368,
-        "author": {
-          "login": "KageBinary",
-          "id": 107007243,
-          "type": "User",
-          "html_url": "https://github.com/KageBinary"
-        },
-        "state": "APPROVED",
-        "body": "Re-reviewed after `0c9087c`. Every blocking item is resolved — the two that were architectural by removal, the rest by fix — and the full matrix is green now that the held workflow runs are approved (`CI Passed`, E2E, Linux/macOS/Windows on Node 22 and 24).\n\nWhat lands: the skill, the API reference, and two real findings about this codebase. That is a good first contribution.\n\n@Alot1z — the fit-view work is not rejected, just addressed to the wrong repo. If you open it against `system-compass` I will review it there. Your `upstream/compass-fit-view/` port is most of the way; drop the auto-frame (Compass #57 covers it) and keep the F key, which nothing binds today.\n\nApproving. Merging per the queue.",
-        "html_url": "https://github.com/ix-infrastructure/Ix/pull/368#pullrequestreview-4893476799",
-        "submitted_at": "2026-08-10T03:19:34Z",
-        "commit_id": "0c9087c4292254472174b02475d094359c88c055",
-        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
-        "source": "OFFICIAL_GITHUB_FACT"
-      }
-    ],
+    "reviews": [],
     "review_comments": [],
     "timeline": [
       {
@@ -662,10 +623,10 @@
     },
     "freshness": {
       "first_seen": "2026-08-10T00:15:22Z",
-      "last_fetched": "2026-08-16T08:59:39.836Z",
-      "last_verified": "2026-08-16T08:59:39.836Z",
+      "last_fetched": "2026-08-17T14:10:08.888Z",
+      "last_verified": "2026-08-17T14:10:08.888Z",
       "source_updated_at": "2026-08-10T03:58:43Z",
-      "snapshot_version": "2026-08-16T08:59:39.836Z"
+      "snapshot_version": "2026-08-17T14:10:08.888Z"
     }
   },
   "ix_findings_analysis": {

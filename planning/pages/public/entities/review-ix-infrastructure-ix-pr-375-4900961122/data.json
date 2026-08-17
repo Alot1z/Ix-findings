@@ -10,68 +10,11 @@
     "title": "Review 4900961122 on PR #375",
     "status": "HISTORICAL",
     "repository": "ix-infrastructure/Ix",
-    "url": "https://github.com/ix-infrastructure/Ix/pull/375#pullrequestreview-4900961122",
-    "source_mirror_id": "github:review:ix-infrastructure/Ix#pr-375-4900961122",
-    "source_type": "github_review",
-    "source_repository": "ix-infrastructure/Ix",
-    "source_url": "https://github.com/ix-infrastructure/Ix/pull/375#pullrequestreview-4900961122",
-    "source_api_url": null,
-    "source_is_authoritative": true,
-    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+    "url": "https://github.com/ix-infrastructure/Ix/pull/375#pullrequestreview-4900961122"
   },
-  "source_snapshot": {
-    "id": 4900961122,
-    "node_id": "PRR_kwDORdC75M8AAAABJB67Yg",
-    "repository": "ix-infrastructure/Ix",
-    "pr_number": 375,
-    "author": {
-      "login": "KageBinary",
-      "id": 107007243,
-      "type": "User",
-      "html_url": "https://github.com/KageBinary"
-    },
-    "state": "APPROVED",
-    "body": "Blocking items resolved — see the comment above for what I pushed and why. Approving.\n\nVerified after the changes: full `ix-cli` suite green, typecheck clean, lint 0 errors, and `core-ingestion` still at exactly the six pre-existing failures you documented on `origin/main`.",
-    "html_url": "https://github.com/ix-infrastructure/Ix/pull/375#pullrequestreview-4900961122",
-    "submitted_at": "2026-08-10T21:06:25Z",
-    "commit_id": "304e7e490d5537e7f86f71c297e04656360f1bf1",
-    "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
-    "source": "OFFICIAL_GITHUB_FACT",
-    "parent_pr": 375
-  },
-  "source_context": {
-    "id": "github:review:ix-infrastructure/Ix#pr-375-4900961122",
-    "source": {
-      "type": "github_review",
-      "authority": "GITHUB",
-      "repository": "ix-infrastructure/Ix",
-      "owner": "ix-infrastructure",
-      "url": "https://github.com/ix-infrastructure/Ix/pull/375#pullrequestreview-4900961122",
-      "api_url": null,
-      "canonical": true,
-      "url_precision": "OBJECT"
-    },
-    "freshness": {
-      "first_seen": "2026-08-10T21:06:25Z",
-      "last_fetched": "2026-08-16T08:59:39.836Z",
-      "last_verified": "2026-08-16T08:59:39.836Z",
-      "source_updated_at": "2026-08-10T21:06:25Z",
-      "snapshot_version": "2026-08-16T08:59:39.836Z"
-    }
-  },
-  "ix_findings_analysis": {
-    "layer": "IX-FINDINGS_ANALYSIS",
-    "canonical_entity_id": "REVIEW-ix-infrastructure-Ix-pr-375-4900961122",
-    "entity_type": "REVIEW",
-    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
-    "status": "HISTORICAL",
-    "provenance_class": "OFFICIAL_GITHUB_FACT",
-    "source_authority": "GITHUB",
-    "source_is_authoritative": true,
-    "ix_findings_is_authoritative_for_source": false,
-    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#375",
-    "review_thread_state": "VERIFIED_GRAPHQL_NO_ASSOCIATED_THREAD_DATA"
-  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
   "relationships": [
     {
       "direction": "in",

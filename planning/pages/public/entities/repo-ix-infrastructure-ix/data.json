@@ -38,8 +38,8 @@
     "parent": null,
     "source": null,
     "created_at": "2026-03-03T04:48:38Z",
-    "updated_at": "2026-08-16T08:00:03Z",
-    "pushed_at": "2026-08-15T06:01:03Z",
+    "updated_at": "2026-08-17T13:44:46Z",
+    "pushed_at": "2026-08-17T13:55:58Z",
     "topics": [
       "ai",
       "ai-memory",
@@ -65,19 +65,19 @@
       "name": "Apache License 2.0",
       "url": "https://api.github.com/licenses/apache-2.0"
     },
-    "watchers_count": 731,
-    "stargazers_count": 731,
-    "forks_count": 61,
-    "open_issues_count": 16,
+    "watchers_count": 746,
+    "stargazers_count": 746,
+    "forks_count": 62,
+    "open_issues_count": 5,
     "head": {
-      "sha": "043bc68f0fb7ddba736ee1490614cb3c68f8f819",
-      "html_url": "https://github.com/ix-infrastructure/Ix/commit/043bc68f0fb7ddba736ee1490614cb3c68f8f819",
-      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/043bc68f0fb7ddba736ee1490614cb3c68f8f819",
+      "sha": "8be5f110a5a072767e04dc108e79c539d1bab0f9",
+      "html_url": "https://github.com/ix-infrastructure/Ix/commit/8be5f110a5a072767e04dc108e79c539d1bab0f9",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/8be5f110a5a072767e04dc108e79c539d1bab0f9",
       "author": {
-        "login": "Hiro-Chiba",
-        "id": 203865699,
-        "type": "User",
-        "html_url": "https://github.com/Hiro-Chiba"
+        "login": "dependabot[bot]",
+        "id": 49699333,
+        "type": "Bot",
+        "html_url": "https://github.com/apps/dependabot"
       },
       "committer": {
         "login": "web-flow",
@@ -85,16 +85,16 @@
         "type": "User",
         "html_url": "https://github.com/web-flow"
       },
-      "message": "fix(cli): validate pick options consistently (#438)\n\n* fix(context): validate pick option\n\n* fix(cli): validate pick options consistently",
+      "message": "chore(deps): bump zod (#452)\n\nBumps the production-dependencies group with 1 update in the /ix-cli directory: [zod](https://github.com/colinhacks/zod).\n\n\nUpdates `zod` from 3.25.76 to 4.4.3\n- [Commits](https://github.com/colinhacks/zod/compare/v3.25.76...v4.4.3)\n\n---\nupdated-dependencies:\n- dependency-name: zod\n  dependency-version: 4.4.3\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n  dependency-group: production-dependencies\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
       "parents": [
         {
-          "sha": "d8dfb82f413998138ce17bb0ad26f18073f5e029",
-          "html_url": "https://github.com/ix-infrastructure/Ix/commit/d8dfb82f413998138ce17bb0ad26f18073f5e029"
+          "sha": "a4b33b532390fc538e51fb4e29cc2fcdde30da04",
+          "html_url": "https://github.com/ix-infrastructure/Ix/commit/a4b33b532390fc538e51fb4e29cc2fcdde30da04"
         }
       ],
-      "tree_sha": "84d5dae63e71f5f65c6a8bce5ca61d57b6c64e07",
-      "authored_at": "2026-08-14T20:33:35Z",
-      "committed_at": "2026-08-14T20:33:35Z"
+      "tree_sha": "7daddfca3d6413651ab25af86d32d00558be2846",
+      "authored_at": "2026-08-17T13:44:42Z",
+      "committed_at": "2026-08-17T13:44:42Z"
     },
     "branches": [
       {
@@ -160,7 +160,7 @@
       {
         "name": "fix/discovery-symlink-escape",
         "protected": false,
-        "sha": "6233b498b81c0ad56337085146bb8cb6cdb6dc95",
+        "sha": "a37d5b752a55f4c147f3058b299b60343963a077",
         "url": null
       },
       {
@@ -212,6 +212,18 @@
         "url": null
       },
       {
+        "name": "fix/validate-saved-investigation",
+        "protected": false,
+        "sha": "084faae83245774db3fdaebfc7361c50281a55e7",
+        "url": null
+      },
+      {
+        "name": "fix/view-proxy-timeout",
+        "protected": false,
+        "sha": "23ac48298a411c5762fdc467f26de278f7fb4d89",
+        "url": null
+      },
+      {
         "name": "fix/view-reports-running-port",
         "protected": false,
         "sha": "c5357aa6965aa0a88706c49005a4d70b58aec41a",
@@ -221,6 +233,12 @@
         "name": "fix/view-runtime-config-security",
         "protected": false,
         "sha": "55f4816b019c655609115807eaae459c7cea945f",
+        "url": null
+      },
+      {
+        "name": "fix/view-server-cjs",
+        "protected": false,
+        "sha": "f9c4605c8f43e98469c823da6147cf39784bad9f",
         "url": null
       },
       {
@@ -256,13 +274,13 @@
       {
         "name": "fix/442-php-use-clause-scope",
         "protected": false,
-        "sha": "83b9be4207fb6ecd47a7c694684e6abfe8e18835",
+        "sha": "2e8d17135de05701cd32383dd2bc1b8c18f5bb91",
         "url": null
       },
       {
         "name": "main",
         "protected": true,
-        "sha": "043bc68f0fb7ddba736ee1490614cb3c68f8f819",
+        "sha": "8be5f110a5a072767e04dc108e79c539d1bab0f9",
         "url": null
       },
       {
@@ -285,6 +303,41 @@
       }
     ],
     "tags": [
+      {
+        "name": "v0.10.0-rc.7",
+        "sha": "4a88a654de10efdd88335f7966b5553a41cd7ded",
+        "url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/4a88a654de10efdd88335f7966b5553a41cd7ded"
+      },
+      {
+        "name": "v0.10.0-rc.6",
+        "sha": "eeb0620f8dad207b472563012eb255d6fded0eb7",
+        "url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/eeb0620f8dad207b472563012eb255d6fded0eb7"
+      },
+      {
+        "name": "v0.10.0-rc.5",
+        "sha": "eeb0620f8dad207b472563012eb255d6fded0eb7",
+        "url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/eeb0620f8dad207b472563012eb255d6fded0eb7"
+      },
+      {
+        "name": "v0.10.0-rc.4",
+        "sha": "510a7c9974b37c960e5cd7207f94041a18355735",
+        "url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/510a7c9974b37c960e5cd7207f94041a18355735"
+      },
+      {
+        "name": "v0.10.0-rc.3",
+        "sha": "510a7c9974b37c960e5cd7207f94041a18355735",
+        "url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/510a7c9974b37c960e5cd7207f94041a18355735"
+      },
+      {
+        "name": "v0.10.0-rc.2",
+        "sha": "510a7c9974b37c960e5cd7207f94041a18355735",
+        "url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/510a7c9974b37c960e5cd7207f94041a18355735"
+      },
+      {
+        "name": "v0.10.0-rc.1",
+        "sha": "510a7c9974b37c960e5cd7207f94041a18355735",
+        "url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/510a7c9974b37c960e5cd7207f94041a18355735"
+      },
       {
         "name": "v0.9.3",
         "sha": "1a6a9b3656d62413a33b62088993549606779e81",
@@ -426,456 +479,7 @@
         "url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/c12bb6ee2d384d5abe884a57e388679eea06bdf6"
       }
     ],
-    "releases": [
-      {
-        "id": 369387050,
-        "tag_name": "v0.9.3",
-        "name": "v0.9.3",
-        "draft": false,
-        "prerelease": false,
-        "created_at": "2026-08-12T16:35:35Z",
-        "published_at": "2026-08-12T16:39:51Z",
-        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.9.3",
-        "author": {
-          "login": "github-actions[bot]",
-          "id": 41898282,
-          "type": "Bot",
-          "html_url": "https://github.com/apps/github-actions"
-        }
-      },
-      {
-        "id": 368189646,
-        "tag_name": "v0.9.2",
-        "name": "v0.9.2",
-        "draft": false,
-        "prerelease": false,
-        "created_at": "2026-08-10T20:46:39Z",
-        "published_at": "2026-08-10T20:50:27Z",
-        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.9.2",
-        "author": {
-          "login": "github-actions[bot]",
-          "id": 41898282,
-          "type": "Bot",
-          "html_url": "https://github.com/apps/github-actions"
-        }
-      },
-      {
-        "id": 367609790,
-        "tag_name": "v0.9.1",
-        "name": "v0.9.1",
-        "draft": false,
-        "prerelease": false,
-        "created_at": "2026-08-09T23:12:11Z",
-        "published_at": "2026-08-09T23:16:00Z",
-        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.9.1",
-        "author": {
-          "login": "github-actions[bot]",
-          "id": 41898282,
-          "type": "Bot",
-          "html_url": "https://github.com/apps/github-actions"
-        }
-      },
-      {
-        "id": 367591619,
-        "tag_name": "v0.9.0",
-        "name": "v0.9.0",
-        "draft": false,
-        "prerelease": false,
-        "created_at": "2026-08-09T21:32:13Z",
-        "published_at": "2026-08-09T21:37:38Z",
-        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.9.0",
-        "author": {
-          "login": "github-actions[bot]",
-          "id": 41898282,
-          "type": "Bot",
-          "html_url": "https://github.com/apps/github-actions"
-        }
-      },
-      {
-        "id": 367379687,
-        "tag_name": "v0.9.0-rc.2",
-        "name": "v0.9.0-rc.2",
-        "draft": false,
-        "prerelease": true,
-        "created_at": "2026-08-09T04:39:34Z",
-        "published_at": "2026-08-09T04:43:06Z",
-        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.9.0-rc.2",
-        "author": {
-          "login": "github-actions[bot]",
-          "id": 41898282,
-          "type": "Bot",
-          "html_url": "https://github.com/apps/github-actions"
-        }
-      },
-      {
-        "id": 367352693,
-        "tag_name": "v0.9.0-rc.1",
-        "name": "v0.9.0-rc.1",
-        "draft": false,
-        "prerelease": true,
-        "created_at": "2026-08-09T01:47:57Z",
-        "published_at": "2026-08-09T01:52:00Z",
-        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.9.0-rc.1",
-        "author": {
-          "login": "github-actions[bot]",
-          "id": 41898282,
-          "type": "Bot",
-          "html_url": "https://github.com/apps/github-actions"
-        }
-      },
-      {
-        "id": 335029998,
-        "tag_name": "v0.8.1",
-        "name": "v0.8.1",
-        "draft": false,
-        "prerelease": false,
-        "created_at": "2026-06-05T15:55:13Z",
-        "published_at": "2026-06-05T16:14:36Z",
-        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.8.1",
-        "author": {
-          "login": "github-actions[bot]",
-          "id": 41898282,
-          "type": "Bot",
-          "html_url": "https://github.com/apps/github-actions"
-        }
-      },
-      {
-        "id": 334794576,
-        "tag_name": "v0.8.0",
-        "name": "v0.8.0",
-        "draft": false,
-        "prerelease": false,
-        "created_at": "2026-06-05T07:34:19Z",
-        "published_at": "2026-06-05T07:41:35Z",
-        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.8.0",
-        "author": {
-          "login": "github-actions[bot]",
-          "id": 41898282,
-          "type": "Bot",
-          "html_url": "https://github.com/apps/github-actions"
-        }
-      },
-      {
-        "id": 333515575,
-        "tag_name": "v0.7.0",
-        "name": "v0.7.0",
-        "draft": false,
-        "prerelease": false,
-        "created_at": "2026-06-03T05:54:03Z",
-        "published_at": "2026-06-03T06:09:21Z",
-        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.7.0",
-        "author": {
-          "login": "github-actions[bot]",
-          "id": 41898282,
-          "type": "Bot",
-          "html_url": "https://github.com/apps/github-actions"
-        }
-      },
-      {
-        "id": 308069925,
-        "tag_name": "v0.6.0",
-        "name": "v0.6.0",
-        "draft": false,
-        "prerelease": false,
-        "created_at": "2026-04-12T19:11:24Z",
-        "published_at": "2026-04-12T19:17:18Z",
-        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.6.0",
-        "author": {
-          "login": "github-actions[bot]",
-          "id": 41898282,
-          "type": "Bot",
-          "html_url": "https://github.com/apps/github-actions"
-        }
-      },
-      {
-        "id": 304915487,
-        "tag_name": "v0.5.1",
-        "name": "v0.5.1",
-        "draft": false,
-        "prerelease": false,
-        "created_at": "2026-04-03T01:20:17Z",
-        "published_at": "2026-04-03T01:24:13Z",
-        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.5.1",
-        "author": {
-          "login": "github-actions[bot]",
-          "id": 41898282,
-          "type": "Bot",
-          "html_url": "https://github.com/apps/github-actions"
-        }
-      },
-      {
-        "id": 304439842,
-        "tag_name": "v0.5.0",
-        "name": "v0.5.0",
-        "draft": false,
-        "prerelease": false,
-        "created_at": "2026-04-01T21:16:18Z",
-        "published_at": "2026-04-01T22:33:18Z",
-        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.5.0",
-        "author": {
-          "login": "TannerTorrey3",
-          "id": 70401747,
-          "type": "User",
-          "html_url": "https://github.com/TannerTorrey3"
-        }
-      },
-      {
-        "id": 302782392,
-        "tag_name": "v0.4.9",
-        "name": "v0.4.9",
-        "draft": false,
-        "prerelease": false,
-        "created_at": "2026-03-29T02:33:56Z",
-        "published_at": "2026-03-29T02:40:22Z",
-        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.4.9",
-        "author": {
-          "login": "github-actions[bot]",
-          "id": 41898282,
-          "type": "Bot",
-          "html_url": "https://github.com/apps/github-actions"
-        }
-      },
-      {
-        "id": 301446911,
-        "tag_name": "v0.4.7",
-        "name": "v0.4.7",
-        "draft": false,
-        "prerelease": false,
-        "created_at": "2026-03-25T21:06:07Z",
-        "published_at": "2026-03-25T21:12:52Z",
-        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.4.7",
-        "author": {
-          "login": "github-actions[bot]",
-          "id": 41898282,
-          "type": "Bot",
-          "html_url": "https://github.com/apps/github-actions"
-        }
-      },
-      {
-        "id": 301440099,
-        "tag_name": "v0.4.6",
-        "name": "v0.4.6",
-        "draft": false,
-        "prerelease": false,
-        "created_at": "2026-03-25T20:50:04Z",
-        "published_at": "2026-03-25T20:54:55Z",
-        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.4.6",
-        "author": {
-          "login": "github-actions[bot]",
-          "id": 41898282,
-          "type": "Bot",
-          "html_url": "https://github.com/apps/github-actions"
-        }
-      },
-      {
-        "id": 301411730,
-        "tag_name": "v0.4.5",
-        "name": "v0.4.5",
-        "draft": false,
-        "prerelease": false,
-        "created_at": "2026-03-25T19:49:55Z",
-        "published_at": "2026-03-25T19:53:26Z",
-        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.4.5",
-        "author": {
-          "login": "github-actions[bot]",
-          "id": 41898282,
-          "type": "Bot",
-          "html_url": "https://github.com/apps/github-actions"
-        }
-      },
-      {
-        "id": 300856000,
-        "tag_name": "v0.4.4",
-        "name": "v0.4.4",
-        "draft": false,
-        "prerelease": false,
-        "created_at": "2026-03-24T19:27:24Z",
-        "published_at": "2026-03-24T19:32:16Z",
-        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.4.4",
-        "author": {
-          "login": "github-actions[bot]",
-          "id": 41898282,
-          "type": "Bot",
-          "html_url": "https://github.com/apps/github-actions"
-        }
-      },
-      {
-        "id": 300831646,
-        "tag_name": "v0.4.3",
-        "name": "v0.4.3",
-        "draft": false,
-        "prerelease": false,
-        "created_at": "2026-03-24T18:26:51Z",
-        "published_at": "2026-03-24T18:29:34Z",
-        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.4.3",
-        "author": {
-          "login": "github-actions[bot]",
-          "id": 41898282,
-          "type": "Bot",
-          "html_url": "https://github.com/apps/github-actions"
-        }
-      },
-      {
-        "id": 300821935,
-        "tag_name": "v0.4.2",
-        "name": "v0.4.2",
-        "draft": false,
-        "prerelease": false,
-        "created_at": "2026-03-24T17:55:25Z",
-        "published_at": "2026-03-24T18:05:21Z",
-        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.4.2",
-        "author": {
-          "login": "github-actions[bot]",
-          "id": 41898282,
-          "type": "Bot",
-          "html_url": "https://github.com/apps/github-actions"
-        }
-      },
-      {
-        "id": 300805091,
-        "tag_name": "v0.4.1",
-        "name": "v0.4.1",
-        "draft": false,
-        "prerelease": false,
-        "created_at": "2026-03-24T17:18:24Z",
-        "published_at": "2026-03-24T17:25:43Z",
-        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.4.1",
-        "author": {
-          "login": "github-actions[bot]",
-          "id": 41898282,
-          "type": "Bot",
-          "html_url": "https://github.com/apps/github-actions"
-        }
-      },
-      {
-        "id": 299958155,
-        "tag_name": "v0.4.0",
-        "name": "v0.4.0",
-        "draft": false,
-        "prerelease": false,
-        "created_at": "2026-03-22T20:15:06Z",
-        "published_at": "2026-03-22T20:15:14Z",
-        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.4.0",
-        "author": {
-          "login": "github-actions[bot]",
-          "id": 41898282,
-          "type": "Bot",
-          "html_url": "https://github.com/apps/github-actions"
-        }
-      },
-      {
-        "id": 299950043,
-        "tag_name": "v0.3.4",
-        "name": "v0.3.4",
-        "draft": false,
-        "prerelease": false,
-        "created_at": "2026-03-22T19:20:51Z",
-        "published_at": "2026-03-22T19:21:00Z",
-        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.3.4",
-        "author": {
-          "login": "github-actions[bot]",
-          "id": 41898282,
-          "type": "Bot",
-          "html_url": "https://github.com/apps/github-actions"
-        }
-      },
-      {
-        "id": 299947206,
-        "tag_name": "v0.3.3",
-        "name": "v0.3.3",
-        "draft": false,
-        "prerelease": false,
-        "created_at": "2026-03-22T18:59:40Z",
-        "published_at": "2026-03-22T18:59:48Z",
-        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.3.3",
-        "author": {
-          "login": "github-actions[bot]",
-          "id": 41898282,
-          "type": "Bot",
-          "html_url": "https://github.com/apps/github-actions"
-        }
-      },
-      {
-        "id": 299942846,
-        "tag_name": "v0.3.2",
-        "name": "v0.3.2",
-        "draft": false,
-        "prerelease": false,
-        "created_at": "2026-03-22T18:32:53Z",
-        "published_at": "2026-03-22T18:33:04Z",
-        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.3.2",
-        "author": {
-          "login": "github-actions[bot]",
-          "id": 41898282,
-          "type": "Bot",
-          "html_url": "https://github.com/apps/github-actions"
-        }
-      },
-      {
-        "id": 299935987,
-        "tag_name": "v0.3.1",
-        "name": "v0.3.1",
-        "draft": false,
-        "prerelease": false,
-        "created_at": "2026-03-22T17:50:43Z",
-        "published_at": "2026-03-22T17:50:52Z",
-        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.3.1",
-        "author": {
-          "login": "github-actions[bot]",
-          "id": 41898282,
-          "type": "Bot",
-          "html_url": "https://github.com/apps/github-actions"
-        }
-      },
-      {
-        "id": 299685606,
-        "tag_name": "v0.3.0",
-        "name": "v0.3.0",
-        "draft": false,
-        "prerelease": false,
-        "created_at": "2026-03-21T05:21:08Z",
-        "published_at": "2026-03-21T05:21:18Z",
-        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.3.0",
-        "author": {
-          "login": "github-actions[bot]",
-          "id": 41898282,
-          "type": "Bot",
-          "html_url": "https://github.com/apps/github-actions"
-        }
-      },
-      {
-        "id": 297331597,
-        "tag_name": "v0.2.0",
-        "name": "v0.2.0",
-        "draft": false,
-        "prerelease": false,
-        "created_at": "2026-03-16T06:57:01Z",
-        "published_at": "2026-03-16T07:00:21Z",
-        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/v0.2.0",
-        "author": {
-          "login": "github-actions[bot]",
-          "id": 41898282,
-          "type": "Bot",
-          "html_url": "https://github.com/apps/github-actions"
-        }
-      },
-      {
-        "id": 297329397,
-        "tag_name": "ix-v0.2.0",
-        "name": "ix: v0.2.0",
-        "draft": false,
-        "prerelease": false,
-        "created_at": "2026-03-16T06:57:01Z",
-        "published_at": "2026-03-16T06:57:10Z",
-        "html_url": "https://github.com/ix-infrastructure/Ix/releases/tag/ix-v0.2.0",
-        "author": {
-          "login": "github-actions[bot]",
-          "id": 41898282,
-          "type": "Bot",
-          "html_url": "https://github.com/apps/github-actions"
-        }
-      }
-    ]
+    "releases": []
   },
   "source_context": {
     "id": "github:repository:ix-infrastructure/Ix",
@@ -890,11 +494,11 @@
       "url_precision": "OBJECT"
     },
     "freshness": {
-      "first_seen": "2026-08-16T08:59:39.836Z",
-      "last_fetched": "2026-08-16T08:59:39.836Z",
-      "last_verified": "2026-08-16T08:59:39.836Z",
-      "source_updated_at": "2026-08-16T08:00:03Z",
-      "snapshot_version": "2026-08-16T08:59:39.836Z"
+      "first_seen": "2026-08-17T14:10:08.888Z",
+      "last_fetched": "2026-08-17T14:10:08.888Z",
+      "last_verified": "2026-08-17T14:10:08.888Z",
+      "source_updated_at": "2026-08-17T13:44:46Z",
+      "snapshot_version": "2026-08-17T14:10:08.888Z"
     }
   },
   "ix_findings_analysis": {
@@ -914,26 +518,10 @@
     {
       "direction": "in",
       "relationship": "FOUND_IN",
-      "other": "ISSUE-441",
-      "other_type": "issue",
-      "other_title": "Ix issue #441",
-      "other_url": "https://alot1z.github.io/Ix-findings/issues/441"
-    },
-    {
-      "direction": "in",
-      "relationship": "FOUND_IN",
       "other": "ISSUE-439",
       "other_type": "issue",
       "other_title": "Ix issue #439",
       "other_url": "https://alot1z.github.io/Ix-findings/issues/439"
-    },
-    {
-      "direction": "in",
-      "relationship": "FOUND_IN",
-      "other": "ISSUE-435",
-      "other_type": "issue",
-      "other_title": "Ix issue #435",
-      "other_url": "https://alot1z.github.io/Ix-findings/issues/435"
     },
     {
       "direction": "in",
@@ -962,82 +550,10 @@
     {
       "direction": "in",
       "relationship": "FOUND_IN",
-      "other": "PR-448",
+      "other": "PR-455",
       "other_type": "pr",
-      "other_title": "Ix PR #448",
-      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-448"
-    },
-    {
-      "direction": "in",
-      "relationship": "FOUND_IN",
-      "other": "PR-445",
-      "other_type": "pr",
-      "other_title": "Ix PR #445",
-      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-445"
-    },
-    {
-      "direction": "in",
-      "relationship": "FOUND_IN",
-      "other": "PR-443",
-      "other_type": "pr",
-      "other_title": "Ix PR #443",
-      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-443"
-    },
-    {
-      "direction": "in",
-      "relationship": "FOUND_IN",
-      "other": "PR-446",
-      "other_type": "pr",
-      "other_title": "Ix PR #446",
-      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-446"
-    },
-    {
-      "direction": "in",
-      "relationship": "FOUND_IN",
-      "other": "PR-447",
-      "other_type": "pr",
-      "other_title": "Ix PR #447",
-      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-447"
-    },
-    {
-      "direction": "in",
-      "relationship": "FOUND_IN",
-      "other": "PR-440",
-      "other_type": "pr",
-      "other_title": "Ix PR #440",
-      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-440"
-    },
-    {
-      "direction": "in",
-      "relationship": "FOUND_IN",
-      "other": "PR-434",
-      "other_type": "pr",
-      "other_title": "Ix PR #434",
-      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-434"
-    },
-    {
-      "direction": "in",
-      "relationship": "FOUND_IN",
-      "other": "PR-436",
-      "other_type": "pr",
-      "other_title": "Ix PR #436",
-      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-436"
-    },
-    {
-      "direction": "in",
-      "relationship": "FOUND_IN",
-      "other": "PR-442",
-      "other_type": "pr",
-      "other_title": "Ix PR #442",
-      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-442"
-    },
-    {
-      "direction": "in",
-      "relationship": "FOUND_IN",
-      "other": "PR-444",
-      "other_type": "pr",
-      "other_title": "Ix PR #444",
-      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-444"
+      "other_title": "Ix PR #455",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-455"
     },
     {
       "direction": "in",

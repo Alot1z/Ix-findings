@@ -10,68 +10,11 @@
     "title": "Review 4893476799 on PR #368",
     "status": "HISTORICAL",
     "repository": "ix-infrastructure/Ix",
-    "url": "https://github.com/ix-infrastructure/Ix/pull/368#pullrequestreview-4893476799",
-    "source_mirror_id": "github:review:ix-infrastructure/Ix#pr-368-4893476799",
-    "source_type": "github_review",
-    "source_repository": "ix-infrastructure/Ix",
-    "source_url": "https://github.com/ix-infrastructure/Ix/pull/368#pullrequestreview-4893476799",
-    "source_api_url": null,
-    "source_is_authoritative": true,
-    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+    "url": "https://github.com/ix-infrastructure/Ix/pull/368#pullrequestreview-4893476799"
   },
-  "source_snapshot": {
-    "id": 4893476799,
-    "node_id": "PRR_kwDORdC75M8AAAABI6yHvw",
-    "repository": "ix-infrastructure/Ix",
-    "pr_number": 368,
-    "author": {
-      "login": "KageBinary",
-      "id": 107007243,
-      "type": "User",
-      "html_url": "https://github.com/KageBinary"
-    },
-    "state": "APPROVED",
-    "body": "Re-reviewed after `0c9087c`. Every blocking item is resolved — the two that were architectural by removal, the rest by fix — and the full matrix is green now that the held workflow runs are approved (`CI Passed`, E2E, Linux/macOS/Windows on Node 22 and 24).\n\nWhat lands: the skill, the API reference, and two real findings about this codebase. That is a good first contribution.\n\n@Alot1z — the fit-view work is not rejected, just addressed to the wrong repo. If you open it against `system-compass` I will review it there. Your `upstream/compass-fit-view/` port is most of the way; drop the auto-frame (Compass #57 covers it) and keep the F key, which nothing binds today.\n\nApproving. Merging per the queue.",
-    "html_url": "https://github.com/ix-infrastructure/Ix/pull/368#pullrequestreview-4893476799",
-    "submitted_at": "2026-08-10T03:19:34Z",
-    "commit_id": "0c9087c4292254472174b02475d094359c88c055",
-    "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
-    "source": "OFFICIAL_GITHUB_FACT",
-    "parent_pr": 368
-  },
-  "source_context": {
-    "id": "github:review:ix-infrastructure/Ix#pr-368-4893476799",
-    "source": {
-      "type": "github_review",
-      "authority": "GITHUB",
-      "repository": "ix-infrastructure/Ix",
-      "owner": "ix-infrastructure",
-      "url": "https://github.com/ix-infrastructure/Ix/pull/368#pullrequestreview-4893476799",
-      "api_url": null,
-      "canonical": true,
-      "url_precision": "OBJECT"
-    },
-    "freshness": {
-      "first_seen": "2026-08-10T03:19:34Z",
-      "last_fetched": "2026-08-16T08:59:39.836Z",
-      "last_verified": "2026-08-16T08:59:39.836Z",
-      "source_updated_at": "2026-08-10T03:19:34Z",
-      "snapshot_version": "2026-08-16T08:59:39.836Z"
-    }
-  },
-  "ix_findings_analysis": {
-    "layer": "IX-FINDINGS_ANALYSIS",
-    "canonical_entity_id": "REVIEW-ix-infrastructure-Ix-pr-368-4893476799",
-    "entity_type": "REVIEW",
-    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
-    "status": "HISTORICAL",
-    "provenance_class": "OFFICIAL_GITHUB_FACT",
-    "source_authority": "GITHUB",
-    "source_is_authoritative": true,
-    "ix_findings_is_authoritative_for_source": false,
-    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#368",
-    "review_thread_state": "VERIFIED_GRAPHQL_NO_ASSOCIATED_THREAD_DATA"
-  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
   "relationships": [
     {
       "direction": "in",

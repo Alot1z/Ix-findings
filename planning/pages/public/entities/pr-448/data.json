@@ -2,22 +2,22 @@
   "id": "PR-448",
   "type": "pr",
   "title": "Ix PR #448",
-  "status": "OPEN",
+  "status": "RESOLVED",
   "url": "https://alot1z.github.io/Ix-findings/entities/pr-448",
   "summary": {
     "id": "PR-448",
     "type": "pr",
     "title": "Ix PR #448",
-    "status": "OPEN",
+    "status": "RESOLVED",
+    "repository": "ix-infrastructure/Ix",
     "number": 448,
-    "url": "https://github.com/ix-infrastructure/Ix/pull/448",
-    "source_mirror_id": "github:pull_request:ix-infrastructure/Ix#448",
-    "source_type": "github_pull_request",
-    "source_repository": "ix-infrastructure/Ix",
-    "source_url": "https://github.com/ix-infrastructure/Ix/pull/448",
-    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/448",
-    "source_is_authoritative": true,
-    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+    "author": {
+      "login": "Alot1z",
+      "id": 16801672,
+      "type": "User",
+      "html_url": "https://github.com/Alot1z"
+    },
+    "merged_at": "2026-08-16T19:26:29Z"
   },
   "source_snapshot": {
     "repository": "ix-infrastructure/Ix",
@@ -25,9 +25,9 @@
     "node_id": "PR_kwDORdC75M7_m2ft",
     "title": "fix(php): capture grouped use imports",
     "body": "## Summary\n\nPHP grouped `use` statements — `use Vendor\\Package\\{A, B};`, plus the `use function` / `use const` variants — never produced `IMPORTS` relationships, so calls like `new A()` through a grouped import went unresolved.\n\n## Bug\n\nThe PHP query only matched `(namespace_use_clause (qualified_name) @import.source)`. A grouped `use` has a different tree-sitter shape: the shared prefix is a separate `namespace_name` and each member is a bare `(namespace_use_clause (name))` under a `namespace_use_group`. Because neither matched, every member import was silently dropped:\n\n```php\nuse Vendor\\Contracts\\{DomainService, Repo};\n$svc = new DomainService(); // resolves to nothing\n```\n\nwhile the comma-separated equivalent `use Vendor\\Contracts\\DomainService, Vendor\\Contracts\\Repo;` resolves correctly — a real gap, not a theoretical one.\n\n## Fix\n\n- **`core-ingestion/src/queries.ts`** — add a grouped-use pattern capturing the shared prefix as `@import.prefix` and each member clause as `@import.clause`.\n- **`core-ingestion/src/index.ts`** — rebuild each member's FQCN from prefix + the clause's **first** `name` child. A second `name` child is an `as` alias (`{DomainService as DS, ...}`) and must never become an import. The emitted `modName`/`importRaw` match the single-clause form, so grouped imports resolve exactly like their comma-separated equivalents.\n\n## Regression tests\n\n- per-member capture for `{DomainService, Repo}`\n- alias exclusion for `{DomainService as DS, Repo}`\n- end-to-end resolution of a grouped import through `resolveEdges`\n\nAll three fail on `main` and pass after the fix.\n\n## Verification\n\n- New tests: fail-before on `main` (3 failures), pass-after\n- `queries.php` + `resolveEdges` + `patchBuilder.resolution`: 86/86 pass\n- `tsc --noEmit` clean, `git diff --check` clean\n- Full suite: only pre-existing SAS/environmental failures, identical on pristine `main`\n- No duplicate PR, issue, or upstream commit found for grouped PHP use handling\n\n## Relationship to existing PRs\n\nIndependent of #446 (PHP namespace resolution) — that PR does not touch the use-import query. This fix is based on current `main` (`043bc68`).\n",
-    "state": "open",
+    "state": "closed",
     "draft": false,
-    "merged": false,
+    "merged": true,
     "author": {
       "login": "Alot1z",
       "id": 16801672,
@@ -59,8 +59,8 @@
         "parent": null,
         "source": null,
         "created_at": "2026-08-10T00:14:10Z",
-        "updated_at": "2026-08-16T08:48:07Z",
-        "pushed_at": "2026-08-16T08:47:16Z",
+        "updated_at": "2026-08-16T09:18:57Z",
+        "pushed_at": "2026-08-16T09:18:22Z",
         "topics": [],
         "language": "TypeScript",
         "license": {
@@ -97,8 +97,8 @@
         "parent": null,
         "source": null,
         "created_at": "2026-03-03T04:48:38Z",
-        "updated_at": "2026-08-16T08:00:03Z",
-        "pushed_at": "2026-08-15T06:01:03Z",
+        "updated_at": "2026-08-17T13:44:46Z",
+        "pushed_at": "2026-08-17T13:55:58Z",
         "topics": [
           "ai",
           "ai-memory",
@@ -124,17 +124,17 @@
           "name": "Apache License 2.0",
           "url": "https://api.github.com/licenses/apache-2.0"
         },
-        "watchers_count": 731,
-        "stargazers_count": 731,
-        "forks_count": 61,
-        "open_issues_count": 16
+        "watchers_count": 746,
+        "stargazers_count": 746,
+        "forks_count": 62,
+        "open_issues_count": 5
       }
     },
-    "merge_commit_sha": "71b4a3e18331ec770c3a943726898e5b9b76bf9d",
-    "merged_at": null,
-    "closed_at": null,
+    "merge_commit_sha": "cf39184cb8c6d5c3ac1b5436150dd64a92d4b6f9",
+    "merged_at": "2026-08-16T19:26:29Z",
+    "closed_at": "2026-08-16T19:26:29Z",
     "created_at": "2026-08-16T01:20:35Z",
-    "updated_at": "2026-08-16T01:20:37Z",
+    "updated_at": "2026-08-16T19:26:29Z",
     "labels": [],
     "milestone": null,
     "requested_reviewers": [
@@ -273,6 +273,34 @@
         "commit_id": "03c601e18138f865c3b0351bcd158986b96714f0",
         "issue": null,
         "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29518399695"
+      },
+      {
+        "id": 29530479313,
+        "event": "merged",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-16T19:26:29Z",
+        "commit_id": "cf39184cb8c6d5c3ac1b5436150dd64a92d4b6f9",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29530479313"
+      },
+      {
+        "id": 29530479353,
+        "event": "closed",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-16T19:26:29Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29530479353"
       }
     ],
     "source": "OFFICIAL_GITHUB_FACT",
@@ -296,10 +324,10 @@
     },
     "freshness": {
       "first_seen": "2026-08-16T01:20:35Z",
-      "last_fetched": "2026-08-16T08:59:39.836Z",
-      "last_verified": "2026-08-16T08:59:39.836Z",
-      "source_updated_at": "2026-08-16T01:20:37Z",
-      "snapshot_version": "2026-08-16T08:59:39.836Z"
+      "last_fetched": "2026-08-17T14:10:08.888Z",
+      "last_verified": "2026-08-17T14:10:08.888Z",
+      "source_updated_at": "2026-08-16T19:26:29Z",
+      "snapshot_version": "2026-08-17T14:10:08.888Z"
     }
   },
   "ix_findings_analysis": {
@@ -328,22 +356,6 @@
       "other_type": "commit",
       "other_title": "5efd8f185e2f284551000486433d4233b2fe704a",
       "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-5efd8f185e2f284551000486433d4233b2fe704a"
-    },
-    {
-      "direction": "out",
-      "relationship": "FOUND_IN",
-      "other": "REPO-ix-infrastructure-Ix",
-      "other_type": "repository",
-      "other_title": "ix-infrastructure/Ix",
-      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
-    },
-    {
-      "direction": "in",
-      "relationship": "RELATED_TO_PR",
-      "other": "F-021",
-      "other_type": "finding",
-      "other_title": "PHP grouped `use Vendor\\{A, B};` captures zero IMPORTS",
-      "other_url": "https://alot1z.github.io/Ix-findings/entities/f-021"
     }
   ]
 }

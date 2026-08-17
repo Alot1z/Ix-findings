@@ -1,0 +1,92 @@
+{
+  "id": "COMMIT-2e8d17135de05701cd32383dd2bc1b8c18f5bb91",
+  "type": "commit",
+  "title": "2e8d17135de05701cd32383dd2bc1b8c18f5bb91",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-2e8d17135de05701cd32383dd2bc1b8c18f5bb91",
+  "summary": {
+    "id": "COMMIT-2e8d17135de05701cd32383dd2bc1b8c18f5bb91",
+    "type": "commit",
+    "title": "2e8d17135de05701cd32383dd2bc1b8c18f5bb91",
+    "status": "CURRENT",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    }
+  },
+  "source_snapshot": {
+    "sha": "2e8d17135de05701cd32383dd2bc1b8c18f5bb91",
+    "html_url": "https://github.com/ix-infrastructure/Ix/commit/2e8d17135de05701cd32383dd2bc1b8c18f5bb91",
+    "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/2e8d17135de05701cd32383dd2bc1b8c18f5bb91",
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "committer": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "message": "Merge main into fix/442-php-use-clause-scope\n\n# Conflicts:\n#\tcore-ingestion/src/__tests__/queries.php.test.ts\n#\tcore-ingestion/src/__tests__/resolveEdges.test.ts",
+    "parents": [
+      {
+        "sha": "83b9be4207fb6ecd47a7c694684e6abfe8e18835",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/83b9be4207fb6ecd47a7c694684e6abfe8e18835"
+      },
+      {
+        "sha": "cf39184cb8c6d5c3ac1b5436150dd64a92d4b6f9",
+        "html_url": "https://github.com/ix-infrastructure/Ix/commit/cf39184cb8c6d5c3ac1b5436150dd64a92d4b6f9"
+      }
+    ],
+    "tree_sha": "c44873cdbb794e137f524fac28776fa49c18cfdf",
+    "authored_at": "2026-08-16T19:27:33Z",
+    "committed_at": "2026-08-16T19:27:33Z"
+  },
+  "source_context": {
+    "id": "github:commit:ix-infrastructure/Ix@2e8d17135de05701cd32383dd2bc1b8c18f5bb91",
+    "source": {
+      "type": "github_commit",
+      "authority": "GITHUB",
+      "repository": "ix-infrastructure/Ix",
+      "owner": "ix-infrastructure",
+      "url": "https://github.com/ix-infrastructure/Ix/commit/2e8d17135de05701cd32383dd2bc1b8c18f5bb91",
+      "api_url": "https://api.github.com/repos/ix-infrastructure/Ix/commits/2e8d17135de05701cd32383dd2bc1b8c18f5bb91",
+      "canonical": true,
+      "url_precision": "OBJECT"
+    },
+    "freshness": {
+      "first_seen": "2026-08-16T19:27:33Z",
+      "last_fetched": "2026-08-17T14:10:08.888Z",
+      "last_verified": "2026-08-17T14:10:08.888Z",
+      "source_updated_at": "2026-08-16T19:27:33Z",
+      "snapshot_version": "2026-08-17T14:10:08.888Z"
+    }
+  },
+  "ix_findings_analysis": {
+    "layer": "IX-FINDINGS_ANALYSIS",
+    "canonical_entity_id": "COMMIT-2e8d17135de05701cd32383dd2bc1b8c18f5bb91",
+    "entity_type": "COMMIT",
+    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
+    "status": "CURRENT",
+    "provenance_class": "OFFICIAL_GITHUB_FACT",
+    "source_authority": "GITHUB",
+    "source_is_authoritative": true,
+    "ix_findings_is_authoritative_for_source": false,
+    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#446"
+  },
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CHANGED_BY",
+      "other": "PR-446",
+      "other_type": "pr",
+      "other_title": "Ix PR #446",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/pr-446"
+    }
+  ]
+}

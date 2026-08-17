@@ -2,22 +2,22 @@
   "id": "PR-444",
   "type": "pr",
   "title": "Ix PR #444",
-  "status": "OPEN",
+  "status": "RESOLVED",
   "url": "https://alot1z.github.io/Ix-findings/entities/pr-444",
   "summary": {
     "id": "PR-444",
     "type": "pr",
     "title": "Ix PR #444",
-    "status": "OPEN",
+    "status": "RESOLVED",
+    "repository": "ix-infrastructure/Ix",
     "number": 444,
-    "url": "https://github.com/ix-infrastructure/Ix/pull/444",
-    "source_mirror_id": "github:pull_request:ix-infrastructure/Ix#444",
-    "source_type": "github_pull_request",
-    "source_repository": "ix-infrastructure/Ix",
-    "source_url": "https://github.com/ix-infrastructure/Ix/pull/444",
-    "source_api_url": "https://api.github.com/repos/ix-infrastructure/Ix/pulls/444",
-    "source_is_authoritative": true,
-    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+    "author": {
+      "login": "KageBinary",
+      "id": 107007243,
+      "type": "User",
+      "html_url": "https://github.com/KageBinary"
+    },
+    "merged_at": "2026-08-16T19:21:52Z"
   },
   "source_snapshot": {
     "repository": "ix-infrastructure/Ix",
@@ -25,9 +25,9 @@
     "node_id": "PR_kwDORdC75M7_R_AF",
     "title": "fix(mcp): cap thrown error output, and keep the reason when the cap already fired",
     "body": "Carries **@Hiro-Chiba's #426 and #436** plus one review fix. Landing it here closes both as merged.\n\n> ⚠️ **Merge with a merge commit, not squash** — this branch contains two of Hiro-Chiba's commits alongside mine.\n\n## Their changes\n\n- `5e2bdcf` (#426) — a run whose captured output blew the byte cap now reports `ok: false`, so the MCP layer returns an `isError` result instead of a successful empty `structuredContent`. Verified this removes a divergence rather than creating one: the subprocess path already behaved this way via `maxBuffer`.\n- `033181f` (#436) — routes thrown error text through the bounded-output collector so a crash can't blow the cap.\n\n## My fix (`1f49d9f`)\n\n`appendChunk` starts with `if (run.truncated) return;`, so routing thrown text through it means the text is **dropped outright** once the cap has fired. A command that floods and *then* throws reaches the client as:\n\n```json\n{\"error\": \"[ix mcp] output exceeded N bytes and was truncated\"}\n```\n\nfor what was actually a crash. Before #436, `stderr: run.stderr.join(\"\") + (failure ?? \"\")` appended it unconditionally — so this is a regression against main, in the one case where an operator most needs the reason. Keeps a bounded 2 KiB copy.\n\nThe normal path is untouched: a throw with no prior output still goes through `appendChunk` and is capped, which their existing test pins (verified unchanged — `run.truncated` is still false at that point).\n\n## Verification\n\nMutation-tested: collapse the branch back to a bare `appendChunk` call and the new test goes red. ix-cli 932 passed, 1 skipped; `typecheck` and `knip` clean.\n\nThe security pass over the combined tree cleared this area specifically: truncation-to-error is strictly safer (it can only flip `ok` true→false, never mask a failure as success), and the failure detail is a single capped `stderr.push` in one `finally`, not repeatable within a run.",
-    "state": "open",
+    "state": "closed",
     "draft": false,
-    "merged": false,
+    "merged": true,
     "author": {
       "login": "KageBinary",
       "id": 107007243,
@@ -59,8 +59,8 @@
         "parent": null,
         "source": null,
         "created_at": "2026-03-03T04:48:38Z",
-        "updated_at": "2026-08-16T08:00:03Z",
-        "pushed_at": "2026-08-15T06:01:03Z",
+        "updated_at": "2026-08-17T13:44:46Z",
+        "pushed_at": "2026-08-17T13:55:58Z",
         "topics": [
           "ai",
           "ai-memory",
@@ -86,10 +86,10 @@
           "name": "Apache License 2.0",
           "url": "https://api.github.com/licenses/apache-2.0"
         },
-        "watchers_count": 731,
-        "stargazers_count": 731,
-        "forks_count": 61,
-        "open_issues_count": 16
+        "watchers_count": 746,
+        "stargazers_count": 746,
+        "forks_count": 62,
+        "open_issues_count": 5
       }
     },
     "base": {
@@ -115,8 +115,8 @@
         "parent": null,
         "source": null,
         "created_at": "2026-03-03T04:48:38Z",
-        "updated_at": "2026-08-16T08:00:03Z",
-        "pushed_at": "2026-08-15T06:01:03Z",
+        "updated_at": "2026-08-17T13:44:46Z",
+        "pushed_at": "2026-08-17T13:55:58Z",
         "topics": [
           "ai",
           "ai-memory",
@@ -142,17 +142,17 @@
           "name": "Apache License 2.0",
           "url": "https://api.github.com/licenses/apache-2.0"
         },
-        "watchers_count": 731,
-        "stargazers_count": 731,
-        "forks_count": 61,
-        "open_issues_count": 16
+        "watchers_count": 746,
+        "stargazers_count": 746,
+        "forks_count": 62,
+        "open_issues_count": 5
       }
     },
-    "merge_commit_sha": "41241f191a82faeec9ff16a3120c5909ce363030",
-    "merged_at": null,
-    "closed_at": null,
+    "merge_commit_sha": "5f801136e31c883fd4a39799022bed9fa936ed15",
+    "merged_at": "2026-08-16T19:21:52Z",
+    "closed_at": "2026-08-16T19:21:52Z",
     "created_at": "2026-08-14T20:18:16Z",
-    "updated_at": "2026-08-14T23:44:09Z",
+    "updated_at": "2026-08-16T19:21:52Z",
     "labels": [],
     "milestone": null,
     "requested_reviewers": [
@@ -392,6 +392,34 @@
         "commit_id": null,
         "issue": null,
         "source_url": null
+      },
+      {
+        "id": 29530391225,
+        "event": "merged",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-16T19:21:52Z",
+        "commit_id": "5f801136e31c883fd4a39799022bed9fa936ed15",
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29530391225"
+      },
+      {
+        "id": 29530391250,
+        "event": "closed",
+        "actor": {
+          "login": "KageBinary",
+          "id": 107007243,
+          "type": "User",
+          "html_url": "https://github.com/KageBinary"
+        },
+        "created_at": "2026-08-16T19:21:52Z",
+        "commit_id": null,
+        "issue": null,
+        "source_url": "https://api.github.com/repos/ix-infrastructure/Ix/issues/events/29530391250"
       }
     ],
     "source": "OFFICIAL_GITHUB_FACT",
@@ -415,10 +443,10 @@
     },
     "freshness": {
       "first_seen": "2026-08-14T20:18:16Z",
-      "last_fetched": "2026-08-16T08:59:39.836Z",
-      "last_verified": "2026-08-16T08:59:39.836Z",
-      "source_updated_at": "2026-08-14T23:44:09Z",
-      "snapshot_version": "2026-08-16T08:59:39.836Z"
+      "last_fetched": "2026-08-17T14:10:08.888Z",
+      "last_verified": "2026-08-17T14:10:08.888Z",
+      "source_updated_at": "2026-08-16T19:21:52Z",
+      "snapshot_version": "2026-08-17T14:10:08.888Z"
     }
   },
   "ix_findings_analysis": {
@@ -447,22 +475,6 @@
       "other_type": "commit",
       "other_title": "1f49d9fe3eb715e59dcc3ff43cf3ae0d1b8a19cc",
       "other_url": "https://alot1z.github.io/Ix-findings/entities/commit-1f49d9fe3eb715e59dcc3ff43cf3ae0d1b8a19cc"
-    },
-    {
-      "direction": "out",
-      "relationship": "FOUND_IN",
-      "other": "REPO-ix-infrastructure-Ix",
-      "other_type": "repository",
-      "other_title": "ix-infrastructure/Ix",
-      "other_url": "https://alot1z.github.io/Ix-findings/entities/repo-ix-infrastructure-ix"
-    },
-    {
-      "direction": "in",
-      "relationship": "RELATED_TO_PR",
-      "other": "N-003",
-      "other_type": "finding",
-      "other_title": "#444 MCP output-cap and #447 discovery confinement — audited, no defect",
-      "other_url": "https://alot1z.github.io/Ix-findings/entities/n-003"
     }
   ]
 }

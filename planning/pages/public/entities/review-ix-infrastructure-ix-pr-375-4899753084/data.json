@@ -10,68 +10,11 @@
     "title": "Review 4899753084 on PR #375",
     "status": "HISTORICAL",
     "repository": "ix-infrastructure/Ix",
-    "url": "https://github.com/ix-infrastructure/Ix/pull/375#pullrequestreview-4899753084",
-    "source_mirror_id": "github:review:ix-infrastructure/Ix#pr-375-4899753084",
-    "source_type": "github_review",
-    "source_repository": "ix-infrastructure/Ix",
-    "source_url": "https://github.com/ix-infrastructure/Ix/pull/375#pullrequestreview-4899753084",
-    "source_api_url": null,
-    "source_is_authoritative": true,
-    "analysis_layer": "IX-FINDINGS_ANALYSIS"
+    "url": "https://github.com/ix-infrastructure/Ix/pull/375#pullrequestreview-4899753084"
   },
-  "source_snapshot": {
-    "id": 4899753084,
-    "node_id": "PRR_kwDORdC75M8AAAABJAxMfA",
-    "repository": "ix-infrastructure/Ix",
-    "pr_number": 375,
-    "author": {
-      "login": "KageBinary",
-      "id": 107007243,
-      "type": "User",
-      "html_url": "https://github.com/KageBinary"
-    },
-    "state": "CHANGES_REQUESTED",
-    "body": "Thanks for contributing! The diagnosis here is correct and the index construction is careful — my one concern is the cost, which I think is larger than the 515-file validation repo could show.\n\n## The part that's right\n\nThe JS/TS block mirrors the in-batch construction in `resolveEdges` exactly — same `kind === 'file' || kind === 'module'` filter, same `qualifiedKey(e)`, same name-keyed list of qkeys. That is the thing that usually drifts in this file (it is why the R and SAS blocks carry those \"mirrors the qkMap construction at resolveEdges\" comments), and you got it right, so cross-batch and in-batch resolution will agree on `dstQualifiedKey`. No correctness objection.\n\n## The concern: this is the first prescan language where the prescan is the dominant cost\n\n`buildGlobalResolutionIndex` calls `parseFile`, which is **synchronous tree-sitter on the main thread**. The streaming parse loop below it uses `ensureParsePool()` — a worker pool. So every JS/TS file now gets parsed twice: once serially in the prescan, once in parallel in the pool.\n\nThat trade was fine for the existing prescan set. Go uses a regex scan specifically to stay cheap, and R/SAS are niche and usually a small slice of a repo. JS/TS is the common case, and for a TypeScript repo it is ~all of the files.\n\nMeasured on this repo's own TS (176 files, 1.5 MB, `parseFile` via `core-ingestion/dist`):\n\n```\nSYNC prescan parse of all JS/TS: 1.02 s for 176 files  (~5.8 ms/file)\n```\n\nExtrapolating: ~5.8 s per 1,000 JS/TS files, ~29 s at 5,000 — single-threaded, before the parse pool starts.\n\n**The incremental path is where this really bites.** In Path A:\n\n```js\nconst remainingIndexFiles = filePaths.filter(fp => needsIndexPrescan(fp) && !changedSet.has(fp));\n```\n\n`filePaths` is the whole repo, so every *mtime-clean, unchanged* JS/TS file is read from disk and then synchronously parsed. Before this change `.ts` was not in `INDEX_PRESCAN_EXTENSIONS`, so `sources` and `remainingIndexFiles` were both empty and the cost was ~zero. After it, a one-file edit in a 5,000-file TS repo pays the full read + full serial parse on every `ix map`. That is the fast path this cache exists to protect.\n\nAt 515 files this is ~3 s and reads as acceptable, which I suspect is why it did not surface in your validation.\n\n## Options, roughly in order of preference\n\n1. **Run the prescan through the existing worker pool.** `ensureParsePool()` already exists in `ingest.ts` and is already parallel. It would need `buildGlobalResolutionIndex` to accept pre-parsed entities (or an async variant) rather than calling `parseFile` itself, since the pool lives in the CLI and this function is in `core-ingestion` — a bit of plumbing, but it removes both the double-parse and the serialization.\n2. **Reuse the streaming loop's parse output.** The pool parses these files moments later anyway; only the ordering (index-before-batch) forces the duplicate.\n3. **Narrow what gets prescanned.** Only files that are actually import targets of something in the changed set need to be in the index, which on an incremental map is a small fraction of the repo.\n4. **Regex scan like Go.** Cheapest, but you deliberately avoided it for the drift reason above, and I think you were right to.\n\nI do not think the fix has to be in this PR — but I would not want to land the JS/TS prescan without a plan for the incremental case, since that is the most common thing users do.\n\nHappy to look again once you have picked a direction.\n",
-    "html_url": "https://github.com/ix-infrastructure/Ix/pull/375#pullrequestreview-4899753084",
-    "submitted_at": "2026-08-10T18:20:21Z",
-    "commit_id": "eaeb791f9b09ccff8ff745989dd64f2327b65c1a",
-    "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
-    "source": "OFFICIAL_GITHUB_FACT",
-    "parent_pr": 375
-  },
-  "source_context": {
-    "id": "github:review:ix-infrastructure/Ix#pr-375-4899753084",
-    "source": {
-      "type": "github_review",
-      "authority": "GITHUB",
-      "repository": "ix-infrastructure/Ix",
-      "owner": "ix-infrastructure",
-      "url": "https://github.com/ix-infrastructure/Ix/pull/375#pullrequestreview-4899753084",
-      "api_url": null,
-      "canonical": true,
-      "url_precision": "OBJECT"
-    },
-    "freshness": {
-      "first_seen": "2026-08-10T18:20:21Z",
-      "last_fetched": "2026-08-16T08:59:39.836Z",
-      "last_verified": "2026-08-16T08:59:39.836Z",
-      "source_updated_at": "2026-08-10T18:20:21Z",
-      "snapshot_version": "2026-08-16T08:59:39.836Z"
-    }
-  },
-  "ix_findings_analysis": {
-    "layer": "IX-FINDINGS_ANALYSIS",
-    "canonical_entity_id": "REVIEW-ix-infrastructure-Ix-pr-375-4899753084",
-    "entity_type": "REVIEW",
-    "mirror_status": "READ_ONLY_EXTERNAL_OBJECT",
-    "status": "HISTORICAL",
-    "provenance_class": "OFFICIAL_GITHUB_FACT",
-    "source_authority": "GITHUB",
-    "source_is_authoritative": true,
-    "ix_findings_is_authoritative_for_source": false,
-    "parent_external_id": "github:pull_request:ix-infrastructure/Ix#375",
-    "review_thread_state": "VERIFIED_GRAPHQL_NO_ASSOCIATED_THREAD_DATA"
-  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
   "relationships": [
     {
       "direction": "in",

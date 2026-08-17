@@ -1,7 +1,7 @@
 {
   "version": "1",
-  "generated": "2026-08-16",
-  "source_revision": "043bc68f0fb7ddba736ee1490614cb3c68f8f819",
+  "generated": "2026-08-17",
+  "source_revision": "8be5f110a5a072767e04dc108e79c539d1bab0f9",
   "base_url": "https://alot1z.github.io/Ix-findings",
   "entities": [
     {
@@ -915,13 +915,6 @@
       "url": "https://alot1z.github.io/Ix-findings/entities/commit-0437abf5de675f16fe161df86fca9adf7eee9b93"
     },
     {
-      "id": "COMMIT-043bc68f0fb7ddba736ee1490614cb3c68f8f819",
-      "type": "commit",
-      "title": "043bc68f0fb7ddba736ee1490614cb3c68f8f819",
-      "status": "CURRENT",
-      "url": "https://alot1z.github.io/Ix-findings/entities/commit-043bc68f0fb7ddba736ee1490614cb3c68f8f819"
-    },
-    {
       "id": "COMMIT-0498ca3b2f76574f0f02e26fb19202a21b7e4b7e",
       "type": "commit",
       "title": "0498ca3b2f76574f0f02e26fb19202a21b7e4b7e",
@@ -1018,6 +1011,13 @@
       "title": "07f45a9b21bcb2fe5616f0f3b698a70bb32b50ff",
       "status": "HISTORICAL",
       "url": "https://alot1z.github.io/Ix-findings/entities/commit-07f45a9b21bcb2fe5616f0f3b698a70bb32b50ff"
+    },
+    {
+      "id": "COMMIT-084faae83245774db3fdaebfc7361c50281a55e7",
+      "type": "commit",
+      "title": "084faae83245774db3fdaebfc7361c50281a55e7",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-084faae83245774db3fdaebfc7361c50281a55e7"
     },
     {
       "id": "COMMIT-0862e30802bdbd557c2328fe290d8f2b3c38c7be",
@@ -1935,6 +1935,13 @@
       "title": "2e246e87995fd0733edd9d6727c30b89db897a12",
       "status": "HISTORICAL",
       "url": "https://alot1z.github.io/Ix-findings/entities/commit-2e246e87995fd0733edd9d6727c30b89db897a12"
+    },
+    {
+      "id": "COMMIT-2e8d17135de05701cd32383dd2bc1b8c18f5bb91",
+      "type": "commit",
+      "title": "2e8d17135de05701cd32383dd2bc1b8c18f5bb91",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-2e8d17135de05701cd32383dd2bc1b8c18f5bb91"
     },
     {
       "id": "COMMIT-2f1545febbcb3c9e6c5aa44004001397fda5be03",
@@ -2920,7 +2927,7 @@
       "id": "COMMIT-6233b498b81c0ad56337085146bb8cb6cdb6dc95",
       "type": "commit",
       "title": "6233b498b81c0ad56337085146bb8cb6cdb6dc95",
-      "status": "CURRENT",
+      "status": "HISTORICAL",
       "url": "https://alot1z.github.io/Ix-findings/entities/commit-6233b498b81c0ad56337085146bb8cb6cdb6dc95"
     },
     {
@@ -3655,7 +3662,7 @@
       "id": "COMMIT-83b9be4207fb6ecd47a7c694684e6abfe8e18835",
       "type": "commit",
       "title": "83b9be4207fb6ecd47a7c694684e6abfe8e18835",
-      "status": "CURRENT",
+      "status": "HISTORICAL",
       "url": "https://alot1z.github.io/Ix-findings/entities/commit-83b9be4207fb6ecd47a7c694684e6abfe8e18835"
     },
     {
@@ -3902,6 +3909,13 @@
       "title": "8bb61e7a6cdba996f8bc371c4fd2fc7ec5caf20b",
       "status": "HISTORICAL",
       "url": "https://alot1z.github.io/Ix-findings/entities/commit-8bb61e7a6cdba996f8bc371c4fd2fc7ec5caf20b"
+    },
+    {
+      "id": "COMMIT-8be5f110a5a072767e04dc108e79c539d1bab0f9",
+      "type": "commit",
+      "title": "8be5f110a5a072767e04dc108e79c539d1bab0f9",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-8be5f110a5a072767e04dc108e79c539d1bab0f9"
     },
     {
       "id": "COMMIT-8c068911ae11be6fd69b3123ba64725ae7eea479",
@@ -4406,6 +4420,13 @@
       "title": "a25dc99edfb6d245f6b0e6bd8b8a7dc51776fcf5",
       "status": "HISTORICAL",
       "url": "https://alot1z.github.io/Ix-findings/entities/commit-a25dc99edfb6d245f6b0e6bd8b8a7dc51776fcf5"
+    },
+    {
+      "id": "COMMIT-a37d5b752a55f4c147f3058b299b60343963a077",
+      "type": "commit",
+      "title": "a37d5b752a55f4c147f3058b299b60343963a077",
+      "status": "CURRENT",
+      "url": "https://alot1z.github.io/Ix-findings/entities/commit-a37d5b752a55f4c147f3058b299b60343963a077"
     },
     {
       "id": "COMMIT-a44ed3c5ba0a03c204001de2be214fe811493e3b",
@@ -7155,42 +7176,42 @@
       "id": "F-014",
       "type": "finding",
       "title": "#446 global↔namespace PHP scope-boundary regression (C6/C8/D/E)",
-      "status": "UNKNOWN",
+      "status": "FIXED_FORK",
       "url": "https://alot1z.github.io/Ix-findings/entities/f-014"
     },
     {
       "id": "F-015",
       "type": "finding",
       "title": "#446 C7 — block-scoped `use` leaking into global code (pre-existing)",
-      "status": "UNKNOWN",
+      "status": "PRE_EXISTING",
       "url": "https://alot1z.github.io/Ix-findings/entities/f-015"
     },
     {
       "id": "F-016",
       "type": "finding",
       "title": "#443 renamed-import fallback binds to provider members (X1/X3)",
-      "status": "UNKNOWN",
+      "status": "FIXED_FORK",
       "url": "https://alot1z.github.io/Ix-findings/entities/f-016"
     },
     {
       "id": "F-017",
       "type": "finding",
       "title": "#445 configured-binding path binds to provider members (Y1)",
-      "status": "UNKNOWN",
+      "status": "FIXED_FORK",
       "url": "https://alot1z.github.io/Ix-findings/entities/f-017"
     },
     {
       "id": "F-018",
       "type": "finding",
       "title": "#446 parser-level phpNamespaceBlocks guard (upstream implementation)",
-      "status": "UNKNOWN",
+      "status": "PR_OPEN",
       "url": "https://alot1z.github.io/Ix-findings/entities/f-018"
     },
     {
       "id": "F-019",
       "type": "finding",
       "title": "#446 FQCN index drops same-line sibling PHP types (false negative)",
-      "status": "UNKNOWN",
+      "status": "FIXED_FORK",
       "url": "https://alot1z.github.io/Ix-findings/entities/f-019"
     },
     {
@@ -21782,25 +21803,11 @@
       "url": "https://alot1z.github.io/Ix-findings/issues/433"
     },
     {
-      "id": "ISSUE-435",
-      "type": "issue",
-      "title": "Ix issue #435",
-      "status": "OPEN",
-      "url": "https://alot1z.github.io/Ix-findings/issues/435"
-    },
-    {
       "id": "ISSUE-439",
       "type": "issue",
       "title": "Ix issue #439",
       "status": "OPEN",
       "url": "https://alot1z.github.io/Ix-findings/issues/439"
-    },
-    {
-      "id": "ISSUE-441",
-      "type": "issue",
-      "title": "Ix issue #441",
-      "status": "OPEN",
-      "url": "https://alot1z.github.io/Ix-findings/issues/441"
     },
     {
       "id": "ISSUE-57",
@@ -21827,7 +21834,7 @@
       "id": "N-003",
       "type": "finding",
       "title": "#444 MCP output-cap and #447 discovery confinement — audited, no defect",
-      "status": "UNKNOWN",
+      "status": "AUDITED",
       "url": "https://alot1z.github.io/Ix-findings/entities/n-003"
     },
     {
@@ -22205,71 +22212,78 @@
       "id": "PR-434",
       "type": "pr",
       "title": "Ix PR #434",
-      "status": "OPEN",
+      "status": "HISTORICAL",
       "url": "https://alot1z.github.io/Ix-findings/entities/pr-434"
     },
     {
       "id": "PR-436",
       "type": "pr",
       "title": "Ix PR #436",
-      "status": "OPEN",
+      "status": "RESOLVED",
       "url": "https://alot1z.github.io/Ix-findings/entities/pr-436"
     },
     {
       "id": "PR-440",
       "type": "pr",
       "title": "Ix PR #440",
-      "status": "OPEN",
+      "status": "HISTORICAL",
       "url": "https://alot1z.github.io/Ix-findings/entities/pr-440"
     },
     {
       "id": "PR-442",
       "type": "pr",
       "title": "Ix PR #442",
-      "status": "OPEN",
+      "status": "RESOLVED",
       "url": "https://alot1z.github.io/Ix-findings/entities/pr-442"
     },
     {
       "id": "PR-443",
       "type": "pr",
       "title": "Ix PR #443",
-      "status": "OPEN",
+      "status": "RESOLVED",
       "url": "https://alot1z.github.io/Ix-findings/entities/pr-443"
     },
     {
       "id": "PR-444",
       "type": "pr",
       "title": "Ix PR #444",
-      "status": "OPEN",
+      "status": "RESOLVED",
       "url": "https://alot1z.github.io/Ix-findings/entities/pr-444"
     },
     {
       "id": "PR-445",
       "type": "pr",
       "title": "Ix PR #445",
-      "status": "OPEN",
+      "status": "RESOLVED",
       "url": "https://alot1z.github.io/Ix-findings/entities/pr-445"
     },
     {
       "id": "PR-446",
       "type": "pr",
       "title": "Ix PR #446",
-      "status": "OPEN",
+      "status": "RESOLVED",
       "url": "https://alot1z.github.io/Ix-findings/entities/pr-446"
     },
     {
       "id": "PR-447",
       "type": "pr",
       "title": "Ix PR #447",
-      "status": "OPEN",
+      "status": "RESOLVED",
       "url": "https://alot1z.github.io/Ix-findings/entities/pr-447"
     },
     {
       "id": "PR-448",
       "type": "pr",
       "title": "Ix PR #448",
-      "status": "OPEN",
+      "status": "RESOLVED",
       "url": "https://alot1z.github.io/Ix-findings/entities/pr-448"
+    },
+    {
+      "id": "PR-455",
+      "type": "pr",
+      "title": "Ix PR #455",
+      "status": "OPEN",
+      "url": "https://alot1z.github.io/Ix-findings/entities/pr-455"
     },
     {
       "id": "REMOTE-0042f09e97a1",
@@ -25844,67 +25858,12 @@
   ],
   "relations": [
     {
-      "source": "PR-448",
-      "target": "COMMIT-5efd8f185e2f284551000486433d4233b2fe704a",
+      "source": "PR-455",
+      "target": "COMMIT-084faae83245774db3fdaebfc7361c50281a55e7",
       "relationship": "CHANGED_BY"
-    },
-    {
-      "source": "PR-445",
-      "target": "COMMIT-adc97c1a979992739541a1d39e2e0b45ea6684d6",
-      "relationship": "CHANGED_BY"
-    },
-    {
-      "source": "PR-443",
-      "target": "COMMIT-eab1075695811acec7d951e3da9813e43944662c",
-      "relationship": "CHANGED_BY"
-    },
-    {
-      "source": "PR-446",
-      "target": "COMMIT-83b9be4207fb6ecd47a7c694684e6abfe8e18835",
-      "relationship": "CHANGED_BY"
-    },
-    {
-      "source": "PR-447",
-      "target": "COMMIT-6233b498b81c0ad56337085146bb8cb6cdb6dc95",
-      "relationship": "CHANGED_BY"
-    },
-    {
-      "source": "PR-440",
-      "target": "COMMIT-bf7a4b47758d679be0845a3cec27c1d0a7f5c05e",
-      "relationship": "CHANGED_BY"
-    },
-    {
-      "source": "PR-434",
-      "target": "COMMIT-819d67e06e437e4715ea6e9f0bcd7bc7b5d5f001",
-      "relationship": "CHANGED_BY"
-    },
-    {
-      "source": "PR-436",
-      "target": "COMMIT-033181fb5747e0db4303d99653a19ac08b160267",
-      "relationship": "CHANGED_BY"
-    },
-    {
-      "source": "PR-442",
-      "target": "COMMIT-83079ff3dca7d516cc5818dcf81a28f479ea56cd",
-      "relationship": "CHANGED_BY"
-    },
-    {
-      "source": "PR-444",
-      "target": "COMMIT-1f49d9fe3eb715e59dcc3ff43cf3ae0d1b8a19cc",
-      "relationship": "CHANGED_BY"
-    },
-    {
-      "source": "ISSUE-441",
-      "target": "REPO-ix-infrastructure-Ix",
-      "relationship": "FOUND_IN"
     },
     {
       "source": "ISSUE-439",
-      "target": "REPO-ix-infrastructure-Ix",
-      "relationship": "FOUND_IN"
-    },
-    {
-      "source": "ISSUE-435",
       "target": "REPO-ix-infrastructure-Ix",
       "relationship": "FOUND_IN"
     },
@@ -25924,52 +25883,7 @@
       "relationship": "FOUND_IN"
     },
     {
-      "source": "PR-448",
-      "target": "REPO-ix-infrastructure-Ix",
-      "relationship": "FOUND_IN"
-    },
-    {
-      "source": "PR-445",
-      "target": "REPO-ix-infrastructure-Ix",
-      "relationship": "FOUND_IN"
-    },
-    {
-      "source": "PR-443",
-      "target": "REPO-ix-infrastructure-Ix",
-      "relationship": "FOUND_IN"
-    },
-    {
-      "source": "PR-446",
-      "target": "REPO-ix-infrastructure-Ix",
-      "relationship": "FOUND_IN"
-    },
-    {
-      "source": "PR-447",
-      "target": "REPO-ix-infrastructure-Ix",
-      "relationship": "FOUND_IN"
-    },
-    {
-      "source": "PR-440",
-      "target": "REPO-ix-infrastructure-Ix",
-      "relationship": "FOUND_IN"
-    },
-    {
-      "source": "PR-434",
-      "target": "REPO-ix-infrastructure-Ix",
-      "relationship": "FOUND_IN"
-    },
-    {
-      "source": "PR-436",
-      "target": "REPO-ix-infrastructure-Ix",
-      "relationship": "FOUND_IN"
-    },
-    {
-      "source": "PR-442",
-      "target": "REPO-ix-infrastructure-Ix",
-      "relationship": "FOUND_IN"
-    },
-    {
-      "source": "PR-444",
+      "source": "PR-455",
       "target": "REPO-ix-infrastructure-Ix",
       "relationship": "FOUND_IN"
     },
@@ -26327,61 +26241,6 @@
       "source": "F-013",
       "target": "S-017",
       "relationship": "RESPONDS_TO"
-    },
-    {
-      "source": "F-014",
-      "target": "PR-446",
-      "relationship": "RELATED_TO_PR"
-    },
-    {
-      "source": "F-015",
-      "target": "PR-446",
-      "relationship": "RELATED_TO_PR"
-    },
-    {
-      "source": "F-016",
-      "target": "PR-443",
-      "relationship": "RELATED_TO_PR"
-    },
-    {
-      "source": "F-016",
-      "target": "PR-434",
-      "relationship": "RELATED_TO_PR"
-    },
-    {
-      "source": "F-017",
-      "target": "PR-445",
-      "relationship": "RELATED_TO_PR"
-    },
-    {
-      "source": "F-018",
-      "target": "PR-446",
-      "relationship": "RELATED_TO_PR"
-    },
-    {
-      "source": "F-018",
-      "target": "PR-442",
-      "relationship": "RELATED_TO_PR"
-    },
-    {
-      "source": "N-003",
-      "target": "PR-444",
-      "relationship": "RELATED_TO_PR"
-    },
-    {
-      "source": "N-003",
-      "target": "PR-447",
-      "relationship": "RELATED_TO_PR"
-    },
-    {
-      "source": "F-019",
-      "target": "PR-446",
-      "relationship": "RELATED_TO_PR"
-    },
-    {
-      "source": "F-021",
-      "target": "PR-448",
-      "relationship": "RELATED_TO_PR"
     },
     {
       "source": "E-001",
@@ -27345,7 +27204,7 @@
     },
     {
       "source": "BRANCH-1c828029ee8b",
-      "target": "COMMIT-043bc68f0fb7ddba736ee1490614cb3c68f8f819",
+      "target": "COMMIT-8be5f110a5a072767e04dc108e79c539d1bab0f9",
       "relationship": "CURRENT_STATE_OF"
     },
     {
@@ -30964,7 +30823,7 @@
       "relationship": "HAS_SOURCE"
     },
     {
-      "source": "COMMIT-043bc68f0fb7ddba736ee1490614cb3c68f8f819",
+      "source": "COMMIT-8be5f110a5a072767e04dc108e79c539d1bab0f9",
       "target": "SRC-90ab8426282e",
       "relationship": "HAS_SOURCE"
     },
@@ -93926,6 +93785,56 @@
     {
       "source": "PR-401",
       "target": "COMMIT-f73028274d996b9dfa1129e03be68325c5c8ecc0",
+      "relationship": "CHANGED_BY"
+    },
+    {
+      "source": "PR-434",
+      "target": "COMMIT-819d67e06e437e4715ea6e9f0bcd7bc7b5d5f001",
+      "relationship": "CHANGED_BY"
+    },
+    {
+      "source": "PR-436",
+      "target": "COMMIT-033181fb5747e0db4303d99653a19ac08b160267",
+      "relationship": "CHANGED_BY"
+    },
+    {
+      "source": "PR-440",
+      "target": "COMMIT-bf7a4b47758d679be0845a3cec27c1d0a7f5c05e",
+      "relationship": "CHANGED_BY"
+    },
+    {
+      "source": "PR-442",
+      "target": "COMMIT-83079ff3dca7d516cc5818dcf81a28f479ea56cd",
+      "relationship": "CHANGED_BY"
+    },
+    {
+      "source": "PR-443",
+      "target": "COMMIT-eab1075695811acec7d951e3da9813e43944662c",
+      "relationship": "CHANGED_BY"
+    },
+    {
+      "source": "PR-444",
+      "target": "COMMIT-1f49d9fe3eb715e59dcc3ff43cf3ae0d1b8a19cc",
+      "relationship": "CHANGED_BY"
+    },
+    {
+      "source": "PR-445",
+      "target": "COMMIT-adc97c1a979992739541a1d39e2e0b45ea6684d6",
+      "relationship": "CHANGED_BY"
+    },
+    {
+      "source": "PR-446",
+      "target": "COMMIT-2e8d17135de05701cd32383dd2bc1b8c18f5bb91",
+      "relationship": "CHANGED_BY"
+    },
+    {
+      "source": "PR-447",
+      "target": "COMMIT-a37d5b752a55f4c147f3058b299b60343963a077",
+      "relationship": "CHANGED_BY"
+    },
+    {
+      "source": "PR-448",
+      "target": "COMMIT-5efd8f185e2f284551000486433d4233b2fe704a",
       "relationship": "CHANGED_BY"
     }
   ]

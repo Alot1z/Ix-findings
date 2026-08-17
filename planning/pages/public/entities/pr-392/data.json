@@ -59,8 +59,8 @@
         "parent": null,
         "source": null,
         "created_at": "2026-03-03T04:48:38Z",
-        "updated_at": "2026-08-16T08:00:03Z",
-        "pushed_at": "2026-08-15T06:01:03Z",
+        "updated_at": "2026-08-17T13:44:46Z",
+        "pushed_at": "2026-08-17T13:55:58Z",
         "topics": [
           "ai",
           "ai-memory",
@@ -86,10 +86,10 @@
           "name": "Apache License 2.0",
           "url": "https://api.github.com/licenses/apache-2.0"
         },
-        "watchers_count": 731,
-        "stargazers_count": 731,
-        "forks_count": 61,
-        "open_issues_count": 16
+        "watchers_count": 746,
+        "stargazers_count": 746,
+        "forks_count": 62,
+        "open_issues_count": 5
       }
     },
     "base": {
@@ -115,8 +115,8 @@
         "parent": null,
         "source": null,
         "created_at": "2026-03-03T04:48:38Z",
-        "updated_at": "2026-08-16T08:00:03Z",
-        "pushed_at": "2026-08-15T06:01:03Z",
+        "updated_at": "2026-08-17T13:44:46Z",
+        "pushed_at": "2026-08-17T13:55:58Z",
         "topics": [
           "ai",
           "ai-memory",
@@ -142,10 +142,10 @@
           "name": "Apache License 2.0",
           "url": "https://api.github.com/licenses/apache-2.0"
         },
-        "watchers_count": 731,
-        "stargazers_count": 731,
-        "forks_count": 61,
-        "open_issues_count": 16
+        "watchers_count": 746,
+        "stargazers_count": 746,
+        "forks_count": 62,
+        "open_issues_count": 5
       }
     },
     "merge_commit_sha": "1292375548fb8f4431ac5afc34c68fe2573434d1",
@@ -300,65 +300,7 @@
       }
     ],
     "comments": [],
-    "reviews": [
-      {
-        "id": 4902666335,
-        "node_id": "PRR_kwDORdC75M8AAAABJDjAXw",
-        "repository": "ix-infrastructure/Ix",
-        "pr_number": 392,
-        "author": {
-          "login": "josephismikhail",
-          "id": 56614593,
-          "type": "User",
-          "html_url": "https://github.com/josephismikhail"
-        },
-        "state": "APPROVED",
-        "body": "Taking the upgrade path off TEMP is right, and the reasoning for `-download-` over `-backup-` is correct — `recover()` renames the newest `.cli-backup-*` over the install directory, so an archive must never match that prefix.\n\n**One gap, fixed in c8754ba.** The PR calls the sweep-above-download move \"the part I nearly broke\" and says \"there is now a test for it\". There wasn't. The two new cases pin *which prefixes the sweep reclaims*, which is what makes the ordering matter, but not the ordering itself — that lived inline in the command action where no test reaches it. I moved the call back below the download and all 724 tests passed, on a change that breaks every upgrade on every platform because the sweep then deletes the archive it is about to extract.\n\nBoth call sites now go through `prepareDownloadDir(ixHome, installDir, prefix)`, which does mkdir → sweep → mkdtemp. The order is inside one testable function instead of duplicated across two sites as a comment. Three cases: an earlier run's scratch is reclaimed while the one just created survives, an interrupted install is restored before any download happens, and IX_HOME is created when a manual install never did. Inverting the order inside the helper fails all three.\n\nWorth noting the compass branch got the same treatment, so it no longer sweeps and then separately mkdirs — one shape on both paths.\n\n727 green, lint clean.",
-        "html_url": "https://github.com/ix-infrastructure/Ix/pull/392#pullrequestreview-4902666335",
-        "submitted_at": "2026-08-11T03:14:33Z",
-        "commit_id": "c8754ba18918bc0c7a5f76c87605ed0df0d26c82",
-        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
-        "source": "OFFICIAL_GITHUB_FACT"
-      },
-      {
-        "id": 4902849260,
-        "node_id": "PRR_kwDORdC75M8AAAABJDuK7A",
-        "repository": "ix-infrastructure/Ix",
-        "pr_number": 392,
-        "author": {
-          "login": "josephismikhail",
-          "id": 56614593,
-          "type": "User",
-          "html_url": "https://github.com/josephismikhail"
-        },
-        "state": "CHANGES_REQUESTED",
-        "body": "Retracting my earlier approval — a deeper review found two correctness regressions introduced by moving the scratch into `IX_HOME`, one of which is data loss.\n\n## Blocking: a failed download can delete the user's only working compass\n\n`cleanupCompassSwap:615` tests `existsSync(join(compassDir, \"index.html\"))` and its comment is explicit about why: a `compass/` holding only a `.version` is a real state, and a bare `existsSync` \"would call that 'back in place' and drop a backup the caller had just told the user to go and rescue.\"\n\n`recover()` inside `sweepUpgradeOrphans` uses exactly that bare `existsSync(dest)`. So with `compass/` left as a `.version`-only husk and `.compass-backup-1234` holding the only real bundle, `recover()` declines to restore, and the loop below then deletes the backup.\n\nOn `main` that sweep ran *after* a successful download, so an offline run exited before reaching it and the backup survived for the next attempt. Hoisting the sweep above `curl` means **a run that installs nothing now destroys it** — the user sees only \"[error] Failed to download\", and `ix view` is permanently blank with no copy left on disk.\n\nThe two tests can't see this because they never construct the husk. Aligning `recover`'s test with `cleanupCompassSwap`'s (`index.html`, not bare `existsSync`) fixes it and makes the two agree.\n\n## Blocking: concurrent `ix upgrade` deletes an in-flight download\n\nThe scratch moved from `os.tmpdir()`, where no sweep could match it, into `IX_HOME` with a swept prefix. Process A creates `.cli-download-AAAAAA` and starts a curl with a 300s timeout; process B — a second terminal, or `bootstrap.sh` re-running `ix upgrade` when it finds compass missing — calls `prepareDownloadDir` and deletes A's directory wholesale. On Linux/macOS curl's fd stays valid so A exits 0, then `tar -xzf` hits a missing path and A reports \"Failed to extract CLI update\" on a good download.\n\n`.cli-staging-<pid>` has the same shape on main, but its window is the few seconds of extraction; this one is the whole download. Some ownership marker (pid in the name, skipped when that pid is live) would close both.\n\n## Worth addressing\n\n- `prepareDownloadDir` in the compass branch is the first filesystem write under `IX_HOME` and sits *outside* the try/catch that deliberately keeps compass failures non-fatal. On an unwritable `~/.ix` this turns \"[!!] Compass extract failed / ix view keeps working\" into a hard abort that also skips `writeCache`.\n- Two bare `rmSync` calls (959, 1264) skip the retry treatment `rmQuiet` exists for — and this PR moves those directories into the user profile, where AV and indexer handles are the norm, which is precisely the case `rmQuiet`'s comment describes.\n\n## One question before this lands\n\n#349's reporter is on `[local-path] 10` and their confirmed workaround was pointing TEMP at a space-free path. This moves the scratch from `[local-path] (no space — 8.3 aliases never contain one) to `[local-path] 10\\.ix\\.cli-download-...` (space). If the failure is space-driven rather than short-path-driven, the upgrade path now has the space where it previously didn't. \"Refs #349\" rather than \"Fixes\" is the right call, and the PR is honest that it's unreproduced — but \"fixes the failure under every reading of it\" doesn't hold under the space reading. Nothing in the suite sets `IX_HOME` to a path with a space.\n\nTaking the upgrade path off TEMP is still right, and the `-download-` vs `-backup-` prefix reasoning is correct. It's the sweep's new reach that needs bounding.",
-        "html_url": "https://github.com/ix-infrastructure/Ix/pull/392#pullrequestreview-4902849260",
-        "submitted_at": "2026-08-11T04:05:48Z",
-        "commit_id": "c8754ba18918bc0c7a5f76c87605ed0df0d26c82",
-        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
-        "source": "OFFICIAL_GITHUB_FACT"
-      },
-      {
-        "id": 4902995743,
-        "node_id": "PRR_kwDORdC75M8AAAABJD3HHw",
-        "repository": "ix-infrastructure/Ix",
-        "pr_number": 392,
-        "author": {
-          "login": "josephismikhail",
-          "id": 56614593,
-          "type": "User",
-          "html_url": "https://github.com/josephismikhail"
-        },
-        "state": "APPROVED",
-        "body": "Addressed in 5432c49 and b4d9c00, and rebased onto main now that #391 has landed.\n\n**The data-loss path.** `recover()` now takes the file that proves the thing is real — `index.html` for the compass, `cli/dist/cli/main.js` for the install — so it applies the same test `cleanupCompassSwap` already applies. The two no longer disagree about a husk, so a torn swap restores the backup instead of the sweep deleting it. Verified: reverting to the bare `existsSync` fails two of the new cases.\n\n**The concurrency window.** Download directories carry their pid (`.cli-download-<pid>-<rand>`) and the sweep skips one whose process is still addressable — `process.kill(pid, 0)`, treating EPERM as live. Unparseable names are treated as dead so the pre-pid naming stays collectable, and the guard is scoped to download prefixes so staging/backup reclaim behaviour is untouched. Verified: removing the guard fails the live-process case.\n\n**The two bare `rmSync` calls** are now `rmQuiet`, which is the whole reason that helper exists — and this PR is what moves those directories from TEMP into the user profile.\n\n**One more, found while composing the two PRs** (b4d9c00): both sweep calls sit behind \"something needs updating\", and #391 tightened the compass gate to skip release-bundled compasses — which is every install from v0.9.3 on. So on a healthy current install neither would fire and nothing would ever be reclaimed, which defeats the reason for sweeping the downloads at all. There is now one unconditional sweep at the top of a real `ix upgrade`; the calls inside `prepareDownloadDir` stay, since that is where the ordering invariant lives.\n\n753 green on the rebased result, lint clean.\n\n**Still open, and deliberately not resolved here:** whether #349 is space-driven or short-path-driven. The scratch now sits under `[local-path] 10\\.ix\\...`, which contains the space, where the TEMP path it replaces did not. `Refs #349` is the right framing until someone reproduces it — worth keeping the issue open rather than closing it on this.",
-        "html_url": "https://github.com/ix-infrastructure/Ix/pull/392#pullrequestreview-4902995743",
-        "submitted_at": "2026-08-11T04:46:19Z",
-        "commit_id": "b4d9c0038b4595b0562f9dc2e8ef457511112d29",
-        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
-        "source": "OFFICIAL_GITHUB_FACT"
-      }
-    ],
+    "reviews": [],
     "review_comments": [],
     "timeline": [
       {
@@ -600,10 +542,10 @@
     },
     "freshness": {
       "first_seen": "2026-08-11T00:19:10Z",
-      "last_fetched": "2026-08-16T08:59:39.836Z",
-      "last_verified": "2026-08-16T08:59:39.836Z",
+      "last_fetched": "2026-08-17T14:10:08.888Z",
+      "last_verified": "2026-08-17T14:10:08.888Z",
       "source_updated_at": "2026-08-11T04:46:44Z",
-      "snapshot_version": "2026-08-16T08:59:39.836Z"
+      "snapshot_version": "2026-08-17T14:10:08.888Z"
     }
   },
   "ix_findings_analysis": {

@@ -97,8 +97,8 @@
         "parent": null,
         "source": null,
         "created_at": "2026-03-03T04:48:38Z",
-        "updated_at": "2026-08-16T08:00:03Z",
-        "pushed_at": "2026-08-15T06:01:03Z",
+        "updated_at": "2026-08-17T13:44:46Z",
+        "pushed_at": "2026-08-17T13:55:58Z",
         "topics": [
           "ai",
           "ai-memory",
@@ -124,10 +124,10 @@
           "name": "Apache License 2.0",
           "url": "https://api.github.com/licenses/apache-2.0"
         },
-        "watchers_count": 731,
-        "stargazers_count": 731,
-        "forks_count": 61,
-        "open_issues_count": 16
+        "watchers_count": 746,
+        "stargazers_count": 746,
+        "forks_count": 62,
+        "open_issues_count": 5
       }
     },
     "merge_commit_sha": "b25bf2efe837a29022770bd220c58b2da05bca32",
@@ -410,46 +410,7 @@
         "source": "OFFICIAL_GITHUB_FACT"
       }
     ],
-    "reviews": [
-      {
-        "id": 4899761389,
-        "node_id": "PRR_kwDORdC75M8AAAABJAxs7Q",
-        "repository": "ix-infrastructure/Ix",
-        "pr_number": 378,
-        "author": {
-          "login": "KageBinary",
-          "id": 107007243,
-          "type": "User",
-          "html_url": "https://github.com/KageBinary"
-        },
-        "state": "CHANGES_REQUESTED",
-        "body": "Thanks for contributing — and thanks for taking on the hardest of the four. Stale-entity cleanup is a real gap and the overall shape here (compare the previous patch manifest, emit explicit deletions, track dependents so a recreated file heals its callers) is the right one. The tombstone `patchId` derivation is nicely done: deterministic per `(previousHash, deletionToken)` so a retry is idempotent but a later deletion is not, which is exactly the property you want.\n\nThere is one bug I think is a blocker, plus a few things worth reconsidering.\n\n## Blocker — `ix map` after `ix ingest` deletes chunk nodes and never recreates them\n\n`reconcileRemovedEntities` runs **before** `stripMapModeOps`, at both call sites:\n\n```js\npatch = await reconcileRemovedEntities(client, patch, sourcePatchIdCandidates(...));\nif (mapMode) patch = stripMapModeOps(patch);\n```\n\n`stripMapModeOps` filters out chunk `UpsertNode` ops but leaves `DeleteNode` ops untouched. And `chunkId` hashes the start line:\n\n```js\nchunkId: (filePath, chunkKind, name, startLine) =>\n  deterministicId(`${ns}${normalizePath(filePath)}:chunk:${chunkKind}:${name ?? 'file_body'}:${startLine}`)\n```\n\nSo any edit that shifts lines changes the chunk ids. Sequence: user runs `ix ingest` (chunks created), edits a file, runs `ix map`. Reconcile sees the old chunk ids missing from the new patch and emits deletions; the strip then removes the replacement upserts.\n\nI confirmed this on your branch with the real `reconcileRemovedEntities` and a copy of `stripMapModeOps` — previous patch `[file-node, chunk-L1, chunk-L10]`, new patch upserting `[file-node, chunk-L1, chunk-L12]`:\n\n```\nDELETED : [ 'chunk-L10' ]\nUPSERTED: [ 'file-node' ]\n=> chunk nodes deleted but NOT recreated: [ 'chunk-L10' ]\n```\n\nBefore this PR `ix map` simply left chunks alone (stale, but present). Now the cheaper command silently destroys embedding/search data for every file it touches, and only a full `ix ingest` puts it back. Easiest fix is to skip reconciliation entirely in `mapMode`, or to filter chunk-node ids out of `removedNodeIds` when `mapMode` is set — `ix map` never owned that data and shouldn't be deleting it.\n\n## Please reconsider — dropping the `mtimes.size === 0` guard\n\n```js\n- if (!ingestCompletedCleanly(parseErrors, commitErrors) || mtimes.size === 0) return false;\n+ if (!ingestCompletedCleanly(parseErrors, commitErrors)) return false;\n```\n\nI understand why: an emptied repo has to be able to persist an empty baseline. But there is no `filePaths.length === 0` guard anywhere in `ingestFiles`, so *any* run that discovers zero files — an over-broad ignore rule, a bad `cwd`, a discovery glitch — now overwrites a good baseline with an empty one and forces a full re-ingest next time.\n\nThe `!fs.existsSync(filePath)` check on `deletedPaths` is a good safeguard and does stop this from turning into mass deletion, which I was glad to see. But the baseline still gets wiped. Gating on `mtimes.size > 0 || deletedPaths.length > 0` would keep the guard while still covering the case you actually need.\n\n## Please reconsider — hash-lookup failure now aborts the whole map\n\n```js\nknownHashes = await loadExistingHashes(..., deletedPaths.length > 0);\n```\n\nWith any deleted file present, a transient `getSourceHashes` failure throws instead of degrading to an empty map, so one network blip fails the entire ingest rather than just the deletion work. Failing closed on *deletion* is right — deleting from an unreliable baseline is how you lose data. But the scope is wider than the risk. Consider catching it and skipping deletion reconciliation for this run (leaving `deletedFiles` in the baseline so the next run retries) while letting the ordinary ingest proceed.\n\n## Perf — per-file round-trips inside the patch loop\n\n`reconcileRemovedEntities` now runs for every file with a `previousHash`, and it is serial I/O in what used to be a pure-CPU loop:\n\n- `sourcePatchIdCandidates` returns **25** ids (current + 23 `PREVIOUS_EXTRACTORS` + legacy), tried one at a time until one is not a 404. Common case is 1 call, but the first `ix map` after a CLI upgrade walks the list for *every* changed file.\n- then one `client.entity(nodeId)` per removed node, also serial.\n\nA refactor that removes 50 symbols across 20 files pays 50 sequential `entity()` calls on top of the `getPatch` walk. Worth batching, or at least running the candidate probe concurrently.\n\n## Smaller things\n\n- **Op ordering.** `DeleteNode` ops are emitted before the `UpsertEdge` ops, and the `DeleteEdge` ops for incident edges come *after* the `DeleteNode`s. If the backend cascades incident-edge removal on node delete, those trailing `DeleteEdge`s target rows that are already gone — is that a no-op server-side, or an error? Worth confirming, since it decides whether the ordering is load-bearing.\n- **Baseline write amplification.** `onCommitted` calls `saveIngestBaseline` once per committed deletion, rewriting the whole JSON each time. Deleting a directory of 500 files means 500 full rewrites. Durability per-file is a reasonable goal, but a debounce or a single write after the batch would be cheaper.\n- **`readStoredPatchEntities` `data.ops` branch** treats `DeleteNode` ids from a previous patch as live entities. Harmless (they re-delete), but it means a tombstone-follows-tombstone sequence re-emits deletions for already-removed nodes.\n\n## Also\n\nThe branch is currently conflicting with `main` and will need a rebase.\n\nThe test coverage is genuinely good — `planDeletedFileRecovery`, the retry-idempotency assertion on the tombstone id, and the \"fails closed when the previous patch has no entity manifest\" case are all the right things to pin. Once the map-mode chunk issue is sorted I would be happy to take another pass.\n",
-        "html_url": "https://github.com/ix-infrastructure/Ix/pull/378#pullrequestreview-4899761389",
-        "submitted_at": "2026-08-10T18:21:30Z",
-        "commit_id": "3c6006093e850bb00eac179df011e5e3b3c49bf5",
-        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
-        "source": "OFFICIAL_GITHUB_FACT"
-      },
-      {
-        "id": 4900961342,
-        "node_id": "PRR_kwDORdC75M8AAAABJB68Pg",
-        "repository": "ix-infrastructure/Ix",
-        "pr_number": 378,
-        "author": {
-          "login": "KageBinary",
-          "id": 107007243,
-          "type": "User",
-          "html_url": "https://github.com/KageBinary"
-        },
-        "state": "APPROVED",
-        "body": "Blocking items resolved — see the comment above for what I pushed and why. Approving.\n\nVerified after the changes: full `ix-cli` suite green, typecheck clean, lint 0 errors, and `core-ingestion` still at exactly the six pre-existing failures you documented on `origin/main`.",
-        "html_url": "https://github.com/ix-infrastructure/Ix/pull/378#pullrequestreview-4900961342",
-        "submitted_at": "2026-08-10T21:06:28Z",
-        "commit_id": "d827cc9fa63a203b138d35621057af7c9a21bad0",
-        "content_classification": "DISCUSSION_EVIDENCE_UNTRUSTED",
-        "source": "OFFICIAL_GITHUB_FACT"
-      }
-    ],
+    "reviews": [],
     "review_comments": [],
     "timeline": [
       {
@@ -659,10 +620,10 @@
     },
     "freshness": {
       "first_seen": "2026-08-10T04:37:07Z",
-      "last_fetched": "2026-08-16T08:59:39.836Z",
-      "last_verified": "2026-08-16T08:59:39.836Z",
+      "last_fetched": "2026-08-17T14:10:08.888Z",
+      "last_verified": "2026-08-17T14:10:08.888Z",
       "source_updated_at": "2026-08-10T21:14:21Z",
-      "snapshot_version": "2026-08-16T08:59:39.836Z"
+      "snapshot_version": "2026-08-17T14:10:08.888Z"
     }
   },
   "ix_findings_analysis": {

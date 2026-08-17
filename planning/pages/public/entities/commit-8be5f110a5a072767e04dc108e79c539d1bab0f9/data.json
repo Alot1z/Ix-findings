@@ -1,0 +1,34 @@
+{
+  "id": "COMMIT-8be5f110a5a072767e04dc108e79c539d1bab0f9",
+  "type": "commit",
+  "title": "8be5f110a5a072767e04dc108e79c539d1bab0f9",
+  "status": "CURRENT",
+  "url": "https://alot1z.github.io/Ix-findings/entities/commit-8be5f110a5a072767e04dc108e79c539d1bab0f9",
+  "summary": {
+    "id": "COMMIT-8be5f110a5a072767e04dc108e79c539d1bab0f9",
+    "type": "commit",
+    "title": "8be5f110a5a072767e04dc108e79c539d1bab0f9",
+    "status": "CURRENT"
+  },
+  "source_snapshot": null,
+  "source_context": null,
+  "ix_findings_analysis": null,
+  "relationships": [
+    {
+      "direction": "in",
+      "relationship": "CURRENT_STATE_OF",
+      "other": "BRANCH-1c828029ee8b",
+      "other_type": "branch",
+      "other_title": "ix-infrastructure/Ix:main",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/branch-1c828029ee8b"
+    },
+    {
+      "direction": "out",
+      "relationship": "HAS_SOURCE",
+      "other": "SRC-90ab8426282e",
+      "other_type": "file",
+      "other_title": "CLI-HANDOFF/phase-15/FINAL-PR-WORTHINESS-AUDIT.json",
+      "other_url": "https://alot1z.github.io/Ix-findings/entities/src-90ab8426282e"
+    }
+  ]
+}
