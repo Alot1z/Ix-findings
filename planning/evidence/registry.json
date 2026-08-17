@@ -398,6 +398,22 @@
         "#349"
       ],
       "provenance": "GitHub API — repos/ix-infrastructure/Ix/pulls/352, repos/ix-infrastructure/Ix/pulls/392"
+    },
+    {
+      "id": "E-031",
+      "title": "Live upstream reproduction of F-014/F-016/F-017/F-019 on main 8be5f110",
+      "type": "reproduction",
+      "class": "A",
+      "phase": "live-upstream-verify-2026-08-17",
+      "repository": "ix-infrastructure/Ix",
+      "detail": "Built core-ingestion + ix-cli from upstream main 8be5f110 and reproduced all four regressions via resolveEdges probes (deterministic) plus CLI map/backend graph queries: F-014 wrong CALLS@0.9 across the global->namespace boundary; F-016 EXTENDS@0.9 -> provider method M.Base; F-017 EXTENDS@0.9 -> provider method W.Base (configured path); F-019 same-line sibling PHP type dropped from the FQCN index (NONE). Fork fixes 0a7d97f / f577492 / cba11a3 verified against current main; F-017 requires BOTH cba11a3 and f9274cc on merged main (f9274cc alone insufficient). F-020 confirmed pre-existing (single-char guard, base==head).",
+      "supports": [
+        "F-014",
+        "F-016",
+        "F-017",
+        "F-019",
+        "F-020"
+      ]
     }
   ]
 }

@@ -498,6 +498,14 @@
       "subsystem": "core-ingestion (PHP resolution)",
       "first_phase": "pr-audit-2026-08-15",
       "latest_phase": "pr-audit-2026-08-15",
+      "live_upstream_verification": {
+        "date": "2026-08-17",
+        "upstream_sha": "8be5f110a5a072767e04dc108e79c539d1bab0f9",
+        "result": "STILL_LIVE",
+        "method": "built core-ingestion+ix-cli from upstream main; resolveEdges probe + CLI map against local backend",
+        "detail": "C6 fixture (global use Vendor\\Thing + namespace A { class Thing {} } + new Thing()) emits wrong CALLS@0.9 (plus IMPORTS@0.9) to Vendor/Thing.php on main. Fork fix 0a7d97f applied onto main removes the CALLS edge while keeping the legitimate IMPORTS edge - fix verified against current main."
+      },
+
       "evidence_class": "A",
       "confidence": "high",
       "status": "FIXED_FORK",
@@ -556,6 +564,14 @@
       "subsystem": "core-ingestion (TS/JS resolution)",
       "first_phase": "pr-audit-2026-08-15",
       "latest_phase": "pr-audit-2026-08-15",
+      "live_upstream_verification": {
+        "date": "2026-08-17",
+        "upstream_sha": "8be5f110a5a072767e04dc108e79c539d1bab0f9",
+        "result": "STILL_LIVE",
+        "method": "built core-ingestion+ix-cli from upstream main; resolveEdges probe",
+        "detail": "X1 fixture (renamed import { Base as LocalBase } of ./m; class D extends LocalBase {} with m.ts = export class M { Base() {} }) emits wrong EXTENDS@0.9 dstQualifiedKey=M.Base on main. Fork fix cba11a3 applied onto main removes the edge; X2 positive control (real top-level export) still resolves EXTENDS@0.9."
+      },
+
       "evidence_class": "A",
       "confidence": "high",
       "status": "FIXED_FORK",
@@ -585,6 +601,14 @@
       "subsystem": "core-ingestion (tsconfig module resolution)",
       "first_phase": "pr-audit-2026-08-15",
       "latest_phase": "pr-audit-2026-08-15",
+      "live_upstream_verification": {
+        "date": "2026-08-17",
+        "upstream_sha": "8be5f110a5a072767e04dc108e79c539d1bab0f9",
+        "result": "STILL_LIVE",
+        "method": "built core-ingestion+ix-cli from upstream main; resolveEdges probe with resolveModuleSpecifier mapping @core to worker.ts",
+        "detail": "Y1 fixture emits wrong EXTENDS@0.9 dstQualifiedKey=W.Base on main via the configured-binding path. IMPORTANT: on merged main, fork fix f9274cc ALONE is insufficient - the #443 fileHasSymbol fallback was unified into the publicMatches loop, so the edge re-emerges through the fallback; cba11a3 (plain-qualified-key guard on the fallback) + f9274cc together fix it. Y2 positive control still resolves EXTENDS@0.9."
+      },
+
       "evidence_class": "A",
       "confidence": "high",
       "status": "FIXED_FORK",
@@ -603,7 +627,7 @@
         "#445"
       ],
       "related_suggestions": [],
-      "recommendation": "Fork commit f9274cc (fix/445-renamed-import-member-guard) applies the same plain-key requirement to the configured path; ready for maintainer cherry-pick. Second-order sweep 2026-08-15: no other PR-introduced member-binding path; PHP FQCN path immune by construction; legacy stem-path member-binding is pre-existing (base==head verified)."
+      "recommendation": "Fork commit f9274cc (fix/445-renamed-import-member-guard) applies the same plain-key requirement to the configured path; ready for maintainer cherry-pick. Second-order sweep 2026-08-15: no other PR-introduced member-binding path; PHP FQCN path immune by construction; legacy stem-path member-binding is pre-existing (base==head verified). NOTE (2026-08-17, main 8be5f110a5a072767e04dc108e79c539d1bab0f9): on the MERGED code the plain-key guard is needed on BOTH the configured block (f9274cc) and the unified #443 fallback (cba11a3) - f9274cc alone no longer suppresses Y1 on main."
     },
     {
       "id": "F-018",
@@ -670,6 +694,14 @@
       "subsystem": "core-ingestion (PHP namespace resolution)",
       "first_phase": "pr-audit-2026-08-15",
       "latest_phase": "pr-audit-2026-08-15",
+      "live_upstream_verification": {
+        "date": "2026-08-17",
+        "upstream_sha": "8be5f110a5a072767e04dc108e79c539d1bab0f9",
+        "result": "STILL_LIVE",
+        "method": "built core-ingestion+ix-cli from upstream main; resolveEdges probe + CLI map against local backend",
+        "detail": "Same-line fixture (<?php namespace Vendor\\Package; class A {} class B {} plus consumer use Vendor\\Package\\B; new B()) emits NONE on main - B:class container=A artifact present, B dropped from the FQCN index. CLI/backend graph confirmed: C.php has no IMPORTS edge to the same-line B.php. Fork fix f577492 applied onto main restores IMPORTS@0.9; multi-line control unaffected."
+      },
+
       "evidence_class": "A",
       "confidence": "high",
       "status": "FIXED_FORK",
@@ -700,6 +732,14 @@
       "subsystem": "core-ingestion (query layer / relationship extraction)",
       "first_phase": "pr-audit-2026-08-15",
       "latest_phase": "pr-audit-2026-08-15",
+      "live_upstream_verification": {
+        "date": "2026-08-17",
+        "upstream_sha": "8be5f110a5a072767e04dc108e79c539d1bab0f9",
+        "result": "STILL_PRESENT_PRE_EXISTING",
+        "method": "built core-ingestion from upstream main; resolveEdges probe with provider present",
+        "detail": "Single-char name B: only the IMPORTS relationship is emitted - no REFERENCES/CALLS edges (multi-char control User emits REFERENCES@0.5+CALLS@0.5). Pre-existing (base==head semantics unchanged); status stays OPEN."
+      },
+
       "evidence_class": "A",
       "confidence": "high",
       "status": "OPEN",
