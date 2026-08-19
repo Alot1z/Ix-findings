@@ -1,0 +1,41 @@
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.10 [39m[90mE:/E-github-repos/Ix-remap/ix-cli[39m
+
+ [32m✓[39m src/cli/__tests__/context-mode-conflict.test.ts[2m > [22mdetectContextModeConflict[2m > [22mreturns undefined when no flags are set[32m 3[2mms[22m[39m
+ [32m✓[39m src/cli/__tests__/context-mode-conflict.test.ts[2m > [22mdetectContextModeConflict[2m > [22mreturns undefined for a single mode flag with neutral extras[32m 1[2mms[22m[39m
+ [32m✓[39m src/cli/__tests__/context-mode-conflict.test.ts[2m > [22mdetectContextModeConflict[2m > [22mreturns undefined for the legal save+resolve target run[32m 1[2mms[22m[39m
+ [32m✓[39m src/cli/__tests__/context-mode-conflict.test.ts[2m > [22mdetectContextModeConflict[2m > [22mflags --resume + --diff[32m 1[2mms[22m[39m
+ [32m✓[39m src/cli/__tests__/context-mode-conflict.test.ts[2m > [22mdetectContextModeConflict[2m > [22mflags --resume + --save[32m 1[2mms[22m[39m
+ [32m✓[39m src/cli/__tests__/context-mode-conflict.test.ts[2m > [22mdetectContextModeConflict[2m > [22mflags --resume + --out (C-3 right-hand case)[32m 1[2mms[22m[39m
+ [32m✓[39m src/cli/__tests__/context-mode-conflict.test.ts[2m > [22mdetectContextModeConflict[2m > [22msuggests --format json to --resume --out when format is non-json[32m 1[2mms[22m[39m
+ [32m✓[39m src/cli/__tests__/context-mode-conflict.test.ts[2m > [22mdetectContextModeConflict[2m > [22mflags --diff + --save (C-1)[32m 1[2mms[22m[39m
+ [32m✓[39m src/cli/__tests__/context-mode-conflict.test.ts[2m > [22mdetectContextModeConflict[2m > [22mflags --diff + --out (C-3 left-hand case)[32m 1[2mms[22m[39m
+ [32m✓[39m src/cli/__tests__/context-mode-conflict.test.ts[2m > [22mdetectContextModeConflict[2m > [22mflags --save + --out (C-4): two different write targets[32m 1[2mms[22m[39m
+ [32m✓[39m src/cli/__tests__/context-mode-conflict.test.ts[2m > [22mdetectContextModeConflict[2m > [22mflags --resume alongside every other write flag[32m 1[2mms[22m[39m
+ [32m✓[39m src/cli/__tests__/context-mode-conflict.test.ts[2m > [22mdetectDiffModeConflict[2m > [22mreturns undefined when no flags are set[32m 1[2mms[22m[39m
+ [32m✓[39m src/cli/__tests__/context-mode-conflict.test.ts[2m > [22mdetectDiffModeConflict[2m > [22mreturns undefined for legal single flags[32m 1[2mms[22m[39m
+ [32m✓[39m src/cli/__tests__/context-mode-conflict.test.ts[2m > [22mdetectDiffModeConflict[2m > [22mflags --summary + --content (C-5)[32m 1[2mms[22m[39m
+ [32m✓[39m src/cli/__tests__/context-mode-conflict.test.ts[2m > [22mdetectDiffModeConflict[2m > [22mflags --full + --limit[32m 1[2mms[22m[39m
+ [32m✓[39m src/cli/__tests__/context-mode-conflict.test.ts[2m > [22mdetectDiffModeConflict[2m > [22mdoes NOT flag --full without --limit (--full alone is the documented path)[32m 1[2mms[22m[39m
+ [32m✓[39m src/cli/__tests__/context-mode-conflict.test.ts[2m > [22mdetectDiffModeConflict[2m > [22mdoes NOT flag --limit alone (default behaviour)[32m 1[2mms[22m[39m
+ [32m✓[39m src/cli/__tests__/context-mode-conflict.test.ts[2m > [22mdetectDiffModeConflict[2m > [22mflags --summary alongside --limit or --full[32m 1[2mms[22m[39m
+ [32m✓[39m src/cli/__tests__/context-mode-conflict.test.ts[2m > [22mix context action surfaces mode conflicts on stderr and exits 1[2m > [22mix [ 'context', '--resume', 'x', …(2) ] → stderr matches /--resume and --diff/ and exit code is 1[32m 5[2mms[22m[39m
+ [32m✓[39m src/cli/__tests__/context-mode-conflict.test.ts[2m > [22mix context action surfaces mode conflicts on stderr and exits 1[2m > [22mix [ 'context', '--resume', 'x', …(2) ] → stderr matches /--resume cannot be combined with --sa…/ and exit code is 1[32m 1[2mms[22m[39m
+ [32m✓[39m src/cli/__tests__/context-mode-conflict.test.ts[2m > [22mix context action surfaces mode conflicts on stderr and exits 1[2m > [22mix [ 'context', '--resume', 'x', …(2) ] → stderr matches /--resume cannot be combined with --out/ and exit code is 1[32m 1[2mms[22m[39m
+ [32m✓[39m src/cli/__tests__/context-mode-conflict.test.ts[2m > [22mix context action surfaces mode conflicts on stderr and exits 1[2m > [22mix [ 'context', '--diff', 'x', …(2) ] → stderr matches /--diff cannot be combined with --save/ and exit code is 1[32m 1[2mms[22m[39m
+ [32m✓[39m src/cli/__tests__/context-mode-conflict.test.ts[2m > [22mix context action surfaces mode conflicts on stderr and exits 1[2m > [22mix [ 'context', '--diff', 'x', …(2) ] → stderr matches /--diff cannot be combined with --out/ and exit code is 1[32m 1[2mms[22m[39m
+ [32m✓[39m src/cli/__tests__/context-mode-conflict.test.ts[2m > [22mix context action surfaces mode conflicts on stderr and exits 1[2m > [22mix [ 'context', '--save', 'y', …(2) ] → stderr matches /--save and --out cannot be combined/ and exit code is 1[32m 1[2mms[22m[39m
+ [32m✓[39m src/cli/__tests__/context-mode-conflict.test.ts[2m > [22mix diff action surfaces mode conflicts on stderr and exits 1[2m > [22mix diff [ 'diff', '3', '5', '--summary', …(1) ] → stderr matches /--summary and --content cannot be com…/ and exit code is 1[32m 2[2mms[22m[39m
+ [32m✓[39m src/cli/__tests__/context-mode-conflict.test.ts[2m > [22mix diff action surfaces mode conflicts on stderr and exits 1[2m > [22mix diff [ 'diff', '3', '5', '--full', …(2) ] → stderr matches /--full and --limit cannot be combined/ and exit code is 1[32m 1[2mms[22m[39m
+ [32m✓[39m src/cli/__tests__/context-mode-conflict.test.ts[2m > [22mix diff action surfaces mode conflicts on stderr and exits 1[2m > [22mix diff [ 'diff', '3', '5', '--summary', …(2) ] → stderr matches /--summary ignores --limit and --full/ and exit code is 1[32m 1[2mms[22m[39m
+ [32m✓[39m src/cli/__tests__/context-mode-conflict.test.ts[2m > [22mix diff action surfaces mode conflicts on stderr and exits 1[2m > [22mix diff [ 'diff', '3', '5', '--summary', …(1) ] → stderr matches /--summary ignores --limit and --full/ and exit code is 1[32m 1[2mms[22m[39m
+ [32m✓[39m src/cli/__tests__/context-mode-conflict.test.ts[2m > [22mix help coverage stays intact (smoke)[2m > [22mcontext help still lists --resume, --diff, --save, --out[32m 3[2mms[22m[39m
+ [32m✓[39m src/cli/__tests__/context-mode-conflict.test.ts[2m > [22mix help coverage stays intact (smoke)[2m > [22mdiff help still lists --summary, --content, --full, --limit[32m 1[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m30 passed[39m[22m[90m (30)[39m
+[2m   Start at [22m 17:34:25
+[2m   Duration [22m 820ms[2m (transform 320ms, setup 0ms, import 482ms, tests 36ms, environment 0ms)[22m
+
+[2m Test Files [22m [1m[32m70 passed[39m[22m[90m (70)[39m
+[2m      Tests [22m [1m[32m1005 passed[39m[22m[2m | [22m[33m12 skipped[39m[90m (1017)[39m
